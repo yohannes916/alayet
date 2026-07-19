@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# deny-site <domain> [<domain> ...]
+# Remove domains from the allowlist and regenerate every layer live.
+set -euo pipefail
+PREFIX="/opt/parental"
+# shellcheck disable=SC1091
+source "${PREFIX}/scripts/lib.sh"
+require_root
+
+[[ "$#" -ge 1 ]] || die "Usage: deny-site <domain> [<domain> ...]"
+
+for d in "$@"; do
+  d="$(echo "$d" | tr '[:upper:]' '[:lower:]' | tr -d '[:space:]')"
+  [[ -n "$d" ]] || continue
+  # Delete exact-match lines (ignoring surrounding whitespace), keep comments.
+  if grep -qxF "$d" <(read_list "$(installed_allowlist)"); then
+    tmp="$(mktemp)"
+    awk -v t="$d" '
+      { line=$0; gsub(/#.*/,"",line); gsub(/^[ \t]+|[ \t]+$/,"",line);
+        if (line==t) next; print $0 }' "$(installed_allowlist)" > "$tmp"
+    mv "$tmp" "$(installed_allowlist)"
+    ok "Removed: $d"
+  else
+    warn "Not in allowlist: $d"
+  fi
+done
+
+"${PREFIX}/scripts/regenerate.sh"

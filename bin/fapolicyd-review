@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# fapolicyd-review [hours]
+# Show what fapolicyd WOULD have blocked (deny decisions) while in permissive
+# mode, deduped by the executable involved. Use this before `fapolicyd-enforce`
+# to find legitimate apps that still need trusting (-> `fapolicyd-allow`).
+# Default window: last 72 hours.
+set -euo pipefail
+PREFIX="/opt/parental"
+# shellcheck disable=SC1091
+source "${PREFIX}/scripts/lib.sh"
+require_root
+
+HOURS="${1:-72}"
+
+mode="$(grep -E '^permissive' /etc/fapolicyd/fapolicyd.conf 2>/dev/null || echo 'permissive = ?')"
+echo "Current fapolicyd: ${mode}"
+echo "== Would-be-denied executables (last ${HOURS}h) =="
+
+# fapolicyd logs decisions to the journal. Deny lines contain 'dec=deny'
+# and an exe=/path=/file= field identifying the program.
+journalctl -u fapolicyd --since "${HOURS} hours ago" --no-pager 2>/dev/null \
+  | grep -E 'dec=deny' \
+  | grep -oE '(exe|path|file)=[^ ]+' \
+  | sed -E 's/^(exe|path|file)=//' \
+  | sort | uniq -c | sort -rn | head -60 \
+  || echo "  (no deny events recorded — either nothing was blocked, or fapolicyd"
+echo ""
+echo "If a line above is a legitimate app, trust it:  sudo fapolicyd-allow <path>"
+echo "When this list only shows things you WANT blocked:  sudo fapolicyd-enforce"

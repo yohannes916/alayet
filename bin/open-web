@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# open-web — turn ON open browsing mode: allow ALL websites, while keeping
+# logging (Squid + extension) and YouTube restriction fully active. Intended
+# for a few days of observation so you can see what's actually used, then
+# curate the allowlist and run `close-web` to re-lock.
+set -euo pipefail
+PREFIX="/opt/parental"
+# shellcheck disable=SC1091
+source "${PREFIX}/scripts/lib.sh"
+require_root
+
+touch "${ETC_DIR}/open-mode"
+ok "OPEN browsing mode turned ON."
+"${PREFIX}/scripts/regenerate.sh"
+echo ""
+warn "All websites are now allowed. Logging + YouTube restriction are still on."
+echo "Watch what's used with:  sudo top-sites        (most-visited domains)"
+echo "                         sudo cat /var/log/parental/activity.log"
+echo "Re-lock to the allowlist with:  sudo close-web"

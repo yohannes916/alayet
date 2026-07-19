@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+# fapolicyd-enforce [--permissive]
+# Flip fapolicyd between enforcing (blocking) and permissive (logging only).
+#   fapolicyd-enforce              -> turn ON blocking (permissive = 0)
+#   fapolicyd-enforce --permissive -> back to logging only (permissive = 1)
+# Before enforcing, confirm `fapolicyd-review` shows only things you WANT blocked.
+set -euo pipefail
+PREFIX="/opt/parental"
+# shellcheck disable=SC1091
+source "${PREFIX}/scripts/lib.sh"
+require_root
+
+CONF=/etc/fapolicyd/fapolicyd.conf
+[[ -f "$CONF" ]] || die "fapolicyd not installed ($CONF missing)."
+
+if [[ "${1:-}" == "--permissive" ]]; then
+  VAL=1; WORD="PERMISSIVE (logging only)"
+else
+  VAL=0; WORD="ENFORCING (blocking untrusted execution)"
+  warn "About to ENFORCE. Anything not trusted will be blocked from running."
+  warn "Did 'fapolicyd-review' show only things you want blocked? Continue? [y/N]"
+  read -r ans; [[ "$ans" =~ ^[Yy]$ ]] || { echo "Aborted."; exit 0; }
+fi
+
+if grep -q '^permissive' "$CONF"; then
+  sed -i "s/^permissive.*/permissive = ${VAL}/" "$CONF"
+else
+  echo "permissive = ${VAL}" >> "$CONF"
+fi
+systemctl restart fapolicyd
+sleep 1
+systemctl is-active --quiet fapolicyd \
+  && ok "fapolicyd is now ${WORD}." \
+  || die "fapolicyd failed to restart — check 'journalctl -u fapolicyd'. Run 'fapolicyd-enforce --permissive' to recover."

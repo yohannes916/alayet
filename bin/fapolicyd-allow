@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# fapolicyd-allow <path> [<path> ...]
+# Trust one or more specific executables/files so fapolicyd permits them once
+# enforcing. Use for legitimate apps surfaced by `fapolicyd-review`.
+# Adds the file(s) to fapolicyd's trust database (by hash), then reloads.
+set -euo pipefail
+PREFIX="/opt/parental"
+# shellcheck disable=SC1091
+source "${PREFIX}/scripts/lib.sh"
+require_root
+
+[[ "$#" -ge 1 ]] || die "Usage: fapolicyd-allow <path> [<path> ...]"
+
+for p in "$@"; do
+  [[ -e "$p" ]] || { warn "Not found, skipping: $p"; continue; }
+  if fapolicyd-cli --file add "$p" 2>/dev/null; then
+    ok "Trusted: $p"
+  else
+    warn "Could not add via fapolicyd-cli: $p"
+  fi
+done
+
+# Recompute the trust db and reload the daemon.
+fapolicyd-cli --update 2>/dev/null || true
+systemctl restart fapolicyd 2>/dev/null || true
+ok "Trust database updated and fapolicyd reloaded."

@@ -1,0 +1,265 @@
+#!/usr/bin/env python3
+"""Backend health monitor for the alayet locked-down laptop.
+
+Runs periodically (systemd timer). Each cycle it evaluates a set of health
+checks. A check that fails for ALERT_THRESHOLD consecutive cycles triggers a
+Telegram alert; when it recovers, a recovery message is sent. A still-failing
+check is re-alerted every ALERT_REPEAT_HOURS so it isn't forgotten. State is
+kept in a JSON file so consecutive failures survive across runs.
+
+Config:
+  /etc/parental/telegram.env   TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID  (0600, secret)
+  /opt/parental/config/settings.env   ALERT_THRESHOLD, ALERT_REPEAT_HOURS, TELEGRAM_PROXY
+
+Usage:
+  health-check            run one cycle (what the timer calls)
+  health-check --status   print current check results + state, no alerts
+  health-check --test     send a test Telegram message and exit
+"""
+import json, os, re, socket, subprocess, sys, time
+from datetime import datetime, timezone
+
+STATE_FILE = "/var/lib/parental/health-state.json"
+LOG_FILE = "/var/log/parental/health.log"
+HOST = socket.gethostname()
+
+# ---- config ---------------------------------------------------------------
+def load_env(path):
+    d = {}
+    try:
+        with open(path) as f:
+            for line in f:
+                line = line.strip()
+                if not line or line.startswith("#") or "=" not in line:
+                    continue
+                k, v = line.split("=", 1)
+                d[k.strip()] = v.strip().strip('"').strip("'")
+    except FileNotFoundError:
+        pass
+    return d
+
+CFG = {}
+CFG.update(load_env("/opt/parental/config/settings.env"))
+CFG.update(load_env("/etc/parental/telegram.env"))
+BOT = CFG.get("TELEGRAM_BOT_TOKEN", "")
+CHAT = CFG.get("TELEGRAM_CHAT_ID", "")
+PROXY = CFG.get("TELEGRAM_PROXY", "127.0.0.1:3128")
+# env vars win over the config files (handy for testing, e.g. ALERT_THRESHOLD=1).
+THRESHOLD = int(os.environ.get("ALERT_THRESHOLD") or CFG.get("ALERT_THRESHOLD", "3") or 3)
+REPEAT_H = float(os.environ.get("ALERT_REPEAT_HOURS") or CFG.get("ALERT_REPEAT_HOURS", "6") or 6)
+# HEALTH_FORCE_FAIL=<checkname> forces that check to fail — for testing alerts.
+FORCE_FAIL = os.environ.get("HEALTH_FORCE_FAIL", "")
+
+EXT_ID = "elnojnhiofbohmdijelpdnmlogcfaeko"
+CHILD = CFG.get("CHILD_USER", "alayet")
+
+def sh(cmd, timeout=15):
+    try:
+        r = subprocess.run(cmd, shell=True, capture_output=True, text=True, timeout=timeout)
+        return r.returncode, (r.stdout or "").strip(), (r.stderr or "").strip()
+    except subprocess.TimeoutExpired:
+        return 124, "", "timeout"
+    except Exception as e:
+        return 1, "", str(e)
+
+def now_iso():
+    return datetime.now(timezone.utc).astimezone().strftime("%Y-%m-%d %H:%M:%S %Z")
+
+def telegram(text):
+    if not BOT or not CHAT:
+        return False, "telegram not configured"
+    url = "https://api.telegram.org/bot%s/sendMessage" % BOT
+    cmd = ("curl -s --max-time 25 %s "
+           "--data-urlencode chat_id=%s "
+           "--data-urlencode disable_web_page_preview=true "
+           "--data-urlencode text=@- -o /dev/null -w '%%{http_code}' %s") % (
+        ("-x " + PROXY) if PROXY else "", CHAT, url)
+    try:
+        r = subprocess.run(cmd, shell=True, input=text, capture_output=True, text=True, timeout=30)
+        return (r.stdout.strip() == "200"), r.stdout.strip()
+    except Exception as e:
+        return False, str(e)
+
+def log(line):
+    try:
+        with open(LOG_FILE, "a") as f:
+            f.write("%s  %s\n" % (now_iso(), line))
+    except Exception:
+        pass
+
+# ---- checks ---------------------------------------------------------------
+# Each returns (ok: bool, detail: str). Keep them cheap and side-effect-free.
+def c_dnsmasq():
+    rc, out, _ = sh("systemctl is-active dnsmasq")
+    return out == "active", "dnsmasq is %s" % (out or "?")
+
+def c_squid():
+    rc, out, _ = sh("systemctl is-active squid")
+    return out == "active", "squid is %s" % (out or "?")
+
+def c_squid_config():
+    rc, _, err = sh("squid -k parse")
+    return rc == 0, "squid config parse rc=%d %s" % (rc, err[-120:])
+
+def c_dns_resolve():
+    rc, out, _ = sh("dig +short A example.com @127.0.0.1")
+    # Only a line that is EXACTLY an IPv4 address counts as a real A answer
+    # (don't be fooled by '127.0.0.1#53' inside a dig error message).
+    ok = any(re.fullmatch(r"\d+\.\d+\.\d+\.\d+", ln.strip()) for ln in out.splitlines())
+    return ok, "example.com -> %s" % (out.replace("\n", " ") or "(no answer)")
+
+def c_proxy_web():
+    # THE key check: can the browser actually reach the web through Squid?
+    # Detects the '503 storm / can't reach any site' condition directly.
+    rc, out, _ = sh("curl -s -x 127.0.0.1:3128 -o /dev/null -w '%{http_code}' "
+                    "-L --max-time 20 -A Mozilla/5.0 https://www.google.com/")
+    ok = out.startswith("2") or out.startswith("3")
+    return ok, "google via proxy -> HTTP %s" % (out or "000")
+
+def c_youtube_restricted():
+    rc, out, _ = sh("dig +short A www.youtube.com @127.0.0.1")
+    ok = "216.239.38.120" in out or "216.239.32.120" in out
+    return ok, "www.youtube.com -> %s (expect restricted-mode IP)" % (out.replace("\n", " ") or "(none)")
+
+def c_nocookie_blocked():
+    rc, out, _ = sh("dig +short youtube-nocookie.com @127.0.0.1")
+    ok = "0.0.0.0" in out
+    return ok, "youtube-nocookie.com -> %s (expect 0.0.0.0)" % (out.replace("\n", " ") or "(none)")
+
+def c_disk():
+    rc, out, _ = sh("df --output=pcent / | tail -1 | tr -dc '0-9'")
+    try:
+        pct = int(out)
+    except ValueError:
+        return True, "disk usage unknown"
+    return pct < 90, "root filesystem %d%% full" % pct
+
+def c_logs_protected():
+    missing = []
+    for name in ("activity", "prompts", "blocked", "searches"):
+        p = "/var/log/parental/%s.log" % name
+        if not os.path.exists(p):
+            missing.append(name + ":missing"); continue
+        rc, out, _ = sh("lsattr %s 2>/dev/null" % p)
+        attrs = out.split()[0] if out else ""
+        # lsattr's attribute field contains 'a' when the file is append-only.
+        if "a" not in attrs:
+            missing.append(name + ":not-append-only")
+    return (not missing), ("logs OK" if not missing else "log issues: " + ",".join(missing))
+
+def c_policy():
+    p = "/etc/opt/chrome/policies/managed/parental.json"
+    try:
+        d = json.load(open(p))
+        ok = ("URLBlocklist" in d) and ("ProxySettings" in d)
+        return ok, "parental.json valid, keys ok" if ok else "parental.json missing expected keys"
+    except Exception as e:
+        return False, "parental.json invalid: %s" % e
+
+def c_extension():
+    d = "/home/%s/.config/google-chrome/Default/Extensions/%s" % (CHILD, EXT_ID)
+    try:
+        vers = sorted(os.listdir(d))
+    except Exception:
+        return False, "monitoring extension not installed in child profile"
+    return bool(vers), "extension version(s): %s" % ",".join(vers)
+
+CHECKS = [
+    ("dnsmasq", c_dnsmasq),
+    ("squid", c_squid),
+    ("squid_config", c_squid_config),
+    ("dns_resolve", c_dns_resolve),
+    ("proxy_web", c_proxy_web),
+    ("youtube_restricted", c_youtube_restricted),
+    ("nocookie_blocked", c_nocookie_blocked),
+    ("disk_space", c_disk),
+    ("logs_protected", c_logs_protected),
+    ("chrome_policy", c_policy),
+    ("extension_loaded", c_extension),
+]
+
+# ---- state ----------------------------------------------------------------
+def load_state():
+    try:
+        return json.load(open(STATE_FILE))
+    except Exception:
+        return {}
+
+def save_state(st):
+    os.makedirs(os.path.dirname(STATE_FILE), exist_ok=True)
+    tmp = STATE_FILE + ".tmp"
+    json.dump(st, open(tmp, "w"))
+    os.replace(tmp, STATE_FILE)
+
+def run_checks():
+    results = []
+    for name, fn in CHECKS:
+        if FORCE_FAIL and name == FORCE_FAIL:
+            results.append((name, False, "forced failure (test)")); continue
+        try:
+            ok, detail = fn()
+        except Exception as e:
+            ok, detail = False, "check crashed: %s" % e
+        results.append((name, ok, detail))
+    return results
+
+# ---- main -----------------------------------------------------------------
+def main():
+    arg = sys.argv[1] if len(sys.argv) > 1 else ""
+
+    if arg == "--test":
+        ok, code = telegram("🔔 %s: alayet monitor test message — alerts are working.\n%s" % (HOST, now_iso()))
+        print("telegram test:", "sent" if ok else "FAILED", code)
+        sys.exit(0 if ok else 1)
+
+    results = run_checks()
+
+    if arg == "--status":
+        for name, ok, detail in results:
+            print("  [%s] %-20s %s" % ("OK " if ok else "FAIL", name, detail))
+        sys.exit(0)
+
+    st = load_state()
+    now = time.time()
+    newly_failed, recovered, still_failing = [], [], []
+
+    for name, ok, detail in results:
+        s = st.get(name, {"fails": 0, "alerted": False, "last_alert": 0})
+        if ok:
+            if s.get("alerted"):
+                recovered.append((name, detail))
+            st[name] = {"fails": 0, "alerted": False, "last_alert": 0}
+        else:
+            s["fails"] = s.get("fails", 0) + 1
+            log("FAIL %s (%dx): %s" % (name, s["fails"], detail))
+            if s["fails"] >= THRESHOLD:
+                due_repeat = s.get("alerted") and (now - s.get("last_alert", 0) >= REPEAT_H * 3600)
+                if not s.get("alerted"):
+                    newly_failed.append((name, detail, s["fails"])); s["alerted"] = True; s["last_alert"] = now
+                elif due_repeat:
+                    still_failing.append((name, detail, s["fails"])); s["last_alert"] = now
+            st[name] = s
+
+    # send messages
+    for name, detail, n in newly_failed:
+        telegram("🔴 %s: %s FAILED (%d consecutive checks)\n%s\n%s" % (HOST, name, n, detail, now_iso()))
+    for name, detail, n in still_failing:
+        telegram("🔴 %s: %s STILL failing (%d checks)\n%s\n%s" % (HOST, name, n, detail, now_iso()))
+    for name, detail in recovered:
+        telegram("🟢 %s: %s recovered\n%s\n%s" % (HOST, name, detail, now_iso()))
+
+    # optional daily "all good" heartbeat when everything is healthy
+    if REPEAT_H and CFG.get("ALERT_DAILY_OK", "0") in ("1", "true", "yes"):
+        allok = all(ok for _, ok, _ in results)
+        last_hb = st.get("_heartbeat", 0)
+        if allok and (now - last_hb >= 24 * 3600):
+            telegram("✅ %s: all systems healthy (%d checks).\n%s" % (HOST, len(results), now_iso()))
+            st["_heartbeat"] = now
+
+    save_state(st)
+    fails = [n for n, ok, _ in results if not ok]
+    log("cycle done: %d/%d ok%s" % (len(results) - len(fails), len(results),
+        (" | failing: " + ",".join(fails)) if fails else ""))
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# allow-youtube <channel|video|handle> <id>
+# Add a YouTube channel, video, or handle to the selective allowlist.
+#   allow-youtube channel UC_x5XG1OV2P6uZZ5FSM9Ttw
+#   allow-youtube video   aqz-KE-bpKQ
+#   allow-youtube handle  @NationalGeographic
+set -euo pipefail
+PREFIX="/opt/parental"
+# shellcheck disable=SC1091
+source "${PREFIX}/scripts/lib.sh"
+require_root
+
+[[ "$#" -eq 2 ]] || die "Usage: allow-youtube <channel|video|handle> <id>"
+kind="$1"; id="$2"
+case "$kind" in channel|video|handle) ;; *) die "kind must be channel|video|handle" ;; esac
+
+line="${kind}: ${id}"
+if grep -qxF "$line" <(read_list "$(installed_yt)"); then
+  warn "Already allowed: $line"
+else
+  echo "$line" >> "$(installed_yt)"
+  ok "Added: $line"
+fi
+
+"${PREFIX}/scripts/regenerate.sh"

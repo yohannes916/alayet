@@ -1,0 +1,56 @@
+{
+  "manifest_version": 3,
+  "name": "Family Activity Monitor",
+  "version": "1.0.8",
+  "description": "Records visited pages and AI prompts, and enforces the YouTube content allowlist. Managed by a parent; cannot be removed by this account.",
+  "storage": {
+    "managed_schema": "schema.json"
+  },
+  "permissions": [
+    "webNavigation",
+    "tabs",
+    "storage",
+    "nativeMessaging",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://gemini.google.com/*",
+    "https://*.youtube.com/*",
+    "https://*.youtube-nocookie.com/*",
+    "https://www.google.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://gemini.google.com/*"],
+      "js": ["config.js", "content-gemini.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://www.google.com/*"],
+      "js": ["content-google-ai.js"],
+      "run_at": "document_idle",
+      "all_frames": true
+    },
+    {
+      "matches": ["https://www.google.com/*"],
+      "js": ["content-google-video.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    },
+    {
+      "matches": ["https://*.youtube.com/*", "https://*.youtube-nocookie.com/*"],
+      "js": ["config.js", "content-youtube.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["blocked.html"],
+      "matches": ["https://*.youtube.com/*"]
+    }
+  ]
+}

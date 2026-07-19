@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# top-sites [N] — the most-visited domains from Squid's access log (the
+# browser-independent record of every request). Use this during open-web mode
+# to see what's regularly used before curating the allowlist. Default: top 50.
+set -euo pipefail
+PREFIX="/opt/parental"
+# shellcheck disable=SC1091
+source "${PREFIX}/scripts/lib.sh"
+
+SQUID_LOG="/var/log/squid/access.log"
+N="${1:-50}"
+
+[[ -r "$SQUID_LOG" ]] || die "Squid log not readable at $SQUID_LOG (run with sudo, or Squid not installed)."
+
+echo "== Top ${N} domains reached (Squid access.log) =="
+# Squid native format: field 7 = URL (or host:port for CONNECT). Reduce to host.
+awk '{print $7}' "$SQUID_LOG" \
+  | sed -E 's#^[a-z]+://##; s#/.*$##; s#:[0-9]+$##' \
+  | grep -v '^$' \
+  | sort | uniq -c | sort -rn | head -n "$N"
+echo ""
+echo "Allow the ones you want:  sudo allow-site <domain>"
+echo "Then re-lock:             sudo close-web"

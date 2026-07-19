@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+# maintenance-dns — temporarily unlock/relock DNS for ADMIN maintenance.
+#
+# After install, dnsmasq's catch-all confines DNS to the allowlist for EVERY
+# account (including the admin), so `apt`, general browsing, etc. fail to resolve.
+# This toggles the system resolver between the locked dnsmasq and a public
+# upstream so the admin can do maintenance, then re-lock.
+#
+#   sudo maintenance-dns off   # UNLOCK: route DNS to a public resolver
+#   sudo maintenance-dns on    # RE-LOCK: route DNS back through dnsmasq allowlist
+#   sudo maintenance-dns status
+#
+# NOTE: the child uid is still confined to loopback by the nftables firewall and
+# forced through the Squid allowlist, so unlocking DNS does NOT open the child's
+# web access — it only restores name resolution for the admin's own work.
+set -euo pipefail
+[[ "${EUID}" -eq 0 ]] || { echo "Run with sudo."; exit 1; }
+
+UPSTREAM1="8.8.8.8"
+UPSTREAM2="1.1.1.1"
+
+case "${1:-status}" in
+  off|unlock)
+    systemctl stop dnsmasq 2>/dev/null || true
+    printf 'nameserver %s\nnameserver %s\n' "$UPSTREAM1" "$UPSTREAM2" > /etc/resolv.conf
+    echo "[+] DNS UNLOCKED — resolving via ${UPSTREAM1}/${UPSTREAM2} (allowlist bypassed for THIS host)."
+    echo "    Re-lock when done:  sudo maintenance-dns on"
+    ;;
+  on|lock)
+    printf 'nameserver 127.0.0.1\noptions edns0\n' > /etc/resolv.conf
+    systemctl start dnsmasq
+    echo "[+] DNS RE-LOCKED — resolving via dnsmasq allowlist."
+    ;;
+  status)
+    echo "resolv.conf:"; sed 's/^/  /' /etc/resolv.conf
+    echo -n "dnsmasq: "; systemctl is-active dnsmasq 2>/dev/null || true
+    ;;
+  *)
+    echo "usage: maintenance-dns {off|on|status}"; exit 1 ;;
+esac

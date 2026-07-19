@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# Send a one-off message to the configured Telegram chat, via the local proxy
+# (which is the only egress path on this locked-down box).
+#   notify-telegram "your message"
+# Credentials live in /etc/parental/telegram.env (root-only, 0600):
+#   TELEGRAM_BOT_TOKEN=123456:ABC...
+#   TELEGRAM_CHAT_ID=123456789
+set -uo pipefail
+# shellcheck disable=SC1091
+[[ -f /opt/parental/config/settings.env ]] && source /opt/parental/config/settings.env
+# shellcheck disable=SC1091
+[[ -f /etc/parental/telegram.env ]] && source /etc/parental/telegram.env
+
+MSG="${*:-}"
+[[ -z "$MSG" ]] && { echo "usage: notify-telegram <message>" >&2; exit 2; }
+[[ -z "${TELEGRAM_BOT_TOKEN:-}" || -z "${TELEGRAM_CHAT_ID:-}" ]] && {
+  echo "Telegram not configured (set /etc/parental/telegram.env)." >&2; exit 3; }
+PROXY="${TELEGRAM_PROXY:-127.0.0.1:3128}"
+
+code=$(curl -s --max-time 25 ${PROXY:+-x "$PROXY"} \
+  --data-urlencode "chat_id=${TELEGRAM_CHAT_ID}" \
+  --data-urlencode "disable_web_page_preview=true" \
+  --data-urlencode "text=${MSG}" \
+  -o /dev/null -w '%{http_code}' \
+  "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage")
+if [[ "$code" == "200" ]]; then echo "sent"; else echo "FAILED (HTTP $code)" >&2; exit 1; fi

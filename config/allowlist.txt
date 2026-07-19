@@ -1,0 +1,22 @@
+# Domain allowlist — SINGLE SOURCE OF TRUTH.
+# One domain per line. Lines starting with # and blank lines are ignored.
+# A leading "*." means "this domain and all subdomains".
+# After editing, run:  sudo /opt/parental/scripts/regenerate.sh   (or use `allow-site`)
+#
+# Scope: Google + Gemini only, plus what YouTube playback needs.
+
+# --- Gemini + Google sign-in ---
+gemini.google.com
+accounts.google.com
+*.gstatic.com
+*.googleapis.com
+
+# --- Google Search (remove these two lines if you don't want search) ---
+google.com
+www.google.com
+
+# --- YouTube (selective content is enforced by the extension + Restricted Mode) ---
+youtube.com
+*.youtube.com
+*.googlevideo.com
+youtubei.googleapis.com

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# close-web — turn OFF open browsing mode: go back to enforcing the domain
+# allowlist across all layers (Chrome policy, Squid, dnsmasq).
+set -euo pipefail
+PREFIX="/opt/parental"
+# shellcheck disable=SC1091
+source "${PREFIX}/scripts/lib.sh"
+require_root
+
+rm -f "${ETC_DIR}/open-mode"
+ok "OPEN browsing mode turned OFF — enforcing the domain allowlist again."
+"${PREFIX}/scripts/regenerate.sh"
+echo ""
+echo "Review/adjust the allowlist with:  sudo list-sites / sudo allow-site <domain>"

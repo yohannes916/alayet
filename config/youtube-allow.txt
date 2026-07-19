@@ -1,0 +1,65 @@
+# Selective YouTube allowlist — channel-level (recommended) or single videos.
+# The browser extension enforces this: any video NOT matching a line here is blocked,
+# and recommendations / Shorts / autoplay / comments are stripped.
+# Forced Restricted Mode (network layer) is the floor underneath this list.
+#
+# Format (one per line):
+#   channel: <channelId>     e.g.  channel: UC_x5XG1OV2P6uZZ5FSM9Ttw   (Google Developers)
+#   video:   <videoId>       e.g.  video:   aqz-KE-bpKQ
+#   handle:  <@handle>       e.g.  handle:  @NationalGeographic
+#
+# After editing run:  sudo /opt/parental/scripts/regenerate.sh   (or use `allow-youtube`)
+# NOTE: the LIVE list is /etc/parental/youtube-allow.txt; this is the kit template
+# used on (re)deploy. Keep them in sync if you edit one by hand.
+
+# ============================ STEM education (HS + college) =================
+# --- General / interdisciplinary science ---
+handle: @veritasium
+handle: @crashcourse
+handle: @khanacademy
+handle: @TEDEd
+handle: @kurzgesagt
+handle: @SciShow
+handle: @smartereveryday
+handle: @Vsauce
+channel: UCxqAWLTk1CmBvZFPzeZMd9A          # Domain of Science (Dominic Walliman)
+
+# --- Math ---
+handle: @3blue1brown
+handle: @TheOrganicChemistryTutor
+handle: @ProfessorLeonard
+handle: @numberphile
+handle: @Mathologer
+handle: @blackpenredpen
+handle: @statquest
+handle: @NancyPi
+
+# --- Physics & astronomy ---
+handle: @FlippingPhysics
+handle: @MichelvanBiezen
+handle: @minutephysics
+handle: @physicsgirl
+handle: @SteveMould
+handle: @sixtysymbols
+handle: @pbsspacetime
+
+# --- Chemistry ---
+handle: @TylerDeWitt
+handle: @periodicvideos
+handle: @NileRed
+
+# --- Biology & medicine ---
+handle: @AmoebaSisters
+handle: @Osmosis
+channel: UCEik-U3T6u6JA0XiHLbNbOw          # Bozeman Science (Paul Andersen)
+
+# --- Computer science & engineering ---
+handle: @mitocw
+handle: @Computerphile
+handle: @freecodecamp
+handle: @BenEater
+handle: @NeetCode
+handle: @RealEngineering
+handle: @PracticalEngineering
+handle: @TheEfficientEngineer
+handle: @BranchEducation

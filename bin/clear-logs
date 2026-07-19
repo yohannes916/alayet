@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+# clear-logs [-y] — wipe the monitoring logs to a clean slate (e.g. before an
+# open-web observation period). Clears the parental activity/searches/prompts/
+# blocked logs AND the Squid access log, then restores each log's append-only
+# protection. Logging keeps running afterwards.
+#
+# DESTRUCTIVE + IRREVERSIBLE: the cleared history is gone. Pass -y/--yes to skip
+# the confirmation (e.g. when running non-interactively over SSH).
+set -euo pipefail
+shopt -s nullglob
+PREFIX="/opt/parental"
+# shellcheck disable=SC1091
+source "${PREFIX}/scripts/lib.sh"
+require_root
+
+ASSUME_YES=0
+[[ "${1:-}" == "-y" || "${1:-}" == "--yes" ]] && ASSUME_YES=1
+
+if [[ "$ASSUME_YES" -ne 1 ]]; then
+  warn "This ERASES all recorded browsing / search / prompt history. It cannot be undone."
+  read -r -p "Type YES to continue: " ans
+  [[ "$ans" == "YES" ]] || die "Aborted (nothing cleared)."
+fi
+
+# --- Parental append-only logs --------------------------------------------
+# Mirror the attributes set in 05-install-extension.sh so protection is intact
+# after clearing: lift +a, truncate in place, restore owner/perms/ACL, re-add +a.
+for name in activity prompts blocked searches; do
+  f="${LOG_DIR}/${name}.log"
+  [[ -f "$f" ]] || : > "$f"
+  chattr -a "$f" 2>/dev/null || true       # lift append-only so we can truncate
+  : > "$f"                                   # truncate (keeps inode)
+  chown root:root "$f"
+  chmod 0600 "$f"
+  setfacl -m "u:${CHILD_USER}:w" "$f" 2>/dev/null || chmod 0622 "$f"
+  chattr +a "$f" 2>/dev/null || warn "chattr +a failed on $f (non-ext4 fs?)."
+  ok "Cleared ${f}"
+done
+
+# --- Squid access log (feeds top-sites / review-denied) -------------------
+SQUID_LOG="/var/log/squid/access.log"
+if [[ -f "$SQUID_LOG" ]]; then
+  truncate -s 0 "$SQUID_LOG" "${SQUID_LOG}".* 2>/dev/null || : > "$SQUID_LOG"
+  if systemctl is-active --quiet squid 2>/dev/null; then
+    squid -k rotate 2>/dev/null || true      # make Squid reopen its fd cleanly
+    truncate -s 0 "$SQUID_LOG" "${SQUID_LOG}".* 2>/dev/null || true
+  fi
+  ok "Cleared ${SQUID_LOG}"
+fi
+
+ok "All monitoring logs cleared. Logging continues normally."

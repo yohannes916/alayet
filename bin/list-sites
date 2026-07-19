@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# list-sites — show the current domain allowlist and YouTube allowlist.
+set -euo pipefail
+PREFIX="/opt/parental"
+# shellcheck disable=SC1091
+source "${PREFIX}/scripts/lib.sh"
+
+if [[ -f "${ETC_DIR}/open-mode" ]]; then
+  echo "== MODE: OPEN — all websites allowed (logging + YouTube restriction still on). 'sudo close-web' to re-lock. =="
+else
+  echo "== MODE: LOCKED — only the domains below are allowed. 'sudo open-web' to allow all. =="
+fi
+echo ""
+echo "== Allowed domains =="
+read_list "$(installed_allowlist)" | sort
+echo ""
+echo "== Allowed YouTube content =="
+read_list "$(installed_yt)" | sort

@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+# review-denied [hours]
+# Show what the child tried to reach and was blocked, so you can decide what to
+# allow. Pulls from two independent sources:
+#   1. Squid access.log  -> TCP_DENIED (domain-level, browser-independent)
+#   2. extension block log -> full URLs the browser policy refused (path-level)
+# Default window: last 24 hours.
+set -euo pipefail
+PREFIX="/opt/parental"
+# shellcheck disable=SC1091
+source "${PREFIX}/scripts/lib.sh"
+
+HOURS="${1:-24}"
+SQUID_LOG="/var/log/squid/access.log"
+EXT_LOG="${LOG_DIR}/blocked.log"
+
+echo "== Blocked domains (Squid, last ${HOURS}h) =="
+if [[ -r "$SQUID_LOG" ]]; then
+  # Squid native format: field 4 = result/status (e.g. TCP_DENIED/403), field 7 = URL.
+  awk '$4 ~ /DENIED/ {print $7}' "$SQUID_LOG" \
+    | sed -E 's#^[a-z]+://##; s#/.*$##; s#:443$##' \
+    | sort | uniq -c | sort -rn | head -50 \
+    || echo "  (none)"
+else
+  warn "Squid log not readable at $SQUID_LOG (run as root, or Squid not installed yet)."
+fi
+
+echo ""
+echo "== Blocked URLs (browser extension) =="
+if [[ -r "$EXT_LOG" ]]; then
+  if command -v jq >/dev/null 2>&1; then
+    jq -r 'select(.type=="blocked") | .url' "$EXT_LOG" 2>/dev/null \
+      | sort | uniq -c | sort -rn | head -50 || echo "  (none)"
+  else
+    grep -o '"url":"[^"]*"' "$EXT_LOG" | sed 's/"url":"//; s/"$//' \
+      | sort | uniq -c | sort -rn | head -50 || echo "  (none)"
+  fi
+else
+  echo "  (extension block log not present yet)"
+fi
+
+echo ""
+echo "To allow one:   sudo allow-site <domain>     (or)   sudo allow-youtube channel <id>"

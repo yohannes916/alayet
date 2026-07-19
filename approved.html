@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Approved Channels</title>
+<style>
+  :root{
+    --bg:#f6f8fb; --card:#ffffff; --ink:#12203a; --muted:#5b6b86;
+    --line:#e4e9f2; --accent:#2f6df6; --accenttext:#ffffff; --chip:#eef3ff;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#0f1524; --card:#161d2e; --ink:#eaf0fb; --muted:#9aa8c2;
+           --line:#26304a; --accent:#5b8bff; --accenttext:#0b1120; --chip:#1b2438; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+       background:var(--bg);color:var(--ink);padding:28px 20px 64px}
+  header{max-width:1080px;margin:0 auto 22px}
+  h1{font-size:26px;margin:0 0 4px;display:flex;align-items:center;gap:10px}
+  header p{margin:0;color:var(--muted)}
+  main{max-width:1080px;margin:0 auto;display:flex;flex-direction:column;gap:26px}
+  section h2{font-size:14px;letter-spacing:.08em;text-transform:uppercase;
+             color:var(--muted);margin:0 0 12px;border-bottom:1px solid var(--line);padding-bottom:6px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+  a.card{display:block;text-decoration:none;color:inherit;background:var(--card);
+         border:1px solid var(--line);border-radius:12px;padding:13px 15px;transition:.12s}
+  a.card:hover{border-color:var(--accent);transform:translateY(-2px);
+               box-shadow:0 6px 18px rgba(47,109,246,.15)}
+  a.card .name{font-weight:600}
+  a.card .topic{color:var(--muted);font-size:13px;margin-top:2px}
+  footer{max-width:1080px;margin:34px auto 0;color:var(--muted);font-size:13px;
+         border-top:1px solid var(--line);padding-top:14px}
+</style>
+</head>
+<body>
+<header>
+  <h1>📚 My Approved Channels</h1>
+  <p>Click any channel to open it on YouTube. These are the ones a parent has approved — everything else on YouTube is blocked.</p>
+</header>
+<main>
+  <section>
+    <h2>General &amp; Interdisciplinary Science</h2>
+    <div class="grid">
+      <a class="card" href="https://www.youtube.com/@veritasium"><div class="name">Veritasium</div><div class="topic">Physics &amp; engineering deep dives</div></a>
+      <a class="card" href="https://www.youtube.com/@crashcourse"><div class="name">CrashCourse</div><div class="topic">Full courses in every subject</div></a>
+      <a class="card" href="https://www.youtube.com/@khanacademy"><div class="name">Khan Academy</div><div class="topic">Math &amp; science curricula</div></a>
+      <a class="card" href="https://www.youtube.com/@TEDEd"><div class="name">TED-Ed</div><div class="topic">Short animated lessons</div></a>
+      <a class="card" href="https://www.youtube.com/@kurzgesagt"><div class="name">Kurzgesagt</div><div class="topic">Big-picture science, animated</div></a>
+      <a class="card" href="https://www.youtube.com/@SciShow"><div class="name">SciShow</div><div class="topic">Bite-size science explainers</div></a>
+      <a class="card" href="https://www.youtube.com/@smartereveryday"><div class="name">SmarterEveryDay</div><div class="topic">Real-world physics &amp; engineering</div></a>
+      <a class="card" href="https://www.youtube.com/@Vsauce"><div class="name">Vsauce</div><div class="topic">Curiosity-driven science &amp; math</div></a>
+      <a class="card" href="https://www.youtube.com/channel/UCxqAWLTk1CmBvZFPzeZMd9A"><div class="name">Domain of Science</div><div class="topic">Maps of each scientific field</div></a>
+    </div>
+  </section>
+  <section>
+    <h2>Math</h2>
+    <div class="grid">
+      <a class="card" href="https://www.youtube.com/@3blue1brown"><div class="name">3Blue1Brown</div><div class="topic">Visual calculus &amp; linear algebra</div></a>
+      <a class="card" href="https://www.youtube.com/@TheOrganicChemistryTutor"><div class="name">The Organic Chemistry Tutor</div><div class="topic">Math, physics &amp; chem problem-solving</div></a>
+      <a class="card" href="https://www.youtube.com/@ProfessorLeonard"><div class="name">Professor Leonard</div><div class="topic">Full calculus &amp; stats lectures</div></a>
+      <a class="card" href="https://www.youtube.com/@numberphile"><div class="name">Numberphile</div><div class="topic">Number theory &amp; fun math</div></a>
+      <a class="card" href="https://www.youtube.com/@Mathologer"><div class="name">Mathologer</div><div class="topic">Elegant proofs, deeper math</div></a>
+      <a class="card" href="https://www.youtube.com/@blackpenredpen"><div class="name">blackpenredpen</div><div class="topic">Calculus problem drills</div></a>
+      <a class="card" href="https://www.youtube.com/@statquest"><div class="name">StatQuest</div><div class="topic">Statistics &amp; machine learning</div></a>
+      <a class="card" href="https://www.youtube.com/@NancyPi"><div class="name">NancyPi</div><div class="topic">Calculus, algebra &amp; SAT/ACT math</div></a>
+    </div>
+  </section>
+  <section>
+    <h2>Physics &amp; Astronomy</h2>
+    <div class="grid">
+      <a class="card" href="https://www.youtube.com/@FlippingPhysics"><div class="name">Flipping Physics</div><div class="topic">AP Physics 1/2/C</div></a>
+      <a class="card" href="https://www.youtube.com/@MichelvanBiezen"><div class="name">Michel van Biezen</div><div class="topic">Huge physics/math lecture library</div></a>
+      <a class="card" href="https://www.youtube.com/@minutephysics"><div class="name">MinutePhysics</div><div class="topic">Short physics explainers</div></a>
+      <a class="card" href="https://www.youtube.com/@physicsgirl"><div class="name">Physics Girl</div><div class="topic">Accessible physics demos</div></a>
+      <a class="card" href="https://www.youtube.com/@SteveMould"><div class="name">Steve Mould</div><div class="topic">Physics of everyday things</div></a>
+      <a class="card" href="https://www.youtube.com/@sixtysymbols"><div class="name">Sixty Symbols</div><div class="topic">Physics &amp; astronomy from profs</div></a>
+      <a class="card" href="https://www.youtube.com/@pbsspacetime"><div class="name">PBS Space Time</div><div class="topic">Astrophysics &amp; cosmology</div></a>
+    </div>
+  </section>
+  <section>
+    <h2>Chemistry</h2>
+    <div class="grid">
+      <a class="card" href="https://www.youtube.com/@TylerDeWitt"><div class="name">Tyler DeWitt</div><div class="topic">High-school chemistry</div></a>
+      <a class="card" href="https://www.youtube.com/@periodicvideos"><div class="name">Periodic Videos</div><div class="topic">A video per element</div></a>
+      <a class="card" href="https://www.youtube.com/@NileRed"><div class="name">NileRed</div><div class="topic">Practical &amp; organic chemistry</div></a>
+    </div>
+  </section>
+  <section>
+    <h2>Biology &amp; Medicine</h2>
+    <div class="grid">
+      <a class="card" href="https://www.youtube.com/@AmoebaSisters"><div class="name">Amoeba Sisters</div><div class="topic">High-school biology</div></a>
+      <a class="card" href="https://www.youtube.com/@Osmosis"><div class="name">Osmosis</div><div class="topic">Physiology &amp; medicine</div></a>
+      <a class="card" href="https://www.youtube.com/channel/UCEik-U3T6u6JA0XiHLbNbOw"><div class="name">Bozeman Science</div><div class="topic">AP Bio/Chem/Physics/Environmental</div></a>
+    </div>
+  </section>
+  <section>
+    <h2>Computer Science &amp; Engineering</h2>
+    <div class="grid">
+      <a class="card" href="https://www.youtube.com/@mitocw"><div class="name">MIT OpenCourseWare</div><div class="topic">Full MIT lectures</div></a>
+      <a class="card" href="https://www.youtube.com/@Computerphile"><div class="name">Computerphile</div><div class="topic">Computing concepts</div></a>
+      <a class="card" href="https://www.youtube.com/@freecodecamp"><div class="name">freeCodeCamp</div><div class="topic">Full programming courses</div></a>
+      <a class="card" href="https://www.youtube.com/@BenEater"><div class="name">Ben Eater</div><div class="topic">How computers work (hardware)</div></a>
+      <a class="card" href="https://www.youtube.com/@NeetCode"><div class="name">NeetCode</div><div class="topic">Algorithms &amp; data structures</div></a>
+      <a class="card" href="https://www.youtube.com/@RealEngineering"><div class="name">Real Engineering</div><div class="topic">Engineering concepts</div></a>
+      <a class="card" href="https://www.youtube.com/@PracticalEngineering"><div class="name">Practical Engineering</div><div class="topic">Civil &amp; infrastructure</div></a>
+      <a class="card" href="https://www.youtube.com/@TheEfficientEngineer"><div class="name">The Efficient Engineer</div><div class="topic">Mechanical &amp; structural</div></a>
+      <a class="card" href="https://www.youtube.com/@BranchEducation"><div class="name">Branch Education</div><div class="topic">How modern tech works</div></a>
+    </div>
+  </section>
+</main>
+<footer>Ask a parent to add a channel if you need one for school. Managed by a parent · updated on the laptop.</footer>
+</body>
+</html>
