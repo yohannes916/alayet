@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exam Review — Master Study Notes · Atoms → Bonds → Shapes → Reactions → Solutions</title>
+<style>
+  :root {
+    --accent: #1a5276;
+    --accent-light: #2e86c1;
+    --bg: #f4f6f7;
+    --card: #ffffff;
+    --star: #b7950b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+    color: #212f3d;
+    background: var(--bg);
+    margin: 0;
+    padding: 0 16px 60px;
+  }
+  .wrap { max-width: 1000px; margin: 0 auto; }
+  header {
+    background: linear-gradient(135deg, var(--accent), var(--accent-light));
+    color: #fff;
+    padding: 30px 28px;
+    border-radius: 0 0 14px 14px;
+    margin: 0 -16px 24px;
+    box-shadow: 0 4px 14px rgba(0,0,0,.12);
+  }
+  header h1 { margin: 0 0 6px; font-size: 1.6rem; }
+  header p { margin: 0; opacity: .92; font-size: .98rem; }
+  .bridge {
+    background: #fef9e7;
+    border-left: 5px solid var(--star);
+    padding: 12px 18px;
+    border-radius: 8px;
+    margin-bottom: 14px;
+    font-size: .95rem;
+  }
+  .bridge strong { color: #7d6608; }
+  .howto {
+    background: #eaf2f8;
+    border-left: 5px solid var(--accent-light);
+    padding: 12px 18px;
+    border-radius: 8px;
+    margin-bottom: 26px;
+    font-size: .95rem;
+  }
+  .howto strong { color: #154360; }
+  .unit {
+    background: var(--accent);
+    color: #fff;
+    border-radius: 10px;
+    padding: 10px 18px;
+    margin: 28px 0 14px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: .3px;
+    box-shadow: 0 2px 6px rgba(0,0,0,.10);
+  }
+  .unit span { opacity: .85; font-weight: 500; font-size: .85rem; margin-left: 10px; }
+  section {
+    background: var(--card);
+    border-radius: 10px;
+    padding: 16px 20px 20px;
+    margin-bottom: 18px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.06);
+  }
+  h2 {
+    color: var(--accent);
+    font-size: 1.14rem;
+    margin: 0 0 4px;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+  h2 .num {
+    background: var(--accent);
+    color: #fff;
+    font-size: .8rem;
+    font-weight: 700;
+    border-radius: 6px;
+    padding: 2px 9px;
+    flex: none;
+  }
+  h2 .sec { color: #85929e; font-size: .78rem; font-weight: 500; margin-left: auto; }
+  table.core {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 4px;
+    font-size: .92rem;
+  }
+  table.core th, table.core td {
+    text-align: left;
+    padding: 8px 11px;
+    border: 1px solid #d5dbdb;
+    vertical-align: top;
+  }
+  table.core th {
+    background: var(--accent);
+    color: #fff;
+    font-weight: 600;
+    font-size: .82rem;
+    text-transform: uppercase;
+    letter-spacing: .3px;
+  }
+  table.core tr:nth-child(even) td { background: #f4f9fc; }
+  table.core td:first-child { font-weight: 700; color: #154360; width: 20%; }
+  table.core td:nth-child(2) { width: 45%; }
+  table.master {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 4px;
+    font-size: .88rem;
+  }
+  table.master th, table.master td {
+    text-align: left;
+    padding: 6px 9px;
+    border: 1px solid #d5dbdb;
+    vertical-align: top;
+  }
+  table.master th {
+    background: var(--accent);
+    color: #fff;
+    font-weight: 600;
+    font-size: .78rem;
+    text-transform: uppercase;
+    letter-spacing: .3px;
+  }
+  table.master td:nth-child(3) { font-weight: 700; color: #154360; }
+  table.master tr.grp td { background: #eaf2f8; }
+  strong { color: #154360; }
+  em.hi { font-style: normal; background: #fef9e7; padding: 0 3px; border-radius: 3px; }
+  code, .fml {
+    background: #eaf2f8;
+    border-radius: 4px;
+    padding: 1px 5px;
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    font-size: .88em;
+    color: #1a5276;
+  }
+  .focus {
+    background: linear-gradient(135deg, #eaf2f8, #fef9e7);
+    border: 1px solid #aed6f1;
+  }
+  .focus h2 { color: var(--star); }
+  .focus ol { padding-left: 22px; margin: 8px 0 0; }
+  .focus li { margin-bottom: 7px; }
+  .tree {
+    background: #1b2631;
+    color: #eaeded;
+    border-radius: 8px;
+    padding: 15px 18px;
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    font-size: .84rem;
+    line-height: 1.5;
+    overflow-x: auto;
+    margin: 6px 0 4px;
+    white-space: pre;
+  }
+  .tree .b { color: #85c1e9; font-weight: 700; }
+  .tree .g { color: #82e0aa; }
+  .tree .y { color: #f7dc6f; }
+  footer { text-align: center; color: #85929e; font-size: .85rem; margin-top: 24px; }
+  @media print {
+    body { background: #fff; }
+    section, .howto, .bridge, header { box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Exam Review — Master Study Notes</h1>
+  <p>Atoms → Electron Configurations → Lewis Structures → Shapes &amp; Polarity → Reactions &amp; Stoichiometry → Solutions, Net Ionic, Acids &amp; Bases · built to be studied <em>standalone</em></p>
+</header>
+
+<div class="bridge">
+  <strong>🔗 How the whole exam fits together:</strong> everything builds on one story.
+  <strong>Electrons</strong> live in orbitals (§1–§7) → the <strong>outermost (valence) electrons</strong> are the ones that bond, and Lewis structures map them (§8–§11) →
+  the electron groups around an atom decide the molecule's <strong>3-D shape and polarity</strong> (§12–§13) →
+  whole molecules and ions then <strong>react</strong>, in countable mole amounts (§14–§18) →
+  and when reactions happen <strong>in water</strong>, solubility and strong/weak electrolytes decide what the net ionic equation looks like (§19–§21).
+</div>
+
+<div class="howto">
+  <strong>How to use this:</strong> Every table row is a flashcard — <strong>Concept</strong> = front, the rest = back.
+  Read in order the first time (each section uses only what came before it), then drill the ⭐ Highest-Yield list.
+  The dark boxes are the <em class="hi">recipes</em> — the step-by-step procedures the test questions secretly follow.
+  Pair with <strong>Exam_Review_Test.html</strong> (auto-graded, ~100 questions) and <strong>Exam_Review_Comprehension.html</strong> (worked problems).
+</div>
+
+<!-- ================================================================ UNIT 1 -->
+<div class="unit">UNIT 1 · Atomic Structure &amp; Electron Configurations <span>§1–§7</span></div>
+
+<section>
+  <h2><span class="num">1</span> Where Electrons Live — Shells, Sublevels, Orbitals <span class="sec">Unit 1</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>Shell (energy level, n)</td><td>Electrons live in numbered layers around the nucleus: n = 1, 2, 3… Bigger n = <strong>farther from the nucleus and higher energy</strong>.</td><td>Shell n holds at most <span class="fml">2n²</span> electrons (n=1 → 2, n=2 → 8, n=3 → 18).</td></tr>
+      <tr><td>Sublevel (s, p, d, f)</td><td>Each shell is split into <strong>sublevels</strong>. Shell n contains exactly <em class="hi">n sublevels</em>: shell 1 → s; shell 2 → s, p; shell 3 → s, p, d; shell 4 → s, p, d, f.</td><td>Energy order <em>within</em> a shell: s &lt; p &lt; d &lt; f.</td></tr>
+      <tr><td>Orbital</td><td>A region of space inside a sublevel where an electron actually sits. Each orbital holds <em class="hi">at most 2 electrons</em>.</td><td>s = <strong>1</strong> orbital (sphere) · p = <strong>3</strong> orbitals (dumbbells) · d = <strong>5</strong> · f = <strong>7</strong>.</td></tr>
+      <tr><td>Sublevel capacities ⭐</td><td>Capacity = (number of orbitals) × 2 electrons each.</td><td><strong>s = 2</strong> · <strong>p = 6</strong> · <strong>d = 10</strong> · <strong>f = 14</strong>. Memorize this line cold — half the config questions use it.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2><span class="num">2</span> The Periodic Table's Blocks — s, p, d, f <span class="sec">Unit 1</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>The 4 blocks</td><td>The periodic table is literally a <strong>map of which sublevel is being filled</strong>. An element's block = the sublevel its <em class="hi">highest-energy electron</em> occupies.</td><td><strong>s-block</strong>: Groups 1–2 (+ He) · <strong>p-block</strong>: Groups 13–18 · <strong>d-block</strong>: Groups 3–12 (transition metals) · <strong>f-block</strong>: the two detached rows (lanthanides/actinides).</td></tr>
+      <tr><td>Group 1 &amp; 2 ⭐</td><td>Every Group 1 and Group 2 element's highest-energy electron is in an <em class="hi">s sublevel</em> — that's what makes them the s-block.</td><td>Na ends in 3s¹; Ca ends in 4s². (He belongs to the s-block too: 1s².)</td></tr>
+      <tr><td>Block widths</td><td>Block width = sublevel capacity: s-block is 2 columns wide, p-block 6, d-block 10, f-block 14.</td><td>The table's shape <em>is</em> the 2, 6, 10, 14 rule.</td></tr>
+      <tr><td>Reading n from the period</td><td>For the s and p blocks, the shell number = period number. The d block runs <em class="hi">one shell behind</em> (n − 1); the f block runs two behind (n − 2).</td><td>Period 4 d-block elements are filling <strong>3d</strong> (not 4d) — that's why Fe = [Ar]4s²3d⁶.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2><span class="num">3</span> The Three Filling Rules — Aufbau, Pauli, Hund <span class="sec">Unit 1</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>Aufbau Principle</td><td>Electrons fill sublevels from <em class="hi">lowest energy upward</em> ("aufbau" = building up). Because shells overlap, the order is NOT simply 1, 2, 3…</td><td>Order: <span class="fml">1s 2s 2p 3s 3p 4s 3d 4p 5s 4d 5p 6s 4f 5d 6p</span>. The famous surprise: <strong>4s fills before 3d</strong>.</td></tr>
+      <tr><td>Pauli Exclusion Principle</td><td>One orbital holds at most <strong>2 electrons</strong>, and they must have <em class="hi">opposite spins</em> (drawn ↑↓). No two electrons in an atom are identical in every way.</td><td>This is WHY capacities are 2, 6, 10, 14: orbitals × 2.</td></tr>
+      <tr><td>Hund's Rule</td><td>Within one sublevel, put <em class="hi">one electron in each orbital first</em> (all spinning the same way), and only then start pairing them up.</td><td>The "bus-seat rule": strangers take empty seats before doubling up. N's 2p³ = ↑ ↑ ↑, not ↑↓ ↑ _.</td></tr>
+      <tr><td>Which rule is which ⭐</td><td>Test trap: they love to describe a rule and ask its name.</td><td><strong>Order of filling</strong> → Aufbau · <strong>2 per orbital, opposite spins</strong> → Pauli · <strong>spread out before pairing</strong> → Hund.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2><span class="num">4</span> Writing Full Electron Configurations <span class="sec">Unit 1</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>The notation</td><td><span class="fml">2p⁴</span> means: shell 2, sublevel p, holding 4 electrons. A full configuration lists every occupied sublevel in Aufbau order.</td><td>O (Z=8): <span class="fml">1s²2s²2p⁴</span>.</td></tr>
+      <tr><td>The method</td><td>① Find the element's electron count (= atomic number for a neutral atom). ② Fill sublevels in Aufbau order to capacity (2, 6, 10, 14) until the electrons run out.</td><td>S (Z=16): <span class="fml">1s²2s²2p⁶3s²3p⁴</span> · Fe (Z=26): <span class="fml">1s²2s²2p⁶3s²3p⁶4s²3d⁶</span>.</td></tr>
+      <tr><td>The self-check ⭐</td><td>The superscripts must <em class="hi">add up to the total electron count</em>. Always check.</td><td>Fe: 2+2+6+2+6+2+6 = 26 ✓.</td></tr>
+      <tr><td>4s before 3d</td><td>Write (and fill) 4s <em>before</em> 3d: after 3p⁶ comes <strong>4s²</strong>, then 3d.</td><td>Br (Z=35): <span class="fml">1s²2s²2p⁶3s²3p⁶4s²3d¹⁰4p⁵</span>.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2><span class="num">5</span> Condensed (Noble-Gas) Configurations <span class="sec">Unit 1</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>The shortcut</td><td>Replace the beginning of the configuration with the <em class="hi">noble gas that comes BEFORE the element</em> in brackets, then write only what's left.</td><td>P (Z=15): full = 1s²2s²2p⁶3s²3p³ → condensed = <span class="fml">[Ne]3s²3p³</span>.</td></tr>
+      <tr><td>The noble-gas mile markers ⭐</td><td>You must know their electron counts to subtract from.</td><td><strong>He = 2 · Ne = 10 · Ar = 18 · Kr = 36 · Xe = 54</strong>.</td></tr>
+      <tr><td>Picking the right one</td><td>Use the noble gas at the end of the <em class="hi">previous period</em> — never the one after the element.</td><td>Ca (Z=20): <span class="fml">[Ar]4s²</span> · Fe: <span class="fml">[Ar]4s²3d⁶</span> · I (Z=53): <span class="fml">[Kr]5s²4d¹⁰5p⁵</span>.</td></tr>
+      <tr><td>Why it works</td><td>The bracket hides the boring, full inner shells (the <strong>core electrons</strong>); what you still write are the outer, chemistry-doing electrons.</td><td>This "outer electrons" idea becomes <em>valence electrons</em> in §8.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2><span class="num">6</span> The Two Famous Exceptions — Chromium &amp; Copper <span class="sec">Unit 1</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>Chromium (Cr, Z=24) ⭐</td><td>Aufbau predicts [Ar]4s²3d⁴ — but a <em class="hi">half-filled d sublevel (d⁵)</em> is extra stable, so one 4s electron moves over.</td><td>Actual: <span class="fml">[Ar]4s¹3d⁵</span>.</td></tr>
+      <tr><td>Copper (Cu, Z=29) ⭐</td><td>Aufbau predicts [Ar]4s²3d⁹ — but a <em class="hi">completely filled d sublevel (d¹⁰)</em> is extra stable, so again one 4s electron moves over.</td><td>Actual: <span class="fml">[Ar]4s¹3d¹⁰</span>.</td></tr>
+      <tr><td>The why</td><td>Half-filled (d⁵) and filled (d¹⁰) sublevels have a symmetric, low-energy electron arrangement — worth "paying" one 4s electron for.</td><td>Same pattern one row down: Mo = [Kr]5s¹4d⁵, Ag = [Kr]5s¹4d¹⁰.</td></tr>
+      <tr><td>How it's tested</td><td>"Write the configuration of Cr/Cu" → they want the <em>actual</em> (exception) answer, and often the <em>reason</em>.</td><td>Answer template: "…because a half-filled/filled d sublevel is unusually stable."</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2><span class="num">7</span> Ion Configurations — Cations Lose s First <span class="sec">Unit 1</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>Anions (−)</td><td>Gained electrons: <strong>add</strong> them, continuing the normal filling order.</td><td>O²⁻: 8 + 2 = 10 e⁻ → <span class="fml">1s²2s²2p⁶</span> = [Ne].</td></tr>
+      <tr><td>Main-group cations (+)</td><td>Lost electrons: <strong>remove</strong> from the outermost shell.</td><td>Na⁺ = [Ne] · Ca²⁺ = [Ar].</td></tr>
+      <tr><td>Transition-metal cations ⭐⭐</td><td>THE trap of Unit 1: electrons are removed from the <em class="hi">4s sublevel BEFORE 3d</em> — even though 4s filled first. (Once 3d is occupied, the outermost shell — n = 4 — is the first to empty.)</td><td>Fe [Ar]4s²3d⁶ → <strong>Fe²⁺ [Ar]3d⁶</strong> (both 4s gone) → <strong>Fe³⁺ [Ar]3d⁵</strong>. NOT [Ar]4s²3d⁴!</td></tr>
+      <tr><td>More examples</td><td>Apply "s leaves first, then d" every time.</td><td>Zn²⁺ = [Ar]3d¹⁰ · Cu⁺ = [Ar]3d¹⁰ · Ti²⁺ = [Ar]3d². Bonus: Fe³⁺ is extra stable — half-filled 3d⁵.</td></tr>
+      <tr><td>Rhyme to remember</td><td><em class="hi">"First in, first out — for filling. Last shell empties first — for losing."</em></td><td>Fill: 4s then 3d. Lose: 4s then 3d. (The s goes first both times!)</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ================================================================ UNIT 2 -->
+<div class="unit">UNIT 2 · Lewis Structures, Formal Charge &amp; Resonance <span>§8–§11</span></div>
+
+<div class="bridge">
+  <strong>🔗 Bridge:</strong> the electrons that matter for bonding are the <strong>valence electrons</strong> — the ones OUTSIDE the noble-gas core you bracketed in §5.
+  For main-group elements, valence e⁻ = the element's <strong>A-group number</strong> (O is group 6A → 6 valence e⁻). Lewis structures are maps of valence electrons only.
+</div>
+
+<section>
+  <h2><span class="num">8</span> Lewis Structures — the N·A·S Recipe <span class="sec">Unit 2</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>Octet rule</td><td>Atoms bond to reach a noble-gas count of <strong>8 valence electrons</strong> (H wants just <strong>2</strong>).</td><td>The whole recipe exists to hand every atom its octet.</td></tr>
+      <tr><td>The recipe ⭐</td><td><strong>N</strong> = electrons <em>needed</em> = 8 × (non-H atoms) + 2 × (H atoms).<br><strong>A</strong> = electrons <em>available</em> = sum of valence e⁻, <em class="hi">+1 per negative charge, −1 per positive</em>.<br><strong>S</strong> = <em>shared</em> = N − A → <strong>bonds = S/2</strong> · <strong>lone pairs = (A − S)/2</strong>.</td><td>CO₂: N = 24, A = 16, S = 8 → 4 bonds (two C=O doubles), lp = 4 → 2 on each O.</td></tr>
+      <tr><td>Central atom</td><td><em class="hi">Lowest group number / least electronegative</em> goes in the middle; ties → higher period. <strong>H is NEVER central</strong> (it makes only one bond).</td><td>CCl₄ → C central · SO₃ → S central · H₂O → O central by default.</td></tr>
+      <tr><td>Placing the electrons</td><td>Draw single bonds → give <strong>outer atoms</strong> octets first → leftovers go on the center → if the center is short, <em class="hi">convert lone pairs into double/triple bonds</em> (the S = N − A math predicts this).</td><td>CO: S = 6 → triple bond C≡O, one lone pair each.</td></tr>
+      <tr><td>Ions</td><td>Adjust A for the charge, then draw <strong>brackets with the charge outside</strong> — the charge belongs to the whole ion.</td><td>NH₄⁺: A = 5 + 4 − 1 = 8 → 4 bonds, 0 lone pairs · BF₄⁻: A = 32 → 4 bonds, 3 lp per F.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2><span class="num">9</span> Octet Rule Exceptions <span class="sec">Unit 2</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>Electron-deficient</td><td>Some small atoms are stable with <em>fewer</em> than 8.</td><td><strong>H = 2</strong> · <strong>Be = 4</strong> · <strong>B = 6</strong> (BF₃ boron has 3 bonds = 6 e⁻).</td></tr>
+      <tr><td>Odd-electron (radicals)</td><td>An odd total electron count forces one electron to stay <strong>unpaired</strong> → a reactive <em class="hi">free radical</em>.</td><td>NO (11 valence e⁻), NO₂ (17). Two radicals can pair up: 2NO₂ → N₂O₄.</td></tr>
+      <tr><td>Expanded octets ⭐</td><td>Central atoms from <em class="hi">Period 3 or below</em> (P, S, Cl, Br, I, Xe…) can hold MORE than 8 — they're bigger and have empty d orbitals.</td><td>PCl₅ (10 e⁻ on P) · SF₆ (12 on S) · XeF₄ (12 on Xe) · ClF₃.</td></tr>
+      <tr><td>Who can never expand</td><td><strong>Period 2 atoms (C, N, O, F) are capped at 8. Always.</strong></td><td>If a structure puts 10 electrons on carbon or nitrogen, it's wrong.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2><span class="num">10</span> Formal Charge <span class="sec">Unit 2</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>The formula ⭐</td><td><span class="fml">FC = (valence e⁻) − (non-bonding e⁻) − (bonds)</span><br>= "electrons the atom brought" minus "electrons it owns in the structure" (all its lone-pair electrons + one per bond).</td><td>Count non-bonding as <em>individual electrons</em> (a lone pair = 2), bonds as <em>lines</em> (a double bond = 2 bonds).</td></tr>
+      <tr><td>Worked example</td><td>CO₃²⁻ (one C=O, two C–O): C: 4 − 0 − 4 = <strong>0</strong> · double-bond O: 6 − 4 − 2 = <strong>0</strong> · each single-bond O: 6 − 6 − 1 = <strong>−1</strong>.</td><td>Sum: 0 + 0 − 1 − 1 = <strong>−2</strong> = the ion's charge ✓.</td></tr>
+      <tr><td>The sum check ⭐</td><td>Formal charges must <em class="hi">always add up to the overall charge</em> (0 for a neutral molecule). Free error-detector — use it every time.</td><td>—</td></tr>
+      <tr><td>What FC is for</td><td>When several valid structures exist, formal charge picks the <strong>best one</strong> (see §11).</td><td>—</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2><span class="num">11</span> Resonance — Major vs Minor Structures <span class="sec">Unit 2</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>What resonance is</td><td>Two or more valid Lewis structures that differ <em class="hi">only in where the electrons sit</em> — the atoms never move. The real molecule is a single <strong>hybrid</strong> (an average), not a molecule flipping back and forth.</td><td>O₃, NO₃⁻, CO₃²⁻ — drawn with double-headed arrows ↔ between structures.</td></tr>
+      <tr><td>Delocalization</td><td>The "extra" bonding electrons are <strong>spread over several atoms</strong> → all the bonds become identical, with fractional bond order.</td><td>O₃: bond order 1.5 · NO₃⁻: 4/3 — experiment confirms equal bond lengths.</td></tr>
+      <tr><td>Equivalent structures</td><td>Same pattern, just rotated (same formal charges everywhere) → they contribute <em class="hi">equally</em> to the hybrid.</td><td>The 3 structures of NO₃⁻ or CO₃²⁻.</td></tr>
+      <tr><td>Non-equivalent → major/minor ⭐</td><td>Different FC patterns → rank them: the <strong>major</strong> (biggest contributor) has ① the <em class="hi">smallest formal charges</em>, ② no same-sign charges on adjacent atoms, ③ any negative FC on the <em class="hi">most electronegative atom</em>.</td><td>NCO⁻: N≡C–O⁻ wins (all 0 except −1 on O). The −2-on-N structure is minor/negligible.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ================================================================ UNIT 3 -->
+<div class="unit">UNIT 3 · VSEPR — Molecular Geometry &amp; Polarity <span>§12–§13</span></div>
+
+<div class="bridge">
+  <strong>🔗 Bridge:</strong> VSEPR is applied <strong>to a finished Lewis structure</strong>. From Unit 2 you need: the drawn structure, the <strong>lone pairs on the central atom</strong>, and this rule:
+  a single, double, or triple bond each counts as <em class="hi">ONE electron domain</em>. (Full detail lives in the Ch10 notes — this is the exam-ready core.)
+</div>
+
+<section>
+  <h2><span class="num">12</span> VSEPR — Domains, Geometry, Shape <span class="sec">Unit 3</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>Electron domain</td><td>One "direction" of electron density on the central atom: <em class="hi">any bond (single, double, or triple) = 1 domain; each lone pair = 1 domain</em>.</td><td>CO₂: 2 domains · SO₂: 3 (2 bonds + 1 lp).</td></tr>
+      <tr><td>Two different names ⭐</td><td><strong>Electron-domain geometry</strong> counts ALL domains. <strong>Molecular geometry (shape)</strong> names only where the <em>atoms</em> are. They match only when there are <em class="hi">no lone pairs</em>.</td><td>H₂O: tetrahedral domain geometry, <strong>bent</strong> shape.</td></tr>
+      <tr><td>Lone-pair effects</td><td>Lone pairs repel hardest → they <em class="hi">squeeze bond angles</em> (109.5° → 107° → 104.5°) and in 5-domain molecules they <em class="hi">always take equatorial spots</em>.</td><td>The cascade: CH₄ 109.5° → NH₃ 107° → H₂O 104.5°.</td></tr>
+    </tbody>
+  </table>
+
+  <p style="margin:12px 0 4px;font-size:.94rem;"><strong>⭐ MEMORIZE — the shape table:</strong></p>
+  <table class="master">
+    <thead><tr><th>Domains</th><th>Domain geometry</th><th>Lone pairs</th><th>Molecular shape</th><th>Bond angle</th><th>Example</th></tr></thead>
+    <tbody>
+      <tr class="grp"><td>2</td><td>Linear</td><td>0</td><td>Linear</td><td>180°</td><td>CO₂, HCN</td></tr>
+      <tr><td>3</td><td>Trigonal planar</td><td>0</td><td>Trigonal planar</td><td>120°</td><td>BF₃, SO₃, NO₃⁻</td></tr>
+      <tr><td>3</td><td>Trigonal planar</td><td>1</td><td>Bent</td><td>&lt;120°</td><td>SO₂, O₃</td></tr>
+      <tr class="grp"><td>4</td><td>Tetrahedral</td><td>0</td><td>Tetrahedral</td><td>109.5°</td><td>CH₄, SO₄²⁻</td></tr>
+      <tr class="grp"><td>4</td><td>Tetrahedral</td><td>1</td><td>Trigonal pyramidal</td><td>107°</td><td>NH₃, H₃O⁺</td></tr>
+      <tr class="grp"><td>4</td><td>Tetrahedral</td><td>2</td><td>Bent</td><td>104.5°</td><td>H₂O, OF₂</td></tr>
+      <tr><td>5</td><td>Trigonal bipyramidal</td><td>0</td><td>Trigonal bipyramidal</td><td>120° eq / 90° ax</td><td>PCl₅</td></tr>
+      <tr><td>5</td><td>Trigonal bipyramidal</td><td>1</td><td>Seesaw</td><td>&lt;120°/&lt;90°</td><td>SF₄</td></tr>
+      <tr><td>5</td><td>Trigonal bipyramidal</td><td>2</td><td>T-shaped</td><td>&lt;90°</td><td>ClF₃, BrF₃</td></tr>
+      <tr><td>5</td><td>Trigonal bipyramidal</td><td>3</td><td>Linear</td><td>180°</td><td>XeF₂, I₃⁻</td></tr>
+      <tr class="grp"><td>6</td><td>Octahedral</td><td>0</td><td>Octahedral</td><td>90°</td><td>SF₆</td></tr>
+      <tr class="grp"><td>6</td><td>Octahedral</td><td>1</td><td>Square pyramidal</td><td>&lt;90°</td><td>BrF₅, IF₅</td></tr>
+      <tr class="grp"><td>6</td><td>Octahedral</td><td>2</td><td>Square planar</td><td>90°</td><td>XeF₄, ICl₄⁻</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2><span class="num">13</span> Molecular Polarity <span class="sec">Unit 3</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>Bond dipole</td><td>Unequal sharing between atoms of different electronegativity → the bond has a δ+ end and a δ− end (an arrow toward the more electronegative atom).</td><td>Every O–H, C–Cl, B–F bond is polar.</td></tr>
+      <tr><td>The 2-question test ⭐</td><td>① Are there polar bonds? ② Does the 3-D shape let their dipoles <em class="hi">cancel</em>? Cancel → nonpolar. Don't cancel → net dipole → polar.</td><td><em class="hi">Polar bonds do NOT guarantee a polar molecule.</em></td></tr>
+      <tr><td>Symmetric = cancels</td><td>Shapes with identical outer atoms spaced evenly: linear, trigonal planar, tetrahedral, trigonal bipyramidal, octahedral, <strong>and square planar</strong>.</td><td>Nonpolar: <strong>CO₂, BF₃, CCl₄, XeF₄</strong>.</td></tr>
+      <tr><td>Asymmetric = net dipole</td><td>Lone-pair shapes (bent, pyramidal, seesaw, T-shaped) or <em class="hi">different outer atoms</em>.</td><td>Polar: <strong>H₂O, NH₃, CHCl₃, SF₄, COS</strong> (linear but O ≠ S!).</td></tr>
+      <tr><td>Classic pairs</td><td>Same ingredients, opposite results — the shape decides.</td><td>CO₂ vs H₂O · CCl₄ vs CHCl₃ · BF₃ vs NH₃.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ================================================================ UNIT 4 -->
+<div class="unit">UNIT 4 · Chemical Reactions &amp; Stoichiometry <span>§14–§18</span></div>
+
+<div class="bridge">
+  <strong>🔗 Bridge:</strong> Units 1–3 built single molecules. Now molecules <strong>react</strong>: bonds break and re-form, making new substances.
+  Balanced equations count the molecules; <strong>moles</strong> let us weigh them on a real scale.
+</div>
+
+<section>
+  <h2><span class="num">14</span> The 5 Signs of a Chemical Reaction <span class="sec">Unit 4</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>The 5 signs ⭐</td><td>Evidence that new substances formed: ① <strong>color change</strong> ② <strong>gas produced</strong> (bubbles) ③ <strong>precipitate</strong> (a solid appears from two clear solutions) ④ <strong>energy change</strong> (heat or light given off — or absorbed, the flask gets cold) ⑤ <strong>odor change</strong>.</td><td>Rusting (color), baking soda + vinegar (gas), AgNO₃ + NaCl (precipitate), burning (heat/light), rotten eggs (odor).</td></tr>
+      <tr><td>Careful!</td><td>Bubbles from <em>boiling</em> or fizz from <em>opening a soda</em> are physical changes — no new substance is made. A sign only counts when a <em class="hi">new substance</em> appears.</td><td>Melting ice ≠ reaction.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2><span class="num">15</span> The 5 Reaction Types &amp; the Activity Series <span class="sec">Unit 4</span></h2>
+  <table class="core">
+    <thead><tr><th>Type</th><th>Pattern &amp; how to spot it</th><th>Example</th></tr></thead>
+    <tbody>
+      <tr><td>Synthesis</td><td><span class="fml">A + B → AB</span> — two things become one.</td><td>2Mg + O₂ → 2MgO</td></tr>
+      <tr><td>Decomposition</td><td><span class="fml">AB → A + B</span> — one thing breaks into two or more.</td><td>CaCO₃ → CaO + CO₂</td></tr>
+      <tr><td>Combustion</td><td>Fuel (usually C<sub>x</sub>H<sub>y</sub>) + <strong>O₂</strong> → <em class="hi">CO₂ + H₂O</em>, always. Spot it by the O₂ reactant.</td><td>CH₄ + 2O₂ → CO₂ + 2H₂O</td></tr>
+      <tr><td>Single replacement</td><td><span class="fml">A + BC → AC + B</span> — a lone element swaps in for one partner. <em class="hi">Element + compound</em>.</td><td>Zn + 2HCl → ZnCl₂ + H₂</td></tr>
+      <tr><td>Double replacement</td><td><span class="fml">AB + CD → AD + CB</span> — two compounds trade partners. Driven by forming a <strong>precipitate, gas, or water</strong>.</td><td>AgNO₃ + NaCl → AgCl↓ + NaNO₃</td></tr>
+    </tbody>
+  </table>
+  <table class="core" style="margin-top:14px;">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>Activity series ⭐</td><td>For single replacement: a metal can only kick out metals <em class="hi">BELOW it</em> on the list. Above H → can also release H₂ from acids. If the lone metal is lower → <strong>NO REACTION</strong>.</td><td><span class="fml">K &gt; Na &gt; Ca &gt; Mg &gt; Al &gt; Zn &gt; Fe &gt; Ni &gt; Sn &gt; Pb &gt; (H) &gt; Cu &gt; Ag &gt; Au</span></td></tr>
+      <tr><td>Applying it</td><td>Find both metals on the list; compare positions.</td><td>Zn + CuSO₄ → ZnSO₄ + Cu ✓ (Zn above Cu) · Cu + ZnSO₄ → <strong>NR</strong> · Ag + HCl → <strong>NR</strong> (Ag below H).</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2><span class="num">16</span> Balancing Chemical Equations <span class="sec">Unit 4</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>The one law</td><td>Atoms are never created or destroyed (conservation of mass) — each element's count must match on both sides.</td><td>—</td></tr>
+      <tr><td>The one rule ⭐</td><td>Balance by changing <em class="hi">COEFFICIENTS only — NEVER subscripts</em>. Changing a subscript changes the substance itself (H₂O → H₂O₂ is a different chemical!).</td><td>2H₂ + O₂ → 2H₂O ✓ &nbsp;·&nbsp; H₂ + O₂ → H₂O₂ ✗</td></tr>
+      <tr><td>Strategy</td><td>① Balance one element at a time. ② Treat <strong>polyatomic ions</strong> (SO₄²⁻, NO₃⁻…) as whole units when they survive the reaction. ③ Save H and O (or any lone element) for last. ④ A coefficient multiplies <em>everything</em> in its formula.</td><td>C₃H₈ + 5O₂ → 3CO₂ + 4H₂O · 3Ca(NO₃)₂ has 6 N and 18 O.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2><span class="num">17</span> Molar Mass &amp; Hydrates <span class="sec">Unit 4</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>Molar mass</td><td>Grams of one mole (6.022 × 10²³ particles). Compute: <em class="hi">each atom's atomic mass × its subscript, then add</em>.</td><td>H₂O = 2(1.01) + 16.00 = <strong>18.02 g/mol</strong> · NaCl = 22.99 + 35.45 = 58.44.</td></tr>
+      <tr><td>Parentheses</td><td>A subscript after parentheses multiplies everything inside.</td><td>Ca(NO₃)₂ = 40.08 + 2(14.01 + 48.00) = 164.10 g/mol.</td></tr>
+      <tr><td>Hydrates ⭐</td><td>The dot in CuSO₄·<strong>5</strong>H₂O means "<em class="hi">plus 5 water molecules</em>" — you <strong>ADD</strong> 5 × 18.02. (Trap: the dot is NOT multiplication.)</td><td>CuSO₄·5H₂O = 63.55 + 32.07 + 4(16.00) + 5(18.02) = <strong>249.7 g/mol</strong>.</td></tr>
+      <tr><td>Percent water</td><td>% H₂O = (mass of water part ÷ total) × 100.</td><td>90.10 / 249.7 ≈ <strong>36.1 %</strong> of the hydrate's mass is water.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2><span class="num">18</span> Stoichiometry — the Mole Road Map <span class="sec">Unit 4</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>The road map ⭐</td><td><span class="fml">mass A → (÷ molar mass) → mol A → (× mole ratio) → mol B → (× molar mass) → mass B</span>. You can NEVER jump straight from grams of A to grams of B.</td><td>The mole ratio comes from the <em class="hi">balanced equation's coefficients</em>.</td></tr>
+      <tr><td>Mole ratio</td><td>Coefficients tell how molecules trade: 2AgNO₃ + CaCl₂ → 2AgCl + Ca(NO₃)₂ means 2 mol AgNO₃ : 2 mol AgCl (i.e. 1:1).</td><td>—</td></tr>
+      <tr><td>Worked example</td><td>How many grams of AgCl precipitate from <strong>8.50 g AgNO₃</strong> with excess NaCl? (AgNO₃ + NaCl → AgCl + NaNO₃)</td><td>8.50 ÷ 169.9 = <strong>0.0500 mol</strong> AgNO₃ → ×(1/1) → 0.0500 mol AgCl → × 143.3 = <strong>7.17 g AgCl</strong>.</td></tr>
+      <tr><td>Sanity checks</td><td>① Divide by molar mass going TO moles, multiply coming FROM moles. ② Answer should be same order of magnitude as the given mass (unless the molar masses are very different).</td><td>—</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ================================================================ UNIT 5 -->
+<div class="unit">UNIT 5 · Solubility, Net Ionic Equations, Acids &amp; Bases <span>§19–§21</span></div>
+
+<div class="bridge">
+  <strong>🔗 Bridge:</strong> double-replacement reactions (§15) usually happen <strong>dissolved in water</strong>, where soluble ionic compounds float around as separate ions.
+  Solubility rules predict which product crashes out as a solid — and the net ionic equation strips away everything that just watched.
+</div>
+
+<section>
+  <h2><span class="num">19</span> Solubility Rules — Predicting Precipitates <span class="sec">Unit 5</span></h2>
+  <table class="core">
+    <thead><tr><th>Rule</th><th>What to understand</th><th>Key facts / exceptions</th></tr></thead>
+    <tbody>
+      <tr><td>Always soluble ⭐</td><td>Compounds of <strong>Group 1 metals</strong> (Li⁺, Na⁺, K⁺…), <strong>NH₄⁺</strong>, <strong>NO₃⁻</strong>, <strong>acetate C₂H₃O₂⁻</strong>, and <strong>ClO₄⁻</strong> dissolve — <em class="hi">no exceptions</em>.</td><td>If either ion is Na⁺/K⁺/NH₄⁺/NO₃⁻ → mark it (aq), done.</td></tr>
+      <tr><td>Halides (Cl⁻, Br⁻, I⁻)</td><td>Soluble…</td><td>…EXCEPT with <strong>Ag⁺, Pb²⁺, Hg₂²⁺</strong> (AgCl, PbI₂ are precipitates).</td></tr>
+      <tr><td>Sulfates (SO₄²⁻)</td><td>Soluble…</td><td>…EXCEPT with <strong>Ba²⁺, Pb²⁺, Ca²⁺, Sr²⁺, Hg₂²⁺</strong> (BaSO₄ ↓).</td></tr>
+      <tr><td>Mostly INsoluble</td><td><strong>Hydroxides (OH⁻), carbonates (CO₃²⁻), phosphates (PO₄³⁻), sulfides (S²⁻)</strong> are insoluble…</td><td>…EXCEPT with Group 1 / NH₄⁺. (Ca(OH)₂, Sr(OH)₂, Ba(OH)₂ are slightly soluble — and are the strong bases of §21.)</td></tr>
+      <tr><td>Using the rules</td><td>Swap partners (double replacement), then check <em>each product</em>: any insoluble combination → write it <strong>(s)</strong> — that's the precipitate. Both soluble → <em class="hi">no reaction</em>.</td><td>Pb(NO₃)₂ + 2KI → PbI₂<strong>(s)</strong> + 2KNO₃ · NaCl + KNO₃ → NR.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2><span class="num">20</span> Molecular → Complete Ionic → Net Ionic <span class="sec">Unit 5</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>Molecular equation</td><td>Everything written as full compounds with states.</td><td>AgNO₃(aq) + NaCl(aq) → AgCl(s) + NaNO₃(aq)</td></tr>
+      <tr><td>Complete ionic ⭐</td><td>Split ONLY the <em class="hi">strong electrolytes</em> — things (aq) that fully break into ions: <strong>soluble ionic compounds, the 7 strong acids, strong bases</strong>. Keep intact: <strong>(s), (l), (g), water, weak acids/bases</strong>.</td><td>Ag⁺ + NO₃⁻ + Na⁺ + Cl⁻ → AgCl(s) + Na⁺ + NO₃⁻</td></tr>
+      <tr><td>Spectator ions</td><td>Ions that appear <em class="hi">identical on both sides</em> — they just floated and watched. Cancel them.</td><td>Here: Na⁺ and NO₃⁻.</td></tr>
+      <tr><td>Net ionic</td><td>What's left = the actual chemistry.</td><td><span class="fml">Ag⁺(aq) + Cl⁻(aq) → AgCl(s)</span></td></tr>
+      <tr><td>Balance check</td><td>A correct net ionic balances <strong>atoms AND total charge</strong>.</td><td>+1 + (−1) = 0 on the left; 0 on the right ✓.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2><span class="num">21</span> Strong &amp; Weak Acids and Bases <span class="sec">Unit 5</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>The 7 strong acids ⭐⭐</td><td>Fully ionize in water (≈100%) → strong electrolytes → <em class="hi">split them</em> in ionic equations. <strong>Memorize the list — everything else is weak.</strong></td><td><span class="fml">HCl · HBr · HI · HNO₃ · H₂SO₄ · HClO₄ · HClO₃</span></td></tr>
+      <tr><td>Strong bases</td><td><strong>Group 1 hydroxides</strong> (LiOH, NaOH, KOH…) + the <strong>heavy Group 2 hydroxides</strong>: Ca(OH)₂, Sr(OH)₂, Ba(OH)₂.</td><td>Also split in ionic equations.</td></tr>
+      <tr><td>Weak acids &amp; bases</td><td>Ionize only a little → mostly stay as whole molecules → <em class="hi">NEVER split them</em>. Trap: <strong>HF is weak</strong> (despite HCl/HBr/HI being strong); H₂CO₃, CH₃COOH (acetic) weak; <strong>NH₃</strong> is the classic weak base.</td><td>"Not on the strong list → weak" is the whole test.</td></tr>
+      <tr><td>Strong + strong net ionic ⭐</td><td>Every strong-acid + strong-base neutralization boils down to the same net ionic.</td><td><span class="fml">H⁺(aq) + OH⁻(aq) → H₂O(l)</span> (HCl + NaOH, HNO₃ + KOH… all identical).</td></tr>
+      <tr><td>Weak acid + strong base</td><td>The weak acid stays intact on the left.</td><td><span class="fml">CH₃COOH + OH⁻ → CH₃COO⁻ + H₂O</span> — the acid appears as a whole molecule.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================== RECIPES ===================== -->
+<section>
+  <h2><span class="num">★</span> The Four Recipes to Anchor It All</h2>
+  <div class="tree"><span class="b">① ELECTRON CONFIGURATION</span>
+   electron count → fill <span class="g">1s 2s 2p 3s 3p 4s 3d 4p 5s…</span> to capacity (2·6·10·14)
+   condensed: [previous noble gas] + rest      exceptions: <span class="y">Cr 4s¹3d⁵ · Cu 4s¹3d¹⁰</span>
+   cation? remove <span class="y">4s BEFORE 3d</span>  (Fe²⁺ = [Ar]3d⁶)
+
+<span class="b">② LEWIS → SHAPE → POLARITY</span>
+   N − A = S → bonds = S/2, lone pairs = (A−S)/2  →  structure
+   count domains (any bond = 1) → domain geometry → subtract lone pairs → <span class="g">shape + angle</span>
+   polar bonds? do dipoles <span class="y">cancel by symmetry</span>?  cancel → nonpolar (CO₂, BF₃, CCl₄, XeF₄)
+
+<span class="b">③ REACTION → NET IONIC</span>
+   classify type → single replacement? check <span class="y">activity series</span> (below = NR)
+   double replacement? swap partners → <span class="y">solubility rules</span> → mark the (s)
+   split ONLY strong electrolytes → cancel <span class="g">spectators</span> → net ionic (atoms + charge balance)
+
+<span class="b">④ STOICHIOMETRY ROAD MAP</span>
+   mass A ÷ molar mass → mol A → × <span class="y">coefficient ratio</span> → mol B → × molar mass → mass B
+   hydrate molar mass: <span class="y">ADD</span> n × 18.02 for ·nH₂O   (CuSO₄·5H₂O = 249.7)</div>
+</section>
+
+<!-- ===================== FOCUS ===================== -->
+<section class="focus">
+  <h2><span class="num">⭐</span> Highest-Yield — Drill These First</h2>
+  <ol>
+    <li><strong>2 · 6 · 10 · 14</strong> — sublevel capacities (s, p, d, f) and orbital counts (1, 3, 5, 7 × 2 each). The blocks of the periodic table have exactly these widths; Groups 1–2 end in <strong>s</strong>.</li>
+    <li><strong>The three rules by name</strong> — Aufbau = lowest first (4s before 3d!) · Pauli = 2 per orbital, opposite spins · Hund = spread out before pairing.</li>
+    <li><strong>Cr = [Ar]4s¹3d⁵ and Cu = [Ar]4s¹3d¹⁰</strong> — half-filled/filled d stability. And cations lose <strong>4s before 3d</strong>: Fe²⁺ = [Ar]3d⁶, Fe³⁺ = [Ar]3d⁵.</li>
+    <li><strong>N·A·S recipe</strong> — N = 8/atom (2 for H), A = valence ± charge, S = N − A, bonds = S/2. Expanded octets only Period 3+ (P, S, Cl, Xe); Period 2 never exceeds 8.</li>
+    <li><strong>FC = valence − nonbonding − bonds</strong>; FCs sum to the charge; major resonance structure = smallest FCs with − on the most electronegative atom.</li>
+    <li><strong>The shape table</strong> (§12) — domains → geometry → shape → angle: 180 / 120 / &lt;120 / 109.5 / 107 / 104.5 / TBP / 90. Any bond = ONE domain; XeF₄ = square planar, not tetrahedral.</li>
+    <li><strong>Polar bonds ≠ polar molecule</strong> — 2-question test. Nonpolar: CO₂, BF₃, CCl₄, XeF₄. Polar: H₂O, NH₃, CHCl₃, COS.</li>
+    <li><strong>5 signs · 5 types · activity series</strong> — a metal only replaces metals below it (Cu + ZnSO₄ → NR).</li>
+    <li><strong>Hydrate dot = ADD water</strong> — CuSO₄·5H₂O = 249.7 g/mol. Road map: mass → mol → mol → mass; never grams-to-grams directly.</li>
+    <li><strong>The 7 strong acids</strong> (HCl, HBr, HI, HNO₃, H₂SO₄, HClO₄, HClO₃) + strong bases (Group 1 + Ca/Sr/Ba hydroxides). Split ONLY strong electrolytes; weak acids (HF! CH₃COOH) stay whole. Strong+strong net ionic is always H⁺ + OH⁻ → H₂O.</li>
+  </ol>
+</section>
+
+<footer>Exam-review master notes: Atomic Structure &amp; Configurations · Lewis, Formal Charge &amp; Resonance · VSEPR &amp; Polarity · Reactions &amp; Stoichiometry · Solubility, Net Ionic, Acids &amp; Bases — designed to be studied standalone.</footer>
+
+</div>
+</body>
+</html>

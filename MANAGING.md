@@ -45,14 +45,25 @@ YouTube is always forced into Restricted Mode (network layer). On top of that, t
 browser extension blocks EVERYTHING except the channels/videos you approve — home,
 search, Shorts, trending, and non-approved videos all show a "not on your allowed
 list" page. Recommendations, comments, and autoplay are stripped on allowed pages.
-Embedded players on other sites and **Google Search's inline video preview** are
-blocked too (the latter via a network block of `youtube-nocookie.com`).
 **When the allowlist is empty, ALL of YouTube is blocked** (that's the default).
+
+How a video is judged (since ext v1.2.0): the extension looks up the video's OWNER
+channel from YouTube metadata and allows it if that channel is on your list — so an
+approved channel's videos play *everywhere*: opened from the channel page, direct
+watch links, and even embedded players on other allowed websites. Non-approved
+videos are blocked in all those same places. If the owner can't be verified
+(network hiccup), the video is blocked rather than allowed (fail-closed).
+The one exception: **Google Search's inline video preview** stays blocked for ALL
+videos (its player frame can't be verified — blocked via `youtube-nocookie.com`);
+clicking through to YouTube works for approved videos.
 
 - Allow a whole channel:  `sudo allow-youtube channel UCxxxxxxxx`   (best — all its videos)
 - Allow by @handle:       `sudo allow-youtube handle @SomeChannel`  (same, easier to find)
 - Allow one video:        `sudo allow-youtube video VIDEOID`        (just that video)
 - See/remove entries:     edit `/etc/parental/youtube-allow.txt` then `sudo /opt/parental/scripts/regenerate.sh`
+- Note: adding a channel by either form auto-adds the other (UC id ↔ @handle are
+  resolved from the channel page via `yt-resolve`) — matching needs both. When
+  REMOVING a channel, delete BOTH its `channel:` and `handle:` lines.
 
 **Finding a channel ID/handle:** open the channel in a browser. The URL shows either
 `/@handle` (use that) or `/channel/UC…` (use the UC… id). Or view-source and search

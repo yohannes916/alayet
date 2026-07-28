@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# yt-resolve <@handle | UCchannelId>
+# Resolve a YouTube channel to BOTH identity forms by fetching its channel page.
+# Prints:  "<UCchannelId> <@handle>"   (either may be "?" if unparseable)
+#
+# Why: YouTube surfaces sometimes name a channel by UC id and sometimes by
+# @handle (oEmbed author_url, owner links...). The allowlist must contain both
+# forms for matching to be reliable, so `allow-youtube` calls this at add time.
+# Works through the forced Restricted-Mode CNAME; falls back to the local Squid
+# proxy if direct egress fails.
+set -euo pipefail
+
+arg="${1:?Usage: yt-resolve <@handle|UCchannelId>}"
+case "$arg" in
+  @*)  url="https://www.youtube.com/${arg}" ;;
+  UC*) url="https://www.youtube.com/channel/${arg}" ;;
+  *)   echo "argument must be an @handle or a UC... channel id" >&2; exit 2 ;;
+esac
+
+UA="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/126 Safari/537.36"
+html="$(curl -fsSL -m 20 -A "$UA" "$url" 2>/dev/null)" || html=""
+if [[ -z "$html" ]]; then
+  html="$(curl -fsSL -m 20 -x http://127.0.0.1:3128 -A "$UA" "$url" 2>/dev/null)" || html=""
+fi
+[[ -n "$html" ]] || { echo "fetch failed: $url" >&2; exit 1; }
+
+# externalId = the page's own channel id (unique); vanity/canonical = its @handle.
+uc="$(grep -oE '"externalId":"UC[0-9A-Za-z_-]{22}"' <<<"$html" | head -1 | cut -d'"' -f4)" || true
+h="$(grep -oE '"vanityChannelUrl":"[^"]*"' <<<"$html" | head -1 | grep -oE '@[A-Za-z0-9._-]+' | head -1)" || true
+if [[ -z "$h" ]]; then
+  h="$(grep -oE '"canonicalBaseUrl":"/@[^"]*"' <<<"$html" | head -1 | grep -oE '@[A-Za-z0-9._-]+' | head -1)" || true
+fi
+
+[[ -n "$uc" || -n "$h" ]] || { echo "could not parse channel identity from $url" >&2; exit 1; }
+echo "${uc:-?} ${h:-?}"

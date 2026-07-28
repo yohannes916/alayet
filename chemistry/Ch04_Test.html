@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 4 — Comprehensive Self-Test</title>
+<style>
+  :root{--accent:#1a5276;--accent2:#2e86c1;--bg:#eef2f5;--card:#fff;--ok:#1e8449;--bad:#c0392b;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.5;color:#212f3d;background:var(--bg);margin:0;padding:0 14px 120px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:26px 26px;border-radius:0 0 14px 14px;margin:0 -14px 18px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  .howto{background:#eaf2f8;border-left:5px solid var(--accent2);padding:11px 16px;border-radius:8px;margin-bottom:16px;font-size:.92rem;}
+  .howto strong{color:var(--accent);}
+  #results{background:#fff;border:2px solid var(--accent);border-radius:12px;padding:18px 20px;margin-bottom:18px;box-shadow:0 3px 12px rgba(0,0,0,.1);}
+  #results h2{margin:0 0 8px;color:var(--accent);}
+  .bigscore{font-size:2.4rem;font-weight:800;}
+  .pct{font-size:1.1rem;color:#566573;}
+  .secgrid{width:100%;border-collapse:collapse;margin:12px 0;font-size:.86rem;}
+  .secgrid td,.secgrid th{border:1px solid #d5dbdb;padding:5px 9px;text-align:left;}
+  .secgrid th{background:var(--accent);color:#fff;}
+  .barwrap{background:#e5e8e8;border-radius:6px;height:12px;overflow:hidden;min-width:80px;}
+  .bar{height:100%;background:var(--ok);}
+  .secbadge{display:inline-block;background:var(--accent);color:#fff;font-size:.66rem;font-weight:700;letter-spacing:.3px;padding:2px 8px;border-radius:10px;text-transform:uppercase;margin-bottom:8px;}
+  .sechead{margin:26px 0 6px;color:var(--accent);font-size:1.15rem;border-bottom:2px solid #d4e6f1;padding-bottom:5px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 16px 12px;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid transparent;}
+  .q.correct{border-left-color:var(--ok);background:#f2fbf5;}
+  .q.incorrect{border-left-color:var(--bad);background:#fdf3f2;}
+  .qnum{font-weight:700;color:var(--accent);margin-right:6px;}
+  .qtype{font-size:.66rem;font-weight:700;color:#fff;background:#85929e;border-radius:8px;padding:1px 7px;margin-left:6px;vertical-align:middle;text-transform:uppercase;}
+  .qtext{font-size:.98rem;margin:2px 0 9px;}
+  .opts label{display:block;padding:6px 10px;margin:4px 0;border:1px solid #d5dbdb;border-radius:7px;cursor:pointer;font-size:.93rem;transition:.1s;}
+  .opts label:hover{background:#f4f6f7;}
+  .opts input{margin-right:9px;}
+  .opts label.pick{border-color:var(--accent2);background:#eaf2f8;}
+  .opts label.ansright{border-color:var(--ok);background:#eafaf1;}
+  .opts label.answrong{border-color:var(--bad);background:#fdedec;}
+  input[type=text]{width:100%;max-width:340px;padding:8px 11px;border:1px solid #b3c1c9;border-radius:7px;font-size:.95rem;}
+  input[type=text].ansright{border-color:var(--ok);background:#eafaf1;}
+  input[type=text].answrong{border-color:var(--bad);background:#fdedec;}
+  .blankline{font-size:1rem;line-height:2.2;margin:2px 0 4px;}
+  input.blank{width:130px;max-width:150px;display:inline-block;margin:0 5px;padding:5px 8px;border:1px solid #b3c1c9;border-bottom:2px solid var(--accent2);border-radius:6px;font-size:.9rem;vertical-align:baseline;}
+  input.blank.ansright{border-color:var(--ok);background:#eafaf1;}
+  input.blank.answrong{border-color:var(--bad);background:#fdedec;}
+  .fb{margin-top:9px;font-size:.86rem;padding:8px 11px;border-radius:7px;display:none;}
+  .fb.show{display:block;}
+  .fb.good{background:#eafaf1;color:#145a32;}
+  .fb.no{background:#fdedec;color:#922b21;}
+  .fb b{display:inline-block;}
+  .checkbtn{margin-top:10px;background:#2e86c1;color:#fff;border:none;border-radius:7px;padding:6px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .checkbtn:hover{background:#1a5276;}
+  .checkbtn:disabled{cursor:default;opacity:.85;}
+  .tut{background:#fbfcfd;border:1px solid #d4e6f1;border-left:4px solid #2e86c1;border-radius:6px;padding:8px 11px;margin-bottom:8px;color:#2c3e50;font-size:.85rem;line-height:1.45;}
+  .tut b{color:#1a5276;}
+  #bottombar{position:fixed;left:0;right:0;bottom:0;background:#fffffff2;backdrop-filter:blur(6px);border-top:1px solid #ccd;padding:10px 14px;box-shadow:0 -2px 10px rgba(0,0,0,.08);z-index:50;}
+  #bottombar .inner{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+  .counter{font-size:.9rem;color:#566573;font-weight:600;}
+  button{font-family:inherit;font-size:.92rem;font-weight:600;border:none;border-radius:8px;padding:10px 18px;cursor:pointer;}
+  .btn-primary{background:var(--accent);color:#fff;}
+  .btn-primary:hover{background:#154360;}
+  .btn-warn{background:var(--star);color:#fff;}
+  .btn-warn:hover{background:#9a7d0a;}
+  .btn-ghost{background:#e5e8e8;color:#2c3e50;}
+  .btn-ghost:hover{background:#d5dbdb;}
+  .hidden{display:none!important;}
+  .modechip{display:inline-block;background:var(--star);color:#fff;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:10px;margin-left:8px;}
+  @media print{#bottombar{position:static;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Chapter 4 — Comprehensive Self-Test <span id="modechip" class="modechip hidden"></span></h1>
+  <p>Elements, Atoms, and Ions · auto-graded · retry-wrong-only mode · <span id="qcount"></span> questions</p>
+</header>
+
+<div class="howto">
+  <strong>How it works:</strong> Answer as many as you can, then press <strong>Submit &amp; Grade</strong> at the bottom.
+  You'll get a score, a per-section breakdown, and the correct answer + explanation on every question.
+  Then hit <strong>Retry Wrong Only</strong> to be re-tested on just the ones you missed — repeat until you ace every item.
+  <em>Blanks are graded leniently (case/spacing don't matter), but spelling should be close.</em>
+</div>
+
+<div id="results" class="hidden"></div>
+<form id="quiz" onsubmit="return false;"></form>
+</div>
+
+<div id="bottombar">
+  <div class="inner">
+    <span class="counter" id="counter">0 / 0 answered</span>
+    <button class="btn-primary" id="submitBtn">Submit &amp; Grade</button>
+    <button class="btn-warn hidden" id="retryBtn">Retry Wrong Only</button>
+    <button class="btn-ghost hidden" id="restartBtn">Restart Entire Test</button>
+  </div>
+</div>
+
+<script>
+/* ===== SECTION NAMES ===== */
+const SEC={
+ "0":"Fundamentals (beginner basics)",
+ "1":"1 · What Matter Is Made Of",
+ "2":"2 · Symbols & Names of Elements",
+ "3":"3 · Dalton's Theory & the Laws",
+ "4":"4 · Chemical Formulas",
+ "5":"5 · Atomic Structure — History",
+ "6":"6 · Subatomic Particles",
+ "7":"7 · Isotopes",
+ "8":"8 · The Periodic Table",
+ "9":"9 · Natural States of Elements",
+ "10":"10 · Ions",
+ "11":"11 · Ionic Compounds"
+};
+
+/* ===== TOPIC TUTORIALS (shown on Check) ===== */
+const TUT={
+ "0":"Chemistry starts with matter — anything with mass and volume. A <b>physical property</b> (color, melting point) is seen without changing the substance; a <b>chemical property</b> (flammability) describes forming something new. Opposite charges attract, like charges repel.",
+ "1":"Matter is a <b>pure substance</b> (element or compound) or a <b>mixture</b>. An element = one kind of atom; a compound = different elements chemically bonded in a fixed ratio; a mixture = physically combined, variable, separable by physical means. A <b>molecule</b> (2+ bonded atoms) can be an element (O₂) or a compound (H₂O).",
+ "2":"Every element has a 1–2 letter symbol: <b>first letter capital, second lowercase</b>. Some come from Latin names — Au=aurum (gold), Pb=plumbum (lead), Na=natrium, K=kalium, Fe=ferrum, Ag=argentum, Hg=hydrargyrum, Sn=stannum.",
+ "3":"Dalton: elements are atoms; atoms combine in fixed ratios; reactions only <b>rearrange</b> atoms. The <b>Law of Constant Composition</b> says a compound's mass ratios are always the same. Modern update: atoms ARE divisible, and isotopes mean atoms of one element aren't all identical.",
+ "4":"A <b>chemical formula</b> gives each element's symbol with a <b>subscript</b> for how many atoms; a subscript of 1 is left off. H₂O = 2 H + 1 O; count every atom for totals.",
+ "5":"<b>Thomson</b> discovered the electron (plum-pudding model). <b>Rutherford's</b> gold-foil experiment found the dense positive <b>nucleus</b> and showed the atom is mostly empty space. <b>Chadwick</b> discovered the neutron.",
+ "6":"Three particles: <b>proton</b> (+1, nucleus), <b>neutron</b> (0, nucleus), <b>electron</b> (−1, outside, ~1/1836 the mass). Neutral atom: protons = electrons. Electrons drive chemistry; protons define the element; neutrons give isotopes.",
+ "7":"<b>Atomic number Z</b> = protons (defines the element). <b>Mass number A</b> = protons + neutrons. So <b>neutrons = A − Z</b>. Isotopes are the same element with different neutron counts (C-12 vs C-14).",
+ "8":"Ordered by increasing atomic number. <b>Columns = groups/families</b> (similar properties); <b>rows = periods</b>. Metals (left) are malleable, ductile, lustrous conductors; nonmetals (right) vary; metalloids are in between. Key groups: 1A alkali, 2A alkaline earth, 7A halogens, 8A noble gases.",
+ "9":"Most elements are reactive, so found <b>combined</b> in compounds. Found pure: noble metals (Au, Pt, Ag) and noble gases (Group 8A). Seven elements are diatomic: H₂, N₂, O₂, F₂, Cl₂, Br₂, I₂.",
+ "10":"An <b>ion</b> is an atom that gained/lost electrons. Metals lose e⁻ → <b>cations (+)</b>; nonmetals gain e⁻ → <b>anions (−, named -ide)</b>. Predict charge by group (1A→1+, 2A→2+, 7A→1−). For a cation, <b>protons = electrons + charge</b>.",
+ "11":"Cations + anions form <b>ionic compounds</b> (metal + nonmetal): high melting points, conduct when melted or dissolved. The formula must be <b>neutral</b> — charges sum to zero (crossover: Al³⁺ + O²⁻ → Al₂O₃)."
+};
+
+/* ===== QUESTION BANK =====
+   t: "tf" | "mc" | "fib"
+   a: tf -> "true"/"false" ; mc -> exact option text ; fib -> array of accepted answers
+*/
+const BANK=[
+/* ---------- 0 FUNDAMENTALS ---------- */
+{s:"0",t:"tf",q:`Matter is anything that has mass and takes up space.`,a:"true",e:`True. Matter = anything with mass (how much 'stuff') and volume (space it occupies). A rock, water, and air are matter; light and heat are not. (Foundations)`},
+{s:"0",t:"fib",q:`The amount of space that matter takes up is called its ______.`,a:["volume"],e:`Volume is the space something occupies — a 2-liter bottle holds 2 L of volume. (Foundations)`},
+{s:"0",t:"fib",q:`The measure of the amount of "stuff" in an object is its ______.`,a:["mass"],e:`Mass measures how much matter is in something (grams/kg). A bowling ball has more mass than a same-size balloon. (Foundations)`},
+{s:"0",t:"mc",q:`Which of these is NOT one of the common states of matter?`,o:[`Solid`,`Liquid`,`Gas`,`Energy`],a:`Energy`,e:`Energy isn't matter, so it isn't a state of matter. The three common states are solid, liquid, and gas. (Foundations)`},
+{s:"0",t:"tf",q:`A solid has a definite shape and a definite volume.`,a:"true",e:`True. A solid's particles are locked in place, so it keeps both shape and volume — like an ice cube. (Foundations)`},
+{s:"0",t:"tf",q:`In a gas, the particles are far apart and move freely to fill their container.`,a:"true",e:`True. Gas particles are spread out and zoom around, so a gas expands to fill its container — like air in a balloon. (Foundations)`},
+{s:"0",t:"mc",q:`A property you can observe WITHOUT changing what the substance is (e.g., color, melting point) is a ______ property.`,o:[`physical`,`chemical`,`nuclear`,`electrical`],a:`physical`,e:`A physical property (color, melting point, density) is seen without changing the substance's identity. (Foundations)`},
+{s:"0",t:"mc",q:`A property that describes how a substance reacts or changes into something new (e.g., flammability) is a ______ property.`,o:[`physical`,`chemical`,`optical`,`atomic`],a:`chemical`,e:`A chemical property describes forming something new — iron rusting, paper burning. (Foundations)`},
+{s:"0",t:"mc",q:`Which is a CHEMICAL property?`,o:[`Color`,`Density`,`Flammability`,`Melting point`],a:`Flammability`,e:`Flammability is chemical — burning makes new substances (ash, gases). Color, density, melting point are physical. (Foundations)`},
+{s:"0",t:"mc",q:`Melting an ice cube into liquid water is an example of a ______ change.`,o:[`physical`,`chemical`,`nuclear`],a:`physical`,e:`Melting is physical: solid water → liquid water, still H₂O. No new substance forms. (Foundations)`},
+{s:"0",t:"mc",q:`Burning wood is an example of a ______ change.`,o:[`physical`,`chemical`,`nuclear`],a:`chemical`,e:`Burning is chemical — wood + oxygen become ash, smoke, and gases (new substances). (Foundations)`},
+{s:"0",t:"tf",q:`A chemical change produces one or more new substances.`,a:"true",e:`True — that's the definition. New substances appearing (rust, ash) signals a chemical change. (Foundations)`},
+{s:"0",t:"tf",q:`Opposite electric charges attract, and like charges repel.`,a:"true",e:`True. + and − pull together; two like charges push apart. This is why negative electrons stay near the positive nucleus. (Foundations)`},
+{s:"0",t:"mc",q:`Two particles that both have a positive charge will ______.`,o:[`attract`,`repel`,`do nothing`],a:`repel`,e:`Like charges repel, so two positives push apart — like two north magnet poles. (Foundations)`},
+{s:"0",t:"fib",q:`A particle or object with no net electric charge is described as electrically ______.`,a:["neutral"],e:`Neutral means positive and negative charges cancel out. A normal atom is neutral (equal protons and electrons). (Foundations)`},
+{s:"0",t:"mc",q:`The smallest particle of an element that still has that element's identity is a(n) ______.`,o:[`atom`,`molecule`,`ion`,`proton`],a:`atom`,e:`An atom is the smallest piece that's still that element. Break it apart and you get protons/neutrons/electrons, not the element. (Notes §1 · Slides 2–4)`},
+{s:"0",t:"tf",q:`Atoms are far too small to see with the naked eye.`,a:"true",e:`True. Atoms are unimaginably tiny — millions would fit across the period at the end of this sentence. (Notes §1 · Slides 2–4)`},
+{s:"0",t:"fib",q:`Two or more atoms chemically bonded together make up a ______.`,a:["molecule"],e:`A molecule is 2+ atoms bonded together — e.g., O₂ or H₂O. (Foundations)`},
+{s:"0",t:"tf",q:`When elements combine into a compound, the compound usually has the SAME properties as the elements.`,a:"false",e:`False — compounds get NEW properties. Hydrogen (explosive) + oxygen (feeds fire) make water, which puts out fire. (Notes §1 · Slides 2–4)`},
+{s:"0",t:"mc",q:`Which is smaller?`,o:[`An atom`,`A molecule of water`,`A grain of sand`,`A cell`],a:`An atom`,e:`An atom is smallest — a water molecule is a few atoms; a grain of sand is quintillions of atoms. (Notes §1 · Slides 2–4)`},
+{s:"0",t:"tf",q:`Protons and neutrons together are sometimes called nucleons (particles in the nucleus).`,a:"true",e:`True. Protons + neutrons live in the nucleus, so together they're 'nucleons.' (Notes §6 · Slides 18–20)`},
+
+/* ---------- 1 COMPOSITION OF MATTER ---------- */
+{s:"1",t:"tf",q:`An element is made of only one type of atom.`,a:"true",e:`True. An element = one kind of atom only (all-gold, all-oxygen). (Notes §1 · Slides 2–4)`},
+{s:"1",t:"mc",q:`Which of these is a COMPOUND?`,o:[`O₂`,`Fe`,`H₂O`,`He`],a:`H₂O`,e:`H₂O is a compound — two different elements (H and O) bonded. O₂ and He are elements. (Notes §1 · Slides 2–4)`},
+{s:"1",t:"mc",q:`Which of these is an ELEMENT?`,o:[`H₂O`,`NaCl`,`CO₂`,`O₂`],a:`O₂`,e:`O₂ is an element (only oxygen atoms). H₂O, NaCl, CO₂ mix different elements, so they're compounds. (Notes §1 · Slides 2–4)`},
+{s:"1",t:"mc",q:`Salt water is best classified as a ______.`,o:[`element`,`compound`,`mixture`,`single atom`],a:`mixture`,e:`Salt water is a mixture — salt and water blended in any amount, separable by evaporation. (Notes §1 · Slides 2–4)`},
+{s:"1",t:"tf",q:`A mixture has a fixed, unchanging composition.`,a:"false",e:`False. Mixtures have VARIABLE composition — coffee can be weak or strong. Compounds have fixed ratios. (Notes §1 · Slides 2–4)`},
+{s:"1",t:"tf",q:`A given compound always has the same composition by mass.`,a:"true",e:`True — Law of Constant Composition. Water is always 8 g O per 1 g H, whatever the source. (Notes §3 · Slides 7–11)`},
+{s:"1",t:"fib",q:`A pure substance is either an element or a ______.`,a:["compound"],e:`A pure substance is an element or a compound. (Mixtures are the other main category of matter.) (Notes §1 · Slides 2–4)`},
+{s:"1",t:"mc",q:`Which can be separated into parts by PHYSICAL means (like filtering or evaporation)?`,o:[`A compound`,`A mixture`,`An element`,`An atom`],a:`A mixture`,e:`Mixtures aren't bonded, so physical methods (filtering, evaporating) separate them. Compounds need reactions. (Notes §1 · Slides 2–4)`},
+{s:"1",t:"tf",q:`Air is a mixture.`,a:"true",e:`True. Air is mostly N₂ and O₂ plus others, just mixed — not chemically bonded. (Notes §1 · Slides 2–4)`},
+{s:"1",t:"mc",q:`Which is NOT a pure substance?`,o:[`Distilled water`,`Oxygen gas`,`Table salt (NaCl)`,`Salt water`],a:`Salt water`,e:`Salt water is a mixture (not pure). Distilled water, oxygen gas, and NaCl each have a fixed composition. (Notes §1 · Slides 2–4)`},
+{s:"1",t:"mc",q:`Bronze (a blend of copper and tin) is a ______.`,o:[`compound`,`mixture`,`element`,`molecule`],a:`mixture`,e:`Bronze is a mixture (an alloy) — copper and tin blended, not chemically bonded. (Notes §1 · Slides 2–4)`},
+{s:"1",t:"mc",q:`About how many elements are currently known?`,o:[`88`,`100`,`118`,`200`],a:`118`,e:`118 elements are known; 88 occur naturally and the rest are made in labs. (Notes §1 · Slides 2–4)`},
+{s:"1",t:"fib",q:`Of the known elements, how many occur naturally (the rest are lab-made)? Enter a number.`,a:["88"],e:`88 of the 118 elements occur naturally; the heavier ones are synthetic. (Notes §1 · Slides 2–4)`},
+{s:"1",t:"mc",q:`Just 9 elements make up about what percent of the mass of Earth's crust, oceans, and atmosphere?`,o:[`Over 50%`,`Over 75%`,`Over 98%`,`Exactly 100%`],a:`Over 98%`,e:`Just 9 elements make up over 98% of Earth's crust, oceans, and atmosphere by mass. (Notes §1 · Slides 2–4)`},
+{s:"1",t:"tf",q:`The elements most common in living things are the same as those most common in Earth's crust.`,a:"false",e:`False. Living things are built mostly from O, C, N — a different mix than the rocky crust. (Notes §1 · Slides 2–4)`},
+{s:"1",t:"mc",q:`Which three elements form the basis of all biological molecules?`,o:[`O, C, N`,`Si, Al, Fe`,`Na, Cl, K`,`H, He, Li`],a:`O, C, N`,e:`Oxygen, carbon, and nitrogen are the backbone of biological molecules (proteins, DNA). (Notes §1 · Slides 2–4)`},
+{s:"1",t:"fib",q:`A molecule made of exactly two atoms is called a ______ molecule.`,a:["diatomic"],e:`A two-atom molecule is 'diatomic' (di = two) — like O₂ or N₂. (Notes §1 · Slides 33–36)`},
+{s:"1",t:"mc",q:`Which is a diatomic element?`,o:[`He`,`O₂`,`Ne`,`C`],a:`O₂`,e:`O₂ is diatomic. The seven diatomics: H₂, N₂, O₂, F₂, Cl₂, Br₂, I₂. Helium travels as single atoms. (Notes §1 · Slides 33–36)`},
+{s:"1",t:"mc",q:`Which is NOT one of the seven diatomic elements?`,o:[`H₂`,`N₂`,`O₂`,`Ne`],a:`Ne`,e:`Neon is a noble gas that exists as single atoms — not diatomic. The seven diatomics are H₂, N₂, O₂, F₂, Cl₂, Br₂, I₂. (Notes §1 · Slides 33–36)`},
+{s:"1",t:"tf",q:`Nitrogen gas in nature exists as N₂ molecules.`,a:"true",e:`True. Nitrogen is one of the seven diatomic elements, so it's N₂ in nature. (Notes §1 · Slides 33–36)`},
+{s:"1",t:"fib",q:`Different structural forms of the SAME element (like diamond and graphite) are called ______.`,a:["allotropes","allotrope"],e:`Allotropes are different structures of one element — carbon as diamond vs. graphite. Same atoms, different arrangement. (Notes §1 · Slides 33–36)`},
+{s:"1",t:"mc",q:`Diamond, graphite, and buckminsterfullerene are all forms of which element?`,o:[`Carbon`,`Silicon`,`Oxygen`,`Sulfur`],a:`Carbon`,e:`Diamond, graphite, and buckminsterfullerene are all carbon — just arranged differently (allotropes). (Notes §1 · Slides 33–36)`},
+{s:"1",t:"tf",q:`O₂ is both a molecule and an element.`,a:"true",e:`True. O₂ is a molecule (2 bonded atoms) AND an element (only oxygen). Molecules can be elements or compounds. (Notes §1 · Slides 2–4)`},
+{s:"1",t:"tf",q:`H₂O is both a molecule and a compound.`,a:"true",e:`True. H₂O is a molecule (bonded atoms) and a compound (different elements: H and O). (Notes §1 · Slides 2–4)`},
+{s:"1",t:"mc",q:`Which statement is TRUE?`,o:[`All molecules are compounds`,`All compounds are mixtures`,`A molecule can be either an element or a compound`,`Elements cannot form molecules`],a:`A molecule can be either an element or a compound`,e:`A molecule can be an element (O₂) or a compound (H₂O) — so not all molecules are compounds. (Notes §1 · Slides 2–4)`},
+{s:"1",t:"mc",q:`Which BEST defines a compound?`,o:[`Any molecule`,`A pure element`,`Two or more different elements chemically bonded in a fixed ratio`,`A physical blend of substances`],a:`Two or more different elements chemically bonded in a fixed ratio`,e:`A compound = two or more DIFFERENT elements chemically bonded in a fixed ratio (H₂O = 2 H : 1 O). (Notes §1 · Slides 2–4)`},
+
+/* ---------- 2 SYMBOLS ---------- */
+{s:"2",t:"tf",q:`In an element's symbol, the first letter is capitalized and the second letter (if any) is lowercase.`,a:"true",e:`True. Symbols are Capital-then-lowercase: Co, Na, Cl. That's why 'Co' (cobalt) ≠ 'CO' (carbon + oxygen). (Notes §2 · Slides 5–6)`},
+{s:"2",t:"mc",q:`Which is the correct symbol for the element cobalt?`,o:[`CO`,`Co`,`cO`,`co`],a:`Co`,e:`Cobalt = Co (capital C, lowercase o). 'CO' with two capitals means carbon + oxygen. (Notes §2 · Slides 5–6)`},
+{s:"2",t:"mc",q:`The written "CO" (capital C, capital O) actually represents ______.`,o:[`the element cobalt`,`carbon and oxygen (two elements)`,`copper`,`calcium`],a:`carbon and oxygen (two elements)`,e:`Two capital letters = two element symbols, so 'CO' is carbon + oxygen, not cobalt (Co). (Notes §2 · Slides 5–6)`},
+{s:"2",t:"fib",q:`The symbol Au (gold) comes from the Latin word "aurum". The English name is ______.`,a:["gold"],e:`Au comes from Latin 'aurum' = gold. That's why gold's symbol isn't 'G' or 'Go'. (Notes §2 · Slides 5–6)`},
+{s:"2",t:"fib",q:`The symbol for lead (from Latin "plumbum") is ______.`,a:["pb"],e:`Lead = Pb, from Latin 'plumbum' (same root as 'plumbing,' which used lead pipes). (Notes §2 · Slides 5–6)`},
+{s:"2",t:"mc",q:`Which is the symbol for sodium?`,o:[`So`,`Na`,`S`,`Sd`],a:`Na`,e:`Sodium = Na, from Latin 'natrium'. (Notes §2 · Slides 5–6)`},
+{s:"2",t:"fib",q:`The symbol for potassium (from "kalium") is ______.`,a:["k"],e:`Potassium = K, from Latin 'kalium'. (Notes §2 · Slides 5–6)`},
+{s:"2",t:"mc",q:`Fe is the symbol for which element?`,o:[`Iron`,`Fluorine`,`Francium`,`Fermium`],a:`Iron`,e:`Fe = iron, from Latin 'ferrum' (think 'ferrous' metals). (Notes §2 · Slides 5–6)`},
+{s:"2",t:"mc",q:`Ag is the symbol for ______.`,o:[`Gold`,`Silver`,`Argon`,`Aluminum`],a:`Silver`,e:`Ag = silver, from Latin 'argentum'. (Notes §2 · Slides 5–6)`},
+{s:"2",t:"mc",q:`Hg is the symbol for ______.`,o:[`Mercury`,`Hydrogen`,`Helium`,`Manganese`],a:`Mercury`,e:`Hg = mercury, from 'hydrargyrum' (liquid silver). (Notes §2 · Slides 5–6)`},
+{s:"2",t:"mc",q:`Sn is the symbol for ______.`,o:[`Tin`,`Selenium`,`Strontium`,`Sodium`],a:`Tin`,e:`Sn = tin, from Latin 'stannum'. (Notes §2 · Slides 5–6)`},
+{s:"2",t:"fib",q:`The one-letter symbol for oxygen is ______.`,a:["o"],e:`Oxygen = O. (Notes §2 · Slides 5–6)`},
+{s:"2",t:"fib",q:`The one-letter symbol for hydrogen is ______.`,a:["h"],e:`Hydrogen = H. (Notes §2 · Slides 5–6)`},
+
+/* ---------- 3 DALTON & LAWS ---------- */
+{s:"3",t:"fib",q:`The law stating a compound always has the same proportions by mass is the Law of Constant ______.`,a:["composition"],e:`The Law of Constant Composition: a compound's element-by-mass ratio never changes. Water is always 8 g O : 1 g H. (Notes §3 · Slides 7–11)`},
+{s:"3",t:"mc",q:`Water always contains 8 g of oxygen for every ______ g of hydrogen.`,o:[`1`,`2`,`8`,`16`],a:`1`,e:`Water is always 8 g oxygen per 1 g hydrogen — a fixed ratio (constant composition). (Notes §3 · Slides 7–11)`},
+{s:"3",t:"mc",q:`Carbon dioxide always contains 2.7 g of oxygen for every ______ g of carbon.`,o:[`1`,`2`,`2.7`,`12`],a:`1`,e:`CO₂ is always 2.7 g oxygen per 1 g carbon — fixed no matter the source. (Notes §3 · Slides 7–11)`},
+{s:"3",t:"tf",q:`Dalton proposed that all atoms of a given element are identical.`,a:"true",e:`True as Dalton's original claim. Today we know isotopes make this only mostly true. (Notes §3 · Slides 7–11)`},
+{s:"3",t:"tf",q:`According to Dalton, atoms are created and destroyed during chemical reactions.`,a:"false",e:`False. In chemical reactions atoms are only rearranged — never created or destroyed (mass is conserved). (Notes §3 · Slides 7–11)`},
+{s:"3",t:"fib",q:`In a chemical reaction, atoms are not created or destroyed — they are simply ______.`,a:["rearranged","regrouped"],e:`Reactions just rearrange existing atoms into new groupings — like rebuilding with the same Lego bricks. (Notes §3 · Slides 7–11)`},
+{s:"3",t:"mc",q:`Which part of Dalton's theory is now known to be FALSE because of isotopes?`,o:[`Elements are made of atoms`,`All atoms of a given element are identical`,`Different elements have different atoms`,`Atoms combine in fixed ratios`],a:`All atoms of a given element are identical`,e:`'All atoms of an element are identical' is now false — isotopes differ in neutron count. (Notes §7 · Slides 21–25)`},
+{s:"3",t:"tf",q:`Isotopes are evidence that not all atoms of an element are identical.`,a:"true",e:`True. Carbon-12 and carbon-14 are both carbon but have different masses — disproving 'all identical.' (Notes §7 · Slides 21–25)`},
+{s:"3",t:"tf",q:`Dalton's idea that atoms are indivisible is completely correct by today's knowledge.`,a:"false",e:`False. Atoms ARE divisible — they contain protons, neutrons, and electrons. (Notes §6 · Slides 18–20)`},
+{s:"3",t:"mc",q:`Which idea from Dalton is STILL considered true?`,o:[`Atoms are indivisible`,`All atoms of an element are identical`,`Atoms of different elements are different`,`Atoms can never be rearranged`],a:`Atoms of different elements are different`,e:`Still true: atoms of different elements are different. (The 'identical' and 'indivisible' claims were revised.) (Notes §3 · Slides 7–11)`},
+
+/* ---------- 4 FORMULAS ---------- */
+{s:"4",t:"fib",q:`In a chemical formula, the number of each type of atom is shown by a ______ written to the lower right of the symbol.`,a:["subscript"],e:`The little lowered number is a subscript. In H₂O the '2' is a subscript on H. (Notes §4 · Slides 12–14)`},
+{s:"4",t:"tf",q:`In a chemical formula, a subscript of "1" is written out explicitly.`,a:"false",e:`False. A subscript of 1 is left off — we write H₂O, not H₂O₁. (Notes §4 · Slides 12–14)`},
+{s:"4",t:"mc",q:`How many hydrogen atoms are in one molecule of H₂O?`,o:[`0`,`1`,`2`,`3`],a:`2`,e:`The subscript 2 means 2 hydrogen atoms in H₂O. (Notes §4 · Slides 12–14)`},
+{s:"4",t:"mc",q:`How many atoms TOTAL are in one molecule of CO₂?`,o:[`2`,`3`,`4`,`1`],a:`3`,e:`CO₂ = 1 carbon + 2 oxygen = 3 atoms total. (Notes §4 · Slides 12–14)`},
+{s:"4",t:"fib",q:`DDT has the formula C₁₄H₉Cl₅. How many chlorine atoms does it contain? Enter a number.`,a:["5"],e:`In C₁₄H₉Cl₅, the subscript on Cl is 5, so 5 chlorine atoms. (Notes §4 · Slides 12–14)`},
+{s:"4",t:"mc",q:`How many oxygen atoms are in H₂SO₄?`,o:[`1`,`2`,`3`,`4`],a:`4`,e:`The subscript 4 on O means H₂SO₄ has 4 oxygen atoms. (Notes §4 · Slides 12–14)`},
+{s:"4",t:"fib",q:`How many atoms total are in one molecule of NH₃?`,a:["4"],e:`NH₃ = 1 nitrogen + 3 hydrogen = 4 atoms total. (Notes §4 · Slides 12–14)`},
+{s:"4",t:"tf",q:`The formula H₂O tells us each water molecule has 2 hydrogen atoms and 1 oxygen atom.`,a:"true",e:`True — that's exactly how to read H₂O: 2 H, 1 O. (Notes §4 · Slides 12–14)`},
+
+/* ---------- 5 HISTORY ---------- */
+{s:"5",t:"mc",q:`Who proposed the "plum pudding" model of the atom?`,o:[`Rutherford`,`Thomson`,`Chadwick`,`Dalton`],a:`Thomson`,e:`Thomson pictured the atom as positive 'pudding' with electrons scattered in it (he'd discovered electrons). (Notes §5 · Slides 15–17)`},
+{s:"5",t:"mc",q:`In the plum pudding model, electrons were scattered in a "pudding" of ______ charge.`,o:[`positive`,`negative`,`neutral`],a:`positive`,e:`The pudding was positive charge; the electrons were the negative 'plums' dotted inside. (Notes §5 · Slides 15–17)`},
+{s:"5",t:"tf",q:`The plum pudding model turned out to be correct.`,a:"false",e:`False. Rutherford's gold-foil experiment disproved it by revealing a tiny nucleus. (Notes §5 · Slides 15–17)`},
+{s:"5",t:"mc",q:`Rutherford's famous experiment bombarded thin metal foil with ______ particles.`,o:[`beta`,`alpha`,`gamma`,`neutron`],a:`alpha`,e:`Rutherford fired alpha particles at gold foil; most passed through, but a few bounced off the nucleus. (Notes §5 · Slides 15–17)`},
+{s:"5",t:"fib",q:`Rutherford concluded the atom has a small, dense, positively charged center called the ______.`,a:["nucleus"],e:`The dense, positive core is the nucleus — Rutherford found it from the deflected alpha particles. (Notes §5 · Slides 15–17)`},
+{s:"5",t:"tf",q:`Rutherford's results showed the atom is mostly empty space.`,a:"true",e:`True. Most alpha particles sailed straight through, meaning the atom is mostly empty space with a tiny nucleus. (Notes §5 · Slides 15–17)`},
+{s:"5",t:"tf",q:`In Rutherford's experiment, a few alpha particles bounced back sharply.`,a:"true",e:`True — those rare sharp bounce-backs told Rutherford a tiny, dense, positive nucleus was there. (Notes §5 · Slides 15–17)`},
+{s:"5",t:"mc",q:`Who discovered the neutron (around 1932)?`,o:[`Thomson`,`Rutherford`,`Chadwick`,`Bohr`],a:`Chadwick`,e:`Chadwick discovered the neutron (1932) — the neutral particle in the nucleus. (Notes §5 · Slides 15–17)`},
+{s:"5",t:"mc",q:`Thomson is credited with discovering the ______.`,o:[`electron`,`proton`,`neutron`,`nucleus`],a:`electron`,e:`Thomson discovered the electron (the negative particle). (Notes §5 · Slides 15–17)`},
+{s:"5",t:"fib",q:`The neutral particle found in the nucleus, discovered by Chadwick, is the ______.`,a:["neutron"],e:`Chadwick's particle is the neutron — no charge, sits in the nucleus. (Notes §5 · Slides 15–17)`},
+
+/* ---------- 6 SUBATOMIC PARTICLES ---------- */
+{s:"6",t:"mc",q:`Which subatomic particle carries a NEGATIVE charge?`,o:[`Proton`,`Neutron`,`Electron`,`Nucleus`],a:`Electron`,e:`The electron is negative (−1). Protons are +, neutrons are 0. (Notes §6 · Slides 18–20)`},
+{s:"6",t:"mc",q:`Which subatomic particle carries a POSITIVE charge?`,o:[`Proton`,`Neutron`,`Electron`],a:`Proton`,e:`The proton is positive (+1). (Notes §6 · Slides 18–20)`},
+{s:"6",t:"mc",q:`Which subatomic particle has NO charge?`,o:[`Proton`,`Neutron`,`Electron`],a:`Neutron`,e:`The neutron is neutral (0 charge) — 'neu-tron' ≈ 'neutral.' (Notes §6 · Slides 18–20)`},
+{s:"6",t:"tf",q:`Protons and neutrons are located in the nucleus.`,a:"true",e:`True. The nucleus holds protons and neutrons; electrons occupy the space outside. (Notes §6 · Slides 18–20)`},
+{s:"6",t:"tf",q:`Electrons are located inside the nucleus.`,a:"false",e:`False. Electrons are OUTSIDE the nucleus, in the surrounding space. (Notes §6 · Slides 18–20)`},
+{s:"6",t:"fib",q:`The subatomic particle found in the space OUTSIDE the nucleus is the ______.`,a:["electron"],e:`Electrons occupy the space around the nucleus. (Notes §6 · Slides 18–20)`},
+{s:"6",t:"mc",q:`Which particle has by far the SMALLEST mass?`,o:[`Proton`,`Neutron`,`Electron`],a:`Electron`,e:`The electron is tiny — about 1/1836 the mass of a proton (basically negligible). (Notes §6 · Slides 18–20)`},
+{s:"6",t:"tf",q:`A neutron has approximately the same mass as a proton.`,a:"true",e:`True. Proton and neutron each weigh about 1 amu; the electron is ~1836× lighter. (Notes §6 · Slides 18–20)`},
+{s:"6",t:"mc",q:`The mass of an electron is about ______ the mass of a proton.`,o:[`equal to`,`1/1836 of`,`twice`,`1/10 of`],a:`1/1836 of`,e:`An electron is about 1/1836 of a proton's mass — so nearly all the atom's mass is in the nucleus. (Notes §6 · Slides 18–20)`},
+{s:"6",t:"mc",q:`Which two particles have approximately equal mass?`,o:[`Proton & electron`,`Proton & neutron`,`Neutron & electron`],a:`Proton & neutron`,e:`Proton and neutron have about equal mass (~1 amu each). (Notes §6 · Slides 18–20)`},
+{s:"6",t:"mc",q:`The relative charge of a proton is ______.`,o:[`+1`,`−1`,`0`],a:`+1`,e:`Proton charge = +1. (Notes §6 · Slides 18–20)`},
+{s:"6",t:"mc",q:`The relative charge of an electron is ______.`,o:[`+1`,`−1`,`0`],a:`−1`,e:`Electron charge = −1 (equal and opposite to the proton). (Notes §6 · Slides 18–20)`},
+{s:"6",t:"mc",q:`The relative charge of a neutron is ______.`,o:[`+1`,`−1`,`0`],a:`0`,e:`Neutron charge = 0. (Notes §6 · Slides 18–20)`},
+{s:"6",t:"fib",q:`In a neutral atom, the number of protons equals the number of ______.`,a:["electrons"],e:`In a neutral atom protons = electrons, so the + and − charges cancel. (Notes §6 · Slides 18–20)`},
+{s:"6",t:"tf",q:`The chemical behavior of an atom is mainly determined by its electrons.`,a:"true",e:`True. Electrons interact when atoms bond, so they drive chemistry — which is why isotopes act alike. (Notes §6 · Slides 18–20)`},
+{s:"6",t:"tf",q:`The nucleus contains almost all of the atom's mass.`,a:"true",e:`True. Protons + neutrons hold nearly all the mass; electrons add almost nothing. (Notes §6 · Slides 18–20)`},
+{s:"6",t:"mc",q:`Changing the number of NEUTRONS in an atom produces a(n) ______.`,o:[`ion`,`isotope`,`different element`,`molecule`],a:`isotope`,e:`Change neutrons → same element, new isotope (C-12 → C-14). (Notes §7 · Slides 21–25)`},
+{s:"6",t:"mc",q:`Changing the number of PROTONS produces a(n) ______.`,o:[`isotope`,`ion`,`different element`,`molecule`],a:`different element`,e:`Change protons → a different element (proton count = the element's identity). (Notes §6 · Slides 18–20)`},
+{s:"6",t:"mc",q:`Changing the number of ELECTRONS produces a(n) ______.`,o:[`isotope`,`ion`,`different element`],a:`ion`,e:`Change electrons → an ion (a charged atom). (Notes §10 · Slides 37–42)`},
+{s:"6",t:"fib",q:`The three main subatomic particles are protons, neutrons, and ______.`,a:["electrons"],e:`The trio is protons, neutrons, and electrons. (Notes §6 · Slides 18–20)`},
+
+/* ---------- 7 ISOTOPES ---------- */
+{s:"7",t:"fib",q:`The atomic number (Z) equals the number of ______.`,a:["protons"],e:`Atomic number Z = number of protons — it's the element's ID badge. (Notes §7 · Slides 21–25)`},
+{s:"7",t:"fib",q:`The mass number (A) equals the number of protons plus ______.`,a:["neutrons"],e:`Mass number A = protons + neutrons. (Notes §7 · Slides 21–25)`},
+{s:"7",t:"mc",q:`An atom has mass number 14 and atomic number 6. How many neutrons?`,o:[`6`,`8`,`14`,`20`],a:`8`,e:`Neutrons = A − Z = 14 − 6 = 8. (Notes §7 · Slides 21–25)`},
+{s:"7",t:"tf",q:`Isotopes have the same number of protons but different numbers of neutrons.`,a:"true",e:`True — that's the definition: same protons (same element), different neutrons. (Notes §7 · Slides 21–25)`},
+{s:"7",t:"mc",q:`Carbon-12 and carbon-14 differ in their number of ______.`,o:[`protons`,`electrons`,`neutrons`],a:`neutrons`,e:`Both are carbon (6 protons); they differ in neutrons (6 vs 8). (Notes §7 · Slides 21–25)`},
+{s:"7",t:"fib",q:`In the notation ᴬ_Z X, the bottom number Z is the ______ number.`,a:["atomic"],e:`Bottom number Z = atomic number = protons. (Notes §7 · Slides 21–25)`},
+{s:"7",t:"fib",q:`In the notation ᴬ_Z X, the top number A is the ______ number.`,a:["mass"],e:`Top number A = mass number = protons + neutrons. (Notes §7 · Slides 21–25)`},
+{s:"7",t:"mc",q:`An isotope has 23 protons and 28 neutrons. What is its mass number?`,o:[`5`,`23`,`28`,`51`],a:`51`,e:`Mass number = protons + neutrons = 23 + 28 = 51. (Notes §7 · Slides 21–25)`},
+{s:"7",t:"mc",q:`An element with 23 protons is ______.`,o:[`Titanium`,`Vanadium`,`Chromium`,`Calcium`],a:`Vanadium`,e:`23 protons = vanadium (V). Protons determine the element. (Notes §7 · Slides 21–25)`},
+{s:"7",t:"mc",q:`How many neutrons are in carbon-12 (Z = 6)?`,o:[`6`,`8`,`12`],a:`6`,e:`Neutrons = 12 − 6 = 6. (Notes §7 · Slides 21–25)`},
+{s:"7",t:"tf",q:`Isotopes of the same element have nearly identical chemical properties.`,a:"true",e:`True. Isotopes have the same electrons, so they behave the same chemically. (Notes §7 · Slides 21–25)`},
+{s:"7",t:"fib",q:`Number of neutrons = mass number − ______ number.`,a:["atomic"],e:`Neutrons = mass number − atomic number (A − Z). (Notes §7 · Slides 21–25)`},
+{s:"7",t:"mc",q:`Which pair are isotopes of each other?`,o:[`¹²C and ¹⁴C`,`¹²C and ¹⁴N`,`O₂ and O₃`],a:`¹²C and ¹⁴C`,e:`¹²C and ¹⁴C — same element, different mass. (¹²C vs ¹⁴N are different elements; O₂ vs O₃ are allotropes.) (Notes §7 · Slides 21–25)`},
+{s:"7",t:"tf",q:`In nature, most elements are found as a mixture of isotopes.`,a:"true",e:`True. Natural elements are usually blends of isotopes — which is why atomic masses aren't whole numbers. (Notes §7 · Slides 21–25)`},
+
+/* ---------- 8 PERIODIC TABLE ---------- */
+{s:"8",t:"fib",q:`The periodic table lists elements in order of increasing ______ number.`,a:["atomic"],e:`The table is ordered by increasing atomic number (proton count): 1, 2, 3, … (Notes §8 · Slides 26–31)`},
+{s:"8",t:"mc",q:`Vertical columns in the periodic table are called ______.`,o:[`periods`,`groups (families)`,`rows`,`shells`],a:`groups (families)`,e:`Vertical columns are groups (families); they share similar chemical behavior. (Notes §8 · Slides 26–31)`},
+{s:"8",t:"mc",q:`Horizontal rows in the periodic table are called ______.`,o:[`groups`,`periods`,`families`,`columns`],a:`periods`,e:`Horizontal rows are periods. (Notes §8 · Slides 26–31)`},
+{s:"8",t:"tf",q:`Elements in the same group have similar chemical properties.`,a:"true",e:`True. Same column = same number of outer electrons = similar reactions. (Notes §8 · Slides 26–31)`},
+{s:"8",t:"mc",q:`Most elements are ______.`,o:[`metals`,`nonmetals`,`metalloids`],a:`metals`,e:`Most elements are metals (the big left/middle block). (Notes §8 · Slides 26–31)`},
+{s:"8",t:"mc",q:`Metals are generally found on the ______ side of the periodic table.`,o:[`left`,`right`],a:`left`,e:`Metals sit on the left and middle of the table. (Notes §8 · Slides 26–31)`},
+{s:"8",t:"mc",q:`Nonmetals are generally found on the ______ side.`,o:[`left`,`right`],a:`right`,e:`Nonmetals are on the upper right. (Notes §8 · Slides 26–31)`},
+{s:"8",t:"fib",q:`Elements with a mix of metallic and nonmetallic properties are called ______.`,a:["metalloids","metalloid"],e:`Metalloids (like silicon) straddle the staircase with in-between properties. (Notes §8 · Slides 26–31)`},
+{s:"8",t:"mc",q:`Which is a physical property of METALS?`,o:[`Brittle`,`Poor conductor`,`Malleable`,`Always a gas`],a:`Malleable`,e:`Metals are malleable (hammered into sheets). Brittle/poor-conductor/gas describe nonmetals. (Notes §8 · Slides 26–31)`},
+{s:"8",t:"fib",q:`The metal property of being able to be pulled into wires is called ______.`,a:["ductility","ductile"],e:`Ductility = can be drawn into wires (copper wiring). (Notes §8 · Slides 26–31)`},
+{s:"8",t:"fib",q:`The metal property of being able to be hammered into thin sheets is called ______.`,a:["malleability","malleable"],e:`Malleability = can be hammered into sheets (gold leaf, aluminum foil). (Notes §8 · Slides 26–31)`},
+{s:"8",t:"tf",q:`Metals are good conductors of heat and electricity.`,a:"true",e:`True — a hallmark of metals. (Notes §8 · Slides 26–31)`},
+{s:"8",t:"mc",q:`The shiny appearance of a metal is described as ______.`,o:[`lustrous`,`ductile`,`malleable`,`brittle`],a:`lustrous`,e:`That shine is 'luster' — metals are lustrous. (Notes §8 · Slides 26–31)`},
+{s:"8",t:"tf",q:`Nonmetals can be solids, liquids, or gases at room temperature.`,a:"true",e:`True. Nonmetals vary widely — carbon (solid), bromine (liquid), oxygen (gas). (Notes §8 · Slides 26–31)`},
+{s:"8",t:"mc",q:`Group 1A elements are called the ______.`,o:[`alkali metals`,`halogens`,`noble gases`,`transition metals`],a:`alkali metals`,e:`Group 1A = alkali metals (Li, Na, K), very reactive, form 1+ ions. (Notes §8 · Slides 26–31)`},
+{s:"8",t:"mc",q:`Group 2A elements are the ______.`,o:[`alkaline earth metals`,`alkali metals`,`halogens`],a:`alkaline earth metals`,e:`Group 2A = alkaline earth metals (Mg, Ca), form 2+ ions. (Notes §8 · Slides 26–31)`},
+{s:"8",t:"mc",q:`Group 7A elements are the ______.`,o:[`noble gases`,`halogens`,`alkali metals`],a:`halogens`,e:`Group 7A = halogens (F, Cl, Br), form 1− ions. (Notes §8 · Slides 26–31)`},
+{s:"8",t:"mc",q:`Group 8A elements are the ______.`,o:[`halogens`,`noble gases`,`transition metals`],a:`noble gases`,e:`Group 8A = noble gases (He, Ne, Ar), very unreactive. (Notes §8 · Slides 26–31)`},
+
+/* ---------- 9 NATURAL STATES ---------- */
+{s:"9",t:"tf",q:`Most elements are found in pure (uncombined) form in nature.`,a:"false",e:`False. Most elements are reactive and found combined in compounds, not pure. (Notes §9 · Slides 32–36)`},
+{s:"9",t:"mc",q:`Which group of metals is unreactive enough to be found uncombined (pure) in nature?`,o:[`Noble metals (like gold)`,`Alkali metals`,`Halogens`],a:`Noble metals (like gold)`,e:`Noble metals (gold, platinum, silver) are unreactive, so they occur pure in nature. (Notes §9 · Slides 32–36)`},
+{s:"9",t:"mc",q:`Which is a "noble metal" found uncombined in nature?`,o:[`Gold`,`Sodium`,`Chlorine`,`Iron`],a:`Gold`,e:`Gold is a noble metal — found as pure nuggets. Sodium/chlorine/iron are reactive and found combined. (Notes §9 · Slides 32–36)`},
+{s:"9",t:"fib",q:`The noble gases are found in Group ______ of the periodic table. (Enter the number.)`,a:["8","8a","viii","eight"],e:`Noble gases are Group 8A — so unreactive they exist as free single atoms. (Notes §9 · Slides 32–36)`},
+{s:"9",t:"mc",q:`Which element is a noble gas found uncombined in nature?`,o:[`Argon`,`Oxygen`,`Sodium`,`Iron`],a:`Argon`,e:`Argon (Group 8A) is a noble gas, found uncombined in the air. (Notes §9 · Slides 32–36)`},
+{s:"9",t:"tf",q:`Oxygen gas naturally exists as O₂ molecules.`,a:"true",e:`True. Oxygen is diatomic → O₂. (Notes §9 · Slides 32–36)`},
+
+/* ---------- 10 IONS ---------- */
+{s:"10",t:"fib",q:`An atom (or group of atoms) that has gained or lost electrons and now has a charge is called a(n) ______.`,a:["ion"],e:`An atom with a charge (from gaining/losing electrons) is an ion. (Notes §10 · Slides 37–42)`},
+{s:"10",t:"mc",q:`A POSITIVELY charged ion is called a ______.`,o:[`cation`,`anion`],a:`cation`,e:`A positive ion is a cation (metals form these by losing electrons). Memory: ca+ion. (Notes §10 · Slides 37–42)`},
+{s:"10",t:"mc",q:`A NEGATIVELY charged ion is called a ______.`,o:[`cation`,`anion`],a:`anion`,e:`A negative ion is an anion (nonmetals form these by gaining electrons). (Notes §10 · Slides 37–42)`},
+{s:"10",t:"tf",q:`Metals tend to LOSE electrons to form positive ions (cations).`,a:"true",e:`True. Metals lose electrons → positive cations (Na → Na⁺). (Notes §10 · Slides 37–42)`},
+{s:"10",t:"tf",q:`Nonmetals tend to GAIN electrons to form negative ions (anions).`,a:"true",e:`True. Nonmetals gain electrons → negative anions (Cl → Cl⁻). (Notes §10 · Slides 37–42)`},
+{s:"10",t:"mc",q:`When an atom LOSES electrons, it becomes more ______.`,o:[`positive`,`negative`],a:`positive`,e:`Losing negative electrons leaves extra protons, so the atom becomes more positive. (Notes §10 · Slides 37–42)`},
+{s:"10",t:"mc",q:`A cation has ______ electrons than protons.`,o:[`more`,`fewer`],a:`fewer`,e:`A cation lost electrons, so it has fewer electrons than protons (net +). (Notes §10 · Slides 37–42)`},
+{s:"10",t:"mc",q:`An anion has ______ electrons than protons.`,o:[`more`,`fewer`],a:`more`,e:`An anion gained electrons, so it has more electrons than protons (net −). (Notes §10 · Slides 37–42)`},
+{s:"10",t:"fib",q:`Anions are named using the element root plus the suffix ______.`,a:["ide","-ide"],e:`Anions take '-ide': chlorine → chloride, oxygen → oxide. (Notes §10 · Slides 37–42)`},
+{s:"10",t:"mc",q:`The Cl⁻ ion is named ______.`,o:[`chlorine`,`chloride`,`chlorate`],a:`chloride`,e:`Cl⁻ = chloride (root 'chlor' + '-ide'). (Notes §10 · Slides 37–42)`},
+{s:"10",t:"mc",q:`A Group 1A metal typically forms an ion with a charge of ______.`,o:[`1+`,`2+`,`1−`],a:`1+`,e:`1A metals lose 1 electron → 1+ (Na⁺, K⁺). (Notes §10 · Slides 37–42)`},
+{s:"10",t:"mc",q:`A Group 2A metal typically forms an ion with a charge of ______.`,o:[`1+`,`2+`,`2−`],a:`2+`,e:`2A metals lose 2 electrons → 2+ (Mg²⁺, Ca²⁺). (Notes §10 · Slides 37–42)`},
+{s:"10",t:"mc",q:`A halogen (Group 7A) typically forms an ion with a charge of ______.`,o:[`1+`,`1−`,`2−`],a:`1−`,e:`Halogens gain 1 electron → 1− (Cl⁻, F⁻). (Notes §10 · Slides 37–42)`},
+{s:"10",t:"mc",q:`Noble gases (Group 8A) typically form ions with a charge of ______.`,o:[`0`,`1+`,`1−`],a:`0`,e:`Noble gases are already stable, so they normally don't form ions (charge 0). (Notes §10 · Slides 37–42)`},
+{s:"10",t:"fib",q:`Atoms gain or lose electrons to reach the electron count of the nearest ______ gas (the octet idea).`,a:["noble"],e:`Atoms gain/lose electrons to match the nearest noble gas (a full, stable set — the 'octet'). (Notes §10 · Slides 37–42)`},
+{s:"10",t:"tf",q:`When an atom forms an ion, its number of PROTONS changes.`,a:"false",e:`False. Forming an ion changes ELECTRONS only; protons never change (that would change the element). (Notes §10 · Slides 37–42)`},
+{s:"10",t:"mc",q:`For a cation, which equation finds the number of protons?`,o:[`protons = electrons + charge`,`protons = electrons − charge`,`protons = neutrons + charge`],a:`protons = electrons + charge`,e:`For a cation: protons = electrons + charge. A 2+ ion with 18 e⁻ has 20 protons. (Notes §10 · Slides 37–42)`},
+{s:"10",t:"mc",q:`A 3+ ion has 23 electrons. How many protons does it have?`,o:[`20`,`23`,`26`],a:`26`,e:`protons = electrons + charge = 23 + 3 = 26. (Notes §10 · Slides 37–42)`},
+{s:"10",t:"mc",q:`That 3+ ion with 26 protons is the ion of which element?`,o:[`Vanadium`,`Iron`,`Scandium`],a:`Iron`,e:`26 protons = iron, so this is Fe³⁺. (Notes §10 · Slides 37–42)`},
+{s:"10",t:"mc",q:`An ion X⁺ has 54 electrons. How many protons does it have?`,o:[`53`,`54`,`55`],a:`55`,e:`protons = electrons + charge = 54 + 1 = 55 (cesium). (Notes §10 · Slides 37–42)`},
+{s:"10",t:"mc",q:`Na⁺, Mg²⁺, F⁻, and O²⁻ all have the same number of ______ (10, like neon).`,o:[`protons`,`electrons`,`neutrons`],a:`electrons`,e:`Na⁺, Mg²⁺, F⁻, O²⁻ each have 10 electrons — 'isoelectronic' with neon. (Notes §10 · Slides 37–42)`},
+{s:"10",t:"mc",q:`In XCl₂, each Cl is 1−, so X must be 2+. If X²⁺ has 20 electrons, X is ______. (Careful — count protons!)`,o:[`Ca²⁺`,`Ti²⁺`,`Sc²⁺`],a:`Ti²⁺`,e:`X²⁺ with 20 electrons has protons = 20 + 2 = 22 = titanium (Ti²⁺). Trap: Ca has 20 PROTONS, not 20 electrons as a 2+ ion. (Notes §10 · Slides 37–42)`},
+{s:"10",t:"mc",q:`A neutral calcium atom has 20 protons. How many electrons does Ca²⁺ have?`,o:[`18`,`20`,`22`],a:`18`,e:`Ca²⁺ lost 2 electrons: 20 − 2 = 18 electrons. (Notes §10 · Slides 37–42)`},
+{s:"10",t:"mc",q:`Sulfur forms S²⁻. How many electrons does it GAIN to do so?`,o:[`1`,`2`,`3`],a:`2`,e:`A 2− charge means it gained 2 electrons. (Notes §10 · Slides 37–42)`},
+
+/* ---------- 11 IONIC COMPOUNDS ---------- */
+{s:"11",t:"tf",q:`An ionic compound is electrically neutral overall.`,a:"true",e:`True. Positive and negative charges fully cancel — the compound has no net charge. (Notes §11 · Slides 43–47)`},
+{s:"11",t:"fib",q:`In an ionic compound, the total charges of the cations and anions must sum to ______.`,a:["zero","0"],e:`Charges must sum to zero. In CaCl₂: (+2) + 2(−1) = 0. (Notes §11 · Slides 43–47)`},
+{s:"11",t:"mc",q:`Ionic compounds tend to have ______ melting points.`,o:[`high`,`low`],a:`high`,e:`Ionic compounds have HIGH melting points — the +/− attractions are strong (table salt melts at 801°C). (Notes §11 · Slides 43–47)`},
+{s:"11",t:"tf",q:`Solid ionic compounds are excellent conductors of electricity.`,a:"false",e:`False. Solids don't conduct — the ions are locked in place. They conduct only when melted or dissolved. (Notes §11 · Slides 43–47)`},
+{s:"11",t:"mc",q:`Ionic compounds conduct electricity when ______.`,o:[`solid`,`melted or dissolved in water`,`frozen`],a:`melted or dissolved in water`,e:`When melted or dissolved, the ions move freely and carry current. (Notes §11 · Slides 43–47)`},
+{s:"11",t:"mc",q:`Combining Ca²⁺ and Br⁻ gives the formula ______.`,o:[`CaBr`,`CaBr₂`,`Ca₂Br`],a:`CaBr₂`,e:`Ca²⁺ needs two Br⁻ to balance → CaBr₂ (+2 and 2×−1 = 0). (Notes §11 · Slides 43–47)`},
+{s:"11",t:"mc",q:`Combining Al³⁺ and O²⁻ gives the formula ______.`,o:[`AlO`,`Al₂O₃`,`Al₃O₂`],a:`Al₂O₃`,e:`Cross the charges: Al³⁺ and O²⁻ → Al₂O₃ (total +6 and −6). (Notes §11 · Slides 43–47)`},
+{s:"11",t:"mc",q:`An alkaline earth ion with 36 electrons (Sr²⁺) combines with Br⁻. The formula is ______.`,o:[`SrBr`,`SrBr₂`,`Sr₂Br`],a:`SrBr₂`,e:`Sr²⁺ + Br⁻ → SrBr₂ (two 1− bromides balance the 2+). (Notes §11 · Slides 43–47)`},
+{s:"11",t:"fib",q:`When writing an ionic formula, you write the ______ (the positive ion) symbol first.`,a:["cation"],e:`Cation (positive) is written first, then the anion — e.g., NaCl. (Notes §11 · Slides 43–47)`},
+{s:"11",t:"tf",q:`In NaCl, the ions are Na⁺ (1+) and Cl⁻ (1−), which sum to zero.`,a:"true",e:`True. +1 and −1 cancel, so NaCl is neutral. (Notes §11 · Slides 43–47)`},
+{s:"11",t:"mc",q:`In MgCl₂, what is the charge on the magnesium ion?`,o:[`1+`,`2+`,`3+`],a:`2+`,e:`Two Cl⁻ (total −2) must be balanced by Mg²⁺. (Notes §11 · Slides 43–47)`},
+{s:"11",t:"mc",q:`Ionic compounds are typically formed between a ______.`,o:[`metal and a nonmetal`,`two nonmetals`,`two metals`],a:`metal and a nonmetal`,e:`Ionic compounds form between a metal (gives electrons → cation) and a nonmetal (takes them → anion). (Notes §11 · Slides 43–47)`}
+];
+
+/* ===== EXTRA RECALL / FLASHCARD-STYLE QUESTIONS =====
+   t:"fibm" = multi-blank; each "___" is a blank; a = array of arrays (accepted answers per blank, in order)
+   t:"fib"  = single blank
+*/
+const MORE=[
+/* ---- 0 Fundamentals ---- */
+{s:"0",t:"fibm",q:`Matter is anything that has ___ and takes up ___.`,a:[["mass"],["space","volume"]],e:`Matter has mass and takes up space (volume). Everything physical — you, air, water — is matter. (Foundations)`},
+{s:"0",t:"fibm",q:`A ___ has a definite shape and volume; a ___ has a fixed volume but takes its container's shape; a ___ fills its entire container.`,a:[["solid"],["liquid"],["gas"]],e:`Solid = fixed shape+volume; liquid = fixed volume, takes container's shape; gas = fills the whole container. (Foundations)`},
+{s:"0",t:"fibm",q:`Opposite electric charges ___, while like charges ___.`,a:[["attract"],["repel"]],e:`Opposites attract, likes repel — the rule that keeps negative electrons near the positive nucleus. (Foundations)`},
+{s:"0",t:"fibm",q:`Two or more atoms bonded together form a ___; if those atoms are of different elements, it is also a ___.`,a:[["molecule"],["compound"]],e:`Bonded atoms = a molecule; if the atoms are different elements it's also a compound (H₂O). (Foundations)`},
+{s:"0",t:"fib",q:`A property you can observe without changing what the substance is (color, density) is a ___ property.`,a:["physical"],e:`A physical property is seen without changing the substance (color, density, melting point). (Foundations)`},
+{s:"0",t:"fib",q:`A property describing how a substance changes into something new (flammability) is a ___ property.`,a:["chemical"],e:`A chemical property describes forming new substances (flammability, rusting). (Foundations)`},
+{s:"0",t:"fib",q:`A particle with no net electric charge is described as electrically ___.`,a:["neutral"],e:`No net charge = electrically neutral (protons and electrons balance). (Foundations)`},
+{s:"0",t:"fib",q:`The smallest particle of an element that still keeps the element's identity is an ___.`,a:["atom"],e:`The smallest piece that's still the element is an atom. (Notes §1 · Slides 2–4)`},
+
+/* ---- 1 Composition ---- */
+{s:"1",t:"fibm",q:`A pure substance is either an ___ or a ___.`,a:[["element"],["compound"]],e:`Pure substances split into elements (one atom type) and compounds (different elements bonded). (Notes §1 · Slides 2–4)`},
+{s:"1",t:"fibm",q:`Matter splits into pure substances and ___, which (unlike compounds) have a ___ composition.`,a:[["mixtures","mixture"],["variable","varying","changing"]],e:`Matter = pure substances + mixtures; mixtures have variable composition (any ratio). (Notes §1 · Slides 2–4)`},
+{s:"1",t:"fibm",q:`A compound contains two or more ___ elements that are chemically ___ in a fixed ratio.`,a:[["different"],["bonded","combined","joined"]],e:`A compound = 2+ different elements chemically bonded in a fixed ratio. (Notes §1 · Slides 2–4)`},
+{s:"1",t:"fib",q:`An element is made of only ___ type of atom. (spell the number word)`,a:["one"],e:`An element = only ONE type of atom. (Notes §1 · Slides 2–4)`},
+{s:"1",t:"fib",q:`A mixture can be separated into its parts by ___ means (such as filtering).`,a:["physical"],e:`Mixtures separate by physical means (filtering, evaporation) — no reaction needed. (Notes §1 · Slides 2–4)`},
+{s:"1",t:"fib",q:`There are 118 known elements, of which ___ occur naturally.`,a:["88"],e:`88 of the 118 elements occur naturally. (Notes §1 · Slides 2–4)`},
+{s:"1",t:"fib",q:`Oxygen, carbon, and ___ form the basis of all biological molecules.`,a:["nitrogen"],e:`Oxygen, carbon, and nitrogen build biological molecules. (Notes §1 · Slides 2–4)`},
+{s:"1",t:"fib",q:`A molecule made of exactly two atoms is called a ___ molecule.`,a:["diatomic"],e:`A two-atom molecule = diatomic (H₂, O₂, N₂). (Notes §1 · Slides 33–36)`},
+{s:"1",t:"fib",q:`Different structural forms of the same element (like diamond vs. graphite) are called ___.`,a:["allotropes","allotrope"],e:`Same element, different structures = allotropes (diamond vs graphite). (Notes §1 · Slides 33–36)`},
+{s:"1",t:"fibm",q:`Three allotropes of carbon are diamond, ___, and ___.`,a:[["graphite"],["buckminsterfullerene","fullerene","buckyball","buckminster fullerene"]],e:`Carbon's three allotropes: diamond, graphite, buckminsterfullerene. (Notes §1 · Slides 33–36)`},
+
+/* ---- 2 Symbols (spelling) ---- */
+{s:"2",t:"fibm",q:`In an element symbol, the first letter is ___ and the second letter (if present) is ___.`,a:[["capitalized","capital","uppercase","upper case","upper-case"],["lowercase","lower case","lower-case","small"]],e:`Symbols are first-letter capital, second-letter lowercase (Na, Cl). (Notes §2 · Slides 5–6)`},
+{s:"2",t:"fibm",q:`The symbol for gold is ___, which comes from the Latin word ___.`,a:[["au"],["aurum"]],e:`Gold = Au, from Latin 'aurum'. (Notes §2 · Slides 5–6)`},
+{s:"2",t:"fibm",q:`The symbol for lead is ___, which comes from the Latin word ___.`,a:[["pb"],["plumbum"]],e:`Lead = Pb, from Latin 'plumbum'. (Notes §2 · Slides 5–6)`},
+{s:"2",t:"fib",q:`Spell out: the element with symbol Fe is ___.`,a:["iron"],e:`Fe = iron (Latin 'ferrum'). (Notes §2 · Slides 5–6)`},
+{s:"2",t:"fib",q:`Spell out: the element with symbol Na is ___.`,a:["sodium"],e:`Na = sodium (Latin 'natrium'). (Notes §2 · Slides 5–6)`},
+{s:"2",t:"fib",q:`Spell out: the element with symbol Hg is ___.`,a:["mercury"],e:`Hg = mercury (Latin 'hydrargyrum'). (Notes §2 · Slides 5–6)`},
+{s:"2",t:"fib",q:`Give the symbol for potassium: ___`,a:["k"],e:`Potassium = K (Latin 'kalium'). (Notes §2 · Slides 5–6)`},
+{s:"2",t:"fib",q:`Give the symbol for silver: ___`,a:["ag"],e:`Silver = Ag (Latin 'argentum'). (Notes §2 · Slides 5–6)`},
+
+/* ---- 3 Dalton ---- */
+{s:"3",t:"fibm",q:`The Law of Constant ___ states that a compound always has the same proportions by ___.`,a:[["composition"],["mass"]],e:`Law of Constant Composition: a compound's proportions by mass are always the same. (Notes §3 · Slides 7–11)`},
+{s:"3",t:"fib",q:`In a chemical reaction, atoms are neither created nor destroyed — they are simply ___.`,a:["rearranged","regrouped"],e:`Reactions only rearrange atoms (mass is conserved). (Notes §3 · Slides 7–11)`},
+{s:"3",t:"fib",q:`Dalton claimed all atoms of a given element are ___ (now known false because of isotopes).`,a:["identical","the same","same"],e:`Dalton said atoms of an element are identical — later revised by the discovery of isotopes. (Notes §3 · Slides 7–11)`},
+
+/* ---- 4 Formulas ---- */
+{s:"4",t:"fibm",q:`In the formula H₂O there are ___ hydrogen atoms and ___ oxygen atom.`,a:[["2","two"],["1","one"]],e:`H₂O = 2 hydrogen + 1 oxygen. (Notes §4 · Slides 12–14)`},
+{s:"4",t:"fib",q:`In a chemical formula, the number of each atom is shown by a ___.`,a:["subscript"],e:`The count of each atom is the subscript (the small lowered number). (Notes §4 · Slides 12–14)`},
+{s:"4",t:"fib",q:`When only one atom of a type is present, the subscript "1" is ___ written.`,a:["not","never"],e:`A subscript of 1 is not written (we write O, not O₁). (Notes §4 · Slides 12–14)`},
+
+/* ---- 5 History (spelling of names) ---- */
+{s:"5",t:"fibm",q:`Thomson's model of the atom is called the ___ ___ model.`,a:[["plum"],["pudding"]],e:`Thomson's model = the 'plum pudding' model. (Notes §5 · Slides 15–17)`},
+{s:"5",t:"fibm",q:`Rutherford aimed ___ particles at a thin sheet of gold ___.`,a:[["alpha"],["foil"]],e:`Rutherford aimed alpha particles at gold foil → discovered the nucleus. (Notes §5 · Slides 15–17)`},
+{s:"5",t:"fib",q:`Rutherford discovered the small, dense, positive center of the atom called the ___.`,a:["nucleus"],e:`The dense positive center is the nucleus. (Notes §5 · Slides 15–17)`},
+{s:"5",t:"fib",q:`The scientist who discovered the neutron (1932) was ___.`,a:["chadwick","james chadwick"],e:`Chadwick discovered the neutron. (Notes §5 · Slides 15–17)`},
+{s:"5",t:"fib",q:`The scientist who discovered the electron was ___.`,a:["thomson","jj thomson","j j thomson","william thomson"],e:`Thomson discovered the electron. (Notes §5 · Slides 15–17)`},
+
+/* ---- 6 Subatomic ---- */
+{s:"6",t:"fibm",q:`The proton has a ___ charge, the electron has a ___ charge, and the neutron has ___ charge.`,a:[["positive","+","+1"],["negative","-","−","-1","−1"],["no","zero","0","neutral","none"]],e:`Proton +, electron −, neutron no charge. (Notes §6 · Slides 18–20)`},
+{s:"6",t:"fibm",q:`Protons and neutrons are located in the ___, while electrons are located ___ the nucleus.`,a:[["nucleus"],["outside","around"]],e:`Protons + neutrons in the nucleus; electrons outside it. (Notes §6 · Slides 18–20)`},
+{s:"6",t:"fibm",q:`Changing the number of neutrons makes an ___; changing the number of protons makes a different ___; changing the number of electrons makes an ___.`,a:[["isotope"],["element"],["ion"]],e:`Neutrons → isotope; protons → different element; electrons → ion. (Notes §6 · Slides 18–20)`},
+{s:"6",t:"fib",q:`In a neutral atom, the number of protons equals the number of ___.`,a:["electrons"],e:`Neutral atom: protons = electrons. (Notes §6 · Slides 18–20)`},
+{s:"6",t:"fib",q:`The subatomic particle that mainly determines an atom's chemical behavior is the ___.`,a:["electron","electrons"],e:`Electrons determine chemical behavior. (Notes §6 · Slides 18–20)`},
+{s:"6",t:"fib",q:`The electron's mass is about 1/____ that of a proton (enter the number).`,a:["1836","1840"],e:`An electron is ~1/1836 of a proton's mass. (Notes §6 · Slides 18–20)`},
+
+/* ---- 7 Isotopes ---- */
+{s:"7",t:"fibm",q:`The atomic number (Z) equals the number of ___, and the mass number (A) equals protons plus ___.`,a:[["protons"],["neutrons"]],e:`Z = protons; A = protons + neutrons. (Notes §7 · Slides 21–25)`},
+{s:"7",t:"fib",q:`Neutrons = mass number − ___ number.`,a:["atomic"],e:`Neutrons = A − Z (mass number − atomic number). (Notes §7 · Slides 21–25)`},
+{s:"7",t:"fib",q:`Isotopes have the same number of protons but different numbers of ___.`,a:["neutrons"],e:`Isotopes differ only in neutrons. (Notes §7 · Slides 21–25)`},
+{s:"7",t:"fibm",q:`An atom with 23 protons and 28 neutrons has a mass number of ___ and is the element ___.`,a:[["51"],["vanadium","v"]],e:`Mass number = 23 + 28 = 51; 23 protons = vanadium. (Notes §7 · Slides 21–25)`},
+{s:"7",t:"fib",q:`Carbon-14 has 6 protons and ___ neutrons.`,a:["8"],e:`Neutrons = 14 − 6 = 8. (Notes §7 · Slides 21–25)`},
+
+/* ---- 8 Periodic table ---- */
+{s:"8",t:"fibm",q:`In the periodic table, vertical columns are called ___ and horizontal rows are called ___.`,a:[["groups","families","group","family"],["periods","period"]],e:`Columns = groups; rows = periods. (Notes §8 · Slides 26–31)`},
+{s:"8",t:"fib",q:`The periodic table is arranged in order of increasing ___ number.`,a:["atomic"],e:`Ordered by increasing atomic number. (Notes §8 · Slides 26–31)`},
+{s:"8",t:"fibm",q:`Metals are found on the ___ side of the table and nonmetals on the ___ side.`,a:[["left"],["right"]],e:`Metals on the left, nonmetals on the right. (Notes §8 · Slides 26–31)`},
+{s:"8",t:"fib",q:`Elements with a mix of metallic and nonmetallic properties are called ___.`,a:["metalloids","metalloid"],e:`In-between elements = metalloids. (Notes §8 · Slides 26–31)`},
+{s:"8",t:"fibm",q:`Metals can be hammered into thin sheets — a property called ___ — and pulled into wires — a property called ___.`,a:[["malleability","malleable"],["ductility","ductile"]],e:`Hammered into sheets = malleability; drawn into wire = ductility. (Notes §8 · Slides 26–31)`},
+{s:"8",t:"fibm",q:`Group 1A elements are the ___ metals; Group 2A elements are the ___ earth metals.`,a:[["alkali"],["alkaline"]],e:`1A = alkali metals; 2A = alkaline earth metals. (Notes §8 · Slides 26–31)`},
+{s:"8",t:"fibm",q:`Group 7A elements are the ___, and Group 8A elements are the ___ gases.`,a:[["halogens","halogen"],["noble"]],e:`7A = halogens; 8A = noble gases. (Notes §8 · Slides 26–31)`},
+
+/* ---- 9 Natural states ---- */
+{s:"9",t:"fib",q:`Most elements are ___, so they are found combined in compounds rather than pure.`,a:["reactive"],e:`Most elements are reactive → found combined, not pure. (Notes §9 · Slides 32–36)`},
+{s:"9",t:"fibm",q:`Three noble metals found uncombined in nature are gold, ___, and ___.`,a:[["platinum"],["silver"]],e:`Noble metals found pure: gold, platinum, silver. (Notes §9 · Slides 32–36)`},
+{s:"9",t:"fib",q:`The noble gases are located in Group ___ (enter the number).`,a:["8","8a"],e:`Noble gases = Group 8A. (Notes §9 · Slides 32–36)`},
+
+/* ---- 10 Ions ---- */
+{s:"10",t:"fibm",q:`A positively charged ion is called a ___; a negatively charged ion is called an ___.`,a:[["cation"],["anion"]],e:`Positive = cation; negative = anion. (Notes §10 · Slides 37–42)`},
+{s:"10",t:"fibm",q:`Metals tend to ___ electrons to form cations; nonmetals tend to ___ electrons to form anions.`,a:[["lose"],["gain"]],e:`Metals lose electrons; nonmetals gain them. (Notes §10 · Slides 37–42)`},
+{s:"10",t:"fibm",q:`A cation has ___ electrons than protons, while an anion has ___ electrons than protons.`,a:[["fewer","less"],["more"]],e:`Cation: fewer electrons than protons; anion: more. (Notes §10 · Slides 37–42)`},
+{s:"10",t:"fib",q:`Anions are named by adding the suffix ___ to the element's root (e.g., chloride).`,a:["-ide","ide"],e:`Anions add '-ide' (chloride, oxide). (Notes §10 · Slides 37–42)`},
+{s:"10",t:"fibm",q:`Predicted ion charges: Group 1A → ___, Group 2A → ___, and Group 7A → ___.`,a:[["1+","+1"],["2+","+2"],["1-","1−","-1","−1"]],e:`1A → 1+, 2A → 2+, 7A → 1−. (Notes §10 · Slides 37–42)`},
+{s:"10",t:"fib",q:`To find the protons of a cation: protons = electrons + ___.`,a:["charge","the charge"],e:`For a cation, protons = electrons + charge. (Notes §10 · Slides 37–42)`},
+{s:"10",t:"fib",q:`Ions form to reach the electron count of the nearest ___ gas.`,a:["noble"],e:`Ions aim for the nearest noble-gas electron count. (Notes §10 · Slides 37–42)`},
+
+/* ---- 11 Ionic compounds ---- */
+{s:"11",t:"fibm",q:`An ionic compound is electrically ___, so the charges of its ions must sum to ___.`,a:[["neutral"],["zero","0"]],e:`Ionic compounds are neutral — charges sum to zero. (Notes §11 · Slides 43–47)`},
+{s:"11",t:"fibm",q:`Ionic compounds have ___ melting points and conduct electricity when ___ or dissolved in water.`,a:[["high"],["melted","molten"]],e:`High melting points; conduct when melted or dissolved. (Notes §11 · Slides 43–47)`},
+{s:"11",t:"fib",q:`Write the formula from combining Al³⁺ and O²⁻: ___`,a:["al2o3"],e:`Cross the charges: Al₂O₃ (+6 and −6 balance). (Notes §11 · Slides 43–47)`},
+{s:"11",t:"fib",q:`Write the formula from combining Ca²⁺ and Br⁻: ___`,a:["cabr2"],e:`Ca²⁺ + two Br⁻ → CaBr₂. (Notes §11 · Slides 43–47)`},
+{s:"11",t:"fib",q:`When writing an ionic formula, the ___ (positive ion) is written first.`,a:["cation"],e:`Cation (positive ion) is written first in the formula. (Notes §11 · Slides 43–47)`}
+];
+BANK.push(...MORE);
+/* keep questions grouped by section for clean display */
+BANK.sort((a,b)=>(+a.s)-(+b.s));
+
+/* ===== ENGINE ===== */
+const quiz=document.getElementById('quiz');
+const results=document.getElementById('results');
+const counter=document.getElementById('counter');
+const submitBtn=document.getElementById('submitBtn');
+const retryBtn=document.getElementById('retryBtn');
+const restartBtn=document.getElementById('restartBtn');
+const modechip=document.getElementById('modechip');
+document.getElementById('qcount').textContent=BANK.length;
+
+const ALL=BANK.map((_,i)=>i);
+let currentSet=ALL.slice();
+let gradedState={};
+let lastWrong=[];
+
+function norm(s){return String(s).toLowerCase().trim().replace(/[.,;:!?"'`]/g,'').replace(/\s+/g,' ').replace(/^(the|a|an)\s+/,'');}
+function appendCheck(card,qi){
+  const b=document.createElement('button');
+  b.type='button'; b.className='checkbtn'; b.id='chk'+qi; b.textContent='Check';
+  b.addEventListener('click',()=>gradeOne(qi));
+  card.appendChild(b);
+  const fb=document.createElement('div'); fb.className='fb'; fb.id='fb'+qi;
+  card.appendChild(fb);
+}
+
+function render(indices,isRetry){
+  currentSet=indices.slice();
+  gradedState={}; lastWrong=[];
+  quiz.innerHTML='';
+  results.classList.add('hidden');
+  retryBtn.classList.add('hidden');
+  restartBtn.classList.toggle('hidden',!isRetry);
+  submitBtn.classList.remove('hidden');
+  submitBtn.textContent='Grade All & Show Results';
+  modechip.classList.toggle('hidden',!isRetry);
+  if(isRetry) modechip.textContent='Retry Mode · '+indices.length+' left';
+  let lastSec=null;
+  indices.forEach((qi,pos)=>{
+    const q=BANK[qi];
+    if(!isRetry && q.s!==lastSec){
+      const h=document.createElement('div');
+      h.className='sechead';
+      h.textContent=SEC[q.s];
+      quiz.appendChild(h);
+      lastSec=q.s;
+    }
+    quiz.appendChild(buildCard(qi,q,pos+1,isRetry));
+  });
+  updateScore();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function buildCard(qi,q,num,isRetry){
+  const card=document.createElement('div');
+  card.className='q'; card.id='card'+qi;
+  const typeLabel={tf:'True / False',mc:'Multiple Choice',fib:'Fill in the Blank',fibm:'Fill in the Blanks'}[q.t];
+  const head=document.createElement('div');
+  head.innerHTML=`<span class="qnum">${num}.</span>`+(isRetry?`<span class="secbadge">${SEC[q.s]}</span> `:'')+`<span class="qtype">${typeLabel}</span>`;
+  card.appendChild(head);
+
+  if(q.t==='fibm'){
+    const line=document.createElement('div');
+    line.className='qtext blankline';
+    const parts=q.q.split(/_{3,}/);
+    parts.forEach((seg,idx)=>{
+      line.appendChild(document.createTextNode(seg));
+      if(idx<parts.length-1){
+        const inp=document.createElement('input');
+        inp.type='text'; inp.className='blank'; inp.id='fibm'+qi+'_'+idx;
+        inp.autocomplete='off'; inp.placeholder='?';
+        inp.addEventListener('input',updateCounter);
+        line.appendChild(inp);
+      }
+    });
+    card.appendChild(line);
+    appendCheck(card,qi);
+    return card;
+  }
+
+  const txt=document.createElement('div');
+  txt.className='qtext'; txt.textContent=q.q;
+  card.appendChild(txt);
+
+  if(q.t==='fib'){
+    const inp=document.createElement('input');
+    inp.type='text'; inp.id='fib'+qi; inp.placeholder='Type your answer…';
+    inp.autocomplete='off'; inp.addEventListener('input',updateCounter);
+    card.appendChild(inp);
+  } else {
+    const opts=(q.t==='tf')?['true','false']:q.o;
+    const wrap=document.createElement('div'); wrap.className='opts';
+    opts.forEach(opt=>{
+      const lab=document.createElement('label');
+      const disp=(q.t==='tf')?(opt==='true'?'True':'False'):opt;
+      lab.innerHTML=`<input type="radio" name="q${qi}" value="${opt.replace(/"/g,'&quot;')}"> ${disp}`;
+      lab.querySelector('input').addEventListener('change',()=>{
+        wrap.querySelectorAll('label').forEach(l=>l.classList.remove('pick'));
+        lab.classList.add('pick'); updateCounter();
+      });
+      wrap.appendChild(lab);
+    });
+    card.appendChild(wrap);
+  }
+  appendCheck(card,qi);
+  return card;
+}
+
+function getUser(qi,q){
+  if(q.t==='fibm'){
+    return q.a.map((_,k)=>{const el=document.getElementById('fibm'+qi+'_'+k);return el?el.value:'';});
+  }
+  if(q.t==='fib'){const el=document.getElementById('fib'+qi);return el?el.value:'';}
+  const el=document.querySelector(`input[name="q${qi}"]:checked`);
+  return el?el.value:null;
+}
+function isAnswered(qi,q){
+  const v=getUser(qi,q);
+  if(q.t==='fibm') return v.every(x=>x&&x.trim()!=='');
+  return q.t==='fib'? (v&&v.trim()!=='') : v!==null;
+}
+function blankOK(userVal,accepted){
+  return !!userVal && accepted.map(norm).includes(norm(userVal));
+}
+function check(qi,q){
+  const v=getUser(qi,q);
+  if(q.t==='fibm'){
+    return q.a.every((acc,k)=>blankOK(v[k],acc));
+  }
+  if(q.t==='fib'){
+    if(!v) return false;
+    return q.a.map(norm).includes(norm(v));
+  }
+  return v===q.a;
+}
+function correctText(q){
+  if(q.t==='tf') return q.a==='true'?'True':'False';
+  if(q.t==='fibm') return q.a.map(acc=>acc[0]).join('  ·  ');
+  if(q.t==='fib') return q.a[0];
+  return q.a;
+}
+
+function updateScore(){
+  const g=currentSet.filter(qi=>qi in gradedState);
+  const c=g.filter(qi=>gradedState[qi]).length;
+  const pct=g.length?Math.round(c/g.length*100):0;
+  counter.textContent=`Checked ${g.length}/${currentSet.length} · Score ${c} (${pct}%)`;
+}
+const updateCounter=updateScore; // input listeners call this
+
+function markCard(qi,q,ok){
+  const card=document.getElementById('card'+qi);
+  card.classList.add(ok?'correct':'incorrect');
+  if(q.t==='fibm'){
+    const v=getUser(qi,q);
+    q.a.forEach((acc,k)=>{const inp=document.getElementById('fibm'+qi+'_'+k);if(inp){inp.classList.add(blankOK(v[k],acc)?'ansright':'answrong');inp.disabled=true;}});
+  } else if(q.t==='fib'){
+    const inp=document.getElementById('fib'+qi); inp.classList.add(ok?'ansright':'answrong'); inp.disabled=true;
+  } else {
+    document.querySelectorAll(`#card${qi} .opts label`).forEach(l=>{
+      const inp=l.querySelector('input'); inp.disabled=true;
+      if(inp.value===q.a) l.classList.add('ansright');
+      if(inp.checked && inp.value!==q.a) l.classList.add('answrong');
+    });
+  }
+}
+
+function gradeOne(qi){
+  if(qi in gradedState) return;
+  const q=BANK[qi]; const ok=check(qi,q);
+  gradedState[qi]=ok;
+  markCard(qi,q,ok);
+  const btn=document.getElementById('chk'+qi);
+  if(btn){btn.disabled=true; btn.textContent=ok?'✓ Checked':'✗ Checked'; btn.style.background=ok?'#1e8449':'#c0392b';}
+  const fb=document.getElementById('fb'+qi);
+  fb.className='fb show '+(ok?'good':'no');
+  fb.innerHTML=(ok?'✅ <b>Correct.</b> ':`❌ <b>Not quite.</b> Correct answer: <b>${correctText(q)}</b>. `)+q.e+`<div class="tut" style="margin-top:8px"><b>📘 Topic recap — ${SEC[q.s]}</b><br>${TUT[q.s]||''}</div>`;
+  updateScore();
+}
+
+function gradeAll(){
+  currentSet.forEach(qi=>{ if(!(qi in gradedState)) gradeOne(qi); });
+  showResults();
+}
+
+function showResults(){
+  let correct=0; const wrong=[]; const sec={};
+  currentSet.forEach(qi=>{
+    const q=BANK[qi]; const ok=!!gradedState[qi];
+    sec[q.s]=sec[q.s]||{c:0,t:0}; sec[q.s].t++;
+    if(ok){correct++; sec[q.s].c++;} else wrong.push(qi);
+  });
+  const total=currentSet.length, pct=Math.round(correct/total*100);
+  let rows='';
+  Object.keys(sec).sort((a,b)=>(a==='0'?-1:b==='0'?1:(+a)-(+b))).forEach(k=>{
+    const s=sec[k]; const p=Math.round(s.c/s.t*100);
+    rows+=`<tr><td>${SEC[k]}</td><td>${s.c}/${s.t}</td><td><div class="barwrap"><div class="bar" style="width:${p}%;background:${p>=80?'#1e8449':p>=50?'#b7950b':'#c0392b'}"></div></div></td><td>${p}%</td></tr>`;
+  });
+  const verdict=pct===100?'🎉 Perfect — you\'ve got this cold!':pct>=90?'💪 Excellent.':pct>=75?'👍 Good — a few to shore up.':pct>=50?'📚 Getting there — review and retry.':'🔁 Keep going — retry the misses.';
+  results.innerHTML=`<h2>Results</h2><div class="bigscore" style="color:${pct>=80?'#1e8449':pct>=50?'#b7950b':'#c0392b'}">${correct} / ${total}</div><div class="pct">${pct}% &nbsp;·&nbsp; ${verdict}</div><table class="secgrid"><tr><th>Section</th><th>Score</th><th>&nbsp;</th><th>%</th></tr>${rows}</table>${wrong.length?`<p style="margin:8px 0 0"><strong style="color:#c0392b">${wrong.length}</strong> wrong — marked in red below. Use <strong>Retry Wrong Only</strong>.</p>`:`<p style="margin:8px 0 0;color:#1e8449"><strong>No wrong answers — nice!</strong></p>`}`;
+  results.classList.remove('hidden');
+  restartBtn.classList.remove('hidden');
+  retryBtn.classList.toggle('hidden',wrong.length===0);
+  if(wrong.length) retryBtn.textContent=`Retry Wrong Only (${wrong.length})`;
+  lastWrong=wrong;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+submitBtn.addEventListener('click',gradeAll);
+retryBtn.addEventListener('click',()=>{ if(lastWrong.length) render(lastWrong,true); });
+restartBtn.addEventListener('click',()=>{ render(ALL,false); });
+
+render(ALL,false);
+</script>
+</body>
+</html>

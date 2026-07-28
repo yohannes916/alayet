@@ -199,6 +199,83 @@ since problems only occur while the child is using it, but it means no dead-man'
 device itself. `ALERT_DAILY_OK=1` sends a daily "all healthy" heartbeat when awake if you want a
 liveness signal.
 
+## Round 5 — audio fixed (2026-07-20)
+
+Sound was fully dead post-conversion ("no soundcards found"). Three stacked causes on this
+RPL Chromebook (fix applied live over SSH; nothing in the install scripts yet):
+
+1. **Missing RPL topology name.** The SOF driver wants `intel/sof-tplg/sof-rpl-rt1019-rt5682.tplg`;
+   `firmware-sof-signed` ships it only under the ADL name (same file). Fixed with a symlink —
+   and then replaced the ADL file itself with the downstream blob from
+   `WeirdTreeThing/chromebook-linux-audio` (`blobs/adl/…`), since the upstream one is broken
+   (DMIC PCM errors). Original saved at `/root/sof-adl-rt1019-rt5682.tplg.orig`.
+2. **No UCM profile for the `sof-rt5682` card.** Stock `alsa-ucm-conf` has none, so PipeWire
+   only offered a Dummy Output. Overlaid the `standalone` branch of
+   `WeirdTreeThing/alsa-ucm-conf-cros` onto `/usr/share/alsa/ucm2/` (117 files: `conf.d/sof-rt5682`,
+   `platforms/intel-sof`, codecs). Pre-overlay backup: `/root/ucm2-backup-2026-07-20.tar.gz`.
+3. **`Google_Brox` not recognized.** The overlay's `platforms/intel-sof/platform.conf` matches
+   ADL boards by `product_family` regex `^Google_(Brya|Brask|Nissa|Trulo)$` — this board reports
+   `Google_Brox` (RPL refresh; same PCM layout: spk 0, headset 1, HDMI 2345, dmic 99). Patched the
+   regex in place to add `|Brox` (worth an upstream PR).
+
+Also installed the script's WirePlumber headroom conf →
+`/etc/wireplumber/wireplumber.conf.d/51-increase-headroom.conf` (stability).
+
+Result: Speaker / Headphones / 4×HDMI sinks + headset mic + internal DMIC (Mic1/Mic2 splits)
+all up; `pw-play` test clean, no kernel errors on playback. The codec is an **RT5682S** — a live
+`modprobe -r/modprobe` of the SOF stack fails with a clk `-EEXIST` leftover; use a full reboot
+when touching the audio modules. One-time `STREAM_PCM_PARAMS` probe errors at session start are
+benign. Caveat: a future `firmware-sof-signed` or `alsa-ucm-conf` package upgrade can clobber the
+replaced tplg / overlay files — if sound dies after an upgrade, redo the overlay (backups above).
+
+## Round 6 — YouTube verdicts by owner identity, ext v1.2.0 (2026-07-20)
+
+**Problem:** videos from APPROVED channels were blocked when opened from the channel page
+("video's channel not allowed"). Root cause: the extension verified a watch page by scraping
+the owner link out of the page DOM; during YouTube's SPA navigation the owner `<a>` exists
+with an EMPTY href before data loads, and the old code treated that as a definitive mismatch.
+Two latent bugs on top: channels stored only as UC-id could never match (owner links render
+as /@handle), and embeds honored only explicit video ids — so approved-channel videos failed
+on allowlisted external sites too.
+
+**New architecture (extension v1.2.0):** the background service worker is the single verdict
+authority — `isVideoAllowed(videoId)`. It resolves the video's OWNER via YouTube's public
+oEmbed endpoint (`youtube.com/oembed`, no API key; works through Squid + the Restricted-Mode
+CNAME), compares against the allowlist, and caches video→owner identities (immutable) in
+storage.local — verdicts recompute against the live allowlist so `allow-youtube` edits apply
+instantly. Watch pages and /embed|/v|/e frames use the SAME verdict: approved-channel videos
+play anywhere, others nowhere. The DOM owner-check survives only as fallback when oEmbed is
+unreachable (fixed: empty href = "not loaded yet", never a mismatch; fail-closed otherwise).
+youtube-nocookie stays sinkholed — Google's fenced-frame inline preview is unverifiable, so
+it stays dead by design (click through to YouTube instead).
+
+**Channel pairing:** allowlist channels are now stored in BOTH forms (UC id + @handle).
+New helper `bin/yt-resolve <@handle|UCid>` parses `"externalId"` + `"vanityChannelUrl"` from
+the channel page; `allow-youtube` auto-adds the paired form on every channel/handle add.
+The live list was migrated (39 channels → 43 paired entries, 0 failures).
+
+**Deployment gotchas learned (IMPORTANT for future extension updates):**
+- After swapping extension files + repacking, Chrome may keep executing the OLD service
+  worker from its **Service Worker script cache** even after a full Chrome restart and a
+  correct new `Extensions/<id>/<ver>/` on disk. Symptom here: content scripts got
+  "message port closed" (surfaced as "no background"), because the cached old worker had no
+  `ytVerdict` handler; meanwhile visits still logged fine. Fix: with Chrome killed,
+  `rm -rf "~child/.config/google-chrome/Default/Service Worker"` then relaunch.
+- Force-install after the prefs-clean procedure is NOT immediate: the external-update check
+  runs on a delayed timer (~5 min), and **every Chrome relaunch resets it** — impatient
+  restart loops keep it from ever firing. Launch once (optionally with
+  `--extensions-update-frequency=30`) and leave it alone; verify via Preferences
+  (`extensions.settings.<id>.manifest.version`), NOT `ls` of the Extensions dir (admin can't
+  read /home/<child> — a `2>/dev/null` there reads as "not installed").
+- `echo pw | sudo -S cmd <<HEREDOC` breaks — the heredoc becomes sudo's stdin (password
+  prompts eat the script). Prime the timestamp first (`echo pw | sudo -S true`), then run
+  plain `sudo` commands.
+
+**Verified test matrix (from child session, via logs):** Veritasium (allowed channel) watch
+page ✓ plays, opened-from-channel ✓, /embed ✓ plays; MrBeast watch ✗ "video's channel not
+allowed (@MrBeast)", /embed ✗ "embedded video not allowed (@MrBeast)"; allowed channel page
+opens; home/search still blocked. Verdict identities cache (instant repeat answers).
+
 ## Reuse on another laptop — checklist
 
 1. Untar the kit; `cd alayet`.

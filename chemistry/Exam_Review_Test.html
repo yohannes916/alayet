@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exam Review — Comprehensive Self-Test · Cumulative Chemistry</title>
+<style>
+  :root{--accent:#1a5276;--accent2:#2e86c1;--bg:#eef2f5;--card:#fff;--ok:#1e8449;--bad:#c0392b;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.5;color:#212f3d;background:var(--bg);margin:0;padding:0 14px 120px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:26px 26px;border-radius:0 0 14px 14px;margin:0 -14px 18px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  .howto{background:#eaf2f8;border-left:5px solid var(--accent2);padding:11px 16px;border-radius:8px;margin-bottom:16px;font-size:.92rem;}
+  .howto strong{color:var(--accent);}
+  #results{background:#fff;border:2px solid var(--accent);border-radius:12px;padding:18px 20px;margin-bottom:18px;box-shadow:0 3px 12px rgba(0,0,0,.1);}
+  #results h2{margin:0 0 8px;color:var(--accent);}
+  .bigscore{font-size:2.4rem;font-weight:800;}
+  .pct{font-size:1.1rem;color:#566573;}
+  .secgrid{width:100%;border-collapse:collapse;margin:12px 0;font-size:.86rem;}
+  .secgrid td,.secgrid th{border:1px solid #d5dbdb;padding:5px 9px;text-align:left;}
+  .secgrid th{background:var(--accent);color:#fff;}
+  .barwrap{background:#e5e8e8;border-radius:6px;height:12px;overflow:hidden;min-width:80px;}
+  .bar{height:100%;background:var(--ok);}
+  .secbadge{display:inline-block;background:var(--accent);color:#fff;font-size:.66rem;font-weight:700;letter-spacing:.3px;padding:2px 8px;border-radius:10px;text-transform:uppercase;margin-bottom:8px;}
+  .sechead{margin:26px 0 6px;color:var(--accent);font-size:1.15rem;border-bottom:2px solid #d4e6f1;padding-bottom:5px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 16px 12px;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid transparent;}
+  .q.correct{border-left-color:var(--ok);background:#f2fbf5;}
+  .q.incorrect{border-left-color:var(--bad);background:#fdf3f2;}
+  .qnum{font-weight:700;color:var(--accent);margin-right:6px;}
+  .qtype{font-size:.66rem;font-weight:700;color:#fff;background:#85929e;border-radius:8px;padding:1px 7px;margin-left:6px;vertical-align:middle;text-transform:uppercase;}
+  .qtext{font-size:.98rem;margin:2px 0 9px;}
+  .opts label{display:block;padding:6px 10px;margin:4px 0;border:1px solid #d5dbdb;border-radius:7px;cursor:pointer;font-size:.93rem;transition:.1s;}
+  .opts label:hover{background:#f4f6f7;}
+  .opts input{margin-right:9px;}
+  .opts label.pick{border-color:var(--accent2);background:#eaf2f8;}
+  .opts label.ansright{border-color:var(--ok);background:#eafaf1;}
+  .opts label.answrong{border-color:var(--bad);background:#fdedec;}
+  input[type=text]{width:100%;max-width:340px;padding:8px 11px;border:1px solid #b3c1c9;border-radius:7px;font-size:.95rem;}
+  input[type=text].ansright{border-color:var(--ok);background:#eafaf1;}
+  input[type=text].answrong{border-color:var(--bad);background:#fdedec;}
+  .blankline{font-size:1rem;line-height:2.2;margin:2px 0 4px;}
+  input.blank{width:130px;max-width:150px;display:inline-block;margin:0 5px;padding:5px 8px;border:1px solid #b3c1c9;border-bottom:2px solid var(--accent2);border-radius:6px;font-size:.9rem;vertical-align:baseline;}
+  input.blank.ansright{border-color:var(--ok);background:#eafaf1;}
+  input.blank.answrong{border-color:var(--bad);background:#fdedec;}
+  .fb{margin-top:9px;font-size:.86rem;padding:8px 11px;border-radius:7px;display:none;}
+  .fb.show{display:block;}
+  .fb.good{background:#eafaf1;color:#145a32;}
+  .fb.no{background:#fdedec;color:#922b21;}
+  .fb b{display:inline-block;}
+  .checkbtn{margin-top:10px;background:#2e86c1;color:#fff;border:none;border-radius:7px;padding:6px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .checkbtn:hover{background:#1a5276;}
+  .checkbtn:disabled{cursor:default;opacity:.85;}
+  .tut{background:#fbfcfd;border:1px solid #d4e6f1;border-left:4px solid #2e86c1;border-radius:6px;padding:8px 11px;margin-bottom:8px;color:#2c3e50;font-size:.85rem;line-height:1.45;}
+  .tut b{color:#1a5276;}
+  #bottombar{position:fixed;left:0;right:0;bottom:0;background:#fffffff2;backdrop-filter:blur(6px);border-top:1px solid #ccd;padding:10px 14px;box-shadow:0 -2px 10px rgba(0,0,0,.08);z-index:50;}
+  #bottombar .inner{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+  .counter{font-size:.9rem;color:#566573;font-weight:600;}
+  button{font-family:inherit;font-size:.92rem;font-weight:600;border:none;border-radius:8px;padding:10px 18px;cursor:pointer;}
+  .btn-primary{background:var(--accent);color:#fff;}
+  .btn-primary:hover{background:#154360;}
+  .btn-warn{background:var(--star);color:#fff;}
+  .btn-warn:hover{background:#9a7d0a;}
+  .btn-ghost{background:#e5e8e8;color:#2c3e50;}
+  .btn-ghost:hover{background:#d5dbdb;}
+  .hidden{display:none!important;}
+  .modechip{display:inline-block;background:var(--star);color:#fff;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:10px;margin-left:8px;}
+  @media print{#bottombar{position:static;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Exam Review — Comprehensive Self-Test <span id="modechip" class="modechip hidden"></span></h1>
+  <p>Atomic structure &amp; configs · Lewis, formal charge &amp; resonance · VSEPR &amp; polarity · Reactions &amp; stoichiometry · Solutions, net ionic, acids &amp; bases · auto-graded · retry-wrong-only · <span id="qcount"></span> questions</p>
+</header>
+
+<div class="howto">
+  <strong>How it works:</strong> This test asks the same ideas from several different angles on purpose — if you truly know a fact, no rephrasing can trip you.
+  Answer as many as you can, then press <strong>Submit &amp; Grade</strong> at the bottom for a score, a per-section breakdown, and the correct answer + explanation on every question.
+  Then hit <strong>Retry Wrong Only</strong> to re-test just the ones you missed — repeat until you ace every item.
+  <em>Blanks are graded leniently (case/spacing don't matter). Angles &amp; other numbers: type the number only, e.g. "109.5" or "18.02".</em>
+</div>
+
+<div id="results" class="hidden"></div>
+<form id="quiz" onsubmit="return false;"></form>
+</div>
+
+<div id="bottombar">
+  <div class="inner">
+    <span class="counter" id="counter">0 / 0 answered</span>
+    <button class="btn-primary" id="submitBtn">Submit &amp; Grade</button>
+    <button class="btn-warn hidden" id="retryBtn">Retry Wrong Only</button>
+    <button class="btn-ghost hidden" id="restartBtn">Restart Entire Test</button>
+  </div>
+</div>
+
+<script>
+/* ===== SECTION NAMES ===== */
+const SEC={
+ "1":"1 · Sublevels, Orbitals & Periodic Blocks",
+ "2":"2 · Electron Configurations & Exceptions",
+ "3":"3 · Lewis Structures & Octet Exceptions",
+ "4":"4 · Formal Charge & Resonance",
+ "5":"5 · VSEPR — Shapes & Angles",
+ "6":"6 · Molecular Polarity",
+ "7":"7 · Reaction Signs & Types",
+ "8":"8 · Balancing, Molar Mass & Stoichiometry",
+ "9":"9 · Solubility & Ionic Equations",
+ "10":"10 · Acids, Bases & Electrolytes"
+};
+
+/* ===== TOPIC TUTORIALS (shown on Check) ===== */
+const TUT={
+ "1":"Shell number n tells you two things: shell n has <b>n sublevels</b> and holds up to <b>2n²</b> electrons. Sublevel sizes: <b>s = 1 orbital / 2 e⁻</b>, <b>p = 3 / 6</b>, <b>d = 5 / 10</b>, <b>f = 7 / 14</b> — every orbital holds at most 2 electrons. Filling order: <b>1s 2s 2p 3s 3p 4s 3d 4p 5s 4d 5p 6s</b> (yes, 4s BEFORE 3d). Periodic blocks: <b>s-block</b> = groups 1–2 (+He), <b>p-block</b> = groups 13–18, <b>d-block</b> = groups 3–12 (the transition metals), <b>f-block</b> = lanthanides &amp; actinides.",
+ "2":"Three rules build every configuration: <b>Aufbau</b> — fill the lowest-energy sublevel first (so 4s before 3d); <b>Pauli</b> — max 2 e⁻ per orbital, opposite spins; <b>Hund</b> — one electron in each orbital of a sublevel before any pairing. Condensed form = <b>[preceding noble gas]</b> + the rest: S = [Ne]3s²3p⁴, Fe = [Ar]4s²3d⁶, Ca = [Ar]4s². Exceptions: <b>Cr [Ar]4s¹3d⁵</b> and <b>Cu [Ar]4s¹3d¹⁰</b> — a half-filled or filled d sublevel is extra stable. Ions: cations lose the <b>4s electrons BEFORE 3d</b> (Fe²⁺ [Ar]3d⁶, Fe³⁺ [Ar]3d⁵, Zn²⁺ [Ar]3d¹⁰); anions ADD electrons (O²⁻ = [Ne]).",
+ "3":"The N·A·S recipe: <b>N</b> = electrons Needed = 8×(non-H atoms) + 2×(H atoms); <b>A</b> = electrons Available = total valence e⁻, +1 per negative charge, −1 per positive charge; <b>S</b> = N − A = Shared electrons, so <b>bonds = S ÷ 2</b> and lone-pair electrons = A − S. Central atom = the <b>least electronegative</b> (lowest group number) — <b>NEVER hydrogen</b>. Octet exceptions: H wants only 2, Be is fine with 4, B with 6; odd-electron molecules (NO, NO₂) are <b>free radicals</b>; expanded octets (PCl₅ = 10 e⁻, SF₆ = 12 e⁻) are allowed ONLY for <b>Period 3 and beyond</b> — C, N, O, F can never exceed 8.",
+ "4":"<b>Formal charge = valence e⁻ − non-bonding e⁻ − bonds</b>. All the formal charges in a structure must <b>add up to the overall charge</b>. The best (major) structure has the <b>smallest formal charges</b>, puts any negative FC on the <b>most electronegative</b> atom, and avoids adjacent like charges. Resonance: two or more valid structures that differ ONLY in <b>electron placement — atoms never move</b>. The real molecule is a <b>hybrid</b> (average) with delocalized electrons; equivalent structures (O₃, NO₃⁻, CO₃²⁻) contribute equally, giving O₃ a bond order of <b>1.5</b>.",
+ "5":"Count electron <b>domains</b> on the central atom: any bond (single, double, or triple) = <b>ONE domain</b>, and each lone pair = one domain. Electron-domain geometry counts ALL domains; molecular geometry names only where the ATOMS are. 2 domains → linear 180°. 3 → trigonal planar 120°; with 1 lone pair → bent, slightly under 120° (SO₂). 4 → tetrahedral 109.5° (CH₄); 1 lone pair → trigonal pyramidal 107° (NH₃); 2 lone pairs → bent 104.5° (H₂O). 5 → trigonal bipyramidal 120°/90° (PCl₅); then seesaw (SF₄), T-shaped (ClF₃), linear (XeF₂, I₃⁻) — <b>lone pairs always go equatorial</b>. 6 → octahedral 90° (SF₆); square pyramidal (BrF₅); square planar (XeF₄).",
+ "6":"Polar bonds do <b>NOT</b> guarantee a polar molecule — shape decides. In a <b>symmetric</b> shape with identical outer atoms, the bond dipoles pull in balanced directions and <b>cancel</b>: CO₂ (linear), BF₃ (trigonal planar), CCl₄ (tetrahedral), XeF₄ (square planar) are all <b>nonpolar</b>. Break the symmetry — a lone-pair shape or one different outer atom — and the dipoles no longer cancel: H₂O, NH₃, CHCl₃, SF₄, and COS are <b>polar</b>.",
+ "7":"Five signs a chemical reaction happened: <b>color change, gas/bubbles, precipitate</b> (a solid appears in solution), <b>energy change</b> (heat/light/temperature), <b>odor change</b>. Five reaction types: <b>synthesis</b> A+B→AB (2Mg+O₂→2MgO); <b>decomposition</b> AB→A+B (CaCO₃→CaO+CO₂); <b>combustion</b> hydrocarbon + O₂ → CO₂ + H₂O; <b>single replacement</b> (Zn+2HCl→ZnCl₂+H₂); <b>double replacement</b> (AgNO₃+NaCl→AgCl↓+NaNO₃). Activity series: K &gt; Na &gt; Ca &gt; Mg &gt; Al &gt; Zn &gt; Fe &gt; Ni &gt; Sn &gt; Pb &gt; (H) &gt; Cu &gt; Ag &gt; Au — a metal only replaces metals <b>BELOW</b> it (Zn + CuSO₄ reacts; Cu + ZnSO₄ → no reaction).",
+ "8":"Balance by changing <b>coefficients ONLY — never subscripts</b> (changing a subscript changes the substance!). Example: C₃H₈ + 5O₂ → 3CO₂ + 4H₂O. Molar mass = add up the atomic masses (H₂O = 18.02 g/mol). A hydrate's dot means <b>ADD</b> n waters: CuSO₄·5H₂O = 63.55 + 32.07 + 4(16.00) + 5(18.02) = <b>249.7 g/mol</b>. Stoichiometry road map: <b>mass A ÷ molar mass → mol A → × mole ratio (from the balanced coefficients) → mol B → × molar mass → mass B</b>.",
+ "9":"ALWAYS soluble: <b>group 1, NH₄⁺, NO₃⁻, acetate C₂H₃O₂⁻, ClO₄⁻</b>. Cl⁻/Br⁻/I⁻ soluble EXCEPT with <b>Ag⁺, Pb²⁺, Hg₂²⁺</b>. SO₄²⁻ soluble EXCEPT with <b>Ba²⁺, Pb²⁺, Ca²⁺, Sr²⁺, Hg₂²⁺</b>. Mostly INSOLUBLE: OH⁻, CO₃²⁻, PO₄³⁻, S²⁻ (except group 1 &amp; NH₄⁺). Ionic equations: molecular → complete ionic (split ONLY <b>strong electrolytes</b>: soluble ionic compounds, the 7 strong acids, strong bases) → cancel the <b>spectator ions</b> → net ionic. NEVER split solids, liquids, gases, water, weak acids/bases, or molecular compounds. Classics: Ag⁺ + Cl⁻ → AgCl(s); strong acid + strong base → <b>H⁺ + OH⁻ → H₂O(l)</b>.",
+ "10":"The <b>7 strong acids</b>: HCl, HBr, HI, HNO₃, H₂SO₄, HClO₄, HClO₃ — strong means <b>~100% ionized</b> in water. Strong bases: <b>group 1 hydroxides</b> + Ca(OH)₂, Sr(OH)₂, Ba(OH)₂. Weak acids (mostly stay intact): <b>HF, CH₃COOH (acetic), H₂CO₃</b>. Weak base: <b>NH₃</b>. Watch the traps: H₂SO₄ is strong but H₂CO₃ is weak; HCl is strong but HF is weak. In ionic equations, split the strong ones — keep the weak ones whole."
+};
+
+/* ===== QUESTION BANK =====
+   t: "tf" | "mc" | "fib" | "fibm"
+   a: tf -> "true"/"false" ; mc -> exact option text ; fib -> array of accepted answers ; fibm -> array of arrays
+*/
+const BANK=[
+/* ---------- 1 SUBLEVELS, ORBITALS & BLOCKS ---------- */
+{s:"1",t:"mc",q:`How many orbitals are in a p sublevel, and how many electrons can it hold in total?`,o:[`3 orbitals, 6 electrons`,`1 orbital, 2 electrons`,`5 orbitals, 10 electrons`,`7 orbitals, 14 electrons`],a:`3 orbitals, 6 electrons`,e:`Every orbital holds at most 2 electrons. A p sublevel has 3 orbitals, so 3 × 2 = 6 electrons. (s = 1/2, p = 3/6, d = 5/10, f = 7/14.) (Notes §1)`},
+{s:"1",t:"tf",q:`Any single orbital — s, p, d, or f — can hold at most 2 electrons.`,a:"true",e:`True — 2 per orbital, with opposite spins (that is the Pauli principle). The sublevels differ only in HOW MANY orbitals they contain. (Notes §1, §3)`},
+{s:"1",t:"fib",q:`Which sublevel letter has exactly 5 orbitals and holds up to 10 electrons? ______`,a:["d","d sublevel","d-sublevel"],e:`d = 5 orbitals × 2 electrons each = 10. That is why each d-block row of the periodic table is 10 elements wide. (Notes §1)`},
+{s:"1",t:"fib",q:`A shell holds up to 2n² electrons, so shell n = 2 holds ______ electrons. (number only)`,a:["8","eight"],e:`2n² = 2 × 2² = 8. (Shell 1 holds 2, shell 2 holds 8, shell 3 holds 18.) (Notes §1)`},
+{s:"1",t:"tf",q:`Shell n = 3 contains 3 sublevels: 3s, 3p, and 3d.`,a:"true",e:`True — shell number n = number of sublevels. Shell 1 has just 1s; shell 2 has 2s, 2p; shell 3 has 3s, 3p, 3d. (Notes §1)`},
+{s:"1",t:"mc",q:`In the filling order, which sublevel fills immediately AFTER 3p?`,o:[`4s`,`3d`,`4p`,`3f`],a:`4s`,e:`Trap alert: 4s is LOWER in energy than 3d, so it fills first. Order: 1s 2s 2p 3s 3p 4s 3d 4p 5s 4d 5p 6s. (Notes §1, §3)`},
+{s:"1",t:"mc",q:`Which list gives the correct filling order?`,o:[`1s 2s 2p 3s 3p 4s 3d 4p`,`1s 2s 2p 3s 3p 3d 4s 4p`,`1s 2p 2s 3s 3d 3p 4s 4p`,`1s 2s 3s 2p 3p 4s 3d 4p`],a:`1s 2s 2p 3s 3p 4s 3d 4p`,e:`Fill lowest energy first (Aufbau). The famous surprise: 4s slips in BEFORE 3d. (Notes §1, §3)`},
+{s:"1",t:"mc",q:`The d-block of the periodic table corresponds to ______.`,o:[`groups 3–12 — the transition metals`,`groups 1–2`,`groups 13–18`,`the lanthanides and actinides`],a:`groups 3–12 — the transition metals`,e:`s-block = groups 1–2 (+He); p-block = 13–18; d-block = 3–12 (transition metals); f-block = lanthanides/actinides. (Notes §2)`},
+{s:"1",t:"mc",q:`An element whose HIGHEST-ENERGY electron is in a p sublevel belongs to which groups?`,o:[`13–18 (the p-block)`,`1–2 (the s-block)`,`3–12 (the d-block)`,`the lanthanides`],a:`13–18 (the p-block)`,e:`Reverse lookup: the block name tells you which sublevel the last (highest-energy) electron went into. p-block = groups 13–18. (Notes §2)`},
+{s:"1",t:"fib",q:`Calcium is in group 2, so its highest-energy electron sits in an ______ sublevel. (letter)`,a:["s","s sublevel","s-sublevel","s-block"],e:`Groups 1 and 2 are the s-block — their last electron lands in an s sublevel (Ca ends in 4s²). (Notes §2)`},
+
+/* ---------- 2 ELECTRON CONFIGURATIONS & EXCEPTIONS ---------- */
+{s:"2",t:"mc",q:`The Aufbau principle says electrons fill ______.`,o:[`the lowest-energy sublevel available first`,`the outermost shell first`,`orbitals in random order`,`the d sublevels before anything else`],a:`the lowest-energy sublevel available first`,e:`Aufbau = "building up": start at 1s and work upward in energy — which is why 4s fills before 3d. (Notes §3)`},
+{s:"2",t:"mc",q:`Hund's rule: when filling a sublevel that has several orbitals (like the three 2p orbitals), electrons ______.`,o:[`spread out one per orbital before any orbital gets a second`,`pair up immediately in the first orbital`,`skip that sublevel entirely`,`all crowd into one orbital`],a:`spread out one per orbital before any orbital gets a second`,e:`Like strangers on a bus taking empty seats first: one electron per orbital, THEN pairing begins. (Notes §3)`},
+{s:"2",t:"mc",q:`O²⁻ (oxide ion) has gained 2 extra electrons. Its configuration matches which noble gas?`,o:[`Ne`,`He`,`Ar`,`Kr`],a:`Ne`,e:`O has 8 electrons; the 2− charge means 2 extra → 10 electrons = neon's configuration. Anions ADD electrons. (Notes §7)`},
+{s:"2",t:"mc",q:`The full electron configuration of oxygen (8 electrons) is ______.`,o:[`1s²2s²2p⁴`,`1s²2s²2p⁶`,`1s²2p⁶`,`1s²2s⁴2p²`],a:`1s²2s²2p⁴`,e:`Count: 2 + 2 + 4 = 8. (2s can hold only 2, so 2s⁴ is impossible.) (Notes §4)`},
+{s:"2",t:"mc",q:`The condensed configuration of sulfur (16 e⁻) is ______.`,o:[`[Ne]3s²3p⁴`,`[Ar]3s²3p⁴`,`[Ne]3s²3p⁶`,`[He]2s²2p⁴`],a:`[Ne]3s²3p⁴`,e:`Condensed = [the noble gas BEFORE the element] + the rest. Ne = 10 electrons, then 3s²3p⁴ adds the other 6. [Ar] would be wrong — argon (18) comes AFTER sulfur. (Notes §5)`},
+{s:"2",t:"fib",q:`To write the condensed configuration of calcium (20 e⁻), the noble gas that goes in brackets is ______.`,a:["ar","argon","[ar]"],e:`Use the noble gas that comes BEFORE the element: Ar (18), then Ca = [Ar]4s². (Noble gas electron counts: He 2, Ne 10, Ar 18, Kr 36, Xe 54.) (Notes §5)`},
+{s:"2",t:"mc",q:`The correct configuration of chromium (Cr) is ______.`,o:[`[Ar]4s¹3d⁵`,`[Ar]4s²3d⁴`,`[Ar]3d⁶`,`[Ar]4s²3d⁶`],a:`[Ar]4s¹3d⁵`,e:`Famous exception! Cr steals one 4s electron to make the d sublevel exactly HALF-full (3d⁵), which is extra stable. NOT 4s²3d⁴. (Notes §6)`},
+{s:"2",t:"tf",q:`Copper's configuration is [Ar]4s²3d⁹.`,a:"false",e:`False — Cu is the other exception: [Ar]4s¹3d¹⁰. Moving one 4s electron COMPLETELY fills the d sublevel, and a full d is extra stable. (Notes §6)`},
+{s:"2",t:"mc",q:`When Fe becomes Fe²⁺, which electrons leave FIRST?`,o:[`the two 4s electrons`,`two 3d electrons`,`one 4s and one 3d electron`,`two 1s electrons`],a:`the two 4s electrons`,e:`The big trap: 4s fills FIRST, but it also EMPTIES first. Fe [Ar]4s²3d⁶ → Fe²⁺ [Ar]3d⁶ (not 4s²3d⁴!). (Notes §7)`},
+{s:"2",t:"fib",q:`Fe³⁺ has the configuration [Ar]3d with how many d electrons? ______ (number only)`,a:["5","five"],e:`Fe [Ar]4s²3d⁶ loses the two 4s electrons, then one 3d electron → Fe³⁺ = [Ar]3d⁵ — a stable half-filled d. (Cu⁺ and Zn²⁺ are both [Ar]3d¹⁰.) (Notes §7)`},
+
+/* ---------- 3 LEWIS STRUCTURES & OCTET EXCEPTIONS ---------- */
+{s:"3",t:"mc",q:`In the N·A·S recipe, A stands for ______.`,o:[`the electrons AVAILABLE — total valence e⁻, adjusted for any charge`,`the number of atoms`,`the atomic mass`,`the number of anions`],a:`the electrons AVAILABLE — total valence e⁻, adjusted for any charge`,e:`N = Needed (8 per non-H atom + 2 per H), A = Available (valence electrons: +1 per negative charge, −1 per positive), S = N − A = Shared. (Notes §8)`},
+{s:"3",t:"mc",q:`N = 8×(non-H atoms) + 2×(H atoms). For H₂O, N = ______.`,o:[`12`,`24`,`10`,`8`],a:`12`,e:`One non-H atom (O) needs 8; two H's need 2 each: 8 + 2 + 2 = 12. (Notes §8)`},
+{s:"3",t:"fib",q:`For CO₂: N = 24 and A = 16, so S = N − A = 8 shared electrons, which makes ______ bonds. (number only)`,a:["4","four"],e:`Bonds = S ÷ 2 = 8 ÷ 2 = 4 — exactly the two double bonds in O=C=O. Lone-pair electrons = A − S = 8. (Notes §8)`},
+{s:"3",t:"mc",q:`The central atom of a Lewis structure is usually ______.`,o:[`the LEAST electronegative atom — and never hydrogen`,`the MOST electronegative atom`,`always oxygen`,`whichever atom is written last`],a:`the LEAST electronegative atom — and never hydrogen`,e:`Lowest group number / least electronegative goes in the middle. H can form only ONE bond, so it can never be central. (Notes §8)`},
+{s:"3",t:"tf",q:`Hydrogen is satisfied with just 2 electrons instead of an octet.`,a:"true",e:`True — H has only the tiny 1s orbital, which fills at 2. That's the first octet "exception" to memorize. (Notes §9)`},
+{s:"3",t:"mc",q:`Boron in BF₃ is stable with only ______ electrons around it.`,o:[`6`,`8`,`10`,`2`],a:`6`,e:`B is electron-deficient: happy with 6 (and Be with just 4). They simply don't have enough electrons to reach 8. (Notes §9)`},
+{s:"3",t:"mc",q:`NO and NO₂ have an ODD number of electrons. Molecules like this are called ______.`,o:[`free radicals`,`ions`,`isotopes`,`hydrates`],a:`free radicals`,e:`With an odd count, one electron must be unpaired — a free radical. No arrangement can give every atom an octet. (Notes §9)`},
+{s:"3",t:"mc",q:`Which atom IS allowed to hold more than 8 electrons (an expanded octet)?`,o:[`S (Period 3)`,`O (Period 2)`,`N (Period 2)`,`F (Period 2)`],a:`S (Period 3)`,e:`Only Period 3 and beyond can expand (they have d orbitals available): PCl₅ puts 10 e⁻ on P, SF₆ puts 12 on S. Period 2 atoms — C, N, O, F — can NEVER exceed 8. (Notes §9)`},
+{s:"3",t:"fib",q:`In SF₆, the sulfur atom is surrounded by ______ electrons. (number only)`,a:["12","twelve"],e:`Six S–F bonds × 2 electrons each = 12 — an expanded octet, legal because S is in Period 3. (XeF₄ also has 12 on Xe.) (Notes §9)`},
+{s:"3",t:"tf",q:`Carbon can expand its octet to hold 10 electrons if a molecule needs it to.`,a:"false",e:`False — carbon is in Period 2, and Period 2 atoms (C, N, O, F) can NEVER exceed 8. Only Period 3+ atoms can expand. (Notes §9)`},
+
+/* ---------- 4 FORMAL CHARGE & RESONANCE ---------- */
+{s:"4",t:"mc",q:`Formal charge is calculated as ______.`,o:[`valence e⁻ − non-bonding e⁻ − number of bonds`,`valence e⁻ + number of bonds`,`protons − neutrons`,`bonds − lone pairs`],a:`valence e⁻ − non-bonding e⁻ − number of bonds`,e:`FC = (valence electrons the free atom owns) − (lone-pair electrons) − (bonds). It measures whether an atom in the structure has more or fewer electrons than it "deserves." (Notes §10)`},
+{s:"4",t:"fib",q:`N in NH₄⁺ has 5 valence e⁻, 0 non-bonding e⁻, and 4 bonds. Its formal charge is ______. (include the sign if negative)`,a:["1","+1","plus 1","plus one","one","positive 1","positive one"],e:`FC = 5 − 0 − 4 = +1 — which is exactly the overall charge of NH₄⁺, as it must be. (Notes §10)`},
+{s:"4",t:"fib",q:`An O atom with 6 valence e⁻, 6 non-bonding e⁻, and 1 bond has a formal charge of ______.`,a:["-1","−1","minus 1","minus one","negative 1","negative one"],e:`FC = 6 − 6 − 1 = −1. A single-bonded O with three lone pairs always carries −1 — worth memorizing for speed. (Notes §10)`},
+{s:"4",t:"tf",q:`The formal charges of all atoms in a structure must add up to the overall charge of the molecule or ion.`,a:"true",e:`True — a neutral molecule's FCs sum to 0; the FCs in SO₄²⁻ must total −2. Great way to check your arithmetic. (Notes §10)`},
+{s:"4",t:"mc",q:`The best (major) Lewis structure is the one with ______.`,o:[`the smallest formal charges, negative FC on the most electronegative atom, and no adjacent like charges`,`the biggest formal charges possible`,`positive FC on the most electronegative atom`,`like charges sitting on neighboring atoms`],a:`the smallest formal charges, negative FC on the most electronegative atom, and no adjacent like charges`,e:`Three rules for ranking structures: keep FCs small, park any minus sign on the most electronegative atom, and never put like charges next door. (Notes §10)`},
+{s:"4",t:"mc",q:`A structure puts +1 on two ADJACENT atoms. That structure is ______.`,o:[`a poor (minor) contributor — adjacent like charges are unfavorable`,`automatically the best structure`,`impossible to draw`,`the resonance hybrid itself`],a:`a poor (minor) contributor — adjacent like charges are unfavorable`,e:`Like charges repel, so side-by-side +1/+1 (or −1/−1) makes a high-energy, minor structure. (Notes §10)`},
+{s:"4",t:"tf",q:`Resonance structures differ in where the ATOMS are located.`,a:"false",e:`False — the trap! Resonance structures differ ONLY in electron placement; the atoms never move. If atoms moved, it would be a different molecule, not resonance. (Notes §11)`},
+{s:"4",t:"mc",q:`The real molecule is best described as ______.`,o:[`a resonance hybrid — one average structure with delocalized electrons`,`rapidly flipping back and forth between the structures`,`just one of the drawn structures`,`a mixture of different compounds`],a:`a resonance hybrid — one average structure with delocalized electrons`,e:`The molecule never flips — it IS the blend, all the time, with the shared electrons spread (delocalized) over several atoms. (Notes §11)`},
+{s:"4",t:"mc",q:`Which species have EQUIVALENT resonance structures that contribute equally?`,o:[`O₃, NO₃⁻, CO₃²⁻`,`H₂O, NH₃, CH₄`,`NaCl, KBr, MgO`,`Fe²⁺, Cu⁺, Zn²⁺`],a:`O₃, NO₃⁻, CO₃²⁻`,e:`When the structures are mirror-copies of each other (same kinds of bonds, just rotated), each contributes equally to the hybrid. (Notes §11)`},
+{s:"4",t:"fib",q:`In ozone (O₃), the two equivalent resonance structures give each O–O bond a bond order of ______.`,a:["1.5","3/2","one and a half","1 1/2"],e:`Average of a single (1) and a double (2) bond = 1.5. Both real O–O bonds are identical — between single and double in length. (Notes §11)`},
+
+/* ---------- 5 VSEPR — SHAPES & ANGLES ---------- */
+{s:"5",t:"mc",q:`In VSEPR, a double bond counts as ______ electron domain(s).`,o:[`1`,`2`,`3`,`0`],a:`1`,e:`ANY bond — single, double, or triple — is ONE domain, and each lone pair is one domain. CO₂'s two double bonds = 2 domains → linear. (Notes §12)`},
+{s:"5",t:"mc",q:`Electron-domain geometry counts ______, while molecular geometry names ______.`,o:[`ALL domains (bonds + lone pairs) … only the positions of the atoms`,`only the atoms … all the domains`,`only lone pairs … only bonds`,`protons … electrons`],a:`ALL domains (bonds + lone pairs) … only the positions of the atoms`,e:`Two different questions: "how do the domains arrange?" (counts everything) vs "what shape do the atoms make?" (lone pairs are invisible in the name). H₂O: tetrahedral domains, bent molecule. (Notes §12)`},
+{s:"5",t:"fib",q:`The bond angle in CH₄ (tetrahedral) is ______°. (number only)`,a:["109.5"],e:`Four identical bonding domains spread to the corners of a tetrahedron: 109.5°. (Notes §12)`},
+{s:"5",t:"mc",q:`NH₃ (3 bonds + 1 lone pair on N) has which molecular shape?`,o:[`trigonal pyramidal`,`tetrahedral`,`trigonal planar`,`bent`],a:`trigonal pyramidal`,e:`4 domains → tetrahedral arrangement, but one corner is a lone pair, so the ATOMS form a pyramid. Angle squeezed to 107°. (Notes §12)`},
+{s:"5",t:"fibm",q:`The lone-pair squeeze: NH₃'s bond angle is ___° and H₂O's is ___°. (numbers only)`,a:[["107","107.3"],["104.5"]],e:`Lone pairs repel harder than bonds, squeezing the ideal 109.5°: one lone pair (NH₃) → 107°; two lone pairs (H₂O) → 104.5°. (Notes §12)`},
+{s:"5",t:"mc",q:`SO₂ (2 bonded atoms + 1 lone pair on S) is ______.`,o:[`bent, slightly under 120°`,`linear, 180°`,`trigonal planar, exactly 120°`,`tetrahedral, 109.5°`],a:`bent, slightly under 120°`,e:`3 domains → trigonal planar arrangement, but one corner is a lone pair → bent molecule, angle pushed just below 120°. (Notes §12)`},
+{s:"5",t:"mc",q:`XeF₄ has 4 bonded atoms AND 2 lone pairs on Xe. Its molecular shape is ______.`,o:[`square planar`,`tetrahedral`,`square pyramidal`,`octahedral`],a:`square planar`,e:`Count DOMAINS, not atoms! 4 + 2 = 6 domains → octahedral arrangement; the two lone pairs sit opposite each other, leaving a flat square of atoms. NOT tetrahedral. (Notes §12)`},
+{s:"5",t:"mc",q:`In a 5-domain (trigonal bipyramidal) arrangement, lone pairs always occupy ______ positions.`,o:[`equatorial`,`axial`,`random`,`the two ends`],a:`equatorial`,e:`The equatorial spots (120° apart) are roomier than axial (90°), and lone pairs — the strongest repellers — take the roomy seats. That's why XeF₂ ends up linear. (Notes §12)`},
+{s:"5",t:"mc",q:`Match the shapes, in order: SF₄, ClF₃, XeF₂ are ______.`,o:[`seesaw, T-shaped, linear`,`tetrahedral, trigonal planar, bent`,`seesaw, linear, T-shaped`,`T-shaped, seesaw, linear`],a:`seesaw, T-shaped, linear`,e:`The 5-domain family with 1, 2, 3 lone pairs: AX₄E = seesaw (SF₄), AX₃E₂ = T-shaped (ClF₃), AX₂E₃ = linear (XeF₂, I₃⁻). (Notes §12)`},
+{s:"5",t:"mc",q:`Match the shapes, in order: PCl₅, SF₆, BrF₅ are ______.`,o:[`trigonal bipyramidal, octahedral, square pyramidal`,`octahedral, tetrahedral, seesaw`,`trigonal planar, octahedral, square planar`,`trigonal bipyramidal, square planar, octahedral`],a:`trigonal bipyramidal, octahedral, square pyramidal`,e:`PCl₅ = 5 bonding domains → trigonal bipyramidal (120°/90°); SF₆ = 6 → octahedral (90°); BrF₅ = 5 bonds + 1 lone pair → square pyramidal. (Notes §12)`},
+
+/* ---------- 6 MOLECULAR POLARITY ---------- */
+{s:"6",t:"tf",q:`If a molecule contains polar bonds, the molecule itself must be polar.`,a:"false",e:`False — THE key idea: in a symmetric shape with identical outer atoms, the bond dipoles pull in balanced directions and cancel. CO₂, BF₃, CCl₄, XeF₄ all have polar bonds but are NONpolar molecules. (Notes §13)`},
+{s:"6",t:"mc",q:`CO₂ has two polar C=O bonds, yet the molecule is NONPOLAR because ______.`,o:[`its linear, symmetric shape makes the two bond dipoles cancel`,`the bonds are actually nonpolar`,`carbon is a metal`,`it has lone pairs on carbon`],a:`its linear, symmetric shape makes the two bond dipoles cancel`,e:`The two dipoles are equal and pull in exactly opposite directions → net zero. Shape decides polarity! (Notes §13)`},
+{s:"6",t:"fib",q:`In a symmetric molecule with identical outer atoms, the bond dipoles ______ each other. (one word)`,a:["cancel","cancel out"],e:`Equal pulls in balanced directions cancel — like a perfectly even tug-of-war. Break the symmetry and they don't. (Notes §13)`},
+{s:"6",t:"mc",q:`Which molecule is POLAR?`,o:[`H₂O`,`CO₂`,`BF₃`,`CCl₄`],a:`H₂O`,e:`H₂O is bent (104.5°) — both dipoles point toward oxygen's side, so they add instead of cancel. The other three are symmetric → nonpolar. (Notes §13)`},
+{s:"6",t:"mc",q:`CCl₄ and CHCl₃ are BOTH tetrahedral, yet ______.`,o:[`CCl₄ is nonpolar (4 identical dipoles cancel) while CHCl₃ is polar (the H breaks the symmetry)`,`both are polar`,`both are nonpolar`,`CCl₄ is polar while CHCl₃ is nonpolar`],a:`CCl₄ is nonpolar (4 identical dipoles cancel) while CHCl₃ is polar (the H breaks the symmetry)`,e:`Same shape, different outer atoms: swap ONE Cl for an H and the four pulls no longer balance → net dipole. (Notes §13)`},
+{s:"6",t:"mc",q:`XeF₄ (square planar) is ______.`,o:[`nonpolar — the flat symmetric square cancels all four dipoles`,`polar — it has lone pairs`,`polar — fluorine is very electronegative`,`impossible to judge`],a:`nonpolar — the flat symmetric square cancels all four dipoles`,e:`The four Xe–F dipoles sit at 90° in a perfect square — every pull is balanced by the opposite one. The two lone pairs are opposite each other too. (Notes §13)`},
+{s:"6",t:"mc",q:`COS is linear like CO₂, yet COS IS polar because ______.`,o:[`O and S have different electronegativities, so the two bond dipoles don't cancel`,`it is secretly bent`,`linear molecules are always polar`,`sulfur has no electrons`],a:`O and S have different electronegativities, so the two bond dipoles don't cancel`,e:`Linear cancellation only works when BOTH ends pull equally. O pulls harder than S → unequal tug-of-war → net dipole. (Notes §13)`},
+{s:"6",t:"fib",q:`SF₄ has a seesaw shape. Is it polar or nonpolar? ______`,a:["polar"],e:`The seesaw is NOT symmetric (a lone pair occupies one equatorial spot), so the dipoles can't cancel → polar. Lone-pair shapes are usually polar. (Notes §13)`},
+{s:"6",t:"tf",q:`BF₃ is polar because its three B–F bonds are very polar.`,a:"false",e:`False — the three identical dipoles sit 120° apart in a flat triangle and cancel perfectly. Polar bonds, nonpolar molecule. (Notes §13)`},
+{s:"6",t:"mc",q:`Which set is ALL nonpolar?`,o:[`CO₂, BF₃, CCl₄, XeF₄`,`H₂O, NH₃, CHCl₃`,`SF₄, COS, H₂O`,`NH₃, CO₂, SF₄`],a:`CO₂, BF₃, CCl₄, XeF₄`,e:`The nonpolar club: symmetric shapes with identical outer atoms. The polar club: H₂O, NH₃, CHCl₃, SF₄, COS — bent, pyramidal, or symmetry-broken. (Notes §13)`},
+
+/* ---------- 7 REACTION SIGNS & TYPES ---------- */
+{s:"7",t:"mc",q:`Which is NOT one of the five signs of a chemical reaction?`,o:[`a change of state, like ice melting`,`a color change`,`gas bubbles forming`,`a precipitate (solid) forming`],a:`a change of state, like ice melting`,e:`Melting is a PHYSICAL change — same substance, new state. The five chemical signs: color change, gas/bubbles, precipitate, energy change, odor change. (Notes §14)`},
+{s:"7",t:"fib",q:`A solid that suddenly appears when two clear solutions are mixed is called a ______.`,a:["precipitate","a precipitate","ppt"],e:`Precipitate = a new, insoluble solid falling out of solution — one of the five signs of reaction (like AgCl forming). (Notes §14)`},
+{s:"7",t:"mc",q:`The five signs are: color change, gas, precipitate, odor change, and ______.`,o:[`an energy change (heat, light, or temperature change)`,`a change of container`,`dissolving`,`evaporation`],a:`an energy change (heat, light, or temperature change)`,e:`Energy change counts as one sign: the mixture gets hot or cold, or gives off light. (Notes §14)`},
+{s:"7",t:"mc",q:`2Mg + O₂ → 2MgO is which reaction type?`,o:[`synthesis`,`decomposition`,`single replacement`,`double replacement`],a:`synthesis`,e:`Synthesis = A + B → AB: two things combine into one. (Notes §15)`},
+{s:"7",t:"mc",q:`CaCO₃ → CaO + CO₂ is which reaction type?`,o:[`decomposition`,`synthesis`,`combustion`,`double replacement`],a:`decomposition`,e:`Decomposition = AB → A + B: one compound breaks into pieces — the reverse of synthesis. (Notes §15)`},
+{s:"7",t:"mc",q:`A hydrocarbon burns in O₂. The products are always ______.`,o:[`CO₂ and H₂O`,`CO₂ and H₂`,`C and H₂O`,`CaO and CO₂`],a:`CO₂ and H₂O`,e:`Combustion signature: hydrocarbon + O₂ → CO₂ + H₂O, every time. See CO₂ + H₂O as products? Say "combustion." (Notes §15)`},
+{s:"7",t:"mc",q:`Zn + 2HCl → ZnCl₂ + H₂ is which reaction type?`,o:[`single replacement`,`double replacement`,`synthesis`,`decomposition`],a:`single replacement`,e:`ONE lone element (Zn) swaps in and kicks out another (H). Double replacement needs TWO compounds trading partners. (Notes §15)`},
+{s:"7",t:"mc",q:`AgNO₃ + NaCl → AgCl↓ + NaNO₃ is which reaction type?`,o:[`double replacement`,`single replacement`,`combustion`,`decomposition`],a:`double replacement`,e:`Two compounds swap partners (Ag takes Cl, Na takes NO₃) — and the AgCl precipitate is the visible sign it happened. (Notes §15)`},
+{s:"7",t:"fib",q:`In the activity series, a metal can only replace metals ______ it in the list. (one word)`,a:["below","under","beneath","lower"],e:`Higher = more reactive. K > Na > Ca > Mg > Al > Zn > Fe > Ni > Sn > Pb > (H) > Cu > Ag > Au. A metal shoves out anything below it — never above. (Notes §15)`},
+{s:"7",t:"mc",q:`Copper metal is dropped into ZnSO₄ solution. What happens?`,o:[`no reaction — Cu is BELOW Zn in the activity series`,`Cu replaces Zn and forms CuSO₄`,`a synthesis reaction occurs`,`the solution catches fire`],a:`no reaction — Cu is BELOW Zn in the activity series`,e:`The trap pair: Zn + CuSO₄ DOES react (Zn is above Cu), but flip it around — Cu + ZnSO₄ — and nothing happens. Less reactive metals can't replace more reactive ones. (Notes §15)`},
+
+/* ---------- 8 BALANCING, MOLAR MASS & STOICHIOMETRY ---------- */
+{s:"8",t:"tf",q:`To balance a chemical equation, you may change the small subscripts inside the formulas.`,a:"false",e:`False — NEVER touch subscripts: changing H₂O to H₂O₂ turns water into hydrogen peroxide, a different substance! Balance with COEFFICIENTS (the big numbers in front) only. (Notes §16)`},
+{s:"8",t:"fibm",q:`Balance the combustion: C₃H₈ + ___ O₂ → ___ CO₂ + 4H₂O (coefficients, numbers only)`,a:[["5","five"],["3","three"]],e:`3 carbons → 3CO₂; 8 hydrogens → 4H₂O; now count O on the right: 6 + 4 = 10 → 5O₂. C₃H₈ + 5O₂ → 3CO₂ + 4H₂O. (Notes §16)`},
+{s:"8",t:"mc",q:`An equation is balanced when ______.`,o:[`the same number of each kind of atom appears on both sides`,`the same number of molecules appears on both sides`,`all the coefficients are equal`,`all the subscripts are equal`],a:`the same number of each kind of atom appears on both sides`,e:`Atoms are never created or destroyed in a reaction — balancing just makes the bookkeeping show it. (Notes §16)`},
+{s:"8",t:"fib",q:`Molar mass of H₂O = ______ g/mol. (number only; H = 1.01, O = 16.00)`,a:["18.02","18","18.0"],e:`2(1.01) + 16.00 = 18.02 g/mol. Molar mass = add up every atom's mass from the periodic table. (Notes §17)`},
+{s:"8",t:"mc",q:`In the hydrate CuSO₄·5H₂O, the dot means ______.`,o:[`ADD five whole water molecules to the formula mass`,`multiply the entire formula by 5`,`ignore the water — it doesn't count`,`divide the mass by 5`],a:`ADD five whole water molecules to the formula mass`,e:`The trap: the dot is a PLUS, not a times. CuSO₄·5H₂O = mass of CuSO₄ + 5 × (18.02). (Notes §17)`},
+{s:"8",t:"fib",q:`Molar mass of CuSO₄·5H₂O = ______ g/mol. (number only; Cu 63.55, S 32.07, O 16.00, H₂O 18.02)`,a:["249.7","249.72","249.68","250","249.69"],e:`63.55 + 32.07 + 4(16.00) + 5(18.02) = 249.7 g/mol. Add the five waters — don't multiply the whole thing. (Notes §17)`},
+{s:"8",t:"mc",q:`The mole ratio used in stoichiometry comes from ______.`,o:[`the coefficients of the BALANCED equation`,`the subscripts in the formulas`,`the molar masses`,`the periodic table groups`],a:`the coefficients of the BALANCED equation`,e:`Coefficients are the recipe: 2H₂ + O₂ → 2H₂O means 2 mol H₂ per 1 mol O₂ per 2 mol H₂O. (That's why you must balance FIRST.) (Notes §18)`},
+{s:"8",t:"mc",q:`The stoichiometry road map from mass of A to mass of B is ______.`,o:[`mass A ÷ molar mass → mol A → × mole ratio → mol B → × molar mass → mass B`,`mass A × molar mass → mol B → ÷ mole ratio → mass B`,`mass A → mass B directly, using the coefficients`,`mol A ÷ mole ratio → mass B`],a:`mass A ÷ molar mass → mol A → × mole ratio → mol B → × molar mass → mass B`,e:`Three steps, always: grams→moles (divide by molar mass), moles→moles (ratio from coefficients), moles→grams (multiply by molar mass). Moles are the only bridge between substances. (Notes §18)`},
+{s:"8",t:"fib",q:`2H₂ + O₂ → 2H₂O. Starting from 4 mol of H₂ (with plenty of O₂), you make ______ mol of H₂O. (number only)`,a:["4","four"],e:`Ratio H₂ : H₂O = 2 : 2 = 1 : 1, so 4 mol H₂ → 4 mol H₂O. (Notes §18)`},
+{s:"8",t:"mc",q:`Molar mass of AgNO₃ (Ag 107.87, N 14.01, O 16.00) is ______.`,o:[`169.9 g/mol`,`137.9 g/mol`,`143.3 g/mol`,`153.9 g/mol`],a:`169.9 g/mol`,e:`107.87 + 14.01 + 3(16.00) = 169.9 g/mol. (143.3 is AgCl — a distractor from the solubility section!) (Notes §17)`},
+
+/* ---------- 9 SOLUBILITY & IONIC EQUATIONS ---------- */
+{s:"9",t:"mc",q:`Which ions form compounds that are ALWAYS soluble, no exceptions?`,o:[`group 1 ions, NH₄⁺, NO₃⁻, acetate, ClO₄⁻`,`Ag⁺, Pb²⁺, Hg₂²⁺`,`CO₃²⁻ and PO₄³⁻`,`OH⁻ and S²⁻`],a:`group 1 ions, NH₄⁺, NO₃⁻, acetate, ClO₄⁻`,e:`The "always dissolves" club: group 1 (Na⁺, K⁺…), ammonium NH₄⁺, nitrate NO₃⁻, acetate C₂H₃O₂⁻, perchlorate ClO₄⁻. See any of these and the compound is soluble. (Notes §19)`},
+{s:"9",t:"mc",q:`Chlorides (Cl⁻) are soluble EXCEPT with ______.`,o:[`Ag⁺, Pb²⁺, and Hg₂²⁺`,`Na⁺ and K⁺`,`NH₄⁺`,`NO₃⁻`],a:`Ag⁺, Pb²⁺, and Hg₂²⁺`,e:`Cl⁻, Br⁻, I⁻ dissolve except with the three troublemakers: silver, lead, mercury(I). That's why AgCl is a classic precipitate. (Notes §19)`},
+{s:"9",t:"tf",q:`BaSO₄ is soluble in water.`,a:"false",e:`False — sulfates are soluble EXCEPT with Ba²⁺, Pb²⁺, Ca²⁺, Sr²⁺, Hg₂²⁺. BaSO₄ is a precipitate. (Notes §19)`},
+{s:"9",t:"mc",q:`Na₂CO₃ and CaCO₃ — which dissolves in water?`,o:[`Na₂CO₃ dissolves (group 1 wins); CaCO₃ does not`,`both dissolve`,`neither dissolves`,`CaCO₃ dissolves; Na₂CO₃ does not`],a:`Na₂CO₃ dissolves (group 1 wins); CaCO₃ does not`,e:`Carbonates are mostly insoluble — BUT the "always soluble" group 1 rule outranks that. Na⁺ drags CO₃²⁻ into solution; Ca²⁺ can't. (Notes §19)`},
+{s:"9",t:"mc",q:`In a complete ionic equation, you split apart ______.`,o:[`only strong electrolytes: soluble ionic compounds, the 7 strong acids, and strong bases`,`every single compound`,`only the solids`,`only water`],a:`only strong electrolytes: soluble ionic compounds, the 7 strong acids, and strong bases`,e:`Split = "exists as free ions in water." Only strong electrolytes qualify. Everything else stays written whole. (Notes §20)`},
+{s:"9",t:"mc",q:`Which are NEVER split into ions in an ionic equation?`,o:[`solids, liquids, gases, water, and weak acids/bases`,`soluble ionic salts`,`the 7 strong acids`,`group 1 hydroxides`],a:`solids, liquids, gases, water, and weak acids/bases`,e:`If it isn't dissolved AND fully ionized, keep it intact: AgCl(s), H₂O(l), CO₂(g), CH₃COOH, NH₃ all stay whole. (Notes §20)`},
+{s:"9",t:"tf",q:`When writing the complete ionic equation, acetic acid CH₃COOH should be split into CH₃COO⁻ and H⁺.`,a:"false",e:`False — the trap! CH₃COOH is a WEAK acid (mostly intact in water), so it stays whole: CH₃COOH + OH⁻ → CH₃COO⁻ + H₂O. Only the 7 strong acids get split. (Notes §20, §21)`},
+{s:"9",t:"fib",q:`Ions that appear unchanged on BOTH sides of the equation and get cancelled are called ______ ions.`,a:["spectator","spectators","spectator ions"],e:`Spectators just watch — they never react. Cancel them and what's left is the net ionic equation. (Notes §20)`},
+{s:"9",t:"fib",q:`Net ionic equation for mixing AgNO₃ and NaCl: Ag⁺ + Cl⁻ → ______(s)`,a:["agcl","agcl(s)","silver chloride"],e:`Na⁺ and NO₃⁻ are spectators; the real action is Ag⁺ + Cl⁻ → AgCl(s), the white precipitate. (Notes §20)`},
+{s:"9",t:"mc",q:`The net ionic equation for ANY strong acid + strong base neutralization is ______.`,o:[`H⁺ + OH⁻ → H₂O(l)`,`H₂O → H⁺ + OH⁻`,`Na⁺ + Cl⁻ → NaCl(s)`,`acid + base → salt`],a:`H⁺ + OH⁻ → H₂O(l)`,e:`Both split completely, the salt ions are spectators, and every strong-strong neutralization boils down to H⁺ + OH⁻ → H₂O(l). (Notes §20)`},
+
+/* ---------- 10 ACIDS, BASES & ELECTROLYTES ---------- */
+{s:"10",t:"mc",q:`What makes an acid "strong"?`,o:[`it ionizes ~100% in water — essentially every molecule splits into ions`,`it is very concentrated`,`it is hot`,`it contains many hydrogen atoms`],a:`it ionizes ~100% in water — essentially every molecule splits into ions`,e:`Strong = fully ionized (a strong electrolyte); weak = mostly stays intact, only a few molecules split. It's about ionizing, not concentration. (Notes §21)`},
+{s:"10",t:"fib",q:`There are exactly ______ strong acids to memorize. (number only)`,a:["7","seven"],e:`The 7 strong acids: HCl, HBr, HI, HNO₃, H₂SO₄, HClO₄, HClO₃. Everything else is weak. (Notes §21)`},
+{s:"10",t:"mc",q:`Which list contains ONLY strong acids?`,o:[`HCl, HNO₃, H₂SO₄`,`HF, HCl, HBr`,`CH₃COOH, HI, HClO₄`,`H₂CO₃, H₂SO₄, HClO₃`],a:`HCl, HNO₃, H₂SO₄`,e:`The impostors: HF is weak (despite its halogen), CH₃COOH is weak, H₂CO₃ is weak. Memorize the 7 and you can spot any fake. (Notes §21)`},
+{s:"10",t:"tf",q:`HF is a strong acid, because it contains a halogen just like HCl.`,a:"false",e:`False — the trap! HCl, HBr, HI are strong, but HF is WEAK (the H–F bond holds on too tightly to ionize fully). Same family, different strength. (Notes §21)`},
+{s:"10",t:"mc",q:`H₂SO₄ and H₂CO₃ both start with H₂. Which statement is correct?`,o:[`H₂SO₄ is strong; H₂CO₃ is weak`,`both are strong`,`both are weak`,`H₂CO₃ is strong; H₂SO₄ is weak`],a:`H₂SO₄ is strong; H₂CO₃ is weak`,e:`Looks don't decide strength — the list does. H₂SO₄ is one of the 7 strong acids; H₂CO₃ (carbonic acid, in soda) is weak. (Notes §21)`},
+{s:"10",t:"mc",q:`The strong bases are ______.`,o:[`the group 1 hydroxides, plus Ca(OH)₂, Sr(OH)₂, and Ba(OH)₂`,`every compound containing OH`,`NH₃ and all amines`,`only NaOH`],a:`the group 1 hydroxides, plus Ca(OH)₂, Sr(OH)₂, and Ba(OH)₂`,e:`Group 1 hydroxides (LiOH, NaOH, KOH…) plus the heavy group 2 trio Ca/Sr/Ba(OH)₂. (Notes §21)`},
+{s:"10",t:"fib",q:`Acetic acid (CH₃COOH), the acid in vinegar, is a ______ acid. (strong/weak)`,a:["weak","week"],e:`Weak — it's not on the list of 7. In water, most CH₃COOH molecules stay intact; only a few ionize. (Notes §21)`},
+{s:"10",t:"mc",q:`NH₃ (ammonia) is ______.`,o:[`a weak base`,`a strong base`,`a strong acid`,`not a base at all`],a:`a weak base`,e:`NH₃ is THE classic weak base — it grabs H⁺ only partially, so it's a weak electrolyte and stays written whole in ionic equations. (Notes §21)`},
+{s:"10",t:"tf",q:`Ba(OH)₂ is a strong base.`,a:"true",e:`True — barium hydroxide is one of the heavy group 2 strong bases (with Ca(OH)₂ and Sr(OH)₂), alongside all the group 1 hydroxides. (Notes §21)`},
+{s:"10",t:"mc",q:`In a net ionic equation, HNO₃ is written as ______ and HF is written as ______.`,o:[`H⁺ + NO₃⁻ (split) … HF (kept whole)`,`HNO₃ (kept whole) … H⁺ + F⁻ (split)`,`both split into ions`,`both kept whole`],a:`H⁺ + NO₃⁻ (split) … HF (kept whole)`,e:`Strong acid → ~100% ionized → split it. Weak acid → mostly intact → keep it whole. Same rule that made CH₃COOH stay intact. (Notes §21, §20)`}
+];
+/* keep questions grouped by section for clean display */
+BANK.sort((a,b)=>(+a.s)-(+b.s));
+
+/* ===== ENGINE ===== */
+const quiz=document.getElementById('quiz');
+const results=document.getElementById('results');
+const counter=document.getElementById('counter');
+const submitBtn=document.getElementById('submitBtn');
+const retryBtn=document.getElementById('retryBtn');
+const restartBtn=document.getElementById('restartBtn');
+const modechip=document.getElementById('modechip');
+document.getElementById('qcount').textContent=BANK.length;
+
+const ALL=BANK.map((_,i)=>i);
+let currentSet=ALL.slice();
+let gradedState={};
+let lastWrong=[];
+
+function norm(s){return String(s).toLowerCase().trim().replace(/[.,;:!?"'`°]/g,'').replace(/\s+/g,' ').replace(/^(the|a|an)\s+/,'');}
+function appendCheck(card,qi){
+  const b=document.createElement('button');
+  b.type='button'; b.className='checkbtn'; b.id='chk'+qi; b.textContent='Check';
+  b.addEventListener('click',()=>gradeOne(qi));
+  card.appendChild(b);
+  const fb=document.createElement('div'); fb.className='fb'; fb.id='fb'+qi;
+  card.appendChild(fb);
+}
+
+function render(indices,isRetry){
+  currentSet=indices.slice();
+  gradedState={}; lastWrong=[];
+  quiz.innerHTML='';
+  results.classList.add('hidden');
+  retryBtn.classList.add('hidden');
+  restartBtn.classList.toggle('hidden',!isRetry);
+  submitBtn.classList.remove('hidden');
+  submitBtn.textContent='Grade All & Show Results';
+  modechip.classList.toggle('hidden',!isRetry);
+  if(isRetry) modechip.textContent='Retry Mode · '+indices.length+' left';
+  let lastSec=null;
+  indices.forEach((qi,pos)=>{
+    const q=BANK[qi];
+    if(!isRetry && q.s!==lastSec){
+      const h=document.createElement('div');
+      h.className='sechead';
+      h.textContent=SEC[q.s];
+      quiz.appendChild(h);
+      lastSec=q.s;
+    }
+    quiz.appendChild(buildCard(qi,q,pos+1,isRetry));
+  });
+  updateScore();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function buildCard(qi,q,num,isRetry){
+  const card=document.createElement('div');
+  card.className='q'; card.id='card'+qi;
+  const typeLabel={tf:'True / False',mc:'Multiple Choice',fib:'Fill in the Blank',fibm:'Fill in the Blanks'}[q.t];
+  const head=document.createElement('div');
+  head.innerHTML=`<span class="qnum">${num}.</span>`+(isRetry?`<span class="secbadge">${SEC[q.s]}</span> `:'')+`<span class="qtype">${typeLabel}</span>`;
+  card.appendChild(head);
+
+  if(q.t==='fibm'){
+    const line=document.createElement('div');
+    line.className='qtext blankline';
+    const parts=q.q.split(/_{3,}/);
+    parts.forEach((seg,idx)=>{
+      line.appendChild(document.createTextNode(seg));
+      if(idx<parts.length-1){
+        const inp=document.createElement('input');
+        inp.type='text'; inp.className='blank'; inp.id='fibm'+qi+'_'+idx;
+        inp.autocomplete='off'; inp.placeholder='?';
+        inp.addEventListener('input',updateCounter);
+        line.appendChild(inp);
+      }
+    });
+    card.appendChild(line);
+    appendCheck(card,qi);
+    return card;
+  }
+
+  const txt=document.createElement('div');
+  txt.className='qtext'; txt.textContent=q.q;
+  card.appendChild(txt);
+
+  if(q.t==='fib'){
+    const inp=document.createElement('input');
+    inp.type='text'; inp.id='fib'+qi; inp.placeholder='Type your answer…';
+    inp.autocomplete='off'; inp.addEventListener('input',updateCounter);
+    card.appendChild(inp);
+  } else {
+    const opts=(q.t==='tf')?['true','false']:q.o;
+    const wrap=document.createElement('div'); wrap.className='opts';
+    opts.forEach(opt=>{
+      const lab=document.createElement('label');
+      const disp=(q.t==='tf')?(opt==='true'?'True':'False'):opt;
+      lab.innerHTML=`<input type="radio" name="q${qi}" value="${opt.replace(/"/g,'&quot;')}"> ${disp}`;
+      lab.querySelector('input').addEventListener('change',()=>{
+        wrap.querySelectorAll('label').forEach(l=>l.classList.remove('pick'));
+        lab.classList.add('pick'); updateCounter();
+      });
+      wrap.appendChild(lab);
+    });
+    card.appendChild(wrap);
+  }
+  appendCheck(card,qi);
+  return card;
+}
+
+function getUser(qi,q){
+  if(q.t==='fibm'){
+    return q.a.map((_,k)=>{const el=document.getElementById('fibm'+qi+'_'+k);return el?el.value:'';});
+  }
+  if(q.t==='fib'){const el=document.getElementById('fib'+qi);return el?el.value:'';}
+  const el=document.querySelector(`input[name="q${qi}"]:checked`);
+  return el?el.value:null;
+}
+function isAnswered(qi,q){
+  const v=getUser(qi,q);
+  if(q.t==='fibm') return v.every(x=>x&&x.trim()!=='');
+  return q.t==='fib'? (v&&v.trim()!=='') : v!==null;
+}
+function blankOK(userVal,accepted){
+  return !!userVal && accepted.map(norm).includes(norm(userVal));
+}
+function check(qi,q){
+  const v=getUser(qi,q);
+  if(q.t==='fibm'){
+    return q.a.every((acc,k)=>blankOK(v[k],acc));
+  }
+  if(q.t==='fib'){
+    if(!v) return false;
+    return q.a.map(norm).includes(norm(v));
+  }
+  return v===q.a;
+}
+function correctText(q){
+  if(q.t==='tf') return q.a==='true'?'True':'False';
+  if(q.t==='fibm') return q.a.map(acc=>acc[0]).join('  ·  ');
+  if(q.t==='fib') return q.a[0];
+  return q.a;
+}
+
+function updateScore(){
+  const g=currentSet.filter(qi=>qi in gradedState);
+  const c=g.filter(qi=>gradedState[qi]).length;
+  const pct=g.length?Math.round(c/g.length*100):0;
+  counter.textContent=`Checked ${g.length}/${currentSet.length} · Score ${c} (${pct}%)`;
+}
+const updateCounter=updateScore; // input listeners call this
+
+function markCard(qi,q,ok){
+  const card=document.getElementById('card'+qi);
+  card.classList.add(ok?'correct':'incorrect');
+  if(q.t==='fibm'){
+    const v=getUser(qi,q);
+    q.a.forEach((acc,k)=>{const inp=document.getElementById('fibm'+qi+'_'+k);if(inp){inp.classList.add(blankOK(v[k],acc)?'ansright':'answrong');inp.disabled=true;}});
+  } else if(q.t==='fib'){
+    const inp=document.getElementById('fib'+qi); inp.classList.add(ok?'ansright':'answrong'); inp.disabled=true;
+  } else {
+    document.querySelectorAll(`#card${qi} .opts label`).forEach(l=>{
+      const inp=l.querySelector('input'); inp.disabled=true;
+      if(inp.value===q.a) l.classList.add('ansright');
+      if(inp.checked && inp.value!==q.a) l.classList.add('answrong');
+    });
+  }
+}
+
+function gradeOne(qi){
+  if(qi in gradedState) return;
+  const q=BANK[qi]; const ok=check(qi,q);
+  gradedState[qi]=ok;
+  markCard(qi,q,ok);
+  const btn=document.getElementById('chk'+qi);
+  if(btn){btn.disabled=true; btn.textContent=ok?'✓ Checked':'✗ Checked'; btn.style.background=ok?'#1e8449':'#c0392b';}
+  const fb=document.getElementById('fb'+qi);
+  fb.className='fb show '+(ok?'good':'no');
+  fb.innerHTML=(ok?'✅ <b>Correct.</b> ':`❌ <b>Not quite.</b> Correct answer: <b>${correctText(q)}</b>. `)+q.e+`<div class="tut" style="margin-top:8px"><b>📘 Topic recap — ${SEC[q.s]}</b><br>${TUT[q.s]||''}</div>`;
+  updateScore();
+}
+
+function gradeAll(){
+  currentSet.forEach(qi=>{ if(!(qi in gradedState)) gradeOne(qi); });
+  showResults();
+}
+
+function showResults(){
+  let correct=0; const wrong=[]; const sec={};
+  currentSet.forEach(qi=>{
+    const q=BANK[qi]; const ok=!!gradedState[qi];
+    sec[q.s]=sec[q.s]||{c:0,t:0}; sec[q.s].t++;
+    if(ok){correct++; sec[q.s].c++;} else wrong.push(qi);
+  });
+  const total=currentSet.length, pct=Math.round(correct/total*100);
+  let rows='';
+  Object.keys(sec).sort((a,b)=>(a==='0'?-1:b==='0'?1:(+a)-(+b))).forEach(k=>{
+    const s=sec[k]; const p=Math.round(s.c/s.t*100);
+    rows+=`<tr><td>${SEC[k]}</td><td>${s.c}/${s.t}</td><td><div class="barwrap"><div class="bar" style="width:${p}%;background:${p>=80?'#1e8449':p>=50?'#b7950b':'#c0392b'}"></div></div></td><td>${p}%</td></tr>`;
+  });
+  const verdict=pct===100?'🎉 Perfect — you\'ve got this cold!':pct>=90?'💪 Excellent.':pct>=75?'👍 Good — a few to shore up.':pct>=50?'📚 Getting there — review and retry.':'🔁 Keep going — retry the misses.';
+  results.innerHTML=`<h2>Results</h2><div class="bigscore" style="color:${pct>=80?'#1e8449':pct>=50?'#b7950b':'#c0392b'}">${correct} / ${total}</div><div class="pct">${pct}% &nbsp;·&nbsp; ${verdict}</div><table class="secgrid"><tr><th>Section</th><th>Score</th><th>&nbsp;</th><th>%</th></tr>${rows}</table>${wrong.length?`<p style="margin:8px 0 0"><strong style="color:#c0392b">${wrong.length}</strong> wrong — marked in red below. Use <strong>Retry Wrong Only</strong>.</p>`:`<p style="margin:8px 0 0;color:#1e8449"><strong>No wrong answers — nice!</strong></p>`}`;
+  results.classList.remove('hidden');
+  restartBtn.classList.remove('hidden');
+  retryBtn.classList.toggle('hidden',wrong.length===0);
+  if(wrong.length) retryBtn.textContent=`Retry Wrong Only (${wrong.length})`;
+  lastWrong=wrong;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+submitBtn.addEventListener('click',gradeAll);
+retryBtn.addEventListener('click',()=>{ if(lastWrong.length) render(lastWrong,true); });
+restartBtn.addEventListener('click',()=>{ render(ALL,false); });
+
+render(ALL,false);
+</script>
+</body>
+</html>

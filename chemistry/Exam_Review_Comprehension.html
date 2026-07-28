@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exam Review — Comprehension Challenge</title>
+<style>
+  :root{--accent:#5b2c6f;--accent2:#8e44ad;--bg:#f5f0f8;--card:#fff;--ok:#1e8449;--warn:#b7950b;--bad:#c0392b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#241b2b;background:var(--bg);margin:0;padding:0 14px 130px;}
+  .wrap{max-width:860px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -14px 18px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  .howto{background:#f4ecf7;border-left:5px solid var(--accent2);padding:11px 16px;border-radius:8px;margin-bottom:22px;font-size:.92rem;}
+  .howto strong{color:var(--accent);}
+  .q{background:var(--card);border-radius:10px;padding:16px 18px 14px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid var(--accent2);}
+  .qhead{font-weight:700;color:var(--accent);margin-bottom:2px;font-size:.8rem;text-transform:uppercase;letter-spacing:.4px;}
+  .qtag{float:right;background:#e8daef;color:var(--accent);border-radius:8px;padding:1px 9px;font-size:.66rem;font-weight:700;letter-spacing:.3px;}
+  .qtext{font-size:1.02rem;margin:4px 0 10px;}
+  textarea{width:100%;min-height:70px;padding:9px 11px;border:1px solid #c6b5d1;border-radius:8px;font-size:.95rem;font-family:inherit;resize:vertical;background:#fdfcfe;}
+  textarea:focus{outline:2px solid var(--accent2);border-color:var(--accent2);}
+  .revealbtn{margin-top:10px;background:var(--accent);color:#fff;border:none;border-radius:8px;padding:8px 18px;font-size:.9rem;font-weight:600;cursor:pointer;}
+  .revealbtn:hover{background:#45215a;}
+  .ans{display:none;margin-top:12px;background:#f9f5fb;border:1px solid #d3bce0;border-left:4px solid var(--ok);border-radius:8px;padding:12px 15px;font-size:.93rem;}
+  .ans.show{display:block;}
+  .ans h4{margin:0 0 6px;color:var(--ok);font-size:.9rem;}
+  .ans b{color:#45215a;}
+  .ans .step{margin:3px 0;}
+  .fml{background:#f4ecf7;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;color:var(--accent);font-size:.9em;}
+  .assess{display:none;margin-top:11px;align-items:center;gap:8px;flex-wrap:wrap;}
+  .assess.show{display:flex;}
+  .assess span{font-size:.83rem;color:#6b5d76;font-weight:600;}
+  .sbtn{border:1px solid #d3cbd9;background:#fff;border-radius:20px;padding:4px 13px;font-size:.82rem;font-weight:600;cursor:pointer;color:#4d4256;}
+  .sbtn:hover{background:#f4f0f6;}
+  .sbtn.pick-ok{background:var(--ok);color:#fff;border-color:var(--ok);}
+  .sbtn.pick-mid{background:var(--warn);color:#fff;border-color:var(--warn);}
+  .sbtn.pick-no{background:var(--bad);color:#fff;border-color:var(--bad);}
+  #bottombar{position:fixed;left:0;right:0;bottom:0;background:#ffffffee;backdrop-filter:blur(6px);border-top:1px solid #dcd;padding:10px 14px;box-shadow:0 -2px 10px rgba(0,0,0,.08);z-index:50;}
+  #bottombar .inner{max-width:860px;margin:0 auto;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+  .tally{font-size:.9rem;color:#4d4256;font-weight:600;}
+  .tally b.ok{color:var(--ok);} .tally b.mid{color:var(--warn);} .tally b.no{color:var(--bad);}
+  button.ghost{background:#ead9f2;color:#5b2c6f;border:none;border-radius:8px;padding:9px 16px;font-size:.9rem;font-weight:600;cursor:pointer;}
+  button.ghost:hover{background:#dfc7ec;}
+  @media print{#bottombar{position:static;} textarea{border:1px solid #ccc;} .ans{display:block!important;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Exam Review — Comprehension Challenge</h1>
+  <p>20 open-ended questions · configs → Lewis → shapes → reactions → net ionic · compute, deduce, explain · reveal a worked solution when ready</p>
+</header>
+
+<div class="howto">
+  <strong>How this works:</strong> These test <em>understanding</em>, not recall — each asks you to work something out or explain it.
+  Write your answer in the box (for your own thinking), then press <strong>Reveal Worked Solution</strong> to compare against a
+  detailed model answer. Then self-score (Nailed / Partial / Missed) — your totals appear at the bottom.
+  There's no auto-grading; the goal is honest self-assessment.
+</div>
+
+<div id="quiz"></div>
+</div>
+
+<div id="bottombar"><div class="inner">
+  <span class="tally" id="tally">Self-scored 0/20</span>
+  <button class="ghost" id="revealAll">Reveal All Solutions</button>
+</div></div>
+
+<script>
+const Q=[
+{tag:"Config · compute", q:`Write the FULL electron configuration of iron (Fe, Z = 26). Explain the order you fill the sublevels in — especially why 4s gets filled before 3d — and prove your answer is right by checking that the superscripts add up to 26.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step"><b>What Z = 26 means:</b> iron has 26 protons, so a neutral atom has <b>26 electrons</b> to place.</div>
+ <div class="step"><b>Filling order:</b> electrons fill the LOWEST-energy sublevel first (the Aufbau principle). The order is <span class="fml">1s → 2s → 2p → 3s → 3p → 4s → 3d</span>. Notice <b>4s comes before 3d</b>: even though "3" looks smaller than "4", the 4s sublevel actually sits slightly LOWER in energy than 3d, so it fills first.</div>
+ <div class="step"><b>Fill, respecting the capacities</b> (s holds 2, p holds 6, d holds 10): 1s² (2 used) → 2s² (4) → 2p⁶ (10) → 3s² (12) → 3p⁶ (18) → 4s² (20) → the last 6 electrons go into 3d.</div>
+ <div class="step"><b>Answer:</b> <span class="fml">1s²2s²2p⁶3s²3p⁶4s²3d⁶</span></div>
+ <div class="step"><b>Check:</b> 2+2+6+2+6+2+6 = <b>26</b> ✓ — the superscripts must always total Z for a neutral atom. This sum is a free error-detector.</div>`},
+
+{tag:"Condensed · compute", q:`Write the CONDENSED (noble-gas shorthand) electron configurations of phosphorus (P, Z = 15) and bromine (Br, Z = 35). Explain how you choose which noble gas goes in the brackets (their electron counts: He 2, Ne 10, Ar 18, Kr 36).`,
+ a:`<h4>Worked solution</h4>
+ <div class="step"><b>The rule:</b> put in brackets the noble gas that comes <b>BEFORE</b> the element — the largest noble gas whose electron count is still LESS than your element's. The brackets stand for all of that noble gas's electrons; then you only write the electrons that come after it.</div>
+ <div class="step"><b>P (15 electrons):</b> the noble gases below 15 are He (2) and Ne (10) — the biggest is <b>Ne (10)</b>. That leaves 15 − 10 = 5 electrons to write: they go 3s²3p³.</div>
+ <div class="step"><b>Answer:</b> P = <span class="fml">[Ne]3s²3p³</span> &nbsp; Check: 10 + 2 + 3 = 15 ✓</div>
+ <div class="step"><b>Br (35 electrons):</b> the biggest noble gas under 35 is <b>Ar (18)</b> — NOT Kr (36), because 36 &gt; 35 and the bracket gas must come before the element. That leaves 35 − 18 = 17 electrons: 4s² (2), 3d¹⁰ (12), 4p⁵ (17).</div>
+ <div class="step"><b>Answer:</b> Br = <span class="fml">[Ar]4s²3d¹⁰4p⁵</span> &nbsp; Check: 18 + 2 + 10 + 5 = 35 ✓</div>
+ <div class="step"><i>Common trap:</i> never bracket a noble gas that is bigger than your element — [Kr] can't be inside bromine's configuration.</div>`},
+
+{tag:"Exceptions · explain", q:`Using the normal filling rules, PREDICT the configurations of chromium (Cr, Z = 24) and copper (Cu, Z = 29). Then state their ACTUAL configurations and explain WHY nature breaks the rule for these two elements.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step"><b>Predicted (by the normal rules):</b> Cr = [Ar]4s²3d⁴ and Cu = [Ar]4s²3d⁹.</div>
+ <div class="step"><b>Actual (measured):</b> Cr = <span class="fml">[Ar]4s¹3d⁵</span> and Cu = <span class="fml">[Ar]4s¹3d¹⁰</span>.</div>
+ <div class="step"><b>What happened:</b> in each case, <b>one electron is promoted from 4s up into 3d</b>. That looks like a bad trade — but it isn't, because of a special stability bonus.</div>
+ <div class="step"><b>Why:</b> a d sublevel that is exactly <b>HALF-FILLED (d⁵)</b> or completely <b>FILLED (d¹⁰)</b> is extra stable — the five d orbitals are evenly, symmetrically occupied. Since 4s and 3d are very close in energy, the tiny cost of moving one electron is more than paid back by reaching d⁵ (Cr) or d¹⁰ (Cu).</div>
+ <div class="step"><i>Memory hook:</i> Cr and Cu each "donate" one 4s electron to complete a half-full or full d shelf — 4s¹3d⁵ and 4s¹3d¹⁰.</div>`},
+
+{tag:"Ion configs · deduce", q:`Iron's configuration is [Ar]4s²3d⁶. Deduce the configurations of Fe²⁺ and Fe³⁺. Careful — there's a famous trap about WHICH electrons leave first. Explain the trap, and explain why Fe³⁺ turns out to be extra stable.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step"><b>The trap:</b> you might think "4s filled first, so 4s empties last." <b>Wrong.</b> When a transition-metal atom forms a cation, it loses its <b>4s electrons FIRST, before any 3d</b>.</div>
+ <div class="step"><b>Why:</b> the filling order applies to the neutral atom being built up. But once 3d is occupied, the energies shift and <b>4s ends up HIGHER in energy than 3d</b> — and 4s is also the outermost shell (n = 4 sticks out farther than n = 3). The easiest electrons to remove are the outermost, highest-energy ones: the 4s pair.</div>
+ <div class="step"><b>Fe²⁺ (lose 2):</b> remove both 4s electrons → <span class="fml">[Ar]3d⁶</span>.</div>
+ <div class="step"><b>Fe³⁺ (lose 3):</b> remove both 4s electrons, then one 3d → <span class="fml">[Ar]3d⁵</span>.</div>
+ <div class="step"><b>Why Fe³⁺ is extra stable:</b> 3d⁵ is a <b>half-filled d sublevel</b> — one electron in each of the five d orbitals, a symmetric, low-energy arrangement (the same bonus that explains Cr and Cu). This is part of why Fe³⁺ is so common in nature.</div>`},
+
+{tag:"Lewis recipe · compute", q:`Run the full N·A·S Lewis-structure recipe on CO₂: compute N, A, S, and the number of bonds and lone pairs. State which atom is central and why, and describe the final structure (what kinds of bonds, where every lone pair sits).`,
+ a:`<h4>Worked solution</h4>
+ <div class="step"><b>N</b> (electrons NEEDED for everyone to have an octet) = 8 × 3 atoms = <b>24</b>.</div>
+ <div class="step"><b>A</b> (electrons AVAILABLE) = C(4) + 2×O(6) = 4 + 12 = <b>16</b>.</div>
+ <div class="step"><b>S</b> (electrons that must be SHARED) = N − A = 24 − 16 = <b>8</b> → bonds = S/2 = <b>4 bonding pairs</b>.</div>
+ <div class="step"><b>Central atom:</b> C — it has the <b>lower group number</b> (4A vs oxygen's 6A), so it goes in the middle. Four bonds between C and just two O's means <b>two double bonds</b>: O=C=O.</div>
+ <div class="step"><b>Lone pairs:</b> lp = (A − S)/2 = (16 − 8)/2 = <b>4 lone pairs</b> → <b>2 on each oxygen</b>; carbon keeps none.</div>
+ <div class="step"><b>Check:</b> C has 8 shared e⁻ (octet ✓); each O has 4 shared + 4 lone = 8 ✓. All 16 available electrons used ✓.</div>`},
+
+{tag:"Lewis · ion", q:`Run the N·A·S recipe on the ammonium ion, NH₄⁺. Careful with A — this is an ion! Show N, A, S, bonds, and lone pairs, and explain what the brackets and the + sign mean in the final drawing.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step"><b>N:</b> nitrogen needs an octet (8) but each H needs only <b>2</b> (hydrogen's shell holds just 2 electrons): N = 8 + 4×2 = <b>16</b>.</div>
+ <div class="step"><b>A (the ion step):</b> A = N(5) + 4×H(1) <b>− 1 for the + charge</b> = 5 + 4 − 1 = <b>8</b>. A positive charge means the ion has LOST one electron, so you subtract 1. (For a negative ion you'd ADD 1 per minus.)</div>
+ <div class="step"><b>S</b> = N − A = 16 − 8 = <b>8</b> → bonds = 8/2 = <b>4 N–H single bonds</b>.</div>
+ <div class="step"><b>Lone pairs:</b> lp = (A − S)/2 = (8 − 8)/2 = <b>0</b> — every available electron is in a bond.</div>
+ <div class="step"><b>Brackets + charge:</b> the whole structure goes inside [ ] with the <b>+ written outside</b>. That says the missing electron belongs to the ion as a whole unit — not to one particular atom.</div>`},
+
+{tag:"Formal charge · compute", q:`In one resonance structure of the nitrate ion NO₃⁻, nitrogen has ONE double bond to an O and single bonds to the other two O's. Using FC = valence − nonbonding e⁻ − bonds, compute the formal charge on N, on the double-bonded O, and on each single-bonded O — then show the charges sum to the ion's charge.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step">Formula: <span class="fml">FC = valence e⁻ − nonbonding e⁻ − number of bonds</span>.</div>
+ <div class="step"><b>N:</b> valence 5; it has 0 lone-pair electrons and 4 bonds (one double = 2 + two singles = 2, total 4). FC = 5 − 0 − 4 = <b>+1</b>.</div>
+ <div class="step"><b>Double-bonded O:</b> valence 6; 2 lone pairs = 4 nonbonding e⁻; 2 bonds (the double bond). FC = 6 − 4 − 2 = <b>0</b>.</div>
+ <div class="step"><b>Each single-bonded O:</b> valence 6; 3 lone pairs = 6 nonbonding e⁻; 1 bond. FC = 6 − 6 − 1 = <b>−1</b>.</div>
+ <div class="step"><b>Check:</b> (+1) + 0 + (−1) + (−1) = <b>−1</b> = the charge on NO₃⁻ ✓. Formal charges must ALWAYS sum to the overall charge — if they don't, your structure is wrong.</div>`},
+
+{tag:"Resonance · explain", q:`Explain (a) why the nitrate ion NO₃⁻ must be drawn with THREE resonance structures instead of one, (b) what the real ion actually looks like (mention the bonds and where the electrons are), and (c) why all three structures contribute equally to the real ion.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step"><b>(a)</b> Any single drawing puts the double bond on ONE particular oxygen — but nothing makes that oxygen special. There are <b>three equally valid choices</b> for where the double bond goes, so we draw all three structures connected by double-headed arrows. Experiment agrees: all three N–O bonds are <b>identical</b> in length, which one fixed drawing can't explain.</div>
+ <div class="step"><b>(b)</b> The real ion is a <b>resonance hybrid</b> — a single blended structure, NOT a molecule flipping between three forms. The double-bond electrons are <b>delocalized</b> (spread out) over all three N–O positions, giving <b>three identical bonds</b>, each stronger than a single bond but weaker than a double bond: bond order = 4 bonding pairs ÷ 3 positions = <b>4/3 ≈ 1.33</b>.</div>
+ <div class="step"><b>(c)</b> The three structures are <b>equivalent</b> — same atoms, same kinds of bonds, same formal charges, just rotated. Equivalent structures are equally stable, so each contributes <b>exactly one third</b> to the hybrid.</div>`},
+
+{tag:"Pipeline · Lewis→shape", q:`Start from the formula SO₂ and work all the way to its shape: describe the Lewis structure (which atom is central, what bonds, any lone pairs on S), count the electron domains (careful — how does a double bond count?), name the electron-domain geometry, the AXmEn class, the molecular shape, and say what happens to the ideal angle.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step"><b>Lewis:</b> S is central (same group as O, but higher period → S wins). The structure has <b>one S=O double bond and one S–O single bond</b> (with resonance flipping which side gets the double bond), plus <b>1 lone pair on S</b>.</div>
+ <div class="step"><b>Count domains on S:</b> a double bond counts as <b>ONE domain</b>, not two — all its electrons point in the same direction. So: 1 domain (S=O) + 1 domain (S–O) + 1 lone pair = <b>3 domains</b>.</div>
+ <div class="step"><b>Electron-domain geometry:</b> 3 domains spread out at 120° → <b>trigonal planar</b>.</div>
+ <div class="step"><b>Class and shape:</b> 2 bonded atoms + 1 lone pair = <span class="fml">AX₂E</span> → molecular shape = <b>bent</b>. (Shape names only the atoms — the lone pair is invisible in the name but does the pushing.)</div>
+ <div class="step"><b>Angle:</b> the lone pair repels harder than bonding pairs, squeezing the ideal 120° down to <b>slightly less than 120°</b> (~119°).</div>`},
+
+{tag:"Shape · deduce", q:`SF₄ and XeF₄ look like the same kind of formula — one central atom, four fluorines — yet their shapes are completely different. Deduce each shape (count domains on the central atom, then classify), and state the moral of the story.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step"><b>SF₄:</b> sulfur has 6 valence electrons; 4 go into S–F bonds, leaving 2 → <b>1 lone pair</b>. Domains = 4 bonds + 1 lp = <b>5</b> → trigonal bipyramidal arrangement → class <span class="fml">AX₄E</span> → shape = <b>seesaw</b> (the lone pair takes an equatorial spot).</div>
+ <div class="step"><b>XeF₄:</b> xenon has 8 valence electrons; 4 go into Xe–F bonds, leaving 4 → <b>2 lone pairs</b>. Domains = 4 bonds + 2 lp = <b>6</b> → octahedral arrangement → class <span class="fml">AX₄E₂</span> → shape = <b>square planar</b> (the two lone pairs sit opposite each other, leaving the four F's in a flat square).</div>
+ <div class="step"><b>The moral:</b> <b>count electron domains, never just atoms.</b> Same number of attached atoms (4 F's each) but different lone-pair counts → totally different geometries. The formula alone can't tell you the shape — the Lewis structure can.</div>`},
+
+{tag:"Polarity · compare", q:`CO₂ and H₂O both contain polar bonds, yet CO₂ is a NONPOLAR molecule and H₂O is POLAR. Explain how this is possible, using each molecule's shape and its bond-dipole arrows.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step"><b>Both have polar bonds:</b> in each C=O and each H–O bond, oxygen is more electronegative, so each bond dipole (arrow) points toward O.</div>
+ <div class="step"><b>CO₂ is linear (180°):</b> O=C=O. The two dipole arrows are equal in strength and point in exactly <b>opposite directions → they cancel out</b>. Net dipole = 0 → <b>nonpolar molecule</b>. (Like two equally strong people pulling a rope in opposite directions — nobody moves.)</div>
+ <div class="step"><b>H₂O is bent (104.5°):</b> the two H→O arrows both tilt toward the <b>same side</b> (toward the oxygen), so instead of cancelling they <b>add up</b> → a net dipole pointing at O → <b>polar molecule</b>.</div>
+ <div class="step"><i>Moral:</i> molecular polarity = polar bonds <b>AND</b> a shape that fails to cancel them. Polar bonds are necessary but not sufficient.</div>`},
+
+{tag:"Polarity · predict", q:`Predict polar or nonpolar for each molecule, with a reason based on shape and symmetry: (a) CCl₄ (b) CHCl₃ (c) NH₃ (d) BF₃.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step"><b>(a) CCl₄ — NONPOLAR.</b> Tetrahedral with four <b>identical</b> C–Cl dipoles pointing symmetrically at the four corners → the arrows cancel exactly → net dipole = 0.</div>
+ <div class="step"><b>(b) CHCl₃ — POLAR.</b> Still tetrahedral, but swapping one Cl for H <b>breaks the symmetry</b>: the C–H dipole is much weaker than C–Cl, so the four arrows no longer cancel → net dipole along the H–C axis.</div>
+ <div class="step"><b>(c) NH₃ — POLAR.</b> Trigonal <b>pyramidal</b> (a lone pair sits on top of N): all three N–H dipoles tilt toward the same side → they add → net dipole toward N.</div>
+ <div class="step"><b>(d) BF₃ — NONPOLAR.</b> Trigonal <b>planar</b> (no lone pair on B): three identical B–F dipoles at 120° in a flat symmetric triangle → they cancel, even though each B–F bond is very polar.</div>
+ <div class="step"><i>Pattern:</i> symmetric shape + identical outer atoms → cancellation → nonpolar. Break either condition (lone pair bending the shape, or one different atom) → polar.</div>`},
+
+{tag:"Classify · 5 types", q:`Classify each reaction as synthesis, decomposition, combustion, single replacement, or double replacement — and for each, state the tell-tale PATTERN that gives it away: (a) 2Mg + O₂ → 2MgO &nbsp; (b) CaCO₃ → CaO + CO₂ &nbsp; (c) CH₄ + 2O₂ → CO₂ + 2H₂O &nbsp; (d) Zn + CuSO₄ → ZnSO₄ + Cu &nbsp; (e) AgNO₃ + NaCl → AgCl + NaNO₃.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step"><b>(a) Synthesis.</b> Pattern: <span class="fml">A + B → AB</span> — two simple things combine into ONE product (2Mg + O₂ → 2MgO).</div>
+ <div class="step"><b>(b) Decomposition.</b> Pattern: <span class="fml">AB → A + B</span> — ONE compound breaks into simpler pieces (CaCO₃ → CaO + CO₂). It's synthesis in reverse.</div>
+ <div class="step"><b>(c) Combustion.</b> Pattern: a carbon–hydrogen fuel <b>+ O₂ → CO₂ + H₂O</b>. Seeing O₂ as a reactant AND the CO₂/H₂O pair as products is the giveaway.</div>
+ <div class="step"><b>(d) Single replacement.</b> Pattern: <span class="fml">A + BC → AC + B</span> — a lone element (Zn) swaps in and kicks out another element (Cu) from its compound.</div>
+ <div class="step"><b>(e) Double replacement.</b> Pattern: <span class="fml">AB + CD → AD + CB</span> — two compounds trade partners (Ag pairs with Cl, Na pairs with NO₃). Often signaled by a precipitate forming, like AgCl.</div>`},
+
+{tag:"Activity series · predict", q:`Using the activity series K &gt; Na &gt; Ca &gt; Mg &gt; Al &gt; Zn &gt; Fe &gt; Ni &gt; Sn &gt; Pb &gt; (H) &gt; Cu &gt; Ag &gt; Au, predict whether each reaction happens or is NR (no reaction), with a reason — and write products where it happens: (a) Zn + CuSO₄ &nbsp; (b) Cu + ZnSO₄ &nbsp; (c) Mg + HCl &nbsp; (d) Ag + HCl.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step"><b>The rule:</b> a lone metal can replace a metal (or hydrogen) in a compound only if it sits <b>HIGHER</b> on the activity series — higher means more reactive, so it wins the spot.</div>
+ <div class="step"><b>(a) Zn + CuSO₄ → REACTS.</b> Zn is above Cu → Zn shoves copper out: <span class="fml">Zn + CuSO₄ → ZnSO₄ + Cu</span>.</div>
+ <div class="step"><b>(b) Cu + ZnSO₄ → NR.</b> Same pair, reversed roles: Cu is BELOW Zn, so it can't displace it. Direction matters!</div>
+ <div class="step"><b>(c) Mg + HCl → REACTS.</b> Mg is above (H) in the series → it displaces hydrogen from the acid: <span class="fml">Mg + 2HCl → MgCl₂ + H₂</span> (hydrogen bubbles off as H₂ gas).</div>
+ <div class="step"><b>(d) Ag + HCl → NR.</b> Silver is BELOW (H) → it cannot displace hydrogen. That's why silver survives in acid that would dissolve magnesium.</div>`},
+
+{tag:"Hydrate · molar mass", q:`Compute the molar mass of the hydrate CuSO₄·5H₂O step by step (Cu 63.55, S 32.07, O 16.00, H 1.01) — careful, the dot is a famous trap. Then compute the percent of the mass that is water.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step"><b>The trap:</b> the dot in CuSO₄·5H₂O does <b>NOT mean multiply</b>. It means "with 5 water molecules attached" — so you <b>ADD the mass of 5 H₂O</b> to the mass of CuSO₄.</div>
+ <div class="step"><b>CuSO₄ part:</b> Cu 63.55 + S 32.07 + 4×O (4 × 16.00 = 64.00) = <b>159.62 g/mol</b>.</div>
+ <div class="step"><b>Water part:</b> one H₂O = 2(1.01) + 16.00 = 18.02 g/mol → five waters = 5 × 18.02 = <b>90.10 g/mol</b>.</div>
+ <div class="step"><b>Total:</b> 159.62 + 90.10 = <span class="fml">249.7 g/mol</span>.</div>
+ <div class="step"><b>Percent water:</b> % = (mass of water ÷ total mass) × 100 = 90.10 / 249.7 × 100 ≈ <b>36.1%</b> — over a third of the crystal's mass is trapped water, which is why heating the blue crystals makes them lose mass and turn white.</div>`},
+
+{tag:"Stoichiometry · mass→mass", q:`Solid AgCl precipitates when silver nitrate meets chloride: AgNO₃ + NaCl → AgCl↓ + NaNO₃. If you start with 8.50 g of AgNO₃ and excess NaCl, how many grams of AgCl form? (Molar masses: AgNO₃ = 169.9 g/mol, AgCl = 143.3 g/mol.) Show the full mass → mol → mol → mass road map.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step"><b>The road map:</b> <span class="fml">grams of A → moles of A → moles of B → grams of B</span>. You can never jump grams-to-grams directly — the balanced equation speaks in MOLES.</div>
+ <div class="step"><b>Step 1 — grams → moles of AgNO₃:</b> 8.50 g ÷ 169.9 g/mol = <b>0.0500 mol AgNO₃</b>.</div>
+ <div class="step"><b>Step 2 — mole ratio:</b> the balanced equation says 1 AgNO₃ → 1 AgCl (a 1:1 ratio), so 0.0500 mol AgNO₃ → <b>0.0500 mol AgCl</b>.</div>
+ <div class="step"><b>Step 3 — moles → grams of AgCl:</b> 0.0500 mol × 143.3 g/mol = <span class="fml">7.17 g AgCl</span>.</div>
+ <div class="step"><b>Sanity check:</b> "excess NaCl" means chloride never runs out, so AgNO₃ controls the amount — that's why the whole calculation runs through it. And 7.17 g &lt; 8.50 g makes sense: the Ag keeps its mass but trades a heavy NO₃ group (62 g/mol) for a lighter Cl (35.5 g/mol).</div>`},
+
+{tag:"Solubility · predict", q:`Using the solubility rules (group 1 / NH₄⁺ / NO₃⁻ / acetate: always soluble; Cl⁻, Br⁻, I⁻: soluble EXCEPT with Ag⁺, Pb²⁺, Hg₂²⁺; SO₄²⁻: soluble EXCEPT with Ba²⁺, Pb²⁺, Ca²⁺, Sr²⁺; OH⁻, CO₃²⁻, PO₄³⁻, S²⁻: insoluble EXCEPT with group 1 / NH₄⁺), predict precipitate or no reaction when mixing: (a) Pb(NO₃)₂ + KI &nbsp; (b) NaCl + KNO₃ &nbsp; (c) BaCl₂ + Na₂SO₄. Name any precipitate.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step"><b>The method:</b> swap the partners, then check each new pair against the rules. A precipitate = any product that lands on an "insoluble" exception.</div>
+ <div class="step"><b>(a) Pb(NO₃)₂ + KI:</b> swapping gives PbI₂ and KNO₃. KNO₃ is soluble (K is group 1 AND nitrate). But PbI₂: iodides are soluble EXCEPT with <b>Pb²⁺</b> → <b>PbI₂ precipitates</b> (a bright yellow solid): <span class="fml">Pb(NO₃)₂ + 2KI → PbI₂↓ + 2KNO₃</span>.</div>
+ <div class="step"><b>(b) NaCl + KNO₃:</b> swapping gives NaNO₃ and KCl — both contain group-1 metals, so <b>both are soluble</b>. Nothing leaves the solution → <b>no reaction</b>: all four ions just keep swimming.</div>
+ <div class="step"><b>(c) BaCl₂ + Na₂SO₄:</b> swapping gives BaSO₄ and NaCl. NaCl is soluble. But BaSO₄: sulfates are soluble EXCEPT with <b>Ba²⁺</b> → <b>BaSO₄ precipitates</b> (white): <span class="fml">BaCl₂ + Na₂SO₄ → BaSO₄↓ + 2NaCl</span>.</div>`},
+
+{tag:"Net ionic · full workup", q:`For AgNO₃(aq) + NaCl(aq), do the complete workup: write the molecular equation, the complete ionic equation (think about which compounds split into ions), identify the spectator ions, and finish with the net ionic equation.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step"><b>Molecular equation:</b> <span class="fml">AgNO₃(aq) + NaCl(aq) → AgCl(s) + NaNO₃(aq)</span>. (AgCl is the precipitate — chlorides are insoluble with Ag⁺.)</div>
+ <div class="step"><b>Complete ionic:</b> split every <b>(aq)</b> compound into its swimming ions; the solid stays together: <span class="fml">Ag⁺ + NO₃⁻ + Na⁺ + Cl⁻ → AgCl(s) + Na⁺ + NO₃⁻</span>.</div>
+ <div class="step"><b>Spectators:</b> ions that appear <b>unchanged on both sides</b> — here <b>Na⁺ and NO₃⁻</b>. They floated in the water before AND after, doing nothing (spectators just watch the game).</div>
+ <div class="step"><b>Net ionic:</b> cancel the spectators, keep what actually changed: <span class="fml">Ag⁺(aq) + Cl⁻(aq) → AgCl(s)</span>.</div>
+ <div class="step"><i>Meaning:</i> the net ionic equation is the real chemistry — silver ions meeting chloride ions and locking into a solid. The sodium and nitrate could be swapped for other spectators and the same event would happen.</div>`},
+
+{tag:"Acid–base · strong/strong", q:`For HCl(aq) + NaOH(aq): write the molecular, complete ionic, and net ionic equations. Then explain why EVERY strong-acid + strong-base neutralization ends up with this exact same net ionic equation.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step"><b>Molecular:</b> <span class="fml">HCl(aq) + NaOH(aq) → NaCl(aq) + H₂O(l)</span> — acid + base → salt + water.</div>
+ <div class="step"><b>Complete ionic:</b> HCl is a strong acid and NaOH a strong base — both are <b>strong electrolytes</b>, 100% split into ions. NaCl (soluble salt) splits too; water is a liquid molecule and stays whole: <span class="fml">H⁺ + Cl⁻ + Na⁺ + OH⁻ → Na⁺ + Cl⁻ + H₂O(l)</span>.</div>
+ <div class="step"><b>Spectators:</b> Na⁺ and Cl⁻ appear unchanged on both sides → cancel them.</div>
+ <div class="step"><b>Net ionic:</b> <span class="fml">H⁺(aq) + OH⁻(aq) → H₂O(l)</span>.</div>
+ <div class="step"><b>Why it's always the same:</b> ANY strong acid fully releases H⁺, and ANY strong base fully releases OH⁻; the acid's anion and the base's cation are always just spectators (their salt stays dissolved). Strip the spectators and all that's ever left is H⁺ meeting OH⁻ to make water — the universal signature of strong–strong neutralization.</div>`},
+
+{tag:"Weak acid · trap", q:`Write the net ionic equation for acetic acid + sodium hydroxide: CH₃COOH(aq) + NaOH(aq). Careful — this is NOT the same answer as HCl + NaOH! Explain the trap, state the splitting rule you used, and contrast with the strong/strong case.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step"><b>The trap:</b> acetic acid is a <b>WEAK acid</b> — it is not on the list of the 7 strong acids (<b>HCl, HBr, HI, HNO₃, H₂SO₄, HClO₄, HClO₃</b>). Weak acids barely ionize, so in ionic equations they are <b>written INTACT, not split</b>.</div>
+ <div class="step"><b>The splitting rule:</b> split only strong electrolytes — strong acids, strong bases, and soluble salts. Keep whole: weak acids/bases, water, solids, and gases.</div>
+ <div class="step"><b>Complete ionic:</b> <span class="fml">CH₃COOH + Na⁺ + OH⁻ → CH₃COO⁻ + Na⁺ + H₂O(l)</span> — NaOH splits (strong base), sodium acetate splits (soluble salt), but CH₃COOH stays whole.</div>
+ <div class="step"><b>Spectator:</b> only <b>Na⁺</b>. Note CH₃COOH and CH₃COO⁻ are NOT spectators — the acid actually changed (it lost its H).</div>
+ <div class="step"><b>Net ionic:</b> <span class="fml">CH₃COOH(aq) + OH⁻(aq) → CH₃COO⁻(aq) + H₂O(l)</span>.</div>
+ <div class="step"><b>Contrast with HCl + NaOH:</b> there the net ionic was H⁺ + OH⁻ → H₂O, because a strong acid hands over free H⁺ ions. A weak acid keeps its H attached until OH⁻ pulls it off — so the whole acid molecule must appear in the equation. Strong vs weak changes the net ionic equation itself.</div>`}
+];
+
+const quiz=document.getElementById('quiz');
+const tally=document.getElementById('tally');
+const score={}; // i -> 'ok'|'mid'|'no'
+
+Q.forEach((item,i)=>{
+  const card=document.createElement('div'); card.className='q'; card.id='q'+i;
+  card.innerHTML=`<div class="qhead">Question ${i+1}<span class="qtag">${item.tag}</span></div>
+    <div class="qtext">${item.q}</div>
+    <textarea placeholder="Work it out here (for your own thinking)…"></textarea>
+    <div><button class="revealbtn" id="rev${i}">Reveal Worked Solution</button></div>
+    <div class="ans" id="ans${i}">${item.a}</div>
+    <div class="assess" id="as${i}"><span>How did you do?</span>
+      <button class="sbtn" data-s="ok">✓ Nailed it</button>
+      <button class="sbtn" data-s="mid">~ Partial</button>
+      <button class="sbtn" data-s="no">✗ Missed it</button>
+    </div>`;
+  quiz.appendChild(card);
+  document.getElementById('rev'+i).addEventListener('click',()=>reveal(i));
+  const as=document.getElementById('as'+i);
+  as.querySelectorAll('.sbtn').forEach(b=>b.addEventListener('click',()=>{
+    score[i]=b.dataset.s;
+    as.querySelectorAll('.sbtn').forEach(x=>x.className='sbtn');
+    b.classList.add(b.dataset.s==='ok'?'pick-ok':b.dataset.s==='mid'?'pick-mid':'pick-no');
+    updateTally();
+  }));
+});
+
+function reveal(i){
+  document.getElementById('ans'+i).classList.add('show');
+  document.getElementById('as'+i).classList.add('show');
+  const b=document.getElementById('rev'+i); b.textContent='Solution shown'; b.disabled=true; b.style.opacity=.6; b.style.cursor='default';
+}
+function updateTally(){
+  let ok=0,mid=0,no=0;
+  Object.values(score).forEach(v=>{if(v==='ok')ok++;else if(v==='mid')mid++;else no++;});
+  const done=ok+mid+no;
+  tally.innerHTML=`Self-scored ${done}/20 &nbsp;·&nbsp; <b class="ok">${ok} nailed</b> · <b class="mid">${mid} partial</b> · <b class="no">${no} missed</b>`;
+}
+document.getElementById('revealAll').addEventListener('click',()=>{Q.forEach((_,i)=>reveal(i));});
+</script>
+</body>
+</html>

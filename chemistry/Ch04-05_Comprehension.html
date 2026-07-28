@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapters 4–5 — Comprehension Challenge</title>
+<style>
+  :root{--accent:#0e6655;--accent2:#16a085;--bg:#eef6f4;--card:#fff;--ok:#1e8449;--warn:#b7950b;--bad:#c0392b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#1c2b29;background:var(--bg);margin:0;padding:0 14px 130px;}
+  .wrap{max-width:860px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -14px 18px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  .howto{background:#e8f6f3;border-left:5px solid var(--accent2);padding:11px 16px;border-radius:8px;margin-bottom:22px;font-size:.92rem;}
+  .howto strong{color:var(--accent);}
+  .q{background:var(--card);border-radius:10px;padding:16px 18px 14px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid var(--accent2);}
+  .qhead{font-weight:700;color:var(--accent);margin-bottom:2px;font-size:.8rem;text-transform:uppercase;letter-spacing:.4px;}
+  .qtag{float:right;background:#d1f2eb;color:var(--accent);border-radius:8px;padding:1px 9px;font-size:.66rem;font-weight:700;letter-spacing:.3px;}
+  .qtext{font-size:1.02rem;margin:4px 0 10px;}
+  textarea{width:100%;min-height:70px;padding:9px 11px;border:1px solid #b5cec8;border-radius:8px;font-size:.95rem;font-family:inherit;resize:vertical;background:#fcfefe;}
+  textarea:focus{outline:2px solid var(--accent2);border-color:var(--accent2);}
+  .revealbtn{margin-top:10px;background:var(--accent);color:#fff;border:none;border-radius:8px;padding:8px 18px;font-size:.9rem;font-weight:600;cursor:pointer;}
+  .revealbtn:hover{background:#0a4a3d;}
+  .ans{display:none;margin-top:12px;background:#f4fbf9;border:1px solid #a9dfd3;border-left:4px solid var(--ok);border-radius:8px;padding:12px 15px;font-size:.93rem;}
+  .ans.show{display:block;}
+  .ans h4{margin:0 0 6px;color:var(--ok);font-size:.9rem;}
+  .ans b{color:#0a4a3d;}
+  .ans .step{margin:3px 0;}
+  .fml{background:#e8f6f3;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;color:var(--accent);font-size:.9em;}
+  .assess{display:none;margin-top:11px;align-items:center;gap:8px;flex-wrap:wrap;}
+  .assess.show{display:flex;}
+  .assess span{font-size:.83rem;color:#5d6d6a;font-weight:600;}
+  .sbtn{border:1px solid #cbd6d3;background:#fff;border-radius:20px;padding:4px 13px;font-size:.82rem;font-weight:600;cursor:pointer;color:#42524f;}
+  .sbtn:hover{background:#f0f4f3;}
+  .sbtn.pick-ok{background:var(--ok);color:#fff;border-color:var(--ok);}
+  .sbtn.pick-mid{background:var(--warn);color:#fff;border-color:var(--warn);}
+  .sbtn.pick-no{background:var(--bad);color:#fff;border-color:var(--bad);}
+  #bottombar{position:fixed;left:0;right:0;bottom:0;background:#ffffffee;backdrop-filter:blur(6px);border-top:1px solid #cdd;padding:10px 14px;box-shadow:0 -2px 10px rgba(0,0,0,.08);z-index:50;}
+  #bottombar .inner{max-width:860px;margin:0 auto;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+  .tally{font-size:.9rem;color:#42524f;font-weight:600;}
+  .tally b.ok{color:var(--ok);} .tally b.mid{color:var(--warn);} .tally b.no{color:var(--bad);}
+  button.ghost{background:#dfeeeb;color:#0e6655;border:none;border-radius:8px;padding:9px 16px;font-size:.9rem;font-weight:600;cursor:pointer;}
+  button.ghost:hover{background:#cfe6e1;}
+  @media print{#bottombar{position:static;} textarea{border:1px solid #ccc;} .ans{display:block!important;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Chapters 4 &amp; 5 — Comprehension Challenge</h1>
+  <p>20 open-ended questions · compute, deduce, explain · reveal a worked solution when ready</p>
+</header>
+
+<div class="howto">
+  <strong>How this works:</strong> These test <em>understanding</em>, not recall — each asks you to work something out or explain it.
+  Write your answer in the box (for your own thinking), then press <strong>Reveal Worked Solution</strong> to compare against a
+  detailed model answer. Then self-score (Nailed / Partial / Missed) — your totals appear at the bottom.
+  There's no auto-grading; the goal is honest self-assessment.
+</div>
+
+<div id="quiz"></div>
+</div>
+
+<div id="bottombar"><div class="inner">
+  <span class="tally" id="tally">Self-scored 0/20</span>
+  <button class="ghost" id="revealAll">Reveal All Solutions</button>
+</div></div>
+
+<script>
+const Q=[
+{tag:"Isotope · compute", q:`An ion has 24 electrons, 21 neutrons, and a 3+ charge. Find (a) its number of protons, (b) the element, (c) its mass number, and (d) write its full isotope symbol.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step"><b>(a) Protons:</b> A 3+ ion has lost 3 electrons, so it had 3 more protons than the 24 electrons it now shows. <b>protons = electrons + charge = 24 + 3 = 27.</b></div>
+ <div class="step"><b>(b) Element:</b> 27 protons = atomic number 27 = <b>cobalt (Co)</b>.</div>
+ <div class="step"><b>(c) Mass number:</b> protons + neutrons = 27 + 21 = <b>48</b>.</div>
+ <div class="step"><b>(d) Symbol:</b> <span class="fml">⁴⁸₂₇Co³⁺</span>.</div>
+ <div class="step"><i>Key idea:</i> charge tells you electrons vs protons; the element is fixed by protons only.</div>`},
+
+{tag:"Isotopes · explain", q:`Chlorine occurs naturally as Cl-35 and Cl-37. Explain why both are still chlorine and why they react identically, even though their masses differ. How many neutrons does each have?`,
+ a:`<h4>Worked solution</h4>
+ <div class="step">Both have <b>17 protons</b> (that's what makes an atom chlorine), so both are chlorine regardless of mass.</div>
+ <div class="step">Chemistry is governed by <b>electrons</b>, and both have the same 17 electrons — so they bond and react the same way. Neutrons add mass but don't affect chemical behavior.</div>
+ <div class="step"><b>Neutrons:</b> Cl-35 → 35 − 17 = <b>18</b>; Cl-37 → 37 − 17 = <b>20</b>.</div>
+ <div class="step"><i>That's the definition of isotopes:</i> same protons, different neutrons.</div>`},
+
+{tag:"Periodic logic → formula", q:`Element X forms an ion X²⁻ and sits in period 3. Which group is X in? Give a likely identity, then write and name the compound it forms with sodium.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step">A <b>2−</b> ion means the atom gained 2 electrons — typical of <b>Group 6A</b> (they're 2 short of a full octet).</div>
+ <div class="step">Period 3, Group 6A = <b>sulfur (S)</b>, forming S²⁻.</div>
+ <div class="step">Sodium is Na⁺. Balance charges: one S²⁻ (−2) needs two Na⁺ (+2) → <span class="fml">Na₂S</span>.</div>
+ <div class="step"><b>Name:</b> sodium sulfide (Type I: metal + nonmetal root + -ide).</div>`},
+
+{tag:"Formula · charge balance", q:`Write the formula for iron(III) sulfate. Show step by step how you balanced the charges, and count the total atoms in one formula unit.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step">Ions: iron(III) = <b>Fe³⁺</b>; sulfate = <b>SO₄²⁻</b> (a polyatomic ion you memorize).</div>
+ <div class="step">Balance +3 and −2: least common multiple is 6 → need <b>2 Fe³⁺</b> (+6) and <b>3 SO₄²⁻</b> (−6).</div>
+ <div class="step"><b>Formula:</b> <span class="fml">Fe₂(SO₄)₃</span> — parentheses show 3 whole sulfate ions.</div>
+ <div class="step"><b>Total atoms:</b> 2 Fe + 3×(1 S + 4 O) = 2 + 3 + 12 = <b>17 atoms</b>.</div>`},
+
+{tag:"Reverse · find charge", q:`A compound has the formula Cu₃(PO₄)₂. Work out the charge on each copper ion (show your reasoning), then give the full name.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step">Phosphate is <b>PO₄³⁻</b>. Two of them = −6 total.</div>
+ <div class="step">The compound is neutral, so the 3 copper ions must total +6 → each Cu = <b>+2</b>.</div>
+ <div class="step">Copper is a Type II (variable) metal, so use a Roman numeral: <b>copper(II) phosphate</b>.</div>`},
+
+{tag:"Compound vs mixture", q:`Using table salt (NaCl) and salt water as your two examples, explain the difference between a compound and a mixture — including how each could be separated into parts.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step"><b>NaCl = a compound:</b> sodium and chlorine are <b>chemically bonded</b> in a fixed 1:1 ratio, with brand-new properties. Splitting it needs a <b>chemical</b> change (e.g., electrolysis of molten salt).</div>
+ <div class="step"><b>Salt water = a mixture:</b> salt and water are just physically blended in a <b>variable</b> ratio, not bonded. Separate it by a <b>physical</b> method — evaporate/boil off the water (or distill) to recover the salt.</div>
+ <div class="step"><i>Rule of thumb:</i> compound = bonded + fixed ratio + needs a reaction to separate; mixture = not bonded + variable + physical separation.</div>`},
+
+{tag:"Law of constant composition", q:`Student A measures 12 g of carbon combined with 32 g of oxygen in CO₂. Student B measures 3 g of carbon combined with 8 g of oxygen. Show, with numbers, that both samples obey the Law of Constant Composition.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step">Compare the oxygen-to-carbon mass ratio in each sample.</div>
+ <div class="step">A: 32 g O ÷ 12 g C = <b>2.67</b>. &nbsp; B: 8 g O ÷ 3 g C = <b>2.67</b>.</div>
+ <div class="step">Both give the same ratio (~2.7 g O per 1 g C), so CO₂ has the <b>same composition by mass no matter the sample size or source</b> — exactly what the law states.</div>`},
+
+{tag:"Multi-step reasoning", q:`A neutral atom has 16 protons. (a) How many electrons does it have? (b) What ion will it most likely form, and why? (c) Write the formula and name of the compound it makes with aluminum.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step"><b>(a)</b> Neutral → electrons = protons = <b>16</b>.</div>
+ <div class="step"><b>(b)</b> 16 protons = sulfur (Group 6A). It's 2 electrons short of a noble-gas octet, so it <b>gains 2 → S²⁻</b>.</div>
+ <div class="step"><b>(c)</b> Aluminum is Al³⁺. Balance +3 and −2 (LCM 6): 2 Al³⁺ and 3 S²⁻ → <span class="fml">Al₂S₃</span>, <b>aluminum sulfide</b>.</div>`},
+
+{tag:"Explain · properties", q:`Explain why ionic compounds conduct electricity when melted or dissolved in water, but not while solid. Connect your answer to what any electrical conductor actually needs.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step">Conducting electricity requires <b>charged particles that are free to move</b>.</div>
+ <div class="step">In a <b>solid</b> ionic compound, the ions are locked in a rigid lattice — they carry charge but can't move, so no current flows.</div>
+ <div class="step"><b>Melting</b> or <b>dissolving</b> breaks the lattice apart, freeing the ions to drift toward electrodes → the mobile ions carry the current.</div>`},
+
+{tag:"Interpret experiment", q:`In Rutherford's gold-foil experiment, positive alpha particles were fired at thin foil. Most passed straight through, but a few bounced sharply backward. Explain what each of these two observations reveals about the structure of the atom.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step"><b>Most pass straight through</b> → the atom is <b>mostly empty space</b> (electrons are far out and too light to block the alphas).</div>
+ <div class="step"><b>A few bounce sharply back</b> → there's a <b>tiny, dense, positively charged nucleus</b>. A positive alpha only rebounds if it hits something small, massive, and positive that repels it.</div>
+ <div class="step">Conclusion: nearly all the mass and all the positive charge are concentrated in a minuscule nucleus — which disproved Thomson's "plum pudding" model.</div>`},
+
+{tag:"Name & classify", q:`Name each compound and state its naming "type" (I, II, or III). Explain why each does or doesn't use prefixes or a Roman numeral: (a) N₂O₃  (b) FeCl₂  (c) K₂O.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step"><b>(a) N₂O₃ → dinitrogen trioxide (Type III).</b> Two nonmetals → covalent → use Greek prefixes (di-, tri-). No Roman numeral.</div>
+ <div class="step"><b>(b) FeCl₂ → iron(II) chloride (Type II).</b> Iron is a variable-charge transition metal; 2 Cl⁻ means Fe is 2+, shown with the Roman numeral. No prefixes (it's ionic).</div>
+ <div class="step"><b>(c) K₂O → potassium oxide (Type I).</b> Potassium is a fixed 1+ metal → no numeral, and ionic names never use prefixes.</div>`},
+
+{tag:"Oxyanions · pattern", q:`Chlorine forms ClO⁻, ClO₂⁻, ClO₃⁻, and ClO₄⁻. Name all four and explain the per-/-ate/-ite/hypo- naming pattern. Then name the acid HClO₂.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step">From most oxygen to least: ClO₄⁻ <b>perchlorate</b> · ClO₃⁻ <b>chlorate</b> · ClO₂⁻ <b>chlorite</b> · ClO⁻ <b>hypochlorite</b>.</div>
+ <div class="step"><b>Pattern:</b> the base ion is "-ate" (chlorate). One more O → add "per-…-ate"; one fewer O → "-ite"; fewest O → "hypo-…-ite".</div>
+ <div class="step"><b>HClO₂:</b> its anion is chlorite (-ite), and -ite acids become "-ous" → <b>chlorous acid</b>.</div>`},
+
+{tag:"Isoelectronic · deduce", q:`An element's most stable ion has a 2− charge and is isoelectronic with argon (18 electrons). Identify the element and explain your reasoning. Which noble gas's configuration is it copying?`,
+ a:`<h4>Worked solution</h4>
+ <div class="step">The ion has 18 electrons and a 2− charge, so it <b>gained 2 electrons</b>. The neutral atom therefore had 18 − 2 = <b>16 electrons = 16 protons</b>.</div>
+ <div class="step">16 protons = <b>sulfur</b>, forming S²⁻.</div>
+ <div class="step">With 18 electrons, S²⁻ has the same electron arrangement as <b>argon</b> — a full, stable octet, which is exactly why sulfur "wants" the 2− charge.</div>`},
+
+{tag:"Formula from elements", q:`Write the formula for the compound formed between calcium and nitrogen. Show how you used each element's expected ion charge, then name the compound.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step">Calcium is Group 2A → <b>Ca²⁺</b>. Nitrogen is Group 5A → gains 3 → <b>N³⁻</b>.</div>
+ <div class="step">Balance +2 and −3 (LCM 6): need <b>3 Ca²⁺</b> (+6) and <b>2 N³⁻</b> (−6) → <span class="fml">Ca₃N₂</span>.</div>
+ <div class="step"><b>Name:</b> calcium nitride.</div>`},
+
+{tag:"Explain · identity", q:`In your own words, explain why the number of protons — not neutrons or electrons — determines which element an atom is.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step">The <b>proton count is the atomic number</b>, the atom's fixed identity label.</div>
+ <div class="step">Change the <b>neutrons</b> → you get an <b>isotope</b> of the same element (different mass, same element).</div>
+ <div class="step">Change the <b>electrons</b> → you get an <b>ion</b> (different charge, same element).</div>
+ <div class="step">Only changing the <b>protons</b> turns it into a different element — so protons alone define identity.</div>`},
+
+{tag:"Percent composition", q:`Water is 88.8% oxygen and 11.2% hydrogen by mass. For a 50 g sample, compute the grams of oxygen and hydrogen, then form the O:H mass ratio and connect it to the rule "8 g of oxygen for every 1 g of hydrogen."`,
+ a:`<h4>Worked solution</h4>
+ <div class="step"><b>Oxygen:</b> 0.888 × 50 g = <b>44.4 g</b>. &nbsp; <b>Hydrogen:</b> 0.112 × 50 g = <b>5.6 g</b>. (They sum to 50 g ✓)</div>
+ <div class="step"><b>O:H ratio:</b> 44.4 ÷ 5.6 ≈ <b>7.9 ≈ 8</b>, i.e. about 8 g O per 1 g H.</div>
+ <div class="step">This matches the fixed ratio water always has — a direct example of the Law of Constant Composition.</div>`},
+
+{tag:"Explain · new properties", q:`Sodium is a soft metal that explodes in water; chlorine is a toxic green gas. Together they form table salt, which you eat. Explain what this shows about how a compound's properties relate to the elements inside it.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step">A compound has <b>entirely new properties</b> — not an average or blend of its elements.</div>
+ <div class="step">When Na and Cl react, sodium <b>loses</b> an electron (→ Na⁺) and chlorine <b>gains</b> it (→ Cl⁻). These ions, locked in a lattice, behave nothing like reactive metallic sodium or poisonous chlorine gas.</div>
+ <div class="step">Bonding fundamentally changes the substance, which is why a compound is more than "the elements mixed together."</div>`},
+
+{tag:"Isotope symbol · read", q:`Given the isotope symbol ⁶⁵₃₀Zn: state the number of protons, neutrons, and electrons in a neutral atom. Then explain exactly what changes (and what doesn't) if it becomes Zn²⁺.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step">Bottom number = atomic number → <b>30 protons</b>. Neutral atom → <b>30 electrons</b>. Neutrons = 65 − 30 = <b>35</b>.</div>
+ <div class="step"><b>Becoming Zn²⁺:</b> the atom loses 2 electrons → now <b>28 electrons</b>. Protons (30) and neutrons (35) are <b>unchanged</b> — so it's still zinc, still the same isotope, just charged.</div>`},
+
+{tag:"Polyatomic · parentheses", q:`Write formulas for ammonium carbonate and magnesium phosphate. In each, explain the role the parentheses play.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step"><b>Ammonium carbonate:</b> NH₄⁺ and CO₃²⁻. Need two ammonium (+2) to balance one carbonate (−2) → <span class="fml">(NH₄)₂CO₃</span>. The parentheses group the whole NH₄ ion so the subscript 2 multiplies all of it (2 N, 8 H).</div>
+ <div class="step"><b>Magnesium phosphate:</b> Mg²⁺ and PO₄³⁻. Balance +2 and −3 (LCM 6): 3 Mg²⁺ and 2 PO₄³⁻ → <span class="fml">Mg₃(PO₄)₂</span>. Parentheses show two entire phosphate ions.</div>
+ <div class="step"><i>Rule:</i> use parentheses whenever a polyatomic ion appears more than once.</div>`},
+
+{tag:"Explain · octet trend", q:`Explain why Group 1A elements readily form 1+ ions and Group 7A elements form 1− ions, while Group 8A (noble gases) don't form ions at all. Use the noble-gas / octet idea.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step">Atoms are most stable with a <b>full, noble-gas set of outer electrons</b> (an octet).</div>
+ <div class="step"><b>Group 1A</b> has just 1 electron beyond a noble-gas core → it's easiest to <b>lose that 1</b> → forms 1+.</div>
+ <div class="step"><b>Group 7A</b> is just 1 electron short of a full octet → it <b>gains 1</b> → forms 1−.</div>
+ <div class="step"><b>Group 8A</b> already has a full octet → no reason to gain or lose electrons → they don't normally form ions.</div>`}
+];
+
+const quiz=document.getElementById('quiz');
+const tally=document.getElementById('tally');
+const score={}; // i -> 'ok'|'mid'|'no'
+
+Q.forEach((item,i)=>{
+  const card=document.createElement('div'); card.className='q'; card.id='q'+i;
+  card.innerHTML=`<div class="qhead">Question ${i+1}<span class="qtag">${item.tag}</span></div>
+    <div class="qtext">${item.q}</div>
+    <textarea placeholder="Work it out here (for your own thinking)…"></textarea>
+    <div><button class="revealbtn" id="rev${i}">Reveal Worked Solution</button></div>
+    <div class="ans" id="ans${i}">${item.a}</div>
+    <div class="assess" id="as${i}"><span>How did you do?</span>
+      <button class="sbtn" data-s="ok">✓ Nailed it</button>
+      <button class="sbtn" data-s="mid">~ Partial</button>
+      <button class="sbtn" data-s="no">✗ Missed it</button>
+    </div>`;
+  quiz.appendChild(card);
+  document.getElementById('rev'+i).addEventListener('click',()=>reveal(i));
+  const as=document.getElementById('as'+i);
+  as.querySelectorAll('.sbtn').forEach(b=>b.addEventListener('click',()=>{
+    score[i]=b.dataset.s;
+    as.querySelectorAll('.sbtn').forEach(x=>x.className='sbtn');
+    b.classList.add(b.dataset.s==='ok'?'pick-ok':b.dataset.s==='mid'?'pick-mid':'pick-no');
+    updateTally();
+  }));
+});
+
+function reveal(i){
+  document.getElementById('ans'+i).classList.add('show');
+  document.getElementById('as'+i).classList.add('show');
+  const b=document.getElementById('rev'+i); b.textContent='Solution shown'; b.disabled=true; b.style.opacity=.6; b.style.cursor='default';
+}
+function updateTally(){
+  let ok=0,mid=0,no=0;
+  Object.values(score).forEach(v=>{if(v==='ok')ok++;else if(v==='mid')mid++;else no++;});
+  const done=ok+mid+no;
+  tally.innerHTML=`Self-scored ${done}/20 &nbsp;·&nbsp; <b class="ok">${ok} nailed</b> · <b class="mid">${mid} partial</b> · <b class="no">${no} missed</b>`;
+}
+document.getElementById('revealAll').addEventListener('click',()=>{Q.forEach((_,i)=>reveal(i));});
+</script>
+</body>
+</html>

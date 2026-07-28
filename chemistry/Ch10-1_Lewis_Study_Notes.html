@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 10.1 Master Study Table — Lewis Structures</title>
+<style>
+  :root {
+    --accent: #1e8449;
+    --accent-light: #27ae60;
+    --bg: #f4f6f7;
+    --card: #ffffff;
+    --star: #b7950b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+    color: #212f3d;
+    background: var(--bg);
+    margin: 0;
+    padding: 0 16px 60px;
+  }
+  .wrap { max-width: 1000px; margin: 0 auto; }
+  header {
+    background: linear-gradient(135deg, var(--accent), var(--accent-light));
+    color: #fff;
+    padding: 30px 28px;
+    border-radius: 0 0 14px 14px;
+    margin: 0 -16px 24px;
+    box-shadow: 0 4px 14px rgba(0,0,0,.12);
+  }
+  header h1 { margin: 0 0 6px; font-size: 1.6rem; }
+  header p { margin: 0; opacity: .92; font-size: .98rem; }
+  .bridge {
+    background: #fef9e7;
+    border-left: 5px solid var(--star);
+    padding: 12px 18px;
+    border-radius: 8px;
+    margin-bottom: 14px;
+    font-size: .95rem;
+  }
+  .bridge strong { color: #7d6608; }
+  .howto {
+    background: #e9f7ef;
+    border-left: 5px solid var(--accent-light);
+    padding: 12px 18px;
+    border-radius: 8px;
+    margin-bottom: 26px;
+    font-size: .95rem;
+  }
+  .howto strong { color: #145a32; }
+  section {
+    background: var(--card);
+    border-radius: 10px;
+    padding: 16px 20px 20px;
+    margin-bottom: 18px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.06);
+  }
+  h2 {
+    color: var(--accent);
+    font-size: 1.14rem;
+    margin: 0 0 4px;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+  h2 .num {
+    background: var(--accent);
+    color: #fff;
+    font-size: .8rem;
+    font-weight: 700;
+    border-radius: 6px;
+    padding: 2px 9px;
+    flex: none;
+  }
+  h2 .sec { color: #85929e; font-size: .78rem; font-weight: 500; margin-left: auto; }
+  table.core {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 4px;
+    font-size: .92rem;
+  }
+  table.core th, table.core td {
+    text-align: left;
+    padding: 8px 11px;
+    border: 1px solid #d5dbdb;
+    vertical-align: top;
+  }
+  table.core th {
+    background: var(--accent);
+    color: #fff;
+    font-weight: 600;
+    font-size: .82rem;
+    text-transform: uppercase;
+    letter-spacing: .3px;
+  }
+  table.core tr:nth-child(even) td { background: #f7fbf8; }
+  table.core td:first-child { font-weight: 700; color: #145a32; width: 20%; }
+  table.core td:nth-child(2) { width: 45%; }
+  strong { color: #145a32; }
+  em.hi { font-style: normal; background: #fef9e7; padding: 0 3px; border-radius: 3px; }
+  code, .fml {
+    background: #e9f7ef;
+    border-radius: 4px;
+    padding: 1px 5px;
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    font-size: .88em;
+    color: #1e8449;
+  }
+  .focus {
+    background: linear-gradient(135deg, #fdf2e9, #fef9e7);
+    border: 1px solid #f5cba7;
+  }
+  .focus h2 { color: var(--star); }
+  .focus ol { padding-left: 22px; margin: 8px 0 0; }
+  .focus li { margin-bottom: 7px; }
+  .tree {
+    background: #1b2631;
+    color: #eaeded;
+    border-radius: 8px;
+    padding: 15px 18px;
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    font-size: .84rem;
+    line-height: 1.5;
+    overflow-x: auto;
+    margin: 6px 0 4px;
+    white-space: pre;
+  }
+  .tree .b { color: #7fb3d5; font-weight: 700; }
+  .tree .g { color: #82e0aa; }
+  .tree .y { color: #f7dc6f; }
+  footer { text-align: center; color: #85929e; font-size: .85rem; margin-top: 24px; }
+  @media print {
+    body { background: #fff; }
+    section, .howto, .bridge, header { box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Chapter 10.1 — Master Study Table</h1>
+  <p>Lewis Structures (The Shapes of Molecules, part 1) · Built to be studied <em>standalone</em> (no slides needed)</p>
+</header>
+
+<div class="bridge">
+  <strong>🔗 Bridge from earlier chapters (prerequisites):</strong> Everything here is built on
+  (1) <strong>valence electrons = the A-group number</strong> for main-group elements (Ch 4/9 — O is 6A → 6 valence e⁻);
+  (2) <strong>ion charges</strong> (a 1− charge means one extra electron, a 1+ means one fewer);
+  (3) knowing which elements are <strong>more electronegative</strong> (upper-right of the table).
+  Lewis structures are the input for VSEPR shapes (10.2–10.3) — master this page first.
+</div>
+
+<div class="howto">
+  <strong>How to use this:</strong> Every row is a flashcard — <strong>Concept</strong> = front,
+  <strong>What to understand</strong> + <strong>Key facts / examples</strong> = back. Sections are numbered
+  <strong>1→10 in build order</strong>. The heart of the chapter is the <strong>8-step recipe in §4–§6</strong>
+  (five formulas, all drilled with CCl₄). Highlighted <em class="hi">yellow</em> bits are the most-testable points.
+</div>
+
+<!-- ===================== 1. LEWIS SYMBOLS ===================== -->
+<section>
+  <h2><span class="num">1</span> Lewis (Electron-Dot) Symbols <span class="sec">Slide 2 · review of 9.1</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>Valence electrons</td><td>For a <strong>main-group</strong> element, the <em class="hi">group number (1A–8A) = the number of valence electrons</em> — and therefore how many dots the symbol gets.</td><td>O is group 6A → <strong>6 dots</strong>. Cl is 7A → 7 dots. C is 4A → 4 dots.</td></tr>
+      <tr><td>How to place the dots</td><td>Add dots <strong>one at a time on each of the four sides</strong> of the symbol; only start <em class="hi">pairing up</em> after all four sides have one dot.</td><td>Oxygen: 4 singles first, then pair up the 5th and 6th → two paired sides + two single dots.</td></tr>
+      <tr><td>Why it matters</td><td>The dot symbol is the raw material of every Lewis structure — unpaired dots are where bonds form.</td><td>O with 2 single dots → forms 2 bonds (H₂O!).</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================== 2. OCTET RULE ===================== -->
+<section>
+  <h2><span class="num">2</span> The Octet Rule <span class="sec">Slide 3</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>Octet rule</td><td>Atoms <strong>gain, lose, or share</strong> electrons when bonding to fill the outer valence shell with <em class="hi">8 electrons</em>.</td><td>Applies to nearly all Period 2 elements and many others.</td></tr>
+      <tr><td>The duet exception</td><td><em class="hi">Hydrogen and lithium hold only 2</em> electrons in their outer shell (a "duet," like He).</td><td>H is satisfied by <strong>one</strong> bond — this is why H never needs lone pairs in structures.</td></tr>
+      <tr><td>Not universal</td><td>The octet rule has real exceptions — covered in §10.</td><td>Be/B (too few), radicals (odd e⁻), Period 3+ (expanded).</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================== 3. WHAT A LEWIS STRUCTURE SHOWS ===================== -->
+<section>
+  <h2><span class="num">3</span> What a Lewis Structure Shows <span class="sec">Slide 4</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>Lewis structure</td><td>A <strong>structural formula</strong> made of electron-dot symbols: it shows every bond and every lone pair in a molecule.</td><td>—</td></tr>
+      <tr><td>Bonding pair</td><td>A pair of electrons <strong>shared</strong> between two atoms, drawn as a <em class="hi">line</em>.</td><td>H–Cl : the line is 2 shared electrons.</td></tr>
+      <tr><td>Lone pair</td><td>A pair of electrons on <strong>one atom only</strong> (non-bonding), drawn as <em class="hi">two dots</em>.</td><td>In H–Cl, chlorine carries <strong>3 lone pairs</strong> (6 dots) plus the bond → octet of 8.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================== 4. STEP 1: PLACE THE ATOMS ===================== -->
+<section>
+  <h2><span class="num">4</span> Recipe Step 1 — Place the Atoms <span class="sec">Slide 5</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>Who goes in the center</td><td>The atom with the <em class="hi">LOWER group number</em> goes in the center — it needs more electrons to reach an octet and usually has <strong>lower electronegativity</strong>.</td><td>CCl₄: C (4A) is lower than Cl (7A) → <strong>C central</strong>, 4 Cl around it.</td></tr>
+      <tr><td>Same-group tiebreak</td><td>If the atoms are in the <strong>same group</strong>, the one with the <em class="hi">higher period number</em> (the bigger atom) goes in the center.</td><td>SO₃: S and O are both 6A; S is Period 3 → <strong>S central</strong>.</td></tr>
+      <tr><td>Hydrogen rule</td><td><em class="hi">Hydrogen is NEVER a central atom</em> — it forms only 1 bond.</td><td>H is always on the outside (terminal).</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================== 5. THE COUNTING FORMULAS ===================== -->
+<section>
+  <h2><span class="num">5</span> Recipe Steps 2–6 — The Five Counting Formulas <span class="sec">Slides 6–8</span></h2>
+  <table class="core">
+    <thead><tr><th>Quantity</th><th>Formula &amp; meaning</th><th>CCl₄ worked through</th></tr></thead>
+    <tbody>
+      <tr><td>N — needed</td><td><span class="fml">N = 8 × (# non-H atoms) + 2 × (# H atoms)</span>. Total electrons the molecule <strong>needs</strong> for every octet (2 for each H).</td><td>5 non-H atoms → N = 8 × 5 = <strong>40</strong>.</td></tr>
+      <tr><td>A — available</td><td><span class="fml">A = Σ valence electrons</span> of every atom. <em class="hi">For an ion: ADD 1 e⁻ per negative charge, SUBTRACT 1 e⁻ per positive charge.</em></td><td>[1 × C(4e⁻)] + [4 × Cl(7e⁻)] = <strong>32</strong>. (BF₄⁻: 3+28<strong>+1</strong>=32. NH₄⁺: 5+4<strong>−1</strong>=8.)</td></tr>
+      <tr><td>S — shared</td><td><span class="fml">S = N − A</span>. The number of electrons that must be <strong>shared</strong> (in bonds) to satisfy everyone.</td><td>S = 40 − 32 = <strong>8</strong>.</td></tr>
+      <tr><td>bp — bonding pairs</td><td><span class="fml">bp = S / 2</span>. The number of <strong>bonds (lines)</strong> to draw.</td><td>bp = 8/2 = <strong>4 bonds</strong>.</td></tr>
+      <tr><td>lp — lone pairs</td><td><span class="fml">lp = A/2 − S/2 = A/2 − bp</span>. The number of <strong>lone pairs</strong> left to place.</td><td>lp = 32/2 − 4 = <strong>12 lone pairs</strong> (3 on each Cl).</td></tr>
+    </tbody>
+  </table>
+  <p style="margin:8px 0 0;font-size:.92rem;"><strong>Memorize the chain:</strong> <em class="hi">N → A → S = N − A → bp = S/2 → lp = A/2 − bp.</em> Every Lewis-structure problem starts with these five numbers.</p>
+</section>
+
+<!-- ===================== 6. DRAW & DISTRIBUTE ===================== -->
+<section>
+  <h2><span class="num">6</span> Recipe Steps 7–8 — Draw Bonds, Distribute Lone Pairs <span class="sec">Slide 9</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>Draw the bonds</td><td>Draw a <strong>single line for each bonding pair</strong> from the central atom to each surrounding atom.</td><td>CCl₄: 4 lines C→Cl.</td></tr>
+      <tr><td>Place lone pairs — order matters</td><td>Distribute lone pairs so each atom reaches 8: <em class="hi">surrounding (more electronegative) atoms FIRST</em>; any electrons left over go on the <strong>central atom</strong>.</td><td>OF₂: fill both F first (3 lp each), remaining 2 pairs go on central O.</td></tr>
+      <tr><td>Worked ions</td><td>Same recipe works for polyatomic ions (after adjusting A for the charge). Bracket the ion and show its charge.</td><td><strong>BF₄⁻</strong>: 4 bonds, 3 lp per F. <strong>NH₄⁺</strong>: A = 8, S = 16−8 = 8 → 4 N–H bonds, lp = 4−4 = <em class="hi">0 lone pairs</em>.</td></tr>
+      <tr><td>Practice set (slide 10)</td><td>Run the full recipe yourself on the practice molecules.</td><td>OF₂ (2 bonds, 8 lp) · CH₂Br₂ (4 bonds, 6 lp) · AlCl₄⁻ (4 bonds, 12 lp) · NH₃O hydroxylamine (4 bonds, 3 lp) · C₂H₆O dimethyl ether (8 bonds, 2 lp on O).</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================== 7. MULTIPLE BONDS ===================== -->
+<section>
+  <h2><span class="num">7</span> When Singles Aren't Enough — Multiple Bonds <span class="sec">Slide 11</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>The trigger</td><td>If the <strong>central atom does not reach an octet</strong> with single bonds, convert a surrounding atom's lone pair into a shared pair → <em class="hi">form one or more multiple bonds</em>.</td><td>The S = N − A math signals it: S is bigger than the number of single bonds can supply.</td></tr>
+      <tr><td>Double bond</td><td>2 shared pairs (4 electrons), drawn as two lines.</td><td><strong>O₂</strong>: S = 16 − 12 = 4 → 2 pairs → O=O. <strong>N₂H₂</strong>: S = 20 − 12 = 8 → 4 bonds → H–N=N–H.</td></tr>
+      <tr><td>Triple bond</td><td>3 shared pairs (6 electrons), drawn as three lines.</td><td><strong>CO</strong>: S = 16 − 10 = 6 → 3 pairs → C≡O (one lone pair on each atom).</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================== 8. RESONANCE & BOND ORDER ===================== -->
+<section>
+  <h2><span class="num">8</span> Resonance Structures &amp; Bond Order <span class="sec">Slides 12–13</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>Resonance</td><td>The <em class="hi">delocalized sharing of electrons</em> — an electron pair is spread out over several atoms, not just shared between 2.</td><td>—</td></tr>
+      <tr><td>Resonance structure</td><td>One of <strong>two or more Lewis structures</strong> for a species that can't be captured by a single drawing. <em class="hi">The structures differ ONLY in the positions of bonding and lone electron pairs</em> — the atoms never move!</td><td><strong>O₃</strong> (double bond on the left vs the right), <strong>NO₂</strong>.</td></tr>
+      <tr><td>Resonance hybrid</td><td>The real molecule is a <strong>hybrid (average)</strong> of all its resonance structures — not flipping between them.</td><td>Both O₃ bonds are identical, intermediate between single and double.</td></tr>
+      <tr><td>Bond order</td><td>The number of electron pairs shared between a specific set of atoms. In resonance, <strong>partial (fractional) bonding</strong> appears: <span class="fml">Bond order = # of shared electron pairs ÷ # of bonded-atom positions</span>.</td><td><strong>CO₃²⁻</strong>: 4 bonding pairs spread over 3 C–O positions → bond order = <em class="hi">4/3 ≈ 1.33</em> (each C–O is between single and double).</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================== 9. FORMAL CHARGE ===================== -->
+<section>
+  <h2><span class="num">9</span> Formal Charge &amp; Picking the Major Resonance Structure <span class="sec">Slides 14–15</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>Formal charge (FC)</td><td>The <strong>hypothetical charge</strong> an atom would have if bonding electrons were shared equally. <span class="fml">FC = valence e⁻ − (lone-pair e⁻ + ½ shared e⁻)</span> — i.e. <span class="fml">FC = V − (LP electrons + BP electrons/2)</span>.</td><td><strong>CO₃²⁻</strong>: C = 4 − (0 + 8/2) = <strong>0</strong>; double-bond O = 6 − (4 + 4/2) = <strong>0</strong>; each single-bond O = 6 − (6 + 2/2) = <strong>−1</strong>. Sum = −2 ✓ (must equal the ion's charge).</td></tr>
+      <tr><td>Sanity check</td><td>The formal charges of all atoms must <em class="hi">add up to the overall charge</em> of the molecule (0) or ion.</td><td>CO₃²⁻ → 0 + 0 + (−1) + (−1) = −2.</td></tr>
+      <tr><td>Major structure — 3 rules</td><td>The <strong>major (most important) resonance structure</strong> has: (1) the <em class="hi">smallest formal charges</em>; (2) the same non-zero formal charges <strong>not on adjacent atoms</strong>; (3) the <em class="hi">more negative FC on the more electronegative atom</em>.</td><td><strong>NCO⁻</strong>: the structure N≡C–O⁻ (FC: N 0, C 0, O −1) wins — the −1 sits on O, the most electronegative atom. The version with −2 on N loses.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================== 10. OCTET EXCEPTIONS ===================== -->
+<section>
+  <h2><span class="num">10</span> Exceptions to the Octet Rule — the Big 3 <span class="sec">Slides 16–18</span></h2>
+  <table class="core">
+    <thead><tr><th>Exception</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>① Electron-deficient central atom</td><td>Molecules where <em class="hi">beryllium or boron</em> is central end up with <strong>fewer than 8</strong> valence electrons on the central atom.</td><td><strong>BeCl₂</strong> (4 e⁻ on Be), <strong>BF₃</strong> (6 e⁻ on B). They react with e⁻-pair donors to complete the octet: <em class="hi">BF₃ + NH₃</em> (N's lone pair fills B's octet).</td></tr>
+      <tr><td>② Odd number of electrons</td><td>A molecule with an <strong>odd electron count</strong> must have one <em class="hi">unpaired electron</em>. It is <strong>paramagnetic</strong> and called a <em class="hi">free radical</em> — extremely reactive; attacks hydrogen in biomolecules, causing gene disruption.</td><td><strong>NO₂</strong> (17 valence e⁻). Two radicals pair up: NO₂ + NO₂ → N₂O₄.</td></tr>
+      <tr><td>③ Expanded valence shell</td><td>Central atom holds <strong>MORE than 8</strong> electrons. Requires a <em class="hi">large atom with empty orbitals — nonmetals of Period 3 or higher</em> (never Period 2!).</td><td>Bonds to <strong>more than 4 atoms</strong>: <strong>PCl₅</strong> (10 e⁻ on P), <strong>SO₄²⁻</strong>. Or <strong>fewer than 4 atoms</strong> but with extra lone pairs: <strong>SF₄</strong> (4 bonds + 1 lone pair = 10 e⁻ on S).</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================== RECIPE DIAGRAM ===================== -->
+<section>
+  <h2><span class="num">★</span> The One Recipe to Anchor It All</h2>
+  <div class="tree"><span class="b">LEWIS STRUCTURE RECIPE</span>   (drill until automatic)
+1. <span class="g">PLACE ATOMS</span>     lower group # central · same group → higher period · <span class="y">H never central</span>
+2. <span class="g">N</span>  = 8×(non-H) + 2×(H)                      electrons NEEDED
+3. <span class="g">A</span>  = Σ valence e⁻  <span class="y">(+1 per − charge, −1 per + charge)</span>   electrons AVAILABLE
+4. <span class="g">S</span>  = N − A                                  electrons SHARED
+5. <span class="g">bp</span> = S/2          → draw that many lines from the center
+6. <span class="g">lp</span> = A/2 − bp     → outer atoms first, leftovers on center
+7. Central atom short of 8?  →  convert a lone pair into a <span class="y">MULTIPLE BOND</span>
+8. Ion? Bracket it, show the charge.  Check: FCs sum to the total charge.
+
+<span class="b">CCl₄:</span>  N=40  A=32  S=8  bp=4  lp=12   →  4 C–Cl bonds, 3 lone pairs per Cl</div>
+  <p style="margin:10px 0 0;font-size:.93rem;"><strong>The two distinctions tested most:</strong>
+  &nbsp;① <strong>Bonding pair vs lone pair</strong> → line (shared by 2 atoms) vs dots (owned by 1 atom).
+  &nbsp;② <strong>N vs A</strong> → what the molecule <em>needs</em> vs what the atoms <em>bring</em>; their gap (S) is what must be shared.</p>
+</section>
+
+<!-- ===================== FOCUS ===================== -->
+<section class="focus">
+  <h2><span class="num">⭐</span> Highest-Yield — Drill These First</h2>
+  <ol>
+    <li><strong>The five formulas</strong> — N = 8×(non-H) + 2×(H); A = Σ valence e⁻ (± charge); S = N − A; bp = S/2; lp = A/2 − bp. Run them cold on CCl₄ (40/32/8/4/12).</li>
+    <li><strong>Ion adjustment</strong> — add 1 e⁻ per negative charge, subtract 1 per positive (BF₄⁻ vs NH₄⁺).</li>
+    <li><strong>Central-atom rules</strong> — lower group number central; same group → higher period; <em>H never central</em>.</li>
+    <li><strong>Formal charge</strong> — FC = V − (LP e⁻ + BP e⁻/2); FCs must sum to the overall charge; worked on CO₃²⁻.</li>
+    <li><strong>Major resonance structure</strong> — smallest FCs, no same non-zero FCs adjacent, negative FC on the most electronegative atom (NCO⁻).</li>
+    <li><strong>Resonance ≠ atoms moving</strong> — only bonding/lone pairs move; the molecule is a hybrid. Bond order = shared pairs ÷ bonded positions (CO₃²⁻ = 4/3).</li>
+    <li><strong>The 3 octet exceptions</strong> — Be/B deficient (BeCl₂, BF₃); odd-electron free radicals (NO₂, paramagnetic); expanded shells only Period 3+ (PCl₅, SF₄, SO₄²⁻).</li>
+    <li><strong>Multiple-bond trigger</strong> — central atom short of an octet → double/triple bond (O₂, CO, N₂H₂).</li>
+  </ol>
+</section>
+
+<footer>Master study table built from a deep read of all 18 slides of Lewis+Structures (Chapter 10.1).pdf — designed to be studied standalone.</footer>
+
+</div>
+</body>
+</html>

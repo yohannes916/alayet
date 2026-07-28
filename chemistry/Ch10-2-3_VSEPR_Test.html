@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 10.2–10.3 — Comprehensive Self-Test · VSEPR &amp; Polarity</title>
+<style>
+  :root{--accent:#a04000;--accent2:#ca6f1e;--bg:#eef2f5;--card:#fff;--ok:#1e8449;--bad:#c0392b;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.5;color:#212f3d;background:var(--bg);margin:0;padding:0 14px 120px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:26px 26px;border-radius:0 0 14px 14px;margin:0 -14px 18px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  .howto{background:#fdf2e9;border-left:5px solid var(--accent2);padding:11px 16px;border-radius:8px;margin-bottom:16px;font-size:.92rem;}
+  .howto strong{color:var(--accent);}
+  #results{background:#fff;border:2px solid var(--accent);border-radius:12px;padding:18px 20px;margin-bottom:18px;box-shadow:0 3px 12px rgba(0,0,0,.1);}
+  #results h2{margin:0 0 8px;color:var(--accent);}
+  .bigscore{font-size:2.4rem;font-weight:800;}
+  .pct{font-size:1.1rem;color:#566573;}
+  .secgrid{width:100%;border-collapse:collapse;margin:12px 0;font-size:.86rem;}
+  .secgrid td,.secgrid th{border:1px solid #d5dbdb;padding:5px 9px;text-align:left;}
+  .secgrid th{background:var(--accent);color:#fff;}
+  .barwrap{background:#e5e8e8;border-radius:6px;height:12px;overflow:hidden;min-width:80px;}
+  .bar{height:100%;background:var(--ok);}
+  .secbadge{display:inline-block;background:var(--accent);color:#fff;font-size:.66rem;font-weight:700;letter-spacing:.3px;padding:2px 8px;border-radius:10px;text-transform:uppercase;margin-bottom:8px;}
+  .sechead{margin:26px 0 6px;color:var(--accent);font-size:1.15rem;border-bottom:2px solid #fae5d3;padding-bottom:5px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 16px 12px;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid transparent;}
+  .q.correct{border-left-color:var(--ok);background:#f2fbf5;}
+  .q.incorrect{border-left-color:var(--bad);background:#fdf3f2;}
+  .qnum{font-weight:700;color:var(--accent);margin-right:6px;}
+  .qtype{font-size:.66rem;font-weight:700;color:#fff;background:#85929e;border-radius:8px;padding:1px 7px;margin-left:6px;vertical-align:middle;text-transform:uppercase;}
+  .qtext{font-size:.98rem;margin:2px 0 9px;}
+  .opts label{display:block;padding:6px 10px;margin:4px 0;border:1px solid #d5dbdb;border-radius:7px;cursor:pointer;font-size:.93rem;transition:.1s;}
+  .opts label:hover{background:#f4f6f7;}
+  .opts input{margin-right:9px;}
+  .opts label.pick{border-color:var(--accent2);background:#fdf2e9;}
+  .opts label.ansright{border-color:var(--ok);background:#eafaf1;}
+  .opts label.answrong{border-color:var(--bad);background:#fdedec;}
+  input[type=text]{width:100%;max-width:340px;padding:8px 11px;border:1px solid #b3c1c9;border-radius:7px;font-size:.95rem;}
+  input[type=text].ansright{border-color:var(--ok);background:#eafaf1;}
+  input[type=text].answrong{border-color:var(--bad);background:#fdedec;}
+  .blankline{font-size:1rem;line-height:2.2;margin:2px 0 4px;}
+  input.blank{width:130px;max-width:150px;display:inline-block;margin:0 5px;padding:5px 8px;border:1px solid #b3c1c9;border-bottom:2px solid var(--accent2);border-radius:6px;font-size:.9rem;vertical-align:baseline;}
+  input.blank.ansright{border-color:var(--ok);background:#eafaf1;}
+  input.blank.answrong{border-color:var(--bad);background:#fdedec;}
+  .fb{margin-top:9px;font-size:.86rem;padding:8px 11px;border-radius:7px;display:none;}
+  .fb.show{display:block;}
+  .fb.good{background:#eafaf1;color:#145a32;}
+  .fb.no{background:#fdedec;color:#922b21;}
+  .fb b{display:inline-block;}
+  .checkbtn{margin-top:10px;background:#ca6f1e;color:#fff;border:none;border-radius:7px;padding:6px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .checkbtn:hover{background:#a04000;}
+  .checkbtn:disabled{cursor:default;opacity:.85;}
+  .tut{background:#fbfcfd;border:1px solid #fae5d3;border-left:4px solid #ca6f1e;border-radius:6px;padding:8px 11px;margin-bottom:8px;color:#2c3e50;font-size:.85rem;line-height:1.45;}
+  .tut b{color:#a04000;}
+  #bottombar{position:fixed;left:0;right:0;bottom:0;background:#fffffff2;backdrop-filter:blur(6px);border-top:1px solid #ccd;padding:10px 14px;box-shadow:0 -2px 10px rgba(0,0,0,.08);z-index:50;}
+  #bottombar .inner{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+  .counter{font-size:.9rem;color:#566573;font-weight:600;}
+  button{font-family:inherit;font-size:.92rem;font-weight:600;border:none;border-radius:8px;padding:10px 18px;cursor:pointer;}
+  .btn-primary{background:var(--accent);color:#fff;}
+  .btn-primary:hover{background:#873600;}
+  .btn-warn{background:var(--star);color:#fff;}
+  .btn-warn:hover{background:#9a7d0a;}
+  .btn-ghost{background:#e5e8e8;color:#2c3e50;}
+  .btn-ghost:hover{background:#d5dbdb;}
+  .hidden{display:none!important;}
+  .modechip{display:inline-block;background:var(--star);color:#fff;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:10px;margin-left:8px;}
+  @media print{#bottombar{position:static;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Chapter 10.2–10.3 — Comprehensive Self-Test <span id="modechip" class="modechip hidden"></span></h1>
+  <p>VSEPR Theory &amp; Molecular Polarity · auto-graded · retry-wrong-only mode · <span id="qcount"></span> questions</p>
+</header>
+
+<div class="howto">
+  <strong>How it works:</strong> Answer as many as you can, then press <strong>Submit &amp; Grade</strong> at the bottom.
+  You'll get a score, a per-section breakdown, and the correct answer + explanation on every question.
+  Then hit <strong>Retry Wrong Only</strong> to be re-tested on just the ones you missed — repeat until you ace every item.
+  <em>Blanks are graded leniently (case/spacing don't matter). Angles: type the number only, e.g. "109.5".</em>
+</div>
+
+<div id="results" class="hidden"></div>
+<form id="quiz" onsubmit="return false;"></form>
+</div>
+
+<div id="bottombar">
+  <div class="inner">
+    <span class="counter" id="counter">0 / 0 answered</span>
+    <button class="btn-primary" id="submitBtn">Submit &amp; Grade</button>
+    <button class="btn-warn hidden" id="retryBtn">Retry Wrong Only</button>
+    <button class="btn-ghost hidden" id="restartBtn">Restart Entire Test</button>
+  </div>
+</div>
+
+<script>
+/* ===== SECTION NAMES ===== */
+const SEC={
+ "0":"Fundamentals (bridge from 10.1)",
+ "1":"1 · The Core Idea & Electron Groups",
+ "2":"2 · Arrangement vs Shape · AXmEn",
+ "3":"3 · Bond Angles — Ideal vs Real",
+ "4":"4 · Linear & Trigonal Planar",
+ "5":"5 · Tetrahedral Family",
+ "6":"6 · Trigonal Bipyramidal Family",
+ "7":"7 · Octahedral Family",
+ "8":"8 · Procedure & Multi-Center Molecules",
+ "9":"9 · Molecular Polarity"
+};
+
+/* ===== TOPIC TUTORIALS (shown on Check) ===== */
+const TUT={
+ "0":"VSEPR is applied <b>to a finished Lewis structure</b> — draw it first (10.1 recipe), then count the electron groups on the central atom. A double or triple bond counts as <b>ONE</b> group.",
+ "1":"VSEPR: molecules <b>minimize electron repulsions</b> — every electron group on the central atom sits as far from the others as possible. A group = lone pair, lone electron, single, double, OR triple bond. Maximum repulsion gives exactly <b>5 arrangements</b>: 2→linear (180°), 3→trigonal planar (120°), 4→tetrahedral (109.5°), 5→trigonal bipyramidal (90°/120°), 6→octahedral (90°).",
+ "2":"<b>Electron-group arrangement</b> counts ALL groups (bonding + lone pairs); <b>molecular shape</b> names only the nuclei positions (bonding groups). They match only when there are no lone pairs. Code: <b>A</b> = central atom, <b>X</b> = surrounding atom, <b>E</b> = lone (non-bonding) group — H₂O = AX₂E₂, NH₃ = AX₃E.",
+ "3":"Ideal angles hold when all bonding groups are identical and bond the same atom type. Real ≠ ideal when there's a <b>double bond</b>, <b>different surrounding atoms</b>, or a <b>lone pair</b>. Lone pairs repel hardest → each one squeezes angles: 109.5° → 107.3° → 104.5°. A double bond's extra density opens adjacent angles (CH₂O: 122° / 116°).",
+ "4":"2 groups → <b>linear</b>, 180° (CS₂, HCN, BeF₂). 3 groups → <b>trigonal planar</b>, 120°: AX₃ = trigonal planar (SO₃, BF₃, NO₃⁻, CO₃²⁻); AX₂E = <b>bent</b> (SO₂, O₃, PbCl₂, SnBr₂), angle pushed below 120° by the lone pair.",
+ "5":"4 groups → tetrahedral arrangement, ideal 109.5°. AX₄ = <b>tetrahedral</b> (CH₄, SiCl₄, SO₄²⁻, ClO₄⁻); AX₃E = <b>trigonal pyramidal</b>, 107.3° (NH₃, PF₃, ClO₃⁻, H₃O⁺); AX₂E₂ = <b>bent</b>, 104.5° (H₂O, OF₂, SCl₂). NH₃ + H⁺ → NH₄⁺ turns the lone pair into a bond: angle springs back to 109.5°.",
+ "6":"5 groups → trigonal bipyramidal: 3 <b>equatorial</b> (120°) + 2 <b>axial</b> (90° from equatorial). Eq–eq repulsion (120°) &lt; ax–eq (90°), so <b>lone pairs always go equatorial</b>. AX₅ = trigonal bipyramidal (PCl₅); AX₄E = <b>seesaw</b> (SF₄, 101.5°/86.8°); AX₃E₂ = <b>T-shaped</b> (BrF₃, ClF₃, 86.2°); AX₂E₃ = <b>linear</b> (I₃⁻, XeF₂, 180°).",
+ "7":"6 groups → octahedral (8 triangular faces, 6 identical vertices, 90°). AX₆ = <b>octahedral</b> (SF₆); AX₅E = <b>square pyramidal</b> (IF₅, BrF₅ — 81.9°); AX₄E₂ = <b>square planar</b> (XeF₄, ICl₄⁻) — the 2 lone pairs sit opposite (trans), so the angles stay 90°.",
+ "8":"The 4 steps: ① draw the Lewis structure → ② count ALL electron groups on the central atom → arrangement → ③ ideal angles + deviations (lone pairs, double bonds) → ④ count bonding vs lone groups separately → AXmEn shape. Multi-center molecules are a <b>composite</b> of the shape at each center (ethane = two overlapping tetrahedra).",
+ "9":"Bond polarity (unequal sharing, ΔEN) + <b>molecular shape</b> together decide molecular polarity: symmetric shapes cancel the bond dipoles (CO₂, BF₃, CCl₄ → nonpolar); bent/pyramidal/asymmetric ones don't (H₂O, NH₃, CHCl₃, COS → polar). Polarity is measured by the dipole moment in <b>debye</b> (1 D = 3.34 × 10⁻³⁰ C·m); polar molecules align in an electric field. Chain: ΔEN → bond polarity → molecular polarity → intermolecular forces → melting/boiling point, solubility, reactivity."
+};
+
+/* ===== QUESTION BANK =====
+   t: "tf" | "mc" | "fib" | "fibm"
+   a: tf -> "true"/"false" ; mc -> exact option text ; fib -> array of accepted answers ; fibm -> array of arrays
+*/
+const BANK=[
+/* ---------- 0 FUNDAMENTALS ---------- */
+{s:"0",t:"mc",q:`VSEPR stands for ______.`,o:[`Valence-Shell Electron-Pair Repulsion`,`Very Strong Electron-Proton Reaction`,`Valence Shell Proton Rule`,`Variable Shape Electron-Pair Rotation`],a:`Valence-Shell Electron-Pair Repulsion`,e:`VSEPR = Valence-Shell Electron-Pair Repulsion theory. (Notes §1 · Slide 2)`},
+{s:"0",t:"tf",q:`Before you can apply VSEPR to a molecule, you must first draw its Lewis structure.`,a:"true",e:`True — VSEPR is applied TO a Lewis structure; without it you can't see the electron groups. (Notes §1, §8 · Slides 3, 25)`},
+{s:"0",t:"tf",q:`A triple bond counts as three separate electron groups.`,a:"false",e:`False — any bond (single, double, or triple) counts as ONE electron group. CO₂'s two double bonds = 2 groups. (Notes §1 · Slide 2)`},
+{s:"0",t:"mc",q:`A lone pair is ______.`,o:[`a pair of electrons shared by two atoms`,`a non-bonding pair of electrons on one atom`,`a broken bond`,`two unpaired electrons`],a:`a non-bonding pair of electrons on one atom`,e:`Lone pair = non-bonding pair sitting on a single atom (from 10.1). Lone pairs are the shape-benders of this chapter. (Notes bridge)`},
+{s:"0",t:"fib",q:`According to VSEPR, molecules arrange their electron groups to MINIMIZE electron ______.`,a:["repulsions","repulsion"],e:`Molecules minimize electron repulsions — every group gets as far from the others as possible. (Notes §1 · Slide 2)`},
+
+/* ---------- 1 CORE IDEA & ELECTRON GROUPS ---------- */
+{s:"1",t:"mc",q:`Which of these is NOT an electron group?`,o:[`A lone pair`,`A double bond`,`A single unpaired electron`,`An inner-shell (core) electron`],a:`An inner-shell (core) electron`,e:`Groups are VALENCE things: lone pair, lone electron, single, double, or triple bond. Core electrons don't count. (Notes §1 · Slide 2)`},
+{s:"1",t:"fib",q:`How many electron groups surround the carbon in CO₂ (O=C=O)?`,a:["2","two"],e:`Each double bond = 1 group → 2 groups → linear, 180°. (Notes §1 · Slide 2)`},
+{s:"1",t:"mc",q:`Maximum electron repulsion produces exactly how many electron-group arrangements?`,o:[`3`,`4`,`5`,`13`],a:`5`,e:`Five: linear, trigonal planar, tetrahedral, trigonal bipyramidal, octahedral. (13 SHAPES come from adding lone pairs.) (Notes §1 · Slide 3)`},
+{s:"1",t:"mc",q:`Which is NOT one of the five electron-group arrangements?`,o:[`Linear`,`Bent`,`Tetrahedral`,`Octahedral`],a:`Bent`,e:`Bent is a molecular SHAPE (AX₂E or AX₂E₂), not an arrangement. The 5 arrangements: linear, trigonal planar, tetrahedral, trigonal bipyramidal, octahedral. (Notes §1–2 · Slides 3–4)`},
+{s:"1",t:"fib",q:`Four electron groups adopt the ______ arrangement.`,a:["tetrahedral"],e:`4 groups → tetrahedral, ideal 109.5°. (Notes §1 · Slide 3)`},
+{s:"1",t:"fib",q:`Six electron groups adopt the ______ arrangement.`,a:["octahedral"],e:`6 groups → octahedral, 90° angles. (Notes §1 · Slide 3)`},
+{s:"1",t:"mc",q:`Molecular shape is defined as ______.`,o:[`the three-dimensional arrangement of nuclei joined by bonding groups`,`the two-dimensional Lewis drawing`,`the arrangement of core electrons`,`the pattern of isotopes in a molecule`],a:`the three-dimensional arrangement of nuclei joined by bonding groups`,e:`Shape = the 3-D arrangement of the NUCLEI connected by bonding groups. (Notes §1 · Slide 2)`},
+{s:"1",t:"tf",q:`Tied-together balloons naturally model the five electron-group arrangements.`,a:"true",e:`True — the balloon demo: 2, 3, 4, 5, 6 balloons spread into linear, trigonal planar, tetrahedral, trigonal bipyramidal, octahedral. (Notes §1 · Slide 3)`},
+
+/* ---------- 2 ARRANGEMENT VS SHAPE, AXmEn ---------- */
+{s:"2",t:"mc",q:`The electron-group ARRANGEMENT counts ______.`,o:[`only bonding groups`,`only lone pairs`,`ALL electron groups — bonding AND lone pairs`,`only single bonds`],a:`ALL electron groups — bonding AND lone pairs`,e:`Arrangement = everything around the central atom, bonding and non-bonding alike. (Notes §2 · Slide 4)`},
+{s:"2",t:"mc",q:`The MOLECULAR SHAPE describes ______.`,o:[`the positions of the nuclei, connected only by bonding groups`,`all electron groups including lone pairs`,`the electron density map`,`the arrangement of protons`],a:`the positions of the nuclei, connected only by bonding groups`,e:`Shape names where the ATOMS are; lone pairs influence it but are invisible in the name. (Notes §2 · Slide 4)`},
+{s:"2",t:"tf",q:`The electron-group arrangement and the molecular shape have the same name only when the central atom has no lone pairs.`,a:"true",e:`True — no lone pairs (AX₂, AX₃, AX₄...) → arrangement = shape. Add lone pairs and the names split (H₂O: tetrahedral arrangement, bent shape). (Notes §2 · Slide 4)`},
+{s:"2",t:"mc",q:`In the AXmEn classification, E stands for ______.`,o:[`an extra atom`,`a non-bonding valence electron group (lone pair)`,`an electron in the nucleus`,`the element symbol`],a:`a non-bonding valence electron group (lone pair)`,e:`A = central atom, X = surrounding atom, E = non-bonding electron group. (Notes §2 · Slide 5)`},
+{s:"2",t:"fib",q:`In AXmEn notation, the letter that represents the CENTRAL atom is ______.`,a:["a"],e:`A = central atom (X = surrounding atoms, E = lone groups). (Notes §2 · Slide 5)`},
+{s:"2",t:"fib",q:`Water has 2 bonds and 2 lone pairs on oxygen. Write its AXmEn class (e.g. "AX3E").`,a:["ax2e2"],e:`2 X + 2 E → AX₂E₂ — tetrahedral arrangement, bent shape, 104.5°. (Notes §2, §5 · Slides 5, 14)`},
+{s:"2",t:"mc",q:`Ammonia (NH₃) — 3 bonds + 1 lone pair — is classified as ______.`,o:[`AX₃`,`AX₃E`,`AX₂E₂`,`AX₄`],a:`AX₃E`,e:`3 bonding groups + 1 lone pair = AX₃E → trigonal pyramidal. (Notes §2, §5 · Slides 5, 13)`},
+{s:"2",t:"mc",q:`H₂O's electron-group arrangement and molecular shape are, respectively, ______.`,o:[`tetrahedral and bent`,`bent and tetrahedral`,`linear and bent`,`tetrahedral and tetrahedral`],a:`tetrahedral and bent`,e:`4 groups → tetrahedral ARRANGEMENT; only 2 are bonds → bent SHAPE. The classic arrangement-vs-shape example. (Notes §2, §5 · Slides 4, 14)`},
+
+/* ---------- 3 BOND ANGLES ---------- */
+{s:"3",t:"mc",q:`A bond angle is the angle between ______.`,o:[`two bonds joining surrounding atoms to the central atom's nucleus`,`any two atoms in a molecule`,`a bond and a lone pair`,`two lone pairs`],a:`two bonds joining surrounding atoms to the central atom's nucleus`,e:`Bond angle = angle at the central nucleus between bonds to two surrounding atoms. (Notes §3 · Slide 6)`},
+{s:"3",t:"mc",q:`IDEAL bond angles are observed when ______.`,o:[`all bonding groups are the same and connect to the same type of atom`,`the molecule contains lone pairs`,`a double bond is present`,`the surrounding atoms differ`],a:`all bonding groups are the same and connect to the same type of atom`,e:`Real = ideal only with identical bonding groups to identical atoms (like CH₄'s perfect 109.5°). (Notes §3 · Slide 6)`},
+{s:"3",t:"mc",q:`Which does NOT cause real bond angles to deviate from ideal?`,o:[`A lone pair on the central atom`,`A double bond`,`Different surrounding atoms`,`All bonding groups being identical`],a:`All bonding groups being identical`,e:`The three deviation-makers: lone pair, double bond, different atoms. Identical groups = the ideal case. (Notes §3 · Slide 7)`},
+{s:"3",t:"mc",q:`A double bond distorts angles because it ______.`,o:[`has more electron density and repels single-bond pairs more strongly`,`is shorter`,`contains fewer electrons`,`attracts protons`],a:`has more electron density and repels single-bond pairs more strongly`,e:`More electron density → harder push on neighboring bonds. (Notes §3 · Slide 10)`},
+{s:"3",t:"fibm",q:`In formaldehyde (CH₂O), the H–C=O angle opens to ___° and the H–C–H angle closes to ___° (ideal was 120°).`,a:[["122"],["116"]],e:`The fat C=O bond pushes the H's together: H–C=O = 122°, H–C–H = 116°. (Notes §3 · Slide 10)`},
+{s:"3",t:"mc",q:`Compared to bonding pairs, lone pairs repel ______.`,o:[`more strongly`,`less strongly`,`identically`,`not at all`],a:`more strongly`,e:`Lone pairs hug the central atom and repel hardest — that's why every added lone pair squeezes the bond angles. (Notes §3, §5 · Slides 13–14)`},
+{s:"3",t:"fib",q:`The tetrahedral cascade: CH₄ = 109.5°, NH₃ = 107.3°, H₂O = ______°. (number only)`,a:["104.5"],e:`Two lone pairs squeeze harder than one: 109.5 → 107.3 → 104.5. (Notes §3, §5 · Slides 12–14)`},
+
+/* ---------- 4 LINEAR & TRIGONAL PLANAR ---------- */
+{s:"4",t:"fib",q:`The bond angle in a linear molecule (AX₂) is ______°.`,a:["180"],e:`Two groups point in opposite directions → 180°. (Notes §4 · Slide 8)`},
+{s:"4",t:"mc",q:`Which set are all examples of LINEAR AX₂ molecules from the slides?`,o:[`CS₂, HCN, BeF₂`,`SO₂, O₃, PbCl₂`,`CH₄, SiCl₄, SO₄²⁻`,`NH₃, PF₃, H₃O⁺`],a:`CS₂, HCN, BeF₂`,e:`CS₂, HCN, BeF₂ are the deck's AX₂ examples. (SO₂/O₃ are bent; CH₄ tetrahedral; NH₃ pyramidal.) (Notes §4 · Slide 8)`},
+{s:"4",t:"fib",q:`The ideal bond angle in a trigonal planar arrangement is ______°.`,a:["120"],e:`Three groups at the corners of an equilateral triangle → 120°. (Notes §4 · Slide 9)`},
+{s:"4",t:"mc",q:`Three electron groups where ONE is a lone pair (AX₂E) gives which molecular shape?`,o:[`Trigonal planar`,`Bent (V-shaped)`,`Linear`,`T-shaped`],a:`Bent (V-shaped)`,e:`AX₂E = bent — the lone pair replaces one corner of the triangle. Examples: SO₂, O₃, PbCl₂, SnBr₂. (Notes §4 · Slide 9)`},
+{s:"4",t:"mc",q:`SO₂ and O₃ have which molecular shape?`,o:[`Linear`,`Trigonal planar`,`Bent (V-shaped)`,`Tetrahedral`],a:`Bent (V-shaped)`,e:`Both are AX₂E: 3 groups (one is a lone pair) → bent, angle slightly under 120°. (Notes §4 · Slide 9)`},
+{s:"4",t:"mc",q:`Which molecule IS trigonal planar (AX₃)?`,o:[`BF₃`,`NH₃`,`H₂O`,`SF₄`],a:`BF₃`,e:`BF₃: 3 bonding groups, no lone pairs → trigonal planar, 120°. (NH₃ has a lone pair → pyramidal!) (Notes §4 · Slide 9)`},
+{s:"4",t:"tf",q:`NO₃⁻ and CO₃²⁻ are trigonal planar ions.`,a:"true",e:`True — both are AX₃ examples on the slide: 3 bonding groups (resonance spreads the double bond), 120°. (Notes §4 · Slide 9)`},
+{s:"4",t:"tf",q:`In AX₂E molecules like SO₂, the bond angle is slightly LESS than the ideal 120°.`,a:"true",e:`True — the lone pair repels harder than bonding pairs, squeezing the X–A–X angle below 120°. (Notes §4 · Slide 9)`},
+
+/* ---------- 5 TETRAHEDRAL FAMILY ---------- */
+{s:"5",t:"fib",q:`The ideal tetrahedral bond angle is ______°. (number only)`,a:["109.5"],e:`Four groups at the corners of a tetrahedron → 109.5°. (Notes §5 · Slide 11)`},
+{s:"5",t:"mc",q:`A tetrahedron is a polyhedron with ______.`,o:[`four faces made of equilateral triangles`,`six square faces`,`eight triangular faces`,`five rectangular faces`],a:`four faces made of equilateral triangles`,e:`Tetra = 4 equilateral-triangle faces. (The 8-triangle one is the octahedron.) (Notes §5 · Slide 11)`},
+{s:"5",t:"tf",q:`ALL molecules and ions with four electron groups have the tetrahedral electron-group arrangement.`,a:"true",e:`True — 4 groups always arrange tetrahedrally; the SHAPES differ only by how many groups are lone pairs. (Notes §5 · Slide 12)`},
+{s:"5",t:"mc",q:`AX₄ (e.g. CH₄) is the most common electron geometry for ______.`,o:[`organic molecules`,`noble gases`,`metals`,`ionic crystals`],a:`organic molecules`,e:`The tetrahedral AX₄ carbon is organic chemistry's backbone. (Notes §5 · Slide 12)`},
+{s:"5",t:"mc",q:`NH₃ (AX₃E) has which molecular shape, and what bond angle?`,o:[`Trigonal pyramidal, 107.3°`,`Trigonal planar, 120°`,`Tetrahedral, 109.5°`,`Bent, 104.5°`],a:`Trigonal pyramidal, 107.3°`,e:`One lone pair pushes the three N–H bonds down into a pyramid at 107.3°. (Notes §5 · Slide 13)`},
+{s:"5",t:"mc",q:`H₂O (AX₂E₂) has which molecular shape, and what bond angle?`,o:[`Bent (V-shaped), 104.5°`,`Linear, 180°`,`Trigonal pyramidal, 107.3°`,`Tetrahedral, 109.5°`],a:`Bent (V-shaped), 104.5°`,e:`Two lone pairs squeeze the H–O–H angle to 104.5° → bent. (Notes §5 · Slide 14)`},
+{s:"5",t:"mc",q:`When NH₃ reacts with H⁺ to form NH₄⁺, the bond angle ______.`,o:[`opens from 107.3° back to the ideal 109.5°`,`closes from 109.5° to 104.5°`,`stays exactly the same`,`becomes 120°`],a:`opens from 107.3° back to the ideal 109.5°`,e:`The lone pair BECOMES a bonding pair — no more extra squeeze → perfect tetrahedral 109.5°. Beautiful proof of the lone-pair effect. (Notes §5 · Slide 13)`},
+{s:"5",t:"mc",q:`Which species is trigonal pyramidal?`,o:[`H₃O⁺`,`CH₄`,`BF₃`,`XeF₄`],a:`H₃O⁺`,e:`H₃O⁺ is AX₃E (3 bonds + 1 lone pair) like NH₃ and PF₃ → trigonal pyramidal. (Notes §5 · Slide 11)`},
+{s:"5",t:"mc",q:`Which set are all AX₄ tetrahedral species from the slides?`,o:[`CH₄, SiCl₄, SO₄²⁻, ClO₄⁻`,`NH₃, PF₃, ClO₃⁻`,`H₂O, OF₂, SCl₂`,`SO₃, BF₃, NO₃⁻`],a:`CH₄, SiCl₄, SO₄²⁻, ClO₄⁻`,e:`The AX₄ list: CH₄, SiCl₄, SO₄²⁻, ClO₄⁻ — all tetrahedral at 109.5°. (Notes §5 · Slide 11)`},
+{s:"5",t:"tf",q:`The flat (2-D) Lewis drawing of CH₄ accurately shows its real 3-D shape.`,a:"false",e:`False — on paper CH₄ looks like a flat + sign (90°), but the real molecule is a 109.5° tetrahedron. Lewis shows CONNECTIONS, VSEPR shows shape. (Notes §5 · Slide 12)`},
+
+/* ---------- 6 TRIGONAL BIPYRAMIDAL ---------- */
+{s:"6",t:"mc",q:`The trigonal bipyramidal arrangement is best described as ______.`,o:[`two trigonal pyramids sharing a common base`,`a flat pentagon`,`a cube missing corners`,`two squares stacked`],a:`two trigonal pyramids sharing a common base`,e:`5 groups = two 3-sided pyramids base-to-base. (Notes §6 · Slide 15)`},
+{s:"6",t:"fibm",q:`In trigonal bipyramidal, the ___ equatorial groups sit at 120° on the triangle, and the ___ axial groups sit above and below, 90° from the equatorial groups.`,a:[["3","three"],["2","two"]],e:`3 equatorial (120° apart) + 2 axial (90° from equatorial, 180° from each other) = 5. (Notes §6 · Slide 15)`},
+{s:"6",t:"mc",q:`In a trigonal bipyramidal arrangement, lone pairs occupy ______ positions. Why?`,o:[`equatorial — because 120° eq–eq repulsions are weaker than 90° ax–eq repulsions`,`axial — because there is more room at the poles`,`either — position doesn't matter`,`both axial positions first`],a:`equatorial — because 120° eq–eq repulsions are weaker than 90° ax–eq repulsions`,e:`THE key rule: lone pairs (strongest repellers) take the roomier equatorial spots. This generates seesaw, T-shape, and linear. (Notes §6 · Slide 16)`},
+{s:"6",t:"mc",q:`PCl₅ (AX₅) has which shape and ideal angles?`,o:[`Trigonal bipyramidal — 120° equatorial and 90° axial`,`Octahedral — all 90°`,`Square pyramidal — 81.9°`,`Tetrahedral — 109.5°`],a:`Trigonal bipyramidal — 120° equatorial and 90° axial`,e:`All 5 groups bonding, identical Cl's → ideal 120°/90°. (Notes §6 · Slide 17)`},
+{s:"6",t:"mc",q:`SF₄ (AX₄E) has which molecular shape?`,o:[`Seesaw`,`Tetrahedral`,`Square planar`,`T-shaped`],a:`Seesaw`,e:`One equatorial lone pair turns the trigonal bipyramid into a seesaw. (Notes §6 · Slide 18)`},
+{s:"6",t:"fibm",q:`In SF₄ the lone pair squeezes the angles to ___° (equatorial F–S–F) and ___° (axial–equatorial).`,a:[["101.5"],["86.8"]],e:`Ideal 120°/90° shrink to 101.5° and 86.8°. (Notes §6 · Slide 18)`},
+{s:"6",t:"mc",q:`BrF₃ and ClF₃ (AX₃E₂) have which molecular shape?`,o:[`T-shaped`,`Trigonal planar`,`Trigonal pyramidal`,`Bent`],a:`T-shaped`,e:`Two equatorial lone pairs leave 3 atoms in a T. Axial–equatorial angle drops to 86.2°. (Notes §6 · Slide 19)`},
+{s:"6",t:"fib",q:`In BrF₃, the axial–equatorial bond angle is reduced to ______°. (number only)`,a:["86.2"],e:`Two lone pairs squeeze it from 90° to 86.2°. (Notes §6 · Slide 19)`},
+{s:"6",t:"mc",q:`I₃⁻ and XeF₂ (AX₂E₃) have which molecular shape?`,o:[`Linear`,`Bent`,`T-shaped`,`Seesaw`],a:`Linear`,e:`Three equatorial lone pairs fill the triangle; the 2 atoms sit axial → linear, 180°. (Notes §6 · Slide 20)`},
+{s:"6",t:"tf",q:`In the T-shaped AX₃E₂ class, both lone pairs occupy equatorial positions.`,a:"true",e:`True — lone pairs ALWAYS go equatorial in the 5-group family. (Notes §6 · Slides 16, 19)`},
+{s:"6",t:"tf",q:`In I₃⁻ the two outer iodine atoms are 180° apart.`,a:"true",e:`True — AX₂E₃ is linear: the bonded atoms take the two axial spots. (Notes §6 · Slide 20)`},
+
+/* ---------- 7 OCTAHEDRAL ---------- */
+{s:"7",t:"mc",q:`The octahedron is a polyhedron with ______.`,o:[`eight equilateral-triangle faces and six identical vertices`,`six triangular faces and eight vertices`,`four square faces`,`ten faces`],a:`eight equilateral-triangle faces and six identical vertices`,e:`Octa = 8 faces; the 6 identical vertices are where the electron groups point. Ideal angles 90°. (Notes §7 · Slide 21)`},
+{s:"7",t:"tf",q:`Unlike trigonal bipyramidal, all six positions in the octahedral arrangement are equivalent.`,a:"true",e:`True — no axial/equatorial distinction; all vertices are identical, so a single lone pair can go anywhere. (Notes §7 · Slide 21)`},
+{s:"7",t:"mc",q:`SF₆ (AX₆) has which shape and bond angles?`,o:[`Octahedral, 90°`,`Trigonal bipyramidal, 120°/90°`,`Square planar, 90°`,`Tetrahedral, 109.5°`],a:`Octahedral, 90°`,e:`All 6 groups bonding → octahedral, 90° everywhere. (Notes §7 · Slide 22)`},
+{s:"7",t:"mc",q:`IF₅ and BrF₅ (AX₅E) have which molecular shape?`,o:[`Square pyramidal`,`Trigonal bipyramidal`,`Octahedral`,`Seesaw`],a:`Square pyramidal`,e:`One lone pair below → a square base with one atom on top = square pyramidal. (Notes §7 · Slide 23)`},
+{s:"7",t:"fib",q:`In IF₅, the lone pair reduces the bond angles to ______°. (number only)`,a:["81.9"],e:`90° squeezes to 81.9° under the lone pair's push. (Notes §7 · Slide 23)`},
+{s:"7",t:"mc",q:`XeF₄ and ICl₄⁻ (AX₄E₂) have which molecular shape?`,o:[`Square planar`,`Tetrahedral`,`Seesaw`,`Square pyramidal`],a:`Square planar`,e:`Two lone pairs (opposite each other) + 4 atoms in a flat square = square planar. (Notes §7 · Slide 24)`},
+{s:"7",t:"mc",q:`In square planar AX₄E₂, the two lone pairs sit ______, and the bond angles ______.`,o:[`opposite (trans) each other — stay at 90°`,`next to each other — shrink to 81.9°`,`both on one side — open to 120°`,`axial and equatorial — shrink to 86.2°`],a:`opposite (trans) each other — stay at 90°`,e:`Trans lone pairs minimize lp–lp repulsion and squeeze every angle EQUALLY, so 90° survives. (Notes §7 · Slide 24)`},
+{s:"7",t:"tf",q:`XeF₄ is tetrahedral because it has four fluorine atoms.`,a:"false",e:`False — count GROUPS, not atoms: Xe has 4 bonds + 2 lone pairs = 6 groups → octahedral arrangement, SQUARE PLANAR shape. (Notes §7 · Slide 24)`},
+
+/* ---------- 8 PROCEDURE & MULTI-CENTER ---------- */
+{s:"8",t:"mc",q:`Put the 4-step VSEPR procedure in order: ______.`,o:[`Lewis structure → count ALL electron groups → predict angles/deviations → count bonding vs lone groups → name shape`,`Name shape → Lewis structure → angles → groups`,`Count atoms → guess shape → draw structure → check angles`,`Measure angles → draw structure → count groups → name shape`],a:`Lewis structure → count ALL electron groups → predict angles/deviations → count bonding vs lone groups → name shape`,e:`Formula → Lewis structure → arrangement → bond angles → AXmEn shape. (Notes §8 · Slide 25)`},
+{s:"8",t:"tf",q:`In step 2 of the procedure, you count only the bonding electron groups.`,a:"false",e:`False — step 2 counts ALL groups (bonding + lone) for the arrangement; bonding vs lone are separated later, in step 4, to name the shape. (Notes §8 · Slide 25)`},
+{s:"8",t:"mc",q:`SOF₄ has 4 single S–F bonds and 1 S=O double bond on sulfur. Its electron-group arrangement is ______.`,o:[`trigonal bipyramidal (5 groups — the double bond counts as one)`,`octahedral (6 groups — the double bond counts as two)`,`tetrahedral (4 groups)`,`square pyramidal`],a:`trigonal bipyramidal (5 groups — the double bond counts as one)`,e:`4 + 1 = 5 groups (S=O is ONE group) → AX₅ trigonal bipyramidal; the fat double bond distorts the ideal 120°/90°. (Notes §8 · Slide 26)`},
+{s:"8",t:"mc",q:`The shape of a molecule with MORE than one central atom is ______.`,o:[`a composite of the shapes around each central atom`,`always linear`,`determined only by the biggest atom`,`impossible to determine`],a:`a composite of the shapes around each central atom`,e:`Work one center at a time, then combine. (Notes §8 · Slide 27)`},
+{s:"8",t:"mc",q:`Ethane (C₂H₆) — two central carbons, no lone pairs — is shaped like ______.`,o:[`two overlapping tetrahedra`,`one big octahedron`,`a flat hexagon`,`two squares`],a:`two overlapping tetrahedra`,e:`Each C is AX₄ tetrahedral; the molecule is the two tetrahedra joined. (Notes §8 · Slide 27)`},
+
+/* ---------- 9 POLARITY ---------- */
+{s:"9",t:"mc",q:`Which is NOT influenced by a molecule's polarity?`,o:[`Melting and boiling point`,`Solubility`,`Reactivity and biological function`,`The number of protons in its atoms`],a:`The number of protons in its atoms`,e:`Polarity drives mp/bp, solubility, reactivity, biological function — not the atoms' proton counts. (Notes §9 · Slide 28)`},
+{s:"9",t:"mc",q:`A covalent bond is POLAR when ______.`,o:[`the two atoms share electrons unequally`,`the two atoms are identical`,`it is a double bond`,`the molecule is large`],a:`the two atoms share electrons unequally`,e:`Unequal sharing (different electronegativities) → δ+ and δ− ends → polar bond. (Notes §9 · Slide 28)`},
+{s:"9",t:"fib",q:`Molecular polarity is measured by a dipole moment, whose unit is the ______ (D).`,a:["debye"],e:`The debye: 1 D = 3.34 × 10⁻³⁰ C·m. (Notes §9 · Slide 28)`},
+{s:"9",t:"mc",q:`1 debye equals ______.`,o:[`3.34 × 10⁻³⁰ C·m`,`6.02 × 10²³ C·m`,`1.6 × 10⁻¹⁹ C`,`9.81 m/s²`],a:`3.34 × 10⁻³⁰ C·m`,e:`1 D = 3.34 × 10⁻³⁰ coulomb·meters. (Notes §9 · Slide 28)`},
+{s:"9",t:"tf",q:`When an electric field is turned on, polar molecules like HF orient with their charged ends toward the oppositely charged plates.`,a:"true",e:`True — field off: random; field on: δ+ ends face the − plate and vice versa. (Notes §9 · Slide 29)`},
+{s:"9",t:"tf",q:`A molecule that contains polar bonds is always a polar molecule.`,a:"false",e:`False — THE key idea: if the shape is symmetric, the bond dipoles cancel (CO₂, BF₃, CCl₄ → nonpolar despite polar bonds). (Notes §9 · Slide 30)`},
+{s:"9",t:"mc",q:`CO₂ has two polar C=O bonds (C EN 2.5, O EN 3.5) yet the molecule is NONPOLAR because ______.`,o:[`its linear shape makes the two bond dipoles cancel`,`carbon is a metal`,`the bonds are actually nonpolar`,`it has lone pairs on carbon`],a:`its linear shape makes the two bond dipoles cancel`,e:`The two dipoles pull in exactly opposite directions → net zero. Shape decides! (Notes §9 · Slide 30)`},
+{s:"9",t:"mc",q:`H₂O is POLAR because ______.`,o:[`its bent shape keeps the two O–H bond dipoles from cancelling`,`it is linear`,`O and H have the same electronegativity`,`it has no lone pairs`],a:`its bent shape keeps the two O–H bond dipoles from cancelling`,e:`Bent (104.5°) → both dipoles point toward O's side → net dipole → polar. (Notes §9 · Slide 30)`},
+{s:"9",t:"mc",q:`CCl₄ and CHCl₃ are both tetrahedral, yet ______.`,o:[`CCl₄ is nonpolar (symmetric) while CHCl₃ is polar (symmetry broken by the H)`,`both are polar`,`both are nonpolar`,`CCl₄ is polar while CHCl₃ is nonpolar`],a:`CCl₄ is nonpolar (symmetric) while CHCl₃ is polar (symmetry broken by the H)`,e:`Same shape, different outer atoms: 4 identical C–Cl dipoles cancel; swap one Cl for H and they don't. (Notes §9 · Slide 30)`},
+{s:"9",t:"mc",q:`Predict: NH₃ and BF₃ — which is polar?`,o:[`NH₃ (trigonal pyramidal — dipoles add toward the lone pair) — BF₃ is nonpolar (symmetric trigonal planar)`,`BF₃ only`,`Both are polar`,`Neither is polar`],a:`NH₃ (trigonal pyramidal — dipoles add toward the lone pair) — BF₃ is nonpolar (symmetric trigonal planar)`,e:`NH₃'s pyramid gives a net dipole toward N; BF₃'s flat symmetric triangle cancels perfectly. (Notes §9 · Slide 31)`},
+{s:"9",t:"mc",q:`COS (carbonyl sulfide) is linear like CO₂, but it IS polar because ______.`,o:[`O and S have different electronegativities, so the two bond dipoles don't cancel`,`it is bent`,`sulfur has no electrons`,`linear molecules are always polar`],a:`O and S have different electronegativities, so the two bond dipoles don't cancel`,e:`Linear cancellation only works when BOTH ends match. O ≠ S → unequal dipoles → net dipole. (Notes §9 · Slide 31)`},
+{s:"9",t:"fibm",q:`cis-1,2-dichloroethene has μ = ___ D and boils at 60.3 °C; the trans isomer has μ = ___ D and boils at 47.5 °C.`,a:[["1.90","1.9"],["0","zero","0 d"]],e:`cis: dipoles add → μ = 1.90 D; trans: dipoles cancel → μ = 0 D. The polar cis isomer boils 12.8 °C higher. (Notes §9 · Slide 32)`},
+{s:"9",t:"tf",q:`The polar (cis) isomer of 1,2-dichloroethene has a HIGHER boiling point than the nonpolar (trans) isomer.`,a:"true",e:`True — polarity → stronger intermolecular forces → more energy to boil: 60.3 °C vs 47.5 °C. (Notes §9 · Slide 32)`},
+{s:"9",t:"mc",q:`Order the behavior chain correctly: ______.`,o:[`ΔEN → bond polarity → molecular polarity → intermolecular forces → physical properties/solubility/reactivity`,`physical properties → molecular polarity → ΔEN → bond polarity`,`intermolecular forces → ΔEN → bond polarity → solubility`,`bond polarity → ΔEN → forces → polarity`],a:`ΔEN → bond polarity → molecular polarity → intermolecular forces → physical properties/solubility/reactivity`,e:`Atomic property (ΔEN) cascades all the way up to bulk behavior. (Notes §9 · Slide 33)`}
+];
+/* keep questions grouped by section for clean display */
+BANK.sort((a,b)=>(+a.s)-(+b.s));
+
+/* ===== ENGINE ===== */
+const quiz=document.getElementById('quiz');
+const results=document.getElementById('results');
+const counter=document.getElementById('counter');
+const submitBtn=document.getElementById('submitBtn');
+const retryBtn=document.getElementById('retryBtn');
+const restartBtn=document.getElementById('restartBtn');
+const modechip=document.getElementById('modechip');
+document.getElementById('qcount').textContent=BANK.length;
+
+const ALL=BANK.map((_,i)=>i);
+let currentSet=ALL.slice();
+let gradedState={};
+let lastWrong=[];
+
+function norm(s){return String(s).toLowerCase().trim().replace(/[.,;:!?"'`°]/g,'').replace(/\s+/g,' ').replace(/^(the|a|an)\s+/,'');}
+function appendCheck(card,qi){
+  const b=document.createElement('button');
+  b.type='button'; b.className='checkbtn'; b.id='chk'+qi; b.textContent='Check';
+  b.addEventListener('click',()=>gradeOne(qi));
+  card.appendChild(b);
+  const fb=document.createElement('div'); fb.className='fb'; fb.id='fb'+qi;
+  card.appendChild(fb);
+}
+
+function render(indices,isRetry){
+  currentSet=indices.slice();
+  gradedState={}; lastWrong=[];
+  quiz.innerHTML='';
+  results.classList.add('hidden');
+  retryBtn.classList.add('hidden');
+  restartBtn.classList.toggle('hidden',!isRetry);
+  submitBtn.classList.remove('hidden');
+  submitBtn.textContent='Grade All & Show Results';
+  modechip.classList.toggle('hidden',!isRetry);
+  if(isRetry) modechip.textContent='Retry Mode · '+indices.length+' left';
+  let lastSec=null;
+  indices.forEach((qi,pos)=>{
+    const q=BANK[qi];
+    if(!isRetry && q.s!==lastSec){
+      const h=document.createElement('div');
+      h.className='sechead';
+      h.textContent=SEC[q.s];
+      quiz.appendChild(h);
+      lastSec=q.s;
+    }
+    quiz.appendChild(buildCard(qi,q,pos+1,isRetry));
+  });
+  updateScore();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function buildCard(qi,q,num,isRetry){
+  const card=document.createElement('div');
+  card.className='q'; card.id='card'+qi;
+  const typeLabel={tf:'True / False',mc:'Multiple Choice',fib:'Fill in the Blank',fibm:'Fill in the Blanks'}[q.t];
+  const head=document.createElement('div');
+  head.innerHTML=`<span class="qnum">${num}.</span>`+(isRetry?`<span class="secbadge">${SEC[q.s]}</span> `:'')+`<span class="qtype">${typeLabel}</span>`;
+  card.appendChild(head);
+
+  if(q.t==='fibm'){
+    const line=document.createElement('div');
+    line.className='qtext blankline';
+    const parts=q.q.split(/_{3,}/);
+    parts.forEach((seg,idx)=>{
+      line.appendChild(document.createTextNode(seg));
+      if(idx<parts.length-1){
+        const inp=document.createElement('input');
+        inp.type='text'; inp.className='blank'; inp.id='fibm'+qi+'_'+idx;
+        inp.autocomplete='off'; inp.placeholder='?';
+        inp.addEventListener('input',updateCounter);
+        line.appendChild(inp);
+      }
+    });
+    card.appendChild(line);
+    appendCheck(card,qi);
+    return card;
+  }
+
+  const txt=document.createElement('div');
+  txt.className='qtext'; txt.textContent=q.q;
+  card.appendChild(txt);
+
+  if(q.t==='fib'){
+    const inp=document.createElement('input');
+    inp.type='text'; inp.id='fib'+qi; inp.placeholder='Type your answer…';
+    inp.autocomplete='off'; inp.addEventListener('input',updateCounter);
+    card.appendChild(inp);
+  } else {
+    const opts=(q.t==='tf')?['true','false']:q.o;
+    const wrap=document.createElement('div'); wrap.className='opts';
+    opts.forEach(opt=>{
+      const lab=document.createElement('label');
+      const disp=(q.t==='tf')?(opt==='true'?'True':'False'):opt;
+      lab.innerHTML=`<input type="radio" name="q${qi}" value="${opt.replace(/"/g,'&quot;')}"> ${disp}`;
+      lab.querySelector('input').addEventListener('change',()=>{
+        wrap.querySelectorAll('label').forEach(l=>l.classList.remove('pick'));
+        lab.classList.add('pick'); updateCounter();
+      });
+      wrap.appendChild(lab);
+    });
+    card.appendChild(wrap);
+  }
+  appendCheck(card,qi);
+  return card;
+}
+
+function getUser(qi,q){
+  if(q.t==='fibm'){
+    return q.a.map((_,k)=>{const el=document.getElementById('fibm'+qi+'_'+k);return el?el.value:'';});
+  }
+  if(q.t==='fib'){const el=document.getElementById('fib'+qi);return el?el.value:'';}
+  const el=document.querySelector(`input[name="q${qi}"]:checked`);
+  return el?el.value:null;
+}
+function isAnswered(qi,q){
+  const v=getUser(qi,q);
+  if(q.t==='fibm') return v.every(x=>x&&x.trim()!=='');
+  return q.t==='fib'? (v&&v.trim()!=='') : v!==null;
+}
+function blankOK(userVal,accepted){
+  return !!userVal && accepted.map(norm).includes(norm(userVal));
+}
+function check(qi,q){
+  const v=getUser(qi,q);
+  if(q.t==='fibm'){
+    return q.a.every((acc,k)=>blankOK(v[k],acc));
+  }
+  if(q.t==='fib'){
+    if(!v) return false;
+    return q.a.map(norm).includes(norm(v));
+  }
+  return v===q.a;
+}
+function correctText(q){
+  if(q.t==='tf') return q.a==='true'?'True':'False';
+  if(q.t==='fibm') return q.a.map(acc=>acc[0]).join('  ·  ');
+  if(q.t==='fib') return q.a[0];
+  return q.a;
+}
+
+function updateScore(){
+  const g=currentSet.filter(qi=>qi in gradedState);
+  const c=g.filter(qi=>gradedState[qi]).length;
+  const pct=g.length?Math.round(c/g.length*100):0;
+  counter.textContent=`Checked ${g.length}/${currentSet.length} · Score ${c} (${pct}%)`;
+}
+const updateCounter=updateScore; // input listeners call this
+
+function markCard(qi,q,ok){
+  const card=document.getElementById('card'+qi);
+  card.classList.add(ok?'correct':'incorrect');
+  if(q.t==='fibm'){
+    const v=getUser(qi,q);
+    q.a.forEach((acc,k)=>{const inp=document.getElementById('fibm'+qi+'_'+k);if(inp){inp.classList.add(blankOK(v[k],acc)?'ansright':'answrong');inp.disabled=true;}});
+  } else if(q.t==='fib'){
+    const inp=document.getElementById('fib'+qi); inp.classList.add(ok?'ansright':'answrong'); inp.disabled=true;
+  } else {
+    document.querySelectorAll(`#card${qi} .opts label`).forEach(l=>{
+      const inp=l.querySelector('input'); inp.disabled=true;
+      if(inp.value===q.a) l.classList.add('ansright');
+      if(inp.checked && inp.value!==q.a) l.classList.add('answrong');
+    });
+  }
+}
+
+function gradeOne(qi){
+  if(qi in gradedState) return;
+  const q=BANK[qi]; const ok=check(qi,q);
+  gradedState[qi]=ok;
+  markCard(qi,q,ok);
+  const btn=document.getElementById('chk'+qi);
+  if(btn){btn.disabled=true; btn.textContent=ok?'✓ Checked':'✗ Checked'; btn.style.background=ok?'#1e8449':'#c0392b';}
+  const fb=document.getElementById('fb'+qi);
+  fb.className='fb show '+(ok?'good':'no');
+  fb.innerHTML=(ok?'✅ <b>Correct.</b> ':`❌ <b>Not quite.</b> Correct answer: <b>${correctText(q)}</b>. `)+q.e+`<div class="tut" style="margin-top:8px"><b>📘 Topic recap — ${SEC[q.s]}</b><br>${TUT[q.s]||''}</div>`;
+  updateScore();
+}
+
+function gradeAll(){
+  currentSet.forEach(qi=>{ if(!(qi in gradedState)) gradeOne(qi); });
+  showResults();
+}
+
+function showResults(){
+  let correct=0; const wrong=[]; const sec={};
+  currentSet.forEach(qi=>{
+    const q=BANK[qi]; const ok=!!gradedState[qi];
+    sec[q.s]=sec[q.s]||{c:0,t:0}; sec[q.s].t++;
+    if(ok){correct++; sec[q.s].c++;} else wrong.push(qi);
+  });
+  const total=currentSet.length, pct=Math.round(correct/total*100);
+  let rows='';
+  Object.keys(sec).sort((a,b)=>(a==='0'?-1:b==='0'?1:(+a)-(+b))).forEach(k=>{
+    const s=sec[k]; const p=Math.round(s.c/s.t*100);
+    rows+=`<tr><td>${SEC[k]}</td><td>${s.c}/${s.t}</td><td><div class="barwrap"><div class="bar" style="width:${p}%;background:${p>=80?'#1e8449':p>=50?'#b7950b':'#c0392b'}"></div></div></td><td>${p}%</td></tr>`;
+  });
+  const verdict=pct===100?'🎉 Perfect — you\'ve got this cold!':pct>=90?'💪 Excellent.':pct>=75?'👍 Good — a few to shore up.':pct>=50?'📚 Getting there — review and retry.':'🔁 Keep going — retry the misses.';
+  results.innerHTML=`<h2>Results</h2><div class="bigscore" style="color:${pct>=80?'#1e8449':pct>=50?'#b7950b':'#c0392b'}">${correct} / ${total}</div><div class="pct">${pct}% &nbsp;·&nbsp; ${verdict}</div><table class="secgrid"><tr><th>Section</th><th>Score</th><th>&nbsp;</th><th>%</th></tr>${rows}</table>${wrong.length?`<p style="margin:8px 0 0"><strong style="color:#c0392b">${wrong.length}</strong> wrong — marked in red below. Use <strong>Retry Wrong Only</strong>.</p>`:`<p style="margin:8px 0 0;color:#1e8449"><strong>No wrong answers — nice!</strong></p>`}`;
+  results.classList.remove('hidden');
+  restartBtn.classList.remove('hidden');
+  retryBtn.classList.toggle('hidden',wrong.length===0);
+  if(wrong.length) retryBtn.textContent=`Retry Wrong Only (${wrong.length})`;
+  lastWrong=wrong;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+submitBtn.addEventListener('click',gradeAll);
+retryBtn.addEventListener('click',()=>{ if(lastWrong.length) render(lastWrong,true); });
+restartBtn.addEventListener('click',()=>{ render(ALL,false); });
+
+render(ALL,false);
+</script>
+</body>
+</html>

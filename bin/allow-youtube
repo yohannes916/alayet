@@ -4,6 +4,12 @@
 #   allow-youtube channel UC_x5XG1OV2P6uZZ5FSM9Ttw
 #   allow-youtube video   aqz-KE-bpKQ
 #   allow-youtube handle  @NationalGeographic
+#
+# Channels are stored in BOTH identity forms (UC id + @handle): YouTube's
+# surfaces (oEmbed author_url, owner links) may present either, so the paired
+# form is resolved from the channel page via `yt-resolve` and added
+# automatically. If resolution fails the entry is still added as-is (matching
+# may then miss the other form — re-run later to complete the pair).
 set -euo pipefail
 PREFIX="/opt/parental"
 # shellcheck disable=SC1091
@@ -14,12 +20,37 @@ require_root
 kind="$1"; id="$2"
 case "$kind" in channel|video|handle) ;; *) die "kind must be channel|video|handle" ;; esac
 
-line="${kind}: ${id}"
-if grep -qxF "$line" <(read_list "$(installed_yt)"); then
-  warn "Already allowed: $line"
+# Normalized membership test against the live list (comments/whitespace-proof).
+has_line() {
+  read_list "$(installed_yt)" | sed -E 's/[[:space:]]+/ /g; s/ $//' | grep -qxF "$1"
+}
+
+added=0
+add_line() { # add_line "<kind>: <value>" ["comment"]
+  local l="$1" c="${2:-}"
+  if has_line "$l"; then return 0; fi
+  if [[ -n "$c" ]]; then printf '%s   # %s\n' "$l" "$c" >> "$(installed_yt)"
+  else printf '%s\n' "$l" >> "$(installed_yt)"; fi
+  ok "Added: $l"
+  added=1
+}
+
+if has_line "${kind}: ${id}"; then
+  warn "Already allowed: ${kind}: ${id}"
 else
-  echo "$line" >> "$(installed_yt)"
-  ok "Added: $line"
+  add_line "${kind}: ${id}"
+fi
+
+# Auto-pair channels: store both the UC id and the @handle.
+if [[ "$kind" == "channel" || "$kind" == "handle" ]]; then
+  if pair="$("${PREFIX}/bin/yt-resolve" "$id" 2>/dev/null)"; then
+    uc="${pair%% *}"; h="${pair##* }"
+    [[ "$uc" != "?" ]] && add_line "channel: ${uc}" "pairs ${id}"
+    [[ "$h"  != "?" ]] && add_line "handle: ${h}"   "pairs ${id}"
+  else
+    warn "Could not resolve ${id} to its UC-id/@handle pair (network?). Added as-is;"
+    warn "run 'allow-youtube ${kind} ${id}' again later to complete the pair."
+  fi
 fi
 
 "${PREFIX}/scripts/regenerate.sh"

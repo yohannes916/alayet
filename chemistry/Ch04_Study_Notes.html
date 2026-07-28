@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 4 Master Study Table — Elements, Atoms, and Ions</title>
+<style>
+  :root {
+    --accent: #1a5276;
+    --accent-light: #2e86c1;
+    --bg: #f4f6f7;
+    --card: #ffffff;
+    --star: #b7950b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+    color: #212f3d;
+    background: var(--bg);
+    margin: 0;
+    padding: 0 16px 60px;
+  }
+  .wrap { max-width: 1000px; margin: 0 auto; }
+  header {
+    background: linear-gradient(135deg, var(--accent), var(--accent-light));
+    color: #fff;
+    padding: 30px 28px;
+    border-radius: 0 0 14px 14px;
+    margin: 0 -16px 24px;
+    box-shadow: 0 4px 14px rgba(0,0,0,.12);
+  }
+  header h1 { margin: 0 0 6px; font-size: 1.6rem; }
+  header p { margin: 0; opacity: .92; font-size: .98rem; }
+  .howto {
+    background: #eaf2f8;
+    border-left: 5px solid var(--accent-light);
+    padding: 12px 18px;
+    border-radius: 8px;
+    margin-bottom: 26px;
+    font-size: .95rem;
+  }
+  .howto strong { color: #154360; }
+  section {
+    background: var(--card);
+    border-radius: 10px;
+    padding: 16px 20px 20px;
+    margin-bottom: 18px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.06);
+  }
+  h2 {
+    color: var(--accent);
+    font-size: 1.14rem;
+    margin: 0 0 4px;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+  h2 .num {
+    background: var(--accent);
+    color: #fff;
+    font-size: .8rem;
+    font-weight: 700;
+    border-radius: 6px;
+    padding: 2px 9px;
+    flex: none;
+  }
+  h2 .sec { color: #85929e; font-size: .78rem; font-weight: 500; margin-left: auto; }
+  table.core {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 4px;
+    font-size: .92rem;
+  }
+  table.core th, table.core td {
+    text-align: left;
+    padding: 8px 11px;
+    border: 1px solid #d5dbdb;
+    vertical-align: top;
+  }
+  table.core th {
+    background: var(--accent);
+    color: #fff;
+    font-weight: 600;
+    font-size: .82rem;
+    text-transform: uppercase;
+    letter-spacing: .3px;
+  }
+  table.core tr:nth-child(even) td { background: #f8fbfd; }
+  table.core td:first-child { font-weight: 700; color: #154360; width: 20%; }
+  table.core td:nth-child(2) { width: 45%; }
+  strong { color: #154360; }
+  em.hi { font-style: normal; background: #fef9e7; padding: 0 3px; border-radius: 3px; }
+  code, .fml {
+    background: #eaf2f8;
+    border-radius: 4px;
+    padding: 1px 5px;
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    font-size: .88em;
+    color: #1a5276;
+  }
+  .focus {
+    background: linear-gradient(135deg, #fdf2e9, #fef9e7);
+    border: 1px solid #f5cba7;
+  }
+  .focus h2 { color: var(--star); }
+  .focus ol { padding-left: 22px; margin: 8px 0 0; }
+  .focus li { margin-bottom: 7px; }
+  .tree {
+    background: #1b2631;
+    color: #eaeded;
+    border-radius: 8px;
+    padding: 15px 18px;
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    font-size: .84rem;
+    line-height: 1.5;
+    overflow-x: auto;
+    margin: 6px 0 4px;
+    white-space: pre;
+  }
+  .tree .b { color: #7fb3d5; font-weight: 700; }
+  .tree .g { color: #82e0aa; }
+  .tree .y { color: #f7dc6f; }
+  footer { text-align: center; color: #85929e; font-size: .85rem; margin-top: 24px; }
+  @media print {
+    body { background: #fff; }
+    section, .howto, header { box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Chapter 4 — Master Study Table</h1>
+  <p>Chemical Foundations: Elements, Atoms, and Ions · Zumdahl 9e · Built to be studied <em>standalone</em> (no slides needed)</p>
+</header>
+
+<div class="howto">
+  <strong>How to use this:</strong> Every row is a flashcard — <strong>Concept</strong> = front,
+  <strong>What to understand</strong> + <strong>Key facts / examples</strong> = back. Sections are
+  numbered <strong>1→11 in the order concepts build on each other</strong>, so read top-to-bottom
+  the first time through. Highlighted <em class="hi">yellow</em> bits are the highest-value,
+  most-testable points.
+</div>
+
+<!-- ===================== 1. COMPOSITION OF MATTER ===================== -->
+<section>
+  <h2><span class="num">1</span> What Matter Is Made Of <span class="sec">§4.1, 4.3</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>Matter</td><td>Anything with <strong>mass</strong> and <strong>volume</strong>. The umbrella for everything; splits into pure substances and mixtures.</td><td>Top of the hierarchy.</td></tr>
+      <tr><td>Mixture</td><td>Two+ substances <strong>physically</strong> combined, <em class="hi">NOT chemically bonded</em>, in <strong>variable</strong> proportions. Separable by physical means (filtering, distillation, evaporation).</td><td>Salt water, air, trail mix. Most natural materials are mixtures.</td></tr>
+      <tr><td>Pure substance</td><td>Fixed, uniform composition throughout. It is either an <strong>element</strong> or a <strong>compound</strong>.</td><td>Distilled water, pure copper.</td></tr>
+      <tr><td>Element</td><td>Pure substance made of only <em class="hi">ONE type of atom</em>; cannot be broken down chemically.</td><td>118 known; <strong>88 natural</strong>, rest lab-made. Just <strong>9 elements = &gt;98%</strong> of Earth's crust + oceans + atmosphere. (O, C, N are the basis of all biological molecules — living matter ≠ crust.)</td></tr>
+      <tr><td>Compound</td><td>Pure substance of <em class="hi">2+ different elements chemically bonded</em> in a fixed mass ratio. Has <strong>new properties</strong>, unlike the elements it's made of.</td><td>H₂O, NaCl, CO₂. H (explosive) + O (feeds fire) → water (douses fire).</td></tr>
+      <tr><td>Atom</td><td>The <strong>smallest unit</strong> that still has an element's identity. Built from protons, neutrons, electrons.</td><td>The "brick." (Detailed in §5–6.)</td></tr>
+      <tr><td>Molecule</td><td>Two+ atoms bonded together. <em class="hi">The trap:</em> a molecule can be an <strong>element</strong> (same atoms) OR a <strong>compound</strong> (different atoms).</td><td>O₂ = molecule + element; H₂O = molecule + compound. Not all molecules are compounds.</td></tr>
+      <tr><td>Diatomic molecule</td><td>A molecule of <strong>exactly 2 atoms</strong>. Seven elements occur naturally only in this form.</td><td><em class="hi">H₂, N₂, O₂, F₂, Cl₂, Br₂, I₂.</em> They make a "7" shape on the periodic table + H.</td></tr>
+      <tr><td>Allotrope</td><td>Different <strong>structural forms of the same element</strong> (same atoms, different arrangement/properties).</td><td>Carbon → diamond, graphite, buckminsterfullerene (C₆₀).</td></tr>
+      <tr><td>Uses of "element"</td><td>The word is context-dependent — read each case.</td><td>A single atom (Ar), a natural molecular form (H₂), or atoms bound in something (Na in the body).</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================== 2. SYMBOLS & NAMES ===================== -->
+<section>
+  <h2><span class="num">2</span> Symbols &amp; Names of Elements <span class="sec">§4.2</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>Symbol rule</td><td>Each element has a unique 1–2 letter symbol. <em class="hi">First letter ALWAYS capital, second ALWAYS lowercase.</em> Usually the first letter(s) of the name.</td><td>O (oxygen), Kr (krypton). Watch: "CO" = carbon + oxygen (2 elements) vs "Co" = cobalt (1 element).</td></tr>
+      <tr><td>Latin / Greek symbols</td><td>Some symbols come from the old (Latin/Greek) name, not English — <strong>must be memorized</strong>.</td><td>Au=aurum (gold), Pb=plumbum (lead), Na=natrium (sodium), K=kalium (potassium), Fe=ferrum (iron), Ag=argentum (silver), Sn=stannum (tin), Sb=stibium (antimony), Hg=hydrargyrum (mercury), Cu=cuprum (copper), W=wolfram (tungsten).</td></tr>
+      <tr><td>Common symbols to know</td><td>Memorize the everyday elements so formulas read instantly.</td><td>H, C, N, O, Na, Mg, Al, Si, P, S, Cl, K, Ca, Fe, Cu, Zn, Ag, Sn, I, Au, Hg, Pb.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================== 3. DALTON & THE LAWS ===================== -->
+<section>
+  <h2><span class="num">3</span> Dalton's Atomic Theory &amp; the Laws Behind It <span class="sec">§4.3</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>Law of Constant (Definite) Composition</td><td>A given compound <em class="hi">always has the same proportions by mass</em> of its elements, no matter its source.</td><td>Water: always <strong>8 g O per 1 g H</strong>. CO₂: always <strong>2.7 g O per 1 g C</strong>.</td></tr>
+      <tr><td>Dalton's Atomic Theory (5 points)</td><td>(1) Elements are made of tiny <strong>atoms</strong>. (2) All atoms of a given element are <strong>identical</strong>. (3) Atoms of different elements <strong>differ</strong>. (4) Atoms combine in <strong>fixed whole-number ratios</strong> to form compounds. (5) Atoms are <strong>indivisible</strong> — not created or destroyed in reactions; a reaction just <em class="hi">rearranges</em> them.</td><td>Explains constant composition + conservation of mass.</td></tr>
+      <tr><td>What Dalton got WRONG (modern update)</td><td><em class="hi">Common exam question.</em> Wrong today: atoms ARE divisible (protons/neutrons/electrons); atoms of one element are NOT all identical (<strong>isotopes</strong>); atoms can change in <strong>nuclear</strong> (not chemical) reactions. Still true: atoms exist, different elements = different atoms, fixed ratios in compounds.</td><td>Point (2) fails because of isotopes; point (5) fails only for nuclear reactions.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================== 4. CHEMICAL FORMULAS ===================== -->
+<section>
+  <h2><span class="num">4</span> Chemical Formulas <span class="sec">§4.4</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>Chemical formula</td><td>Shows the <strong>types of atoms</strong> and the <strong>number of each</strong> in one unit/molecule of a compound.</td><td>H₂O = 2 H + 1 O.</td></tr>
+      <tr><td>Rules for writing formulas</td><td>Each atom = its element symbol; the count is a <strong>subscript to the right</strong>; a subscript of <em class="hi">"1" is never written</em>.</td><td>DDT = <span class="fml">C₁₄H₉Cl₅</span> → 14 C, 9 H, 5 Cl.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================== 5. DISCOVERING ATOMIC STRUCTURE ===================== -->
+<section>
+  <h2><span class="num">5</span> How We Discovered the Atom's Structure (History) <span class="sec">§4.5</span></h2>
+  <table class="core">
+    <thead><tr><th>Scientist / model</th><th>What to understand</th><th>Key facts / result</th></tr></thead>
+    <tbody>
+      <tr><td>Thomson — Plum Pudding (also discovered the electron)</td><td>Atom = a uniform <strong>"pudding" of positive charge</strong> with negative electrons scattered throughout to balance it.</td><td>Later shown wrong — but it introduced electrons.</td></tr>
+      <tr><td>Rutherford (1911) — Gold Foil experiment</td><td>Fired <strong>alpha particles</strong> at thin metal foil. Most passed straight through, but a few bounced back sharply → the atom has a tiny, <em class="hi">dense, positive NUCLEUS</em>; electrons are far outside; the atom is mostly <strong>empty space</strong>. Disproved plum pudding.</td><td>Discovered the <strong>nucleus</strong> and the <strong>proton</strong> (+ charge = electron's − charge).</td></tr>
+      <tr><td>Chadwick (1932) — the Neutron</td><td>Most nuclei also contain a <strong>neutron</strong>: a neutral particle, slightly more massive than a proton.</td><td>Completes the 3 subatomic particles.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================== 6. THE MODERN ATOM ===================== -->
+<section>
+  <h2><span class="num">6</span> The Modern Atom — Subatomic Particles <span class="sec">§4.6</span></h2>
+  <table class="core">
+    <thead><tr><th>Particle</th><th>Charge / mass / location</th><th>Why it matters</th></tr></thead>
+    <tbody>
+      <tr><td>Proton</td><td>Charge <strong>+1</strong>; mass ≈ <strong>1 amu</strong> (1.0073); in the <strong>nucleus</strong>.</td><td><em class="hi"># of protons = the element's identity.</em></td></tr>
+      <tr><td>Neutron</td><td>Charge <strong>0</strong>; mass ≈ <strong>1 amu</strong> (1.0087, ~same as proton); in the <strong>nucleus</strong>.</td><td>Adds mass, not charge; its count varies between isotopes.</td></tr>
+      <tr><td>Electron</td><td>Charge <strong>−1</strong>; mass ≈ <strong>1/1836 amu</strong> (~0.0005, negligible); <strong>outside</strong> the nucleus.</td><td><em class="hi">Determines chemical behavior</em> (see below).</td></tr>
+      <tr><td>Nucleus</td><td>Tiny, dense core holding protons + neutrons; contains nearly <strong>all the mass</strong>.</td><td>If the atom were a stadium, the nucleus is a pea at center — atom is mostly empty space.</td></tr>
+      <tr><td>Why electrons drive chemistry</td><td>An atom's chemistry comes from its <strong>electrons</strong> — they're what "intermingle" when atoms bond.</td><td>This is <em class="hi">why isotopes behave chemically the same</em> (same electrons).</td></tr>
+      <tr><td>Neutral atom</td><td>In a neutral atom, <strong># protons = # electrons</strong> (charges cancel).</td><td>Change electrons → <strong>ion</strong>; change neutrons → <strong>isotope</strong>; change protons → different element.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================== 7. ISOTOPES ===================== -->
+<section>
+  <h2><span class="num">7</span> Counting Inside the Atom — Isotopes <span class="sec">§4.7</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>Notation</td><td>Written <span class="fml">ᴬ<sub>Z</sub>X</span> — mass number on <strong>top</strong>, atomic number on <strong>bottom</strong>, element symbol X.</td><td><span class="fml">¹⁴₆C</span>, <span class="fml">¹²₆C</span>.</td></tr>
+      <tr><td>Atomic number (Z)</td><td>= number of <em class="hi">PROTONS</em>. Defines which element it is. (In a neutral atom, also = # electrons.)</td><td>Z(C) = 6.</td></tr>
+      <tr><td>Mass number (A)</td><td>= number of <em class="hi">PROTONS + NEUTRONS</em>.</td><td>A(¹⁴C) = 14.</td></tr>
+      <tr><td>Finding neutrons</td><td><strong>neutrons = A − Z</strong> (mass number − atomic number).</td><td>¹⁴C: 14 − 6 = 8 neutrons. ¹²C: 6 neutrons.</td></tr>
+      <tr><td>Isotope</td><td>Atoms of the <em class="hi">same element (same Z) with different numbers of neutrons</em> (different A). Nearly identical chemistry. Elements occur naturally as mixtures of isotopes.</td><td>¹²C (6 n) vs ¹⁴C (8 n) — both carbon.</td></tr>
+      <tr><td>Worked example</td><td>Given protons &amp; neutrons → find A and identify element.</td><td>23 p + 28 n → A = 51; Z = 23 → <strong>Vanadium (V)</strong>.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================== 8. PERIODIC TABLE ===================== -->
+<section>
+  <h2><span class="num">8</span> Organizing the Elements — Periodic Table <span class="sec">§4.8</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>Ordering</td><td>All known elements listed by <em class="hi">increasing atomic number (Z)</em>.</td><td>—</td></tr>
+      <tr><td>Group / Family</td><td><strong>Vertical column.</strong> Elements share <em class="hi">similar chemical properties</em> (same # of outer/valence electrons).</td><td>Predicts ion charge (§10).</td></tr>
+      <tr><td>Period</td><td><strong>Horizontal row.</strong></td><td>—</td></tr>
+      <tr><td>Metals</td><td>Left + middle (<strong>most</strong> elements). Conduct heat &amp; electricity; <strong>malleable</strong> (hammer into sheets); <strong>ductile</strong> (draw into wire); <strong>lustrous</strong>. Tend to <em class="hi">LOSE</em> electrons → cations.</td><td>—</td></tr>
+      <tr><td>Nonmetals</td><td>Right side. Lack metallic properties; vary widely; solid/liquid/gas at room temp. Tend to <em class="hi">GAIN</em> electrons → anions.</td><td>—</td></tr>
+      <tr><td>Metalloids</td><td>Along the metal/nonmetal "staircase"; a <strong>mix</strong> of metallic + nonmetallic properties.</td><td>B, Si, Ge, As, Sb, Te.</td></tr>
+      <tr><td>Key named groups</td><td>Learn these — they predict ion charges.</td><td><strong>1A</strong> alkali metals · <strong>2A</strong> alkaline earth metals · <strong>7A</strong> halogens · <strong>8A</strong> noble gases · middle block = <strong>transition metals</strong>.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================== 9. NATURAL STATES ===================== -->
+<section>
+  <h2><span class="num">9</span> Natural States of the Elements <span class="sec">§4.9</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>Reactivity → natural state</td><td>Most elements are <strong>reactive</strong>, so they are found <em class="hi">combined</em> (in compounds), not pure.</td><td>—</td></tr>
+      <tr><td>Uncombined exceptions</td><td>A few elements are unreactive enough to occur <strong>free/pure</strong> in nature.</td><td><strong>Noble metals:</strong> gold (Au), platinum (Pt), silver (Ag). <strong>Noble gases:</strong> Group 8A (exist as single atoms).</td></tr>
+      <tr><td>(Recall: diatomics &amp; allotropes)</td><td>Elemental forms aren't always single atoms — see §1 (diatomic molecules, allotropes).</td><td>N₂, O₂ …; carbon allotropes.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================== 10. IONS ===================== -->
+<section>
+  <h2><span class="num">10</span> Ions — Charged Atoms <span class="sec">§4.10</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>Ion</td><td>An atom (or group) that has <em class="hi">gained or lost electrons</em> → net charge. Protons stay fixed; only electrons change.</td><td>—</td></tr>
+      <tr><td>Cation (+)</td><td><strong>Positive</strong> ion; formed when an atom (usually a <strong>METAL</strong>) <em class="hi">LOSES</em> electrons. Named the same as the parent atom.</td><td>Na → Na⁺ + e⁻ ("sodium ion"). Memory: ca<strong>t</strong>ion, the "t" is a "+".</td></tr>
+      <tr><td>Anion (−)</td><td><strong>Negative</strong> ion; formed when an atom (usually a <strong>NONMETAL</strong>) <em class="hi">GAINS</em> electrons. Named as root + <strong>"-ide"</strong>.</td><td>Cl → Cl⁻ (chlor<strong>ide</strong>); O → O²⁻ (ox<strong>ide</strong>).</td></tr>
+      <tr><td>Predict charge from group</td><td>Atoms gain/lose electrons to reach the <em class="hi">nearest noble-gas electron count (octet)</em>. So charge is predictable by column:</td><td>1A → 1+ · 2A → 2+ · (3A → 3+) · 5A → 3− · 6A → 2− · <strong>7A → 1−</strong> · <strong>8A → 0</strong>.</td></tr>
+      <tr><td>Isoelectronic idea (the "why")</td><td>Ions form so their electron count matches a noble gas. Different ions can have the <strong>same # electrons</strong>.</td><td>Na⁺, Mg²⁺, F⁻, O²⁻ all have 10 e⁻ (like Ne).</td></tr>
+      <tr><td>ID an ion from particle counts</td><td>Key equation: <em class="hi">protons = electrons + charge</em> (charge signed: +2 adds, −1 subtracts). Then protons → element via Z.</td><td><strong>Ex 1:</strong> 3+ ion, 23 e⁻ → p = 23+3 = 26 → <strong>Fe³⁺</strong>. <strong>Ex 2:</strong> X⁺, 54 e⁻, 78 n → p = 55 (Cs), A = 55+78 = <strong>133</strong>. <strong>CC1:</strong> XCl₂ so X is 2+; 20 e⁻ → p = 22 → <strong>Ti²⁺</strong> (not Ca!). </td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================== 11. IONIC COMPOUNDS ===================== -->
+<section>
+  <h2><span class="num">11</span> Compounds That Contain Ions <span class="sec">§4.11</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>Ionic compound</td><td>Forms when <strong>cations + anions</strong> attract and combine (electrostatic attraction). Usually <strong>metal + nonmetal</strong>.</td><td>NaCl.</td></tr>
+      <tr><td>Properties</td><td><em class="hi">High melting points</em>. Conduct electricity <strong>when melted or dissolved in water</strong> (ions free to move) — but NOT as a solid.</td><td>—</td></tr>
+      <tr><td>Neutrality rule</td><td>An ionic compound is <strong>electrically neutral</strong> — total + charge and total − charge <em class="hi">must sum to zero</em>.</td><td>—</td></tr>
+      <tr><td>Writing ionic formulas</td><td>Write <strong>cation first, then anion</strong>; choose subscripts so charges cancel. <strong>Crossover trick:</strong> use each ion's charge number as the other's subscript, then reduce.</td><td>Ca²⁺ + Br⁻ → <span class="fml">CaBr₂</span>. Al³⁺ + O²⁻ → <span class="fml">Al₂O₃</span>. <strong>CC2:</strong> alkaline-earth ion with 36 e⁻ = Sr²⁺; with Br⁻ → <span class="fml">SrBr₂</span>.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================== HIERARCHY ===================== -->
+<section>
+  <h2><span class="num">★</span> The One Diagram to Anchor It All</h2>
+  <div class="tree"><span class="b">MATTER</span>
+├── <span class="g">Pure Substances</span> (fixed composition)
+│     ├── <span class="y">Elements</span>   → one type of atom      (O₂, Fe, He)
+│     └── <span class="y">Compounds</span>  → 2+ elements bonded     (H₂O, NaCl, CO₂)
+└── <span class="g">Mixtures</span> (variable composition, not bonded)   (air, salt water)</div>
+  <p style="margin:10px 0 0;font-size:.93rem;"><strong>The two distinctions tested most:</strong>
+  &nbsp;① <strong>Element vs compound</strong> → one atom type vs multiple types bonded.
+  &nbsp;② <strong>Compound vs mixture</strong> → chemically bonded / fixed ratio vs physically mixed / variable ratio.</p>
+</section>
+
+<!-- ===================== FOCUS ===================== -->
+<section class="focus">
+  <h2><span class="num">⭐</span> Highest-Yield — Drill These First</h2>
+  <ol>
+    <li><strong>Isotope calculations</strong> — from <span class="fml">ᴬ<sub>Z</sub>X</span>: protons = Z, neutrons = A − Z; identify element from Z.</li>
+    <li><strong>ID ions from particle counts</strong> — <span class="fml">protons = electrons + charge</span>; then name/identify.</li>
+    <li><strong>Predict ion charge from group</strong> (1A→1+, 2A→2+, 7A→1−, 8A→0) via the octet rule.</li>
+    <li><strong>Write neutral ionic formulas</strong> — crossover so charges sum to zero (CaBr₂, Al₂O₃, SrBr₂).</li>
+    <li><strong>The 7 diatomic elements</strong> + carbon allotropes.</li>
+    <li><strong>History:</strong> Thomson (electron/plum pudding) → Rutherford (nucleus/gold foil) → Chadwick (neutron).</li>
+    <li><strong>Dalton's theory</strong> — the 5 points + which fail today (isotopes; nuclear reactions).</li>
+    <li><strong>Element vs compound vs mixture</strong> classification + the 3 subatomic particles' charge/mass/location.</li>
+  </ol>
+</section>
+
+<footer>Master study table built from a deep read of all 47 slides of Zumdahl9e_PPT+Lecture_Ch04.pdf — designed to be studied standalone.</footer>
+
+</div>
+</body>
+</html>

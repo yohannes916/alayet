@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 10.1 — Comprehensive Self-Test · Lewis Structures</title>
+<style>
+  :root{--accent:#1e8449;--accent2:#27ae60;--bg:#eef2f5;--card:#fff;--ok:#1e8449;--bad:#c0392b;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.5;color:#212f3d;background:var(--bg);margin:0;padding:0 14px 120px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:26px 26px;border-radius:0 0 14px 14px;margin:0 -14px 18px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  .howto{background:#e9f7ef;border-left:5px solid var(--accent2);padding:11px 16px;border-radius:8px;margin-bottom:16px;font-size:.92rem;}
+  .howto strong{color:var(--accent);}
+  #results{background:#fff;border:2px solid var(--accent);border-radius:12px;padding:18px 20px;margin-bottom:18px;box-shadow:0 3px 12px rgba(0,0,0,.1);}
+  #results h2{margin:0 0 8px;color:var(--accent);}
+  .bigscore{font-size:2.4rem;font-weight:800;}
+  .pct{font-size:1.1rem;color:#566573;}
+  .secgrid{width:100%;border-collapse:collapse;margin:12px 0;font-size:.86rem;}
+  .secgrid td,.secgrid th{border:1px solid #d5dbdb;padding:5px 9px;text-align:left;}
+  .secgrid th{background:var(--accent);color:#fff;}
+  .barwrap{background:#e5e8e8;border-radius:6px;height:12px;overflow:hidden;min-width:80px;}
+  .bar{height:100%;background:var(--ok);}
+  .secbadge{display:inline-block;background:var(--accent);color:#fff;font-size:.66rem;font-weight:700;letter-spacing:.3px;padding:2px 8px;border-radius:10px;text-transform:uppercase;margin-bottom:8px;}
+  .sechead{margin:26px 0 6px;color:var(--accent);font-size:1.15rem;border-bottom:2px solid #d5f5e3;padding-bottom:5px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 16px 12px;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid transparent;}
+  .q.correct{border-left-color:var(--ok);background:#f2fbf5;}
+  .q.incorrect{border-left-color:var(--bad);background:#fdf3f2;}
+  .qnum{font-weight:700;color:var(--accent);margin-right:6px;}
+  .qtype{font-size:.66rem;font-weight:700;color:#fff;background:#85929e;border-radius:8px;padding:1px 7px;margin-left:6px;vertical-align:middle;text-transform:uppercase;}
+  .qtext{font-size:.98rem;margin:2px 0 9px;}
+  .opts label{display:block;padding:6px 10px;margin:4px 0;border:1px solid #d5dbdb;border-radius:7px;cursor:pointer;font-size:.93rem;transition:.1s;}
+  .opts label:hover{background:#f4f6f7;}
+  .opts input{margin-right:9px;}
+  .opts label.pick{border-color:var(--accent2);background:#e9f7ef;}
+  .opts label.ansright{border-color:var(--ok);background:#eafaf1;}
+  .opts label.answrong{border-color:var(--bad);background:#fdedec;}
+  input[type=text]{width:100%;max-width:340px;padding:8px 11px;border:1px solid #b3c1c9;border-radius:7px;font-size:.95rem;}
+  input[type=text].ansright{border-color:var(--ok);background:#eafaf1;}
+  input[type=text].answrong{border-color:var(--bad);background:#fdedec;}
+  .blankline{font-size:1rem;line-height:2.2;margin:2px 0 4px;}
+  input.blank{width:130px;max-width:150px;display:inline-block;margin:0 5px;padding:5px 8px;border:1px solid #b3c1c9;border-bottom:2px solid var(--accent2);border-radius:6px;font-size:.9rem;vertical-align:baseline;}
+  input.blank.ansright{border-color:var(--ok);background:#eafaf1;}
+  input.blank.answrong{border-color:var(--bad);background:#fdedec;}
+  .fb{margin-top:9px;font-size:.86rem;padding:8px 11px;border-radius:7px;display:none;}
+  .fb.show{display:block;}
+  .fb.good{background:#eafaf1;color:#145a32;}
+  .fb.no{background:#fdedec;color:#922b21;}
+  .fb b{display:inline-block;}
+  .checkbtn{margin-top:10px;background:#27ae60;color:#fff;border:none;border-radius:7px;padding:6px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .checkbtn:hover{background:#1e8449;}
+  .checkbtn:disabled{cursor:default;opacity:.85;}
+  .tut{background:#fbfcfd;border:1px solid #d5f5e3;border-left:4px solid #27ae60;border-radius:6px;padding:8px 11px;margin-bottom:8px;color:#2c3e50;font-size:.85rem;line-height:1.45;}
+  .tut b{color:#1e8449;}
+  #bottombar{position:fixed;left:0;right:0;bottom:0;background:#fffffff2;backdrop-filter:blur(6px);border-top:1px solid #ccd;padding:10px 14px;box-shadow:0 -2px 10px rgba(0,0,0,.08);z-index:50;}
+  #bottombar .inner{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+  .counter{font-size:.9rem;color:#566573;font-weight:600;}
+  button{font-family:inherit;font-size:.92rem;font-weight:600;border:none;border-radius:8px;padding:10px 18px;cursor:pointer;}
+  .btn-primary{background:var(--accent);color:#fff;}
+  .btn-primary:hover{background:#145a32;}
+  .btn-warn{background:var(--star);color:#fff;}
+  .btn-warn:hover{background:#9a7d0a;}
+  .btn-ghost{background:#e5e8e8;color:#2c3e50;}
+  .btn-ghost:hover{background:#d5dbdb;}
+  .hidden{display:none!important;}
+  .modechip{display:inline-block;background:var(--star);color:#fff;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:10px;margin-left:8px;}
+  @media print{#bottombar{position:static;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Chapter 10.1 — Comprehensive Self-Test <span id="modechip" class="modechip hidden"></span></h1>
+  <p>Lewis Structures · auto-graded · retry-wrong-only mode · <span id="qcount"></span> questions</p>
+</header>
+
+<div class="howto">
+  <strong>How it works:</strong> Answer as many as you can, then press <strong>Submit &amp; Grade</strong> at the bottom.
+  You'll get a score, a per-section breakdown, and the correct answer + explanation on every question.
+  Then hit <strong>Retry Wrong Only</strong> to be re-tested on just the ones you missed — repeat until you ace every item.
+  <em>Blanks are graded leniently (case/spacing don't matter), but spelling should be close. Numeric answers: just type the number.</em>
+</div>
+
+<div id="results" class="hidden"></div>
+<form id="quiz" onsubmit="return false;"></form>
+</div>
+
+<div id="bottombar">
+  <div class="inner">
+    <span class="counter" id="counter">0 / 0 answered</span>
+    <button class="btn-primary" id="submitBtn">Submit &amp; Grade</button>
+    <button class="btn-warn hidden" id="retryBtn">Retry Wrong Only</button>
+    <button class="btn-ghost hidden" id="restartBtn">Restart Entire Test</button>
+  </div>
+</div>
+
+<script>
+/* ===== SECTION NAMES ===== */
+const SEC={
+ "0":"Fundamentals (prerequisites)",
+ "1":"1 · Lewis Symbols",
+ "2":"2 · The Octet Rule",
+ "3":"3 · Reading Lewis Structures",
+ "4":"4 · Placing the Atoms",
+ "5":"5 · The Counting Formulas (N, A, S, bp, lp)",
+ "6":"6 · Bonds, Lone Pairs & Ions",
+ "7":"7 · Multiple Bonds",
+ "8":"8 · Resonance & Bond Order",
+ "9":"9 · Formal Charge & Major Structures",
+ "10":"10 · Exceptions to the Octet Rule"
+};
+
+/* ===== TOPIC TUTORIALS (shown on Check) ===== */
+const TUT={
+ "0":"For a main-group element, the <b>A-group number = the number of valence electrons</b> (O in 6A → 6). Ion charges change the electron count: each − charge adds one electron, each + charge removes one. Electronegativity rises toward the upper right of the table (F is highest).",
+ "1":"A Lewis (electron-dot) symbol shows an atom's valence electrons as dots. Place dots <b>one per side</b> (4 sides) first, THEN pair them up. Group number = number of dots.",
+ "2":"The <b>octet rule</b>: atoms gain, lose, or share electrons to reach <b>8</b> outer electrons. Exception: <b>H and Li hold only 2</b>. It applies to nearly all Period 2 elements and many others.",
+ "3":"A Lewis structure is a structural formula of electron-dot symbols: each <b>line = one bonding pair</b> (2 shared e⁻), each pair of <b>dots = one lone pair</b>. H–Cl: 1 bond + 3 lone pairs on Cl.",
+ "4":"Central atom = the one with the <b>lower group number</b> (needs more electrons, less electronegative), e.g. C in CCl₄. Same group → the <b>higher period</b> atom is central (S in SO₃). <b>H is never central</b> — it makes only 1 bond.",
+ "5":"The chain: <b>N = 8×(non-H) + 2×(H)</b> (needed) → <b>A = Σ valence e⁻</b>, +1 per − charge / −1 per + charge (available) → <b>S = N − A</b> (shared) → <b>bp = S/2</b> (bonds) → <b>lp = A/2 − bp</b> (lone pairs). CCl₄: N=40, A=32, S=8, bp=4, lp=12.",
+ "6":"Draw one line per bonding pair from the central atom. Then place lone pairs on the <b>surrounding (more electronegative) atoms first</b>; leftovers go on the central atom. Ions keep the same recipe (after adjusting A) and get brackets + charge.",
+ "7":"If the central atom can't reach an octet with single bonds, convert a surrounding atom's lone pair into a shared pair → a <b>double or triple bond</b>. O₂ has a double bond, CO a triple, N₂H₂ an N=N double bond.",
+ "8":"<b>Resonance</b> = delocalized electron sharing. Resonance structures differ <b>only in the positions of bonding/lone pairs</b> — atoms never move. The real molecule is a <b>hybrid (average)</b>. Bond order = shared pairs ÷ bonded positions; CO₃²⁻ = 4 pairs / 3 positions = 4/3.",
+ "9":"<b>FC = valence e⁻ − (lone-pair e⁻ + ½ shared e⁻)</b>. All FCs must sum to the species' overall charge. The <b>major</b> resonance structure has the smallest FCs, no equal non-zero FCs on adjacent atoms, and the negative FC on the <b>most electronegative</b> atom (NCO⁻ → −1 on O).",
+ "10":"Three exceptions: ① <b>electron-deficient</b> central atoms Be and B (BeCl₂, BF₃ — fixed by reacting, e.g. BF₃ + NH₃); ② <b>odd-electron</b> molecules = paramagnetic free radicals (NO₂); ③ <b>expanded valence shells</b> — only large Period-3+ nonmetals with empty orbitals (PCl₅, SF₄, SO₄²⁻). Period 2 can NEVER expand."
+};
+
+/* ===== QUESTION BANK =====
+   t: "tf" | "mc" | "fib" | "fibm"
+   a: tf -> "true"/"false" ; mc -> exact option text ; fib -> array of accepted answers ; fibm -> array of arrays
+*/
+const BANK=[
+/* ---------- 0 FUNDAMENTALS ---------- */
+{s:"0",t:"mc",q:`For a main-group element, the number of valence electrons equals its ______.`,o:[`period number`,`A-group number`,`atomic mass`,`number of neutrons`],a:`A-group number`,e:`Group number (1A–8A) = valence electrons: O (6A) has 6, Cl (7A) has 7. (Notes §1 · Slide 2)`},
+{s:"0",t:"fib",q:`Oxygen is in group 6A. How many valence electrons does an oxygen atom have? Enter a number.`,a:["6"],e:`Group 6A → 6 valence electrons → 6 dots in its Lewis symbol. (Notes §1 · Slide 2)`},
+{s:"0",t:"fib",q:`Chlorine is in group 7A. How many valence electrons does a chlorine atom have?`,a:["7"],e:`Group 7A → 7 valence electrons. (Notes §1 · Slide 2)`},
+{s:"0",t:"mc",q:`How many valence electrons does carbon (group 4A) have?`,o:[`2`,`4`,`6`,`8`],a:`4`,e:`Carbon is 4A → 4 valence electrons — which is why it forms 4 bonds. (Notes §1 · Slide 2)`},
+{s:"0",t:"tf",q:`Adding one electron to a neutral atom gives it a 1− charge.`,a:"true",e:`True. Extra electron = extra negative charge. That's why a 1− ion has one MORE electron than the neutral atom. (Notes §5 · Slide 7)`},
+{s:"0",t:"mc",q:`Which element is the MOST electronegative?`,o:[`Fluorine`,`Carbon`,`Sodium`,`Sulfur`],a:`Fluorine`,e:`Electronegativity peaks at the upper right — fluorine is the champion. Matters for placing atoms and formal charges. (Notes bridge)`},
+{s:"0",t:"tf",q:`Electrons involved in chemical bonding come from the atom's outermost (valence) shell.`,a:"true",e:`True — bonding is a valence-electron game; that's why Lewis symbols only show valence electrons. (Notes §1 · Slide 2)`},
+
+/* ---------- 1 LEWIS SYMBOLS ---------- */
+{s:"1",t:"mc",q:`When drawing a Lewis dot symbol, dots are added ______.`,o:[`in pairs from the start`,`one at a time on each of the four sides, then paired up`,`all on one side`,`only on the top and bottom`],a:`one at a time on each of the four sides, then paired up`,e:`One dot per side first; only after all four sides have a dot do you start pairing. (Notes §1 · Slide 2)`},
+{s:"1",t:"fib",q:`In the Lewis symbol for oxygen (6 dots), how many of the dots are UNPAIRED?`,a:["2"],e:`6 dots = 4 singles first, then the 5th and 6th pair up → 2 pairs + 2 unpaired dots. The 2 unpaired dots are where O forms its 2 bonds. (Notes §1 · Slide 2)`},
+{s:"1",t:"tf",q:`The number of dots in a main-group element's Lewis symbol equals its group number.`,a:"true",e:`True. Group number = valence electrons = dots. O (6A) gets 6 dots. (Notes §1 · Slide 2)`},
+{s:"1",t:"mc",q:`How many dots does the Lewis symbol of nitrogen (group 5A) have?`,o:[`3`,`5`,`7`,`8`],a:`5`,e:`N is 5A → 5 dots (one pair + 3 singles → 3 bonds, as in NH₃). (Notes §1 · Slide 2)`},
+{s:"1",t:"tf",q:`A Lewis symbol shows ALL of an atom's electrons, including inner-shell electrons.`,a:"false",e:`False — only VALENCE (outer-shell) electrons appear as dots. Inner electrons don't participate in bonding. (Notes §1 · Slide 2)`},
+
+/* ---------- 2 OCTET RULE ---------- */
+{s:"2",t:"fib",q:`The octet rule: atoms gain, lose, or share electrons when bonding to fill the outer shell with ______ electrons. Enter a number.`,a:["8","eight"],e:`Octet = 8. Atoms bond until their outer shell holds 8 electrons. (Notes §2 · Slide 3)`},
+{s:"2",t:"mc",q:`Which two elements hold only 2 electrons in their outer valence shell?`,o:[`Hydrogen and lithium`,`Hydrogen and helium`,`Carbon and nitrogen`,`Boron and beryllium`],a:`Hydrogen and lithium`,e:`H and Li are satisfied with 2 (a duet, like He's shell). That's why H needs just one bond. (Notes §2 · Slide 3)`},
+{s:"2",t:"tf",q:`The octet rule applies to nearly all Period 2 elements and many others.`,a:"true",e:`True — straight from the slide. C, N, O, F follow it faithfully; exceptions come later (§10). (Notes §2 · Slide 3)`},
+{s:"2",t:"mc",q:`Atoms can satisfy the octet rule by ______.`,o:[`gaining electrons only`,`losing electrons only`,`sharing electrons only`,`gaining, losing, or sharing electrons`],a:`gaining, losing, or sharing electrons`,e:`All three routes work: gain (anions), lose (cations), share (covalent bonds). Lewis structures are about SHARING. (Notes §2 · Slide 3)`},
+{s:"2",t:"tf",q:`In a correct Lewis structure, hydrogen should end up surrounded by 8 electrons.`,a:"false",e:`False — hydrogen holds only 2 electrons (one bond). Only non-hydrogen atoms aim for 8. (Notes §2 · Slide 3)`},
+
+/* ---------- 3 READING LEWIS STRUCTURES ---------- */
+{s:"3",t:"mc",q:`A Lewis structure is best described as ______.`,o:[`a 3-D model of a molecule`,`a structural formula made of electron-dot symbols`,`a list of bond energies`,`an equation for a reaction`],a:`a structural formula made of electron-dot symbols`,e:`A Lewis structure = structural formula built from electron-dot symbols, showing every bond and lone pair. (Notes §3 · Slide 4)`},
+{s:"3",t:"fib",q:`In a Lewis structure, a bonding pair of electrons is drawn as a ______.`,a:["line","dash","single line"],e:`Bonding pairs = lines. One line = 2 shared electrons. (Notes §3 · Slide 4)`},
+{s:"3",t:"mc",q:`In a Lewis structure, lone pairs are shown as ______.`,o:[`lines`,`dots`,`arrows`,`circles`],a:`dots`,e:`Lone (non-bonding) pairs are drawn as pairs of dots on a single atom. (Notes §3 · Slide 4)`},
+{s:"3",t:"fib",q:`In the Lewis structure of HCl, how many lone pairs sit on the chlorine atom?`,a:["3","three"],e:`Cl uses 1 of its 7 valence e⁻ in the bond; the other 6 form 3 lone pairs. Bond (2 e⁻) + 6 dots = octet. (Notes §3 · Slide 4)`},
+{s:"3",t:"mc",q:`One line drawn between two atoms represents ______.`,o:[`1 electron`,`2 shared electrons`,`4 shared electrons`,`8 electrons`],a:`2 shared electrons`,e:`A line = one bonding PAIR = 2 electrons shared between the two atoms. (Notes §3 · Slide 4)`},
+{s:"3",t:"tf",q:`A lone pair is shared between two atoms.`,a:"false",e:`False — a lone pair belongs to ONE atom only (non-bonding). Shared pairs are bonding pairs (lines). (Notes §3 · Slide 4)`},
+
+/* ---------- 4 PLACING ATOMS ---------- */
+{s:"4",t:"mc",q:`Which atom goes in the CENTER of a Lewis structure?`,o:[`The atom with the higher group number`,`The atom with the lower group number`,`The most electronegative atom`,`Always the first atom in the formula`],a:`The atom with the lower group number`,e:`Lower group number → needs more electrons for an octet, usually less electronegative → central. C (4A) is central in CCl₄. (Notes §4 · Slide 5)`},
+{s:"4",t:"fib",q:`In CCl₄, which element is the central atom? (symbol or name)`,a:["c","carbon"],e:`C is group 4A, Cl is 7A — lower group number goes central, so carbon sits in the middle with 4 Cl around it. (Notes §4 · Slide 5)`},
+{s:"4",t:"mc",q:`In SO₃, sulfur is the central atom because ______.`,o:[`S has a lower group number than O`,`S and O are in the same group, and S has the higher period number`,`S is more electronegative`,`S is written first in the formula`],a:`S and O are in the same group, and S has the higher period number`,e:`S and O are both 6A. Tiebreak: the higher-period (bigger) atom — sulfur, Period 3 — goes central. (Notes §4 · Slide 5)`},
+{s:"4",t:"tf",q:`Hydrogen can be a central atom if it is written first in the formula.`,a:"false",e:`False — hydrogen is NEVER central: it forms only one bond, so it must be terminal. (Notes §4 · Slide 5)`},
+{s:"4",t:"fib",q:`Hydrogen is never a central atom because it only forms ______ bond(s). Enter a number.`,a:["1","one"],e:`H holds just 2 electrons — one bond — so it can't connect multiple atoms. (Notes §4 · Slide 5)`},
+{s:"4",t:"mc",q:`The central atom usually has ______ electronegativity than the surrounding atoms.`,o:[`lower`,`higher`,`identical`],a:`lower`,e:`The central atom (lower group number) is usually the LEAST electronegative — it's the sharing hub. (Notes §4 · Slide 5)`},
+{s:"4",t:"mc",q:`In OF₂, which atom is central?`,o:[`O`,`F`,`Either one`,`Neither — it's linear with no center`],a:`O`,e:`O is group 6A, F is 7A → lower group number (O) is central, with 2 F around it. (Notes §4 · Slide 5)`},
+
+/* ---------- 5 COUNTING FORMULAS ---------- */
+{s:"5",t:"mc",q:`The formula for N, the total number of electrons a molecule NEEDS, is ______.`,o:[`N = 8 × (all atoms)`,`N = 8 × (# non-H atoms) + 2 × (# H atoms)`,`N = Σ valence electrons`,`N = 2 × (# bonds)`],a:`N = 8 × (# non-H atoms) + 2 × (# H atoms)`,e:`Each non-H atom needs an octet (8); each H needs a duet (2). (Notes §5 · Slide 6)`},
+{s:"5",t:"fib",q:`Calculate N (electrons needed) for CCl₄.`,a:["40"],e:`5 non-hydrogen atoms × 8 = 40. (Notes §5 · Slide 6)`},
+{s:"5",t:"fib",q:`Calculate N (electrons needed) for H₂O.`,a:["12"],e:`N = 8×(1 O) + 2×(2 H) = 8 + 4 = 12. (Notes §5 · Slide 6)`},
+{s:"5",t:"mc",q:`A stands for ______.`,o:[`the number of atoms`,`the total valence electrons available`,`the number of anions`,`the atomic mass`],a:`the total valence electrons available`,e:`A = sum of every atom's valence electrons (adjusted for charge if it's an ion). (Notes §5 · Slide 7)`},
+{s:"5",t:"fib",q:`Calculate A (valence electrons available) for CCl₄.`,a:["32"],e:`[1 × C(4 e⁻)] + [4 × Cl(7 e⁻)] = 4 + 28 = 32 — the one calculation printed on the slide! (Notes §5 · Slide 7)`},
+{s:"5",t:"mc",q:`For a polyatomic ion with a NEGATIVE charge, you ______ when computing A.`,o:[`add one electron per negative charge`,`subtract one electron per negative charge`,`ignore the charge`,`double the electron count`],a:`add one electron per negative charge`,e:`Negative charge = extra electrons. BF₄⁻ gets +1 e⁻ (A = 3+28+1 = 32). Positive charge = subtract (NH₄⁺). (Notes §5 · Slide 7)`},
+{s:"5",t:"fib",q:`Calculate A for NH₄⁺ (N has 5 valence e⁻, each H has 1).`,a:["8"],e:`A = 5 + 4×1 − 1 (for the + charge) = 8. (Notes §5 · Slide 7)`},
+{s:"5",t:"mc",q:`The number of SHARED electrons is computed as ______.`,o:[`S = N + A`,`S = N − A`,`S = A − N`,`S = A ÷ 2`],a:`S = N − A`,e:`S = needed − available: the shortfall must be covered by sharing. CCl₄: 40 − 32 = 8. (Notes §5 · Slide 8)`},
+{s:"5",t:"mc",q:`The number of bonding pairs (bonds to draw) is ______.`,o:[`bp = S × 2`,`bp = S ÷ 2`,`bp = N ÷ 2`,`bp = A − S`],a:`bp = S ÷ 2`,e:`Each bond is a PAIR of shared electrons, so bp = S/2. CCl₄: 8/2 = 4 bonds. (Notes §5 · Slide 8)`},
+{s:"5",t:"mc",q:`The number of lone pairs is ______.`,o:[`lp = A/2 − bp`,`lp = N/2 − bp`,`lp = S/2`,`lp = A − N`],a:`lp = A/2 − bp`,e:`Total pairs available (A/2) minus the pairs used in bonds (bp) = lone pairs left to place. CCl₄: 16 − 4 = 12. (Notes §5 · Slide 8)`},
+{s:"5",t:"fibm",q:`Run the full chain for CCl₄:  N = ___   A = ___   S = ___   bp = ___   lp = ___`,a:[["40"],["32"],["8"],["4"],["12"]],e:`N = 8×5 = 40; A = 4 + 4×7 = 32; S = 40−32 = 8; bp = 8/2 = 4; lp = 32/2 − 4 = 12 (three lone pairs on each Cl). (Notes §5 · Slides 6–8)`},
+{s:"5",t:"fib",q:`For OF₂: N = 24 and A = 20. How many BONDS does OF₂ have?`,a:["2","two"],e:`S = 24 − 20 = 4 shared e⁻ → bp = 4/2 = 2 bonds (O–F and O–F). (Notes §5–6 · Slides 8–10)`},
+{s:"5",t:"tf",q:`For a molecule (no charge), A is just the sum of the valence electrons of all its atoms.`,a:"true",e:`True — charge adjustment only applies to ions. CCl₄: 4 + 28 = 32, no adjustment. (Notes §5 · Slide 7)`},
+
+/* ---------- 6 BONDS, LONE PAIRS & IONS ---------- */
+{s:"6",t:"mc",q:`After computing bp, you draw ______.`,o:[`a single line for each bonding pair from the central atom to each surrounding atom`,`all bonds as double bonds`,`lines between the outer atoms`,`dots everywhere first`],a:`a single line for each bonding pair from the central atom to each surrounding atom`,e:`Bonds radiate from the central atom — one line per bonding pair. (Notes §6 · Slide 9)`},
+{s:"6",t:"mc",q:`When distributing lone pairs, who gets them FIRST?`,o:[`The central atom`,`The surrounding (more electronegative) atoms`,`Hydrogen atoms`,`Whichever atom is biggest`],a:`The surrounding (more electronegative) atoms`,e:`Fill the surrounding atoms' octets first; anything left over lands on the central atom. (Notes §6 · Slide 9)`},
+{s:"6",t:"tf",q:`If electrons remain after the surrounding atoms' octets are full, they are placed on the central atom.`,a:"true",e:`True — leftovers go to the center. That's how O in OF₂ ends up with 2 lone pairs. (Notes §6 · Slide 9)`},
+{s:"6",t:"fib",q:`In the Lewis structure of NH₄⁺, how many lone pairs are there in the whole ion?`,a:["0","zero","none"],e:`A = 8, S = 16−8 = 8 → all 8 electrons are in the 4 N–H bonds: lp = 4 − 4 = 0. (Notes §6 · Slide 9)`},
+{s:"6",t:"fib",q:`In CCl₄, how many lone pairs sit on EACH chlorine atom?`,a:["3","three"],e:`12 lone pairs total ÷ 4 Cl = 3 per Cl. Each Cl: 1 bond + 3 lone pairs = octet. (Notes §5–6 · Slide 8)`},
+{s:"6",t:"tf",q:`Hydrogen atoms in a Lewis structure carry lone pairs to complete their octet.`,a:"false",e:`False — H holds only its single bond (2 e⁻). It never gets lone pairs. (Notes §2, §6 · Slides 3, 9)`},
+{s:"6",t:"mc",q:`In the Lewis structure of the ion BF₄⁻, the extra electron from the 1− charge ______.`,o:[`is added to A, the available electron count`,`is ignored`,`is subtracted from A`,`creates a double bond`],a:`is added to A, the available electron count`,e:`Each negative charge adds one electron to A: BF₄⁻ has A = 3 + 28 + 1 = 32. (Notes §5–6 · Slides 7, 9)`},
+
+/* ---------- 7 MULTIPLE BONDS ---------- */
+{s:"7",t:"mc",q:`When does a Lewis structure need a multiple (double/triple) bond?`,o:[`Whenever oxygen is present`,`When the central atom does not reach an octet with single bonds`,`When there are more than 4 atoms`,`When the molecule is an ion`],a:`When the central atom does not reach an octet with single bonds`,e:`No octet on the central atom → convert a neighbor's lone pair into another shared pair. (Notes §7 · Slide 11)`},
+{s:"7",t:"mc",q:`The O₂ molecule contains a ______.`,o:[`single bond`,`double bond`,`triple bond`,`ionic bond`],a:`double bond`,e:`O₂: N=16, A=12, S=4 → 2 shared pairs → O=O double bond (plus 2 lone pairs per O). (Notes §7 · Slide 11)`},
+{s:"7",t:"mc",q:`Carbon monoxide (CO) contains a ______.`,o:[`single bond`,`double bond`,`triple bond`,`no bond`],a:`triple bond`,e:`CO: N=16, A=10, S=6 → 3 shared pairs → C≡O, with one lone pair on each atom. (Notes §7 · Slide 11)`},
+{s:"7",t:"tf",q:`In N₂H₂, the two nitrogen atoms are joined by a double bond.`,a:"true",e:`True. S = 20−12 = 8 → 4 bonds: two N–H plus N=N. Each N also keeps one lone pair. (Notes §7 · Slide 11)`},
+{s:"7",t:"fib",q:`A double bond contains ______ shared electrons. Enter a number.`,a:["4","four"],e:`Double bond = 2 pairs = 4 electrons. (A triple = 3 pairs = 6.) (Notes §7 · Slide 11)`},
+
+/* ---------- 8 RESONANCE & BOND ORDER ---------- */
+{s:"8",t:"mc",q:`Resonance is best defined as ______.`,o:[`atoms vibrating rapidly`,`the delocalized sharing of electrons over several atoms`,`two molecules colliding`,`a bond breaking and reforming`],a:`the delocalized sharing of electrons over several atoms`,e:`Resonance = delocalized sharing — an electron pair spread over a few atoms, not just 2. (Notes §8 · Slide 12)`},
+{s:"8",t:"mc",q:`Resonance structures differ from each other ONLY in ______.`,o:[`the positions of the atoms`,`the positions of bonding and lone electron pairs`,`the number of electrons`,`the identity of the central atom`],a:`the positions of bonding and lone electron pairs`,e:`The slide's double-exclamation rule: only the ELECTRON PAIRS move — never the atoms, never the electron count. (Notes §8 · Slide 12)`},
+{s:"8",t:"tf",q:`A molecule with resonance flips back and forth between its resonance structures.`,a:"false",e:`False — the real molecule is a resonance HYBRID, a single average of the structures, not a flip-flop. (Notes §8 · Slide 12)`},
+{s:"8",t:"mc",q:`Which molecule is a classic example of resonance (the double bond can be drawn on either side)?`,o:[`O₃ (ozone)`,`CH₄`,`HCl`,`CCl₄`],a:`O₃ (ozone)`,e:`Ozone's double bond can go left or right → two resonance structures; real O₃ has two identical in-between bonds. (NO₂ too.) (Notes §8 · Slide 12)`},
+{s:"8",t:"mc",q:`Bond order is calculated as ______.`,o:[`shared electron pairs ÷ number of bonded-atom positions`,`total electrons ÷ 2`,`bonds × atoms`,`valence electrons − lone pairs`],a:`shared electron pairs ÷ number of bonded-atom positions`,e:`Bond order = (# shared pairs)/(# bonded positions). It captures partial bonding in resonance hybrids. (Notes §8 · Slide 13)`},
+{s:"8",t:"mc",q:`In CO₃²⁻, 4 bonding pairs are spread over 3 C–O positions. The bond order of each C–O bond is ______.`,o:[`1`,`4/3 (≈1.33)`,`2`,`3/4`],a:`4/3 (≈1.33)`,e:`4 pairs ÷ 3 positions = 4/3 — each carbonate C–O bond is between a single and a double bond. (Notes §8 · Slide 13)`},
+{s:"8",t:"tf",q:`In resonance hybrids, fractional (partial) bond orders like 4/3 are possible.`,a:"true",e:`True — partial bonding is exactly what resonance produces; carbonate's 1.33 is the classic case. (Notes §8 · Slide 13)`},
+{s:"8",t:"fib",q:`The real molecule is an average of its resonance structures, called a resonance ______.`,a:["hybrid"],e:`Resonance hybrid = the weighted average of all resonance structures. (Notes §8 · Slide 12)`},
+
+/* ---------- 9 FORMAL CHARGE ---------- */
+{s:"9",t:"mc",q:`Formal charge is ______.`,o:[`the actual charge on an atom`,`the hypothetical charge an atom would have if bonding electrons were shared equally`,`the ion's overall charge`,`the number of bonds an atom forms`],a:`the hypothetical charge an atom would have if bonding electrons were shared equally`,e:`FC is a bookkeeping charge assuming perfectly equal sharing. (Notes §9 · Slide 14)`},
+{s:"9",t:"mc",q:`The formal charge formula is ______.`,o:[`FC = V − (LP electrons + BP electrons/2)`,`FC = V + LP − BP`,`FC = 8 − V`,`FC = BP − LP`],a:`FC = V − (LP electrons + BP electrons/2)`,e:`FC = valence e⁻ − (unshared e⁻ + half the shared e⁻). (Notes §9 · Slide 14)`},
+{s:"9",t:"fib",q:`In CO₃²⁻, carbon has 0 lone-pair electrons and 8 bonding electrons. FC of C = 4 − (0 + 8/2) = ______.`,a:["0","zero"],e:`FC(C) = 4 − 4 = 0. The central carbon in carbonate is formally neutral. (Notes §9 · Slide 14)`},
+{s:"9",t:"fib",q:`In CO₃²⁻, a single-bonded O has 6 lone-pair electrons and 2 bonding electrons. FC = 6 − (6 + 2/2) = ______.`,a:["-1","−1","minus 1","minus one"],e:`FC = 6 − 7 = −1. Two single-bonded oxygens at −1 each give carbonate its 2− charge. (Notes §9 · Slide 14)`},
+{s:"9",t:"tf",q:`The formal charges of all atoms in a species must add up to its overall charge.`,a:"true",e:`True — CO₃²⁻: 0 + 0 + (−1) + (−1) = −2 ✓. Great error-check for your structures. (Notes §9 · Slide 14)`},
+{s:"9",t:"mc",q:`Which is NOT one of the three rules for the MAJOR resonance structure?`,o:[`Smaller formal charges`,`Same non-zero formal charges not on adjacent atoms`,`More negative formal charge on the more electronegative atom`,`The most double bonds always wins`],a:`The most double bonds always wins`,e:`The three real rules: small FCs; like non-zero FCs not adjacent; negative FC on the most electronegative atom. Bond count isn't one of them. (Notes §9 · Slide 15)`},
+{s:"9",t:"mc",q:`For the cyanate ion NCO⁻, the major resonance structure places the −1 formal charge on ______.`,o:[`N`,`C`,`O`,`no atom`],a:`O`,e:`O is the most electronegative atom in NCO⁻, so the winning structure (N≡C–O⁻) puts the −1 there; N and C sit at 0. (Notes §9 · Slide 15)`},
+{s:"9",t:"tf",q:`A resonance structure with a −2 formal charge on nitrogen would beat one with −1 on oxygen for NCO⁻.`,a:"false",e:`False twice over: −2 is a bigger charge (rule 1), and N is less electronegative than O (rule 3). (Notes §9 · Slide 15)`},
+
+/* ---------- 10 OCTET EXCEPTIONS ---------- */
+{s:"10",t:"mc",q:`Which two elements form electron-DEFICIENT central atoms (fewer than 8 electrons)?`,o:[`Beryllium and boron`,`Carbon and nitrogen`,`Phosphorus and sulfur`,`Sodium and potassium`],a:`Beryllium and boron`,e:`Be and B are the classic electron-deficient central atoms — BeCl₂ and BF₃. (Notes §10 · Slide 16)`},
+{s:"10",t:"fib",q:`In BF₃, how many electrons surround the central boron atom? Enter a number.`,a:["6","six"],e:`Three B–F single bonds = 6 electrons — two short of an octet. Electron-deficient! (Notes §10 · Slide 16)`},
+{s:"10",t:"mc",q:`How does BF₃ complete boron's octet?`,o:[`It reacts with an electron-pair donor like NH₃`,`It ejects a fluorine`,`It forms a double bond with itself`,`It gains a proton`],a:`It reacts with an electron-pair donor like NH₃`,e:`BF₃ + NH₃: nitrogen's lone pair plugs into boron's empty spot, completing the octet. (Notes §10 · Slide 16)`},
+{s:"10",t:"mc",q:`A molecule with an ODD number of valence electrons ______.`,o:[`cannot exist`,`has one unpaired electron and is a free radical`,`always forms a triple bond`,`must be an ion`],a:`has one unpaired electron and is a free radical`,e:`Odd count → one electron can't pair → free radical, e.g. NO₂ (17 valence e⁻). (Notes §10 · Slide 17)`},
+{s:"10",t:"fib",q:`A species with an unpaired electron is attracted to magnetic fields — it is described as ______.`,a:["paramagnetic"],e:`Unpaired electron → paramagnetic. Free radicals like NO₂ are paramagnetic. (Notes §10 · Slide 17)`},
+{s:"10",t:"tf",q:`Free radicals are extremely reactive and can attack hydrogen in biomolecules, causing gene disruption.`,a:"true",e:`True — the slide's biology note: radicals rip into biomolecules, which is why they're linked to gene damage. (Notes §10 · Slide 17)`},
+{s:"10",t:"mc",q:`Which molecule is the deck's example of an odd-electron free radical?`,o:[`NO₂`,`CO₂`,`SO₂`,`H₂O`],a:`NO₂`,e:`NO₂ has 17 valence electrons → one unpaired. Two NO₂ radicals can pair up (→ N₂O₄). (Notes §10 · Slide 17)`},
+{s:"10",t:"mc",q:`An EXPANDED valence shell (more than 8 electrons on the central atom) requires ______.`,o:[`a large atom with empty orbitals, from Period 3 or higher`,`any nonmetal`,`a Period 2 element`,`a metal atom`],a:`a large atom with empty orbitals, from Period 3 or higher`,e:`Only big Period-3+ nonmetals (with empty d orbitals) can expand: P, S, Xe, I... Never Period 2. (Notes §10 · Slide 18)`},
+{s:"10",t:"tf",q:`Nitrogen and oxygen (Period 2) can expand their valence shells beyond 8 electrons.`,a:"false",e:`False — Period 2 atoms are too small and have no empty orbitals available. Expansion starts in Period 3. (Notes §10 · Slide 18)`},
+{s:"10",t:"fib",q:`In PCl₅, the central phosphorus is surrounded by ______ electrons (5 bonds × 2). Enter a number.`,a:["10","ten"],e:`5 P–Cl bonds × 2 e⁻ = 10 electrons on P — an expanded octet, fine for Period-3 phosphorus. (Notes §10 · Slide 18)`},
+{s:"10",t:"tf",q:`SF₄ shows that an expanded octet can occur even when the central atom bonds to 4 or fewer atoms.`,a:"true",e:`True — S in SF₄ has 4 bonds PLUS a lone pair = 10 electrons. The expansion comes from the extra lone pair. (Notes §10 · Slide 18)`},
+{s:"10",t:"mc",q:`Which of these has an expanded valence shell on its central atom?`,o:[`SO₄²⁻`,`CH₄`,`H₂O`,`BF₃`],a:`SO₄²⁻`,e:`Sulfate's S (Period 3) exceeds an octet; CH₄ and H₂O obey the octet, BF₃ is DEFICIENT (6 e⁻). (Notes §10 · Slide 18)`}
+];
+/* keep questions grouped by section for clean display */
+BANK.sort((a,b)=>(+a.s)-(+b.s));
+
+/* ===== ENGINE ===== */
+const quiz=document.getElementById('quiz');
+const results=document.getElementById('results');
+const counter=document.getElementById('counter');
+const submitBtn=document.getElementById('submitBtn');
+const retryBtn=document.getElementById('retryBtn');
+const restartBtn=document.getElementById('restartBtn');
+const modechip=document.getElementById('modechip');
+document.getElementById('qcount').textContent=BANK.length;
+
+const ALL=BANK.map((_,i)=>i);
+let currentSet=ALL.slice();
+let gradedState={};
+let lastWrong=[];
+
+function norm(s){return String(s).toLowerCase().trim().replace(/[.,;:!?"'`]/g,'').replace(/\s+/g,' ').replace(/^(the|a|an)\s+/,'');}
+function appendCheck(card,qi){
+  const b=document.createElement('button');
+  b.type='button'; b.className='checkbtn'; b.id='chk'+qi; b.textContent='Check';
+  b.addEventListener('click',()=>gradeOne(qi));
+  card.appendChild(b);
+  const fb=document.createElement('div'); fb.className='fb'; fb.id='fb'+qi;
+  card.appendChild(fb);
+}
+
+function render(indices,isRetry){
+  currentSet=indices.slice();
+  gradedState={}; lastWrong=[];
+  quiz.innerHTML='';
+  results.classList.add('hidden');
+  retryBtn.classList.add('hidden');
+  restartBtn.classList.toggle('hidden',!isRetry);
+  submitBtn.classList.remove('hidden');
+  submitBtn.textContent='Grade All & Show Results';
+  modechip.classList.toggle('hidden',!isRetry);
+  if(isRetry) modechip.textContent='Retry Mode · '+indices.length+' left';
+  let lastSec=null;
+  indices.forEach((qi,pos)=>{
+    const q=BANK[qi];
+    if(!isRetry && q.s!==lastSec){
+      const h=document.createElement('div');
+      h.className='sechead';
+      h.textContent=SEC[q.s];
+      quiz.appendChild(h);
+      lastSec=q.s;
+    }
+    quiz.appendChild(buildCard(qi,q,pos+1,isRetry));
+  });
+  updateScore();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function buildCard(qi,q,num,isRetry){
+  const card=document.createElement('div');
+  card.className='q'; card.id='card'+qi;
+  const typeLabel={tf:'True / False',mc:'Multiple Choice',fib:'Fill in the Blank',fibm:'Fill in the Blanks'}[q.t];
+  const head=document.createElement('div');
+  head.innerHTML=`<span class="qnum">${num}.</span>`+(isRetry?`<span class="secbadge">${SEC[q.s]}</span> `:'')+`<span class="qtype">${typeLabel}</span>`;
+  card.appendChild(head);
+
+  if(q.t==='fibm'){
+    const line=document.createElement('div');
+    line.className='qtext blankline';
+    const parts=q.q.split(/_{3,}/);
+    parts.forEach((seg,idx)=>{
+      line.appendChild(document.createTextNode(seg));
+      if(idx<parts.length-1){
+        const inp=document.createElement('input');
+        inp.type='text'; inp.className='blank'; inp.id='fibm'+qi+'_'+idx;
+        inp.autocomplete='off'; inp.placeholder='?';
+        inp.addEventListener('input',updateCounter);
+        line.appendChild(inp);
+      }
+    });
+    card.appendChild(line);
+    appendCheck(card,qi);
+    return card;
+  }
+
+  const txt=document.createElement('div');
+  txt.className='qtext'; txt.textContent=q.q;
+  card.appendChild(txt);
+
+  if(q.t==='fib'){
+    const inp=document.createElement('input');
+    inp.type='text'; inp.id='fib'+qi; inp.placeholder='Type your answer…';
+    inp.autocomplete='off'; inp.addEventListener('input',updateCounter);
+    card.appendChild(inp);
+  } else {
+    const opts=(q.t==='tf')?['true','false']:q.o;
+    const wrap=document.createElement('div'); wrap.className='opts';
+    opts.forEach(opt=>{
+      const lab=document.createElement('label');
+      const disp=(q.t==='tf')?(opt==='true'?'True':'False'):opt;
+      lab.innerHTML=`<input type="radio" name="q${qi}" value="${opt.replace(/"/g,'&quot;')}"> ${disp}`;
+      lab.querySelector('input').addEventListener('change',()=>{
+        wrap.querySelectorAll('label').forEach(l=>l.classList.remove('pick'));
+        lab.classList.add('pick'); updateCounter();
+      });
+      wrap.appendChild(lab);
+    });
+    card.appendChild(wrap);
+  }
+  appendCheck(card,qi);
+  return card;
+}
+
+function getUser(qi,q){
+  if(q.t==='fibm'){
+    return q.a.map((_,k)=>{const el=document.getElementById('fibm'+qi+'_'+k);return el?el.value:'';});
+  }
+  if(q.t==='fib'){const el=document.getElementById('fib'+qi);return el?el.value:'';}
+  const el=document.querySelector(`input[name="q${qi}"]:checked`);
+  return el?el.value:null;
+}
+function isAnswered(qi,q){
+  const v=getUser(qi,q);
+  if(q.t==='fibm') return v.every(x=>x&&x.trim()!=='');
+  return q.t==='fib'? (v&&v.trim()!=='') : v!==null;
+}
+function blankOK(userVal,accepted){
+  return !!userVal && accepted.map(norm).includes(norm(userVal));
+}
+function check(qi,q){
+  const v=getUser(qi,q);
+  if(q.t==='fibm'){
+    return q.a.every((acc,k)=>blankOK(v[k],acc));
+  }
+  if(q.t==='fib'){
+    if(!v) return false;
+    return q.a.map(norm).includes(norm(v));
+  }
+  return v===q.a;
+}
+function correctText(q){
+  if(q.t==='tf') return q.a==='true'?'True':'False';
+  if(q.t==='fibm') return q.a.map(acc=>acc[0]).join('  ·  ');
+  if(q.t==='fib') return q.a[0];
+  return q.a;
+}
+
+function updateScore(){
+  const g=currentSet.filter(qi=>qi in gradedState);
+  const c=g.filter(qi=>gradedState[qi]).length;
+  const pct=g.length?Math.round(c/g.length*100):0;
+  counter.textContent=`Checked ${g.length}/${currentSet.length} · Score ${c} (${pct}%)`;
+}
+const updateCounter=updateScore; // input listeners call this
+
+function markCard(qi,q,ok){
+  const card=document.getElementById('card'+qi);
+  card.classList.add(ok?'correct':'incorrect');
+  if(q.t==='fibm'){
+    const v=getUser(qi,q);
+    q.a.forEach((acc,k)=>{const inp=document.getElementById('fibm'+qi+'_'+k);if(inp){inp.classList.add(blankOK(v[k],acc)?'ansright':'answrong');inp.disabled=true;}});
+  } else if(q.t==='fib'){
+    const inp=document.getElementById('fib'+qi); inp.classList.add(ok?'ansright':'answrong'); inp.disabled=true;
+  } else {
+    document.querySelectorAll(`#card${qi} .opts label`).forEach(l=>{
+      const inp=l.querySelector('input'); inp.disabled=true;
+      if(inp.value===q.a) l.classList.add('ansright');
+      if(inp.checked && inp.value!==q.a) l.classList.add('answrong');
+    });
+  }
+}
+
+function gradeOne(qi){
+  if(qi in gradedState) return;
+  const q=BANK[qi]; const ok=check(qi,q);
+  gradedState[qi]=ok;
+  markCard(qi,q,ok);
+  const btn=document.getElementById('chk'+qi);
+  if(btn){btn.disabled=true; btn.textContent=ok?'✓ Checked':'✗ Checked'; btn.style.background=ok?'#1e8449':'#c0392b';}
+  const fb=document.getElementById('fb'+qi);
+  fb.className='fb show '+(ok?'good':'no');
+  fb.innerHTML=(ok?'✅ <b>Correct.</b> ':`❌ <b>Not quite.</b> Correct answer: <b>${correctText(q)}</b>. `)+q.e+`<div class="tut" style="margin-top:8px"><b>📘 Topic recap — ${SEC[q.s]}</b><br>${TUT[q.s]||''}</div>`;
+  updateScore();
+}
+
+function gradeAll(){
+  currentSet.forEach(qi=>{ if(!(qi in gradedState)) gradeOne(qi); });
+  showResults();
+}
+
+function showResults(){
+  let correct=0; const wrong=[]; const sec={};
+  currentSet.forEach(qi=>{
+    const q=BANK[qi]; const ok=!!gradedState[qi];
+    sec[q.s]=sec[q.s]||{c:0,t:0}; sec[q.s].t++;
+    if(ok){correct++; sec[q.s].c++;} else wrong.push(qi);
+  });
+  const total=currentSet.length, pct=Math.round(correct/total*100);
+  let rows='';
+  Object.keys(sec).sort((a,b)=>(a==='0'?-1:b==='0'?1:(+a)-(+b))).forEach(k=>{
+    const s=sec[k]; const p=Math.round(s.c/s.t*100);
+    rows+=`<tr><td>${SEC[k]}</td><td>${s.c}/${s.t}</td><td><div class="barwrap"><div class="bar" style="width:${p}%;background:${p>=80?'#1e8449':p>=50?'#b7950b':'#c0392b'}"></div></div></td><td>${p}%</td></tr>`;
+  });
+  const verdict=pct===100?'🎉 Perfect — you\'ve got this cold!':pct>=90?'💪 Excellent.':pct>=75?'👍 Good — a few to shore up.':pct>=50?'📚 Getting there — review and retry.':'🔁 Keep going — retry the misses.';
+  results.innerHTML=`<h2>Results</h2><div class="bigscore" style="color:${pct>=80?'#1e8449':pct>=50?'#b7950b':'#c0392b'}">${correct} / ${total}</div><div class="pct">${pct}% &nbsp;·&nbsp; ${verdict}</div><table class="secgrid"><tr><th>Section</th><th>Score</th><th>&nbsp;</th><th>%</th></tr>${rows}</table>${wrong.length?`<p style="margin:8px 0 0"><strong style="color:#c0392b">${wrong.length}</strong> wrong — marked in red below. Use <strong>Retry Wrong Only</strong>.</p>`:`<p style="margin:8px 0 0;color:#1e8449"><strong>No wrong answers — nice!</strong></p>`}`;
+  results.classList.remove('hidden');
+  restartBtn.classList.remove('hidden');
+  retryBtn.classList.toggle('hidden',wrong.length===0);
+  if(wrong.length) retryBtn.textContent=`Retry Wrong Only (${wrong.length})`;
+  lastWrong=wrong;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+submitBtn.addEventListener('click',gradeAll);
+retryBtn.addEventListener('click',()=>{ if(lastWrong.length) render(lastWrong,true); });
+restartBtn.addEventListener('click',()=>{ render(ALL,false); });
+
+render(ALL,false);
+</script>
+</body>
+</html>

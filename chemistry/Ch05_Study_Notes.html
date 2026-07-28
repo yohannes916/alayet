@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 5 Master Study Table — Nomenclature</title>
+<style>
+  :root {
+    --accent: #6c3483;
+    --accent-light: #a569bd;
+    --bg: #f4f6f7;
+    --card: #ffffff;
+    --star: #b7950b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+    color: #212f3d;
+    background: var(--bg);
+    margin: 0;
+    padding: 0 16px 60px;
+  }
+  .wrap { max-width: 1000px; margin: 0 auto; }
+  header {
+    background: linear-gradient(135deg, var(--accent), var(--accent-light));
+    color: #fff;
+    padding: 30px 28px;
+    border-radius: 0 0 14px 14px;
+    margin: 0 -16px 24px;
+    box-shadow: 0 4px 14px rgba(0,0,0,.12);
+  }
+  header h1 { margin: 0 0 6px; font-size: 1.6rem; }
+  header p { margin: 0; opacity: .92; font-size: .98rem; }
+  .bridge {
+    background: #eaf2f8;
+    border-left: 5px solid #2e86c1;
+    padding: 12px 18px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    font-size: .95rem;
+  }
+  .bridge strong { color: #1a5276; }
+  .howto {
+    background: #f4ecf7;
+    border-left: 5px solid var(--accent-light);
+    padding: 12px 18px;
+    border-radius: 8px;
+    margin-bottom: 26px;
+    font-size: .95rem;
+  }
+  .howto strong { color: #4a235a; }
+  section {
+    background: var(--card);
+    border-radius: 10px;
+    padding: 16px 20px 20px;
+    margin-bottom: 18px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.06);
+  }
+  h2 {
+    color: var(--accent);
+    font-size: 1.14rem;
+    margin: 0 0 4px;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+  h2 .num {
+    background: var(--accent);
+    color: #fff;
+    font-size: .8rem;
+    font-weight: 700;
+    border-radius: 6px;
+    padding: 2px 9px;
+    flex: none;
+  }
+  h2 .sec { color: #85929e; font-size: .78rem; font-weight: 500; margin-left: auto; }
+  table.core {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 4px;
+    font-size: .92rem;
+  }
+  table.core th, table.core td {
+    text-align: left;
+    padding: 8px 11px;
+    border: 1px solid #d5dbdb;
+    vertical-align: top;
+  }
+  table.core th {
+    background: var(--accent);
+    color: #fff;
+    font-weight: 600;
+    font-size: .82rem;
+    text-transform: uppercase;
+    letter-spacing: .3px;
+  }
+  table.core tr:nth-child(even) td { background: #faf6fc; }
+  table.core td:first-child { font-weight: 700; color: #4a235a; width: 22%; }
+  strong { color: #4a235a; }
+  em.hi { font-style: normal; background: #fef9e7; padding: 0 3px; border-radius: 3px; }
+  code, .fml {
+    background: #f4ecf7;
+    border-radius: 4px;
+    padding: 1px 5px;
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    font-size: .88em;
+    color: #6c3483;
+  }
+  .ref td:first-child { width: auto; color: #6c3483; }
+  .ref { font-size: .9rem; }
+  .focus {
+    background: linear-gradient(135deg, #fdf2e9, #fef9e7);
+    border: 1px solid #f5cba7;
+  }
+  .focus h2 { color: var(--star); }
+  .focus ol { padding-left: 22px; margin: 8px 0 0; }
+  .focus li { margin-bottom: 7px; }
+  .tree {
+    background: #241b2b;
+    color: #eaeded;
+    border-radius: 8px;
+    padding: 15px 18px;
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    font-size: .84rem;
+    line-height: 1.5;
+    overflow-x: auto;
+    margin: 6px 0 4px;
+    white-space: pre;
+  }
+  .tree .b { color: #bb8fce; font-weight: 700; }
+  .tree .g { color: #82e0aa; }
+  .tree .y { color: #f7dc6f; }
+  footer { text-align: center; color: #85929e; font-size: .85rem; margin-top: 24px; }
+  @media print {
+    body { background: #fff; }
+    section, .howto, .bridge, header { box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Chapter 5 — Master Study Table</h1>
+  <p>Nomenclature (Naming Compounds &amp; Writing Formulas) · Zumdahl 9e · Built to be studied <em>standalone</em></p>
+</header>
+
+<div class="bridge">
+  <strong>🔗 Bridge from Chapter 4 (prerequisites):</strong> This chapter is the <strong>naming layer</strong>
+  built on Ch4 §4.10–4.11. Before naming anything you must be fluent in:
+  (1) <strong>predicting ion charges from the group</strong> (1A→1+, 2A→2+, 7A→1−…);
+  (2) <strong>cation named first, anion gets "-ide"</strong>;
+  (3) <strong>charge-balancing / crossover</strong> so charges sum to zero.
+  §12 below (writing formulas from names) is that Ch4 crossover skill run in reverse.
+</div>
+
+<div class="howto">
+  <strong>How to use this:</strong> Rows are flashcards (Concept = front; rest = back). Sections are
+  numbered <strong>1→13 in build order</strong>. Sections marked <em class="hi">MEMORIZE</em> are pure
+  recall (polyatomic ions, prefixes, acids) — the heart of this chapter. Start with the
+  <strong>decision tree in §1</strong>; every naming question is "which branch am I on?"
+</div>
+
+<!-- ===================== 1. THE DECISION TREE ===================== -->
+<section>
+  <h2><span class="num">1</span> The One Decision Tree — Which Naming Rule Applies? <span class="sec">§5.1, 5.4</span></h2>
+  <p style="margin:0 0 4px;">Every compound falls into one bucket. <strong>Identify the bucket first</strong>, then apply that section's rules.</p>
+  <div class="tree"><span class="b">LOOK AT THE FORMULA</span>
+│
+├── Starts with <span class="y">H</span> (and aqueous)?  ───────────►  <span class="g">ACID</span>            (§10–11)
+│
+├── <span class="y">Metal + Nonmetal</span> (binary, 2 elements)?  ──►  <span class="g">IONIC</span>
+│      ├── Metal has ONE fixed charge  ──────────►  <span class="g">Type I</span>   (§2)  no numeral
+│      └── Metal is variable / transition  ─────►  <span class="g">Type II</span>  (§3)  Roman numeral
+│
+├── <span class="y">Two Nonmetals</span> (binary)?  ─────────────────►  <span class="g">Type III</span> (§6)  Greek prefixes
+│
+└── Contains a <span class="y">Polyatomic ion</span> (NH₄⁺, NO₃⁻, SO₄²⁻…)?  ►  <span class="g">Polyatomic</span> (§8)  keep its special name</div>
+  <table class="core">
+    <thead><tr><th>Bucket</th><th>Trigger</th><th>Naming style</th></tr></thead>
+    <tbody>
+      <tr><td>Type I ionic</td><td>Metal (fixed charge) + nonmetal</td><td>cation name + anion-<strong>ide</strong>. <em>No prefixes, no numeral.</em></td></tr>
+      <tr><td>Type II ionic</td><td>Metal (variable, usually <strong>transition</strong>) + nonmetal</td><td>cation + <strong>(Roman numeral)</strong> + anion-ide.</td></tr>
+      <tr><td>Type III covalent</td><td>Two <strong>nonmetals</strong></td><td><strong>Greek prefixes</strong> on both + anion-ide. <em>No numeral.</em></td></tr>
+      <tr><td>Polyatomic</td><td>Contains a many-atom ion</td><td>Ionic-style, but use the <strong>polyatomic ion's own name</strong> (e.g. sulfate). No prefixes.</td></tr>
+      <tr><td>Acid</td><td>H first, dissolved in water</td><td>hydro-/-ic or -ic/-ous (see §10).</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================== 2. TYPE I ===================== -->
+<section>
+  <h2><span class="num">2</span> Type I Ionic — Metal Forms Only ONE Cation <span class="sec">§5.2</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Examples</th></tr></thead>
+    <tbody>
+      <tr><td>When it's Type I</td><td>Metal + nonmetal, where the metal has a <em class="hi">single, fixed charge</em> (Groups 1A, 2A, Al, Zn, Ag).</td><td>—</td></tr>
+      <tr><td>The 3 rules</td><td>(1) <strong>Cation first, anion second.</strong> (2) Cation = the element's name, unchanged. (3) Anion = element <strong>root + "-ide."</strong> <em class="hi">No Roman numeral, no prefixes.</em></td><td>Cl⁻ = chloride, O²⁻ = oxide.</td></tr>
+      <tr><td>Worked names</td><td>Charge is implied, so it's not written.</td><td>NaCl = <strong>sodium chloride</strong>; KI = <strong>potassium iodide</strong>; CaS = <strong>calcium sulfide</strong>.</td></tr>
+      <tr><td>⚠️ Exercise 1</td><td>SrBr₂ → Sr is 2A (fixed), so no "di", no numeral.</td><td>= <strong>strontium bromide</strong> (answer d). Not "dibromide."</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================== 3. TYPE II ===================== -->
+<section>
+  <h2><span class="num">3</span> Type II Ionic — Metal Forms MORE Than One Cation <span class="sec">§5.2</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Examples</th></tr></thead>
+    <tbody>
+      <tr><td>When it's Type II</td><td>Metal + nonmetal where the metal can be <em class="hi">several charges</em> — nearly all <strong>transition metals</strong>, plus Sn, Pb.</td><td>Fe, Cu, Co, Sn, Pb, Cr, Mn…</td></tr>
+      <tr><td>The key rule</td><td>Charge <strong>must be specified</strong> with a <em class="hi">Roman numeral in parentheses</em> right after the metal name.</td><td>Fe²⁺ = iron(II); Fe³⁺ = iron(III).</td></tr>
+      <tr><td>How to find the charge</td><td><strong>Back-calculate</strong> from the anion: total anion charge must be balanced by the metal.</td><td>CuBr: Br⁻ ⇒ Cu is 1+ ⇒ <strong>copper(I) bromide</strong>. FeS: S²⁻ ⇒ <strong>iron(II) sulfide</strong>. PbO₂: 2 O²⁻ = 4− ⇒ <strong>lead(IV) oxide</strong>.</td></tr>
+      <tr><td>⚠️ Exercise 2</td><td>CrO₂: 2 O²⁻ = 4−, so Cr = 4+.</td><td>= <strong>chromium(IV) oxide</strong> (answer c).</td></tr>
+      <tr><td>⚠️ Exercise 3</td><td>Most stable S ion = S²⁻; metal ion with 24 e⁻ → protons = 24 + 2 = 26 = Fe, so Fe²⁺.</td><td>= <strong>iron(II) sulfide</strong>, FeS (answer d).</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================== 4. CATION REFERENCE ===================== -->
+<section>
+  <h2><span class="num">4</span> Common Cations Reference <span class="sec">§5.2 · MEMORIZE</span></h2>
+  <table class="core ref">
+    <thead><tr><th>Type I (fixed charge) — no numeral</th><th>Type II (variable) — need Roman numeral</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>H⁺ hydrogen · Li⁺ lithium · Na⁺ sodium · K⁺ potassium · Cs⁺ cesium · Ag⁺ silver · Be²⁺ beryllium · Mg²⁺ magnesium · Ca²⁺ calcium · Ba²⁺ barium · Zn²⁺ zinc · Al³⁺ aluminum</td>
+        <td>Fe²⁺ iron(II) / Fe³⁺ iron(III) · Cu⁺ copper(I) / Cu²⁺ copper(II) · Co²⁺ cobalt(II) / Co³⁺ cobalt(III) · Sn²⁺ tin(II) / Sn⁴⁺ tin(IV) · Pb²⁺ lead(II) / Pb⁴⁺ lead(IV) · Cr²⁺ chromium(II) / Cr³⁺ chromium(III) · Mn²⁺ manganese(II) · Hg²⁺ mercury(II) / Hg₂²⁺ mercury(I)</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="margin:8px 0 0;font-size:.9rem;"><strong>Shortcut:</strong> if the metal is in the <strong>transition block (or Sn/Pb)</strong>, assume Type II and use a numeral. Group 1A/2A, Al, Zn, Ag are the fixed ones.</p>
+</section>
+
+<!-- ===================== 5. ANION REFERENCE ===================== -->
+<section>
+  <h2><span class="num">5</span> Common Simple Anions Reference <span class="sec">§5.2 · MEMORIZE</span></h2>
+  <table class="core ref">
+    <thead><tr><th>Nonmetal → anion (root + -ide)</th></tr></thead>
+    <tbody>
+      <tr><td>H⁻ hydride · F⁻ fluoride · Cl⁻ chloride · Br⁻ bromide · I⁻ iodide · O²⁻ oxide · S²⁻ sulfide · N³⁻ nitride · P³⁻ phosphide · C⁴⁻ carbide</td></tr>
+    </tbody>
+  </table>
+  <p style="margin:8px 0 0;font-size:.9rem;">Charges track the periodic group (§4 of Ch4): 7A → 1−, 6A → 2−, 5A → 3−.</p>
+</section>
+
+<!-- ===================== 6. TYPE III ===================== -->
+<section>
+  <h2><span class="num">6</span> Type III Covalent — Two Nonmetals <span class="sec">§5.3</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Examples</th></tr></thead>
+    <tbody>
+      <tr><td>When it's Type III</td><td><em class="hi">Two nonmetals</em> bonded (covalent, not ionic). No charges to balance — so we <strong>count atoms with prefixes</strong> instead.</td><td>CO₂, SF₆, N₂O₄.</td></tr>
+      <tr><td>The 4 rules</td><td>(1) First element = full name. (2) Second element = root + <strong>"-ide."</strong> (3) <strong>Greek prefixes</strong> show how many of each atom. (4) <em class="hi">Never use "mono-" on the FIRST element.</em></td><td>CO = carbon monoxide (mono only on 2nd). CO₂ = carbon dioxide.</td></tr>
+      <tr><td>Worked names</td><td>Prefix both elements (except mono on first).</td><td>CO₂ = <strong>carbon dioxide</strong>; SF₆ = <strong>sulfur hexafluoride</strong>; N₂O₄ = <strong>dinitrogen tetroxide</strong>.</td></tr>
+      <tr><td>⚠️ Exercise 4</td><td>SeO₂ = two nonmetals ⇒ prefixes, no numeral.</td><td>= <strong>selenium dioxide</strong> (answer b). Not "selenium(IV)".</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================== 7. PREFIX TABLE ===================== -->
+<section>
+  <h2><span class="num">7</span> Greek Prefixes Reference <span class="sec">§5.3 · MEMORIZE</span></h2>
+  <table class="core ref">
+    <thead><tr><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th></tr></thead>
+    <tbody>
+      <tr><td>mono-</td><td>di-</td><td>tri-</td><td>tetra-</td><td>penta-</td><td>hexa-</td><td>hepta-</td><td>octa-</td><td>nona-</td><td>deca-</td></tr>
+    </tbody>
+  </table>
+  <p style="margin:8px 0 0;font-size:.9rem;">Vowel elision: "mono<strong>oxide</strong>" → mon<strong>oxide</strong>; "penta<strong>oxide</strong>" → pent<strong>oxide</strong> (drop the trailing a/o before oxide).</p>
+</section>
+
+<!-- ===================== 8. POLYATOMIC IONS ===================== -->
+<section>
+  <h2><span class="num">8</span> Polyatomic Ions &amp; Oxyanions <span class="sec">§5.5</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Examples</th></tr></thead>
+    <tbody>
+      <tr><td>Polyatomic ion</td><td>A <em class="hi">charged group of several atoms</em> that stays together. Names are special and <strong>must be memorized</strong> (§9).</td><td>NH₄⁺, OH⁻, NO₃⁻, SO₄²⁻.</td></tr>
+      <tr><td>Naming compounds with them</td><td>Same as ionic: <strong>cation first, anion second</strong> — but use the polyatomic's <em class="hi">own name</em>, and <strong>no prefixes</strong>.</td><td>NH₄C₂H₃O₂ = <strong>ammonium acetate</strong>; NaOH = <strong>sodium hydroxide</strong>.</td></tr>
+      <tr><td>Oxyanion pattern (-ate / -ite)</td><td>Same central element, different # of oxygens. <em class="hi">More O = "-ate", fewer O = "-ite."</em></td><td>NO₃⁻ = nitr<strong>ate</strong>; NO₂⁻ = nitr<strong>ite</strong>. SO₄²⁻ = sulf<strong>ate</strong>; SO₃²⁻ = sulf<strong>ite</strong>.</td></tr>
+      <tr><td>Four-level pattern (halogens)</td><td>When 4 oxyanions exist: <strong>per…ate &gt; …ate &gt; …ite &gt; hypo…ite</strong> (most O → least O).</td><td>ClO₄⁻ perchlorate · ClO₃⁻ chlorate · ClO₂⁻ chlorite · ClO⁻ hypochlorite.</td></tr>
+      <tr><td>"Hydrogen" prefix</td><td>Add H⁺ to an anion → add "hydrogen" (old: "bi-") and raise charge by +1.</td><td>CO₃²⁻ carbonate → HCO₃⁻ <strong>hydrogen carbonate</strong> (bicarbonate).</td></tr>
+      <tr><td>⚠️ Exercise 5</td><td>KClO₃: ClO₃⁻ = chlorate.</td><td>= <strong>potassium chlorate</strong> (answer b).</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================== 9. POLYATOMIC TABLE ===================== -->
+<section>
+  <h2><span class="num">9</span> Polyatomic Ions — The Memorize List <span class="sec">§5.5 · MEMORIZE</span></h2>
+  <table class="core ref">
+    <thead><tr><th>Ion</th><th>Name</th><th>Ion</th><th>Name</th></tr></thead>
+    <tbody>
+      <tr><td>NH₄⁺</td><td>ammonium <em>(only common + ion)</em></td><td>OH⁻</td><td>hydroxide</td></tr>
+      <tr><td>NO₃⁻</td><td>nitrate</td><td>NO₂⁻</td><td>nitrite</td></tr>
+      <tr><td>SO₄²⁻</td><td>sulfate</td><td>SO₃²⁻</td><td>sulfite</td></tr>
+      <tr><td>HSO₄⁻</td><td>hydrogen sulfate (bisulfate)</td><td>CO₃²⁻</td><td>carbonate</td></tr>
+      <tr><td>HCO₃⁻</td><td>hydrogen carbonate (bicarbonate)</td><td>PO₄³⁻</td><td>phosphate</td></tr>
+      <tr><td>HPO₄²⁻</td><td>hydrogen phosphate</td><td>H₂PO₄⁻</td><td>dihydrogen phosphate</td></tr>
+      <tr><td>ClO₄⁻</td><td>perchlorate</td><td>ClO₃⁻</td><td>chlorate</td></tr>
+      <tr><td>ClO₂⁻</td><td>chlorite</td><td>ClO⁻</td><td>hypochlorite</td></tr>
+      <tr><td>C₂H₃O₂⁻ (CH₃COO⁻)</td><td>acetate</td><td>CN⁻</td><td>cyanide</td></tr>
+      <tr><td>MnO₄⁻</td><td>permanganate</td><td>CrO₄²⁻</td><td>chromate</td></tr>
+      <tr><td>Cr₂O₇²⁻</td><td>dichromate</td><td>O₂²⁻</td><td>peroxide</td></tr>
+    </tbody>
+  </table>
+  <p style="margin:8px 0 0;font-size:.9rem;"><strong>Study tip:</strong> learn the <strong>-ate</strong> forms first (nitrate, sulfate, carbonate, phosphate, chlorate), then derive -ite / per- / hypo- / hydrogen- from them.</p>
+</section>
+
+<!-- ===================== 10. ACIDS ===================== -->
+<section>
+  <h2><span class="num">10</span> Naming Acids <span class="sec">§5.6</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Examples</th></tr></thead>
+    <tbody>
+      <tr><td>What an acid is (here)</td><td>A molecule that produces <strong>H⁺</strong> in water; recognizable because <em class="hi">H is written first</em> (H⁺ attached to an anion).</td><td>HCl, H₂SO₄.</td></tr>
+      <tr><td>Rule A — anion has NO oxygen</td><td><em class="hi">hydro- + root + -ic acid.</em></td><td>HCl → <strong>hydrochloric acid</strong>; HCN → hydrocyanic; H₂S → hydrosulfuric.</td></tr>
+      <tr><td>Rule B — anion HAS oxygen</td><td>From the oxyanion suffix: <em class="hi">-ate → "-ic acid"; -ite → "-ous acid"</em> (no "hydro-").</td><td>H₂SO₄ (sulfate) → <strong>sulfuric acid</strong>; H₂SO₃ (sulfite) → sulfurous acid; HC₂H₃O₂ → acetic acid; H₃PO₃ → phosphorous acid.</td></tr>
+      <tr><td>Memory hook</td><td>"<strong>-ate</strong> → -<strong>ic</strong>" and "<strong>-ite</strong> → -<strong>ous</strong>." (per-ate→per-ic; hypo-ite→hypo-ous.)</td><td>ClO₄⁻ → perchloric; ClO⁻ → hypochlorous.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================== 11. ACID REFERENCE ===================== -->
+<section>
+  <h2><span class="num">11</span> Common Acids Reference <span class="sec">§5.6 · MEMORIZE</span></h2>
+  <table class="core ref">
+    <thead><tr><th>No oxygen (hydro-…-ic)</th><th>With oxygen (-ate→-ic / -ite→-ous)</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>HF hydrofluoric · HCl hydrochloric · HBr hydrobromic · HI hydroiodic · HCN hydrocyanic · H₂S hydrosulfuric</td>
+        <td>HNO₃ nitric / HNO₂ nitrous · H₂SO₄ sulfuric / H₂SO₃ sulfurous · H₃PO₄ phosphoric / H₃PO₃ phosphorous · H₂CO₃ carbonic · HC₂H₃O₂ acetic · HClO₄ perchloric / HClO₃ chloric / HClO₂ chlorous / HClO hypochlorous</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================== 12. FORMULAS FROM NAMES ===================== -->
+<section>
+  <h2><span class="num">12</span> Writing Formulas FROM Names (reverse) <span class="sec">§5.7</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Examples</th></tr></thead>
+    <tbody>
+      <tr><td>The core skill</td><td>This is the <strong>Ch4 crossover run backwards</strong>: identify each ion + its charge, then <em class="hi">balance charges to zero</em> (parentheses around polyatomics that repeat).</td><td>—</td></tr>
+      <tr><td>What you must have memorized</td><td>Common polyatomic ions + their <strong>charges</strong>, the NH₄⁺ cation, and the common acids — otherwise you can't build formulas.</td><td>—</td></tr>
+      <tr><td>Worked examples</td><td>Ion charges dictate subscripts.</td><td>Sodium hydroxide → <span class="fml">NaOH</span>; potassium carbonate → <span class="fml">K₂CO₃</span>; sulfuric acid → <span class="fml">H₂SO₄(aq)</span>; dinitrogen pentoxide → <span class="fml">N₂O₅</span>; cobalt(III) nitrate → <span class="fml">Co(NO₃)₃</span>; magnesium nitrate → <span class="fml">Mg(NO₃)₂</span>; ammonium sulfate → <span class="fml">(NH₄)₂SO₄</span>; iron(II) phosphate → <span class="fml">Fe₃(PO₄)₂</span>.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================== 13. WORKED EXERCISES ===================== -->
+<section>
+  <h2><span class="num">13</span> All Exercises — Answers &amp; Reasoning <span class="sec">§5.2–5.6</span></h2>
+  <table class="core">
+    <thead><tr><th>Exercise</th><th>Reasoning</th><th>Answer</th></tr></thead>
+    <tbody>
+      <tr><td>1 · name SrBr₂</td><td>Sr = 2A fixed (Type I); no prefix, no numeral.</td><td><strong>Strontium bromide</strong> (d)</td></tr>
+      <tr><td>2 · name CrO₂</td><td>2 O²⁻ = 4−, so Cr = 4+ (Type II).</td><td><strong>Chromium(IV) oxide</strong> (c)</td></tr>
+      <tr><td>3 · S²⁻ + metal ion w/ 24 e⁻</td><td>protons = 24 + 2 = 26 = Fe ⇒ Fe²⁺; with S²⁻ → FeS.</td><td><strong>Iron(II) sulfide</strong> (d)</td></tr>
+      <tr><td>4 · name SeO₂</td><td>Two nonmetals ⇒ Type III prefixes.</td><td><strong>Selenium dioxide</strong> (b)</td></tr>
+      <tr><td>5 · name KClO₃</td><td>ClO₃⁻ = chlorate.</td><td><strong>Potassium chlorate</strong> (b)</td></tr>
+      <tr><td>6 · which correct?</td><td>I P₂O₅ diphosphorus pentoxide ✓ · II ClO₂ needs "dioxide" ✗ · III PbI₄ needs "lead(IV)" ✗ · IV CuSO₄: SO₄²⁻ ⇒ Cu²⁺ = "copper(II)" ✗.</td><td><strong>I only</strong> (d)</td></tr>
+      <tr><td>7 · which INCORRECT?</td><td>TiO₂: 2 O²⁻ = 4− ⇒ Ti⁴⁺, should be "titanium(IV) oxide," not (II).</td><td><strong>TiO₂ (b)</strong> is wrong</td></tr>
+      <tr><td>8 · XCl₃ possible name?</td><td>Needs 3 Cl⁻ balanced: X³⁺ metal (e.g. Fe, Al) or nonmetal with 3 Cl. Only "phosphorus trichloride" (PCl₃, Type III) fits the options.</td><td><strong>Phosphorus trichloride</strong> (a)</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================== FOCUS ===================== -->
+<section class="focus">
+  <h2><span class="num">⭐</span> Highest-Yield — Drill These First</h2>
+  <ol>
+    <li><strong>Classify first</strong> (§1 tree): metal+nonmetal Type I/II · two nonmetals Type III · polyatomic · acid. Every question starts here.</li>
+    <li><strong>Type II Roman numerals</strong> — back-calculate the metal charge from the anion (CrO₂ → Cr⁴⁺).</li>
+    <li><strong>Prefixes vs numerals</strong> — the classic trap: two nonmetals get <em>prefixes</em> (selenium <em>dioxide</em>), transition metals get <em>numerals</em> (chromium(IV)). Never mix them.</li>
+    <li><strong>Memorize the polyatomic table</strong> (§9) — learn -ate forms, derive -ite/per-/hypo-.</li>
+    <li><strong>Acid rules</strong> (§10): no O → hydro-…-ic; -ate → -ic; -ite → -ous.</li>
+    <li><strong>Write formulas from names</strong> (§12) — crossover/charge-balance with parentheses for polyatomics.</li>
+    <li><strong>Prefix "mono-" is never on the first element</strong> (CO = carbon monoxide, not <em>mono</em>carbon).</li>
+  </ol>
+</section>
+
+<footer>Master study table built from a deep read of all 35 slides of Zumdahl9e_PPT+Lecture_Ch05.pdf. Companion to Ch04_Study_Notes.html — study Ch4 §10–11 first.</footer>
+
+</div>
+</body>
+</html>

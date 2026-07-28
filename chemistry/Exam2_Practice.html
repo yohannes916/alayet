@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exam #2 Practice — 50 Questions</title>
+<style>
+  :root{--accent:#1b4f72;--accent2:#2874a6;--bg:#eef3f7;--card:#fff;--ok:#1e8449;--bad:#c0392b;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.5;color:#212f3d;background:var(--bg);margin:0;padding:0 14px 120px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:26px 26px;border-radius:0 0 14px 14px;margin:0 -14px 18px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  .howto{background:#eaf2f8;border-left:5px solid var(--accent2);padding:11px 16px;border-radius:8px;margin-bottom:16px;font-size:.92rem;}
+  .howto strong{color:var(--accent);}
+  #results{background:#fff;border:2px solid var(--accent);border-radius:12px;padding:18px 20px;margin-bottom:18px;box-shadow:0 3px 12px rgba(0,0,0,.1);}
+  #results h2{margin:0 0 8px;color:var(--accent);}
+  .bigscore{font-size:2.4rem;font-weight:800;}
+  .pct{font-size:1.1rem;color:#566573;}
+  .secgrid{width:100%;border-collapse:collapse;margin:12px 0;font-size:.86rem;}
+  .secgrid td,.secgrid th{border:1px solid #d5dbdb;padding:5px 9px;text-align:left;}
+  .secgrid th{background:var(--accent);color:#fff;}
+  .barwrap{background:#e5e8e8;border-radius:6px;height:12px;overflow:hidden;min-width:80px;}
+  .bar{height:100%;background:var(--ok);}
+  .secbadge{display:inline-block;background:var(--accent);color:#fff;font-size:.66rem;font-weight:700;letter-spacing:.3px;padding:2px 8px;border-radius:10px;text-transform:uppercase;margin-bottom:8px;}
+  .sechead{margin:26px 0 6px;color:var(--accent);font-size:1.13rem;border-bottom:2px solid #d4e6f1;padding-bottom:5px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 16px 12px;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid transparent;}
+  .q.correct{border-left-color:var(--ok);background:#f2fbf5;}
+  .q.incorrect{border-left-color:var(--bad);background:#fdf3f2;}
+  .qnum{font-weight:700;color:var(--accent);margin-right:6px;}
+  .qtype{font-size:.66rem;font-weight:700;color:#fff;background:#85929e;border-radius:8px;padding:1px 7px;margin-left:6px;vertical-align:middle;text-transform:uppercase;}
+  .qtext{font-size:.98rem;margin:2px 0 9px;}
+  .opts label{display:block;padding:6px 10px;margin:4px 0;border:1px solid #d5dbdb;border-radius:7px;cursor:pointer;font-size:.93rem;transition:.1s;}
+  .opts label:hover{background:#f4f6f7;}
+  .opts input{margin-right:9px;}
+  .opts label.pick{border-color:var(--accent2);background:#eaf2f8;}
+  .opts label.ansright{border-color:var(--ok);background:#eafaf1;}
+  .opts label.answrong{border-color:var(--bad);background:#fdedec;}
+  input[type=text]{width:100%;max-width:340px;padding:8px 11px;border:1px solid #b3c1c9;border-radius:7px;font-size:.95rem;}
+  input[type=text].ansright{border-color:var(--ok);background:#eafaf1;}
+  input[type=text].answrong{border-color:var(--bad);background:#fdedec;}
+  .blankline{font-size:1rem;line-height:2.2;margin:2px 0 4px;}
+  input.blank{width:120px;max-width:150px;display:inline-block;margin:0 5px;padding:5px 8px;border:1px solid #b3c1c9;border-bottom:2px solid var(--accent2);border-radius:6px;font-size:.9rem;}
+  input.blank.ansright{border-color:var(--ok);background:#eafaf1;}
+  input.blank.answrong{border-color:var(--bad);background:#fdedec;}
+  .checkbtn{margin-top:10px;background:var(--accent2);color:#fff;border:none;border-radius:7px;padding:6px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .checkbtn:hover{background:var(--accent);}
+  .checkbtn:disabled{cursor:default;opacity:.85;}
+  .fb{margin-top:9px;font-size:.88rem;padding:9px 12px;border-radius:7px;display:none;}
+  .fb.show{display:block;}
+  .fb.good{background:#eafaf1;color:#145a32;}
+  .fb.no{background:#fdedec;color:#922b21;}
+  .fb b{color:inherit;}
+  .tut{background:#fbfcfd;border:1px solid #d4e6f1;border-left:4px solid var(--accent2);border-radius:6px;padding:8px 11px;color:#2c3e50;font-size:.84rem;line-height:1.45;}
+  .tut b{color:var(--accent);}
+  #bottombar{position:fixed;left:0;right:0;bottom:0;background:#fffffff2;backdrop-filter:blur(6px);border-top:1px solid #ccd;padding:10px 14px;box-shadow:0 -2px 10px rgba(0,0,0,.08);z-index:50;}
+  #bottombar .inner{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+  .counter{font-size:.9rem;color:#566573;font-weight:600;}
+  button{font-family:inherit;font-size:.92rem;font-weight:600;border:none;border-radius:8px;padding:10px 18px;cursor:pointer;}
+  .btn-primary{background:var(--accent);color:#fff;}
+  .btn-warn{background:var(--star);color:#fff;}
+  .btn-ghost{background:#e5e8e8;color:#2c3e50;}
+  .hidden{display:none!important;}
+  .modechip{display:inline-block;background:var(--star);color:#fff;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:10px;margin-left:8px;}
+  @media print{#bottombar{position:static;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Exam #2 — Practice Test <span id="modechip" class="modechip hidden"></span></h1>
+  <p>Built from your instructor's topic list (Thu 7/9) · 50 questions · auto-graded · detailed explanations on Check</p>
+</header>
+
+<div class="howto">
+  <strong>Topics covered (from the posted list):</strong> states of matter · physical/chemical changes · Dalton's theory ·
+  atomic models · subatomic particles · isotopes · <strong>average atomic mass</strong> · <strong>mass of one isotope</strong> ·
+  protons/neutrons/electrons from isotopic notation · ions · nomenclature (ionic, covalent, acids, polyatomic).
+  Answer a question, press <strong>Check</strong> for a worked explanation, and watch your live score below.
+</div>
+
+<div id="results" class="hidden"></div>
+<form id="quiz" onsubmit="return false;"></form>
+</div>
+
+<div id="bottombar"><div class="inner">
+  <span class="counter" id="counter">Checked 0/50</span>
+  <button class="btn-primary" id="submitBtn">Grade All &amp; Show Results</button>
+  <button class="btn-warn hidden" id="retryBtn">Retry Wrong Only</button>
+  <button class="btn-ghost hidden" id="restartBtn">Restart</button>
+</div></div>
+
+<script>
+const SEC={
+ "1":"1 · States of Matter","2":"2 · Physical & Chemical Changes","3":"3 · Dalton's Atomic Theory",
+ "4":"4 · Atomic Models Through History","5":"5 · Subatomic Particles","6":"6 · Isotopes",
+ "7":"7 · Average Atomic Mass (calculations)","8":"8 · Mass of ONE Isotope (reverse calc)",
+ "9":"9 · Protons / Neutrons / Electrons from Isotopic Notation","10":"10 · Ions — Formation & Electron Count",
+ "11":"11 · Naming Ionic Compounds","12":"12 · Naming Covalent Compounds","13":"13 · Naming Acids","14":"14 · Polyatomic Ions"
+};
+const TUT={
+ "1":"Solid = definite shape + volume; liquid = definite volume, takes the container's shape; gas = neither (fills the container).",
+ "2":"Physical change = same substance, different form (melting, dissolving). Chemical change = new substance forms (burning, rusting; signs: color change, gas, precipitate, heat/light).",
+ "3":"Dalton: atoms exist, are identical within an element, combine in fixed ratios, and are only rearranged in reactions. Later revised: atoms are divisible (subatomic particles) and isotopes exist.",
+ "4":"Order of models: Dalton (solid sphere) → Thomson (plum pudding, found the electron) → Rutherford (nucleus, gold-foil) → Bohr (electrons in energy levels) → modern (electron cloud/orbitals). Chadwick added the neutron.",
+ "5":"Proton +1 (nucleus), neutron 0 (nucleus, ~1 amu), electron −1 (outside, ~1/1836 amu). Protons define the element; neutral atom has protons = electrons.",
+ "6":"Isotopes = same protons (same element), different neutrons → different mass numbers. They behave the same chemically (same electrons).",
+ "7":"Average atomic mass = Σ (isotope mass × fractional abundance), where fraction = percent ÷ 100. It's a weighted average, so it lands closest to the most abundant isotope (and isn't a whole number).",
+ "8":"To find an unknown isotope mass: plug the knowns into avg = Σ(mass × fraction) and solve for the missing mass. An individual isotope's mass in amu ≈ its mass number.",
+ "9":"From ᴬ_Z X: protons = Z, neutrons = A − Z, electrons (neutral atom) = Z. For an ion, adjust electrons by the charge.",
+ "10":"Metals lose electrons → cations (+); nonmetals gain electrons → anions (−). Electrons in an ion = protons − charge (a 2+ ion has 2 fewer electrons than protons).",
+ "11":"Ionic (metal + nonmetal): cation name + anion-'ide'. Variable-charge metals (transition, Sn, Pb) need a Roman numeral back-calculated from the anion.",
+ "12":"Covalent (two nonmetals): use Greek prefixes (mono, di, tri, tetra, penta, hexa…). Never 'mono-' on the first element.",
+ "13":"Acids: no oxygen → hydro-…-ic (HCl = hydrochloric). Oxygen present → -ate becomes -ic, -ite becomes -ous.",
+ "14":"Polyatomic ions are charged atom-groups you memorize (NH₄⁺ ammonium; NO₃⁻ nitrate; SO₄²⁻ sulfate; CO₃²⁻ carbonate; PO₄³⁻ phosphate; OH⁻ hydroxide). More O = -ate, fewer = -ite."
+};
+
+const BANK=[
+/* 1 STATES OF MATTER */
+{s:"1",t:"mc",q:`Which state of matter has a definite volume but takes the shape of its container?`,o:[`Solid`,`Liquid`,`Gas`,`Plasma`],a:`Liquid`,e:`Liquids keep a fixed volume (particles stay close) but flow to fit the container's shape. Solids keep both shape and volume; gases keep neither.`},
+{s:"1",t:"mc",q:`In which state are particles packed tightly in fixed positions, only vibrating in place?`,o:[`Solid`,`Liquid`,`Gas`],a:`Solid`,e:`In a solid, particles are locked in a rigid arrangement and just vibrate — giving a definite shape and volume (e.g., an ice cube).`},
+{s:"1",t:"fibm",q:`Fill in: a ___ has definite shape and volume; a ___ has definite volume but no fixed shape; a ___ has neither.`,a:[["solid"],["liquid"],["gas"]],e:`Solid (both), liquid (volume only), gas (neither — it expands to fill any container).`},
+
+/* 2 PHYSICAL & CHEMICAL CHANGES */
+{s:"2",t:"mc",q:`Which of the following is a CHEMICAL change?`,o:[`Boiling water`,`Dissolving sugar in tea`,`Iron rusting`,`Crushing a can`],a:`Iron rusting`,e:`Rust is iron oxide — a brand-new substance — so rusting is chemical. Boiling, dissolving, and crushing don't create new substances (physical).`},
+{s:"2",t:"mc",q:`Which of the following is a PHYSICAL change?`,o:[`Burning paper`,`Iron rusting`,`Ice melting`,`Milk souring`],a:`Ice melting`,e:`Melting only changes state (solid → liquid); it's still H₂O. The others form new substances (chemical).`},
+{s:"2",t:"fib",q:`A change that produces one or more new substances is called a ___ change.`,a:["chemical"],e:`A chemical change makes new substances. Tell-tale signs: color change, gas bubbles, a precipitate, or heat/light released.`},
+
+/* 3 DALTON */
+{s:"3",t:"mc",q:`Which statement is NOT part of Dalton's original atomic theory?`,o:[`Elements are made of tiny atoms`,`Atoms of a given element are identical`,`Atoms contain a nucleus and electrons`,`Atoms combine in fixed whole-number ratios`],a:`Atoms contain a nucleus and electrons`,e:`Dalton thought atoms were solid and indivisible; subatomic structure (nucleus, electrons) was discovered much later by Thomson, Rutherford, and Chadwick.`},
+{s:"3",t:"fib",q:`Dalton's Law of Constant ___ says a given compound always has the same proportions by mass.`,a:["composition"],e:`Law of Constant Composition — e.g., water is always 8 g O per 1 g H, regardless of source.`},
+
+/* 4 ATOMIC MODELS */
+{s:"4",t:"mc",q:`Who discovered the electron and proposed the "plum pudding" model?`,o:[`Dalton`,`Thomson`,`Rutherford`,`Bohr`],a:`Thomson`,e:`Thomson found the electron and pictured the atom as a positive "pudding" dotted with negative electrons.`},
+{s:"4",t:"mc",q:`Whose gold-foil experiment revealed a small, dense, positive nucleus?`,o:[`Thomson`,`Rutherford`,`Bohr`,`Chadwick`],a:`Rutherford`,e:`Most alpha particles passed through (atom is mostly empty space), but a few bounced back off the tiny dense nucleus.`},
+{s:"4",t:"mc",q:`Who proposed that electrons travel around the nucleus in fixed energy levels (shells)?`,o:[`Dalton`,`Thomson`,`Bohr`,`Chadwick`],a:`Bohr`,e:`The Bohr ("planetary") model placed electrons in specific energy levels/shells orbiting the nucleus.`},
+
+/* 5 SUBATOMIC PARTICLES */
+{s:"5",t:"mc",q:`Which subatomic particle has a mass so small it's usually treated as negligible?`,o:[`Proton`,`Neutron`,`Electron`],a:`Electron`,e:`An electron is ~1/1836 the mass of a proton, so essentially all of an atom's mass is in the nucleus (protons + neutrons).`},
+{s:"5",t:"fibm",q:`Give the charge of each particle (word or number): proton ___, neutron ___, electron ___.`,a:[["positive","plus","+1","1+"],["no","zero","0","neutral","none"],["negative","minus","-1","1-"]],e:`Proton +1, neutron 0, electron −1. The proton's + exactly cancels the electron's − in a neutral atom.`},
+{s:"5",t:"fib",q:`The subatomic particle whose count defines which element an atom is, is the ___.`,a:["proton","protons"],e:`The number of protons (atomic number) is the element's identity. Change protons → different element.`},
+
+/* 6 ISOTOPES */
+{s:"6",t:"mc",q:`Isotopes of the same element differ in their number of ______.`,o:[`protons`,`electrons`,`neutrons`],a:`neutrons`,e:`Same protons (same element) but different neutrons → different mass numbers. Example: C-12 vs C-14.`},
+{s:"6",t:"fib",q:`Atoms with the same number of protons but different numbers of neutrons are called ___.`,a:["isotopes","isotope"],e:`Isotopes — same element, different mass. Elements in nature are usually mixtures of isotopes.`},
+{s:"6",t:"mc",q:`Carbon-12 and Carbon-13 have the SAME number of ______ but DIFFERENT number of ______.`,o:[`protons; neutrons`,`neutrons; protons`,`electrons; protons`],a:`protons; neutrons`,e:`Both are carbon (6 protons); C-12 has 6 neutrons and C-13 has 7. Chemistry is unchanged because electrons are the same.`},
+
+/* 7 AVERAGE ATOMIC MASS */
+{s:"7",t:"mc",q:`How do you calculate an element's average atomic mass?`,o:[`Add all isotope masses and divide by the number of isotopes`,`Σ (each isotope's mass × its fractional abundance)`,`Use the mass number of the most common isotope`,`Add protons and neutrons`],a:`Σ (each isotope's mass × its fractional abundance)`,e:`It's a WEIGHTED average: multiply each isotope's mass by its abundance (percent ÷ 100), then add them up.`},
+{s:"7",t:"mc",q:`Chlorine is 75.8% Cl-35 (34.97 amu) and 24.2% Cl-37 (36.97 amu). Its average atomic mass is closest to:`,o:[`34.97 amu`,`35.45 amu`,`36.00 amu`,`36.97 amu`],a:`35.45 amu`,e:`(0.758 × 34.97) + (0.242 × 36.97) = 26.51 + 8.95 = 35.45 amu. It's closer to 35 because Cl-35 is more abundant.`},
+{s:"7",t:"mc",q:`An element has two isotopes: mass 10.0 amu (20.0%) and mass 11.0 amu (80.0%). Average atomic mass = ?`,o:[`10.2 amu`,`10.5 amu`,`10.8 amu`,`11.0 amu`],a:`10.8 amu`,e:`(0.200 × 10.0) + (0.800 × 11.0) = 2.00 + 8.80 = 10.80 amu. Weighted toward the 11.0 isotope because it's more abundant.`},
+{s:"7",t:"mc",q:`Boron is 19.9% B-10 (10.01 amu) and 80.1% B-11 (11.01 amu). Average atomic mass ≈ ?`,o:[`10.01 amu`,`10.50 amu`,`10.81 amu`,`11.01 amu`],a:`10.81 amu`,e:`(0.199 × 10.01) + (0.801 × 11.01) = 1.99 + 8.82 = 10.81 amu.`},
+{s:"7",t:"mc",q:`Why is an element's average atomic mass usually NOT a whole number?`,o:[`Because electrons add fractional mass`,`Because it is a weighted average of the naturally occurring isotopes`,`Because of rounding errors`,`Because atoms gain mass over time`],a:`Because it is a weighted average of the naturally occurring isotopes`,e:`Each element is a mix of isotopes of different masses; averaging them by abundance gives a decimal value.`},
+{s:"7",t:"mc",q:`Silver is 51.8% Ag-107 (106.9 amu) and 48.2% Ag-109 (108.9 amu). Average atomic mass ≈ ?`,o:[`106.9 amu`,`107.9 amu`,`108.9 amu`,`108.0 amu`],a:`107.9 amu`,e:`(0.518 × 106.9) + (0.482 × 108.9) = 55.37 + 52.49 = 107.9 amu.`},
+
+/* 8 MASS OF ONE ISOTOPE (REVERSE) */
+{s:"8",t:"mc",q:`An element has two isotopes, each 50.0% abundant. One isotope is 20.0 amu and the average atomic mass is 20.5 amu. What is the mass of the other isotope?`,o:[`20.0 amu`,`20.5 amu`,`21.0 amu`,`41.0 amu`],a:`21.0 amu`,e:`20.5 = (0.500 × 20.0) + (0.500 × m) → 20.5 = 10.0 + 0.5m → 0.5m = 10.5 → m = 21.0 amu.`},
+{s:"8",t:"mc",q:`Element X is 70.0% X-63 (62.9 amu) and 30.0% X-65. If the average atomic mass is 63.5 amu, the mass of X-65 is:`,o:[`63.5 amu`,`64.9 amu`,`65.0 amu`,`66.0 amu`],a:`64.9 amu`,e:`63.5 = (0.700 × 62.9) + (0.300 × m) → 63.5 = 44.03 + 0.300m → 0.300m = 19.47 → m = 64.9 amu.`},
+{s:"8",t:"mc",q:`An individual isotope's mass (in amu) is very close to its ______.`,o:[`atomic number`,`mass number`,`number of electrons`,`average atomic mass`],a:`mass number`,e:`Protons and neutrons each weigh ~1 amu and electrons are negligible, so an isotope's mass ≈ its mass number (protons + neutrons). E.g., Cl-35 ≈ 35 amu.`},
+
+/* 9 P/N/E FROM ISOTOPIC NOTATION */
+{s:"9",t:"mc",q:`For the isotope ⁴⁰₂₀Ca, how many PROTONS does it have?`,o:[`18`,`20`,`40`],a:`20`,e:`The bottom number (atomic number Z) is the proton count → 20.`},
+{s:"9",t:"mc",q:`For the isotope ⁴⁰₂₀Ca, how many NEUTRONS does it have?`,o:[`20`,`40`,`60`],a:`20`,e:`Neutrons = mass number − atomic number = 40 − 20 = 20.`},
+{s:"9",t:"fib",q:`For the isotope ³¹₁₅P, how many neutrons does it have? (Enter a number.)`,a:["16"],e:`Neutrons = A − Z = 31 − 15 = 16.`},
+{s:"9",t:"mc",q:`A neutral atom of ⁵⁶₂₆Fe has how many electrons?`,o:[`26`,`30`,`56`],a:`26`,e:`In a neutral atom, electrons = protons = atomic number = 26.`},
+{s:"9",t:"fibm",q:`For the isotope ²³₁₁Na, give: protons = ___, neutrons = ___, electrons (neutral) = ___.`,a:[["11"],["12"],["11"]],e:`Protons = Z = 11; neutrons = A − Z = 23 − 11 = 12; electrons (neutral) = protons = 11.`},
+
+/* 10 IONS */
+{s:"10",t:"mc",q:`When a metal atom forms a cation, it ______ electrons.`,o:[`loses`,`gains`],a:`loses`,e:`Metals lose electrons to become positive cations (e.g., Na → Na⁺). Losing negatives leaves a net positive charge.`},
+{s:"10",t:"mc",q:`How many electrons are in a Ca²⁺ ion? (Calcium's atomic number is 20.)`,o:[`18`,`20`,`22`],a:`18`,e:`Electrons = protons − charge = 20 − 2 = 18. The 2+ means it lost 2 electrons.`},
+{s:"10",t:"mc",q:`How many electrons are in an O²⁻ ion? (Oxygen's atomic number is 8.)`,o:[`6`,`8`,`10`],a:`10`,e:`Electrons = protons − charge = 8 − (−2) = 8 + 2 = 10. A 2− ion GAINED 2 electrons.`},
+{s:"10",t:"fib",q:`How many electrons does an Al³⁺ ion have? (Aluminum's atomic number is 13.) Enter a number.`,a:["10"],e:`Electrons = 13 − 3 = 10. Al³⁺ lost 3 electrons (now isoelectronic with neon).`},
+{s:"10",t:"mc",q:`How many protons and electrons does a S²⁻ ion have? (Sulfur's atomic number is 16.)`,o:[`16 protons, 14 electrons`,`16 protons, 18 electrons`,`18 protons, 16 electrons`],a:`16 protons, 18 electrons`,e:`Protons never change → 16. Electrons = 16 + 2 = 18 (it gained 2). Now isoelectronic with argon.`},
+
+/* 11 IONIC NOMENCLATURE */
+{s:"11",t:"mc",q:`What is the name of MgCl₂?`,o:[`magnesium chloride`,`magnesium dichloride`,`magnesium(II) chloride`],a:`magnesium chloride`,e:`Mg is a fixed 2+ metal (Type I) — no prefix, no Roman numeral. Metal name + chlor-ide → magnesium chloride.`},
+{s:"11",t:"mc",q:`What is the name of Fe₂O₃?`,o:[`iron(II) oxide`,`iron(III) oxide`,`diiron trioxide`],a:`iron(III) oxide`,e:`Iron is variable (Type II). 3 O²⁻ = −6, shared by 2 Fe → each Fe is +3 → iron(III) oxide.`},
+{s:"11",t:"fib",q:`Write the formula for potassium sulfide.`,a:["K2S"],e:`K⁺ and S²⁻ → need two K⁺ to balance one S²⁻ → K₂S.`},
+{s:"11",t:"fib",q:`Name CuCl₂ (copper is 2+ here). Type the full name.`,a:["copper(II) chloride","copper 2 chloride"],e:`Two Cl⁻ (−2) mean Cu is +2. Type II → Roman numeral → copper(II) chloride.`},
+
+/* 12 COVALENT NOMENCLATURE */
+{s:"12",t:"mc",q:`What is the name of P₂O₅?`,o:[`phosphorus oxide`,`diphosphorus pentoxide`,`phosphorus(V) oxide`],a:`diphosphorus pentoxide`,e:`Two nonmetals → use prefixes: di- (2 P) and pent(a)- (5 O, drops the 'a' before oxide) → diphosphorus pentoxide.`},
+{s:"12",t:"mc",q:`What is the name of CO?`,o:[`carbon oxide`,`carbon monoxide`,`carbon(II) oxide`],a:`carbon monoxide`,e:`Covalent → prefixes. 'Mono-' is used on oxygen (the second element) but NEVER on the first → carbon monoxide.`},
+{s:"12",t:"fib",q:`Write the formula for sulfur hexafluoride.`,a:["SF6"],e:`Hexa = 6, so 6 fluorine atoms → SF₆. (Prefixes tell you the subscripts directly in covalent compounds.)`},
+
+/* 13 ACIDS */
+{s:"13",t:"mc",q:`What is the name of HCl(aq)?`,o:[`chloric acid`,`hydrochloric acid`,`chlorous acid`],a:`hydrochloric acid`,e:`The anion (Cl⁻) has no oxygen → use hydro- + root + -ic → hydrochloric acid.`},
+{s:"13",t:"mc",q:`What is the name of H₂SO₄?`,o:[`sulfurous acid`,`hydrosulfuric acid`,`sulfuric acid`],a:`sulfuric acid`,e:`The anion is sulfate (-ate). Oxygen-containing acids: -ate → -ic → sulfuric acid.`},
+{s:"13",t:"fib",q:`Name HNO₂. (Type the two-word name.)`,a:["nitrous acid"],e:`The anion is nitrite (-ite). Oxygen acids: -ite → -ous → nitrous acid. (Compare HNO₃ = nitric acid.)`},
+
+/* 14 POLYATOMIC IONS */
+{s:"14",t:"mc",q:`The polyatomic ion NO₃⁻ is named ______.`,o:[`nitride`,`nitrite`,`nitrate`],a:`nitrate`,e:`NO₃⁻ = nitrate (the '-ate' form, more oxygen). NO₂⁻ = nitrite (fewer oxygen); N³⁻ (a single atom) = nitride.`},
+{s:"14",t:"fib",q:`Write the formula (with its charge) for the sulfate ion.`,a:["SO4 2-","SO4^2-","SO42-","(SO4)2-"],e:`Sulfate = SO₄²⁻ (a 2− polyatomic ion). Memorize the key ones: nitrate NO₃⁻, sulfate SO₄²⁻, carbonate CO₃²⁻, phosphate PO₄³⁻, ammonium NH₄⁺, hydroxide OH⁻.`},
+{s:"14",t:"fib",q:`Write the formula for sodium carbonate.`,a:["Na2CO3"],e:`Na⁺ and carbonate CO₃²⁻ → two Na⁺ balance one CO₃²⁻ → Na₂CO₃.`},
+{s:"14",t:"mc",q:`What is the name of Ca(NO₃)₂?`,o:[`calcium nitrate`,`calcium nitrite`,`calcium dinitrate`],a:`calcium nitrate`,e:`NO₃⁻ = nitrate; Ca²⁺ needs two of them → Ca(NO₃)₂ = calcium nitrate. (No prefixes with polyatomic ions; the parentheses just show two nitrate ions.)`}
+];
+
+/* ===== ENGINE ===== */
+const quiz=document.getElementById('quiz');
+const results=document.getElementById('results');
+const counter=document.getElementById('counter');
+const submitBtn=document.getElementById('submitBtn');
+const retryBtn=document.getElementById('retryBtn');
+const restartBtn=document.getElementById('restartBtn');
+const modechip=document.getElementById('modechip');
+
+const ALL=BANK.map((_,i)=>i);
+let currentSet=ALL.slice();
+let gradedState={};
+let lastWrong=[];
+
+function norm(s){return String(s).toLowerCase().replace(/[^a-z0-9]/g,'');}
+function appendCheck(card,qi){
+  const b=document.createElement('button');
+  b.type='button'; b.className='checkbtn'; b.id='chk'+qi; b.textContent='Check';
+  b.addEventListener('click',()=>gradeOne(qi));
+  card.appendChild(b);
+  const fb=document.createElement('div'); fb.className='fb'; fb.id='fb'+qi;
+  card.appendChild(fb);
+}
+function render(indices,isRetry){
+  currentSet=indices.slice(); gradedState={}; lastWrong=[];
+  quiz.innerHTML=''; results.classList.add('hidden');
+  retryBtn.classList.add('hidden');
+  restartBtn.classList.toggle('hidden',!isRetry);
+  submitBtn.classList.remove('hidden'); submitBtn.textContent='Grade All & Show Results';
+  modechip.classList.toggle('hidden',!isRetry);
+  if(isRetry) modechip.textContent='Retry Mode · '+indices.length+' left';
+  let lastSec=null;
+  indices.forEach((qi,pos)=>{
+    const q=BANK[qi];
+    if(!isRetry && q.s!==lastSec){const h=document.createElement('div');h.className='sechead';h.textContent=SEC[q.s];quiz.appendChild(h);lastSec=q.s;}
+    quiz.appendChild(buildCard(qi,q,pos+1,isRetry));
+  });
+  updateScore(); window.scrollTo({top:0,behavior:'smooth'});
+}
+function buildCard(qi,q,num,isRetry){
+  const card=document.createElement('div'); card.className='q'; card.id='card'+qi;
+  const typeLabel={mc:'Multiple Choice',fib:'Fill in the Blank',fibm:'Fill in the Blanks'}[q.t];
+  const head=document.createElement('div');
+  head.innerHTML=`<span class="qnum">${num}.</span>`+(isRetry?`<span class="secbadge">${SEC[q.s]}</span> `:'')+`<span class="qtype">${typeLabel}</span>`;
+  card.appendChild(head);
+  if(q.t==='fibm'){
+    const line=document.createElement('div'); line.className='qtext blankline';
+    const parts=q.q.split(/_{3,}/);
+    parts.forEach((seg,idx)=>{line.appendChild(document.createTextNode(seg));
+      if(idx<parts.length-1){const inp=document.createElement('input');inp.type='text';inp.className='blank';inp.id='fibm'+qi+'_'+idx;inp.autocomplete='off';inp.placeholder='?';line.appendChild(inp);}});
+    card.appendChild(line); appendCheck(card,qi); return card;
+  }
+  const txt=document.createElement('div'); txt.className='qtext'; txt.textContent=q.q; card.appendChild(txt);
+  if(q.t==='fib'){
+    const inp=document.createElement('input'); inp.type='text'; inp.id='fib'+qi; inp.placeholder='Type your answer…'; inp.autocomplete='off'; card.appendChild(inp);
+  } else {
+    const wrap=document.createElement('div'); wrap.className='opts';
+    q.o.forEach(opt=>{const lab=document.createElement('label');
+      lab.innerHTML=`<input type="radio" name="q${qi}" value="${opt.replace(/"/g,'&quot;')}"> ${opt}`;
+      lab.querySelector('input').addEventListener('change',()=>{wrap.querySelectorAll('label').forEach(l=>l.classList.remove('pick'));lab.classList.add('pick');});
+      wrap.appendChild(lab);});
+    card.appendChild(wrap);
+  }
+  appendCheck(card,qi); return card;
+}
+function getUser(qi,q){
+  if(q.t==='fibm')return q.a.map((_,k)=>{const el=document.getElementById('fibm'+qi+'_'+k);return el?el.value:'';});
+  if(q.t==='fib'){const el=document.getElementById('fib'+qi);return el?el.value:'';}
+  const el=document.querySelector(`input[name="q${qi}"]:checked`); return el?el.value:null;
+}
+function blankOK(v,acc){return !!v && acc.map(norm).includes(norm(v));}
+function check(qi,q){
+  const v=getUser(qi,q);
+  if(q.t==='fibm')return q.a.every((acc,k)=>blankOK(v[k],acc));
+  if(q.t==='fib'){if(!v)return false;return q.a.map(norm).includes(norm(v));}
+  return v===q.a;
+}
+function correctText(q){
+  if(q.t==='fibm')return q.a.map(acc=>acc[0]).join('  ·  ');
+  if(q.t==='fib')return q.a[0];
+  return q.a;
+}
+function markCard(qi,q,ok){
+  document.getElementById('card'+qi).classList.add(ok?'correct':'incorrect');
+  if(q.t==='fibm'){const v=getUser(qi,q);q.a.forEach((acc,k)=>{const inp=document.getElementById('fibm'+qi+'_'+k);if(inp){inp.classList.add(blankOK(v[k],acc)?'ansright':'answrong');inp.disabled=true;}});}
+  else if(q.t==='fib'){const inp=document.getElementById('fib'+qi);inp.classList.add(ok?'ansright':'answrong');inp.disabled=true;}
+  else{document.querySelectorAll(`#card${qi} .opts label`).forEach(l=>{const inp=l.querySelector('input');inp.disabled=true;if(inp.value===q.a)l.classList.add('ansright');if(inp.checked&&inp.value!==q.a)l.classList.add('answrong');});}
+}
+function gradeOne(qi){
+  if(qi in gradedState)return;
+  const q=BANK[qi]; const ok=check(qi,q); gradedState[qi]=ok; markCard(qi,q,ok);
+  const btn=document.getElementById('chk'+qi); if(btn){btn.disabled=true;btn.textContent=ok?'✓ Checked':'✗ Checked';btn.style.background=ok?'#1e8449':'#c0392b';}
+  const fb=document.getElementById('fb'+qi); fb.className='fb show '+(ok?'good':'no');
+  fb.innerHTML=(ok?'✅ <b>Correct.</b> ':`❌ <b>Not quite.</b> Correct answer: <b>${correctText(q)}</b>. `)+q.e+`<div class="tut" style="margin-top:8px"><b>📘 Topic recap — ${SEC[q.s]}</b><br>${TUT[q.s]||''}</div>`;
+  updateScore();
+}
+function gradeAll(){currentSet.forEach(qi=>{if(!(qi in gradedState))gradeOne(qi);});showResults();}
+function updateScore(){
+  const g=currentSet.filter(qi=>qi in gradedState);
+  const c=g.filter(qi=>gradedState[qi]).length;
+  const pct=g.length?Math.round(c/g.length*100):0;
+  counter.textContent=`Checked ${g.length}/${currentSet.length} · Score ${c} (${pct}%)`;
+}
+function showResults(){
+  let correct=0; const wrong=[]; const sec={};
+  currentSet.forEach(qi=>{const q=BANK[qi];const ok=!!gradedState[qi];sec[q.s]=sec[q.s]||{c:0,t:0};sec[q.s].t++;if(ok){correct++;sec[q.s].c++;}else wrong.push(qi);});
+  const total=currentSet.length, pct=Math.round(correct/total*100);
+  let rows='';
+  Object.keys(sec).sort((a,b)=>(+a)-(+b)).forEach(k=>{const s=sec[k];const p=Math.round(s.c/s.t*100);
+    rows+=`<tr><td>${SEC[k]}</td><td>${s.c}/${s.t}</td><td><div class="barwrap"><div class="bar" style="width:${p}%;background:${p>=80?'#1e8449':p>=50?'#b7950b':'#c0392b'}"></div></div></td><td>${p}%</td></tr>`;});
+  const verdict=pct===100?'🎉 Perfect — exam ready!':pct>=90?'💪 Excellent.':pct>=75?'👍 Good — shore up a few.':pct>=50?'📚 Review the weak topics and retry.':'🔁 Keep going — retry the misses.';
+  results.innerHTML=`<h2>Results</h2><div class="bigscore" style="color:${pct>=80?'#1e8449':pct>=50?'#b7950b':'#c0392b'}">${correct} / ${total}</div><div class="pct">${pct}% &nbsp;·&nbsp; ${verdict}</div><table class="secgrid"><tr><th>Topic</th><th>Score</th><th>&nbsp;</th><th>%</th></tr>${rows}</table>${wrong.length?`<p style="margin:8px 0 0"><strong style="color:#c0392b">${wrong.length}</strong> wrong — marked in red below. Use <strong>Retry Wrong Only</strong>.</p>`:`<p style="margin:8px 0 0;color:#1e8449"><strong>No wrong answers — nice!</strong></p>`}`;
+  results.classList.remove('hidden'); restartBtn.classList.remove('hidden');
+  retryBtn.classList.toggle('hidden',wrong.length===0); if(wrong.length)retryBtn.textContent=`Retry Wrong Only (${wrong.length})`;
+  lastWrong=wrong; window.scrollTo({top:0,behavior:'smooth'});
+}
+submitBtn.addEventListener('click',gradeAll);
+retryBtn.addEventListener('click',()=>{if(lastWrong.length)render(lastWrong,true);});
+restartBtn.addEventListener('click',()=>{render(ALL,false);});
+render(ALL,false);
+</script>
+</body>
+</html>

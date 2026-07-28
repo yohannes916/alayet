@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 10.1–10.3 — Comprehension Challenge</title>
+<style>
+  :root{--accent:#5b2c6f;--accent2:#8e44ad;--bg:#f5f0f8;--card:#fff;--ok:#1e8449;--warn:#b7950b;--bad:#c0392b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#241b2b;background:var(--bg);margin:0;padding:0 14px 130px;}
+  .wrap{max-width:860px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -14px 18px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  .howto{background:#f4ecf7;border-left:5px solid var(--accent2);padding:11px 16px;border-radius:8px;margin-bottom:22px;font-size:.92rem;}
+  .howto strong{color:var(--accent);}
+  .q{background:var(--card);border-radius:10px;padding:16px 18px 14px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid var(--accent2);}
+  .qhead{font-weight:700;color:var(--accent);margin-bottom:2px;font-size:.8rem;text-transform:uppercase;letter-spacing:.4px;}
+  .qtag{float:right;background:#e8daef;color:var(--accent);border-radius:8px;padding:1px 9px;font-size:.66rem;font-weight:700;letter-spacing:.3px;}
+  .qtext{font-size:1.02rem;margin:4px 0 10px;}
+  textarea{width:100%;min-height:70px;padding:9px 11px;border:1px solid #c6b5d1;border-radius:8px;font-size:.95rem;font-family:inherit;resize:vertical;background:#fdfcfe;}
+  textarea:focus{outline:2px solid var(--accent2);border-color:var(--accent2);}
+  .revealbtn{margin-top:10px;background:var(--accent);color:#fff;border:none;border-radius:8px;padding:8px 18px;font-size:.9rem;font-weight:600;cursor:pointer;}
+  .revealbtn:hover{background:#45215a;}
+  .ans{display:none;margin-top:12px;background:#f9f5fb;border:1px solid #d3bce0;border-left:4px solid var(--ok);border-radius:8px;padding:12px 15px;font-size:.93rem;}
+  .ans.show{display:block;}
+  .ans h4{margin:0 0 6px;color:var(--ok);font-size:.9rem;}
+  .ans b{color:#45215a;}
+  .ans .step{margin:3px 0;}
+  .fml{background:#f4ecf7;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;color:var(--accent);font-size:.9em;}
+  .assess{display:none;margin-top:11px;align-items:center;gap:8px;flex-wrap:wrap;}
+  .assess.show{display:flex;}
+  .assess span{font-size:.83rem;color:#6b5d76;font-weight:600;}
+  .sbtn{border:1px solid #d3cbd9;background:#fff;border-radius:20px;padding:4px 13px;font-size:.82rem;font-weight:600;cursor:pointer;color:#4d4256;}
+  .sbtn:hover{background:#f4f0f6;}
+  .sbtn.pick-ok{background:var(--ok);color:#fff;border-color:var(--ok);}
+  .sbtn.pick-mid{background:var(--warn);color:#fff;border-color:var(--warn);}
+  .sbtn.pick-no{background:var(--bad);color:#fff;border-color:var(--bad);}
+  #bottombar{position:fixed;left:0;right:0;bottom:0;background:#ffffffee;backdrop-filter:blur(6px);border-top:1px solid #dcd;padding:10px 14px;box-shadow:0 -2px 10px rgba(0,0,0,.08);z-index:50;}
+  #bottombar .inner{max-width:860px;margin:0 auto;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+  .tally{font-size:.9rem;color:#4d4256;font-weight:600;}
+  .tally b.ok{color:var(--ok);} .tally b.mid{color:var(--warn);} .tally b.no{color:var(--bad);}
+  button.ghost{background:#ead9f2;color:#5b2c6f;border:none;border-radius:8px;padding:9px 16px;font-size:.9rem;font-weight:600;cursor:pointer;}
+  button.ghost:hover{background:#dfc7ec;}
+  @media print{#bottombar{position:static;} textarea{border:1px solid #ccc;} .ans{display:block!important;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Chapter 10.1–10.3 — Comprehension Challenge</h1>
+  <p>20 open-ended questions · Lewis structures → VSEPR shapes → polarity · compute, deduce, explain · reveal a worked solution when ready</p>
+</header>
+
+<div class="howto">
+  <strong>How this works:</strong> These test <em>understanding</em>, not recall — each asks you to work something out or explain it.
+  Write your answer in the box (for your own thinking), then press <strong>Reveal Worked Solution</strong> to compare against a
+  detailed model answer. Then self-score (Nailed / Partial / Missed) — your totals appear at the bottom.
+  There's no auto-grading; the goal is honest self-assessment.
+</div>
+
+<div id="quiz"></div>
+</div>
+
+<div id="bottombar"><div class="inner">
+  <span class="tally" id="tally">Self-scored 0/20</span>
+  <button class="ghost" id="revealAll">Reveal All Solutions</button>
+</div></div>
+
+<script>
+const Q=[
+{tag:"Lewis recipe · compute", q:`Run the full Lewis-structure recipe on OF₂: compute N, A, S, bp, and lp, then describe the final structure (who is central, how many bonds, where every lone pair sits).`,
+ a:`<h4>Worked solution</h4>
+ <div class="step"><b>N</b> (needed) = 8 × 3 non-H atoms = <b>24</b>. &nbsp; <b>A</b> (available) = O(6) + 2×F(7) = <b>20</b>.</div>
+ <div class="step"><b>S</b> = N − A = 24 − 20 = <b>4</b> shared e⁻ → <b>bp</b> = 4/2 = <b>2 bonds</b>. &nbsp; <b>lp</b> = A/2 − bp = 10 − 2 = <b>8 lone pairs</b>.</div>
+ <div class="step"><b>Structure:</b> O is central (group 6A &lt; F's 7A) → F–O–F. Lone pairs go to the surrounding F's first: <b>3 on each F</b> (6 total), leftovers on the center: <b>2 on O</b>. Every atom has an octet ✓.</div>
+ <div class="step"><i>Key idea:</i> N → A → S = N − A → bp = S/2 → lp = A/2 − bp, then outer atoms get pairs first.</div>`},
+
+{tag:"Lewis · polyatomic ion", q:`Draw (in words) the Lewis structure of BF₄⁻: compute N, A (careful — it's an ion!), S, bp, and lp, state where the lone pairs go, and explain what the brackets and charge mean in the final drawing.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step"><b>N</b> = 8 × 5 = <b>40</b>. &nbsp; <b>A</b> = B(3) + 4×F(7) <b>+ 1 for the 1− charge</b> = 3 + 28 + 1 = <b>32</b>.</div>
+ <div class="step"><b>S</b> = 40 − 32 = <b>8</b> → <b>bp = 4</b> B–F single bonds. &nbsp; <b>lp</b> = 16 − 4 = <b>12</b> → 3 lone pairs on each F; boron keeps none.</div>
+ <div class="step"><b>Brackets + charge:</b> the whole ion is enclosed in [ ] with the − outside, showing the extra electron belongs to the ion as a unit, not to one particular atom.</div>
+ <div class="step"><i>Rule:</i> add 1 e⁻ to A per negative charge; subtract 1 per positive charge (NH₄⁺: A = 5 + 4 − 1 = 8).</div>`},
+
+{tag:"Multiple bond · deduce", q:`For carbon monoxide (CO), compute N, A, and S. Show how the numbers force a multiple bond, state which bond forms, and give each atom's lone pairs.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step"><b>N</b> = 8 × 2 = <b>16</b>. &nbsp; <b>A</b> = C(4) + O(6) = <b>10</b>. &nbsp; <b>S</b> = 16 − 10 = <b>6</b> shared electrons.</div>
+ <div class="step">6 shared e⁻ = <b>3 bonding pairs between just two atoms</b> → a <b>triple bond</b>: C≡O.</div>
+ <div class="step"><b>lp</b> = A/2 − bp = 5 − 3 = 2 → <b>one lone pair on C and one on O</b>. Each atom: 6 shared + 2 lone = octet ✓.</div>
+ <div class="step"><i>The trigger:</i> whenever single bonds leave the central atom short of an octet, convert lone pairs into extra shared pairs — the S = N − A math predicts it before you draw anything.</div>`},
+
+{tag:"Central atom · reasoning", q:`For each molecule, state which atom is central and justify it with the placement rules: (a) CCl₄ (b) SO₃ (c) H₂O. Then explain why hydrogen can never be a central atom.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step"><b>(a) CCl₄:</b> C (group 4A) has a <b>lower group number</b> than Cl (7A) → carbon is central. (Lower group number = needs more electrons = usually less electronegative.)</div>
+ <div class="step"><b>(b) SO₃:</b> S and O are in the <b>same group</b> (6A) → tiebreak goes to the <b>higher period</b>: sulfur (Period 3) is central.</div>
+ <div class="step"><b>(c) H₂O:</b> H can't be central, so <b>O is central</b> by default: H–O–H.</div>
+ <div class="step"><b>Why never H:</b> hydrogen's shell holds only 2 electrons → it forms exactly <b>one bond</b> — and a central atom must connect to at least two others.</div>`},
+
+{tag:"Formal charge · compute", q:`In one resonance structure of CO₃²⁻, carbon has a double bond to one O and single bonds to two others. Compute the formal charge of C, the double-bonded O, and each single-bonded O — then show the charges sum to the ion's charge.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step">Formula: <span class="fml">FC = valence e⁻ − (lone-pair e⁻ + ½ shared e⁻)</span>.</div>
+ <div class="step"><b>C:</b> 4 − (0 + 8/2) = <b>0</b> (4 bonds, no lone pairs).</div>
+ <div class="step"><b>Double-bonded O:</b> 6 − (4 + 4/2) = <b>0</b> (2 lone pairs + double bond).</div>
+ <div class="step"><b>Each single-bonded O:</b> 6 − (6 + 2/2) = <b>−1</b> (3 lone pairs + 1 bond).</div>
+ <div class="step"><b>Check:</b> 0 + 0 + (−1) + (−1) = <b>−2</b> = the ion's charge ✓. Formal charges must always sum to the overall charge — a free error-detector for your structures.</div>`},
+
+{tag:"Resonance · explain + bond order", q:`Ozone (O₃) can be drawn with the double bond on the left OR the right. Explain (a) why neither drawing alone is correct, (b) what the real molecule actually is, and (c) compute the bond order of each O–O bond.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step"><b>(a)</b> Both drawings are valid Lewis structures that differ <b>only in where the electron pairs sit</b> — the atoms never move. Experiment shows both O–O bonds are identical, so a single drawing (one single + one double bond) can't be right.</div>
+ <div class="step"><b>(b)</b> The real molecule is a <b>resonance hybrid</b> — a single average of the two structures with the electrons <b>delocalized</b> over all three atoms, not a molecule flipping back and forth.</div>
+ <div class="step"><b>(c)</b> O₃: A = 18, N = 24, S = 6 → <b>3 bonding pairs over 2 O–O positions</b> → bond order = 3/2 = <b>1.5</b> — each bond is halfway between single and double.</div>`},
+
+{tag:"Major structure · FC rules", q:`The cyanate ion NCO⁻ has three resonance structures, placing the negative charge differently (e.g., N⁻²/O⁺¹ vs all-zero-except-O⁻¹). Using the three formal-charge rules, explain which structure is the major one and why the others lose.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step">The three rules for the major structure: <b>① smallest formal charges</b>, <b>② equal non-zero charges not on adjacent atoms</b>, <b>③ the negative charge on the most electronegative atom</b>.</div>
+ <div class="step">The winner is <b>N≡C–O⁻</b>: FC(N) = 0, FC(C) = 0, FC(O) = <b>−1</b> — charges are as small as possible AND the −1 sits on <b>oxygen, the most electronegative</b> atom.</div>
+ <div class="step">The structure with −2 on N and +1 on O fails rule ① (big charges) and rule ③ (negative on the wrong atom). The middle structure (−1 on N) fails only rule ③ — it's a minor contributor.</div>
+ <div class="step"><i>Sanity check:</i> every structure's FCs still sum to −1, the ion's charge.</div>`},
+
+{tag:"Octet exceptions · classify", q:`Classify each molecule as one of the three octet-rule exceptions and justify it with electron counts: (a) BF₃ (b) NO₂ (c) SF₄. Then explain why carbon or nitrogen could NEVER do what sulfur does in (c).`,
+ a:`<h4>Worked solution</h4>
+ <div class="step"><b>(a) BF₃ — electron-deficient:</b> boron has only 3 bonds = <b>6 electrons</b>, two short of an octet. (Fix: react with an electron-pair donor — BF₃ + NH₃.)</div>
+ <div class="step"><b>(b) NO₂ — odd-electron species:</b> 5 + 2×6 = <b>17 valence electrons</b> — an odd number, so one electron must be unpaired → a paramagnetic <b>free radical</b>.</div>
+ <div class="step"><b>(c) SF₄ — expanded valence shell:</b> S holds 4 bonds + 1 lone pair = <b>10 electrons</b>, more than 8.</div>
+ <div class="step"><b>Why not C or N:</b> expansion requires a <b>large atom with empty orbitals — Period 3 or higher</b>. Carbon and nitrogen are Period 2: too small, no empty orbitals available, hard cap of 8.</div>`},
+
+{tag:"Free radicals · explain", q:`NO₂ has 17 valence electrons. Explain (a) why it's called a free radical and why it's paramagnetic, (b) what happens when two NO₂ molecules meet, and (c) why free radicals are dangerous in the body.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step"><b>(a)</b> An odd total means one electron <b>cannot pair up</b>. A species with an unpaired electron is a <b>free radical</b>, and unpaired electrons are attracted to magnetic fields → <b>paramagnetic</b>.</div>
+ <div class="step"><b>(b)</b> Two radicals solve each other's problem: the two unpaired electrons pair into a new N–N bond → NO₂ + NO₂ → <b>N₂O₄</b> (dimerization).</div>
+ <div class="step"><b>(c)</b> Radicals are <b>extremely reactive</b> — they rip hydrogen atoms out of biomolecules to complete their pairing, damaging DNA/proteins and causing <b>gene disruption</b>.</div>`},
+
+{tag:"Pipeline · Lewis → shape", q:`Start from the formula H₂O and work all the way to its shape: run the Lewis recipe (N, A, S, bp, lp), count the electron groups on O, name the electron-group arrangement, the AXmEn class, the molecular shape, and the bond angle.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step"><b>Lewis:</b> N = 8 + 2×2 = 12; A = 6 + 2 = 8; S = 12 − 8 = 4 → <b>bp = 2</b> O–H bonds; lp = 4 − 2 = <b>2 lone pairs, both on O</b>.</div>
+ <div class="step"><b>Electron groups on O:</b> 2 bonds + 2 lone pairs = <b>4 groups</b> → <b>tetrahedral</b> electron-group arrangement.</div>
+ <div class="step"><b>Class:</b> 2 X + 2 E = <span class="fml">AX₂E₂</span> → molecular shape = <b>bent (V-shaped)</b>.</div>
+ <div class="step"><b>Angle:</b> ideal 109.5° squeezed by TWO lone pairs → <b>104.5°</b>.</div>
+ <div class="step"><i>This 4-step pipeline (Lewis → count all groups → angles → shape) is the whole chapter in one problem.</i></div>`},
+
+{tag:"Deduce · XeF₄", q:`Xenon tetrafluoride, XeF₄: xenon holds 4 bonds AND 2 lone pairs. Deduce its electron-group arrangement, its AXmEn class, its molecular shape, and its bond angles — and explain why the two lone pairs sit where they do.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step"><b>Count groups:</b> 4 bonds + 2 lone pairs = <b>6 groups</b> → <b>octahedral</b> arrangement. (Never count atoms only — XeF₄ is NOT tetrahedral!)</div>
+ <div class="step"><b>Class:</b> <span class="fml">AX₄E₂</span> → shape = <b>square planar</b>: the 4 F's form a flat square.</div>
+ <div class="step"><b>Lone-pair placement:</b> the 2 lone pairs take positions <b>opposite each other (trans)</b> — that maximizes the distance between the two strongest repellers.</div>
+ <div class="step"><b>Angles:</b> stay at <b>90°</b> — each lone pair squeezes the square from both sides by the same amount, so the reductions cancel.</div>
+ <div class="step"><i>Note:</i> Xe can exceed an octet (12 e⁻ here) because it's a large Period-5 atom with empty orbitals — the 10.1 expanded-shell exception making 10.2 shapes possible.</div>`},
+
+{tag:"Seesaw · reasoning", q:`SF₄ has 5 electron groups on sulfur: 4 bonds + 1 lone pair. Explain where the lone pair goes and WHY (use the 90°/120° repulsion argument), then name the shape and give its two bond angles.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step">The 5-group (trigonal bipyramidal) arrangement has two kinds of spots: <b>3 equatorial</b> (120° apart) and <b>2 axial</b> (90° from the equatorials).</div>
+ <div class="step">A group in an <b>equatorial</b> spot has only 2 close (90°) neighbors; an axial spot has 3. Since 120° repulsions are weaker than 90° ones, and lone pairs repel hardest, <b>the lone pair takes an equatorial position</b>.</div>
+ <div class="step"><b>Shape:</b> <span class="fml">AX₄E</span> = <b>seesaw</b>.</div>
+ <div class="step"><b>Angles:</b> the lone pair squeezes the ideal 120° → <b>101.5°</b> (equatorial F–S–F) and the ideal 90° → <b>86.8°</b> (axial–equatorial).</div>`},
+
+{tag:"Angle cascade · explain", q:`CH₄, NH₃, and H₂O all have four electron groups, yet their bond angles are 109.5°, 107.3°, and 104.5°. Explain the trend — then predict what happens to NH₃'s angle when it reacts with H⁺ to form NH₄⁺, and why.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step">All three have the same <b>tetrahedral arrangement</b> (4 groups), so the ideal angle is 109.5° for each.</div>
+ <div class="step"><b>Lone pairs repel more strongly than bonding pairs</b> (they're held close to just one nucleus and spread out). CH₄ has 0 lone pairs → 109.5°. NH₃ has 1 → bonds squeezed to 107.3°. H₂O has 2 → squeezed further to 104.5°.</div>
+ <div class="step"><b>NH₃ + H⁺ → NH₄⁺:</b> the lone pair <b>becomes a bonding pair</b> (it's what grabs the H⁺). With no lone pair left, the extra squeeze disappears → the angle opens <b>back to 109.5°</b> and the shape becomes tetrahedral.</div>
+ <div class="step"><i>This is the cleanest experimental proof that lone pairs really do push harder.</i></div>`},
+
+{tag:"Double bond · angles", q:`In formaldehyde (CH₂O, trigonal planar), the measured angles are not the ideal 120°: H–C=O is 122° and H–C–H is 116°. Explain, using electron density, why the angles distort in exactly these directions.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step">The C=O <b>double bond contains 4 electrons</b> — twice the density of each single C–H bond.</div>
+ <div class="step">A denser group <b>repels its neighbors more strongly</b> than they repel each other. The C=O pushes both C–H bonds away from itself…</div>
+ <div class="step">…so the two <b>H–C=O angles open</b> (120° → <b>122°</b>) while the H atoms get shoved toward each other, and the <b>H–C–H angle closes</b> (120° → <b>116°</b>).</div>
+ <div class="step"><i>General rule:</i> a multiple bond counts as ONE electron group, but a "fatter" one — real angles bend away from it.</div>`},
+
+{tag:"Deduce · I₃⁻", q:`The triiodide ion I₃⁻ has 5 electron groups on the central iodine: 2 bonds and 3 lone pairs. Deduce its shape and bond angle, explaining exactly where the lone pairs sit and why the result looks nothing like a "typical" 5-group molecule.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step">5 groups → <b>trigonal bipyramidal arrangement</b>. Lone pairs always take <b>equatorial</b> spots (weaker 120° repulsions), so all <b>3 lone pairs fill the entire equatorial triangle</b>.</div>
+ <div class="step">That leaves the 2 bonded iodines in the two <b>axial</b> positions — directly opposite each other.</div>
+ <div class="step"><b>Class:</b> <span class="fml">AX₂E₃</span> → shape = <b>linear</b>, angle = <b>180°</b>.</div>
+ <div class="step"><i>Punchline:</i> a 5-group species ends up perfectly linear — molecular shape describes only the NUCLEI. The three invisible lone pairs did all the arranging.</div>`},
+
+{tag:"Arrangement vs shape", q:`A classmate says: "Water is tetrahedral." Another says: "No, water is bent." Explain the sense in which each is right, define the two terms they're mixing up, and state the one situation where the two names coincide.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step"><b>Both are right — about different things.</b> The <b>electron-group ARRANGEMENT</b> counts ALL groups on the central atom (2 bonds + 2 lone pairs = 4 → <b>tetrahedral</b>).</div>
+ <div class="step">The <b>molecular SHAPE</b> describes only the positions of the <b>nuclei</b> (connected by bonding groups): H–O–H makes a <b>bent</b> shape — the lone pairs influence it but are invisible in the name.</div>
+ <div class="step"><b>They coincide</b> only when the central atom has <b>no lone pairs</b> (AX₂, AX₃, AX₄, AX₅, AX₆): CH₄ is tetrahedral by both definitions; H₂O is not.</div>`},
+
+{tag:"Polarity · CO₂ vs H₂O", q:`CO₂ and H₂O both contain polar bonds (ΔEN: C–O = 1.0, H–O = 1.4), yet CO₂ is nonpolar and H₂O is polar. Explain, using their shapes and bond-dipole arrows, why the same ingredient gives opposite results.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step"><b>Both molecules have polar bonds</b> — each bond dipole points toward the more electronegative O.</div>
+ <div class="step"><b>CO₂ is linear (AX₂, 180°):</b> the two C→O dipoles are equal in size and point in exactly <b>opposite directions → they cancel</b> → net dipole = 0 → <b>nonpolar molecule</b>.</div>
+ <div class="step"><b>H₂O is bent (AX₂E₂, 104.5°):</b> the two H→O dipoles point <b>up toward the same side</b> — they add instead of cancelling → net dipole toward O → <b>polar molecule</b>.</div>
+ <div class="step"><i>Moral:</i> molecular polarity = bond polarity <b>AND</b> shape. Polar bonds are necessary but not sufficient.</div>`},
+
+{tag:"Polarity · same shape", q:`CCl₄ and CHCl₃ (chloroform) are both tetrahedral, yet one is nonpolar and the other polar. Identify which is which and explain how two molecules with the SAME shape can differ in polarity.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step"><b>CCl₄ is nonpolar:</b> four <b>identical</b> C–Cl dipoles point symmetrically to the corners of the tetrahedron → their vector sum is zero.</div>
+ <div class="step"><b>CHCl₃ is polar:</b> replacing one Cl with H breaks the symmetry — the C–H bond has a different (much smaller) dipole than C–Cl, so the four no longer cancel → <b>net dipole</b> along the H–C axis.</div>
+ <div class="step"><i>Lesson:</i> cancellation needs BOTH a symmetric shape AND identical surrounding atoms. Same geometry ≠ same polarity.</div>`},
+
+{tag:"Predict polarity · trio", q:`Predict polar or nonpolar for each, with reasoning from shape + electronegativity: (a) NH₃ (b) BF₃ (c) COS (carbonyl sulfide, linear S=C=O).`,
+ a:`<h4>Worked solution</h4>
+ <div class="step"><b>(a) NH₃ — POLAR.</b> Trigonal pyramidal (AX₃E): the three N–H dipoles all tilt toward the same side, reinforced by the lone pair → net dipole toward N.</div>
+ <div class="step"><b>(b) BF₃ — NONPOLAR.</b> Trigonal planar (AX₃): three identical B–F dipoles at 120° in a flat symmetric triangle → they cancel exactly, despite B–F being very polar bonds.</div>
+ <div class="step"><b>(c) COS — POLAR.</b> Linear like CO₂, BUT the two ends differ: O is more electronegative than S, so the C→O dipole is stronger than the C→S dipole → they <b>don't fully cancel</b> → small net dipole.</div>
+ <div class="step"><i>Compare with CO₂:</i> linear cancellation only works when both ends are identical.</div>`},
+
+{tag:"Polarity → behavior", q:`cis-1,2-dichloroethene boils at 60.3 °C (μ = 1.90 D); its trans isomer boils at 47.5 °C (μ = 0 D) — same atoms, same bonds. Explain (a) why the trans isomer's dipole moment is zero, and (b) why the cis isomer boils higher. Then (c) write out the full chain that connects electronegativity to physical properties.`,
+ a:`<h4>Worked solution</h4>
+ <div class="step"><b>(a) trans:</b> the two C–Cl bond dipoles sit on <b>opposite sides</b> of the double bond, pointing in opposite directions → they cancel → μ = 0 (nonpolar).</div>
+ <div class="step"><b>(b) cis:</b> both C–Cl dipoles are on the <b>same side</b> → they add → μ = 1.90 D. Polar molecules attract each other more strongly (stronger <b>intermolecular forces</b>), so more heat is needed to pull them apart → <b>higher boiling point</b> (60.3 vs 47.5 °C).</div>
+ <div class="step"><b>(c) The chain:</b> <span class="fml">ΔEN → bond polarity → molecular polarity → intermolecular forces → physical properties · solubility · reactivity</span>.</div>
+ <div class="step"><i>Punchline:</i> a purely geometric difference (cis vs trans) produces a measurable 12.8 °C difference in boiling point — shape has real-world consequences.</div>`}
+];
+
+const quiz=document.getElementById('quiz');
+const tally=document.getElementById('tally');
+const score={}; // i -> 'ok'|'mid'|'no'
+
+Q.forEach((item,i)=>{
+  const card=document.createElement('div'); card.className='q'; card.id='q'+i;
+  card.innerHTML=`<div class="qhead">Question ${i+1}<span class="qtag">${item.tag}</span></div>
+    <div class="qtext">${item.q}</div>
+    <textarea placeholder="Work it out here (for your own thinking)…"></textarea>
+    <div><button class="revealbtn" id="rev${i}">Reveal Worked Solution</button></div>
+    <div class="ans" id="ans${i}">${item.a}</div>
+    <div class="assess" id="as${i}"><span>How did you do?</span>
+      <button class="sbtn" data-s="ok">✓ Nailed it</button>
+      <button class="sbtn" data-s="mid">~ Partial</button>
+      <button class="sbtn" data-s="no">✗ Missed it</button>
+    </div>`;
+  quiz.appendChild(card);
+  document.getElementById('rev'+i).addEventListener('click',()=>reveal(i));
+  const as=document.getElementById('as'+i);
+  as.querySelectorAll('.sbtn').forEach(b=>b.addEventListener('click',()=>{
+    score[i]=b.dataset.s;
+    as.querySelectorAll('.sbtn').forEach(x=>x.className='sbtn');
+    b.classList.add(b.dataset.s==='ok'?'pick-ok':b.dataset.s==='mid'?'pick-mid':'pick-no');
+    updateTally();
+  }));
+});
+
+function reveal(i){
+  document.getElementById('ans'+i).classList.add('show');
+  document.getElementById('as'+i).classList.add('show');
+  const b=document.getElementById('rev'+i); b.textContent='Solution shown'; b.disabled=true; b.style.opacity=.6; b.style.cursor='default';
+}
+function updateTally(){
+  let ok=0,mid=0,no=0;
+  Object.values(score).forEach(v=>{if(v==='ok')ok++;else if(v==='mid')mid++;else no++;});
+  const done=ok+mid+no;
+  tally.innerHTML=`Self-scored ${done}/20 &nbsp;·&nbsp; <b class="ok">${ok} nailed</b> · <b class="mid">${mid} partial</b> · <b class="no">${no} missed</b>`;
+}
+document.getElementById('revealAll').addEventListener('click',()=>{Q.forEach((_,i)=>reveal(i));});
+</script>
+</body>
+</html>

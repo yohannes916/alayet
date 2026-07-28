@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 10.2–10.3 Master Study Table — VSEPR Theory &amp; Molecular Polarity</title>
+<style>
+  :root {
+    --accent: #a04000;
+    --accent-light: #ca6f1e;
+    --bg: #f4f6f7;
+    --card: #ffffff;
+    --star: #b7950b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+    color: #212f3d;
+    background: var(--bg);
+    margin: 0;
+    padding: 0 16px 60px;
+  }
+  .wrap { max-width: 1000px; margin: 0 auto; }
+  header {
+    background: linear-gradient(135deg, var(--accent), var(--accent-light));
+    color: #fff;
+    padding: 30px 28px;
+    border-radius: 0 0 14px 14px;
+    margin: 0 -16px 24px;
+    box-shadow: 0 4px 14px rgba(0,0,0,.12);
+  }
+  header h1 { margin: 0 0 6px; font-size: 1.6rem; }
+  header p { margin: 0; opacity: .92; font-size: .98rem; }
+  .bridge {
+    background: #fef9e7;
+    border-left: 5px solid var(--star);
+    padding: 12px 18px;
+    border-radius: 8px;
+    margin-bottom: 14px;
+    font-size: .95rem;
+  }
+  .bridge strong { color: #7d6608; }
+  .howto {
+    background: #fdf2e9;
+    border-left: 5px solid var(--accent-light);
+    padding: 12px 18px;
+    border-radius: 8px;
+    margin-bottom: 26px;
+    font-size: .95rem;
+  }
+  .howto strong { color: #873600; }
+  section {
+    background: var(--card);
+    border-radius: 10px;
+    padding: 16px 20px 20px;
+    margin-bottom: 18px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.06);
+  }
+  h2 {
+    color: var(--accent);
+    font-size: 1.14rem;
+    margin: 0 0 4px;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+  h2 .num {
+    background: var(--accent);
+    color: #fff;
+    font-size: .8rem;
+    font-weight: 700;
+    border-radius: 6px;
+    padding: 2px 9px;
+    flex: none;
+  }
+  h2 .sec { color: #85929e; font-size: .78rem; font-weight: 500; margin-left: auto; }
+  table.core {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 4px;
+    font-size: .92rem;
+  }
+  table.core th, table.core td {
+    text-align: left;
+    padding: 8px 11px;
+    border: 1px solid #d5dbdb;
+    vertical-align: top;
+  }
+  table.core th {
+    background: var(--accent);
+    color: #fff;
+    font-weight: 600;
+    font-size: .82rem;
+    text-transform: uppercase;
+    letter-spacing: .3px;
+  }
+  table.core tr:nth-child(even) td { background: #fdf8f3; }
+  table.core td:first-child { font-weight: 700; color: #873600; width: 20%; }
+  table.core td:nth-child(2) { width: 45%; }
+  table.master {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 4px;
+    font-size: .88rem;
+  }
+  table.master th, table.master td {
+    text-align: left;
+    padding: 6px 9px;
+    border: 1px solid #d5dbdb;
+    vertical-align: top;
+  }
+  table.master th {
+    background: var(--accent);
+    color: #fff;
+    font-weight: 600;
+    font-size: .78rem;
+    text-transform: uppercase;
+    letter-spacing: .3px;
+  }
+  table.master td:nth-child(3) { font-weight: 700; color: #873600; }
+  table.master tr.grp td { background: #fdf2e9; }
+  strong { color: #873600; }
+  em.hi { font-style: normal; background: #fef9e7; padding: 0 3px; border-radius: 3px; }
+  code, .fml {
+    background: #fdf2e9;
+    border-radius: 4px;
+    padding: 1px 5px;
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    font-size: .88em;
+    color: #a04000;
+  }
+  .focus {
+    background: linear-gradient(135deg, #fdf2e9, #fef9e7);
+    border: 1px solid #f5cba7;
+  }
+  .focus h2 { color: var(--star); }
+  .focus ol { padding-left: 22px; margin: 8px 0 0; }
+  .focus li { margin-bottom: 7px; }
+  .tree {
+    background: #1b2631;
+    color: #eaeded;
+    border-radius: 8px;
+    padding: 15px 18px;
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    font-size: .84rem;
+    line-height: 1.5;
+    overflow-x: auto;
+    margin: 6px 0 4px;
+    white-space: pre;
+  }
+  .tree .b { color: #f0b27a; font-weight: 700; }
+  .tree .g { color: #82e0aa; }
+  .tree .y { color: #f7dc6f; }
+  footer { text-align: center; color: #85929e; font-size: .85rem; margin-top: 24px; }
+  @media print {
+    body { background: #fff; }
+    section, .howto, .bridge, header { box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Chapter 10.2–10.3 — Master Study Table</h1>
+  <p>VSEPR Theory (Molecular Shapes) &amp; Molecular Polarity · Built to be studied <em>standalone</em> (no slides needed)</p>
+</header>
+
+<div class="bridge">
+  <strong>🔗 Bridge from 10.1 (prerequisite):</strong> VSEPR is applied <strong>to a finished Lewis structure</strong> —
+  you cannot assign a shape without one. From 10.1 you need: drawing the structure (the N/A/S/bp/lp recipe),
+  spotting <strong>lone pairs on the central atom</strong>, and knowing that <strong>multiple bonds</strong> exist.
+  New rule here: a double or triple bond counts as just <em>ONE</em> electron group.
+</div>
+
+<div class="howto">
+  <strong>How to use this:</strong> Every row is a flashcard — <strong>Concept</strong> = front, the rest = back.
+  Sections build <strong>1→9</strong>: ideas (§1–§3) → the four big arrangements (§4–§7, with the
+  <em class="hi">MEMORIZE master table</em> in §7) → procedure (§8) → polarity (§9). The master table +
+  the "lone pairs squeeze angles" story are the heart of the chapter.
+</div>
+
+<!-- ===================== 1. VSEPR CORE IDEA ===================== -->
+<section>
+  <h2><span class="num">1</span> The Core Idea — Electron Groups Repel <span class="sec">Slides 2–3 · §10.2</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>VSEPR theory</td><td><strong>Valence-Shell Electron-Pair Repulsion:</strong> molecules minimize electron repulsions — each group of valence electrons around the central atom sits <em class="hi">as far from the others as possible</em>.</td><td>Think of tied-together balloons: they naturally spread into the 5 arrangements below.</td></tr>
+      <tr><td>Electron group</td><td>ONE "group" can be: a <strong>lone pair</strong>, a <strong>lone (single) electron</strong>, a <strong>single bond</strong>, a <strong>double bond</strong>, or a <strong>triple bond</strong>. <em class="hi">A multiple bond counts as ONE group</em>, not two or three.</td><td>CO₂: two double bonds = <strong>2 groups</strong> → linear.</td></tr>
+      <tr><td>Molecular shape</td><td>The <strong>three-dimensional arrangement of nuclei</strong> joined by bonding groups. VSEPR is applied <em class="hi">to a Lewis structure</em> to find it.</td><td>—</td></tr>
+      <tr><td>The 5 arrangements</td><td>Maximum mutual repulsion produces exactly <em class="hi">five electron-group arrangements</em>.</td><td><strong>2</strong> groups → linear (180°) · <strong>3</strong> → trigonal planar (120°) · <strong>4</strong> → tetrahedral (109.5°) · <strong>5</strong> → trigonal bipyramidal (90°/120°) · <strong>6</strong> → octahedral (90°).</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================== 2. ARRANGEMENT VS SHAPE, AXE ===================== -->
+<section>
+  <h2><span class="num">2</span> Electron-Group Arrangement vs Molecular Shape · AX<sub>m</sub>E<sub>n</sub> <span class="sec">Slides 4–5</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>Electron-group arrangement</td><td>Counts <em class="hi">ALL</em> electron groups around the central atom — <strong>bonding groups AND lone pairs</strong>.</td><td>H₂O has <strong>4 groups</strong> (2 bonds + 2 lone pairs) → tetrahedral <em>arrangement</em>.</td></tr>
+      <tr><td>Molecular shape</td><td>Describes only the <strong>positions of the nuclei</strong> — connected by <em class="hi">bonding groups only</em>. Lone pairs influence it but are invisible in the name.</td><td>H₂O's <em>shape</em> is <strong>bent</strong>, not tetrahedral. Arrangement = shape only when there are <strong>no lone pairs</strong>.</td></tr>
+      <tr><td>AX<sub>m</sub>E<sub>n</sub> notation</td><td>The classification code: <strong>A</strong> = central atom, <strong>X</strong> = surrounding atom, <strong>E</strong> = non-bonding (lone) electron group; m and n are integers.</td><td>H₂O = <span class="fml">AX₂E₂</span>; NH₃ = <span class="fml">AX₃E</span>; CH₄ = <span class="fml">AX₄</span>.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================== 3. BOND ANGLES ===================== -->
+<section>
+  <h2><span class="num">3</span> Bond Angles — Ideal vs Real <span class="sec">Slides 6–7, 10</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>Bond angle</td><td>The angle at the central atom's nucleus between the bonds to <strong>two surrounding atoms</strong>.</td><td>—</td></tr>
+      <tr><td>Ideal angle</td><td>The pure-geometry angle of the arrangement. Observed when <em class="hi">all bonding groups are identical and connect to the same type of atom</em> (real = ideal).</td><td>CH₄: all four C–H identical → exactly 109.5°.</td></tr>
+      <tr><td>When real ≠ ideal</td><td>Angles deviate when: ① a <strong>double bond</strong> is present; ② the surrounding <strong>atoms differ</strong>; ③ a <strong>lone pair</strong> is present.</td><td>The three "real ≠ ideal" cases from slide 7.</td></tr>
+      <tr><td>Double-bond effect</td><td>A double bond holds <strong>more electron density</strong>, so it repels single-bond pairs harder than they repel each other → it <em class="hi">opens the angles next to it and squeezes the one opposite</em>.</td><td><strong>Formaldehyde CH₂O</strong>: H–C=O opens to <strong>122°</strong>, H–C–H closes to <strong>116°</strong> (ideal was 120°).</td></tr>
+      <tr><td>Lone-pair effect</td><td>Lone pairs repel <strong>more strongly</strong> than bonding pairs — each lone pair added <em class="hi">squeezes the bond angles smaller</em>.</td><td>The tetrahedral cascade: 109.5° (CH₄) → <strong>107.3°</strong> (NH₃) → <strong>104.5°</strong> (H₂O).</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================== 4. LINEAR & TRIGONAL PLANAR ===================== -->
+<section>
+  <h2><span class="num">4</span> 2 &amp; 3 Electron Groups — Linear &amp; Trigonal Planar <span class="sec">Slides 8–10</span></h2>
+  <table class="core">
+    <thead><tr><th>Class</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>AX₂ — Linear</td><td><strong>2 electron groups</strong> point in opposite directions. Shape: <strong>linear</strong>, angle <em class="hi">180°</em>.</td><td>CS₂, HCN, BeF₂.</td></tr>
+      <tr><td>AX₃ — Trigonal planar</td><td><strong>3 groups</strong> point at the corners of an equilateral triangle. Angle <em class="hi">120°</em>, all atoms in one plane.</td><td>SO₃, BF₃, NO₃⁻, CO₃²⁻.</td></tr>
+      <tr><td>AX₂E — Bent (V-shaped)</td><td>3 groups but <strong>one is a lone pair</strong> → the nuclei make a <strong>bent</strong> shape; the lone pair squeezes the angle below 120°.</td><td>SO₂, O₃, PbCl₂, SnBr₂.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================== 5. TETRAHEDRAL ===================== -->
+<section>
+  <h2><span class="num">5</span> 4 Electron Groups — the Tetrahedral Family <span class="sec">Slides 11–14</span></h2>
+  <table class="core">
+    <thead><tr><th>Class</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>The arrangement</td><td>4 groups point at the corners of a <strong>tetrahedron</strong> (a polyhedron of 4 equilateral-triangle faces). Ideal angle <em class="hi">109.5°</em>. <strong>Every</strong> 4-group molecule uses this arrangement.</td><td>NOT a flat square — the flat Lewis drawing lies about the 3-D shape.</td></tr>
+      <tr><td>AX₄ — Tetrahedral</td><td>All 4 groups bonding. The go-to geometry of <strong>organic molecules</strong>.</td><td><strong>CH₄</strong> (109.5°), SiCl₄, SO₄²⁻, ClO₄⁻.</td></tr>
+      <tr><td>AX₃E — Trigonal pyramidal</td><td>One lone pair (stronger repulsion) pushes the 3 bonds down → angle <em class="hi">107.3°</em>.</td><td><strong>NH₃</strong>, PF₃, ClO₃⁻, H₃O⁺.</td></tr>
+      <tr><td>AX₂E₂ — Bent (V-shaped)</td><td>Two lone pairs repel even harder → angle <em class="hi">104.5°</em>.</td><td><strong>H₂O</strong>, OF₂, SCl₂.</td></tr>
+      <tr><td>NH₃ + H⁺ → NH₄⁺</td><td>Beautiful proof of the lone-pair effect: protonating ammonia turns its lone pair <em>into a bonding pair</em> — the angle relaxes from 107.3° back to the ideal <em class="hi">109.5°</em> and the shape becomes tetrahedral.</td><td>NH₃ (trigonal pyramidal, 107.3°) → NH₄⁺ (tetrahedral, 109.5°).</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================== 6. TRIGONAL BIPYRAMIDAL ===================== -->
+<section>
+  <h2><span class="num">6</span> 5 Electron Groups — the Trigonal Bipyramidal Family <span class="sec">Slides 15–20</span></h2>
+  <table class="core">
+    <thead><tr><th>Class</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>The arrangement</td><td>Two trigonal pyramids sharing a base. TWO kinds of positions: <strong>equatorial</strong> (3, on the triangle, 120° apart) and <strong>axial</strong> (2, above/below, <em class="hi">90° from the equatorial groups</em>, 180° from each other).</td><td>Only arrangement with two non-equivalent position types.</td></tr>
+      <tr><td>THE lone-pair rule</td><td>Equatorial–equatorial repulsions (120°) are <strong>weaker</strong> than axial–equatorial repulsions (90°). Since lone pairs repel hardest, <em class="hi">lone pairs ALWAYS take equatorial positions</em>.</td><td>This single rule explains seesaw, T-shape, and linear below.</td></tr>
+      <tr><td>AX₅ — Trigonal bipyramidal</td><td>All bonding; ideal angles <em class="hi">120° (eq–eq) and 90° (ax–eq)</em>.</td><td><strong>PCl₅</strong> (worked example), PF₅, AsF₅, SOF₄.</td></tr>
+      <tr><td>AX₄E — Seesaw</td><td>1 lone pair, equatorial. Angles squeeze to <em class="hi">101.5°</em> (eq) and <em class="hi">86.8°</em> (ax).</td><td><strong>SF₄</strong>, XeO₂F₂, IF₄⁺, IO₂F₂⁻.</td></tr>
+      <tr><td>AX₃E₂ — T-shaped</td><td>2 lone pairs, both equatorial. Ax–eq angle reduced to <em class="hi">86.2°</em>.</td><td><strong>BrF₃</strong> (worked example), ClF₃.</td></tr>
+      <tr><td>AX₂E₃ — Linear</td><td>3 lone pairs fill the whole equatorial plane → the 2 bonded atoms sit axial, <em class="hi">180°</em> apart.</td><td><strong>I₃⁻</strong> (worked example), XeF₂, IF₂⁻.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================== 7. OCTAHEDRAL + MASTER TABLE ===================== -->
+<section>
+  <h2><span class="num">7</span> 6 Electron Groups — Octahedral Family · THE MASTER TABLE <span class="sec">Slides 21–24</span></h2>
+  <table class="core">
+    <thead><tr><th>Class</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>The arrangement</td><td>A polyhedron of <strong>8 equilateral triangles and 6 identical vertices</strong> — all positions equivalent. Ideal angles <em class="hi">90°</em>.</td><td>—</td></tr>
+      <tr><td>AX₆ — Octahedral</td><td>All 6 groups bonding, 90° angles.</td><td><strong>SF₆</strong> (worked example), IOF₅.</td></tr>
+      <tr><td>AX₅E — Square pyramidal</td><td>1 lone pair → angles reduce to <em class="hi">81.9°</em>.</td><td><strong>IF₅</strong> (worked example), BrF₅, TeF₅⁻, XeOF₄.</td></tr>
+      <tr><td>AX₄E₂ — Square planar</td><td>2 lone pairs sit <em class="hi">opposite (trans) each other</em> to minimize lone-pair–lone-pair repulsion → the 4 atoms make a flat square and angles <strong>stay 90°</strong> (each lone pair squeezes equally from both sides).</td><td><strong>XeF₄</strong> (worked example), ICl₄⁻.</td></tr>
+    </tbody>
+  </table>
+
+  <p style="margin:12px 0 4px;font-size:.94rem;"><strong>⭐ MEMORIZE — all 13 shapes in one table:</strong></p>
+  <table class="master">
+    <thead><tr><th>e⁻ groups</th><th>Arrangement</th><th>AX<sub>m</sub>E<sub>n</sub></th><th>Molecular shape</th><th>Bond angles</th><th>Examples</th></tr></thead>
+    <tbody>
+      <tr class="grp"><td>2</td><td>Linear</td><td>AX₂</td><td>Linear</td><td>180°</td><td>CS₂, HCN, BeF₂ (CO₂)</td></tr>
+      <tr><td>3</td><td>Trigonal planar</td><td>AX₃</td><td>Trigonal planar</td><td>120°</td><td>SO₃, BF₃, NO₃⁻, CO₃²⁻</td></tr>
+      <tr><td>3</td><td>Trigonal planar</td><td>AX₂E</td><td>Bent (V-shaped)</td><td>&lt;120°</td><td>SO₂, O₃, PbCl₂, SnBr₂</td></tr>
+      <tr class="grp"><td>4</td><td>Tetrahedral</td><td>AX₄</td><td>Tetrahedral</td><td>109.5°</td><td>CH₄, SiCl₄, SO₄²⁻, ClO₄⁻</td></tr>
+      <tr class="grp"><td>4</td><td>Tetrahedral</td><td>AX₃E</td><td>Trigonal pyramidal</td><td>107.3°</td><td>NH₃, PF₃, ClO₃⁻, H₃O⁺</td></tr>
+      <tr class="grp"><td>4</td><td>Tetrahedral</td><td>AX₂E₂</td><td>Bent (V-shaped)</td><td>104.5°</td><td>H₂O, OF₂, SCl₂</td></tr>
+      <tr><td>5</td><td>Trigonal bipyramidal</td><td>AX₅</td><td>Trigonal bipyramidal</td><td>120° eq · 90° ax</td><td>PCl₅, PF₅, AsF₅, SOF₄</td></tr>
+      <tr><td>5</td><td>Trigonal bipyramidal</td><td>AX₄E</td><td>Seesaw</td><td>101.5° · 86.8°</td><td>SF₄, XeO₂F₂, IF₄⁺, IO₂F₂⁻</td></tr>
+      <tr><td>5</td><td>Trigonal bipyramidal</td><td>AX₃E₂</td><td>T-shaped</td><td>86.2°</td><td>ClF₃, BrF₃</td></tr>
+      <tr><td>5</td><td>Trigonal bipyramidal</td><td>AX₂E₃</td><td>Linear</td><td>180°</td><td>XeF₂, I₃⁻, IF₂⁻</td></tr>
+      <tr class="grp"><td>6</td><td>Octahedral</td><td>AX₆</td><td>Octahedral</td><td>90°</td><td>SF₆, IOF₅</td></tr>
+      <tr class="grp"><td>6</td><td>Octahedral</td><td>AX₅E</td><td>Square pyramidal</td><td>81.9°</td><td>IF₅, BrF₅, TeF₅⁻, XeOF₄</td></tr>
+      <tr class="grp"><td>6</td><td>Octahedral</td><td>AX₄E₂</td><td>Square planar</td><td>90°</td><td>XeF₄, ICl₄⁻</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================== 8. PROCEDURE ===================== -->
+<section>
+  <h2><span class="num">8</span> The 4-Step Shape Procedure · Multi-Center Molecules <span class="sec">Slides 25–27</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>The 4 steps</td><td>① Write the <strong>Lewis structure</strong>. ② Count <em class="hi">ALL</em> electron groups on the central atom → assign one of the <strong>5 arrangements</strong>. ③ Predict the ideal angle and any <strong>deviation</strong> (lone pairs? double bonds?). ④ Count bonding vs non-bonding groups <em>separately</em> → name the <strong>shape (AX<sub>m</sub>E<sub>n</sub>)</strong> and draw it.</td><td>Flow: Molecular formula → Lewis structure → arrangement → bond angles → molecular shape.</td></tr>
+      <tr><td>Worked exercise — SOF₄</td><td>S is central with 5 groups (4 S–F bonds + 1 S=O double bond, which counts as ONE group) → <strong>trigonal bipyramidal, AX₅</strong>; the fat double bond takes an equatorial spot and pushes the real angles off the ideal 120°/90°.</td><td>Slide-26 practice problem.</td></tr>
+      <tr><td>More than one central atom</td><td>The molecule's overall shape is a <em class="hi">composite of the shape around EACH central atom</em>, determined one center at a time.</td><td><strong>Ethane C₂H₆</strong>: two central C's, no lone pairs → <strong>two overlapping tetrahedra</strong>.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================== 9. POLARITY ===================== -->
+<section>
+  <h2><span class="num">9</span> Molecular Polarity — Shape + Bond Polarity <span class="sec">Slides 28–33 · §10.3</span></h2>
+  <table class="core">
+    <thead><tr><th>Concept</th><th>What to understand</th><th>Key facts / examples</th></tr></thead>
+    <tbody>
+      <tr><td>Why polarity matters</td><td>A molecule's polarity influences its <strong>melting point, boiling point, solubility, reactivity, and biological function</strong>.</td><td>The behavior chain: <em class="hi">ΔEN → bond polarity → molecular polarity → intermolecular forces → physical properties / solubility / reactivity</em>.</td></tr>
+      <tr><td>Polar bond</td><td>A covalent bond between atoms that <strong>share electrons unequally</strong> (different electronegativities). The e⁻-rich end is δ−, the poor end δ+.</td><td>H–F: δ+ on H, δ− on F.</td></tr>
+      <tr><td>Polar molecule</td><td>A molecule with an <em class="hi">uneven charge distribution over the whole molecule</em>. Polar molecules <strong>orient in an electric field</strong> — charged ends turn toward the oppositely charged plates (field off → random).</td><td>HF between charged plates (slide 29).</td></tr>
+      <tr><td>Dipole moment (μ)</td><td>The measure of molecular polarity. Unit: the <strong>debye (D)</strong>; <span class="fml">1 D = 3.34 × 10⁻³⁰ C·m</span>. Nonpolar molecule → μ = 0.</td><td>—</td></tr>
+      <tr><td>THE key idea</td><td><em class="hi">Polar bonds do NOT guarantee a polar molecule.</em> You must check whether the <strong>shape</strong> lets the bond dipoles cancel. Symmetric shape → dipoles cancel → nonpolar; asymmetric (lone pairs / different outer atoms) → net dipole → polar.</td><td>Two-question test: ① any polar bonds? ② do they cancel?</td></tr>
+      <tr><td>CO₂ vs H₂O</td><td>Both have polar bonds (C 2.5 vs O 3.5; H 2.1 vs O 3.5). CO₂ is <strong>linear</strong> → the two dipoles pull in opposite directions and <em class="hi">cancel → nonpolar</em>. H₂O is <strong>bent</strong> → dipoles add → <em class="hi">polar</em>.</td><td>The classic exam pair.</td></tr>
+      <tr><td>Same shape, different polarity</td><td>CCl₄ and CHCl₃ are both tetrahedral. CCl₄ (4 identical C–Cl) is symmetric → <strong>nonpolar</strong>. Swap one Cl for H (CHCl₃, chloroform) → symmetry broken → <strong>polar</strong>.</td><td>Cl EN = 3.0. Shape alone isn't enough — outer atoms must match too.</td></tr>
+      <tr><td>Practice trio (slide 31)</td><td><strong>NH₃</strong>: trigonal pyramidal, dipole toward N/lone pair → <em>polar</em>. <strong>BF₃</strong>: trigonal planar, symmetric → <em>nonpolar</em>. <strong>COS</strong>: linear like CO₂, but O ≠ S so the dipoles don't cancel → <em>polar</em>.</td><td>—</td></tr>
+      <tr><td>cis vs trans (slide 32)</td><td>Same formula, different polarity, different behavior: <strong>trans</strong>-1,2-dichloroethene → dipoles cancel, <span class="fml">μ = 0 D</span>, bp = 47.5 °C. <strong>cis</strong> isomer → dipoles add, <span class="fml">μ = 1.90 D</span>, bp = 60.3 °C. <em class="hi">The polar isomer boils higher</em> (stronger intermolecular forces).</td><td>Polarity → measurable physical differences.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================== DECISION TREE ===================== -->
+<section>
+  <h2><span class="num">★</span> The One Flow to Anchor It All</h2>
+  <div class="tree"><span class="b">MOLECULAR FORMULA</span>
+│
+▼  step 1: draw the <span class="g">LEWIS STRUCTURE</span>          (10.1 recipe)
+│
+▼  step 2: count <span class="y">ALL e⁻ groups</span> on central atom   (multiple bond = 1 group)
+│     2 → linear · 3 → trig planar · 4 → tetrahedral · 5 → trig bipyramidal · 6 → octahedral
+│
+▼  step 3: ideal angle → adjust:  <span class="y">lone pair squeezes</span> · <span class="y">double bond distorts</span>
+│     109.5° → 107.3° (1 lp) → 104.5° (2 lp)    5-group lone pairs go <span class="g">EQUATORIAL</span>
+│
+▼  step 4: count bonding (X) vs lone (E) separately  →  <span class="g">AXmEn → SHAPE</span>
+│
+▼  polarity: polar bonds?  →  do the dipoles <span class="y">cancel by symmetry</span>?
+      cancel → <span class="g">NONPOLAR</span> (CO₂, BF₃, CCl₄)     don't → <span class="g">POLAR</span> (H₂O, NH₃, CHCl₃)</div>
+  <p style="margin:10px 0 0;font-size:.93rem;"><strong>The two distinctions tested most:</strong>
+  &nbsp;① <strong>Arrangement vs shape</strong> → count ALL groups vs describe only the nuclei (H₂O: tetrahedral arrangement, bent shape).
+  &nbsp;② <strong>Polar bonds vs polar molecule</strong> → bonds can be polar while the molecule is nonpolar if the shape cancels the dipoles (CO₂, CCl₄, BF₃).</p>
+</section>
+
+<!-- ===================== FOCUS ===================== -->
+<section class="focus">
+  <h2><span class="num">⭐</span> Highest-Yield — Drill These First</h2>
+  <ol>
+    <li><strong>The master table</strong> (§7) — all 13 AX<sub>m</sub>E<sub>n</sub> classes: groups → arrangement → shape → angle → one example each. This is the chapter.</li>
+    <li><strong>The angle cascade</strong> — 109.5° (CH₄) → 107.3° (NH₃) → 104.5° (H₂O): each lone pair squeezes harder. And NH₃ + H⁺ → NH₄⁺ restores 109.5°.</li>
+    <li><strong>Lone pairs go EQUATORIAL</strong> in trigonal bipyramidal (120° eq–eq repulsion &lt; 90° ax–eq) — this generates seesaw, T-shaped, and linear.</li>
+    <li><strong>Square planar logic</strong> — in AX₄E₂ the two lone pairs sit trans, so angles stay 90°.</li>
+    <li><strong>Multiple bond = ONE electron group</strong>, but it repels harder (CH₂O: 122° / 116°).</li>
+    <li><strong>Polar bonds ≠ polar molecule</strong> — CO₂ vs H₂O; CCl₄ vs CHCl₃; BF₃ vs NH₃; COS. Two questions: polar bonds? do they cancel?</li>
+    <li><strong>Dipole moment</strong> — measured in debye, 1 D = 3.34 × 10⁻³⁰ C·m; polar molecules align in an electric field; cis (μ = 1.90 D, bp 60.3 °C) vs trans (μ = 0, bp 47.5 °C).</li>
+    <li><strong>The 4-step procedure</strong> — Lewis structure → count all groups → angles/deviations → AX<sub>m</sub>E<sub>n</sub> shape; composite shapes for multi-center molecules (ethane = 2 tetrahedra).</li>
+  </ol>
+</section>
+
+<footer>Master study table built from a deep read of all 33 slides of Valence-Shell Electron-pair Repulsion (VSEPR) Theory 10.2–10.3.pdf — designed to be studied standalone.</footer>
+
+</div>
+</body>
+</html>

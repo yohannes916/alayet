@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 5 — Comprehensive Self-Test (Nomenclature)</title>
+<style>
+  :root{--accent:#6c3483;--accent2:#a569bd;--bg:#f3eef7;--card:#fff;--ok:#1e8449;--bad:#c0392b;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.5;color:#212f3d;background:var(--bg);margin:0;padding:0 14px 120px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:26px 26px;border-radius:0 0 14px 14px;margin:0 -14px 18px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  .howto{background:#f4ecf7;border-left:5px solid var(--accent2);padding:11px 16px;border-radius:8px;margin-bottom:16px;font-size:.92rem;}
+  .howto strong{color:var(--accent);}
+  #results{background:#fff;border:2px solid var(--accent);border-radius:12px;padding:18px 20px;margin-bottom:18px;box-shadow:0 3px 12px rgba(0,0,0,.1);}
+  #results h2{margin:0 0 8px;color:var(--accent);}
+  .bigscore{font-size:2.4rem;font-weight:800;}
+  .pct{font-size:1.1rem;color:#566573;}
+  .secgrid{width:100%;border-collapse:collapse;margin:12px 0;font-size:.86rem;}
+  .secgrid td,.secgrid th{border:1px solid #d5dbdb;padding:5px 9px;text-align:left;}
+  .secgrid th{background:var(--accent);color:#fff;}
+  .barwrap{background:#e5e8e8;border-radius:6px;height:12px;overflow:hidden;min-width:80px;}
+  .bar{height:100%;background:var(--ok);}
+  .secbadge{display:inline-block;background:var(--accent);color:#fff;font-size:.66rem;font-weight:700;letter-spacing:.3px;padding:2px 8px;border-radius:10px;text-transform:uppercase;margin-bottom:8px;}
+  .sechead{margin:26px 0 6px;color:var(--accent);font-size:1.15rem;border-bottom:2px solid #e8daef;padding-bottom:5px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 16px 12px;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid transparent;}
+  .q.correct{border-left-color:var(--ok);background:#f2fbf5;}
+  .q.incorrect{border-left-color:var(--bad);background:#fdf3f2;}
+  .qnum{font-weight:700;color:var(--accent);margin-right:6px;}
+  .qtype{font-size:.66rem;font-weight:700;color:#fff;background:#85929e;border-radius:8px;padding:1px 7px;margin-left:6px;vertical-align:middle;text-transform:uppercase;}
+  .qtext{font-size:.98rem;margin:2px 0 9px;}
+  .opts label{display:block;padding:6px 10px;margin:4px 0;border:1px solid #d5dbdb;border-radius:7px;cursor:pointer;font-size:.93rem;transition:.1s;}
+  .opts label:hover{background:#f7f2fa;}
+  .opts input{margin-right:9px;}
+  .opts label.pick{border-color:var(--accent2);background:#f4ecf7;}
+  .opts label.ansright{border-color:var(--ok);background:#eafaf1;}
+  .opts label.answrong{border-color:var(--bad);background:#fdedec;}
+  input[type=text]{width:100%;max-width:340px;padding:8px 11px;border:1px solid #b8a3c4;border-radius:7px;font-size:.95rem;}
+  input[type=text].ansright{border-color:var(--ok);background:#eafaf1;}
+  input[type=text].answrong{border-color:var(--bad);background:#fdedec;}
+  .blankline{font-size:1rem;line-height:2.2;margin:2px 0 4px;}
+  input.blank{width:130px;max-width:160px;display:inline-block;margin:0 5px;padding:5px 8px;border:1px solid #b8a3c4;border-bottom:2px solid var(--accent2);border-radius:6px;font-size:.9rem;vertical-align:baseline;}
+  input.blank.ansright{border-color:var(--ok);background:#eafaf1;}
+  input.blank.answrong{border-color:var(--bad);background:#fdedec;}
+  .fb{margin-top:9px;font-size:.86rem;padding:8px 11px;border-radius:7px;display:none;}
+  .fb.show{display:block;}
+  .fb.good{background:#eafaf1;color:#145a32;}
+  .fb.no{background:#fdedec;color:#922b21;}
+  .fb b{display:inline-block;}
+  .checkbtn{margin-top:10px;background:#a569bd;color:#fff;border:none;border-radius:7px;padding:6px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .checkbtn:hover{background:#6c3483;}
+  .checkbtn:disabled{cursor:default;opacity:.85;}
+  .tut{background:#fdfbfe;border:1px solid #e8daef;border-left:4px solid #a569bd;border-radius:6px;padding:8px 11px;margin-bottom:8px;color:#2c3e50;font-size:.85rem;line-height:1.45;}
+  .tut b{color:#6c3483;}
+  #bottombar{position:fixed;left:0;right:0;bottom:0;background:#fffffff2;backdrop-filter:blur(6px);border-top:1px solid #ccd;padding:10px 14px;box-shadow:0 -2px 10px rgba(0,0,0,.08);z-index:50;}
+  #bottombar .inner{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+  .counter{font-size:.9rem;color:#566573;font-weight:600;}
+  button{font-family:inherit;font-size:.92rem;font-weight:600;border:none;border-radius:8px;padding:10px 18px;cursor:pointer;}
+  .btn-primary{background:var(--accent);color:#fff;}
+  .btn-primary:hover{background:#512e5f;}
+  .btn-warn{background:var(--star);color:#fff;}
+  .btn-warn:hover{background:#9a7d0a;}
+  .btn-ghost{background:#e5e8e8;color:#2c3e50;}
+  .btn-ghost:hover{background:#d5dbdb;}
+  .hidden{display:none!important;}
+  .modechip{display:inline-block;background:var(--star);color:#fff;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:10px;margin-left:8px;}
+  @media print{#bottombar{position:static;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Chapter 5 — Comprehensive Self-Test <span id="modechip" class="modechip hidden"></span></h1>
+  <p>Nomenclature: naming compounds & writing formulas · auto-graded · retry-wrong-only · <span id="qcount"></span> questions</p>
+</header>
+
+<div class="howto">
+  <strong>How it works:</strong> Answer, then press <strong>Submit &amp; Grade</strong>. You'll get a score, a per-section
+  breakdown, and the correct answer + explanation on every question. Then hit <strong>Retry Wrong Only</strong> to be
+  re-tested on just your misses. <em>Blanks are graded leniently — parentheses, spaces, and capitalization don't matter
+  (e.g. "iron(III) chloride" = "iron 3 chloride"; "Co(NO3)3" = "cono33") — but spell the chemistry terms correctly.</em>
+</div>
+
+<div id="results" class="hidden"></div>
+<form id="quiz" onsubmit="return false;"></form>
+</div>
+
+<div id="bottombar">
+  <div class="inner">
+    <span class="counter" id="counter">0 / 0 answered</span>
+    <button class="btn-primary" id="submitBtn">Submit &amp; Grade</button>
+    <button class="btn-warn hidden" id="retryBtn">Retry Wrong Only</button>
+    <button class="btn-ghost hidden" id="restartBtn">Restart Entire Test</button>
+  </div>
+</div>
+
+<script>
+const SEC={
+ "0":"Prerequisites (from Chapter 4)",
+ "1":"1 · Classifying Compounds (the decision tree)",
+ "2":"2 · Type I Ionic Naming",
+ "3":"3 · Type II Ionic (Roman numerals)",
+ "4":"4 · Cations Reference",
+ "5":"5 · Anions Reference",
+ "6":"6 · Type III Covalent (prefixes)",
+ "7":"7 · Greek Prefixes",
+ "8":"8 · Polyatomic Ions & Oxyanions",
+ "9":"9 · Polyatomic Memorize List",
+ "10":"10 · Naming Acids",
+ "11":"11 · Writing Formulas from Names"
+};
+
+/* ===== TOPIC TUTORIALS (shown on Check) ===== */
+const TUT={
+ "0":"Naming builds on Chapter 4: predict ion charges by group (1A→1+, 2A→2+, 7A→1−), name the <b>cation first</b> and the anion with <b>-ide</b>, and balance charges to zero when writing formulas.",
+ "1":"First decide the type. <b>Metal + nonmetal = ionic</b> (Type I if the metal has one fixed charge; Type II if it varies — usually transition metals — needing a Roman numeral). <b>Two nonmetals = Type III</b> covalent (Greek prefixes). <b>H first, in water = acid.</b>",
+ "2":"<b>Type I</b> = fixed-charge metal + nonmetal. Name the metal, then the nonmetal root + <b>-ide</b>. No prefixes, no Roman numeral (SrBr₂ = strontium bromide, not \"dibromide\").",
+ "3":"<b>Type II</b> metals form more than one charge, shown by a <b>Roman numeral</b>. Back-calculate it from the anion: in CrO₂, two O²⁻ = 4−, so Cr is 4+ → chromium(IV) oxide.",
+ "4":"Fixed-charge (no numeral): Groups 1A, 2A, Al, Zn, Ag. Variable (need a numeral): most transition metals plus Sn and Pb. e.g., Fe²⁺ = iron(II), Fe³⁺ = iron(III), Cu⁺ = copper(I).",
+ "5":"A simple (monatomic) anion = element root + <b>-ide</b>: Cl⁻ chloride, O²⁻ oxide, N³⁻ nitride. Charge follows the group: 7A→1−, 6A→2−, 5A→3−.",
+ "6":"Two nonmetals = covalent; use <b>Greek prefixes</b> to count each atom (CO₂ = carbon dioxide, SF₆ = sulfur hexafluoride). Never put <b>mono-</b> on the first element.",
+ "7":"mono 1, di 2, tri 3, tetra 4, penta 5, hexa 6, hepta 7, octa 8, nona 9, deca 10. Drop the trailing a/o before \"oxide\" (mon<b>oxide</b>, pent<b>oxide</b>).",
+ "8":"Polyatomic ions are named groups you must memorize. For oxyanions of one element: <b>more oxygen = -ate, fewer = -ite</b>. With four levels: <b>per-…-ate</b> (most) &gt; -ate &gt; -ite &gt; <b>hypo-…-ite</b> (least): ClO₄⁻/ClO₃⁻/ClO₂⁻/ClO⁻.",
+ "9":"Key ions: NH₄⁺ ammonium (only common cation), OH⁻ hydroxide, NO₃⁻ nitrate, SO₄²⁻ sulfate, CO₃²⁻ carbonate, PO₄³⁻ phosphate, C₂H₃O₂⁻ acetate. Learn the <b>-ate</b> forms first, then derive the rest.",
+ "10":"Acids start with H and give H⁺ in water. <b>No oxygen:</b> hydro-…-ic (HCl = hydrochloric). <b>With oxygen</b>, from the oxyanion: <b>-ate → -ic</b> (sulfate → sulfuric), <b>-ite → -ous</b> (sulfite → sulfurous).",
+ "11":"This is charge-balancing in reverse: identify each ion + its charge, then add subscripts so charges cancel — use <b>parentheses</b> around a polyatomic ion that repeats. Cobalt(III) nitrate = Co(NO₃)₃."
+};
+
+/* t: "tf" | "mc" | "fib" | "fibm"
+   fib a = [accepted...] ; fibm a = [[blank1...],[blank2...]] ; mc a = exact option ; tf a = "true"/"false" */
+const BANK=[
+/* ---------- 0 PREREQUISITES ---------- */
+{s:"0",t:"fibm",q:`In any compound's name, the ___ (positive ion) is named first and the ___ (negative ion) second.`,a:[["cation"],["anion"]],e:`Name the cation (positive) first, then the anion (negative). Example: NaCl = sodium chloride. (Bridge from Ch4 §10–11)`},
+{s:"0",t:"fib",q:`A positively charged ion is called a ___.`,a:["cation"],e:`A positive ion is a cation — metals make these by losing electrons (Na⁺). (Bridge from Ch4 §10–11)`},
+{s:"0",t:"fib",q:`A negatively charged ion is called an ___.`,a:["anion"],e:`A negative ion is an anion — nonmetals make these by gaining electrons (Cl⁻). (Bridge from Ch4 §10–11)`},
+{s:"0",t:"mc",q:`A Group 1A metal forms an ion of charge ______.`,o:[`1+`,`2+`,`1−`],a:`1+`,e:`1A metals lose 1 electron → 1+ (Na⁺, K⁺). (Bridge from Ch4 §10–11)`},
+{s:"0",t:"mc",q:`A Group 2A metal forms an ion of charge ______.`,o:[`1+`,`2+`,`2−`],a:`2+`,e:`2A metals lose 2 electrons → 2+ (Mg²⁺, Ca²⁺). (Bridge from Ch4 §10–11)`},
+{s:"0",t:"mc",q:`A halogen (Group 7A) forms an ion of charge ______.`,o:[`1+`,`1−`,`2−`],a:`1−`,e:`Halogens gain 1 electron → 1− (Cl⁻, Br⁻). (Bridge from Ch4 §10–11)`},
+{s:"0",t:"mc",q:`Aluminum forms an ion of charge ______.`,o:[`1+`,`2+`,`3+`],a:`3+`,e:`Aluminum is Group 3A → loses 3 electrons → Al³⁺. (Bridge from Ch4 §10–11)`},
+{s:"0",t:"mc",q:`The oxide ion (from oxygen) has charge ______.`,o:[`1−`,`2−`,`3−`],a:`2−`,e:`Oxygen (Group 6A) gains 2 electrons → O²⁻. (Bridge from Ch4 §10–11)`},
+{s:"0",t:"fib",q:`A simple nonmetal anion is named with the element root plus the suffix ___.`,a:["-ide","ide"],e:`Simple anions add '-ide': chlorine → chloride, oxygen → oxide. (Bridge from Ch4 §10–11)`},
+{s:"0",t:"tf",q:`When writing a formula, subscripts are chosen so the total charge sums to zero.`,a:"true",e:`True. Every compound is neutral, so subscripts make the + and − charges cancel. (Bridge from Ch4 §10–11)`},
+{s:"0",t:"mc",q:`Combining Mg²⁺ and Cl⁻ gives the formula ______.`,o:[`MgCl`,`MgCl2`,`Mg2Cl`],a:`MgCl2`,e:`Mg²⁺ needs two Cl⁻ to balance → MgCl₂. (Bridge from Ch4 §10–11)`},
+{s:"0",t:"mc",q:`Combining Al³⁺ and O²⁻ gives the formula ______.`,o:[`AlO`,`Al2O3`,`Al3O2`],a:`Al2O3`,e:`Cross the charges: Al³⁺ and O²⁻ → Al₂O₃ (+6 and −6). (Bridge from Ch4 §10–11)`},
+
+/* ---------- 1 CLASSIFY ---------- */
+{s:"1",t:"fib",q:`A compound made of exactly two elements is called a ___ compound.`,a:["binary"],e:`Two elements only = a binary compound (NaCl, CO₂, HCl). (Notes §1 · Slides 2–3, 18)`},
+{s:"1",t:"fib",q:`The overall topic of naming compounds and writing formulas is called ___.`,a:["nomenclature"],e:`Naming compounds is 'nomenclature' — the rulebook for chemical names. (Notes §1 · Slides 2–3, 18)`},
+{s:"1",t:"mc",q:`NaCl (sodium is a fixed-charge metal + a nonmetal) is which type?`,o:[`Type I ionic`,`Type II ionic`,`Type III covalent`,`Acid`],a:`Type I ionic`,e:`Metal (fixed charge) + nonmetal = Type I ionic. Sodium is always 1+, so no Roman numeral. (Notes §1 · Slides 2–3, 18)`},
+{s:"1",t:"mc",q:`FeCl₃ (a transition metal + a nonmetal) is which type?`,o:[`Type I ionic`,`Type II ionic`,`Type III covalent`],a:`Type II ionic`,e:`Iron is a transition metal (variable charge) → Type II, needs a numeral: iron(III) chloride. (Notes §1 · Slides 2–3, 18)`},
+{s:"1",t:"mc",q:`CO₂ (two nonmetals) is which type?`,o:[`Type I ionic`,`Type II ionic`,`Type III covalent`],a:`Type III covalent`,e:`Two nonmetals = Type III covalent → use prefixes: carbon dioxide. (Notes §1 · Slides 2–3, 18)`},
+{s:"1",t:"mc",q:`Which class of compound is named using Greek prefixes (mono-, di-, tri-…)?`,o:[`Type I ionic`,`Type II ionic`,`Type III covalent (two nonmetals)`],a:`Type III covalent (two nonmetals)`,e:`Greek prefixes (mono, di, tri) are used for Type III — two nonmetals (e.g., dinitrogen tetroxide). (Notes §1 · Slides 2–3, 18)`},
+{s:"1",t:"mc",q:`Which class requires a Roman numeral to show the metal's charge?`,o:[`Type I`,`Type II`,`Type III`],a:`Type II`,e:`Type II (variable-charge metals) needs a Roman numeral, e.g., copper(II). (Notes §1 · Slides 2–3, 18)`},
+{s:"1",t:"mc",q:`A molecule with H written first, dissolved in water, is classified as a(n) ______.`,o:[`base`,`salt`,`acid`,`oxide`],a:`acid`,e:`H first + dissolved in water = an acid (HCl → hydrochloric acid). (Notes §1 · Slides 2–3, 18)`},
+{s:"1",t:"mc",q:`Which of these is a Type III (two-nonmetal) compound?`,o:[`MgO`,`SF₆`,`KBr`,`CuCl`],a:`SF₆`,e:`SF₆ is two nonmetals (S and F) → Type III. MgO/KBr/CuCl are metal+nonmetal (ionic). (Notes §1 · Slides 2–3, 18)`},
+{s:"1",t:"mc",q:`Which of these is a Type I ionic compound?`,o:[`NaCl`,`FeS`,`CO₂`,`HCl`],a:`NaCl`,e:`NaCl — sodium is a fixed-charge metal. FeS/CuCl are Type II; CO₂ is Type III. (Notes §1 · Slides 2–3, 18)`},
+{s:"1",t:"tf",q:`Transition metals usually require a Roman numeral in their compound names.`,a:"true",e:`True. Most transition metals form several charges, so the numeral says which one. (Notes §1 · Slides 2–3, 18)`},
+{s:"1",t:"tf",q:`Two nonmetals form a covalent compound named with prefixes, not Roman numerals.`,a:"true",e:`True. Two nonmetals → covalent → prefixes (never Roman numerals). (Notes §1 · Slides 2–3, 18)`},
+{s:"1",t:"mc",q:`SrBr₂ is which type? (Sr is a Group 2A fixed-charge metal.)`,o:[`Type I`,`Type II`,`Type III`],a:`Type I`,e:`Strontium is Group 2A (always 2+), so it's Type I — no Roman numeral. (Notes §1 · Slides 2–3, 18)`},
+
+/* ---------- 2 TYPE I NAMING ---------- */
+{s:"2",t:"tf",q:`Type I ionic compounds use no prefixes and no Roman numeral.`,a:"true",e:`True. The metal has one fixed charge, so no numeral; ionic names never use prefixes. (Notes §2 · Slides 3–7)`},
+{s:"2",t:"mc",q:`What is the name of NaCl?`,o:[`sodium chloride`,`sodium chlorine`,`monosodium chloride`,`sodium(I) chloride`],a:`sodium chloride`,e:`Type I: metal name + nonmetal root + -ide → sodium chloride. (Notes §2 · Slides 3–7)`},
+{s:"2",t:"mc",q:`What is the name of CaS?`,o:[`calcium sulfur`,`calcium sulfide`,`calcium(II) sulfide`,`calcium monosulfide`],a:`calcium sulfide`,e:`Calcium + sulf-ide → calcium sulfide. (Notes §2 · Slides 3–7)`},
+{s:"2",t:"mc",q:`What is the name of SrBr₂? (Exercise 1)`,o:[`strontium bromine`,`sulfur bromide`,`strontium dibromide`,`strontium bromide`],a:`strontium bromide`,e:`Strontium bromide — Sr is fixed 2+, so no 'di' and no numeral. (Notes §2 · Slides 3–7)`},
+{s:"2",t:"fib",q:`Type the name of KI.`,a:["potassium iodide"],e:`Potassium iodide (K⁺ + I⁻). (Notes §2 · Slides 3–7)`},
+{s:"2",t:"fib",q:`Type the name of MgO.`,a:["magnesium oxide"],e:`Magnesium oxide (Mg²⁺ + O²⁻). (Notes §2 · Slides 3–7)`},
+{s:"2",t:"fib",q:`Type the name of CaCl₂.`,a:["calcium chloride"],e:`Calcium chloride — no 'di' (ionic Type I). (Notes §2 · Slides 3–7)`},
+{s:"2",t:"fib",q:`Type the name of Li₂O.`,a:["lithium oxide"],e:`Lithium oxide (Li⁺ + O²⁻ → Li₂O). (Notes §2 · Slides 3–7)`},
+{s:"2",t:"fib",q:`Type the name of AlCl₃.`,a:["aluminum chloride","aluminium chloride"],e:`Aluminum chloride (Al³⁺ + Cl⁻). (Notes §2 · Slides 3–7)`},
+{s:"2",t:"fib",q:`The anion of chlorine (Cl⁻) is named ___.`,a:["chloride"],e:`Chloride — root 'chlor' + '-ide'. (Notes §2 · Slides 3–7)`},
+{s:"2",t:"fib",q:`The anion of oxygen (O²⁻) is named ___.`,a:["oxide"],e:`Oxide. (Notes §2 · Slides 3–7)`},
+{s:"2",t:"mc",q:`Why is CaBr₂ called "calcium bromide" and NOT "calcium dibromide"?`,o:[`Prefixes aren't used for Type I ionic compounds`,`Bromine can't be doubled`,`Calcium is a nonmetal`,`It should be dibromide`],a:`Prefixes aren't used for Type I ionic compounds`,e:`Ionic (Type I) names never use prefixes — the fixed charges already fix the ratio. (Notes §2 · Slides 3–7)`},
+
+/* ---------- 3 TYPE II (ROMAN NUMERALS) ---------- */
+{s:"3",t:"fib",q:`In a Type II name, the metal's charge is shown by a ___ numeral in parentheses.`,a:["roman"],e:`A Roman numeral in parentheses shows a Type II metal's charge, e.g., iron(III). (Notes §3 · Slides 8–13)`},
+{s:"3",t:"mc",q:`What is the name of FeCl₃?`,o:[`iron chloride`,`iron(II) chloride`,`iron(III) chloride`,`iron trichloride`],a:`iron(III) chloride`,e:`3 Cl⁻ = −3, so Fe is 3+ → iron(III) chloride. (Notes §3 · Slides 8–13)`},
+{s:"3",t:"mc",q:`What is the name of CuBr?`,o:[`copper bromide`,`copper(I) bromide`,`copper(II) bromide`,`copper monobromide`],a:`copper(I) bromide`,e:`1 Br⁻ = −1, so Cu is 1+ → copper(I) bromide. (Notes §3 · Slides 8–13)`},
+{s:"3",t:"mc",q:`What is the name of PbO₂?`,o:[`lead oxide`,`lead(II) oxide`,`lead(IV) oxide`,`lead dioxide`],a:`lead(IV) oxide`,e:`2 O²⁻ = −4, so Pb is 4+ → lead(IV) oxide. (Notes §3 · Slides 8–13)`},
+{s:"3",t:"mc",q:`What is the name of CrO₂? (Exercise 2)`,o:[`chromium oxide`,`chromium(II) oxide`,`chromium(IV) oxide`],a:`chromium(IV) oxide`,e:`2 O²⁻ = −4, so Cr is 4+ → chromium(IV) oxide. (Notes §3 · Slides 8–13)`},
+{s:"3",t:"mc",q:`What is the name of Fe₂O₃?`,o:[`iron(II) oxide`,`iron(III) oxide`,`diiron trioxide`],a:`iron(III) oxide`,e:`3 O²⁻ = −6, shared by 2 Fe → each Fe is 3+ → iron(III) oxide. (Notes §3 · Slides 8–13)`},
+{s:"3",t:"mc",q:`What is the name of SnCl₂?`,o:[`tin(II) chloride`,`tin(IV) chloride`,`tin dichloride`],a:`tin(II) chloride`,e:`2 Cl⁻ = −2, so Sn is 2+ → tin(II) chloride. (Notes §3 · Slides 8–13)`},
+{s:"3",t:"mc",q:`In SnCl₄, tin's charge is ______.`,o:[`2+`,`3+`,`4+`],a:`4+`,e:`4 Cl⁻ = −4, so tin is 4+. (Notes §3 · Slides 8–13)`},
+{s:"3",t:"fib",q:`Type the full name of CuCl₂ (copper is 2+ here).`,a:["copper(II) chloride","copper 2 chloride"],e:`2 Cl⁻ → Cu is 2+ → copper(II) chloride. (Notes §3 · Slides 8–13)`},
+{s:"3",t:"fib",q:`Type the full name of FeS (iron is 2+ here).`,a:["iron(II) sulfide","iron 2 sulfide"],e:`S²⁻ → Fe is 2+ → iron(II) sulfide. (Notes §3 · Slides 8–13)`},
+{s:"3",t:"mc",q:`Exercise 3: the most stable sulfur ion (S²⁻) combines with the metal ion that has 24 electrons. Name the compound.`,o:[`iron(III) sulfide`,`chromium(II) sulfide`,`nickel(III) sulfate`,`iron(II) sulfide`],a:`iron(II) sulfide`,e:`A metal ion with 24 e⁻ and a 2+ charge has 26 protons = iron → Fe²⁺ + S²⁻ = iron(II) sulfide. (Notes §3 · Slides 8–13)`},
+{s:"3",t:"tf",q:`TiO₂ is correctly named "titanium(II) oxide."`,a:"false",e:`False. 2 O²⁻ = −4, so Ti is 4+ → titanium(IV) oxide, not (II). (Notes §3 · Slides 8–13)`},
+{s:"3",t:"mc",q:`What is the correct name of TiO₂?`,o:[`titanium(II) oxide`,`titanium(IV) oxide`,`titanium dioxide`],a:`titanium(IV) oxide`,e:`Ti is 4+ (two O²⁻) → titanium(IV) oxide. (Notes §3 · Slides 8–13)`},
+{s:"3",t:"mc",q:`What is the name of CoCl₃?`,o:[`cobalt(II) chloride`,`cobalt(III) chloride`,`cobalt trichloride`],a:`cobalt(III) chloride`,e:`3 Cl⁻ → Co is 3+ → cobalt(III) chloride. (Notes §3 · Slides 8–13)`},
+
+/* ---------- 4 CATIONS REFERENCE ---------- */
+{s:"4",t:"mc",q:`Which metal forms only ONE cation (no Roman numeral needed)?`,o:[`Sodium`,`Iron`,`Copper`,`Lead`],a:`Sodium`,e:`Sodium (Group 1A) is always 1+ — fixed charge, no numeral. Iron/copper/lead vary. (Notes §4 · Slides 4, 9)`},
+{s:"4",t:"mc",q:`Which metal REQUIRES a Roman numeral in its compounds?`,o:[`Calcium`,`Aluminum`,`Iron`,`Zinc`],a:`Iron`,e:`Iron varies (Fe²⁺/Fe³⁺), so it needs a numeral. Ca, Al, Zn are fixed. (Notes §4 · Slides 4, 9)`},
+{s:"4",t:"tf",q:`Zinc (Zn²⁺) and silver (Ag⁺) are usually treated as fixed-charge (no numeral).`,a:"true",e:`True. Zn is always 2+ and Ag always 1+, so no numeral (the common exceptions among transition metals). (Notes §4 · Slides 4, 9)`},
+{s:"4",t:"mc",q:`Silver's ion is ______.`,o:[`Ag⁺`,`Ag²⁺`,`Ag³⁺`],a:`Ag⁺`,e:`Silver is always Ag⁺ (1+). (Notes §4 · Slides 4, 9)`},
+{s:"4",t:"mc",q:`Zinc's ion is ______.`,o:[`Zn⁺`,`Zn²⁺`,`Zn³⁺`],a:`Zn²⁺`,e:`Zinc is always Zn²⁺ (2+). (Notes §4 · Slides 4, 9)`},
+{s:"4",t:"fib",q:`"Fe²⁺" is named iron(___). Enter the Roman numeral.`,a:["ii","2"],e:`Fe²⁺ = iron(II) — the numeral matches the charge. (Notes §4 · Slides 4, 9)`},
+{s:"4",t:"fib",q:`"Cu⁺" is named copper(___). Enter the Roman numeral.`,a:["i","1"],e:`Cu⁺ = copper(I). (Notes §4 · Slides 4, 9)`},
+{s:"4",t:"mc",q:`Which is the correct pair of iron ions?`,o:[`Fe⁺ and Fe²⁺`,`Fe²⁺ and Fe³⁺`,`Fe³⁺ and Fe⁴⁺`],a:`Fe²⁺ and Fe³⁺`,e:`Iron forms Fe²⁺ (iron II) and Fe³⁺ (iron III). (Notes §4 · Slides 4, 9)`},
+
+/* ---------- 5 ANIONS REFERENCE ---------- */
+{s:"5",t:"fib",q:`The anion F⁻ is named ___.`,a:["fluoride"],e:`Fluoride (root 'fluor' + '-ide'). (Notes §5 · Slides 4–5)`},
+{s:"5",t:"fib",q:`The anion Br⁻ is named ___.`,a:["bromide"],e:`Bromide. (Notes §5 · Slides 4–5)`},
+{s:"5",t:"fib",q:`The anion N³⁻ is named ___.`,a:["nitride"],e:`Nitride (nitrogen, Group 5A → 3−). (Notes §5 · Slides 4–5)`},
+{s:"5",t:"fib",q:`The anion P³⁻ is named ___.`,a:["phosphide"],e:`Phosphide (phosphorus, Group 5A → 3−). (Notes §5 · Slides 4–5)`},
+{s:"5",t:"fib",q:`The anion H⁻ is named ___.`,a:["hydride"],e:`Hydride (hydrogen as a 1− anion). (Notes §5 · Slides 4–5)`},
+{s:"5",t:"mc",q:`The sulfide ion has charge ______.`,o:[`1−`,`2−`,`3−`],a:`2−`,e:`Sulfur (Group 6A) → S²⁻. (Notes §5 · Slides 4–5)`},
+{s:"5",t:"mc",q:`The nitride ion has charge ______.`,o:[`1−`,`2−`,`3−`],a:`3−`,e:`Nitrogen (Group 5A) → N³⁻. (Notes §5 · Slides 4–5)`},
+{s:"5",t:"mc",q:`"Iodide" is the ion of which element?`,o:[`Iron`,`Iodine`,`Indium`],a:`Iodine`,e:`Iodide = I⁻, the ion of iodine. (Notes §5 · Slides 4–5)`},
+
+/* ---------- 6 TYPE III COVALENT (PREFIXES) ---------- */
+{s:"6",t:"tf",q:`The prefix "mono-" is never used on the FIRST element in a Type III name.`,a:"true",e:`True. CO = carbon monoxide (not 'monocarbon monoxide'). Mono only appears on the second element. (Notes §6 · Slides 14–17)`},
+{s:"6",t:"mc",q:`What is the name of CO?`,o:[`carbon oxide`,`carbon monoxide`,`monocarbon monoxide`,`carbon(II) oxide`],a:`carbon monoxide`,e:`Carbon monoxide — 'mono' on oxygen only (never on the first element). (Notes §6 · Slides 14–17)`},
+{s:"6",t:"mc",q:`What is the name of CO₂?`,o:[`carbon oxide`,`carbon dioxide`,`carbon(IV) oxide`],a:`carbon dioxide`,e:`Carbon dioxide — di = 2 oxygens. (Notes §6 · Slides 14–17)`},
+{s:"6",t:"mc",q:`What is the name of SF₆?`,o:[`sulfur fluoride`,`sulfur hexafluoride`,`sulfur(VI) fluoride`],a:`sulfur hexafluoride`,e:`Sulfur hexafluoride — hexa = 6 F. (Notes §6 · Slides 14–17)`},
+{s:"6",t:"mc",q:`What is the name of N₂O₄?`,o:[`nitrogen oxide`,`dinitrogen tetroxide`,`nitrogen(IV) oxide`],a:`dinitrogen tetroxide`,e:`Dinitrogen tetroxide — 2 N (di), 4 O (tetr-). (Notes §6 · Slides 14–17)`},
+{s:"6",t:"mc",q:`What is the name of SeO₂? (Exercise 4)`,o:[`selenium oxide`,`selenium dioxide`,`selenium(IV) oxide`],a:`selenium dioxide`,e:`Selenium dioxide — two nonmetals → prefixes, no Roman numeral. (Notes §6 · Slides 14–17)`},
+{s:"6",t:"mc",q:`What is the name of PCl₃?`,o:[`phosphorus chloride`,`phosphorus trichloride`,`phosphorus(III) chloride`],a:`phosphorus trichloride`,e:`Phosphorus trichloride — tri = 3 Cl. (Notes §6 · Slides 14–17)`},
+{s:"6",t:"mc",q:`What is the name of CCl₄?`,o:[`carbon chloride`,`carbon tetrachloride`,`carbon(IV) chloride`],a:`carbon tetrachloride`,e:`Carbon tetrachloride — tetra = 4 Cl. (Notes §6 · Slides 14–17)`},
+{s:"6",t:"fib",q:`Type the name of P₂O₅.`,a:["diphosphorus pentoxide","diphosphorus pentaoxide"],e:`Diphosphorus pentoxide — 2 P (di), 5 O (pent-). (Notes §6 · Slides 14–17)`},
+{s:"6",t:"mc",q:`Exercise 6: "ClO₂" named "chlorine oxide" is wrong. The correct name is ______.`,o:[`chlorine dioxide`,`chlorine(IV) oxide`,`dichlorine oxide`],a:`chlorine dioxide`,e:`It needs a prefix for the 2 oxygens → chlorine dioxide. (Notes §6 · Slides 14–17)`},
+{s:"6",t:"mc",q:`What is the name of N₂O?`,o:[`nitrogen oxide`,`dinitrogen monoxide`,`nitrogen(I) oxide`],a:`dinitrogen monoxide`,e:`Dinitrogen monoxide — 2 N, 1 O (mono on the second element). (Notes §6 · Slides 14–17)`},
+
+/* ---------- 7 GREEK PREFIXES ---------- */
+{s:"7",t:"fib",q:`The Greek prefix meaning 1 is ___.`,a:["mono"],e:`1 = mono- (carbon monoxide). (Notes §7 · Slide 15)`},
+{s:"7",t:"fib",q:`The Greek prefix meaning 2 is ___.`,a:["di"],e:`2 = di- (carbon dioxide). (Notes §7 · Slide 15)`},
+{s:"7",t:"fib",q:`The Greek prefix meaning 3 is ___.`,a:["tri"],e:`3 = tri- (sulfur trioxide). (Notes §7 · Slide 15)`},
+{s:"7",t:"fib",q:`The Greek prefix meaning 4 is ___.`,a:["tetra"],e:`4 = tetra- (carbon tetrachloride). (Notes §7 · Slide 15)`},
+{s:"7",t:"fib",q:`The Greek prefix meaning 5 is ___.`,a:["penta"],e:`5 = penta- (phosphorus pentachloride). (Notes §7 · Slide 15)`},
+{s:"7",t:"fib",q:`The Greek prefix meaning 6 is ___.`,a:["hexa"],e:`6 = hexa- (sulfur hexafluoride). (Notes §7 · Slide 15)`},
+{s:"7",t:"fib",q:`The Greek prefix meaning 7 is ___.`,a:["hepta"],e:`7 = hepta- (dichlorine heptoxide). (Notes §7 · Slide 15)`},
+{s:"7",t:"fib",q:`The Greek prefix meaning 8 is ___.`,a:["octa"],e:`8 = octa- (like octopus = 8 legs). (Notes §7 · Slide 15)`},
+{s:"7",t:"fib",q:`The Greek prefix meaning 9 is ___.`,a:["nona"],e:`9 = nona-. (Notes §7 · Slide 15)`},
+{s:"7",t:"fib",q:`The Greek prefix meaning 10 is ___.`,a:["deca"],e:`10 = deca- (like a decade = 10 years). (Notes §7 · Slide 15)`},
+{s:"7",t:"fibm",q:`Fill the prefixes: 3 = ___, 4 = ___, 5 = ___.`,a:[["tri"],["tetra"],["penta"]],e:`3 = tri, 4 = tetra, 5 = penta. (Notes §7 · Slide 15)`},
+{s:"7",t:"mc",q:`"Hexa-" indicates how many atoms?`,o:[`4`,`5`,`6`,`7`],a:`6`,e:`Hexa = 6. (Notes §7 · Slide 15)`},
+{s:"7",t:"mc",q:`How many fluorine atoms are in sulfur hexafluoride?`,o:[`4`,`6`,`8`],a:`6`,e:`Hexa = 6, so SF₆ has 6 fluorine atoms. (Notes §7 · Slide 15)`},
+
+/* ---------- 8 POLYATOMIC IONS & OXYANIONS ---------- */
+{s:"8",t:"fib",q:`A charged group of several atoms bound together is called a ___ ion.`,a:["polyatomic"],e:`A group of atoms with an overall charge is a polyatomic ion (NO₃⁻, SO₄²⁻). (Notes §8 · Slides 19–24)`},
+{s:"8",t:"mc",q:`NO₃⁻ is named ______.`,o:[`nitrate`,`nitrite`,`nitride`],a:`nitrate`,e:`Nitrate — the '-ate' (more-oxygen) form. (Notes §8 · Slides 19–24)`},
+{s:"8",t:"mc",q:`NO₂⁻ is named ______.`,o:[`nitrate`,`nitrite`,`nitride`],a:`nitrite`,e:`Nitrite — the '-ite' (fewer-oxygen) form. (Notes §8 · Slides 19–24)`},
+{s:"8",t:"mc",q:`SO₄²⁻ is named ______.`,o:[`sulfate`,`sulfite`,`sulfide`],a:`sulfate`,e:`Sulfate (the '-ate' form with 4 oxygens). (Notes §8 · Slides 19–24)`},
+{s:"8",t:"mc",q:`SO₃²⁻ is named ______.`,o:[`sulfate`,`sulfite`,`sulfide`],a:`sulfite`,e:`Sulfite (the '-ite' form with 3 oxygens). (Notes §8 · Slides 19–24)`},
+{s:"8",t:"fibm",q:`For two oxyanions of the same element: the one with MORE oxygen ends in "-___"; the one with FEWER oxygen ends in "-___".`,a:[["ate"],["ite"]],e:`More oxygen = '-ate' (sulfate); fewer oxygen = '-ite' (sulfite). (Notes §8 · Slides 19–24)`},
+{s:"8",t:"mc",q:`ClO₄⁻ is named ______.`,o:[`perchlorate`,`chlorate`,`chlorite`,`hypochlorite`],a:`perchlorate`,e:`Perchlorate — the most-oxygen form uses per-…-ate. (Notes §8 · Slides 19–24)`},
+{s:"8",t:"mc",q:`ClO₃⁻ is named ______.`,o:[`perchlorate`,`chlorate`,`chlorite`,`hypochlorite`],a:`chlorate`,e:`Chlorate (the base '-ate' form). (Notes §8 · Slides 19–24)`},
+{s:"8",t:"mc",q:`ClO₂⁻ is named ______.`,o:[`perchlorate`,`chlorate`,`chlorite`,`hypochlorite`],a:`chlorite`,e:`Chlorite (one fewer oxygen → '-ite'). (Notes §8 · Slides 19–24)`},
+{s:"8",t:"mc",q:`ClO⁻ is named ______.`,o:[`perchlorate`,`chlorate`,`chlorite`,`hypochlorite`],a:`hypochlorite`,e:`Hypochlorite — the least-oxygen form uses hypo-…-ite (it's in bleach). (Notes §8 · Slides 19–24)`},
+{s:"8",t:"fib",q:`The prefix used for the oxyanion with the MOST oxygen is ___.`,a:["per"],e:`'per-' marks the most oxygen (perchlorate, ClO₄⁻). (Notes §8 · Slides 19–24)`},
+{s:"8",t:"fib",q:`The prefix used for the oxyanion with the LEAST oxygen is ___.`,a:["hypo"],e:`'hypo-' marks the least oxygen (hypochlorite, ClO⁻). (Notes §8 · Slides 19–24)`},
+{s:"8",t:"mc",q:`HCO₃⁻ is named ______.`,o:[`carbonate`,`hydrogen carbonate`,`carbonite`],a:`hydrogen carbonate`,e:`Hydrogen carbonate (a.k.a. bicarbonate) — add an H⁺ to carbonate. (Notes §8 · Slides 19–24)`},
+{s:"8",t:"mc",q:`KClO₃ is named ______. (Exercise 5)`,o:[`potassium chlorite`,`potassium chlorate`,`potassium perchlorate`,`potassium carbonate`],a:`potassium chlorate`,e:`Potassium chlorate — ClO₃⁻ is chlorate. (Notes §8 · Slides 19–24)`},
+{s:"8",t:"tf",q:`Compounds containing polyatomic ions use Greek prefixes like "di-" and "tri-".`,a:"false",e:`False. Use the polyatomic ion's own name (sulfate, nitrate) — no prefixes. (Notes §8 · Slides 19–24)`},
+
+/* ---------- 9 POLYATOMIC MEMORIZE LIST ---------- */
+{s:"9",t:"fib",q:`The only common polyatomic CATION is ___ (name it).`,a:["ammonium"],e:`Ammonium (NH₄⁺) — the one common positive polyatomic ion; the rest are anions. (Notes §9 · Slides 20–22)`},
+{s:"9",t:"fib",q:`Write the formula (with charge) of the ammonium ion.`,a:["NH4+","NH4"],e:`Ammonium = NH₄⁺. (Notes §9 · Slides 20–22)`},
+{s:"9",t:"fib",q:`OH⁻ is named ___.`,a:["hydroxide"],e:`Hydroxide. (Notes §9 · Slides 20–22)`},
+{s:"9",t:"fib",q:`CN⁻ is named ___.`,a:["cyanide"],e:`Cyanide. (Notes §9 · Slides 20–22)`},
+{s:"9",t:"fib",q:`PO₄³⁻ is named ___.`,a:["phosphate"],e:`Phosphate (3− charge). (Notes §9 · Slides 20–22)`},
+{s:"9",t:"fib",q:`CO₃²⁻ is named ___.`,a:["carbonate"],e:`Carbonate (2− charge). (Notes §9 · Slides 20–22)`},
+{s:"9",t:"fib",q:`C₂H₃O₂⁻ (also written CH₃COO⁻) is named ___.`,a:["acetate"],e:`Acetate — the ion found in vinegar. (Notes §9 · Slides 20–22)`},
+{s:"9",t:"fib",q:`MnO₄⁻ is named ___.`,a:["permanganate"],e:`Permanganate (deep purple). (Notes §9 · Slides 20–22)`},
+{s:"9",t:"fib",q:`Cr₂O₇²⁻ is named ___.`,a:["dichromate"],e:`Dichromate (orange; 'di' = 2 chromium). (Notes §9 · Slides 20–22)`},
+{s:"9",t:"fib",q:`O₂²⁻ is named ___.`,a:["peroxide"],e:`Peroxide (as in hydrogen peroxide, H₂O₂). (Notes §9 · Slides 20–22)`},
+{s:"9",t:"mc",q:`The charge on the sulfate ion (SO₄) is ______.`,o:[`1−`,`2−`,`3−`],a:`2−`,e:`Sulfate = SO₄²⁻ → 2−. (Notes §9 · Slides 20–22)`},
+{s:"9",t:"mc",q:`The charge on the phosphate ion (PO₄) is ______.`,o:[`1−`,`2−`,`3−`],a:`3−`,e:`Phosphate = PO₄³⁻ → 3−. (Notes §9 · Slides 20–22)`},
+{s:"9",t:"mc",q:`The charge on the nitrate ion (NO₃) is ______.`,o:[`1−`,`2−`,`3−`],a:`1−`,e:`Nitrate = NO₃⁻ → 1−. (Notes §9 · Slides 20–22)`},
+{s:"9",t:"mc",q:`What is the name of Na₂SO₄?`,o:[`sodium sulfite`,`sodium sulfate`,`disodium sulfate`],a:`sodium sulfate`,e:`Sodium sulfate — Na⁺ with the sulfate (SO₄²⁻) ion. (Notes §9 · Slides 20–22)`},
+{s:"9",t:"mc",q:`What is the name of Mg(NO₃)₂?`,o:[`magnesium nitrite`,`magnesium nitrate`,`magnesium dinitrate`],a:`magnesium nitrate`,e:`Magnesium nitrate — Mg²⁺ needs two nitrate (NO₃⁻) ions. (Notes §9 · Slides 20–22)`},
+{s:"9",t:"mc",q:`What is the name of (NH₄)₂SO₄?`,o:[`ammonium sulfate`,`diammonium sulfate`,`ammonium sulfite`],a:`ammonium sulfate`,e:`Ammonium sulfate — two NH₄⁺ balance one SO₄²⁻. (Notes §9 · Slides 20–22)`},
+{s:"9",t:"mc",q:`What is the name of Ca(OH)₂?`,o:[`calcium hydroxide`,`calcium dihydroxide`,`calcium oxide`],a:`calcium hydroxide`,e:`Calcium hydroxide — Ca²⁺ with two hydroxide (OH⁻) ions. (Notes §9 · Slides 20–22)`},
+{s:"9",t:"fib",q:`Type the name of K₂CO₃.`,a:["potassium carbonate"],e:`Potassium carbonate (K⁺ + CO₃²⁻). (Notes §9 · Slides 20–22)`},
+
+/* ---------- 10 NAMING ACIDS ---------- */
+{s:"10",t:"tf",q:`An acid can be recognized because hydrogen (H) appears first in the formula.`,a:"true",e:`True. Acids are written with H first (HCl, H₂SO₄) and release H⁺ in water. (Notes §10 · Slides 26–31)`},
+{s:"10",t:"fib",q:`An acid produces ___ ions when dissolved in water. (Write the ion symbol.)`,a:["H+","H"],e:`Acids release H⁺ (hydrogen ions) in water. (Notes §10 · Slides 26–31)`},
+{s:"10",t:"mc",q:`If the anion has NO oxygen, the acid name uses the prefix ______ and suffix -ic.`,o:[`hydro`,`per`,`hypo`],a:`hydro`,e:`No oxygen → hydro-…-ic (HCl = hydrochloric acid). (Notes §10 · Slides 26–31)`},
+{s:"10",t:"fibm",q:`For oxygen-containing acids: an anion ending in "-ate" gives an acid ending in "-___"; an anion ending in "-ite" gives an acid ending in "-___".`,a:[["ic"],["ous"]],e:`-ate → -ic (sulfate → sulfuric); -ite → -ous (sulfite → sulfurous). (Notes §10 · Slides 26–31)`},
+{s:"10",t:"mc",q:`HCl(aq) is named ______.`,o:[`chloric acid`,`hydrochloric acid`,`chlorous acid`],a:`hydrochloric acid`,e:`No oxygen → hydro + chlor + -ic → hydrochloric acid. (Notes §10 · Slides 26–31)`},
+{s:"10",t:"mc",q:`H₂S(aq) is named ______.`,o:[`sulfuric acid`,`hydrosulfuric acid`,`sulfurous acid`],a:`hydrosulfuric acid`,e:`No oxygen → hydrosulfuric acid. (Notes §10 · Slides 26–31)`},
+{s:"10",t:"mc",q:`H₂SO₄ is named ______.`,o:[`sulfuric acid`,`sulfurous acid`,`hydrosulfuric acid`],a:`sulfuric acid`,e:`From sulfate (-ate) → sulfuric acid. (Notes §10 · Slides 26–31)`},
+{s:"10",t:"mc",q:`H₂SO₃ is named ______.`,o:[`sulfuric acid`,`sulfurous acid`,`hydrosulfuric acid`],a:`sulfurous acid`,e:`From sulfite (-ite) → sulfurous acid. (Notes §10 · Slides 26–31)`},
+{s:"10",t:"mc",q:`HNO₃ is named ______.`,o:[`nitric acid`,`nitrous acid`,`hydronitric acid`],a:`nitric acid`,e:`From nitrate (-ate) → nitric acid. (Notes §10 · Slides 26–31)`},
+{s:"10",t:"mc",q:`HNO₂ is named ______.`,o:[`nitric acid`,`nitrous acid`,`hydronitric acid`],a:`nitrous acid`,e:`From nitrite (-ite) → nitrous acid. (Notes §10 · Slides 26–31)`},
+{s:"10",t:"mc",q:`HC₂H₃O₂ is named ______.`,o:[`acetic acid`,`acetous acid`,`hydroacetic acid`],a:`acetic acid`,e:`From acetate → acetic acid (vinegar). (Notes §10 · Slides 26–31)`},
+{s:"10",t:"mc",q:`H₃PO₄ is named ______.`,o:[`phosphoric acid`,`phosphorous acid`,`hydrophosphoric acid`],a:`phosphoric acid`,e:`From phosphate (-ate) → phosphoric acid. (Notes §10 · Slides 26–31)`},
+{s:"10",t:"mc",q:`HClO₄ is named ______.`,o:[`chloric acid`,`perchloric acid`,`hypochlorous acid`],a:`perchloric acid`,e:`From perchlorate (per-…-ate) → perchloric acid. (Notes §10 · Slides 26–31)`},
+{s:"10",t:"mc",q:`HClO is named ______.`,o:[`chloric acid`,`chlorous acid`,`hypochlorous acid`],a:`hypochlorous acid`,e:`From hypochlorite (hypo-…-ite) → hypochlorous acid. (Notes §10 · Slides 26–31)`},
+{s:"10",t:"fib",q:`HBr(aq) is named ______ acid. (Type the first word, or the full name.)`,a:["hydrobromic","hydrobromic acid"],e:`No oxygen → hydro + brom + -ic → hydrobromic acid. (Notes §10 · Slides 26–31)`},
+{s:"10",t:"fib",q:`H₂CO₃ is named ______ acid. (Type the first word, or the full name.)`,a:["carbonic","carbonic acid"],e:`From carbonate (-ate) → carbonic acid (fizzy soda water). (Notes §10 · Slides 26–31)`},
+{s:"10",t:"fib",q:`HF(aq) is named ______ acid. (Type the first word, or the full name.)`,a:["hydrofluoric","hydrofluoric acid"],e:`No oxygen → hydrofluoric acid. (Notes §10 · Slides 26–31)`},
+
+/* ---------- 11 FORMULAS FROM NAMES ---------- */
+{s:"11",t:"fib",q:`Write the formula for sodium hydroxide.`,a:["NaOH"],e:`Na⁺ + OH⁻ → NaOH. (Notes §11 · Slides 33, 35)`},
+{s:"11",t:"fib",q:`Write the formula for potassium carbonate.`,a:["K2CO3"],e:`K⁺ + CO₃²⁻ → need 2 K → K₂CO₃. (Notes §11 · Slides 33, 35)`},
+{s:"11",t:"fib",q:`Write the formula for sulfuric acid.`,a:["H2SO4"],e:`Sulfuric acid = H₂SO₄. (Notes §11 · Slides 33, 35)`},
+{s:"11",t:"fib",q:`Write the formula for dinitrogen pentoxide.`,a:["N2O5"],e:`di = 2 N, pent = 5 O → N₂O₅. (Notes §11 · Slides 33, 35)`},
+{s:"11",t:"fib",q:`Write the formula for cobalt(III) nitrate.`,a:["Co(NO3)3","CoNO33"],e:`Co³⁺ + NO₃⁻ → 3 nitrates → Co(NO₃)₃ (parentheses around the repeated ion). (Notes §11 · Slides 33, 35)`},
+{s:"11",t:"fib",q:`Write the formula for magnesium nitrate.`,a:["Mg(NO3)2","MgNO32"],e:`Mg²⁺ + NO₃⁻ → Mg(NO₃)₂. (Notes §11 · Slides 33, 35)`},
+{s:"11",t:"fib",q:`Write the formula for ammonium sulfate.`,a:["(NH4)2SO4","NH42SO4"],e:`NH₄⁺ + SO₄²⁻ → need 2 ammonium → (NH₄)₂SO₄. (Notes §11 · Slides 33, 35)`},
+{s:"11",t:"fib",q:`Write the formula for iron(II) phosphate.`,a:["Fe3(PO4)2","Fe3PO42"],e:`Fe²⁺ + PO₄³⁻ → cross-charge → Fe₃(PO₄)₂. (Notes §11 · Slides 33, 35)`},
+{s:"11",t:"fib",q:`Write the formula for calcium chloride.`,a:["CaCl2"],e:`Ca²⁺ + Cl⁻ → CaCl₂. (Notes §11 · Slides 33, 35)`},
+{s:"11",t:"fib",q:`Write the formula for aluminum oxide.`,a:["Al2O3"],e:`Al³⁺ + O²⁻ → Al₂O₃. (Notes §11 · Slides 33, 35)`},
+{s:"11",t:"fib",q:`Write the formula for potassium bromide.`,a:["KBr"],e:`K⁺ + Br⁻ → KBr. (Notes §11 · Slides 33, 35)`},
+{s:"11",t:"fib",q:`Write the formula for calcium carbonate.`,a:["CaCO3"],e:`Ca²⁺ + CO₃²⁻ → CaCO₃ (charges already match). (Notes §11 · Slides 33, 35)`},
+{s:"11",t:"fib",q:`Write the formula for sodium phosphate.`,a:["Na3PO4"],e:`Na⁺ + PO₄³⁻ → need 3 Na → Na₃PO₄. (Notes §11 · Slides 33, 35)`},
+{s:"11",t:"fib",q:`Write the formula for ammonium chloride.`,a:["NH4Cl"],e:`NH₄⁺ + Cl⁻ → NH₄Cl. (Notes §11 · Slides 33, 35)`},
+{s:"11",t:"fib",q:`Write the formula for hydrochloric acid.`,a:["HCl"],e:`Hydrochloric acid = HCl. (Notes §11 · Slides 33, 35)`},
+{s:"11",t:"fib",q:`Write the formula for barium nitrate.`,a:["Ba(NO3)2","BaNO32"],e:`Ba²⁺ + NO₃⁻ → Ba(NO₃)₂. (Notes §11 · Slides 33, 35)`},
+{s:"11",t:"mc",q:`Which is the correct formula for magnesium hydroxide?`,o:[`MgOH`,`Mg(OH)2`,`Mg2OH`],a:`Mg(OH)2`,e:`Mg²⁺ + OH⁻ → Mg(OH)₂. (Notes §11 · Slides 33, 35)`},
+{s:"11",t:"fib",q:`Write the formula for lithium nitride.`,a:["Li3N"],e:`Li⁺ + N³⁻ → need 3 Li → Li₃N. (Notes §11 · Slides 33, 35)`},
+{s:"11",t:"fib",q:`Write the formula for silver sulfide.`,a:["Ag2S"],e:`Ag⁺ + S²⁻ → need 2 Ag → Ag₂S. (Notes §11 · Slides 33, 35)`},
+{s:"11",t:"fib",q:`Write the formula for zinc chloride.`,a:["ZnCl2"],e:`Zn²⁺ + Cl⁻ → ZnCl₂. (Notes §11 · Slides 33, 35)`},
+
+/* ---------- MIXED / EXERCISE REVIEW ---------- */
+{s:"3",t:"mc",q:`Exercise 6 (part III): "PbI₄ = lead iodide" is wrong. Correct name?`,o:[`lead iodide`,`lead(IV) iodide`,`lead tetraiodide`],a:`lead(IV) iodide`,e:`Pb is a variable-charge metal (Type II): 4 I⁻ → Pb⁴⁺ → lead(IV) iodide. (Notes §3 · Slides 8–13)`},
+{s:"9",t:"mc",q:`Exercise 6 (part IV): "CuSO₄ = copper(I) sulfate" is wrong. Correct name?`,o:[`copper(I) sulfate`,`copper(II) sulfate`,`copper sulfate`],a:`copper(II) sulfate`,e:`Sulfate is 2−, so copper must be 2+ → copper(II) sulfate. (Notes §9 · Slides 20–22)`},
+{s:"10",t:"mc",q:`Exercise 7: which is named INCORRECTLY?`,o:[`KNO₃ = potassium nitrate`,`TiO₂ = titanium(II) oxide`,`Sn(OH)₄ = tin(IV) hydroxide`,`PBr₅ = phosphorus pentabromide`],a:`TiO₂ = titanium(II) oxide`,e:`TiO₂ = 'titanium(II) oxide' is wrong — two O²⁻ make Ti 4+, so titanium(IV) oxide. (Notes §10 · Slides 26–31)`},
+{s:"6",t:"mc",q:`Exercise 8: XCl₃ could be named ______.`,o:[`phosphorus trichloride`,`carbon monochloride`,`tin(IV) chloride`,`magnesium chloride`],a:`phosphorus trichloride`,e:`XCl₃ needs X to balance three Cl⁻. Phosphorus trichloride (PCl₃, two nonmetals) fits. (Notes §6 · Slides 14–17)`},
+{s:"3",t:"mc",q:`Name Fe₂(SO₄)₃.`,o:[`iron(II) sulfate`,`iron(III) sulfate`,`diiron trisulfate`],a:`iron(III) sulfate`,e:`3 sulfate (2−) = −6, shared by 2 Fe → Fe³⁺ → iron(III) sulfate. (Notes §3 · Slides 8–13)`},
+{s:"3",t:"mc",q:`Name FeSO₄ (iron is 2+).`,o:[`iron(II) sulfate`,`iron(III) sulfate`,`iron sulfate`],a:`iron(II) sulfate`,e:`Sulfate is 2−, iron is 2+ → iron(II) sulfate. (Notes §3 · Slides 8–13)`},
+{s:"11",t:"fib",q:`Write the formula for ammonium nitrate.`,a:["NH4NO3"],e:`NH₄⁺ + NO₃⁻ → NH₄NO₃ (both 1-charge, one each). (Notes §11 · Slides 33, 35)`},
+{s:"10",t:"mc",q:`HClO₃ is named ______.`,o:[`chloric acid`,`chlorous acid`,`perchloric acid`],a:`chloric acid`,e:`From chlorate (ClO₃⁻, -ate) → chloric acid. (Notes §10 · Slides 26–31)`},
+{s:"10",t:"mc",q:`H₃PO₃ is named ______.`,o:[`phosphoric acid`,`phosphorous acid`,`hydrophosphoric acid`],a:`phosphorous acid`,e:`From phosphite (-ite) → phosphorous acid. (Notes §10 · Slides 26–31)`}
+];
+BANK.sort((a,b)=>(+a.s)-(+b.s));
+
+/* ===== ENGINE ===== */
+const quiz=document.getElementById('quiz');
+const results=document.getElementById('results');
+const counter=document.getElementById('counter');
+const submitBtn=document.getElementById('submitBtn');
+const retryBtn=document.getElementById('retryBtn');
+const restartBtn=document.getElementById('restartBtn');
+const modechip=document.getElementById('modechip');
+document.getElementById('qcount').textContent=BANK.length;
+
+const ALL=BANK.map((_,i)=>i);
+let currentSet=ALL.slice();
+let gradedState={};
+let lastWrong=[];
+
+/* squash normalizer: ignore case, spaces, parentheses, punctuation — good for names AND formulas */
+function norm(s){return String(s).toLowerCase().replace(/[^a-z0-9]/g,'');}
+function appendCheck(card,qi){
+  const b=document.createElement('button');
+  b.type='button'; b.className='checkbtn'; b.id='chk'+qi; b.textContent='Check';
+  b.addEventListener('click',()=>gradeOne(qi));
+  card.appendChild(b);
+  const fb=document.createElement('div'); fb.className='fb'; fb.id='fb'+qi;
+  card.appendChild(fb);
+}
+
+function render(indices,isRetry){
+  currentSet=indices.slice();
+  gradedState={}; lastWrong=[];
+  quiz.innerHTML='';
+  results.classList.add('hidden');
+  retryBtn.classList.add('hidden');
+  restartBtn.classList.toggle('hidden',!isRetry);
+  submitBtn.classList.remove('hidden');
+  submitBtn.textContent='Grade All & Show Results';
+  modechip.classList.toggle('hidden',!isRetry);
+  if(isRetry) modechip.textContent='Retry Mode · '+indices.length+' left';
+  let lastSec=null;
+  indices.forEach((qi,pos)=>{
+    const q=BANK[qi];
+    if(!isRetry && q.s!==lastSec){
+      const h=document.createElement('div');
+      h.className='sechead'; h.textContent=SEC[q.s];
+      quiz.appendChild(h); lastSec=q.s;
+    }
+    quiz.appendChild(buildCard(qi,q,pos+1,isRetry));
+  });
+  updateScore();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function buildCard(qi,q,num,isRetry){
+  const card=document.createElement('div');
+  card.className='q'; card.id='card'+qi;
+  const typeLabel={tf:'True / False',mc:'Multiple Choice',fib:'Fill in the Blank',fibm:'Fill in the Blanks'}[q.t];
+  const head=document.createElement('div');
+  head.innerHTML=`<span class="qnum">${num}.</span>`+(isRetry?`<span class="secbadge">${SEC[q.s]}</span> `:'')+`<span class="qtype">${typeLabel}</span>`;
+  card.appendChild(head);
+
+  if(q.t==='fibm'){
+    const line=document.createElement('div');
+    line.className='qtext blankline';
+    const parts=q.q.split(/_{3,}/);
+    parts.forEach((seg,idx)=>{
+      line.appendChild(document.createTextNode(seg));
+      if(idx<parts.length-1){
+        const inp=document.createElement('input');
+        inp.type='text'; inp.className='blank'; inp.id='fibm'+qi+'_'+idx;
+        inp.autocomplete='off'; inp.placeholder='?';
+        inp.addEventListener('input',updateCounter);
+        line.appendChild(inp);
+      }
+    });
+    card.appendChild(line);
+    appendCheck(card,qi);
+    return card;
+  }
+
+  const txt=document.createElement('div');
+  txt.className='qtext'; txt.textContent=q.q;
+  card.appendChild(txt);
+
+  if(q.t==='fib'){
+    const inp=document.createElement('input');
+    inp.type='text'; inp.id='fib'+qi; inp.placeholder='Type your answer…';
+    inp.autocomplete='off'; inp.addEventListener('input',updateCounter);
+    card.appendChild(inp);
+  } else {
+    const opts=(q.t==='tf')?['true','false']:q.o;
+    const wrap=document.createElement('div'); wrap.className='opts';
+    opts.forEach(opt=>{
+      const lab=document.createElement('label');
+      const disp=(q.t==='tf')?(opt==='true'?'True':'False'):opt;
+      lab.innerHTML=`<input type="radio" name="q${qi}" value="${opt.replace(/"/g,'&quot;')}"> ${disp}`;
+      lab.querySelector('input').addEventListener('change',()=>{
+        wrap.querySelectorAll('label').forEach(l=>l.classList.remove('pick'));
+        lab.classList.add('pick'); updateCounter();
+      });
+      wrap.appendChild(lab);
+    });
+    card.appendChild(wrap);
+  }
+  appendCheck(card,qi);
+  return card;
+}
+
+function getUser(qi,q){
+  if(q.t==='fibm'){return q.a.map((_,k)=>{const el=document.getElementById('fibm'+qi+'_'+k);return el?el.value:'';});}
+  if(q.t==='fib'){const el=document.getElementById('fib'+qi);return el?el.value:'';}
+  const el=document.querySelector(`input[name="q${qi}"]:checked`);
+  return el?el.value:null;
+}
+function isAnswered(qi,q){
+  const v=getUser(qi,q);
+  if(q.t==='fibm') return v.every(x=>x&&x.trim()!=='');
+  return q.t==='fib'? (v&&v.trim()!=='') : v!==null;
+}
+function blankOK(userVal,accepted){return !!userVal && accepted.map(norm).includes(norm(userVal));}
+function check(qi,q){
+  const v=getUser(qi,q);
+  if(q.t==='fibm') return q.a.every((acc,k)=>blankOK(v[k],acc));
+  if(q.t==='fib'){ if(!v) return false; return q.a.map(norm).includes(norm(v)); }
+  return v===q.a;
+}
+function correctText(q){
+  if(q.t==='tf') return q.a==='true'?'True':'False';
+  if(q.t==='fibm') return q.a.map(acc=>acc[0]).join('  ·  ');
+  if(q.t==='fib') return q.a[0];
+  return q.a;
+}
+
+function updateScore(){
+  const g=currentSet.filter(qi=>qi in gradedState);
+  const c=g.filter(qi=>gradedState[qi]).length;
+  const pct=g.length?Math.round(c/g.length*100):0;
+  counter.textContent=`Checked ${g.length}/${currentSet.length} · Score ${c} (${pct}%)`;
+}
+const updateCounter=updateScore; // input listeners call this
+
+function markCard(qi,q,ok){
+  const card=document.getElementById('card'+qi);
+  card.classList.add(ok?'correct':'incorrect');
+  if(q.t==='fibm'){
+    const v=getUser(qi,q);
+    q.a.forEach((acc,k)=>{const inp=document.getElementById('fibm'+qi+'_'+k);if(inp){inp.classList.add(blankOK(v[k],acc)?'ansright':'answrong');inp.disabled=true;}});
+  } else if(q.t==='fib'){
+    const inp=document.getElementById('fib'+qi); inp.classList.add(ok?'ansright':'answrong'); inp.disabled=true;
+  } else {
+    document.querySelectorAll(`#card${qi} .opts label`).forEach(l=>{
+      const inp=l.querySelector('input'); inp.disabled=true;
+      if(inp.value===q.a) l.classList.add('ansright');
+      if(inp.checked && inp.value!==q.a) l.classList.add('answrong');
+    });
+  }
+}
+
+function gradeOne(qi){
+  if(qi in gradedState) return;
+  const q=BANK[qi]; const ok=check(qi,q);
+  gradedState[qi]=ok;
+  markCard(qi,q,ok);
+  const btn=document.getElementById('chk'+qi);
+  if(btn){btn.disabled=true; btn.textContent=ok?'✓ Checked':'✗ Checked'; btn.style.background=ok?'#1e8449':'#c0392b';}
+  const fb=document.getElementById('fb'+qi);
+  fb.className='fb show '+(ok?'good':'no');
+  fb.innerHTML=(ok?'✅ <b>Correct.</b> ':`❌ <b>Not quite.</b> Correct answer: <b>${correctText(q)}</b>. `)+q.e+`<div class="tut" style="margin-top:8px"><b>📘 Topic recap — ${SEC[q.s]}</b><br>${TUT[q.s]||''}</div>`;
+  updateScore();
+}
+
+function gradeAll(){
+  currentSet.forEach(qi=>{ if(!(qi in gradedState)) gradeOne(qi); });
+  showResults();
+}
+
+function showResults(){
+  let correct=0; const wrong=[]; const sec={};
+  currentSet.forEach(qi=>{
+    const q=BANK[qi]; const ok=!!gradedState[qi];
+    sec[q.s]=sec[q.s]||{c:0,t:0}; sec[q.s].t++;
+    if(ok){correct++; sec[q.s].c++;} else wrong.push(qi);
+  });
+  const total=currentSet.length, pct=Math.round(correct/total*100);
+  let rows='';
+  Object.keys(sec).sort((a,b)=>(+a)-(+b)).forEach(k=>{
+    const s=sec[k]; const p=Math.round(s.c/s.t*100);
+    rows+=`<tr><td>${SEC[k]}</td><td>${s.c}/${s.t}</td><td><div class="barwrap"><div class="bar" style="width:${p}%;background:${p>=80?'#1e8449':p>=50?'#b7950b':'#c0392b'}"></div></div></td><td>${p}%</td></tr>`;
+  });
+  const verdict=pct===100?'🎉 Perfect — nomenclature mastered!':pct>=90?'💪 Excellent.':pct>=75?'👍 Good — a few to shore up.':pct>=50?'📚 Getting there — review and retry.':'🔁 Keep going — retry the misses.';
+  results.innerHTML=`<h2>Results</h2><div class="bigscore" style="color:${pct>=80?'#1e8449':pct>=50?'#b7950b':'#c0392b'}">${correct} / ${total}</div><div class="pct">${pct}% &nbsp;·&nbsp; ${verdict}</div><table class="secgrid"><tr><th>Section</th><th>Score</th><th>&nbsp;</th><th>%</th></tr>${rows}</table>${wrong.length?`<p style="margin:8px 0 0"><strong style="color:#c0392b">${wrong.length}</strong> wrong — marked in red below. Use <strong>Retry Wrong Only</strong>.</p>`:`<p style="margin:8px 0 0;color:#1e8449"><strong>No wrong answers — nice!</strong></p>`}`;
+  results.classList.remove('hidden');
+  restartBtn.classList.remove('hidden');
+  retryBtn.classList.toggle('hidden',wrong.length===0);
+  if(wrong.length) retryBtn.textContent=`Retry Wrong Only (${wrong.length})`;
+  lastWrong=wrong;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+submitBtn.addEventListener('click',gradeAll);
+retryBtn.addEventListener('click',()=>{ if(lastWrong.length) render(lastWrong,true); });
+restartBtn.addEventListener('click',()=>{ render(ALL,false); });
+
+render(ALL,false);
+</script>
+</body>
+</html>
