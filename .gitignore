@@ -1,0 +1,5 @@
+# Answer keys stay on the parent's Mac only — never synced to the child's laptop.
+# Both the rendered PDFs and their HTML sources are excluded: the HTML renders
+# the same answer key in any browser, so shipping it would defeat the purpose.
+calculus/Lesson*_Answers.pdf
+calculus/print/Lesson*_Answers.html
