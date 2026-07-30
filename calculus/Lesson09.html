@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 9 — Signed Area: When the Graph Dips Below the Axis</title>
+<style>
+  :root{--accent:#186a3b;--accent2:#239b56;--bg:#f2f7f4;--card:#fff;--ok:#1e8449;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:#1c2833;background:var(--bg);margin:0;padding:0 16px 80px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -16px 20px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  nav{display:flex;gap:10px;margin-bottom:18px;font-size:.9rem;flex-wrap:wrap;}
+  nav a{color:var(--accent);text-decoration:none;font-weight:600;background:#fff;border:1px solid #d5e8dc;border-radius:8px;padding:6px 14px;}
+  nav a:hover{background:#eafaf1;}
+  .goal{background:#fef9e7;border-left:5px solid var(--star);padding:12px 18px;border-radius:8px;margin-bottom:18px;font-size:.95rem;}
+  .goal strong{color:#7d6608;}
+  section{background:var(--card);border-radius:10px;padding:18px 22px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  h2{color:var(--accent);font-size:1.15rem;margin:0 0 10px;}
+  h2 .num{background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;border-radius:6px;padding:2px 9px;margin-right:8px;}
+  ul{margin:8px 0;padding-left:24px;}
+  li{margin-bottom:8px;}
+  strong{color:#145a32;}
+  em.hi{font-style:normal;background:#fef9e7;padding:0 4px;border-radius:3px;}
+  .fml{background:#e9f7ef;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.9em;color:#186a3b;white-space:nowrap;}
+  .ex{background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:.95rem;}
+  .ex b{color:#145a32;}
+  .graph{background:#1b2631;color:#eaeded;border-radius:8px;padding:14px 18px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.82rem;line-height:1.45;overflow-x:auto;margin:10px 0;white-space:pre;}
+  .graph .g{color:#82e0aa;} .graph .y{color:#f7dc6f;} .graph .b{color:#85c1e9;}
+  table.t{border-collapse:collapse;margin:10px 0;font-size:.92rem;}
+  table.t th,table.t td{border:1px solid #cfd8cf;padding:6px 12px;text-align:center;}
+  table.t th{background:var(--accent);color:#fff;font-weight:600;}
+  .qhead{margin:26px 0 8px;color:var(--accent);font-size:1.2rem;border-bottom:2px solid #d4efdf;padding-bottom:6px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid var(--accent2);}
+  .qnum{font-weight:800;color:var(--accent);margin-right:6px;}
+  .qtag{float:right;background:#e9f7ef;color:var(--accent);border-radius:8px;padding:1px 9px;font-size:.68rem;font-weight:700;letter-spacing:.3px;margin-left:8px;}
+  .qtext{font-size:.98rem;margin:4px 0 10px;}
+  .revealbtn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .revealbtn:hover{background:#0e4429;}
+  .sol{display:none;margin-top:12px;background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px;font-size:.93rem;}
+  .sol.show{display:block;}
+  .sol h4{margin:0 0 8px;color:var(--ok);font-size:.9rem;}
+  .sol .ctx{background:#eaf2f8;border-left:4px solid #2e86c1;border-radius:6px;padding:8px 12px;margin:0 0 10px;font-size:.88rem;}
+  .sol .ctx b{color:#1a5276;}
+  .sol .step{margin:6px 0;}
+  .sol .ans{background:#eafaf1;border-radius:6px;padding:6px 12px;margin-top:8px;font-weight:700;color:#145a32;display:inline-block;}
+  footer{text-align:center;color:#85929e;font-size:.85rem;margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Lesson 9 — Signed Area: When the Graph Dips Below the Axis</h1>
+  <p>Negative Rates, Net vs Total · Intuitive Calculus for a Curious Student · Lesson 9 of 20</p>
+</header>
+
+<nav><a href="index.html">📚 All lessons</a><a href="Lesson08.html">← Prev: Lesson 8</a><a href="Lesson10.html">Next: Lesson 10 →</a></nav>
+
+<div class="goal"><strong>🎯 Goal of this lesson:</strong> understand what happens when a rate goes <em>negative</em> — the graph dips below the x-axis. You'll learn that the integral counts below-axis regions as NEGATIVE, why that's exactly the right behavior, and the crucial difference between <em>net change</em> and <em>total</em>.</div>
+
+<section>
+  <h2><span class="num">1</span> A rate can be NEGATIVE</h2>
+  <ul>
+    <li>So far every rate in this course pointed one way: forward, filling, earning. But real rates go both directions:</li>
+    <li><strong>Walking backwards:</strong> if forward speed is +3 mph, walking back toward home is a speed of <span class="fml">−3 mph</span>. The minus sign carries the direction.</li>
+    <li><strong>Water draining:</strong> filling at 5 L/min is +5; draining at 5 L/min is <span class="fml">−5 L/min</span> — the tank's contents are changing at minus five liters per minute.</li>
+    <li><strong>Money being spent:</strong> earning $20/day is +20; spending $20/day is <span class="fml">−20 dollars/day</span>.</li>
+    <li><strong>Temperature dropping:</strong> warming 2° per hour is +2; cooling 2° per hour is <span class="fml">−2 °C/hour</span>.</li>
+    <li>On a graph, a negative rate is easy to spot: <em class="hi">the curve dips BELOW the x-axis</em>. Above the axis = gaining; below the axis = losing.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">2</span> What accumulation means when the rate is negative</h2>
+  <ul>
+    <li>Our old rule was <span class="fml">rate × time = amount accumulated</span>. It still works — the minus sign just comes along: a rate of −5 L/min for 3 minutes accumulates <span class="fml">(−5) × 3 = −15 liters</span>. A LOSS of 15 liters.</li>
+    <li>Picture it: the region between a below-axis piece of graph and the x-axis is a perfectly ordinary shape — but the integral counts it as <em class="hi">negative area</em>, because it represents an amount lost, not gained.</li>
+    <li>So the honest rule is: <strong>the definite integral adds up SIGNED pieces</strong> — above-axis regions count plus, below-axis regions count minus, and the answer is the sum.</li>
+    <li>Nothing about the FTC changes! <span class="fml">F(b) − F(a)</span> automatically produces the correct signed answer. You don't do anything special; the minus signs take care of themselves.</li>
+  </ul>
+  <div class="ex"><b>Tiny example:</b> a tank drains at a steady 4 L/min for 2 minutes. Rate graph: a flat line at height −4. The rectangle between the line and the axis is 2 wide and 4 tall — geometric size 8 — but it hangs BELOW the axis, so the integral is <span class="fml">∫<sub>0</sub><sup>2</sup> (−4) dt = −8</span>. Reading: the tank <b>lost 8 liters</b>. The sign is information, not an error.</div>
+</section>
+
+<section>
+  <h2><span class="num">3</span> NET vs TOTAL — the crucial pair of words</h2>
+  <ul>
+    <li>Walk forward 5 miles, then walk back 3 miles. Two honest questions with two different answers:</li>
+    <li><strong>NET displacement:</strong> where are you compared to where you started? <span class="fml">+5 + (−3) = +2 miles</span> from home. <em class="hi">This is what the plain integral gives you</em> — it adds the signed pieces.</li>
+    <li><strong>TOTAL distance walked:</strong> how far did your legs actually carry you? <span class="fml">5 + 3 = 8 miles</span>. For this you add the <strong>SIZES</strong> of the pieces and ignore the signs.</li>
+    <li><strong>Bank-account version:</strong> deposit $50, then withdraw $30. Net change in your balance: +$20. Total money that moved through the account: $80. Both numbers are true; they answer different questions.</li>
+    <li>Whenever a word problem asks about a rate that changes sign, your FIRST job is to decide: is this a NET question or a TOTAL question? Get that right and the math is easy.</li>
+  </ul>
+  <table class="t">
+    <tr><th></th><th>NET (signed)</th><th>TOTAL (sizes)</th></tr>
+    <tr><td>question</td><td>"where did you end up?"</td><td>"how much moved?"</td></tr>
+    <tr><td>how to compute</td><td>one integral, straight through</td><td>split at sign changes, add absolute values</td></tr>
+    <tr><td>walk +5 then −3</td><td>+2 miles</td><td>8 miles</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2><span class="num">4</span> Worked example — watching a below-axis piece cancel an above-axis piece</h2>
+  <div class="ex"><b>Geometry first:</b> a toy robot's velocity is a steady <span class="fml">−2 m/s</span> from t = 0 to t = 3 (it's rolling backwards). The rate graph is a flat line below the axis; the rectangle is 3 wide, 2 tall → size 6, hanging below. So <span class="fml">∫<sub>0</sub><sup>3</sup> (−2) dt = −6</span>: the robot ends 6 meters BEHIND its start. FTC agrees: F(t) = −2t, and F(3) − F(0) = −6 − 0 = −6 ✓.</div>
+  <div class="ex"><b>Now a rate that crosses the axis:</b> evaluate <span class="fml">∫<sub>0</sub><sup>4</sup> (x − 2) dx</span>.<br><br>
+    <b>FTC routine:</b> F(x) = x<sup>2</sup>/2 − 2x (check: derivative is x − 2 ✓).<br>
+    F(4) = 16/2 − 8 = 8 − 8 = 0. &nbsp; F(0) = 0.<br>
+    Answer: <span class="fml">0 − 0 = 0</span>. Zero?! The graph explains everything:</div>
+  <div class="graph">  y = x − 2
+  2 |                          <span class="g">·</span>
+    |                    <span class="g">·  ⟋</span>
+  1 |               <span class="g">· ⟋  +2</span>     ← above-axis triangle: area 2, counts <span class="g">PLUS</span>
+    |            <span class="g">⟋</span>
+  0 +---------<span class="b">·</span>-------------------→ x
+    |      <span class="y">⟋</span>  2              4
+ −1 |   <span class="y">⟋  −2</span>                    ← below-axis triangle: area 2, counts <span class="y">MINUS</span>
+    | <span class="y">⟋</span>
+ −2 <span class="y">·</span>
+    0</div>
+  <ul>
+    <li>From 0 to 2 the line is <strong>below</strong> the axis: a triangle of size <span class="fml">½ × 2 × 2 = 2</span>, counted as <strong>−2</strong>. From 2 to 4 it's <strong>above</strong>: an identical triangle counted as <strong>+2</strong>. Signed sum: <span class="fml">−2 + 2 = 0</span> — exactly what the FTC said.</li>
+    <li>The integral isn't broken. It faithfully reports the <em>net</em>: whatever was lost in the first half was regained in the second.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">5</span> How to get the TOTAL (when you actually want it)</h2>
+  <ul>
+    <li>If the question asks for total distance, total water moved, total area of the regions — the recipe is:</li>
+    <li><strong>Step 1: find where the rate crosses zero.</strong> Solve <span class="fml">f(x) = 0</span>. (For <span class="fml">x − 2</span> that's x = 2.)</li>
+    <li><strong>Step 2: integrate each piece separately</strong>, from limit to crossing, crossing to limit.</li>
+    <li><strong>Step 3: add the ABSOLUTE VALUES</strong> (the sizes, signs stripped off).</li>
+  </ul>
+  <div class="ex"><b>Same example, total version:</b> for <span class="fml">x − 2</span> on [0, 4]: piece one <span class="fml">∫<sub>0</sub><sup>2</sup> (x − 2) dx = (2 − 4) − 0 = −2</span>; piece two <span class="fml">∫<sub>2</sub><sup>4</sup> (x − 2) dx = 0 − (−2) = +2</span>. Total area/total distance = <span class="fml">|−2| + |+2| = 2 + 2 = 4</span>. So: net 0, total 4. Both correct, different questions.</div>
+</section>
+
+<section>
+  <h2><span class="num">6</span> Reading a negative answer in a word problem</h2>
+  <ul>
+    <li>A negative integral is <strong>not a mistake</strong> — it's a sentence waiting to be read. Translate the sign using the story:</li>
+    <li><span class="fml">∫ velocity = −6</span> → "ended 6 meters <strong>behind</strong> the start."</li>
+    <li><span class="fml">∫ flow rate = −15</span> → "the tank has 15 liters <strong>less</strong> than before."</li>
+    <li><span class="fml">∫ money rate = −40</span> → "spent $40 <strong>more</strong> than was earned."</li>
+    <li><span class="fml">∫ temperature rate = −8</span> → "8 degrees <strong>colder</strong> than at the start."</li>
+    <li>Good final answers in word problems always convert the sign into a direction word: behind, less, colder, lost. Never leave a bare "−6" without saying what the minus means.</li>
+  </ul>
+</section>
+
+<div class="qhead">✏️ Exercises — 20 problems (write your answer on paper, then reveal)</div>
+
+<div class="q"><span class="qnum">1.</span><span class="qtag">rectangle below axis</span>
+  <div class="qtext">A remote-control car has velocity <span class="fml">v = −3</span> feet per second (rolling backwards) from t = 0 to t = 4 seconds. Sketch the rate graph, then find <span class="fml">∫<sub>0</sub><sup>4</sup> (−3) dt</span> and say what it means.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a negative velocity means moving backwards. Its graph is a flat line BELOW the x-axis, and the rectangle between the line and the axis counts as negative in the integral: signed area = −(width × height).</div>
+    <div class="step">The graph is a flat line at height −3 from t = 0 to 4. The rectangle is 4 wide and 3 tall → geometric size 12, hanging below the axis.</div>
+    <div class="step">Signed area = −12. FTC check: F(t) = −3t, F(4) − F(0) = −12 − 0 = −12 ✓.</div>
+    <div class="step">Meaning: the car ends 12 feet BEHIND where it started.</div>
+    <div class="ans">−12 → the car is 12 feet behind its start</div></div>
+</div>
+
+<div class="q"><span class="qnum">2.</span><span class="qtag">net vs total intro</span>
+  <div class="qtext">A robot moves with velocity <span class="fml">−5 m/s</span> for 2 seconds. (a) What is its displacement (net change in position)? (b) What total distance did it travel?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> displacement is the SIGNED answer (where you ended up relative to the start — the integral's answer). Distance is the SIZE answer (how far the wheels rolled, signs ignored). When the velocity never changes sign, distance is just the absolute value of displacement.</div>
+    <div class="step">(a) Displacement = rate × time = (−5) × 2 = −10 meters: it ends 10 m behind its start.</div>
+    <div class="step">(b) The robot rolled steadily the whole time — its wheels covered |−10| = 10 meters.</div>
+    <div class="ans">(a) −10 m (10 m backward) &nbsp; (b) 10 m</div></div>
+</div>
+
+<div class="q"><span class="qnum">3.</span><span class="qtag">triangle below axis</span>
+  <div class="qtext">Consider <span class="fml">f(x) = −x</span> from x = 0 to x = 4. (a) Describe the region between the graph and the x-axis and find its geometric size with the triangle formula. (b) Compute <span class="fml">∫<sub>0</sub><sup>4</sup> (−x) dx</span> with the FTC and compare.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the line y = −x slopes downward below the axis, making a triangle that hangs under the x-axis. Geometry gives the SIZE of a shape (always positive); the integral gives the SIGNED version (negative here, since the shape is below the axis).</div>
+    <div class="step">(a) The region is a triangle with base 4 (along the axis) and depth 4 (down to y = −4 at x = 4). Size = ½ × 4 × 4 = 8.</div>
+    <div class="step">(b) FTC: F(x) = −x²/2 (check: derivative is −x ✓). F(4) = −16/2 = −8; F(0) = 0. Integral = −8 − 0 = −8.</div>
+    <div class="step">Compare: same number, opposite sign — the integral counts this below-axis triangle as −8.</div>
+    <div class="ans">(a) size 8 &nbsp; (b) ∫ = −8, the signed version of the same triangle</div></div>
+</div>
+
+<div class="q"><span class="qnum">4.</span><span class="qtag">draining tank</span>
+  <div class="qtext">A tank is draining at a steady 2 liters per minute for 5 minutes. Write the rate as a signed number, compute the integral of the rate over the 5 minutes, and say what happened to the tank.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> "draining" means the amount of water is DECREASING, so the rate of change is negative: −2 L/min. Integrating a rate of change always gives the net change in the amount — sign included.</div>
+    <div class="step">Rate = −2 L/min. Integral = ∫<sub>0</sub><sup>5</sup> (−2) dt = (−2) × 5 = −10.</div>
+    <div class="step">FTC check: F(t) = −2t, F(5) − F(0) = −10 − 0 = −10 ✓.</div>
+    <div class="step">Reading the sign: the tank LOST 10 liters.</div>
+    <div class="ans">−10 → the tank has 10 liters less than before</div></div>
+</div>
+
+<div class="q"><span class="qnum">5.</span><span class="qtag">FTC · negative answer</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>0</sub><sup>2</sup> (x − 3) dx</span> and explain why the answer HAD to come out negative before you even computed it.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> on the interval [0, 2], the value of x − 3 runs from −3 up to −1 — it is negative the WHOLE time, so the graph stays below the axis and every piece of the accumulation is a loss. A negative answer is guaranteed.</div>
+    <div class="step">F(x) = x²/2 − 3x (check: derivative is x − 3 ✓).</div>
+    <div class="step">F(2) = 4/2 − 6 = 2 − 6 = −4. &nbsp; F(0) = 0.</div>
+    <div class="step">Integral = −4 − 0 = −4. As predicted: below the axis throughout → negative.</div>
+    <div class="ans">−4 (the graph never rises above the axis on [0, 2])</div></div>
+</div>
+
+<div class="q"><span class="qnum">6.</span><span class="qtag">conceptual</span>
+  <div class="qtext">Your friend says: "Negative area is nonsense — a rug can't have −8 square feet!" Is your friend right? Explain the difference between the area of a REGION and what the integral computes.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the word "area" gets used two ways, and this question forces you to separate them. Geometric area (the size of a shape, like a rug) is a measure of stuff — it can't be negative. The integral computes something different: signed accumulation.</div>
+    <div class="step">Your friend is right about rugs: the SIZE of any region is a positive number (or zero). No shape has negative size.</div>
+    <div class="step">But the integral isn't measuring rug — it's adding up rate × time pieces, and those pieces can represent LOSSES. The minus sign on a below-axis region is bookkeeping: it records "this much was lost," using the region's size as the amount.</div>
+    <div class="step">So "signed area" is a nickname for "accumulation that can go down as well as up" — not a claim that shapes have negative size.</div>
+    <div class="ans">Region size: never negative. Integral: signed accumulation, so it CAN be negative — the sign carries meaning (loss/backward), not geometry.</div></div>
+</div>
+
+<div class="q"><span class="qnum">7.</span><span class="qtag">zero net · explain</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>0</sub><sup>6</sup> (x − 3) dx</span> with the FTC, then explain the answer using two triangles.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the line y = x − 3 crosses the axis at x = 3: below the axis before that, above after. When the below-piece and above-piece have equal size, the signed sum is zero — the integral reports "no NET change," not "nothing happened."</div>
+    <div class="step">FTC: F(x) = x²/2 − 3x (check: derivative is x − 3 ✓). F(6) = 36/2 − 18 = 18 − 18 = 0; F(0) = 0. Integral = 0 − 0 = 0.</div>
+    <div class="step">Triangles: from 0 to 3, a below-axis triangle with base 3 and depth 3 → size ½ × 3 × 3 = 9/2, counted −9/2. From 3 to 6, an above-axis triangle of the same size, counted +9/2.</div>
+    <div class="step">Signed sum: −9/2 + 9/2 = 0 ✓. Perfect cancellation.</div>
+    <div class="ans">0 — the below-axis triangle (size 9/2) exactly cancels the above-axis triangle (size 9/2)</div></div>
+</div>
+
+<div class="q"><span class="qnum">8.</span><span class="qtag">net vs total · classic</span>
+  <div class="qtext">A walker's velocity is <span class="fml">v = 2 − t</span> miles per hour on [0, 4] (forward at first, then backward). (a) Find the NET displacement <span class="fml">∫<sub>0</sub><sup>4</sup> (2 − t) dt</span>. (b) Find the TOTAL distance walked.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> v = 2 − t is positive before t = 2 (walking forward) and negative after (walking back). Net = one straight integral. Total = split at the crossing t = 2, integrate each piece, add the SIZES.</div>
+    <div class="step">(a) F(t) = 2t − t²/2 (check: derivative is 2 − t ✓). F(4) = 8 − 16/2 = 8 − 8 = 0; F(0) = 0. Net = 0 − 0 = 0: the walker ends exactly where she started.</div>
+    <div class="step">(b) Crossing: 2 − t = 0 at t = 2. Piece 1: F(2) − F(0) = (4 − 2) − 0 = +2 (two miles forward). Piece 2: F(4) − F(2) = 0 − 2 = −2 (two miles back).</div>
+    <div class="step">Total distance = |+2| + |−2| = 2 + 2 = 4 miles.</div>
+    <div class="ans">(a) net 0 miles (back at the start) &nbsp; (b) total 4 miles walked</div></div>
+</div>
+
+<div class="q"><span class="qnum">9.</span><span class="qtag">FTC + geometry check</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>0</sub><sup>3</sup> (2x − 6) dx</span> with the FTC, then check your answer with a triangle.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the line y = 2x − 6 starts at −6 (when x = 0) and climbs to 0 (when x = 3) — it stays at or below the axis on the whole interval, forming one below-axis triangle. FTC and geometry must agree, sign included.</div>
+    <div class="step">FTC: F(x) = x² − 6x (check: derivative is 2x − 6 ✓). F(3) = 9 − 18 = −9; F(0) = 0. Integral = −9 − 0 = −9.</div>
+    <div class="step">Geometry: the triangle has base 3 (along the axis) and depth 6 (down to −6). Size = ½ × 3 × 6 = 9. Below the axis → counts as −9 ✓.</div>
+    <div class="ans">−9 (a below-axis triangle of size 9)</div></div>
+</div>
+
+<div class="q"><span class="qnum">10.</span><span class="qtag">find crossing · split</span>
+  <div class="qtext">For <span class="fml">f(x) = x − 1</span> on [0, 3]: (a) find where the graph crosses the x-axis; (b) integrate each piece separately; (c) give the NET signed area and the TOTAL area of the regions.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the full three-step "total" recipe: find the zero crossing (solve f(x) = 0), integrate each piece with the FTC, then choose — add signed pieces for NET, add absolute values for TOTAL.</div>
+    <div class="step">(a) x − 1 = 0 at x = 1. Below the axis on [0, 1], above on [1, 3].</div>
+    <div class="step">(b) F(x) = x²/2 − x (check: derivative is x − 1 ✓). Piece 1: F(1) − F(0) = (1/2 − 1) − 0 = −1/2. Piece 2: F(3) − F(1) = (9/2 − 3) − (1/2 − 1) = 3/2 − (−1/2) = 2.</div>
+    <div class="step">(c) Net = −1/2 + 2 = 3/2. (Check straight through: F(3) − F(0) = 3/2 ✓.) Total = |−1/2| + |2| = 1/2 + 2 = 5/2.</div>
+    <div class="ans">(a) x = 1 &nbsp; (b) −1/2 and +2 &nbsp; (c) net 3/2, total 5/2</div></div>
+</div>
+
+<div class="q"><span class="qnum">11.</span><span class="qtag">money · net vs total</span>
+  <div class="qtext">You earn $15 per day for 4 days, then spend $10 per day for 3 days. (a) What is the net change in your money? (b) How much money moved in total (earned plus spent)?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> money has a signed rate too: earning is +15 dollars/day, spending is −10 dollars/day. The integral of the money rate = net change in your wallet. Total money moved = add the sizes of both flows.</div>
+    <div class="step">Earning piece: (+15) × 4 = +60 dollars. Spending piece: (−10) × 3 = −30 dollars.</div>
+    <div class="step">(a) Net = +60 + (−30) = +$30: you end $30 richer.</div>
+    <div class="step">(b) Total moved = |60| + |−30| = 60 + 30 = $90 passed through your hands.</div>
+    <div class="ans">(a) net +$30 &nbsp; (b) $90 total moved</div></div>
+</div>
+
+<div class="q"><span class="qnum">12.</span><span class="qtag">hiker · net vs total</span>
+  <div class="qtext">A hiker walks away from camp at 4 mph for 2 hours, then walks back toward camp at 2 mph for 1 hour. (a) How far from camp does she end up (net)? (b) What total distance did she hike?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> pick a direction to call positive (away from camp). Then the two velocities are +4 mph and −2 mph, and the rate graph has a piece above the axis and a piece below. Net = signed sum; total = sum of sizes.</div>
+    <div class="step">Away piece: (+4) × 2 = +8 miles. Back piece: (−2) × 1 = −2 miles.</div>
+    <div class="step">(a) Net = +8 + (−2) = +6: she ends 6 miles from camp.</div>
+    <div class="step">(b) Total hiked = |8| + |−2| = 8 + 2 = 10 miles of actual walking.</div>
+    <div class="ans">(a) 6 miles from camp &nbsp; (b) 10 miles hiked</div></div>
+</div>
+
+<div class="q"><span class="qnum">13.</span><span class="qtag">FTC · always below</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>0</sub><sup>2</sup> (3x<sup>2</sup> − 12) dx</span>. Then explain how you could have predicted the SIGN of the answer just by looking at the integrand on [0, 2].</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> before computing, test the integrand's sign: on [0, 2], 3x² is at most 3 × 4 = 12, so 3x² − 12 is never positive — the curve stays at or below the axis. Predicting the sign first is a powerful self-check on your final answer.</div>
+    <div class="step">F(x) = x³ − 12x (check: derivative is 3x² − 12 ✓).</div>
+    <div class="step">F(2) = 8 − 24 = −16. &nbsp; F(0) = 0.</div>
+    <div class="step">Integral = −16 − (0) = −16. Negative, as predicted — every moment on [0, 2] the quantity was falling.</div>
+    <div class="ans">−16 (integrand ≤ 0 on the whole interval, so the answer had to be negative)</div></div>
+</div>
+
+<div class="q"><span class="qnum">14.</span><span class="qtag">tank · fill then drain</span>
+  <div class="qtext">Water flows into a tank at the rate <span class="fml">r(t) = 4 − 2t</span> liters per minute for 0 ≤ t ≤ 4 (positive at first — filling; negative later — draining). (a) Find the net change <span class="fml">∫<sub>0</sub><sup>4</sup> (4 − 2t) dt</span>. (b) Find the total amount of water that moved in or out. (c) Tell the tank's story in one sentence.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the rate crosses zero when 4 − 2t = 0, at t = 2: filling before, draining after. Net = one integral straight through. Total moved = split at t = 2, add sizes.</div>
+    <div class="step">(a) F(t) = 4t − t² (check: derivative is 4 − 2t ✓). F(4) = 16 − 16 = 0; F(0) = 0. Net = 0 − 0 = 0.</div>
+    <div class="step">(b) Piece 1: F(2) − F(0) = (8 − 4) − 0 = +4 (four liters in). Piece 2: F(4) − F(2) = 0 − 4 = −4 (four liters out). Total moved = 4 + 4 = 8 liters.</div>
+    <div class="step">(c) Story: the tank gained 4 liters during the first 2 minutes, lost those same 4 liters during the last 2 minutes, and ended exactly where it began.</div>
+    <div class="ans">(a) net 0 L &nbsp; (b) 8 L moved &nbsp; (c) filled 4, drained 4, back to the start</div></div>
+</div>
+
+<div class="q"><span class="qnum">15.</span><span class="qtag">curve · net and total</span>
+  <div class="qtext">A particle's velocity is <span class="fml">v(t) = t<sup>2</sup> − 4</span> m/s on [0, 3]. (a) Where does v cross zero? (b) Find the net displacement. (c) Find the total distance traveled. Leave fractions in your answers.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> first curved-graph net-vs-total problem — but the recipe is identical to the straight-line ones: solve v = 0, use the FTC on each piece (F(t) = t³/3 − 4t), then signed sum for net, sizes for total. Expect thirds in the arithmetic.</div>
+    <div class="step">(a) t² − 4 = 0 at t = 2 (only the positive root matters here). Negative before t = 2 (moving backward), positive after.</div>
+    <div class="step">(b) F(t) = t³/3 − 4t (check: derivative is t² − 4 ✓). Net = F(3) − F(0) = (27/3 − 12) − 0 = 9 − 12 = −3 meters: the particle ends 3 m behind its start.</div>
+    <div class="step">(c) Piece 1: F(2) − F(0) = (8/3 − 8) − 0 = 8/3 − 24/3 = −16/3. Piece 2: F(3) − F(2) = −3 − (−16/3) = −9/3 + 16/3 = 7/3.</div>
+    <div class="step">Total = |−16/3| + |7/3| = 16/3 + 7/3 = 23/3 meters. (Sanity: net −16/3 + 7/3 = −9/3 = −3 ✓ matches part b.)</div>
+    <div class="ans">(a) t = 2 &nbsp; (b) net −3 m (3 m behind the start) &nbsp; (c) total 23/3 m</div></div>
+</div>
+
+<div class="q"><span class="qnum">16.</span><span class="qtag">temperature · warm then cool</span>
+  <div class="qtext">A greenhouse's temperature changes at the rate <span class="fml">r(t) = 3 − t</span> degrees per hour for 0 ≤ t ≤ 5. (a) Find the net temperature change over the 5 hours. (b) Find the total number of degrees the temperature moved (up plus down).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a temperature-change rate is positive while warming, negative while cooling; here the switch happens when 3 − t = 0, at t = 3. Net change = straight integral; total movement = split at t = 3 and add sizes. F(t) = 3t − t²/2.</div>
+    <div class="step">(a) F(t) = 3t − t²/2 (check: derivative is 3 − t ✓). Net = F(5) − F(0) = (15 − 25/2) − 0 = 30/2 − 25/2 = 5/2. The greenhouse ends 5/2 degrees warmer.</div>
+    <div class="step">(b) Piece 1 (warming, 0 to 3): F(3) − F(0) = (9 − 9/2) − 0 = 9/2. Piece 2 (cooling, 3 to 5): F(5) − F(3) = 5/2 − 9/2 = −2.</div>
+    <div class="step">Total moved = |9/2| + |−2| = 9/2 + 4/2 = 13/2 degrees. (Sanity: 9/2 + (−2) = 5/2 ✓ matches part a.)</div>
+    <div class="ans">(a) net +5/2 degrees (warmer) &nbsp; (b) 13/2 degrees of total movement</div></div>
+</div>
+
+<div class="q"><span class="qnum">17.</span><span class="qtag">conceptual · settle the argument</span>
+  <div class="qtext">Two students compute <span class="fml">∫<sub>0</sub><sup>4</sup> (x − 2) dx = 0</span> for a walker whose velocity is x − 2. Student A says "the answer is 0, so the walker never moved." Student B says "the walker definitely moved." Who is right? Use net vs total to settle it.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a zero integral is one of the most misread results in calculus. The integral reports NET change — where you ended relative to where you began. It says nothing about how much motion happened along the way.</div>
+    <div class="step">Student B is right. The velocity is negative on [0, 2] (walking backward) and positive on [2, 4] (walking forward) — the walker was moving almost the entire time.</div>
+    <div class="step">The pieces: ∫<sub>0</sub><sup>2</sup> = −2 and ∫<sub>2</sub><sup>4</sup> = +2. Net displacement = −2 + 2 = 0 (ends at the start). Total distance = 2 + 2 = 4 (four units of real walking).</div>
+    <div class="step">Correct reading of "integral = 0": the walker ENDED where she started — not that she never moved.</div>
+    <div class="ans">Student B. Net displacement is 0, but total distance walked is 4 — a zero integral means "back where you started," not "motionless."</div></div>
+</div>
+
+<div class="q"><span class="qnum">18.</span><span class="qtag">solve for the limit</span>
+  <div class="qtext">Find the number <span class="fml">b &gt; 0</span> that makes <span class="fml">∫<sub>0</sub><sup>b</sup> (x − 2) dx = 0</span>. Then explain with triangles why YOUR b is exactly the right stopping point.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> now the unknown is the LIMIT of integration. Strategy: run the FTC with the letter b in place of a number, set the result equal to 0, and solve the equation. This "integrate first, solve second" move shows up constantly in later math.</div>
+    <div class="step">F(x) = x²/2 − 2x, so ∫<sub>0</sub><sup>b</sup> (x − 2) dx = F(b) − F(0) = b²/2 − 2b.</div>
+    <div class="step">Set it to zero: b²/2 − 2b = 0 → b(b/2 − 2) = 0 → b = 0 or b = 4. Since we need b &gt; 0: b = 4.</div>
+    <div class="step">Triangle explanation: below-axis loss from 0 to 2 is a triangle of size 2. The above-axis gain grows after x = 2, and by x = 4 the above triangle has size exactly 2 — the books balance precisely at b = 4. Stop sooner and the loss wins; later and the gain wins.</div>
+    <div class="ans">b = 4 — the moment the +2 triangle above the axis exactly repays the −2 triangle below</div></div>
+</div>
+
+<div class="q"><span class="qnum">19.</span><span class="qtag">bank account · zero net</span>
+  <div class="qtext">Money flows into a savings account at $20 per week for 3 weeks (deposits), then out at $30 per week for 2 weeks (withdrawals). (a) What does the integral of the money rate over all 5 weeks equal, and what does it tell you? (b) How much money moved through the account in total? (c) Why are these two answers so different?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the money rate is +20 dollars/week, then −30 dollars/week — a step graph with a piece above the axis and a piece below. The integral adds signed pieces (net change in balance); total money moved adds their sizes.</div>
+    <div class="step">(a) Deposits: (+20) × 3 = +60. Withdrawals: (−30) × 2 = −60. Integral = +60 + (−60) = 0: the balance ends exactly where it started.</div>
+    <div class="step">(b) Total moved = |+60| + |−60| = 60 + 60 = $120 passed through the account.</div>
+    <div class="step">(c) They answer different questions: the integral tracks the BALANCE (net), which came back to its start; the total tracks ACTIVITY, and there was $120 worth of it. Zero net, busy account.</div>
+    <div class="ans">(a) 0 — balance unchanged &nbsp; (b) $120 moved &nbsp; (c) net measures where you ended; total measures how much happened</div></div>
+</div>
+
+<div class="q"><span class="qnum">20.</span><span class="qtag">challenge · everything at once</span>
+  <div class="qtext">A drone flies along a straight track with velocity <span class="fml">v(t) = 6 − 2t</span> meters per second on [0, 5]. (a) When does it turn around? (b) Find its net displacement. (c) Find the total distance flown. (d) Write a one-sentence story of the flight, translating every sign.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the full toolkit in one problem: find the zero crossing (turnaround = where velocity changes sign), FTC for the net, split-and-add-sizes for the total, and a signed-number translation at the end. F(t) = 6t − t².</div>
+    <div class="step">(a) 6 − 2t = 0 at t = 3 seconds. Forward before t = 3, backward after — that's the turnaround.</div>
+    <div class="step">(b) F(t) = 6t − t² (check: derivative is 6 − 2t ✓). Net = F(5) − F(0) = (30 − 25) − 0 = +5 meters.</div>
+    <div class="step">(c) Piece 1: F(3) − F(0) = (18 − 9) − 0 = +9 (nine meters out). Piece 2: F(5) − F(3) = 5 − 9 = −4 (four meters back). Total = |9| + |−4| = 13 meters.</div>
+    <div class="step">(d) Sanity: 9 + (−4) = 5 ✓ matches part b.</div>
+    <div class="ans">(a) t = 3 s &nbsp; (b) net +5 m &nbsp; (c) total 13 m &nbsp; (d) the drone flew 9 m out, turned around at t = 3, flew 4 m back, and ended 5 m from its launch point having flown 13 m in all</div></div>
+</div>
+
+<footer>Lesson 9 of 20 · Intuitive Integration · next: <a href="Lesson10.html">Lesson 10 — Area Between Two Curves</a></footer>
+
+</div>
+<script>
+document.querySelectorAll('.q').forEach(q=>{
+  const btn=q.querySelector('.revealbtn'), sol=q.querySelector('.sol');
+  btn.addEventListener('click',()=>{ sol.classList.add('show'); btn.textContent='Solution shown'; btn.disabled=true; btn.style.opacity=.6; });
+});
+</script>
+</body>
+</html>

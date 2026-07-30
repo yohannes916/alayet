@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 17 — Substitution I: Linear Insides</title>
+<style>
+  :root{--accent:#186a3b;--accent2:#239b56;--bg:#f2f7f4;--card:#fff;--ok:#1e8449;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:#1c2833;background:var(--bg);margin:0;padding:0 16px 80px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -16px 20px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  nav{display:flex;gap:10px;margin-bottom:18px;font-size:.9rem;flex-wrap:wrap;}
+  nav a{color:var(--accent);text-decoration:none;font-weight:600;background:#fff;border:1px solid #d5e8dc;border-radius:8px;padding:6px 14px;}
+  nav a:hover{background:#eafaf1;}
+  .goal{background:#fef9e7;border-left:5px solid var(--star);padding:12px 18px;border-radius:8px;margin-bottom:18px;font-size:.95rem;}
+  .goal strong{color:#7d6608;}
+  section{background:var(--card);border-radius:10px;padding:18px 22px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  h2{color:var(--accent);font-size:1.15rem;margin:0 0 10px;}
+  h2 .num{background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;border-radius:6px;padding:2px 9px;margin-right:8px;}
+  ul{margin:8px 0;padding-left:24px;}
+  li{margin-bottom:8px;}
+  strong{color:#145a32;}
+  em.hi{font-style:normal;background:#fef9e7;padding:0 4px;border-radius:3px;}
+  .fml{background:#e9f7ef;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.9em;color:#186a3b;white-space:nowrap;}
+  .ex{background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:.95rem;}
+  .ex b{color:#145a32;}
+  .graph{background:#1b2631;color:#eaeded;border-radius:8px;padding:14px 18px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.82rem;line-height:1.45;overflow-x:auto;margin:10px 0;white-space:pre;}
+  .graph .g{color:#82e0aa;} .graph .y{color:#f7dc6f;} .graph .b{color:#85c1e9;}
+  table.t{border-collapse:collapse;margin:10px 0;font-size:.92rem;}
+  table.t th,table.t td{border:1px solid #cfd8cf;padding:6px 12px;text-align:center;}
+  table.t th{background:var(--accent);color:#fff;font-weight:600;}
+  .qhead{margin:26px 0 8px;color:var(--accent);font-size:1.2rem;border-bottom:2px solid #d4efdf;padding-bottom:6px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid var(--accent2);}
+  .qnum{font-weight:800;color:var(--accent);margin-right:6px;}
+  .qtag{float:right;background:#e9f7ef;color:var(--accent);border-radius:8px;padding:1px 9px;font-size:.68rem;font-weight:700;letter-spacing:.3px;margin-left:8px;}
+  .qtext{font-size:.98rem;margin:4px 0 10px;}
+  .revealbtn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .revealbtn:hover{background:#0e4429;}
+  .sol{display:none;margin-top:12px;background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px;font-size:.93rem;}
+  .sol.show{display:block;}
+  .sol h4{margin:0 0 8px;color:var(--ok);font-size:.9rem;}
+  .sol .ctx{background:#eaf2f8;border-left:4px solid #2e86c1;border-radius:6px;padding:8px 12px;margin:0 0 10px;font-size:.88rem;}
+  .sol .ctx b{color:#1a5276;}
+  .sol .step{margin:6px 0;}
+  .sol .ans{background:#eafaf1;border-radius:6px;padding:6px 12px;margin-top:8px;font-weight:700;color:#145a32;display:inline-block;}
+  footer{text-align:center;color:#85929e;font-size:.85rem;margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Lesson 17 — Substitution I: Linear Insides</h1>
+  <p>Guess, Check, and Fix · Intuitive Calculus for a Curious Student · Lesson 17 of 20</p>
+</header>
+
+<nav><a href="index.html">📚 All lessons</a><a href="Lesson16.html">← Prev: Lesson 16</a><a href="Lesson18.html">Next: Lesson 18 →</a></nav>
+
+<div class="goal"><strong>🎯 Goal of this lesson:</strong> learn to integrate functions with a <em>linear inside</em> — things like <span class="fml">(2x+1)³</span>, <span class="fml">e^(3x)</span>, and <span class="fml">cos(2x)</span> — using the guess-and-fix trick: <em class="hi">integrate as if the inside were a single letter, then divide by the inside's slope</em>. It's self-checking, so a wrong answer can never survive.</div>
+
+<section>
+  <h2><span class="num">1</span> The new problem — a function inside a function</h2>
+  <ul>
+    <li>Here's an integral our current tools don't directly handle: <span class="fml">∫(2x+1)³ dx</span>.</li>
+    <li>The power rule (Lesson 5) covers <span class="fml">∫x³ dx = x⁴/4 + C</span> — but this isn't x cubed, it's <strong>(2x+1)</strong> cubed. There's a function tucked <em>inside</em> the cube.</li>
+    <li>One escape route: multiply out the cube. (2x+1)³ = 8x³ + 12x² + 6x + 1, then integrate term by term. It works... but it's misery — and for (2x+1)¹⁰ it would be torture, and for <span class="fml">e^(2x)</span> or <span class="fml">cos(2x)</span> there's nothing to multiply out at all.</li>
+    <li>There must be a smarter way. There is — and it comes from remembering how the <strong>chain rule</strong> works.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">2</span> Quick recap — the chain rule from derivatives</h2>
+  <ul>
+    <li>From derivatives: when you differentiate a function with something inside it, the <strong>inside's derivative comes out as an extra multiplier</strong>. That's the chain rule.</li>
+    <li>Example: differentiate <span class="fml">(2x+1)⁴</span>. Treat the inside like a single blob: the outside power rule gives 4(blob)³ — and then the chain rule says <em>multiply by the derivative of the blob</em>. The inside 2x+1 has derivative 2, so:</li>
+    <li><span class="fml">((2x+1)⁴)′ = 4(2x+1)³ × 2 = 8(2x+1)³</span> — the "×2" is the inside's slope <em class="hi">tagging along</em>.</li>
+    <li>This tag-along factor is the whole story of today's lesson: it appears every time we differentiate, so it must be <strong>dealt with</strong> every time we anti-differentiate.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">3</span> Guess, check, fix — solving ∫(2x+1)³ dx</h2>
+  <ul>
+    <li><strong>Guess:</strong> pretending the inside is a single letter, the power rule suggests <span class="fml">(2x+1)⁴/4</span>.</li>
+    <li><strong>Check</strong> by differentiating the guess: <span class="fml">((2x+1)⁴/4)′ = 4(2x+1)³ × 2 / 4 = 2(2x+1)³</span>. We wanted (2x+1)³ but got <em class="hi">twice</em> that — the chain rule's ×2 snuck in.</li>
+    <li><strong>Fix:</strong> our guess came out exactly 2 times too big, so divide the guess by 2:</li>
+    <li><span class="fml">∫(2x+1)³ dx = (2x+1)⁴/(4·2) + C = (2x+1)⁴/8 + C</span></li>
+    <li>Final check: <span class="fml">((2x+1)⁴/8)′ = 4(2x+1)³ × 2 / 8 = (2x+1)³</span> ✓. Perfect.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">4</span> The general pattern — divide by the inside's slope</h2>
+  <ul>
+    <li>Whenever the inside is <strong>linear</strong> — shaped like <span class="fml">ax + b</span> (a straight line, slope a) — the tag-along factor is always just the number <strong>a</strong>. So the recipe is:</li>
+    <li><em class="hi">Integrate as if the inside were a single letter, then divide by a (the inside's slope).</em></li>
+    <li>This works for every function family we know:</li>
+  </ul>
+  <table class="t">
+    <tr><th>Integral</th><th>Answer</th><th>Check (differentiate it)</th></tr>
+    <tr><td>∫(2x+1)³ dx</td><td>(2x+1)⁴/8 + C</td><td>4(2x+1)³·2/8 = (2x+1)³ ✓</td></tr>
+    <tr><td>∫e^(3x) dx</td><td>e^(3x)/3 + C</td><td>e^(3x)·3/3 = e^(3x) ✓</td></tr>
+    <tr><td>∫cos(2x) dx</td><td>sin(2x)/2 + C</td><td>cos(2x)·2/2 = cos(2x) ✓</td></tr>
+    <tr><td>∫sin(5x) dx</td><td>−cos(5x)/5 + C</td><td>−(−sin(5x))·5/5 = sin(5x) ✓</td></tr>
+  </table>
+  <ul>
+    <li>Why the graph agrees: <span class="fml">sin(2x)</span> is the sine wave <strong>squished to double speed</strong> — each hump is half as wide, so it holds half the area. That's exactly what dividing by 2 says.</li>
+  </ul>
+  <div class="graph"> 1 |   <span class="g">___</span>         <span class="b">sin 2x — humps half as wide,</span>
+   |  <span class="g">/</span>   <span class="g">\</span>        <span class="b">half the area each</span>
+ 0 <span class="y">+-------</span><span class="g">\</span><span class="y">-------+-------→</span> x
+   <span class="y">0  π/4  π/2</span> <span class="g">\</span> <span class="y">3π/4</span> <span class="g">/</span> <span class="y">π</span>
+−1 |          <span class="g">\___/</span></div>
+</section>
+
+<section>
+  <h2><span class="num">5</span> Always check by differentiating</h2>
+  <ul>
+    <li>The best part of guess-and-fix: it's <strong>self-correcting</strong>. Even if your guess is off, differentiating it TELLS you the exact factor it's off by — then you just divide by that factor.</li>
+    <li>Make the check a reflex: <em class="hi">write your answer, differentiate it in your head, confirm you land exactly on the function under the integral sign</em>. If a stray factor shows up, fix and re-check. An unchecked substitution answer is only a rumor.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">6</span> Warning — this shortcut is for LINEAR insides only</h2>
+  <div class="ex"><b>⚠️ Read this twice:</b> dividing by the inside's slope works <b>only</b> because a linear inside <span class="fml">ax + b</span> has a CONSTANT slope a — the tag-along factor is a plain number, so one division cleans it up completely.<br><br>
+  If the inside is curvy — like <span class="fml">x²</span> in <span class="fml">∫cos(x²) dx</span> — its slope 2x <b>changes from point to point</b>, and no single number you divide by can fix that. Trying <span class="fml">sin(x²)/2x</span> is a classic wrong answer (differentiate it — a mess pops out, not cos(x²)). Curvy insides need the full u-substitution method — that's exactly what Lesson 18 is for.</div>
+</section>
+
+<div class="qhead">✏️ Exercises — 20 problems (write your answer on paper, then reveal)</div>
+
+<div class="q"><span class="qnum">1.</span><span class="qtag">gentle start</span>
+  <div class="qtext">Find <span class="fml">∫(x+4)⁵ dx</span>. (The inside x+4 has slope 1 — what does the recipe say about dividing?)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the recipe: integrate as if the inside were a single letter, then divide by the inside's slope. Here the inside is x+4, a line with slope 1 (the number in front of x). Dividing by 1 changes nothing — so this one is as easy as the plain power rule.</div>
+    <div class="step">Treat (x+4) as a single letter: the power rule gives (x+4)⁶/6, then divide by the slope 1.</div>
+    <div class="step">Check: ((x+4)⁶/6)′ = 6(x+4)⁵ · 1 / 6 = (x+4)⁵ ✓.</div>
+    <div class="ans">(x+4)⁶/6 + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">2.</span><span class="qtag">power · slope 2</span>
+  <div class="qtext">Find <span class="fml">∫(2x−1)³ dx</span>, and check by differentiating.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the inside is 2x−1, a line with slope 2 (the −1 doesn't matter — constants have slope 0 and vanish when differentiated; only the number multiplying x counts).</div>
+    <div class="step">As-if-single-letter: (2x−1)⁴/4. Then divide by the slope 2: (2x−1)⁴/8.</div>
+    <div class="step">Check: ((2x−1)⁴/8)′ = 4(2x−1)³ · 2 / 8 = (2x−1)³ ✓.</div>
+    <div class="ans">(2x−1)⁴/8 + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">3.</span><span class="qtag">exponential</span>
+  <div class="qtext">Find <span class="fml">∫e^(2x) dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> from Lesson 15, e^x is the function that is its own derivative and its own antiderivative. With 2x inside, the chain rule makes (e^(2x))′ = 2e^(2x) — so anti-differentiating must divide that 2 back out.</div>
+    <div class="step">As-if-single-letter: e^(2x). Divide by the inside's slope 2: e^(2x)/2.</div>
+    <div class="step">Check: (e^(2x)/2)′ = e^(2x) · 2 / 2 = e^(2x) ✓.</div>
+    <div class="ans">e^(2x)/2 + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">4.</span><span class="qtag">cosine</span>
+  <div class="qtext">Find <span class="fml">∫cos(3x) dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> from Lesson 16, ∫cos x dx = sin x + C. Now the inside is 3x (slope 3) — cos(3x) is a cosine wave wobbling three times as fast, so its humps are a third as wide, and the answer shrinks by a factor of 3.</div>
+    <div class="step">As-if-single-letter: sin(3x). Divide by 3: sin(3x)/3.</div>
+    <div class="step">Check: (sin(3x)/3)′ = cos(3x) · 3 / 3 = cos(3x) ✓.</div>
+    <div class="ans">sin(3x)/3 + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">5.</span><span class="qtag">sine · two things to track</span>
+  <div class="qtext">Find <span class="fml">∫sin(2x) dx</span>. (Careful: this needs BOTH Lesson 16's minus sign AND today's divide-by-slope.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> two rules stack here. Lesson 16: ∫sin x dx = −cos x + C (the minus!). Today: inside 2x has slope 2, so divide by 2. Apply both, then let the check-by-differentiating settle any doubt.</div>
+    <div class="step">As-if-single-letter: −cos(2x). Divide by 2: −cos(2x)/2.</div>
+    <div class="step">Check: (−cos(2x)/2)′ = −(−sin(2x)) · 2 / 2 = sin(2x) ✓ — the two minus signs cancel and the 2s cancel.</div>
+    <div class="ans">−cos(2x)/2 + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">6.</span><span class="qtag">check task</span>
+  <div class="qtext">Differentiate <span class="fml">(2x+1)⁴/8</span> step by step, and confirm the result is exactly <span class="fml">(2x+1)³</span>. Say where the 8 in the denominator comes from.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> differentiating with a linear inside uses the chain rule: power rule on the outside, then multiply by the inside's slope. The point of this exercise: watch the 8 get eaten by the factors the derivative produces.</div>
+    <div class="step">Power rule on the outside: 4(2x+1)³, so far giving 4(2x+1)³/8.</div>
+    <div class="step">Chain rule — multiply by the inside's slope 2: 4(2x+1)³ · 2 / 8 = 8(2x+1)³/8 = (2x+1)³ ✓.</div>
+    <div class="step">Where the 8 came from: 4 (the new power that comes down) × 2 (the inside's slope) = 8. The denominator was built to cancel exactly those two factors.</div>
+    <div class="ans">((2x+1)⁴/8)′ = (2x+1)³ — the 8 is 4 × 2, ready to cancel the chain rule's output</div></div>
+</div>
+
+<div class="q"><span class="qnum">7.</span><span class="qtag">two ways · they match</span>
+  <div class="qtext">Find <span class="fml">∫(3x+2)² dx</span> TWO ways: (a) expand the square and integrate term by term; (b) use today's shortcut. Then compare the two answers.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> when a new method arrives, test it against an old one you trust. Expanding: (3x+2)² = (3x+2)(3x+2) = 9x² + 12x + 4. Two correct antiderivatives are allowed to differ by a constant — that's what + C is for.</div>
+    <div class="step">(a) Expand: ∫(9x² + 12x + 4) dx = 9·x³/3 + 12·x²/2 + 4x + C = 3x³ + 6x² + 4x + C.</div>
+    <div class="step">(b) Shortcut: as-if-single-letter (3x+2)³/3, divide by slope 3 → (3x+2)³/9 + C. Check: 3(3x+2)²·3/9 = (3x+2)² ✓.</div>
+    <div class="step">Compare by expanding (b): (3x+2)³ = 27x³ + 54x² + 36x + 8, so (3x+2)³/9 = 3x³ + 6x² + 4x + 8/9. That's answer (a) plus the constant 8/9 — and constants get absorbed into + C, so the two answers are the SAME family. Both differentiate to (3x+2)². ✓</div>
+    <div class="ans">(a) 3x³ + 6x² + 4x + C &nbsp; (b) (3x+2)³/9 + C — equal up to a constant, both correct</div></div>
+</div>
+
+<div class="q"><span class="qnum">8.</span><span class="qtag">exponential</span>
+  <div class="qtext">Find <span class="fml">∫e^(4x) dx</span>, and check by differentiating.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> same as problem 3 with a steeper inside: 4x has slope 4. e^(4x) grows four times as fast as its inside advances, so anti-differentiating divides by 4.</div>
+    <div class="step">As-if-single-letter: e^(4x). Divide by 4: e^(4x)/4.</div>
+    <div class="step">Check: (e^(4x)/4)′ = e^(4x) · 4 / 4 = e^(4x) ✓.</div>
+    <div class="ans">e^(4x)/4 + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">9.</span><span class="qtag">the ½ gotcha</span>
+  <div class="qtext">Find <span class="fml">∫cos(x/2) dx</span>. (The inside is x/2 — what is its slope, and what does dividing by it do?)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> x/2 is a line with slope ½ (it's ½·x). The recipe says divide by the slope — and dividing by ½ is the same as MULTIPLYING by 2. So slow waves (inside slope less than 1) make the answer BIGGER, which fits the picture: cos(x/2) wobbles at half speed, its humps are twice as wide, twice the area.</div>
+    <div class="step">As-if-single-letter: sin(x/2). Divide by ½: sin(x/2) ÷ ½ = 2 sin(x/2).</div>
+    <div class="step">Check: (2 sin(x/2))′ = 2 cos(x/2) · ½ = cos(x/2) ✓.</div>
+    <div class="ans">2 sin(x/2) + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">10.</span><span class="qtag">sine · slope 5</span>
+  <div class="qtext">Find <span class="fml">∫sin(5x) dx</span>, and check by differentiating.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> sine's antiderivative carries a minus sign (Lesson 16), and the inside 5x has slope 5, so we also divide by 5. Both adjustments, one answer.</div>
+    <div class="step">As-if-single-letter: −cos(5x). Divide by 5: −cos(5x)/5.</div>
+    <div class="step">Check: (−cos(5x)/5)′ = −(−sin(5x)) · 5 / 5 = sin(5x) ✓.</div>
+    <div class="ans">−cos(5x)/5 + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">11.</span><span class="qtag">spot the error</span>
+  <div class="qtext">A student writes: <span class="fml">∫cos(2x) dx = sin(2x) + C</span>. Differentiate their answer to find the mistake, then fix it.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> forgetting to divide by the inside's slope is THE classic substitution error. Check-by-differentiating exposes it immediately: the chain rule's tag-along factor shows up uninvited.</div>
+    <div class="step">Differentiate the claim: (sin(2x))′ = cos(2x) · 2 = 2cos(2x). That's TWICE what the integral asked for.</div>
+    <div class="step">The answer is 2 times too big → divide by 2. Correct: sin(2x)/2 + C.</div>
+    <div class="step">Verify the fix: (sin(2x)/2)′ = 2cos(2x)/2 = cos(2x) ✓.</div>
+    <div class="ans">Error: forgot to divide by the inside's slope 2. Correct: sin(2x)/2 + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">12.</span><span class="qtag">definite integral</span>
+  <div class="qtext">Compute <span class="fml">∫₀¹ (2x+1)³ dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a definite integral with the new method: find the antiderivative by guess-and-fix, then FTC — top limit minus bottom limit. Handy move: evaluate the INSIDE first at each limit (at x = 1, 2x+1 = 3; at x = 0, 2x+1 = 1), then apply the power.</div>
+    <div class="step">Antiderivative: (2x+1)⁴/8 (from problem 6, already verified by differentiating).</div>
+    <div class="step">Top limit x = 1: (2·1+1)⁴/8 = 3⁴/8 = 81/8. Bottom limit x = 0: (2·0+1)⁴/8 = 1/8.</div>
+    <div class="step">Subtract: 81/8 − 1/8 = 80/8 = 10.</div>
+    <div class="ans">10</div></div>
+</div>
+
+<div class="q"><span class="qnum">13.</span><span class="qtag">definite · net zero</span>
+  <div class="qtext">Compute <span class="fml">∫₀^(π/2) cos(2x) dx</span>, and explain the answer using signed area. (Hint: where does cos(2x) cross the axis between 0 and π/2?)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> antiderivative of cos(2x) is sin(2x)/2 (problem 11's corrected answer). Note the neat trick with limits: plug the limit into the INSIDE first — at x = π/2 the inside is 2·(π/2) = π, a value-table angle! cos(2x) wobbles at double speed, so between 0 and π/2 it completes what plain cosine does between 0 and π.</div>
+    <div class="step">∫₀^(π/2) cos(2x) dx = [sin(2x)/2]₀^(π/2) = sin(π)/2 − sin(0)/2.</div>
+    <div class="step">= 0/2 − 0/2 = 0.</div>
+    <div class="step">Signed-area story: cos(2x) is above the axis from 0 to π/4 and below from π/4 to π/2 — two mirror-image regions, one positive, one negative, cancelling exactly (just like ∫₀^π cos x dx = 0 from Lesson 16, squished to half width).</div>
+    <div class="ans">0 — the area above the axis cancels the area below</div></div>
+</div>
+
+<div class="q"><span class="qnum">14.</span><span class="qtag">definite · one squished hump</span>
+  <div class="qtext">Compute <span class="fml">∫₀^(π/2) sin(2x) dx</span>, tracking every sign.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> sin(2x) runs at double speed, so from 0 to π/2 it traces one COMPLETE hump (what sin x does from 0 to π). Antiderivative: −cos(2x)/2 (problem 5). Inside values at the limits: 2·(π/2) = π and 2·0 = 0 — both table angles: cos π = −1, cos 0 = 1.</div>
+    <div class="step">∫₀^(π/2) sin(2x) dx = [−cos(2x)/2]₀^(π/2) = (−cos π)/2 − (−cos 0)/2.</div>
+    <div class="step">= (−(−1))/2 − (−1)/2 = 1/2 + 1/2 = 1.</div>
+    <div class="step">Sense check: a full sine hump has area 2 (Lesson 16); this hump is squished to half width, so half the area — 1 ✓.</div>
+    <div class="ans">1</div></div>
+</div>
+
+<div class="q"><span class="qnum">15.</span><span class="qtag">definite · exponential</span>
+  <div class="qtext">Compute <span class="fml">∫₀¹ e^(2x) dx</span>. Give the exact answer and a decimal estimate (use e² ≈ 7.39).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> from Lesson 15, e ≈ 2.718 and e^0 = 1. Antiderivative of e^(2x) is e^(2x)/2 (problem 3). Exact answers keep the letter e in them — only convert to a decimal at the very end, for a feel of the size.</div>
+    <div class="step">∫₀¹ e^(2x) dx = [e^(2x)/2]₀¹ = e²/2 − e⁰/2 = e²/2 − 1/2 = (e² − 1)/2.</div>
+    <div class="step">Decimal: (7.39 − 1)/2 ≈ 6.39/2 ≈ 3.19.</div>
+    <div class="step">Check the antiderivative: (e^(2x)/2)′ = 2e^(2x)/2 = e^(2x) ✓.</div>
+    <div class="ans">(e² − 1)/2 ≈ 3.19</div></div>
+</div>
+
+<div class="q"><span class="qnum">16.</span><span class="qtag">definite · slow wave</span>
+  <div class="qtext">Compute <span class="fml">∫₀^π sin(x/2) dx</span>. (Remember the x/2 inside means multiply by 2 — and watch the sine minus sign.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> three things stack: sine's minus (Lesson 16), dividing by the slope ½ (= multiplying by 2), and the FTC. Antiderivative: −cos(x/2) ÷ ½ = −2cos(x/2). Inside values at the limits: π/2 and 0 — table angles: cos(π/2) = 0, cos 0 = 1.</div>
+    <div class="step">Check the antiderivative first: (−2cos(x/2))′ = −2 · (−sin(x/2)) · ½ = sin(x/2) ✓.</div>
+    <div class="step">∫₀^π sin(x/2) dx = [−2cos(x/2)]₀^π = (−2cos(π/2)) − (−2cos 0).</div>
+    <div class="step">= (−2·0) − (−2·1) = 0 + 2 = 2.</div>
+    <div class="step">Sense check: sin(x/2) at half speed traces only the RISING half of a stretched hump here, staying above the axis the whole way — a positive answer fits.</div>
+    <div class="ans">2</div></div>
+</div>
+
+<div class="q"><span class="qnum">17.</span><span class="qtag">story · faster wave</span>
+  <div class="qtext">A playground swing moves with speed <span class="fml">v(t) = sin(2t)</span> meters per second — it's a nervous little swing, wobbling twice as fast as a plain sine wave. One complete push forward lasts from t = 0 to t = π/2 (when the speed returns to 0). (a) How far does the swing travel during that push? (b) A lazier swing has speed sin t, and its push lasts from t = 0 to t = π. How far does IT travel? What did doubling the wobble speed do to the distance?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> from Lessons 11–12: distance = integral of speed over the time interval. A faster-wobbling wave (2t inside) squeezes each hump into half the time — same top speed, but less time spent moving, so less distance. Let's see the integrals agree.</div>
+    <div class="step">(a) Distance = ∫₀^(π/2) sin(2t) dt = [−cos(2t)/2]₀^(π/2) = (−cos π)/2 − (−cos 0)/2 = 1/2 + 1/2 = 1 meter.</div>
+    <div class="step">(b) Lazy swing: ∫₀^π sin t dt = [−cos t]₀^π = 1 + 1 = 2 meters (the famous hump from Lesson 16).</div>
+    <div class="step">Doubling the wobble speed HALVED the distance per push: same speeds, half the time. That's the divide-by-2 in the antiderivative showing up in real life.</div>
+    <div class="ans">(a) 1 meter &nbsp; (b) 2 meters — twice the frequency, half the distance per push</div></div>
+</div>
+
+<div class="q"><span class="qnum">18.</span><span class="qtag">definite · net zero · slow wave</span>
+  <div class="qtext">Compute <span class="fml">∫₀^(2π) cos(x/2) dx</span>, and explain the answer with signed area.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> antiderivative of cos(x/2) is 2 sin(x/2) (problem 9). The inside runs at half speed: as x goes 0 → 2π, the inside x/2 goes only 0 → π — so cos(x/2) traces what plain cosine does over [0, π]: down from 1 to −1, crossing the axis midway (at x = π).</div>
+    <div class="step">∫₀^(2π) cos(x/2) dx = [2 sin(x/2)]₀^(2π) = 2 sin π − 2 sin 0.</div>
+    <div class="step">= 2·0 − 2·0 = 0.</div>
+    <div class="step">Signed-area story: cos(x/2) is above the axis on [0, π] (area +2) and below on [π, 2π] (area −2) — mirror pieces that cancel exactly.</div>
+    <div class="ans">0 — the positive half cancels the negative half</div></div>
+</div>
+
+<div class="q"><span class="qnum">19.</span><span class="qtag">definite · power</span>
+  <div class="qtext">Compute <span class="fml">∫₀¹ (3x+1)² dx</span>. (Evaluate the inside first at each limit — the numbers come out friendly.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> full pipeline: guess-and-fix for the antiderivative (inside 3x+1, slope 3), verify by differentiating, then FTC. At the limits the inside is 3·1+1 = 4 and 3·0+1 = 1.</div>
+    <div class="step">Antiderivative: (3x+1)³/3 ÷ 3 = (3x+1)³/9. Check: 3(3x+1)² · 3 / 9 = (3x+1)² ✓.</div>
+    <div class="step">Top limit: 4³/9 = 64/9. Bottom limit: 1³/9 = 1/9.</div>
+    <div class="step">Subtract: 64/9 − 1/9 = 63/9 = 7.</div>
+    <div class="ans">7</div></div>
+</div>
+
+<div class="q"><span class="qnum">20.</span><span class="qtag">challenge</span>
+  <div class="qtext">Find <span class="fml">∫(e^(2x) + (4x+1)²) dx</span>, then verify your whole answer by differentiating it term by term.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> integrals split over plus signs, so handle each term with its own guess-and-fix. Term 1: exponential with inside slope 2. Term 2: power with inside slope 4 — the denominator will be 3 (from the power rule) times 4 (the slope) = 12.</div>
+    <div class="step">Term 1: ∫e^(2x) dx = e^(2x)/2.</div>
+    <div class="step">Term 2: ∫(4x+1)² dx = (4x+1)³/3 ÷ 4 = (4x+1)³/12.</div>
+    <div class="step">Together: e^(2x)/2 + (4x+1)³/12 + C.</div>
+    <div class="step">Verify: (e^(2x)/2)′ = 2e^(2x)/2 = e^(2x) ✓ and ((4x+1)³/12)′ = 3(4x+1)² · 4 / 12 = (4x+1)² ✓. Sum: e^(2x) + (4x+1)² — exactly the function under the integral sign.</div>
+    <div class="ans">e^(2x)/2 + (4x+1)³/12 + C</div></div>
+</div>
+
+<footer>Lesson 17 of 20 · Intuitive Integration · next: <a href="Lesson18.html">Lesson 18 — Substitution II: u-Substitution</a></footer>
+
+</div>
+<script>
+document.querySelectorAll('.q').forEach(q=>{
+  const btn=q.querySelector('.revealbtn'), sol=q.querySelector('.sol');
+  btn.addEventListener('click',()=>{ sol.classList.add('show'); btn.textContent='Solution shown'; btn.disabled=true; btn.style.opacity=.6; });
+});
+</script>
+</body>
+</html>

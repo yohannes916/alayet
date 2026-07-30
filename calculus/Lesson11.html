@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 11 — Motion I: From Velocity to Position</title>
+<style>
+  :root{--accent:#186a3b;--accent2:#239b56;--bg:#f2f7f4;--card:#fff;--ok:#1e8449;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:#1c2833;background:var(--bg);margin:0;padding:0 16px 80px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -16px 20px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  nav{display:flex;gap:10px;margin-bottom:18px;font-size:.9rem;flex-wrap:wrap;}
+  nav a{color:var(--accent);text-decoration:none;font-weight:600;background:#fff;border:1px solid #d5e8dc;border-radius:8px;padding:6px 14px;}
+  nav a:hover{background:#eafaf1;}
+  .goal{background:#fef9e7;border-left:5px solid var(--star);padding:12px 18px;border-radius:8px;margin-bottom:18px;font-size:.95rem;}
+  .goal strong{color:#7d6608;}
+  section{background:var(--card);border-radius:10px;padding:18px 22px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  h2{color:var(--accent);font-size:1.15rem;margin:0 0 10px;}
+  h2 .num{background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;border-radius:6px;padding:2px 9px;margin-right:8px;}
+  ul{margin:8px 0;padding-left:24px;}
+  li{margin-bottom:8px;}
+  strong{color:#145a32;}
+  em.hi{font-style:normal;background:#fef9e7;padding:0 4px;border-radius:3px;}
+  .fml{background:#e9f7ef;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.9em;color:#186a3b;white-space:nowrap;}
+  .ex{background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:.95rem;}
+  .ex b{color:#145a32;}
+  .graph{background:#1b2631;color:#eaeded;border-radius:8px;padding:14px 18px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.82rem;line-height:1.45;overflow-x:auto;margin:10px 0;white-space:pre;}
+  .graph .g{color:#82e0aa;} .graph .y{color:#f7dc6f;} .graph .b{color:#85c1e9;}
+  table.t{border-collapse:collapse;margin:10px 0;font-size:.92rem;}
+  table.t th,table.t td{border:1px solid #cfd8cf;padding:6px 12px;text-align:center;}
+  table.t th{background:var(--accent);color:#fff;font-weight:600;}
+  .qhead{margin:26px 0 8px;color:var(--accent);font-size:1.2rem;border-bottom:2px solid #d4efdf;padding-bottom:6px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid var(--accent2);}
+  .qnum{font-weight:800;color:var(--accent);margin-right:6px;}
+  .qtag{float:right;background:#e9f7ef;color:var(--accent);border-radius:8px;padding:1px 9px;font-size:.68rem;font-weight:700;letter-spacing:.3px;margin-left:8px;}
+  .qtext{font-size:.98rem;margin:4px 0 10px;}
+  .revealbtn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .revealbtn:hover{background:#0e4429;}
+  .sol{display:none;margin-top:12px;background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px;font-size:.93rem;}
+  .sol.show{display:block;}
+  .sol h4{margin:0 0 8px;color:var(--ok);font-size:.9rem;}
+  .sol .ctx{background:#eaf2f8;border-left:4px solid #2e86c1;border-radius:6px;padding:8px 12px;margin:0 0 10px;font-size:.88rem;}
+  .sol .ctx b{color:#1a5276;}
+  .sol .step{margin:6px 0;}
+  .sol .ans{background:#eafaf1;border-radius:6px;padding:6px 12px;margin-top:8px;font-weight:700;color:#145a32;display:inline-block;}
+  footer{text-align:center;color:#85929e;font-size:.85rem;margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Lesson 11 — Motion I: From Velocity to Position</h1>
+  <p>Motion I: From Velocity to Position · Intuitive Calculus for a Curious Student · Lesson 11 of 20</p>
+</header>
+
+<nav><a href="index.html">📚 All lessons</a><a href="Lesson10.html">← Prev: Lesson 10</a><a href="Lesson12.html">Next: Lesson 12 →</a></nav>
+
+<div class="goal"><strong>🎯 Goal of this lesson:</strong> use integration on the physics problem it was practically invented for — motion. Given how fast something is moving at every moment (its <em>velocity</em>), find out <em>where it is</em>. One formula does it: <span class="fml">new position = starting position + ∫ v dt</span>. And Lesson 9's signed areas come alive: negative velocity literally means going backward.</div>
+
+<section>
+  <h2><span class="num">1</span> The vocabulary — position and velocity, from scratch</h2>
+  <ul>
+    <li><strong>Position</strong>, written <span class="fml">s</span>, means <em class="hi">where you are</em> — a spot on a number line. Think of mile markers on a highway: "s = 40" means you're standing at mile marker 40. Position can be zero (home base) or even negative (behind home base).</li>
+    <li><strong>Velocity</strong>, written <span class="fml">v</span>, means <em class="hi">how fast your position is changing</em> — it's speed WITH a direction sign. Positive v = moving forward (position increasing); negative v = moving backward (position decreasing). A car cruising at v = −30 mph is doing 30 mph in reverse.</li>
+    <li>The calculus connection you already know from derivatives: <em class="hi">velocity is the derivative of position</em>. v tells the rate at which s changes, moment by moment — the speedometer is reporting the derivative of the odometer's story.</li>
+  </ul>
+  <table class="t">
+    <tr><th>Quantity</th><th>Symbol</th><th>Metric units</th><th>Everyday units</th></tr>
+    <tr><td>Position</td><td>s</td><td>meters (m)</td><td>miles</td></tr>
+    <tr><td>Velocity</td><td>v</td><td>meters per second (m/s)</td><td>miles per hour (mph)</td></tr>
+    <tr><td>Time</td><td>t</td><td>seconds (s)</td><td>hours (h)</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2><span class="num">2</span> The integration link — velocity in, position out</h2>
+  <ul>
+    <li>If v is the derivative of s, then going <strong>backwards</strong> — from v to s — is integration. This is our Lesson 1 story with official names: velocity is a rate, position is the total it builds.</li>
+    <li>The change in position from time a to time b is called the <strong>displacement</strong>, and it's an integral: <em class="hi">displacement = ∫<sub>a</sub><sup>b</sup> v dt</em>. It answers "how far did your position shift?" — not where you ended up.</li>
+    <li>To know where you actually ARE, you also need to know where you <strong>started</strong> (the integral can't know that — remember the "+C" mystery from Lesson 4!). The master formula:</li>
+  </ul>
+  <div class="ex"><b>Position formula:</b> <span class="fml">s(b) = s(a) + ∫<sub>a</sub><sup>b</sup> v dt</span> &nbsp;— <b>new position = starting position + accumulated velocity.</b> In words: where you end up = where you began, plus every little bit of motion added up.</div>
+</section>
+
+<section>
+  <h2><span class="num">3</span> Worked example — a simple trip</h2>
+  <div class="ex"><b>Problem:</b> an object moves with velocity <span class="fml">v(t) = 2t</span> m/s (it speeds up steadily). At time t = 0 it sits at position s = 3 m. Where is it at t = 4 seconds?<br><br>
+  <b>Step 1 — displacement:</b> <span class="fml">∫<sub>0</sub><sup>4</sup> 2t dt = t<sup>2</sup> |<sub>0</sub><sup>4</sup> = 16 − 0 = 16</span> meters of forward motion. (Check the antiderivative: derivative of t² is 2t ✓.)<br>
+  <b>Step 2 — add the start:</b> s(4) = 3 + 16 = <b>19 meters</b>.<br><br>
+  Don't forget the starting 3! The integral only measures the CHANGE; the starting position anchors it to the real number line.</div>
+</section>
+
+<section>
+  <h2><span class="num">4</span> Negative velocity — Lesson 9 comes alive</h2>
+  <ul>
+    <li>In Lesson 9, area below the x-axis counted as <strong>negative</strong>. For motion, that's not a bookkeeping trick — it's physical: <em class="hi">when v is negative, you are moving backward, and your position goes DOWN.</em></li>
+    <li>So there are two different "how far" questions, and they get different answers when you back up:
+      <ul>
+        <li><strong>Displacement (net):</strong> <span class="fml">∫ v dt</span> with signs kept — "how far from where you started?" Forward and backward motion cancel.</li>
+        <li><strong>Total distance traveled:</strong> add every piece as positive — "what does the odometer say?" An odometer never runs backward.</li>
+      </ul>
+    </li>
+    <li>Walk 5 blocks east, then 5 blocks west: displacement 0 (you're home), total distance 10 blocks (your legs know it). To compute total distance with integrals: <em class="hi">find where v = 0, integrate each piece separately, then add the absolute values</em> — exactly the Lesson 9 net-vs-total recipe.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">5</span> Worked example with a sign change</h2>
+  <div class="ex"><b>Problem:</b> <span class="fml">v(t) = 6 − 2t</span> m/s on [0, 5]. Find the displacement AND the total distance traveled.<br><br>
+  <b>Where does v change sign?</b> Solve v = 0: 6 − 2t = 0 → <b>t = 3</b>. Before t = 3, v is positive (test t = 0: v = 6, forward). After, negative (test t = 4: v = −2, backward). The object coasts forward, stops for an instant at t = 3, then reverses.<br><br>
+  <b>Forward piece:</b> <span class="fml">∫<sub>0</sub><sup>3</sup> (6 − 2t) dt = (6t − t<sup>2</sup>) |<sub>0</sub><sup>3</sup> = (18 − 9) − 0 = +9</span> m.<br>
+  <b>Backward piece:</b> <span class="fml">∫<sub>3</sub><sup>5</sup> (6 − 2t) dt = (6t − t<sup>2</sup>) |<sub>3</sub><sup>5</sup> = (30 − 25) − (18 − 9) = 5 − 9 = −4</span> m.<br><br>
+  <b>Displacement (net):</b> 9 + (−4) = <b>+5 m</b> — it ends 5 m ahead of where it began.<br>
+  <b>Total distance:</b> 9 + 4 = <b>13 m</b> — the odometer counted the backing up too.</div>
+</section>
+
+<section>
+  <h2><span class="num">6</span> Reading a velocity graph</h2>
+  <ul>
+    <li>On a velocity graph, everything from Lessons 2 and 9 has a motion meaning: <em class="hi">area above the time-axis pushes you forward; area below pulls you back.</em></li>
+  </ul>
+  <div class="graph">v (m/s)
+  6 <span class="g">\</span>
+    | <span class="g">\</span>   <span class="g">forward: +9 m</span>
+    |  <span class="g">\</span>  <span class="g">(area above axis)</span>
+    |   <span class="g">\</span>
+  0 +----<span class="b">\</span>--------------→ t (s)
+    |    3<span class="y">\</span>  <span class="y">backward: −4 m</span>
+    |      <span class="y">\</span> <span class="y">(area below axis)</span>
+ −4 |       <span class="y">\</span>
+    0    3    5</div>
+  <ul>
+    <li>That's the v = 6 − 2t example as a picture: a triangle above the axis (worth +9) and a smaller triangle below (worth −4). Net = 5, total = 13 — you can read both answers straight off the areas.</li>
+    <li>Rectangle and triangle shortcuts still work: if the velocity graph is made of flat steps and straight slants, you can find displacement by pure geometry — no antiderivatives needed.</li>
+  </ul>
+</section>
+
+<div class="qhead">✏️ Exercises — 20 problems (write your answer on paper, then reveal)</div>
+
+<div class="q"><span class="qnum">1.</span><span class="qtag">constant velocity</span>
+  <div class="qtext">A robot rolls at a constant velocity of 5 m/s, starting from position s = 0. Where is it after 10 seconds?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background (physics):</b> velocity is the rate of change of position — "5 m/s" means the position number grows by 5 every second. New position = starting position + ∫ v dt. With a constant velocity the integral is just rate × time, our very first formula from Lesson 1.</div>
+    <div class="step">Displacement = <span class="fml">∫<sub>0</sub><sup>10</sup> 5 dt = 5t |<sub>0</sub><sup>10</sup> = 50</span> m.</div>
+    <div class="step">Position = start + displacement = 0 + 50 = 50 m.</div>
+    <div class="ans">s = 50 meters</div></div>
+</div>
+
+<div class="q"><span class="qnum">2.</span><span class="qtag">mile markers</span>
+  <div class="qtext">A car passes mile marker 20 and cruises at a steady 60 mph. What mile marker is it at 3 hours later?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> mile markers ARE a position number line — the marker number is s. The integral gives how much the marker number changes; the starting marker anchors where you actually are. Forgetting the starting 20 is the classic mistake.</div>
+    <div class="step">Displacement = <span class="fml">∫<sub>0</sub><sup>3</sup> 60 dt = 60t |<sub>0</sub><sup>3</sup> = 180</span> miles.</div>
+    <div class="step">Position = 20 + 180 = 200.</div>
+    <div class="ans">Mile marker 200</div></div>
+</div>
+
+<div class="q"><span class="qnum">3.</span><span class="qtag">start + integral</span>
+  <div class="qtext">A turtle starts at position s = 4 m and walks with constant velocity 3 m/s. Write its position formula s(t), then find where it is at t = 6 s.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> instead of answering one time at a time, you can build a position FORMULA: s(t) = s(0) + ∫₀ᵗ v du. It's an antiderivative of v whose "+C" is chosen to make s(0) come out right — this is what the +C from Lesson 4 is for.</div>
+    <div class="step">s(t) = 4 + <span class="fml">∫<sub>0</sub><sup>t</sup> 3 du</span> = 4 + 3t. (Check: derivative of 4 + 3t is 3 = v ✓, and s(0) = 4 ✓.)</div>
+    <div class="step">At t = 6: s = 4 + 18 = 22.</div>
+    <div class="ans">s(t) = 4 + 3t; s(6) = 22 meters</div></div>
+</div>
+
+<div class="q"><span class="qnum">4.</span><span class="qtag">displacement</span>
+  <div class="qtext">An object's velocity is <span class="fml">v(t) = 2t</span> m/s. Find its displacement between t = 1 and t = 3 seconds.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> displacement between two times is the definite integral of velocity between those times — no starting position needed, because "how much did s change?" doesn't ask where s began. Notice the limits are 1 and 3, not 0 and 3.</div>
+    <div class="step"><span class="fml">∫<sub>1</sub><sup>3</sup> 2t dt = t<sup>2</sup> |<sub>1</sub><sup>3</sup> = 9 − 1 = 8</span>. (Check: derivative of t² is 2t ✓.)</div>
+    <div class="ans">8 meters</div></div>
+</div>
+
+<div class="q"><span class="qnum">5.</span><span class="qtag">going backward</span>
+  <div class="qtext">A remote-control car starts at position s = 12 m and drives with velocity v = −2 m/s (in reverse!) for 5 seconds. Where does it end up?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> negative velocity means the position number is going DOWN — the car moves toward smaller markers. The integral of a negative velocity is negative, and adding a negative displacement to the start moves you backward. Same formula, no special cases.</div>
+    <div class="step">Displacement = <span class="fml">∫<sub>0</sub><sup>5</sup> (−2) dt = −2t |<sub>0</sub><sup>5</sup> = −10</span> m.</div>
+    <div class="step">Position = 12 + (−10) = 2.</div>
+    <div class="ans">s = 2 meters</div></div>
+</div>
+
+<div class="q"><span class="qnum">6.</span><span class="qtag">graph in words</span>
+  <div class="qtext">A velocity graph shows v = 4 m/s (flat) from t = 0 to t = 3, then v = 0 from t = 3 to t = 5. Using rectangle areas only — no antiderivatives — find the displacement over the whole 5 seconds, and describe what the object did.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> displacement = area under the velocity graph (above the axis counts +, below counts −). Flat steps make rectangles, so geometry does the whole job. And v = 0 means NOT MOVING — a zero-height rectangle adds nothing.</div>
+    <div class="step">Rectangle 1: height 4, width 3 → area 12 (moves forward 12 m).</div>
+    <div class="step">Rectangle 2: height 0, width 2 → area 0 (parked for 2 seconds).</div>
+    <div class="step">Displacement = 12 + 0 = 12 m. Story: it cruised forward for 3 seconds, then stood still.</div>
+    <div class="ans">12 meters forward (then parked)</div></div>
+</div>
+
+<div class="q"><span class="qnum">7.</span><span class="qtag">curvy velocity</span>
+  <div class="qtext">An object has velocity <span class="fml">v(t) = 3t<sup>2</sup></span> m/s and starts at position s = 1 m. Where is it at t = 2 seconds?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> now the velocity is a curve, so no rectangle trick works — but the power rule (Lesson 5) handles it: an antiderivative of 3t² is t³. Then it's the same two steps as always: integrate the velocity, add the start.</div>
+    <div class="step">Displacement = <span class="fml">∫<sub>0</sub><sup>2</sup> 3t<sup>2</sup> dt = t<sup>3</sup> |<sub>0</sub><sup>2</sup> = 8 − 0 = 8</span> m. (Check: derivative of t³ is 3t² ✓.)</div>
+    <div class="step">Position = 1 + 8 = 9.</div>
+    <div class="ans">s = 9 meters</div></div>
+</div>
+
+<div class="q"><span class="qnum">8.</span><span class="qtag">two-term velocity</span>
+  <div class="qtext">Find the displacement of an object with velocity <span class="fml">v(t) = t + 2</span> m/s from t = 0 to t = 4.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> integrate term by term, like adding two motions: a speeding-up part (t) and a steady part (2). The antiderivative of t is t²/2 and of 2 is 2t — check each by differentiating.</div>
+    <div class="step"><span class="fml">∫<sub>0</sub><sup>4</sup> (t + 2) dt = (t<sup>2</sup>/2 + 2t) |<sub>0</sub><sup>4</sup></span>. (Check: derivative of t²/2 + 2t is t + 2 ✓.)</div>
+    <div class="step">At 4: 16/2 + 8 = 8 + 8 = 16. At 0: 0.</div>
+    <div class="ans">16 meters</div></div>
+</div>
+
+<div class="q"><span class="qnum">9.</span><span class="qtag">when does it stop?</span>
+  <div class="qtext">A cart has velocity <span class="fml">v(t) = 6 − 2t</span> m/s. (a) At what time does it momentarily stop? (b) How far has it traveled by that moment (starting from t = 0)?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> "stops" means velocity = 0 — the instant between moving forward and (possibly) moving backward, like a ball at the top of a toss. To find it, solve v(t) = 0. Up to that moment v stayed positive, so displacement and distance agree.</div>
+    <div class="step">(a) 6 − 2t = 0 → t = 3 seconds.</div>
+    <div class="step">(b) <span class="fml">∫<sub>0</sub><sup>3</sup> (6 − 2t) dt = (6t − t<sup>2</sup>) |<sub>0</sub><sup>3</sup> = 18 − 9 = 9</span> m. (Check: derivative of 6t − t² is 6 − 2t ✓.)</div>
+    <div class="ans">(a) t = 3 s &nbsp; (b) 9 meters</div></div>
+</div>
+
+<div class="q"><span class="qnum">10.</span><span class="qtag">back to the start</span>
+  <div class="qtext">A toy drone (moving along a straight track) starts at s = 0 with velocity <span class="fml">v(t) = 4 − 2t</span> m/s. (a) When does it turn around? (b) How far out does it get? (c) When is it back at its starting point?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> three different moments, three different equations. Turning around = velocity hits 0. Farthest point = position at that turnaround moment. Back at start = POSITION returns to 0, which happens later — the drone needs time to undo all its forward progress.</div>
+    <div class="step">(a) v = 0: 4 − 2t = 0 → t = 2 s.</div>
+    <div class="step">(b) Position formula: s(t) = 0 + <span class="fml">∫<sub>0</sub><sup>t</sup> (4 − 2u) du = 4t − t<sup>2</sup></span>. (Check: derivative is 4 − 2t ✓.) At t = 2: s = 8 − 4 = 4 m out.</div>
+    <div class="step">(c) Back at start: 4t − t² = 0 → t(4 − t) = 0 → t = 4 s (t = 0 is the departure).</div>
+    <div class="step">Nice symmetry: 2 seconds out, 2 seconds back.</div>
+    <div class="ans">(a) t = 2 s &nbsp; (b) 4 m from the start &nbsp; (c) t = 4 s</div></div>
+</div>
+
+<div class="q"><span class="qnum">11.</span><span class="qtag">net vs total</span>
+  <div class="qtext">A delivery robot moves with v = 2 m/s from t = 0 to t = 3, then v = −1 m/s from t = 3 to t = 7. Find (a) its displacement and (b) its total distance traveled.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> displacement keeps the signs (backward motion subtracts — it's "how far from where you started"). Total distance treats every meter as positive (the odometer view). With flat velocities each piece is just rate × time, signs included.</div>
+    <div class="step">Forward piece: 2 × 3 = +6 m. Backward piece: (−1) × 4 = −4 m. (Width of second piece: 7 − 3 = 4 s.)</div>
+    <div class="step">(a) Displacement = 6 + (−4) = +2 m — it ends 2 m ahead.</div>
+    <div class="step">(b) Total distance = 6 + 4 = 10 m — every meter counts.</div>
+    <div class="ans">(a) +2 meters &nbsp; (b) 10 meters</div></div>
+</div>
+
+<div class="q"><span class="qnum">12.</span><span class="qtag">triangle graph</span>
+  <div class="qtext">A sprinter's velocity graph is a straight line climbing from v = 0 at t = 0 up to v = 6 m/s at t = 4 s. Using the triangle area formula, how far does the sprinter run in those 4 seconds?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> displacement is the area under the velocity graph, and this graph makes a triangle (base along the time axis, sloped top). Triangle area = ½ × base × height. Units check: seconds × (meters/second) = meters ✓.</div>
+    <div class="step">Base = 4 s, height = 6 m/s.</div>
+    <div class="step">Area = ½ × 4 × 6 = 12.</div>
+    <div class="step">(Calculus double-check: the line is v = 1.5t, and <span class="fml">∫<sub>0</sub><sup>4</sup> 1.5t dt = 0.75t<sup>2</sup> |<sub>0</sub><sup>4</sup> = 12</span> ✓.)</div>
+    <div class="ans">12 meters</div></div>
+</div>
+
+<div class="q"><span class="qnum">13.</span><span class="qtag">checkpoints</span>
+  <div class="qtext">A scooter starts at position s = 5 m with velocity <span class="fml">v(t) = 2t</span> m/s. Find its position at t = 1, t = 3, and t = 5 seconds.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> rather than three separate integrals, build the position formula once — s(t) = start + ∫₀ᵗ v — then plug in each checkpoint time. This is how GPS units think: one running total, sampled whenever you ask.</div>
+    <div class="step">s(t) = 5 + <span class="fml">∫<sub>0</sub><sup>t</sup> 2u du</span> = 5 + t². (Check: derivative is 2t ✓, s(0) = 5 ✓.)</div>
+    <div class="step">t = 1: s = 5 + 1 = 6. &nbsp; t = 3: s = 5 + 9 = 14. &nbsp; t = 5: s = 5 + 25 = 30.</div>
+    <div class="ans">s(1) = 6 m, s(3) = 14 m, s(5) = 30 m</div></div>
+</div>
+
+<div class="q"><span class="qnum">14.</span><span class="qtag">round trip</span>
+  <div class="qtext">An object moves with <span class="fml">v(t) = 3 − t</span> m/s from t = 0 to t = 6. Show that it ends up exactly where it started, and find the total distance it traveled anyway.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a displacement of ZERO doesn't mean nothing happened — it means the forward trip and the backward trip cancelled exactly, like walking to a friend's house and back. Net = 0, but the odometer (total distance) records both legs. Split at v = 0 to see the two legs.</div>
+    <div class="step">v = 0 at t = 3. Antiderivative: <span class="fml">3t − t<sup>2</sup>/2</span>. (Check: derivative is 3 − t ✓.)</div>
+    <div class="step">Forward leg: <span class="fml">∫<sub>0</sub><sup>3</sup> (3 − t) dt</span> = (9 − 9/2) − 0 = +9/2.</div>
+    <div class="step">Backward leg: <span class="fml">∫<sub>3</sub><sup>6</sup> (3 − t) dt</span> = (18 − 18) − (9 − 9/2) = 0 − 9/2 = −9/2.</div>
+    <div class="step">Net = 9/2 − 9/2 = 0 — back at the start ✓. Total distance = 9/2 + 9/2 = 9.</div>
+    <div class="ans">Displacement 0; total distance 9 meters</div></div>
+</div>
+
+<div class="q"><span class="qnum">15.</span><span class="qtag">starts backward</span>
+  <div class="qtext">An object has velocity <span class="fml">v(t) = t<sup>2</sup> − 4</span> m/s on [0, 3]. (a) When does it turn around? (b) Find its displacement and its total distance traveled.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> this one starts out BACKWARD: at t = 0, v = −4 (negative!). It slows its retreat, turns around when v = 0, then comes forward. Same recipe: find the sign change, integrate each piece, keep signs for net, strip signs for total. Antiderivative of t² − 4 is t³/3 − 4t (derivative check: t² − 4 ✓).</div>
+    <div class="step">(a) v = 0: t² = 4 → t = 2 (only the positive root matters on [0, 3]).</div>
+    <div class="step">Backward piece: <span class="fml">∫<sub>0</sub><sup>2</sup> (t<sup>2</sup> − 4) dt = (t<sup>3</sup>/3 − 4t) |<sub>0</sub><sup>2</sup></span> = (8/3 − 8) − 0 = −16/3.</div>
+    <div class="step">Forward piece: <span class="fml">∫<sub>2</sub><sup>3</sup> (t<sup>2</sup> − 4) dt</span> = (27/3 − 12) − (8/3 − 8) = (9 − 12) − (−16/3) = −3 + 16/3 = 7/3.</div>
+    <div class="step">(b) Displacement = −16/3 + 7/3 = −9/3 = −3 m (net: 3 m BEHIND its start). Quick check integrating straight across: (27/3 − 12) − 0 = −3 ✓.</div>
+    <div class="step">Total distance = 16/3 + 7/3 = 23/3 m.</div>
+    <div class="ans">(a) t = 2 s &nbsp; (b) displacement −3 m; total distance 23/3 m (≈ 7.67)</div></div>
+</div>
+
+<div class="q"><span class="qnum">16.</span><span class="qtag">speeding up then slowing</span>
+  <div class="qtext">A go-kart starts at position s = 10 m with velocity <span class="fml">v(t) = 6t − t<sup>2</sup></span> m/s. (a) Check that it never moves backward between t = 0 and t = 6. (b) Where is it at t = 6?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> before splitting an integral, it's worth checking whether v ever actually goes negative. Factor it: 6t − t² = t(6 − t), and a product is ≥ 0 when both factors are — here for all t between 0 and 6. No sign change means displacement = total distance, one integral, no splitting.</div>
+    <div class="step">(a) v = t(6 − t): on [0, 6], t ≥ 0 and 6 − t ≥ 0, so v ≥ 0. It only pauses at t = 0 and t = 6.</div>
+    <div class="step">(b) Displacement = <span class="fml">∫<sub>0</sub><sup>6</sup> (6t − t<sup>2</sup>) dt = (3t<sup>2</sup> − t<sup>3</sup>/3) |<sub>0</sub><sup>6</sup></span> = (108 − 72) − 0 = 36 m. (Check: derivative of 3t² − t³/3 is 6t − t² ✓.)</div>
+    <div class="step">Position = 10 + 36 = 46 m.</div>
+    <div class="ans">(a) v = t(6 − t) ≥ 0 on [0, 6] &nbsp; (b) s = 46 meters</div></div>
+</div>
+
+<div class="q"><span class="qnum">17.</span><span class="qtag">out and back with a start</span>
+  <div class="qtext">A cat walks along a fence starting at position s = 2 m, with velocity <span class="fml">v(t) = 6 − 3t</span> m/s. (a) Build the position formula s(t). (b) What is the farthest position it reaches? (c) When is it back at s = 2?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the full toolkit in one problem. Position formula = start + antiderivative of v (choose the version worth 0 at t = 0). Farthest point happens at the turnaround (v = 0). "Back where it started" means s(t) equals the STARTING VALUE 2, not zero.</div>
+    <div class="step">(a) s(t) = 2 + <span class="fml">∫<sub>0</sub><sup>t</sup> (6 − 3u) du</span> = 2 + 6t − 3t²/2. (Check: derivative is 6 − 3t ✓, s(0) = 2 ✓.)</div>
+    <div class="step">(b) Turnaround: v = 0 → 6 = 3t → t = 2. Then s(2) = 2 + 12 − 6 = 8 m.</div>
+    <div class="step">(c) s(t) = 2 → 6t − 3t²/2 = 0 → factor out 3t/2: (3t/2)(4 − t) = 0 → t = 4 s (t = 0 is the departure). Check: s(4) = 2 + 24 − 24 = 2 ✓.</div>
+    <div class="ans">(a) s(t) = 2 + 6t − 3t²/2 &nbsp; (b) farthest s = 8 m at t = 2 &nbsp; (c) back at t = 4 s</div></div>
+</div>
+
+<div class="q"><span class="qnum">18.</span><span class="qtag">graph story · challenge</span>
+  <div class="qtext">A velocity graph, described in words: v = 8 m/s (flat) for the first 5 seconds; then a straight line dropping from 8 down to 0 over the next 4 seconds; then v = −2 m/s (flat) for the final 3 seconds. Using only rectangles and triangles, find (a) the displacement and (b) the total distance for the whole 12 seconds.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a piecewise velocity graph splits the trip into chapters — read each chapter's area from geometry, keeping the sign: above the axis +, below −. Rectangle = height × width; triangle = ½ × base × height. Then net keeps the signs and total drops them.</div>
+    <div class="step">Chapter 1 (rectangle): 8 × 5 = +40 m.</div>
+    <div class="step">Chapter 2 (triangle above axis): ½ × 4 × 8 = +16 m.</div>
+    <div class="step">Chapter 3 (rectangle below axis): (−2) × 3 = −6 m.</div>
+    <div class="step">(a) Displacement = 40 + 16 − 6 = 50 m. (b) Total distance = 40 + 16 + 6 = 62 m.</div>
+    <div class="ans">(a) +50 meters &nbsp; (b) 62 meters</div></div>
+</div>
+
+<div class="q"><span class="qnum">19.</span><span class="qtag">two-stage trip · challenge</span>
+  <div class="qtext">A rover starts at position s = 1 m. For the first 3 seconds its velocity is <span class="fml">v(t) = 2t</span> m/s; after t = 3 it locks in a constant 6 m/s. Where is the rover at t = 7 seconds?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> when the velocity rule CHANGES mid-trip, integrate each stage with its own rule and chain the positions: the end of stage 1 becomes the start of stage 2. (Notice v is smooth here: 2t reaches 6 exactly at t = 3, then stays there.)</div>
+    <div class="step">Stage 1: displacement = <span class="fml">∫<sub>0</sub><sup>3</sup> 2t dt = t<sup>2</sup> |<sub>0</sub><sup>3</sup> = 9</span> m → position at t = 3 is 1 + 9 = 10 m.</div>
+    <div class="step">Stage 2: displacement = <span class="fml">∫<sub>3</sub><sup>7</sup> 6 dt = 6 × 4 = 24</span> m (constant rate × 4 seconds).</div>
+    <div class="step">Position at t = 7: 10 + 24 = 34 m.</div>
+    <div class="ans">s = 34 meters</div></div>
+</div>
+
+<div class="q"><span class="qnum">20.</span><span class="qtag">grand challenge</span>
+  <div class="qtext">An object moves with velocity <span class="fml">v(t) = t<sup>2</sup> − 4t + 3</span> m/s on [0, 4]. Find every time it turns around, then compute its net displacement and its total distance traveled.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a velocity that changes sign TWICE: forward, backward, forward again — like pacing in a hallway. Factor to find the turnarounds: t² − 4t + 3 = (t − 1)(t − 3), zero at t = 1 and t = 3. Integrate each of the three pieces with the antiderivative F(t) = t³/3 − 2t² + 3t (derivative check: t² − 4t + 3 ✓), then: net keeps the signs, total adds absolute values.</div>
+    <div class="step">Sign check: at t = 0, v = 3 (+); at t = 2, v = 4 − 8 + 3 = −1 (−); at t = 4, v = 16 − 16 + 3 = 3 (+). Turnarounds at t = 1 and t = 3.</div>
+    <div class="step">F values: F(0) = 0; F(1) = 1/3 − 2 + 3 = 4/3; F(3) = 9 − 18 + 9 = 0; F(4) = 64/3 − 32 + 12 = 64/3 − 20 = 4/3.</div>
+    <div class="step">Piece [0, 1]: F(1) − F(0) = +4/3. Piece [1, 3]: F(3) − F(1) = 0 − 4/3 = −4/3. Piece [3, 4]: F(4) − F(3) = 4/3 − 0 = +4/3.</div>
+    <div class="step">Net displacement = 4/3 − 4/3 + 4/3 = 4/3 m. (Shortcut check: F(4) − F(0) = 4/3 ✓.)</div>
+    <div class="step">Total distance = 4/3 + 4/3 + 4/3 = 12/3 = 4 m. Three equal legs — a tidy coincidence!</div>
+    <div class="ans">Turnarounds at t = 1 s and t = 3 s; net = 4/3 m; total = 4 m</div></div>
+</div>
+
+<footer>Lesson 11 of 20 · Intuitive Integration · next: <a href="Lesson12.html">Lesson 12 — Motion II: Acceleration &amp; Gravity</a></footer>
+
+</div>
+<script>
+document.querySelectorAll('.q').forEach(q=>{
+  const btn=q.querySelector('.revealbtn'), sol=q.querySelector('.sol');
+  btn.addEventListener('click',()=>{ sol.classList.add('show'); btn.textContent='Solution shown'; btn.disabled=true; btn.style.opacity=.6; });
+});
+</script>
+</body>
+</html>

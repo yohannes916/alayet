@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 8 — FTC Practice: Polynomial Fluency</title>
+<style>
+  :root{--accent:#186a3b;--accent2:#239b56;--bg:#f2f7f4;--card:#fff;--ok:#1e8449;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:#1c2833;background:var(--bg);margin:0;padding:0 16px 80px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -16px 20px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  nav{display:flex;gap:10px;margin-bottom:18px;font-size:.9rem;flex-wrap:wrap;}
+  nav a{color:var(--accent);text-decoration:none;font-weight:600;background:#fff;border:1px solid #d5e8dc;border-radius:8px;padding:6px 14px;}
+  nav a:hover{background:#eafaf1;}
+  .goal{background:#fef9e7;border-left:5px solid var(--star);padding:12px 18px;border-radius:8px;margin-bottom:18px;font-size:.95rem;}
+  .goal strong{color:#7d6608;}
+  section{background:var(--card);border-radius:10px;padding:18px 22px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  h2{color:var(--accent);font-size:1.15rem;margin:0 0 10px;}
+  h2 .num{background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;border-radius:6px;padding:2px 9px;margin-right:8px;}
+  ul{margin:8px 0;padding-left:24px;}
+  li{margin-bottom:8px;}
+  strong{color:#145a32;}
+  em.hi{font-style:normal;background:#fef9e7;padding:0 4px;border-radius:3px;}
+  .fml{background:#e9f7ef;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.9em;color:#186a3b;white-space:nowrap;}
+  .ex{background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:.95rem;}
+  .ex b{color:#145a32;}
+  .graph{background:#1b2631;color:#eaeded;border-radius:8px;padding:14px 18px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.82rem;line-height:1.45;overflow-x:auto;margin:10px 0;white-space:pre;}
+  .graph .g{color:#82e0aa;} .graph .y{color:#f7dc6f;} .graph .b{color:#85c1e9;}
+  table.t{border-collapse:collapse;margin:10px 0;font-size:.92rem;}
+  table.t th,table.t td{border:1px solid #cfd8cf;padding:6px 12px;text-align:center;}
+  table.t th{background:var(--accent);color:#fff;font-weight:600;}
+  .qhead{margin:26px 0 8px;color:var(--accent);font-size:1.2rem;border-bottom:2px solid #d4efdf;padding-bottom:6px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid var(--accent2);}
+  .qnum{font-weight:800;color:var(--accent);margin-right:6px;}
+  .qtag{float:right;background:#e9f7ef;color:var(--accent);border-radius:8px;padding:1px 9px;font-size:.68rem;font-weight:700;letter-spacing:.3px;margin-left:8px;}
+  .qtext{font-size:.98rem;margin:4px 0 10px;}
+  .revealbtn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .revealbtn:hover{background:#0e4429;}
+  .sol{display:none;margin-top:12px;background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px;font-size:.93rem;}
+  .sol.show{display:block;}
+  .sol h4{margin:0 0 8px;color:var(--ok);font-size:.9rem;}
+  .sol .ctx{background:#eaf2f8;border-left:4px solid #2e86c1;border-radius:6px;padding:8px 12px;margin:0 0 10px;font-size:.88rem;}
+  .sol .ctx b{color:#1a5276;}
+  .sol .step{margin:6px 0;}
+  .sol .ans{background:#eafaf1;border-radius:6px;padding:6px 12px;margin-top:8px;font-weight:700;color:#145a32;display:inline-block;}
+  footer{text-align:center;color:#85929e;font-size:.85rem;margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Lesson 8 — FTC Practice: Polynomial Fluency</h1>
+  <p>Getting Fast and Sure with the Fundamental Theorem · Intuitive Calculus for a Curious Student · Lesson 8 of 20</p>
+</header>
+
+<nav><a href="index.html">📚 All lessons</a><a href="Lesson07.html">← Prev: Lesson 7</a><a href="Lesson09.html">Next: Lesson 9 →</a></nav>
+
+<div class="goal"><strong>🎯 Goal of this lesson:</strong> almost no new theory today — this is a <em>practice</em> lesson. You already know the Fundamental Theorem: <span class="fml">∫<sub>a</sub><sup>b</sup> f(x) dx = F(b) − F(a)</span>. Today you drill it until evaluating a polynomial integral feels as automatic as long division: smooth, quick, and hard to mess up.</div>
+
+<section>
+  <h2><span class="num">1</span> The three-step routine (memorize this box)</h2>
+  <ul>
+    <li>Every single problem in this lesson is solved with the exact same routine. Here it is:</li>
+  </ul>
+  <div class="ex"><b>THE ROUTINE — three steps, every time:</b><br>
+    <b>Step 1.</b> Find the antiderivative <span class="fml">F(x)</span>, term by term, with the power rule: <span class="fml">x<sup>n</sup> → x<sup>n+1</sup>/(n+1)</span>. (A constant <span class="fml">c</span> becomes <span class="fml">cx</span>.)<br>
+    <b>Step 2.</b> Plug the TOP limit into <span class="fml">F</span>: compute <span class="fml">F(b)</span>.<br>
+    <b>Step 3.</b> Plug the BOTTOM limit into <span class="fml">F</span>: compute <span class="fml">F(a)</span> — and <b>SUBTRACT</b>: answer = <span class="fml">F(b) − F(a)</span>.
+  </div>
+  <ul>
+    <li>Why "term by term"? Because integration, like differentiation, treats each added term separately. <span class="fml">∫ (x<sup>2</sup> + 2x) dx</span> is just <span class="fml">∫ x<sup>2</sup> dx</span> plus <span class="fml">∫ 2x dx</span>.</li>
+    <li>A coefficient rides along for free: the antiderivative of <span class="fml">6x<sup>2</sup></span> is <span class="fml">6 · x<sup>3</sup>/3 = 2x<sup>3</sup></span>.</li>
+    <li>Handy shorthand: we write <span class="fml">[F(x)]<sub>a</sub><sup>b</sup></span> to mean "evaluate <span class="fml">F</span> at <span class="fml">b</span>, evaluate at <span class="fml">a</span>, subtract." The square brackets are a little to-do list.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">2</span> The four classic mistakes (know your enemy)</h2>
+  <ul>
+    <li>Almost every wrong answer on FTC problems comes from one of these four slips. Look at each wrong-vs-right pair carefully — spotting them in advance is the cheapest way to get faster.</li>
+  </ul>
+  <div class="ex"><b>Mistake ① — forgetting to subtract F(a).</b><br>
+    Problem: <span class="fml">∫<sub>1</sub><sup>3</sup> 2x dx</span>. Antiderivative: <span class="fml">F(x) = x<sup>2</sup></span>.<br>
+    ❌ Wrong: "F(3) = 9, done. Answer 9."<br>
+    ✅ Right: <span class="fml">F(3) − F(1) = 9 − 1 = 8</span>. The integral measures accumulation <em>between</em> the two limits, so the bottom value must always be subtracted — even when it feels small.</div>
+  <div class="ex"><b>Mistake ② — dividing by the OLD power instead of the new one.</b><br>
+    Problem: antiderivative of <span class="fml">x<sup>3</sup></span>.<br>
+    ❌ Wrong: <span class="fml">x<sup>4</sup>/3</span> (divided by the old power, 3).<br>
+    ✅ Right: <span class="fml">x<sup>4</sup>/4</span> — raise the power to 4, then divide by that NEW power, 4. Check it: the derivative of <span class="fml">x<sup>4</sup>/4</span> is <span class="fml">4x<sup>3</sup>/4 = x<sup>3</sup></span> ✓. The derivative of the wrong version is <span class="fml">4x<sup>3</sup>/3</span> ✗.</div>
+  <div class="ex"><b>Mistake ③ — sign errors when F(a) is negative: minus a negative is PLUS.</b><br>
+    Problem: <span class="fml">∫<sub>1</sub><sup>3</sup> (2x − 3) dx</span>. Antiderivative: <span class="fml">F(x) = x<sup>2</sup> − 3x</span>. So <span class="fml">F(3) = 9 − 9 = 0</span> and <span class="fml">F(1) = 1 − 3 = −2</span>.<br>
+    ❌ Wrong: <span class="fml">0 − 2 = −2</span> (dropped the parentheses around the negative value).<br>
+    ✅ Right: <span class="fml">F(3) − F(1) = 0 − (−2) = +2</span>. Safety habit: always write <span class="fml">F(a)</span> inside parentheses before subtracting.</div>
+  <div class="ex"><b>Mistake ④ — forgetting a term.</b><br>
+    Problem: <span class="fml">∫<sub>0</sub><sup>2</sup> (x<sup>2</sup> + 3) dx</span>.<br>
+    ❌ Wrong: antiderivative "<span class="fml">x<sup>3</sup>/3</span>" — the lonely <span class="fml">+3</span> got left behind. That gives 8/3.<br>
+    ✅ Right: <span class="fml">F(x) = x<sup>3</sup>/3 + 3x</span>, so <span class="fml">F(2) − F(0) = (8/3 + 6) − 0 = 26/3</span>. Constants integrate too: 3 becomes 3x. Count your terms before and after — same number!</div>
+</section>
+
+<section>
+  <h2><span class="num">3</span> Fractions without fear</h2>
+  <ul>
+    <li>The power rule loves to hand you fractions: the antiderivative of <span class="fml">x<sup>2</sup></span> is <span class="fml">x<sup>3</sup>/3</span>, and plugging in <span class="fml">x = 2</span> gives <span class="fml">2<sup>3</sup>/3 = 8/3</span>. Nothing scary happened — cube the number first, THEN divide by 3. Leave it as <span class="fml">8/3</span>; a fraction is an exact, finished answer (a decimal like 2.6667 is not).</li>
+    <li><strong>Adding a whole number to a fraction:</strong> rewrite the whole number over the same denominator. <span class="fml">8/3 + 2 = 8/3 + 6/3 = 14/3</span>, because <span class="fml">2 = 6/3</span>.</li>
+    <li><strong>Adding fractions with different denominators:</strong> convert both to a common denominator first. Example: <span class="fml">1/4 + 1/2</span>. The denominators 4 and 2 both fit into 4, so <span class="fml">1/2 = 2/4</span>, and <span class="fml">1/4 + 2/4 = 3/4</span>.</li>
+    <li><strong>Subtracting works the same way:</strong> <span class="fml">6 − 2/3 = 18/3 − 2/3 = 16/3</span>.</li>
+    <li>Tidy-up tip: if the top and bottom share a factor, simplify (<span class="fml">27/3 = 9</span>, <span class="fml">16/4 = 4</span>) — but a fraction like <span class="fml">50/3</span> that won't simplify is a perfectly good final answer.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">4</span> Two fully worked examples — every move shown</h2>
+  <div class="ex"><b>Example A:</b> <span class="fml">∫<sub>1</sub><sup>3</sup> (x<sup>2</sup> + 2x) dx</span><br><br>
+    <b>Step 1 (antiderivative, term by term):</b> <span class="fml">x<sup>2</sup> → x<sup>3</sup>/3</span> and <span class="fml">2x → x<sup>2</sup></span> (because <span class="fml">2 · x<sup>2</sup>/2 = x<sup>2</sup></span>). So <span class="fml">F(x) = x<sup>3</sup>/3 + x<sup>2</sup></span>.<br>
+    <b>Check by differentiating:</b> derivative of <span class="fml">x<sup>3</sup>/3</span> is <span class="fml">x<sup>2</sup></span> ✓, derivative of <span class="fml">x<sup>2</sup></span> is <span class="fml">2x</span> ✓. We got back <span class="fml">x<sup>2</sup> + 2x</span> — safe to continue.<br>
+    <b>Step 2 (top limit):</b> <span class="fml">F(3) = 27/3 + 9 = 9 + 9 = 18</span>.<br>
+    <b>Step 3 (bottom limit, subtract):</b> <span class="fml">F(1) = 1/3 + 1 = 1/3 + 3/3 = 4/3</span>.<br>
+    Answer: <span class="fml">18 − 4/3 = 54/3 − 4/3 = 50/3</span>. Done — and <span class="fml">50/3</span> stays as a fraction.</div>
+  <div class="ex"><b>Example B:</b> <span class="fml">∫<sub>0</sub><sup>2</sup> (3x<sup>2</sup> − 2x + 1) dx</span><br><br>
+    <b>Step 1:</b> <span class="fml">3x<sup>2</sup> → x<sup>3</sup></span>, <span class="fml">−2x → −x<sup>2</sup></span>, <span class="fml">1 → x</span>. So <span class="fml">F(x) = x<sup>3</sup> − x<sup>2</sup> + x</span>. Three terms in, three terms out ✓.<br>
+    <b>Check:</b> derivative of <span class="fml">x<sup>3</sup> − x<sup>2</sup> + x</span> is <span class="fml">3x<sup>2</sup> − 2x + 1</span> ✓.<br>
+    <b>Step 2:</b> <span class="fml">F(2) = 8 − 4 + 2 = 6</span>.<br>
+    <b>Step 3:</b> <span class="fml">F(0) = 0 − 0 + 0 = 0</span>.<br>
+    Answer: <span class="fml">6 − 0 = 6</span>. (When the bottom limit is 0 and there's no constant term weirdness, <span class="fml">F(0)</span> is usually 0 — but WRITE it anyway. The habit protects you when the bottom limit isn't 0.)</div>
+</section>
+
+<section>
+  <h2><span class="num">5</span> Pep talk: real speed comes from the CHECK habit</h2>
+  <ul>
+    <li>It feels slower to <em class="hi">differentiate your F before plugging in numbers</em> — but it's actually the fastest way to work. Here's why: a wrong antiderivative poisons everything after it, and you end up redoing the whole problem. The 5-second derivative check catches the error at the cheapest possible moment.</li>
+    <li>The check is easy because differentiating is easier than integrating — you already know the power rule for derivatives cold. Take your <span class="fml">F(x)</span>, differentiate it in your head, and ask: <em>did I get back exactly what's inside the integral?</em> If yes, plug in with total confidence. If no, fix it now.</li>
+    <li>Fast musicians practice slowly. Do these 20 problems with the full routine — all three steps, plus the check — written out. By problem 15 the routine will start running itself, and THAT is what fluency feels like.</li>
+  </ul>
+</section>
+
+<div class="qhead">✏️ Exercises — 20 problems (write your answer on paper, then reveal)</div>
+
+<div class="q"><span class="qnum">1.</span><span class="qtag">single term</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>0</sub><sup>2</sup> x dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the Fundamental Theorem says: find an antiderivative F (a function whose derivative is the thing inside), then compute F(top) − F(bottom). For <b>x</b> (which is x<sup>1</sup>), the power rule raises the power to 2 and divides by 2.</div>
+    <div class="step"><b>Step 1:</b> F(x) = x<sup>2</sup>/2. Check: derivative of x<sup>2</sup>/2 is 2x/2 = x ✓.</div>
+    <div class="step"><b>Step 2:</b> F(2) = 4/2 = 2.</div>
+    <div class="step"><b>Step 3:</b> F(0) = 0. Subtract: 2 − 0 = 2.</div>
+    <div class="ans">2</div></div>
+</div>
+
+<div class="q"><span class="qnum">2.</span><span class="qtag">single term</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>0</sub><sup>3</sup> x<sup>2</sup> dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> power rule for antiderivatives: x<sup>n</sup> becomes x<sup>n+1</sup>/(n+1) — raise the power by one, divide by the NEW power. For x<sup>2</sup> that's x<sup>3</sup>/3 (divide by 3, not by 2!).</div>
+    <div class="step"><b>Step 1:</b> F(x) = x<sup>3</sup>/3. Check: derivative is 3x<sup>2</sup>/3 = x<sup>2</sup> ✓.</div>
+    <div class="step"><b>Step 2:</b> F(3) = 27/3 = 9.</div>
+    <div class="step"><b>Step 3:</b> F(0) = 0. Subtract: 9 − 0 = 9.</div>
+    <div class="ans">9</div></div>
+</div>
+
+<div class="q"><span class="qnum">3.</span><span class="qtag">constant</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>0</sub><sup>4</sup> 5 dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a constant rate accumulates steadily, so the antiderivative of a constant c is cx. (Picture check: the region under the flat line y = 5 from 0 to 4 is a rectangle, 4 wide and 5 tall.)</div>
+    <div class="step"><b>Step 1:</b> F(x) = 5x. Check: derivative of 5x is 5 ✓.</div>
+    <div class="step"><b>Step 2:</b> F(4) = 20.</div>
+    <div class="step"><b>Step 3:</b> F(0) = 0. Subtract: 20 − 0 = 20.</div>
+    <div class="step">Rectangle check: width 4 × height 5 = 20 ✓ — the FTC agrees with plain geometry.</div>
+    <div class="ans">20</div></div>
+</div>
+
+<div class="q"><span class="qnum">4.</span><span class="qtag">single term</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>0</sub><sup>2</sup> x<sup>3</sup> dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> same power rule, one power higher: x<sup>3</sup> becomes x<sup>4</sup>/4. This is exactly where Mistake ② strikes — dividing by the old power 3 instead of the new power 4. The derivative check exposes it instantly.</div>
+    <div class="step"><b>Step 1:</b> F(x) = x<sup>4</sup>/4. Check: derivative is 4x<sup>3</sup>/4 = x<sup>3</sup> ✓.</div>
+    <div class="step"><b>Step 2:</b> F(2) = 2<sup>4</sup>/4 = 16/4 = 4.</div>
+    <div class="step"><b>Step 3:</b> F(0) = 0. Subtract: 4 − 0 = 4.</div>
+    <div class="ans">4</div></div>
+</div>
+
+<div class="q"><span class="qnum">5.</span><span class="qtag">fraction answer</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>0</sub><sup>1</sup> x<sup>2</sup> dx</span>. Leave your answer as a fraction.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> not every area is a whole number! The region under the curve y = x<sup>2</sup> from 0 to 1 is a curvy shape, and its exact area happens to be a simple fraction. A fraction is a complete, exact answer — better than any rounded decimal.</div>
+    <div class="step"><b>Step 1:</b> F(x) = x<sup>3</sup>/3. Check: derivative is x<sup>2</sup> ✓.</div>
+    <div class="step"><b>Step 2:</b> F(1) = 1<sup>3</sup>/3 = 1/3.</div>
+    <div class="step"><b>Step 3:</b> F(0) = 0. Subtract: 1/3 − 0 = 1/3.</div>
+    <div class="ans">1/3</div></div>
+</div>
+
+<div class="q"><span class="qnum">6.</span><span class="qtag">two terms</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>0</sub><sup>3</sup> (2x + 1) dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> integrate term by term. The coefficient 2 rides along: 2x becomes 2 · x<sup>2</sup>/2 = x<sup>2</sup>. The constant 1 becomes x. Count terms: two in, two out.</div>
+    <div class="step"><b>Step 1:</b> F(x) = x<sup>2</sup> + x. Check: derivative is 2x + 1 ✓.</div>
+    <div class="step"><b>Step 2:</b> F(3) = 9 + 3 = 12.</div>
+    <div class="step"><b>Step 3:</b> F(0) = 0 + 0 = 0. Subtract: 12 − 0 = 12.</div>
+    <div class="ans">12</div></div>
+</div>
+
+<div class="q"><span class="qnum">7.</span><span class="qtag">fraction adding</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>0</sub><sup>2</sup> (x<sup>2</sup> + x) dx</span>. Leave your answer as a fraction.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> when the two terms produce different denominators (here thirds and a whole number), rewrite everything over one common denominator before adding. Remember: a whole number n equals 3n/3.</div>
+    <div class="step"><b>Step 1:</b> F(x) = x<sup>3</sup>/3 + x<sup>2</sup>/2. Check: derivative is x<sup>2</sup> + x ✓.</div>
+    <div class="step"><b>Step 2:</b> F(2) = 8/3 + 4/2 = 8/3 + 2 = 8/3 + 6/3 = 14/3.</div>
+    <div class="step"><b>Step 3:</b> F(0) = 0. Subtract: 14/3 − 0 = 14/3.</div>
+    <div class="ans">14/3</div></div>
+</div>
+
+<div class="q"><span class="qnum">8.</span><span class="qtag">nonzero bottom limit</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>1</sub><sup>3</sup> x<sup>2</sup> dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> now the bottom limit is 1, not 0 — so F(bottom) is NOT zero and the subtraction really matters. This is where Mistake ① (forgetting to subtract F(a)) costs points.</div>
+    <div class="step"><b>Step 1:</b> F(x) = x<sup>3</sup>/3. Check: derivative is x<sup>2</sup> ✓.</div>
+    <div class="step"><b>Step 2:</b> F(3) = 27/3 = 9.</div>
+    <div class="step"><b>Step 3:</b> F(1) = 1/3. Subtract: 9 − 1/3 = 27/3 − 1/3 = 26/3.</div>
+    <div class="ans">26/3</div></div>
+</div>
+
+<div class="q"><span class="qnum">9.</span><span class="qtag">both limits nonzero</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>1</sub><sup>2</sup> (2x + 3) dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the full routine with nothing free: two terms to antidifferentiate AND a nonzero bottom limit. Write F(a) in parentheses before subtracting — that habit prevents sign slips later.</div>
+    <div class="step"><b>Step 1:</b> F(x) = x<sup>2</sup> + 3x. Check: derivative is 2x + 3 ✓.</div>
+    <div class="step"><b>Step 2:</b> F(2) = 4 + 6 = 10.</div>
+    <div class="step"><b>Step 3:</b> F(1) = 1 + 3 = 4. Subtract: 10 − (4) = 6.</div>
+    <div class="ans">6</div></div>
+</div>
+
+<div class="q"><span class="qnum">10.</span><span class="qtag">coefficients do the canceling</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>0</sub><sup>1</sup> (4x<sup>3</sup> + 3x<sup>2</sup>) dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> sometimes the coefficients are chosen so the division cancels perfectly: 4x<sup>3</sup> becomes 4 · x<sup>4</sup>/4 = x<sup>4</sup>, and 3x<sup>2</sup> becomes 3 · x<sup>3</sup>/3 = x<sup>3</sup>. Clean antiderivatives like this are common on tests — enjoy them.</div>
+    <div class="step"><b>Step 1:</b> F(x) = x<sup>4</sup> + x<sup>3</sup>. Check: derivative is 4x<sup>3</sup> + 3x<sup>2</sup> ✓.</div>
+    <div class="step"><b>Step 2:</b> F(1) = 1 + 1 = 2.</div>
+    <div class="step"><b>Step 3:</b> F(0) = 0. Subtract: 2 − 0 = 2.</div>
+    <div class="ans">2</div></div>
+</div>
+
+<div class="q"><span class="qnum">11.</span><span class="qtag">fraction subtraction</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>1</sub><sup>4</sup> (x + 2) dx</span>. Leave your answer as a fraction.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> here F(a) itself is a mixed pile: 1/2 + 2. Combine it into a single fraction FIRST (1/2 + 2 = 1/2 + 4/2 = 5/2), then do one clean subtraction. Doing arithmetic in tidy stages beats juggling everything at once.</div>
+    <div class="step"><b>Step 1:</b> F(x) = x<sup>2</sup>/2 + 2x. Check: derivative is x + 2 ✓.</div>
+    <div class="step"><b>Step 2:</b> F(4) = 16/2 + 8 = 8 + 8 = 16.</div>
+    <div class="step"><b>Step 3:</b> F(1) = 1/2 + 2 = 5/2. Subtract: 16 − 5/2 = 32/2 − 5/2 = 27/2.</div>
+    <div class="ans">27/2</div></div>
+</div>
+
+<div class="q"><span class="qnum">12.</span><span class="qtag">spot the error</span>
+  <div class="qtext">A student wrote this solution: "<span class="fml">∫<sub>0</sub><sup>3</sup> x<sup>2</sup> dx = [x<sup>3</sup>/2]<sub>0</sub><sup>3</sup> = 27/2 − 0 = 27/2</span>." Find the mistake, name it, and fix the answer.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> error-spotting builds fluency faster than plain practice, because you have to actively CHECK someone's antiderivative instead of trusting it. Tool: differentiate their F and see if you get the integrand back.</div>
+    <div class="step">Check their F: the derivative of x<sup>3</sup>/2 is 3x<sup>2</sup>/2 — NOT x<sup>2</sup>. Busted.</div>
+    <div class="step">This is <b>Mistake ②</b>: they divided by the OLD power (2) instead of the NEW power (3). Correct antiderivative: x<sup>3</sup>/3.</div>
+    <div class="step">Fix: F(3) − F(0) = 27/3 − 0 = 9.</div>
+    <div class="ans">Mistake ②, dividing by the old power; correct answer: 9</div></div>
+</div>
+
+<div class="q"><span class="qnum">13.</span><span class="qtag">negative coefficient</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>0</sub><sup>2</sup> (3x<sup>2</sup> − 4x) dx</span>. (The answer may surprise you — say one sentence about what it might mean.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a minus sign in the integrand just rides along through the routine: −4x has antiderivative −4 · x<sup>2</sup>/2 = −2x<sup>2</sup>. Handle the sign like a coefficient and nothing changes.</div>
+    <div class="step"><b>Step 1:</b> F(x) = x<sup>3</sup> − 2x<sup>2</sup>. Check: derivative is 3x<sup>2</sup> − 4x ✓.</div>
+    <div class="step"><b>Step 2:</b> F(2) = 8 − 8 = 0.</div>
+    <div class="step"><b>Step 3:</b> F(0) = 0. Subtract: 0 − 0 = 0.</div>
+    <div class="step">Zero! The curve 3x<sup>2</sup> − 4x dips below the x-axis for a while and comes back up, and the two effects exactly cancel. Lesson 9 is entirely about this idea.</div>
+    <div class="ans">0 — the below-axis part exactly cancels the above-axis part (see Lesson 9!)</div></div>
+</div>
+
+<div class="q"><span class="qnum">14.</span><span class="qtag">both limits nonzero · fractions</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>2</sub><sup>3</sup> (x<sup>2</sup> − 1) dx</span>. Leave your answer as a fraction.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> everything at once — two terms, a negative sign, both limits nonzero, and fraction arithmetic in F(a). Work in stages: fully simplify F(b), fully simplify F(a), then subtract once.</div>
+    <div class="step"><b>Step 1:</b> F(x) = x<sup>3</sup>/3 − x. Check: derivative is x<sup>2</sup> − 1 ✓.</div>
+    <div class="step"><b>Step 2:</b> F(3) = 27/3 − 3 = 9 − 3 = 6.</div>
+    <div class="step"><b>Step 3:</b> F(2) = 8/3 − 2 = 8/3 − 6/3 = 2/3. Subtract: 6 − (2/3) = 18/3 − 2/3 = 16/3.</div>
+    <div class="ans">16/3</div></div>
+</div>
+
+<div class="q"><span class="qnum">15.</span><span class="qtag">three terms</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>1</sub><sup>2</sup> (3x<sup>2</sup> − 2x + 1) dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> three terms means three chances to drop one (Mistake ④). Count them: 3x<sup>2</sup>, −2x, +1 → three terms in, so F must have three terms out.</div>
+    <div class="step"><b>Step 1:</b> F(x) = x<sup>3</sup> − x<sup>2</sup> + x (three terms ✓). Check: derivative is 3x<sup>2</sup> − 2x + 1 ✓.</div>
+    <div class="step"><b>Step 2:</b> F(2) = 8 − 4 + 2 = 6.</div>
+    <div class="step"><b>Step 3:</b> F(1) = 1 − 1 + 1 = 1. Subtract: 6 − (1) = 5.</div>
+    <div class="ans">5</div></div>
+</div>
+
+<div class="q"><span class="qnum">16.</span><span class="qtag">spot the error</span>
+  <div class="qtext">A student wrote: "<span class="fml">∫<sub>1</sub><sup>2</sup> 2x dx = [x<sup>2</sup>]<sub>1</sub><sup>2</sup> = 4</span>." Find the mistake, name it, and fix the answer.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> this student's antiderivative is actually PERFECT — the derivative of x<sup>2</sup> is 2x ✓. So the error must be in the plug-and-subtract stage. The square bracket [F(x)] with two limits is a to-do list with TWO items on it.</div>
+    <div class="step">They computed F(2) = 4 and stopped. That's <b>Mistake ①</b>: forgetting to subtract F(a).</div>
+    <div class="step">Fix: F(2) − F(1) = 4 − 1 = 3.</div>
+    <div class="step">Sanity check with geometry: the region under y = 2x from 1 to 2 is a trapezoid with parallel sides 2 and 4 and width 1 → area = ½(2 + 4)(1) = 3 ✓.</div>
+    <div class="ans">Mistake ①, forgot to subtract F(1); correct answer: 3</div></div>
+</div>
+
+<div class="q"><span class="qnum">17.</span><span class="qtag">spot the error · signs</span>
+  <div class="qtext">A student wrote: "<span class="fml">∫<sub>1</sub><sup>3</sup> (2x − 3) dx</span>: F(x) = x<sup>2</sup> − 3x, so F(3) = 0 and F(1) = −2, and the answer is 0 − 2 = −2." Find the mistake, name it, and fix the answer.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> subtracting a NEGATIVE number is the same as adding: a − (−b) = a + b. The student found F(1) = −2 correctly, but then dropped the parentheses and subtracted 2 instead of subtracting (−2). This is the single most common sign error in all of calculus.</div>
+    <div class="step">The antiderivative is right (derivative of x<sup>2</sup> − 3x is 2x − 3 ✓), and F(3) = 9 − 9 = 0 ✓, F(1) = 1 − 3 = −2 ✓.</div>
+    <div class="step">The last line is <b>Mistake ③</b>: F(3) − F(1) = 0 − (−2) = 0 + 2 = +2, not −2.</div>
+    <div class="ans">Mistake ③, minus a negative is plus; correct answer: 2</div></div>
+</div>
+
+<div class="q"><span class="qnum">18.</span><span class="qtag">fractions · different denominators</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>0</sub><sup>1</sup> (x − x<sup>3</sup>) dx</span>. Leave your answer as a fraction.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> this one lands you with 1/2 − 1/4 — fractions with DIFFERENT denominators. Convert to a common denominator (4 works, since 1/2 = 2/4), then subtract the tops.</div>
+    <div class="step"><b>Step 1:</b> F(x) = x<sup>2</sup>/2 − x<sup>4</sup>/4. Check: derivative is x − x<sup>3</sup> ✓.</div>
+    <div class="step"><b>Step 2:</b> F(1) = 1/2 − 1/4 = 2/4 − 1/4 = 1/4.</div>
+    <div class="step"><b>Step 3:</b> F(0) = 0. Subtract: 1/4 − 0 = 1/4.</div>
+    <div class="ans">1/4</div></div>
+</div>
+
+<div class="q"><span class="qnum">19.</span><span class="qtag">three terms · full routine</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>0</sub><sup>3</sup> (x<sup>2</sup> − 2x + 3) dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a middle term with a negative coefficient, a constant that must not be dropped, and thirds in the arithmetic. Everything from sections 1–3 in one problem. Three terms in → three terms out.</div>
+    <div class="step"><b>Step 1:</b> F(x) = x<sup>3</sup>/3 − x<sup>2</sup> + 3x. Check: derivative is x<sup>2</sup> − 2x + 3 ✓.</div>
+    <div class="step"><b>Step 2:</b> F(3) = 27/3 − 9 + 9 = 9 − 9 + 9 = 9.</div>
+    <div class="step"><b>Step 3:</b> F(0) = 0 − 0 + 0 = 0. Subtract: 9 − 0 = 9.</div>
+    <div class="ans">9</div></div>
+</div>
+
+<div class="q"><span class="qnum">20.</span><span class="qtag">challenge · timed feel</span>
+  <div class="qtext">Speed round! Set a timer for 3 minutes and run the whole routine — antiderivative, derivative check, plug, subtract — on: <span class="fml">∫<sub>0</sub><sup>2</sup> (x<sup>3</sup> − 3x<sup>2</sup> + 4) dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> under time pressure the routine is your safety rail: it removes decisions, so your brain is free to do clean arithmetic. Notice the check step is INCLUDED in the 3 minutes — fast workers check; checking is part of being fast.</div>
+    <div class="step"><b>Step 1:</b> term by term: x<sup>3</sup> → x<sup>4</sup>/4, &nbsp;−3x<sup>2</sup> → −x<sup>3</sup>, &nbsp;4 → 4x. So F(x) = x<sup>4</sup>/4 − x<sup>3</sup> + 4x.</div>
+    <div class="step"><b>Check:</b> derivative of F is 4x<sup>3</sup>/4 − 3x<sup>2</sup> + 4 = x<sup>3</sup> − 3x<sup>2</sup> + 4 ✓.</div>
+    <div class="step"><b>Step 2:</b> F(2) = 16/4 − 8 + 8 = 4 − 8 + 8 = 4.</div>
+    <div class="step"><b>Step 3:</b> F(0) = 0. Subtract: 4 − 0 = 4.</div>
+    <div class="ans">4</div></div>
+</div>
+
+<footer>Lesson 8 of 20 · Intuitive Integration · next: <a href="Lesson09.html">Lesson 9 — Signed Area: Below the Axis</a></footer>
+
+</div>
+<script>
+document.querySelectorAll('.q').forEach(q=>{
+  const btn=q.querySelector('.revealbtn'), sol=q.querySelector('.sol');
+  btn.addEventListener('click',()=>{ sol.classList.add('show'); btn.textContent='Solution shown'; btn.disabled=true; btn.style.opacity=.6; });
+});
+</script>
+</body>
+</html>

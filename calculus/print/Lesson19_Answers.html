@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Lesson 19 Answer Key — Initial Values &amp; Net Change</title>
+<style>
+  @page { size: letter; margin: 0.75in; }
+  *{box-sizing:border-box;}
+  body{font-family:Georgia,"Times New Roman",serif;color:#111;margin:0;font-size:11.5pt;line-height:1.5;}
+  .head{border-bottom:3px solid #b03a2e;padding-bottom:8px;margin-bottom:14px;}
+  .head h1{font-family:Helvetica,Arial,sans-serif;font-size:16pt;margin:0 0 2px;color:#b03a2e;}
+  .head p{margin:0;font-size:10.5pt;color:#333;}
+  .q{margin:0 0 12px;page-break-inside:avoid;}
+  .q .txt{margin-bottom:4px;}
+  .q b.n{color:#b03a2e;font-family:Helvetica,Arial,sans-serif;}
+  .a{background:#f7f7f7;border-left:4px solid #1e8449;border-radius:4px;padding:7px 12px;font-size:11pt;}
+  .a b{color:#145a32;}
+  .ans{color:#145a32;font-weight:bold;}
+</style>
+</head>
+<body>
+
+<div class="head">
+  <h1>ANSWER KEY — Integration Lesson 19 Test: Initial Values &amp; Net Change</h1>
+  <p>For the grader · full working shown · give credit for correct method with small arithmetic slips · answers should satisfy BOTH given facts (derivative and point)</p>
+</div>
+
+<div class="q"><div class="txt"><b class="n">1.</b> Given f'(x) = 2x and f(0) = 5, find f(x).</div>
+<div class="a"><b>Work:</b> integrate: f(x) = x² + C. Plug in x = 0: f(0) = 0 + C = 5, so C = 5. Check: derivative of x² + 5 is 2x ✓, f(0) = 5 ✓. <span class="ans">Answer: f(x) = x² + 5.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">2.</b> Given f'(x) = 3x² + 2 and f(1) = 8, find f(x).</div>
+<div class="a"><b>Work:</b> integrate term by term: f(x) = x³ + 2x + C. Plug in x = 1: 1 + 2 + C = 3 + C = 8 → C = 5. Check: derivative of x³ + 2x + 5 is 3x² + 2 ✓, f(1) = 1 + 2 + 5 = 8 ✓. <span class="ans">Answer: f(x) = x³ + 2x + 5.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">3.</b> v(t) = 8 m/s, s(0) = 2 m. Find s(t) and s(3).</div>
+<div class="a"><b>Work:</b> s(t) = 8t + C; s(0) = C = 2, so s(t) = 8t + 2. Then s(3) = 24 + 2 = 26. Sanity check: 8 m/s for 3 s = 24 m, starting from 2 m → 26 m ✓. <span class="ans">Answer: s(t) = 8t + 2; s(3) = 26 meters.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">4.</b> v(t) = 2t m/s, s(2) = 9 m. Find s(t) and s(4).</div>
+<div class="a"><b>Work:</b> s(t) = t² + C. The known point is at t = 2 (NOT t = 0), so plug in t = 2: 4 + C = 9 → C = 5. So s(t) = t² + 5, and s(4) = 16 + 5 = 21. Check: s(2) = 4 + 5 = 9 ✓. <span class="ans">Answer: s(t) = t² + 5; s(4) = 21 meters.</span> (Common error: writing C = 9 by treating s(2) like s(0).)</div></div>
+
+<div class="q"><div class="txt"><b class="n">5.</b> Tank: 15 L at t = 0, fills at r(t) = 2 + 4t L/min. Amount at t = 3?</div>
+<div class="a"><b>Work:</b> net change theorem: amount = 15 + ∫₀³ (2 + 4t) dt. Antiderivative: 2t + 2t² (check: derivative is 2 + 4t ✓). Evaluate: (6 + 18) − 0 = 24. Amount = 15 + 24 = 39. <span class="ans">Answer: 39 liters.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">6.</b> Start with $30, earn at e(t) = 5 + 2t dollars/day. Money after 4 days?</div>
+<div class="a"><b>Work:</b> earnings = ∫₀⁴ (5 + 2t) dt = [5t + t²]₀⁴ = 20 + 16 = 36 (check: derivative of 5t + t² is 5 + 2t ✓). Balance = 30 + 36 = 66. <span class="ans">Answer: $66.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">7.</b> F(2) = 7 and ∫₂⁵ F'(t) dt = 12. Find F(5) and explain.</div>
+<div class="a"><b>Work:</b> net change theorem: F(5) = F(2) + ∫₂⁵ F'(t) dt = 7 + 12 = 19. Sentence: "the later amount equals the starting amount plus the accumulated change" — the integral of the rate over the in-between time IS the total change, so adding it to where you started gives where you end up. <span class="ans">Answer: F(5) = 19.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">8.</b> v(t) = 6t, s(0) = 4. Find s(2) two ways.</div>
+<div class="a"><b>Work:</b> (a) Family: s(t) = 3t² + C (check: derivative 6t ✓); s(0) = C = 4 → s(t) = 3t² + 4; s(2) = 12 + 4 = 16. (b) s(2) = s(0) + ∫₀² 6t dt = 4 + [3t²]₀² = 4 + 12 = 16. Both outfits agree. <span class="ans">Answer: s(2) = 16 meters both ways.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">9.</b> A(t) = 4t + C liters — what does C mean, and what would pin it down?</div>
+<div class="a"><b>Work:</b> plug in t = 0: A(0) = C. So C is the amount of water in the tank at the start — the initial amount. The rate (4 L/min) only describes how the amount CHANGES; it cannot reveal how much was already there. One measurement of the tank at any single time (most simply, at t = 0) determines C. <span class="ans">Answer: C = the starting amount A(0); knowing the amount at one moment pins it down.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">10.</b> Plant: 5 cm at t = 0, grows at g(t) = 2t + 2 cm/week. (a) h(t)? (b) When 13 cm?</div>
+<div class="a"><b>Work:</b> (a) family: h(t) = t² + 2t + C (check: derivative is 2t + 2 ✓); h(0) = C = 5 → h(t) = t² + 2t + 5. (b) Set h(t) = 13: t² + 2t + 5 = 13 → t² + 2t − 8 = 0 → (t + 4)(t − 2) = 0 → t = −4 (rejected, time can't be negative) or t = 2. Check: h(2) = 4 + 4 + 5 = 13 ✓. <span class="ans">Answer: (a) h(t) = t² + 2t + 5 &nbsp; (b) at week t = 2.</span></div></div>
+
+</body>
+</html>

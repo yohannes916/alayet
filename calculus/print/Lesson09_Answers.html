@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Lesson 9 Answer Key — Signed Area: Below the Axis</title>
+<style>
+  @page { size: letter; margin: 0.75in; }
+  *{box-sizing:border-box;}
+  body{font-family:Georgia,"Times New Roman",serif;color:#111;margin:0;font-size:11.5pt;line-height:1.5;}
+  .head{border-bottom:3px solid #b03a2e;padding-bottom:8px;margin-bottom:14px;}
+  .head h1{font-family:Helvetica,Arial,sans-serif;font-size:16pt;margin:0 0 2px;color:#b03a2e;}
+  .head p{margin:0;font-size:10.5pt;color:#333;}
+  .q{margin:0 0 12px;page-break-inside:avoid;}
+  .q .txt{margin-bottom:4px;}
+  .q b.n{color:#b03a2e;font-family:Helvetica,Arial,sans-serif;}
+  .a{background:#f7f7f7;border-left:4px solid #1e8449;border-radius:4px;padding:7px 12px;font-size:11pt;}
+  .a b{color:#145a32;}
+  .ans{color:#145a32;font-weight:bold;}
+</style>
+</head>
+<body>
+
+<div class="head">
+  <h1>ANSWER KEY — Integration Lesson 9 Test: Signed Area, Net vs Total</h1>
+  <p>For the grader · full working shown · a bare negative number without a words translation loses half the point on interpretation questions</p>
+</div>
+
+<div class="q"><div class="txt"><b class="n">1.</b> Toy train, v = −4 m/s for 3 seconds: compute ∫<sub>0</sub><sup>3</sup> (−4) dt and interpret.</div>
+<div class="a"><b>Work:</b> constant rate: (−4) × 3 = −12. FTC check: F(t) = −4t, F(3) − F(0) = −12 − 0 = −12 ✓. Below-axis rectangle 3 wide × 4 tall, counted negative. <span class="ans">Answer: −12 → the train ends 12 meters behind its start.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">2.</b> f(x) = −2x on [0, 3]: triangle size, then ∫<sub>0</sub><sup>3</sup> (−2x) dx, and why the signs differ.</div>
+<div class="a"><b>Work:</b> triangle: base 3, depth 6 (down to −6 at x = 3) → size = ½ × 3 × 6 = 9. FTC: F(x) = −x<sup>2</sup> (check: derivative is −2x ✓); F(3) − F(0) = −9 − 0 = −9. Signs differ because geometric size is always positive, while the integral counts below-axis regions as negative (they represent losses). <span class="ans">Answer: size 9; integral −9.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">3.</b> Evaluate ∫<sub>0</sub><sup>2</sup> (x − 5) dx with a sign prediction first.</div>
+<div class="a"><b>Work:</b> prediction: on [0, 2], x − 5 runs from −5 to −3 — always negative, graph entirely below the axis, so the integral MUST be negative. FTC: F(x) = x<sup>2</sup>/2 − 5x; F(2) = 2 − 10 = −8; F(0) = 0; integral = −8 − 0 = −8. <span class="ans">Answer: −8 (prediction: negative ✓).</span> (Classic error: sign slip giving +8 — the prediction step is there to catch it.)</div></div>
+
+<div class="q"><div class="txt"><b class="n">4.</b> Evaluate ∫<sub>0</sub><sup>8</sup> (x − 4) dx and explain with two triangles.</div>
+<div class="a"><b>Work:</b> F(x) = x<sup>2</sup>/2 − 4x; F(8) = 32 − 32 = 0; F(0) = 0; integral = 0. Explanation: the line crosses the axis at x = 4. Below-axis triangle on [0, 4]: size ½ × 4 × 4 = 8, counted −8. Above-axis triangle on [4, 8]: size 8, counted +8. Signed sum −8 + 8 = 0. <span class="ans">Answer: 0 — equal triangles below and above the axis cancel exactly.</span> (Watch for students who answer "16": that's the TOTAL, not the integral.)</div></div>
+
+<div class="q"><div class="txt"><b class="n">5.</b> True/false: (a) a region's area can be negative; (b) a definite integral can be negative.</div>
+<div class="a"><b>Work:</b> (a) <b>False</b> — the size of a shape is never negative; no rug has −8 square feet. (b) <b>True</b> — the integral is signed accumulation, and when the graph is below the axis (a loss), the integral comes out negative. The minus sign is information (backward/lost/colder), not geometry. <span class="ans">Answer: (a) false (b) true, with the size-vs-signed-accumulation distinction stated.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">6.</b> v(t) = 6 − 3t on [0, 4]: net displacement and total distance.</div>
+<div class="a"><b>Work:</b> crossing: 6 − 3t = 0 at t = 2. F(t) = 6t − 3t<sup>2</sup>/2 (check: derivative is 6 − 3t ✓). Net = F(4) − F(0) = (24 − 24) − 0 = 0. Pieces: F(2) − F(0) = (12 − 6) − 0 = +6; F(4) − F(2) = 0 − 6 = −6. Total = |6| + |−6| = 12. <span class="ans">Answer: net 0 miles (ends at the start); total 12 miles ridden.</span> (Classic error: reporting net 0 as "didn't move.")</div></div>
+
+<div class="q"><div class="txt"><b class="n">7.</b> f(x) = x − 2 on [0, 5]: crossing, pieces, net, total.</div>
+<div class="a"><b>Work:</b> crossing at x = 2. F(x) = x<sup>2</sup>/2 − 2x. Piece 1: F(2) − F(0) = (2 − 4) − 0 = −2. Piece 2: F(5) − F(2) = (25/2 − 10) − (−2) = 5/2 + 2 = 9/2 — note minus a negative is PLUS. Net = −2 + 9/2 = 5/2 (check straight through: F(5) − F(0) = 5/2 ✓). Total = |−2| + |9/2| = 2 + 9/2 = 13/2. <span class="ans">Answer: crossing x = 2; pieces −2 and 9/2; net 5/2; total 13/2.</span> (Classic error in piece 2: writing 5/2 − 2 = 1/2 instead of 5/2 − (−2) = 9/2.)</div></div>
+
+<div class="q"><div class="txt"><b class="n">8.</b> Pool drains at 6 L/min for 4 min, then refills at 5 L/min for 2 min: net and total.</div>
+<div class="a"><b>Work:</b> draining piece: (−6) × 4 = −24 L. Refilling piece: (+5) × 2 = +10 L. (a) Net = −24 + 10 = −14: the pool ends with 14 liters LESS. (b) Total moved = |−24| + |+10| = 24 + 10 = 34 liters. <span class="ans">Answer: (a) −14 L, i.e. 14 liters less than before; (b) 34 liters moved.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">9.</b> r(t) = t<sup>2</sup> − 9 on [0, 3]: evaluate and interpret, including why the sign was guaranteed.</div>
+<div class="a"><b>Work:</b> F(t) = t<sup>3</sup>/3 − 9t (check: derivative is t<sup>2</sup> − 9 ✓). F(3) = 27/3 − 27 = 9 − 27 = −18; F(0) = 0. Integral = −18. Sign was guaranteed: on [0, 3], t<sup>2</sup> ≤ 9, so t<sup>2</sup> − 9 ≤ 0 the whole time — the rate never goes positive, water only leaves. <span class="ans">Answer: −18 → the tank loses 18 liters over the 3 minutes.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">10.</b> Find b &gt; 0 with ∫<sub>0</sub><sup>b</sup> (x − 3) dx = 0, and what is special about that moment.</div>
+<div class="a"><b>Work:</b> F(x) = x<sup>2</sup>/2 − 3x, so the integral = b<sup>2</sup>/2 − 3b. Set to 0: b<sup>2</sup>/2 − 3b = 0 → b(b/2 − 3) = 0 → b = 0 or b = 6; we need b &gt; 0, so b = 6. Special moment: at x = 6 the above-axis triangle (size ½ × 3 × 3 = 9/2 on [3, 6]) has grown to exactly match the below-axis triangle (size 9/2 on [0, 3]) — the gain has just finished repaying the loss. <span class="ans">Answer: b = 6.</span> (Accept any equivalent balance explanation; b = 0 alone earns no credit since the problem requires b &gt; 0.)</div></div>
+
+</body>
+</html>

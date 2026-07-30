@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Lesson 3 Answer Key — Slicing Curves into Rectangles</title>
+<style>
+  @page { size: letter; margin: 0.75in; }
+  *{box-sizing:border-box;}
+  body{font-family:Georgia,"Times New Roman",serif;color:#111;margin:0;font-size:11.5pt;line-height:1.5;}
+  .head{border-bottom:3px solid #b03a2e;padding-bottom:8px;margin-bottom:14px;}
+  .head h1{font-family:Helvetica,Arial,sans-serif;font-size:16pt;margin:0 0 2px;color:#b03a2e;}
+  .head p{margin:0;font-size:10.5pt;color:#333;}
+  .q{margin:0 0 12px;page-break-inside:avoid;}
+  .q .txt{margin-bottom:4px;}
+  .q b.n{color:#b03a2e;font-family:Helvetica,Arial,sans-serif;}
+  .a{background:#f7f7f7;border-left:4px solid #1e8449;border-radius:4px;padding:7px 12px;font-size:11pt;}
+  .a b{color:#145a32;}
+  .ans{color:#145a32;font-weight:bold;}
+</style>
+</head>
+<body>
+
+<div class="head">
+  <h1>ANSWER KEY — Integration Lesson 3 Test: Slicing Curves into Rectangles</h1>
+  <p>For the grader · full working shown · give credit for correct method with small arithmetic slips</p>
+</div>
+
+<div class="q"><div class="txt"><b class="n">1.</b> Rates at t = 0, 1, 2, 3, 4 min: 3, 5, 7, 9, 11 L/min. LEFT sum for t = 0 to 4, width 1?</div>
+<div class="a"><b>Work:</b> a left sum uses each slice's STARTING rate: 3, 5, 7, 9 (the t = 4 reading is never a left edge). Left sum = 1 × (3 + 5 + 7 + 9) = 24. <span class="ans">Answer: about 24 liters.</span> (Classic error: adding all five readings → 35, which uses too many rectangles.)</div></div>
+
+<div class="q"><div class="txt"><b class="n">2.</b> Same table: RIGHT sum, and which estimate is the overestimate?</div>
+<div class="a"><b>Work:</b> right sum uses each slice's ENDING rate: 5, 7, 9, 11 → 1 × (5 + 7 + 9 + 11) = 32. The rates are increasing, so right edges are the tall ones → the right sum is the overestimate (truth is between 24 and 32). <span class="ans">Answer: 32 liters; the right sum overestimates.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">3.</b> LEFT sum for y = 2x from x = 0 to 3, three slices of width 1.</div>
+<div class="a"><b>Work:</b> heights at left edges x = 0, 1, 2 are 0, 2, 4. Left sum = 1 × (0 + 2 + 4) = 6. <span class="ans">Answer: 6.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">4.</b> Same setup: RIGHT sum, true triangle area, and the sandwich check.</div>
+<div class="a"><b>Work:</b> right-edge heights at x = 1, 2, 3 are 2, 4, 6 → right sum = 1 × (2 + 4 + 6) = 12. True area: triangle with base 3, height 2 × 3 = 6 → ½ × 3 × 6 = 9. Sandwich: 6 &lt; 9 &lt; 12 ✓. <span class="ans">Answer: right sum = 12; true area = 9, which sits between 6 and 12.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">5.</b> Interval t = 2 to t = 6, 8 equal slices: slice width and first three edges?</div>
+<div class="a"><b>Work:</b> interval length = 6 − 2 = 4 (NOT 6 — subtract the start!). Width = 4 ÷ 8 = 0.5. Edges start at 2 and step by 0.5. <span class="ans">Answer: width = 0.5; first three edges at t = 2, 2.5, 3.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">6.</b> y = x² from x = 0 to 4, two slices of width 2: left and right sums.</div>
+<div class="a"><b>Work:</b> heights at edges 0, 2, 4 are 0, 4, 16. Left sum = 2 × (0 + 4) = 8. Right sum = 2 × (4 + 16) = 40. (Truth ≈ 21.3 — a very wide sandwich; only 2 fat slices.) <span class="ans">Answer: left = 8, right = 40.</span> (Watch for students forgetting to multiply by the width 2.)</div></div>
+
+<div class="q"><div class="txt"><b class="n">7.</b> Increasing speed graph: which sum is bigger and why?</div>
+<div class="a"><b>Work:</b> on an increasing graph, each slice's right edge is its highest point, so every right rectangle's top pokes ABOVE the curve (too much area), while every left rectangle's top sits BELOW the curve (too little). <span class="ans">Answer: the right sum is bigger — right rectangles overshoot a rising curve, left rectangles undershoot it.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">8.</b> Draining tub, DECREASING rates 12, 9, 6, 4 L/min at t = 0, 1, 2, 3. Left and right sums for t = 0 to 3, and over/under labels.</div>
+<div class="a"><b>Work:</b> left sum = 1 × (12 + 9 + 6) = 27; right sum = 1 × (9 + 6 + 4) = 19. Decreasing graph flips the roles: left edges are the TALL ones → left = overestimate; right = underestimate. Truth between 19 and 27. <span class="ans">Answer: left = 27 (overestimate), right = 19 (underestimate).</span> (Classic error: assuming left is always the underestimate — that's only true for increasing graphs.)</div></div>
+
+<div class="q"><div class="txt"><b class="n">9.</b> Increasing graph, left = 30, right = 38; classmate claims the truth is 40.</div>
+<div class="a"><b>Work:</b> for an increasing graph the true total is guaranteed to be sandwiched: 30 ≤ truth ≤ 38. Even the deliberately-too-big right sum only reached 38, so 40 is impossible. <span class="ans">Answer: 40 lies outside the sandwich [30, 38], so the classmate is wrong; the true total is some number between 30 and 38.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">10.</b> y = 2x from x = 0 to 4, two slices of width 2: left sum, right sum, their average, and the true area.</div>
+<div class="a"><b>Work:</b> heights at edges 0, 2, 4 are 0, 4, 8. Left = 2 × (0 + 4) = 8. Right = 2 × (4 + 8) = 24. Average = (8 + 24) ÷ 2 = 16. True area: triangle, ½ × 4 × 8 = 16. <span class="ans">Answer: left = 8, right = 24, average = 16 — exactly equal to the true area.</span> Averaging left and right is perfect for straight-line graphs (it builds trapezoids whose slanted tops lie right on the line); for curves it's merely very good.</div></div>
+
+</body>
+</html>

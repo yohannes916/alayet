@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 19 — Initial Values &amp; Net Change</title>
+<style>
+  :root{--accent:#186a3b;--accent2:#239b56;--bg:#f2f7f4;--card:#fff;--ok:#1e8449;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:#1c2833;background:var(--bg);margin:0;padding:0 16px 80px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -16px 20px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  nav{display:flex;gap:10px;margin-bottom:18px;font-size:.9rem;flex-wrap:wrap;}
+  nav a{color:var(--accent);text-decoration:none;font-weight:600;background:#fff;border:1px solid #d5e8dc;border-radius:8px;padding:6px 14px;}
+  nav a:hover{background:#eafaf1;}
+  .goal{background:#fef9e7;border-left:5px solid var(--star);padding:12px 18px;border-radius:8px;margin-bottom:18px;font-size:.95rem;}
+  .goal strong{color:#7d6608;}
+  section{background:var(--card);border-radius:10px;padding:18px 22px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  h2{color:var(--accent);font-size:1.15rem;margin:0 0 10px;}
+  h2 .num{background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;border-radius:6px;padding:2px 9px;margin-right:8px;}
+  ul{margin:8px 0;padding-left:24px;}
+  li{margin-bottom:8px;}
+  strong{color:#145a32;}
+  em.hi{font-style:normal;background:#fef9e7;padding:0 4px;border-radius:3px;}
+  .fml{background:#e9f7ef;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.9em;color:#186a3b;white-space:nowrap;}
+  .ex{background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:.95rem;}
+  .ex b{color:#145a32;}
+  .graph{background:#1b2631;color:#eaeded;border-radius:8px;padding:14px 18px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.82rem;line-height:1.45;overflow-x:auto;margin:10px 0;white-space:pre;}
+  .graph .g{color:#82e0aa;} .graph .y{color:#f7dc6f;} .graph .b{color:#85c1e9;}
+  table.t{border-collapse:collapse;margin:10px 0;font-size:.92rem;}
+  table.t th,table.t td{border:1px solid #cfd8cf;padding:6px 12px;text-align:center;}
+  table.t th{background:var(--accent);color:#fff;font-weight:600;}
+  .qhead{margin:26px 0 8px;color:var(--accent);font-size:1.2rem;border-bottom:2px solid #d4efdf;padding-bottom:6px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid var(--accent2);}
+  .qnum{font-weight:800;color:var(--accent);margin-right:6px;}
+  .qtag{float:right;background:#e9f7ef;color:var(--accent);border-radius:8px;padding:1px 9px;font-size:.68rem;font-weight:700;letter-spacing:.3px;margin-left:8px;}
+  .qtext{font-size:.98rem;margin:4px 0 10px;}
+  .revealbtn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .revealbtn:hover{background:#0e4429;}
+  .sol{display:none;margin-top:12px;background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px;font-size:.93rem;}
+  .sol.show{display:block;}
+  .sol h4{margin:0 0 8px;color:var(--ok);font-size:.9rem;}
+  .sol .ctx{background:#eaf2f8;border-left:4px solid #2e86c1;border-radius:6px;padding:8px 12px;margin:0 0 10px;font-size:.88rem;}
+  .sol .ctx b{color:#1a5276;}
+  .sol .step{margin:6px 0;}
+  .sol .ans{background:#eafaf1;border-radius:6px;padding:6px 12px;margin-top:8px;font-weight:700;color:#145a32;display:inline-block;}
+  footer{text-align:center;color:#85929e;font-size:.85rem;margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Lesson 19 — Initial Values &amp; Net Change</h1>
+  <p>The +C Finally Earns Its Keep · Intuitive Calculus for a Curious Student · Lesson 19 of 20</p>
+</header>
+
+<nav><a href="index.html">📚 All lessons</a><a href="Lesson18.html">← Prev: Lesson 18</a><a href="Lesson20.html">Next: Lesson 20 →</a></nav>
+
+<div class="goal"><strong>🎯 Goal of this lesson:</strong> for eighteen lessons you've dutifully written "+ C" and it never seemed to matter. Today it does. You'll learn how ONE piece of extra information (a starting value) turns an antiderivative <em>family</em> into one specific function — and meet the <em>net change theorem</em>, the formula for predicting the future from a rate: <em class="hi">later amount = starting amount + accumulated change</em>.</div>
+
+<section>
+  <h2><span class="num">1</span> The +C finally earns its keep</h2>
+  <ul>
+    <li>When you integrate, you don't get one answer — you get a whole <strong>family</strong>: <span class="fml">∫ 2x dx = x² + C</span> means x², x²+1, x²+4, x²−7... infinitely many functions, ALL with derivative 2x.</li>
+    <li>Picture the family as a <strong>stack of parallel curves</strong> — the same shape shifted up and down. They all have identical slopes at every x; they just start at different heights.</li>
+  </ul>
+  <div class="graph"><span class="y">the family y = x² + C — same shape, different heights</span>
+
+  y
+  9 |  <span class="b">·</span>                     <span class="b">·</span>     ← x² + 4
+  7 |  <span class="g">·</span>   <span class="b">·</span>             <span class="b">·</span>   <span class="g">·</span>
+  5 |      <span class="g">·</span>  <span class="b">·  ·  ·</span>  <span class="g">·</span>        ← x² + 1  <span class="y">★ passes through (1, 5)? no...</span>
+  4 |         <span class="b">·······</span>            ← x² + 4 bottoms out here
+  2 |      <span class="g">·   ·  ·   ·</span>
+  1 |          <span class="g">·····</span>              ← x² + 1 bottoms out here
+  0 +----------------------→ x
+              0
+
+  <span class="y">every curve has the SAME slope pattern (derivative 2x);</span>
+  <span class="y">knowing ONE point the curve passes through picks ONE curve.</span></div>
+  <ul>
+    <li>So the family answers "what shape?" but not "which height?" To pin down the height you need <em class="hi">one piece of information</em> — one known point, usually a <strong>starting value</strong> like f(0) = 5. That single fact selects exactly one curve from the stack.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">2</span> Initial value problems — the recipe</h2>
+  <ul>
+    <li>A problem that gives you a derivative PLUS one known value is called an <strong>initial value problem</strong>. The recipe:</li>
+  </ul>
+  <div class="ex"><b>The recipe:</b>
+    <table class="t">
+      <tr><th>Step</th><th>What you do</th></tr>
+      <tr><td>1</td><td>Integrate the derivative to get the whole family (don't forget + C)</td></tr>
+      <tr><td>2</td><td>Plug the known point into the family</td></tr>
+      <tr><td>3</td><td>Solve for C</td></tr>
+      <tr><td>4</td><td>Write the specific function, with the found C in place</td></tr>
+    </table>
+  </div>
+  <div class="ex"><b>Worked example:</b> <span class="fml">f'(x) = 2x</span> and <span class="fml">f(1) = 5</span>. Find f(x).<br>
+  Step 1: <span class="fml">f(x) = x² + C</span> (the family).<br>
+  Step 2: plug in x = 1: <span class="fml">f(1) = 1² + C = 1 + C</span>, and we're told this equals 5.<br>
+  Step 3: <span class="fml">1 + C = 5</span> → <span class="fml">C = 4</span>.<br>
+  Step 4: <span class="fml">f(x) = x² + 4</span>.<br>
+  Check: derivative of x²+4 is 2x ✓, and f(1) = 1 + 4 = 5 ✓. Both given facts confirmed.</div>
+</section>
+
+<section>
+  <h2><span class="num">3</span> Real costumes — the same problem in four disguises</h2>
+  <ul>
+    <li>Initial value problems love to dress up as stories. In every costume, the plot is identical: <em class="hi">a rate + a starting amount → the full amount-function</em>.</li>
+  </ul>
+  <div class="ex"><b>Position from velocity:</b> a scooter moves at <span class="fml">v(t) = 4t</span> m/s and starts at position <span class="fml">s(0) = 6</span> m. Find s(t).<br>
+  Family: <span class="fml">s(t) = 2t² + C</span>. Plug in t = 0: <span class="fml">s(0) = 0 + C = 6</span>, so C = 6.<br>
+  <span class="fml">s(t) = 2t² + 6</span>. (Check: derivative 4t ✓, s(0) = 6 ✓.)</div>
+  <div class="ex"><b>Tank from flow rate:</b> a tank holds 12 L and fills at <span class="fml">r(t) = 3 L/min</span>. Amount A(t)?<br>
+  Family: <span class="fml">A(t) = 3t + C</span>. Plug in t = 0: C = 12. <span class="fml">A(t) = 3t + 12</span>. After 4 minutes: A(4) = 24 L.</div>
+  <div class="ex"><b>Temperature from cooling rate:</b> cocoa starts at 80°C and cools at <span class="fml">T'(t) = −2 °C/min</span>. Family: <span class="fml">T(t) = −2t + C</span>; T(0) = 80 gives C = 80, so <span class="fml">T(t) = 80 − 2t</span>. After 10 minutes: 60°C. (A negative rate means the amount is going DOWN — the integral handles that automatically.)</div>
+  <div class="ex"><b>Money from earning rate:</b> you have $25 and earn at <span class="fml">e(t) = 8 dollars/hour</span>. Balance: <span class="fml">M(t) = 8t + 25</span>. After 3 hours: $49. The C is literally the money you started with.</div>
+  <ul>
+    <li>Notice: in every costume, <strong>C turned out to be the starting amount</strong>. That's the pattern to remember — when the known value is at t = 0, C IS the initial value.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">4</span> The NET CHANGE theorem — predicting the future from a rate</h2>
+  <ul>
+    <li>Here's the same idea one more way, and it's a famous one. The FTC (Lesson 7) says <span class="fml">∫<sub>a</sub><sup>b</sup> F'(t) dt = F(b) − F(a)</span> — "the integral of the rate equals the total change."</li>
+    <li>Read that equation in reverse — solve it for F(b):</li>
+  </ul>
+  <div class="graph"><span class="y">THE NET CHANGE THEOREM</span>
+
+   F(b)  =  F(a)  +  ∫<span class="b">ₐ</span><span class="g">ᵇ</span> F'(t) dt
+
+  <span class="g">later      starting     accumulated</span>
+  <span class="g">amount  =  amount   +   change</span>
+
+  "where you end up = where you started + everything that happened in between"</div>
+  <ul>
+    <li>Said humanly: <em class="hi">later amount = starting amount + accumulated change</em>. It's how you predict the future from a rate: know where things stand now, integrate the rate over the time in between, add.</li>
+    <li>Your bank does this every month: new balance = old balance + (all deposits and withdrawals in between). Your odometer, a reservoir gauge, a thermometer — all net-change machines.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">5</span> Worked example — the filling tank</h2>
+  <div class="ex"><b>Problem:</b> a tank holds <b>30 L</b> at t = 0 and fills at <span class="fml">r(t) = 4 + 2t</span> L/min. How much is in the tank at t = 5?<br><br>
+  <b>Net change setup:</b> amount at 5 = amount at 0 + ∫₀⁵ r(t) dt.<br>
+  Integrate the rate: <span class="fml">∫₀⁵ (4 + 2t) dt = [4t + t²]₀⁵ = (20 + 25) − 0 = 45</span>.<br>
+  (Check the antiderivative: derivative of 4t + t² is 4 + 2t ✓.)<br>
+  So: amount at 5 = <span class="fml">30 + 45 = 75 L</span>.<br><br>
+  <b>Sanity check:</b> the rate starts at 4 L/min and grows to 14 L/min by t = 5, so the average rate is around 9 L/min → about 45 L added in 5 minutes. ✓ Matches.</div>
+</section>
+
+<section>
+  <h2><span class="num">6</span> "Find C" vs "start + integral" — same idea, two outfits</h2>
+  <ul>
+    <li>You now own two ways to solve the same problem. Watch them agree:</li>
+  </ul>
+  <div class="ex"><b>Problem:</b> velocity <span class="fml">v(t) = 2t</span>, starting position <span class="fml">s(0) = 3</span>. Where is the object at t = 4?<br><br>
+  <b>Outfit 1 — find C:</b> family <span class="fml">s(t) = t² + C</span>; s(0) = 3 gives C = 3, so <span class="fml">s(t) = t² + 3</span>. Then <span class="fml">s(4) = 16 + 3 = 19</span>.<br><br>
+  <b>Outfit 2 — start + integral:</b> <span class="fml">s(4) = s(0) + ∫₀⁴ 2t dt = 3 + [t²]₀⁴ = 3 + 16 = 19</span>.<br><br>
+  <b>Same answer: 19.</b> Outfit 1 builds the whole function first (great when you'll need s at many times, or need to know WHEN something happens). Outfit 2 jumps straight to one moment (great when you only need one number). Choose whichever fits the question.</div>
+</section>
+
+<div class="qhead">✏️ Exercises — 20 problems (write your answer on paper, then reveal)</div>
+
+<div class="q"><span class="qnum">1.</span><span class="qtag">find C</span>
+  <div class="qtext">Given <span class="fml">f'(x) = 3x²</span> and <span class="fml">f(0) = 2</span>, find f(x).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> integrating a derivative gives a FAMILY of answers (+ C). One known value — here f(0) = 2 — picks one member of the family. Recipe: integrate, plug in the known point, solve for C, write the specific function.</div>
+    <div class="step">Integrate: <span class="fml">f(x) = x³ + C</span> (since the derivative of x³ is 3x²).</div>
+    <div class="step">Plug in x = 0: f(0) = 0 + C = C, and we're told f(0) = 2, so C = 2.</div>
+    <div class="step">Check: derivative of x³ + 2 is 3x² ✓ and f(0) = 2 ✓.</div>
+    <div class="ans">f(x) = x³ + 2</div></div>
+</div>
+
+<div class="q"><span class="qnum">2.</span><span class="qtag">find C</span>
+  <div class="qtext">Given <span class="fml">f'(x) = 2x + 1</span> and <span class="fml">f(2) = 10</span>, find f(x).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the known point doesn't have to be at x = 0! Plug in whatever x-value you're given — the algebra to find C is one small equation either way.</div>
+    <div class="step">Integrate: <span class="fml">f(x) = x² + x + C</span>. (Check: derivative is 2x + 1 ✓.)</div>
+    <div class="step">Plug in x = 2: f(2) = 4 + 2 + C = 6 + C. Set equal to 10: 6 + C = 10 → C = 4.</div>
+    <div class="step">Check: f(2) = 4 + 2 + 4 = 10 ✓.</div>
+    <div class="ans">f(x) = x² + x + 4</div></div>
+</div>
+
+<div class="q"><span class="qnum">3.</span><span class="qtag">find C</span>
+  <div class="qtext">Given <span class="fml">f'(x) = 4</span> and <span class="fml">f(1) = 7</span>, find f(x).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a constant derivative means f is a straight line with slope 4. Finding C here is just finding where that line sits — the line through the point (1, 7) with slope 4.</div>
+    <div class="step">Integrate: <span class="fml">f(x) = 4x + C</span>.</div>
+    <div class="step">Plug in x = 1: 4 + C = 7 → C = 3.</div>
+    <div class="step">Check: derivative of 4x + 3 is 4 ✓, f(1) = 7 ✓.</div>
+    <div class="ans">f(x) = 4x + 3</div></div>
+</div>
+
+<div class="q"><span class="qnum">4.</span><span class="qtag">find C</span>
+  <div class="qtext">Given <span class="fml">f'(x) = 2x</span> and <span class="fml">f(3) = 11</span>, find f(x).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> same family as the lesson's picture — x² + C, the stack of parallel parabolas. The point (3, 11) selects exactly one of them.</div>
+    <div class="step">Integrate: <span class="fml">f(x) = x² + C</span>.</div>
+    <div class="step">Plug in x = 3: 9 + C = 11 → C = 2.</div>
+    <div class="step">Check: f(3) = 9 + 2 = 11 ✓.</div>
+    <div class="ans">f(x) = x² + 2</div></div>
+</div>
+
+<div class="q"><span class="qnum">5.</span><span class="qtag">velocity → position</span>
+  <div class="qtext">A robot moves at a steady <span class="fml">v(t) = 10</span> meters per second and starts at position <span class="fml">s(0) = 3</span> meters. Find s(t), then find where the robot is at t = 4 seconds.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> velocity is the derivative of position (Lesson 11). So position = antiderivative of velocity, and the starting position s(0) is the known value that pins down C.</div>
+    <div class="step">Integrate: <span class="fml">s(t) = 10t + C</span>.</div>
+    <div class="step">Plug in t = 0: s(0) = C = 3. So <span class="fml">s(t) = 10t + 3</span>.</div>
+    <div class="step">At t = 4: s(4) = 40 + 3 = 43 meters.</div>
+    <div class="step">Sanity check: 10 m/s for 4 s covers 40 m; starting from 3 m lands at 43 m ✓.</div>
+    <div class="ans">s(t) = 10t + 3; the robot is at 43 meters</div></div>
+</div>
+
+<div class="q"><span class="qnum">6.</span><span class="qtag">find C</span>
+  <div class="qtext">Given <span class="fml">f'(x) = 6x² − 2</span> and <span class="fml">f(1) = 5</span>, find f(x).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> integrate term by term (Lesson 5): the antiderivative of 6x² is 2x³ and the antiderivative of −2 is −2x. One + C covers the whole thing — never write two C's.</div>
+    <div class="step">Integrate: <span class="fml">f(x) = 2x³ − 2x + C</span>. (Check: derivative is 6x² − 2 ✓.)</div>
+    <div class="step">Plug in x = 1: 2 − 2 + C = C. Set equal to 5: C = 5.</div>
+    <div class="step">Check: f(1) = 2 − 2 + 5 = 5 ✓.</div>
+    <div class="ans">f(x) = 2x³ − 2x + 5</div></div>
+</div>
+
+<div class="q"><span class="qnum">7.</span><span class="qtag">velocity → position</span>
+  <div class="qtext">A cart has velocity <span class="fml">v(t) = 2t + 3</span> m/s and starts at <span class="fml">s(0) = 5</span> m. Find s(t), then find s(2).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> two-step problems like this are the standard shape: first build the position function (find C), then answer a question with it (evaluate). Build once, use many times.</div>
+    <div class="step">Integrate: <span class="fml">s(t) = t² + 3t + C</span>. (Check: derivative is 2t + 3 ✓.)</div>
+    <div class="step">s(0) = C = 5, so <span class="fml">s(t) = t² + 3t + 5</span>.</div>
+    <div class="step">At t = 2: s(2) = 4 + 6 + 5 = 15 meters.</div>
+    <div class="ans">s(t) = t² + 3t + 5; s(2) = 15 meters</div></div>
+</div>
+
+<div class="q"><span class="qnum">8.</span><span class="qtag">known point not at 0</span>
+  <div class="qtext">A drone's velocity is <span class="fml">v(t) = 6t²</span> m/s, and at time t = 1 its position is <span class="fml">s(1) = 4</span> m. Find s(t), then find s(2).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the known value is at t = 1, not t = 0 — so C is NOT simply the given number. You must plug in t = 1 and actually solve the little equation.</div>
+    <div class="step">Integrate: <span class="fml">s(t) = 2t³ + C</span>. (Check: derivative is 6t² ✓.)</div>
+    <div class="step">Plug in t = 1: 2(1) + C = 2 + C = 4 → C = 2. So <span class="fml">s(t) = 2t³ + 2</span>.</div>
+    <div class="step">At t = 2: s(2) = 2(8) + 2 = 18 meters.</div>
+    <div class="ans">s(t) = 2t³ + 2; s(2) = 18 meters</div></div>
+</div>
+
+<div class="q"><span class="qnum">9.</span><span class="qtag">tank story</span>
+  <div class="qtext">A tank holds 20 liters at t = 0 and fills at a rate of <span class="fml">r(t) = 3 + 2t</span> liters per minute. How much water is in the tank at t = 4 minutes?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> net change theorem: later amount = starting amount + integral of the rate. The 20 L is the starting amount; the integral of r(t) from 0 to 4 is everything that flowed in.</div>
+    <div class="step">Accumulated change: <span class="fml">∫₀⁴ (3 + 2t) dt = [3t + t²]₀⁴ = (12 + 16) − 0 = 28</span>.</div>
+    <div class="step">(Check the antiderivative: derivative of 3t + t² is 3 + 2t ✓.)</div>
+    <div class="step">Amount at t = 4: 20 + 28 = 48 liters.</div>
+    <div class="ans">48 liters</div></div>
+</div>
+
+<div class="q"><span class="qnum">10.</span><span class="qtag">money story</span>
+  <div class="qtext">You start the week with $50. Your little business earns money at a rate of <span class="fml">e(t) = 10 + 2t</span> dollars per day, where t is in days. How much money do you have after 5 days?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> same net-change pattern with a money costume: balance later = balance now + integral of the earning rate. The rate 10 + 2t means the business earns faster each day ($10/day at the start, $20/day by day 5).</div>
+    <div class="step">Accumulated earnings: <span class="fml">∫₀⁵ (10 + 2t) dt = [10t + t²]₀⁵ = 50 + 25 = 75</span>.</div>
+    <div class="step">(Check: derivative of 10t + t² is 10 + 2t ✓.)</div>
+    <div class="step">Balance: 50 + 75 = 125 dollars.</div>
+    <div class="ans">$125</div></div>
+</div>
+
+<div class="q"><span class="qnum">11.</span><span class="qtag">temperature story</span>
+  <div class="qtext">A cup of tea is 90°C at t = 0 and cools at a rate of <span class="fml">T'(t) = −2t</span> degrees per minute (cooling faster as time passes). What is its temperature at t = 5 minutes?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a NEGATIVE rate means the amount is decreasing (Lesson 9's signed-area idea). The net change theorem doesn't care about the sign — the integral of a negative rate comes out negative, and adding a negative change lowers the total. That's cooling.</div>
+    <div class="step">Accumulated change: <span class="fml">∫₀⁵ (−2t) dt = [−t²]₀⁵ = −25</span>.</div>
+    <div class="step">(Check: derivative of −t² is −2t ✓.)</div>
+    <div class="step">Temperature: 90 + (−25) = 65°C.</div>
+    <div class="ans">65°C</div></div>
+</div>
+
+<div class="q"><span class="qnum">12.</span><span class="qtag">in-then-out tank</span>
+  <div class="qtext">A tank holds 40 liters at t = 0. Its NET flow rate is <span class="fml">r(t) = 6 − 2t</span> liters per minute (positive = filling, negative = draining). How much water is in the tank at t = 5? What happened partway through?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the rate 6 − 2t starts positive (filling) and turns negative after t = 3 (draining). The net change theorem handles both phases in one integral, because signed area adds the gains and subtracts the losses automatically.</div>
+    <div class="step">Accumulated net change: <span class="fml">∫₀⁵ (6 − 2t) dt = [6t − t²]₀⁵ = 30 − 25 = 5</span>.</div>
+    <div class="step">(Check: derivative of 6t − t² is 6 − 2t ✓.)</div>
+    <div class="step">Amount: 40 + 5 = 45 liters.</div>
+    <div class="step">The story: the tank filled from t = 0 to t = 3 (rate positive), then drained from t = 3 to t = 5 (rate negative) — but the filling outweighed the draining, so the net change was still +5 L.</div>
+    <div class="ans">45 liters — it filled for 3 minutes, then drained, netting +5 L</div></div>
+</div>
+
+<div class="q"><span class="qnum">13.</span><span class="qtag">verify consistency</span>
+  <div class="qtext">A friend solved an initial value problem with <span class="fml">f'(x) = 3x²</span> and <span class="fml">f(1) = 5</span>, and got <span class="fml">f(x) = x³ + 4</span>. Verify BOTH given facts to decide if the answer is right.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> an initial value problem gives two facts — a derivative and a point — and a correct answer must satisfy BOTH. Checking is quick: differentiate once, plug in once. Do both checks; an answer can pass one and fail the other.</div>
+    <div class="step">Fact 1 (derivative): d/dx of x³ + 4 = 3x² ✓ — matches f'(x).</div>
+    <div class="step">Fact 2 (point): f(1) = 1 + 4 = 5 ✓ — matches f(1) = 5.</div>
+    <div class="step">Both facts check out.</div>
+    <div class="ans">Yes — the answer is correct: derivative ✓ and point ✓</div></div>
+</div>
+
+<div class="q"><span class="qnum">14.</span><span class="qtag">two outfits</span>
+  <div class="qtext">Velocity <span class="fml">v(t) = 4t</span> m/s, starting position <span class="fml">s(0) = 6</span> m. Find s(3) TWO ways: (a) build s(t) by finding C, then evaluate; (b) use start + integral directly. Confirm they agree.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> "find C" and "start + integral" are the same idea in different outfits. Outfit (a) builds the whole function — useful for many questions. Outfit (b) jumps to one number — faster for a single question. They must always agree.</div>
+    <div class="step">(a) Family: <span class="fml">s(t) = 2t² + C</span>; s(0) = C = 6 → <span class="fml">s(t) = 2t² + 6</span>. Then s(3) = 18 + 6 = 24.</div>
+    <div class="step">(b) <span class="fml">s(3) = s(0) + ∫₀³ 4t dt = 6 + [2t²]₀³ = 6 + 18 = 24</span>.</div>
+    <div class="step">(Check the antiderivative both times: derivative of 2t² is 4t ✓.)</div>
+    <div class="ans">Both ways give s(3) = 24 meters ✓</div></div>
+</div>
+
+<div class="q"><span class="qnum">15.</span><span class="qtag">what does C mean?</span>
+  <div class="qtext">In the story "a car's velocity is v(t) = 3t² and its position is s(t) = t³ + C," what does the C mean in plain language? Why can't the velocity alone tell you C?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> this is a words question, and it's the heart of the lesson. The derivative describes how something CHANGES; it says nothing about where things STOOD at the beginning. Two cars driving identically can be in different cities.</div>
+    <div class="step">C is the car's <b>starting position</b> — where it was at t = 0 (plug in t = 0: s(0) = 0 + C = C).</div>
+    <div class="step">The velocity only records movement. A car starting at mile 0 and a car starting at mile 100, both following v(t) = 3t², move exactly the same way — same speed at every moment — but their positions differ by 100 forever.</div>
+    <div class="step">That's why every antiderivative carries a +C, and why one extra fact (a starting value) is exactly enough to pin it down.</div>
+    <div class="ans">C = the starting position s(0); velocity describes only change, so it can never reveal where you began</div></div>
+</div>
+
+<div class="q"><span class="qnum">16.</span><span class="qtag">e-flavored</span>
+  <div class="qtext">Given <span class="fml">f'(x) = e<sup>x</sup></span> and <span class="fml">f(0) = 3</span>, find f(x).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> from Lesson 15, e<sup>x</sup> is its own antiderivative: <span class="fml">∫ e<sup>x</sup> dx = e<sup>x</sup> + C</span>. One caution when plugging in x = 0: <span class="fml">e<sup>0</sup> = 1</span>, not 0! Anything to the power 0 is 1.</div>
+    <div class="step">Integrate: <span class="fml">f(x) = e<sup>x</sup> + C</span>.</div>
+    <div class="step">Plug in x = 0: f(0) = e⁰ + C = 1 + C. Set equal to 3: 1 + C = 3 → C = 2.</div>
+    <div class="step">Check: derivative of e<sup>x</sup> + 2 is e<sup>x</sup> ✓, and f(0) = 1 + 2 = 3 ✓.</div>
+    <div class="ans">f(x) = e<sup>x</sup> + 2</div></div>
+</div>
+
+<div class="q"><span class="qnum">17.</span><span class="qtag">reach the target</span>
+  <div class="qtext">A tank holds 10 liters at t = 0 and fills at <span class="fml">r(t) = 2t + 2</span> liters per minute. (a) Find the amount function A(t). (b) At what time does the tank reach exactly 25 liters?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a two-stage problem: first build the function (initial value problem), then set it equal to a target and solve for t — algebra from your regular math class (factoring a quadratic). This "find WHEN" question is exactly why building the whole function beats computing one integral.</div>
+    <div class="step">(a) Family: <span class="fml">A(t) = t² + 2t + C</span>; A(0) = C = 10 → <span class="fml">A(t) = t² + 2t + 10</span>. (Check: derivative is 2t + 2 ✓.)</div>
+    <div class="step">(b) Set A(t) = 25: t² + 2t + 10 = 25 → t² + 2t − 15 = 0.</div>
+    <div class="step">Factor: (t + 5)(t − 3) = 0 → t = −5 or t = 3. Time can't be negative, so t = 3.</div>
+    <div class="step">Check: A(3) = 9 + 6 + 10 = 25 ✓.</div>
+    <div class="ans">(a) A(t) = t² + 2t + 10 &nbsp; (b) at t = 3 minutes</div></div>
+</div>
+
+<div class="q"><span class="qnum">18.</span><span class="qtag">trig-flavored</span>
+  <div class="qtext">Given <span class="fml">f'(x) = cos x</span> and <span class="fml">f(0) = 5</span>, find f(x), then find <span class="fml">f(π/2)</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> from Lesson 16, <span class="fml">∫ cos x dx = sin x + C</span> (because the derivative of sin x is cos x). Useful values: sin 0 = 0 and sin(π/2) = 1.</div>
+    <div class="step">Integrate: <span class="fml">f(x) = sin x + C</span>.</div>
+    <div class="step">Plug in x = 0: f(0) = sin 0 + C = 0 + C = 5 → C = 5. So <span class="fml">f(x) = sin x + 5</span>.</div>
+    <div class="step">At x = π/2: f(π/2) = sin(π/2) + 5 = 1 + 5 = 6.</div>
+    <div class="step">Check: derivative of sin x + 5 is cos x ✓, f(0) = 5 ✓.</div>
+    <div class="ans">f(x) = sin x + 5; f(π/2) = 6</div></div>
+</div>
+
+<div class="q"><span class="qnum">19.</span><span class="qtag">population · net change</span>
+  <div class="qtext">A town has 2000 people at year t = 0 and grows at a rate of <span class="fml">p'(t) = 100 + 20t</span> people per year. Use the net change theorem to predict the population at year t = 3.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the net change theorem in its cleanest form: P(3) = P(0) + ∫₀³ p'(t) dt — "future population = current population + all the growth in between." This is genuinely how forecasts work: measure the rate, integrate it, add to today's value.</div>
+    <div class="step">Growth: <span class="fml">∫₀³ (100 + 20t) dt = [100t + 10t²]₀³ = 300 + 90 = 390</span>.</div>
+    <div class="step">(Check: derivative of 100t + 10t² is 100 + 20t ✓.)</div>
+    <div class="step">Population: 2000 + 390 = 2390 people.</div>
+    <div class="ans">2390 people</div></div>
+</div>
+
+<div class="q"><span class="qnum">20.</span><span class="qtag">challenge · turning point</span>
+  <div class="qtext">An object moves along a straight track with velocity <span class="fml">v(t) = 6t − 12</span> m/s, starting at position <span class="fml">s(0) = 9</span> m (position measured from "home" at 0). (a) Find s(t). (b) The object slows, stops for an instant, and turns around — when, and where is it at that moment? (c) Its position there is negative — what does that mean? (d) Bonus: when does the object pass exactly through home?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the object turns around at the instant its velocity is ZERO (moving backward = negative v, forward = positive v; the switch happens at v = 0). And position can be negative: it just means the object is on the OTHER side of home — like a number line, home at 0, negative positions to the left.</div>
+    <div class="step">(a) Integrate: <span class="fml">s(t) = 3t² − 12t + C</span>; s(0) = C = 9 → <span class="fml">s(t) = 3t² − 12t + 9</span>. (Check: derivative is 6t − 12 ✓, s(0) = 9 ✓.)</div>
+    <div class="step">(b) Set v = 0: 6t − 12 = 0 → t = 2. Position there: s(2) = 3(4) − 24 + 9 = 12 − 24 + 9 = −3 meters. This is the lowest position the object ever reaches (its position graph is an upward parabola with its vertex at t = 2).</div>
+    <div class="step">(c) s = −3 means the object is 3 meters PAST home, on the far side — it started 9 m from home on the positive side, drove through home, overshot by 3 m, and turned around there.</div>
+    <div class="step">(d) Set s(t) = 0: 3t² − 12t + 9 = 0 → divide by 3: t² − 4t + 3 = 0 → (t − 1)(t − 3) = 0 → t = 1 and t = 3. It passes home twice: once heading out (t = 1) and once coming back (t = 3).</div>
+    <div class="ans">(a) s(t) = 3t² − 12t + 9 &nbsp; (b) turns at t = 2, at position −3 m &nbsp; (c) it's 3 m beyond home on the other side &nbsp; (d) passes home at t = 1 and t = 3</div></div>
+</div>
+
+<footer>Lesson 19 of 20 · Intuitive Integration · next: <a href="Lesson20.html">Lesson 20 — Capstone: Putting It All Together</a></footer>
+
+</div>
+<script>
+document.querySelectorAll('.q').forEach(q=>{
+  const btn=q.querySelector('.revealbtn'), sol=q.querySelector('.sol');
+  btn.addEventListener('click',()=>{ sol.classList.add('show'); btn.textContent='Solution shown'; btn.disabled=true; btn.style.opacity=.6; });
+});
+</script>
+</body>
+</html>

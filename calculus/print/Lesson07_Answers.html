@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Lesson 7 Answer Key — The Fundamental Theorem of Calculus</title>
+<style>
+  @page { size: letter; margin: 0.75in; }
+  *{box-sizing:border-box;}
+  body{font-family:Georgia,"Times New Roman",serif;color:#111;margin:0;font-size:11.5pt;line-height:1.5;}
+  .head{border-bottom:3px solid #b03a2e;padding-bottom:8px;margin-bottom:14px;}
+  .head h1{font-family:Helvetica,Arial,sans-serif;font-size:16pt;margin:0 0 2px;color:#b03a2e;}
+  .head p{margin:0;font-size:10.5pt;color:#333;}
+  .q{margin:0 0 12px;page-break-inside:avoid;}
+  .q .txt{margin-bottom:4px;}
+  .q b.n{color:#b03a2e;font-family:Helvetica,Arial,sans-serif;}
+  .a{background:#f7f7f7;border-left:4px solid #1e8449;border-radius:4px;padding:7px 12px;font-size:11pt;}
+  .a b{color:#145a32;}
+  .ans{color:#145a32;font-weight:bold;}
+</style>
+</head>
+<body>
+
+<div class="head">
+  <h1>ANSWER KEY — Integration Lesson 7 Test: The Fundamental Theorem of Calculus</h1>
+  <p>For the grader · full working shown · give credit for correct method with small arithmetic slips · deduct if F(a) is not subtracted</p>
+</div>
+
+<div class="q"><div class="txt"><b class="n">1.</b> Use the Fundamental Theorem to evaluate ∫<sub>0</sub><sup>4</sup> 5 dx, then check with a rectangle.</div>
+<div class="a"><b>Work:</b> F(x) = 5x (derivative of 5x is 5 ✓). F(4) = 20, F(0) = 0, so 20 − 0 = 20. Rectangle check: width 4 × height 5 = 20 ✓. <span class="ans">Answer: 20.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">2.</b> Use the Fundamental Theorem to evaluate ∫<sub>0</sub><sup>3</sup> 2x dx, then check with a triangle.</div>
+<div class="a"><b>Work:</b> F(x) = x² (derivative is 2x ✓). F(3) = 9, F(0) = 0, so 9 − 0 = 9. Triangle check: base 3, height 2 × 3 = 6, area ½ × 3 × 6 = 9 ✓. <span class="ans">Answer: 9.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">3.</b> Evaluate ∫<sub>0</sub><sup>3</sup> x² dx.</div>
+<div class="a"><b>Work:</b> F(x) = x³/3 (derivative: 3x²/3 = x² ✓). F(3) = 27/3 = 9, F(0) = 0, so 9 − 0 = 9. <span class="ans">Answer: 9.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">4.</b> Evaluate ∫<sub>1</sub><sup>2</sup> x³ dx. Give the exact fraction and a decimal.</div>
+<div class="a"><b>Work:</b> F(x) = x⁴/4 (derivative: 4x³/4 = x³ ✓). F(2) = 16/4 = 4, F(1) = 1/4. Then 4 − 1/4 = 16/4 − 1/4 = 15/4. <span class="ans">Answer: 15/4 = 3.75.</span> (Watch for the classic error of forgetting F(1) = 1/4 and answering 4.)</div></div>
+
+<div class="q"><div class="txt"><b class="n">5.</b> Evaluate ∫<sub>0</sub><sup>2</sup> (3x² + 4) dx.</div>
+<div class="a"><b>Work:</b> term by term: 3x² → x³, 4 → 4x, so F(x) = x³ + 4x (derivative: 3x² + 4 ✓). F(2) = 8 + 8 = 16, F(0) = 0. <span class="ans">Answer: 16.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">6.</b> Evaluate ∫<sub>1</sub><sup>5</sup> (2x + 1) dx with the FTC, then verify with the trapezoid method.</div>
+<div class="a"><b>Work:</b> F(x) = x² + x (derivative: 2x + 1 ✓). F(5) = 25 + 5 = 30, F(1) = 1 + 1 = 2, so 30 − 2 = 28. Trapezoid check: heights 2(1) + 1 = 3 and 2(5) + 1 = 11; width 5 − 1 = 4; area = ½(3 + 11) × 4 = 7 × 4 = 28 ✓. <span class="ans">Answer: 28.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">7.</b> A student evaluates ∫<sub>1</sub><sup>3</sup> 2x dx as "x² at 3 is 9, answer 9." Find and fix the mistake.</div>
+<div class="a"><b>Work:</b> the antiderivative and F(3) = 9 are correct, but the student never subtracted F(1) — the FTC is F(b) − F(a), a difference of TWO readings (like an odometer: end reading minus start reading). F(1) = 1, so the correct value is 9 − 1 = 8. <span class="ans">Answer: the mistake is forgetting to subtract F(1); correct answer 8.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">8.</b> Show with one line of algebra why the +C is harmless in the FTC.</div>
+<div class="a"><b>Work:</b> (F(b) + C) − (F(a) + C) = F(b) − F(a) + C − C = F(b) − F(a). The C is added once and subtracted once, so it cancels for every possible value — all antiderivatives in the family give the same definite integral, and we may use the C = 0 one. <span class="ans">Answer: the C's cancel in the subtraction, leaving F(b) − F(a).</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">9.</b> A pump's flow rate is r(t) = 8t liters per hour. Find the total water pumped from t = 1 to t = 2 hours.</div>
+<div class="a"><b>Work:</b> total = ∫<sub>1</sub><sup>2</sup> 8t dt. F(t) = 4t² (derivative: 8t ✓). F(2) = 16, F(1) = 4, so 16 − 4 = 12. Units: (liters/hour) × hours = liters. <span class="ans">Answer: 12 liters.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">10.</b> Challenge: evaluate ∫<sub>0</sub><sup>3</sup> (x² − x + 2) dx.</div>
+<div class="a"><b>Work:</b> term by term: x² → x³/3, −x → −x²/2, 2 → 2x, so F(x) = x³/3 − x²/2 + 2x (derivative: x² − x + 2 ✓). F(3) = 27/3 − 9/2 + 6 = 9 − 4.5 + 6 = 10.5. F(0) = 0. So 10.5 − 0 = 10.5. <span class="ans">Answer: 21/2 = 10.5.</span></div></div>
+
+</body>
+</html>

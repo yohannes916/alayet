@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 15 — Two Special Functions: e^x and 1/x</title>
+<style>
+  :root{--accent:#186a3b;--accent2:#239b56;--bg:#f2f7f4;--card:#fff;--ok:#1e8449;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:#1c2833;background:var(--bg);margin:0;padding:0 16px 80px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -16px 20px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  nav{display:flex;gap:10px;margin-bottom:18px;font-size:.9rem;flex-wrap:wrap;}
+  nav a{color:var(--accent);text-decoration:none;font-weight:600;background:#fff;border:1px solid #d5e8dc;border-radius:8px;padding:6px 14px;}
+  nav a:hover{background:#eafaf1;}
+  .goal{background:#fef9e7;border-left:5px solid var(--star);padding:12px 18px;border-radius:8px;margin-bottom:18px;font-size:.95rem;}
+  .goal strong{color:#7d6608;}
+  section{background:var(--card);border-radius:10px;padding:18px 22px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  h2{color:var(--accent);font-size:1.15rem;margin:0 0 10px;}
+  h2 .num{background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;border-radius:6px;padding:2px 9px;margin-right:8px;}
+  ul{margin:8px 0;padding-left:24px;}
+  li{margin-bottom:8px;}
+  strong{color:#145a32;}
+  em.hi{font-style:normal;background:#fef9e7;padding:0 4px;border-radius:3px;}
+  .fml{background:#e9f7ef;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.9em;color:#186a3b;white-space:nowrap;}
+  .ex{background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:.95rem;}
+  .ex b{color:#145a32;}
+  .graph{background:#1b2631;color:#eaeded;border-radius:8px;padding:14px 18px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.82rem;line-height:1.45;overflow-x:auto;margin:10px 0;white-space:pre;}
+  .graph .g{color:#82e0aa;} .graph .y{color:#f7dc6f;} .graph .b{color:#85c1e9;}
+  table.t{border-collapse:collapse;margin:10px 0;font-size:.92rem;}
+  table.t th,table.t td{border:1px solid #cfd8cf;padding:6px 12px;text-align:center;}
+  table.t th{background:var(--accent);color:#fff;font-weight:600;}
+  .qhead{margin:26px 0 8px;color:var(--accent);font-size:1.2rem;border-bottom:2px solid #d4efdf;padding-bottom:6px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid var(--accent2);}
+  .qnum{font-weight:800;color:var(--accent);margin-right:6px;}
+  .qtag{float:right;background:#e9f7ef;color:var(--accent);border-radius:8px;padding:1px 9px;font-size:.68rem;font-weight:700;letter-spacing:.3px;margin-left:8px;}
+  .qtext{font-size:.98rem;margin:4px 0 10px;}
+  .revealbtn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .revealbtn:hover{background:#0e4429;}
+  .sol{display:none;margin-top:12px;background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px;font-size:.93rem;}
+  .sol.show{display:block;}
+  .sol h4{margin:0 0 8px;color:var(--ok);font-size:.9rem;}
+  .sol .ctx{background:#eaf2f8;border-left:4px solid #2e86c1;border-radius:6px;padding:8px 12px;margin:0 0 10px;font-size:.88rem;}
+  .sol .ctx b{color:#1a5276;}
+  .sol .step{margin:6px 0;}
+  .sol .ans{background:#eafaf1;border-radius:6px;padding:6px 12px;margin-top:8px;font-weight:700;color:#145a32;display:inline-block;}
+  footer{text-align:center;color:#85929e;font-size:.85rem;margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Lesson 15 — Two Special Functions: e<sup>x</sup> and 1/x</h1>
+  <p>The number nature keeps choosing, and the power rule's missing case · Intuitive Calculus for a Curious Student · Lesson 15 of 20</p>
+</header>
+
+<nav><a href="index.html">📚 All lessons</a><a href="Lesson14.html">← Prev: Lesson 14</a><a href="Lesson16.html">Next: Lesson 16 →</a></nav>
+
+<div class="goal"><strong>🎯 Goal of this lesson:</strong> meet two celebrity functions and their integrals: <span class="fml">∫e<sup>x</sup> dx = e<sup>x</sup> + C</span> (the easiest antiderivative in the world) and <span class="fml">∫(1/x) dx = ln x + C</span> (the case the power rule couldn't handle). Along the way, meet the number e and the natural logarithm ln from scratch.</div>
+
+<section>
+  <h2><span class="num">1</span> A gap in the power rule</h2>
+  <ul>
+    <li>Your trusty power rule says: <span class="fml">∫x<sup>n</sup> dx = x<sup>n+1</sup>/(n+1) + C</span>. Raise the power by one, divide by the new power. It has handled everything so far: x², x³, even x⁵.</li>
+    <li>But try it on <span class="fml">1/x</span>, which is the same as <span class="fml">x<sup>−1</sup></span> (a power of −1). The rule says: raise the power to 0, then divide by the new power… <em class="hi">divide by ZERO!</em> <span class="fml">x<sup>0</sup>/0</span> is meaningless.</li>
+    <li>This isn't a small technicality — the rule genuinely breaks for exactly one exponent: <strong>n = −1</strong>. Every other power of x has a power-of-x antiderivative. <span class="fml">1/x</span> needs a completely different kind of answer.</li>
+    <li>So <span class="fml">∫(1/x) dx</span> needs its own story — and the story stars a famous number. Meet it first.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">2</span> Meet e — the number nature keeps choosing</h2>
+  <ul>
+    <li>There is a special number, written <strong>e</strong>, roughly <em class="hi">e ≈ 2.718…</em> — a never-ending decimal, like π. It shows up wherever things grow <strong>in proportion to their own size</strong>: populations (more rabbits make more rabbits), money with continuously-compounding interest (more money earns more interest), and much more.</li>
+    <li>Here's what makes e magical. Consider the function <span class="fml">e<sup>x</sup></span> — the number e raised to the power x. This function has a property no other basic function has: <em class="hi">it is its OWN derivative</em>. At every point, its height equals its slope. When e<sup>x</sup> has height 5, it's climbing at slope 5. Height 100? Climbing at slope 100. <strong>Its growth rate always equals its size.</strong></li>
+    <li>That is exactly what "growth proportional to size" means — which is why nature keeps choosing this function.</li>
+    <li>And for us integrators, this is fantastic news. An antiderivative of f is a function whose derivative is f. What has derivative e<sup>x</sup>? Why, <strong>e<sup>x</sup> itself!</strong></li>
+  </ul>
+  <div class="ex"><b>The easiest antiderivative in the world:</b> <span class="fml">∫e<sup>x</sup> dx = e<sup>x</sup> + C</span>.<br>
+  No powers to adjust, nothing to divide. The function just… stays itself. (Don't forget the + C — any constant shift also works, since constants have derivative 0.)</div>
+</section>
+
+<section>
+  <h2><span class="num">3</span> Meet ln x — the natural logarithm, from scratch</h2>
+  <ul>
+    <li><strong>ln x</strong> (say it "ell-enn of x", the <em>natural logarithm</em>) answers one question: <em class="hi">"e raised to WHAT power gives x?"</em></li>
+    <li>Practice reading it:
+      <ul>
+        <li><span class="fml">ln 1 = 0</span> — because e<sup>0</sup> = 1 (anything to the 0 power is 1).</li>
+        <li><span class="fml">ln e = 1</span> — because e<sup>1</sup> = e.</li>
+        <li><span class="fml">ln(e<sup>2</sup>) = 2</span> — because e to the power 2 gives e². (In general, ln undoes e-to-the-power.)</li>
+      </ul>
+    </li>
+    <li>So <span class="fml">ln x</span> and <span class="fml">e<sup>x</sup></span> are <strong>inverses</strong> — each undoes the other, the way squaring and square-rooting undo each other. e<sup>x</sup> turns a power into a value; ln turns the value back into the power.</li>
+    <li>Feel for its shape (for positive x): ln 1 = 0, ln e ≈ ln 2.72 = 1, ln(e²) ≈ ln 7.39 = 2. It climbs forever, but more and more slowly — to gain each extra +1, x has to multiply by e all over again.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">4</span> The missing case, solved</h2>
+  <ul>
+    <li>Here is the beautiful fact that fills the power rule's hole: <em class="hi">the derivative of ln x is exactly 1/x</em>. (You'll prove this properly in a later course — for now, trust it and enjoy it.)</li>
+    <li>Plausibility check — the shapes match perfectly. <strong>ln x grows quickly when x is small</strong> (from x = 1 to x = 2.72 it gains a whole +1) <strong>and slowly when x is big</strong> (from 100 it needs to reach 272 to gain the next +1). Meanwhile <strong>1/x is big for small x and small for big x</strong>. A function's derivative is its climbing speed — and ln's climbing speed behaves exactly like 1/x:</li>
+  </ul>
+  <div class="graph">  1/x — the slope of ln x
+ 4 |<span class="y">·</span>
+   | <span class="y">·</span>        1/x is TALL near 0
+ 2 |  <span class="y">·</span>        (ln climbs fast there)
+ 1 |    <span class="y">· ·</span>
+   |        <span class="y">· · · ·</span>  …and LOW out here
+ 0 +————————————————<span class="y">· · · · ·</span>——→ x
+   0    1    2    3    4    5
+
+ ln x — always climbing, ever slower
+ 2 |                        <span class="g">_ — ‾</span>
+ 1 |        <span class="g">_ — ‾ ‾</span>
+ 0 +———<span class="g">·</span>——————————————————————→ x
+   |  <span class="g">/</span>1        (crosses zero at x = 1,
+−1 | <span class="g">|</span>          since ln 1 = 0)</div>
+  <div class="ex"><b>The missing case:</b> <span class="fml">∫(1/x) dx = ln x + C</span> (for positive x).<br>
+  The one power the power rule couldn't integrate turns out to have a logarithm as its antiderivative — a completely different species of function. That's why it needed its own lesson.</div>
+</section>
+
+<section>
+  <h2><span class="num">5</span> Worked examples — putting both to work</h2>
+  <div class="ex"><b>Example 1:</b> <span class="fml">∫<sub>1</sub><sup>e</sup> (1/x) dx</span> = ln x evaluated from 1 to e = ln e − ln 1 = 1 − 0 = <b>1</b>.<br>
+  The area under 1/x from 1 to e is exactly 1 — a famous, beautiful fact.</div>
+  <div class="ex"><b>Example 2:</b> <span class="fml">∫<sub>0</sub><sup>1</sup> e<sup>x</sup> dx</span> = e<sup>x</sup> evaluated from 0 to 1 = e<sup>1</sup> − e<sup>0</sup> = e − 1 ≈ 2.718 − 1 = <b>1.72</b> (rounded).<br>
+  Leave answers with e or ln in them in <em>exact</em> form first, then give a decimal if asked.</div>
+  <div class="ex"><b>Example 3 (constant multiples ride along):</b> <span class="fml">∫(5/x) dx = 5 ln x + C</span> — because 5/x is just 5 × (1/x).<br>
+  Likewise <span class="fml">∫2e<sup>x</sup> dx = 2e<sup>x</sup> + C</span>. Check by differentiating: the derivative of 2e<sup>x</sup> is 2e<sup>x</sup> ✓.</div>
+  <ul>
+    <li>Everything you know still applies: FTC (plug in top, subtract bottom), term-by-term integration, and checking answers by differentiating. Only the antiderivative <em>lookup</em> is new.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">6</span> Where these two rule the world</h2>
+  <ul>
+    <li><strong>Radioactive decay:</strong> the more atoms remain, the more decays happen per second — rate proportional to amount. The amount left follows an e-power curve.</li>
+    <li><strong>Compound interest:</strong> money earning interest continuously grows in proportion to how much is there — banks literally compute with e.</li>
+    <li><strong>Cooling coffee:</strong> the hotter your coffee is compared to the room, the faster it loses heat — so the temperature gap shrinks along an e-curve.</li>
+    <li>The pattern in all three: <em class="hi">the rate of change is proportional to the amount present</em>. Whenever a scientist writes that sentence, e walks in the door — and integrating those rates brings ln along too. These two functions aren't textbook curiosities; they're the mathematics of growth and decay itself.</li>
+  </ul>
+</section>
+
+<div class="qhead">✏️ Exercises — 20 problems (write your answer on paper, then reveal)</div>
+
+<div class="q"><span class="qnum">1.</span><span class="qtag">ln warmup</span>
+  <div class="qtext">Evaluate without a calculator: (a) ln 1 &nbsp; (b) ln e &nbsp; (c) ln(e³).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> ln x asks one question: "e to WHAT power gives x?" To evaluate ln of something, rewrite that something as e-to-a-power; the answer is the power.</div>
+    <div class="step">(a) e to what power gives 1? Power 0, since e<sup>0</sup> = 1. So ln 1 = 0.</div>
+    <div class="step">(b) e to what power gives e? Power 1. So ln e = 1.</div>
+    <div class="step">(c) e to what power gives e³? Power 3. So ln(e³) = 3.</div>
+    <div class="ans">(a) 0 &nbsp; (b) 1 &nbsp; (c) 3</div></div>
+</div>
+
+<div class="q"><span class="qnum">2.</span><span class="qtag">antiderivative</span>
+  <div class="qtext">Find <span class="fml">∫e<sup>x</sup> dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> an antiderivative of f is any function whose derivative is f. The superpower of e<sup>x</sup> is that it is its own derivative — so it is also its own antiderivative. The + C tags along because constants have derivative 0, so shifted copies work too.</div>
+    <div class="step">We need a function whose derivative is e<sup>x</sup>. That's e<sup>x</sup> itself.</div>
+    <div class="step">Check by differentiating: the derivative of e<sup>x</sup> + C is e<sup>x</sup> + 0 = e<sup>x</sup> ✓.</div>
+    <div class="ans">e<sup>x</sup> + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">3.</span><span class="qtag">antiderivative</span>
+  <div class="qtext">Find <span class="fml">∫3e<sup>x</sup> dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a constant multiplier passes straight through an integral: ∫3·(something) = 3·∫(something). This is the same rule you've used since the power-rule lessons — it works for the new functions too.</div>
+    <div class="step"><span class="fml">∫3e<sup>x</sup> dx = 3∫e<sup>x</sup> dx = 3e<sup>x</sup> + C</span>.</div>
+    <div class="step">Check: the derivative of 3e<sup>x</sup> is 3e<sup>x</sup> ✓.</div>
+    <div class="ans">3e<sup>x</sup> + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">4.</span><span class="qtag">antiderivative</span>
+  <div class="qtext">Find <span class="fml">∫(1/x) dx</span> (for positive x).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> this is the power rule's missing case (n = −1 would force division by zero). The fix comes from a new fact: the derivative of ln x is exactly 1/x. So ln x is the antiderivative we need.</div>
+    <div class="step">We need a function whose derivative is 1/x: that's ln x.</div>
+    <div class="step">So <span class="fml">∫(1/x) dx = ln x + C</span> (we stay with positive x, where ln x is defined).</div>
+    <div class="ans">ln x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">5.</span><span class="qtag">antiderivative</span>
+  <div class="qtext">Find <span class="fml">∫(4/x) dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> 4/x means 4 × (1/x), and constant multiples pass through the integral. Combine that with the new fact ∫(1/x) dx = ln x + C.</div>
+    <div class="step"><span class="fml">∫(4/x) dx = 4∫(1/x) dx = 4 ln x + C</span>.</div>
+    <div class="step">Check: the derivative of 4 ln x is 4 × (1/x) = 4/x ✓.</div>
+    <div class="ans">4 ln x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">6.</span><span class="qtag">conceptual</span>
+  <div class="qtext">Explain in a sentence or two: why can't the power rule <span class="fml">∫x<sup>n</sup> dx = x<sup>n+1</sup>/(n+1) + C</span> handle 1/x?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> 1/x is a power of x in disguise: <span class="fml">1/x = x<sup>−1</sup></span> (a negative exponent means "one over"). So it LOOKS like power-rule territory — until you actually turn the crank.</div>
+    <div class="step">The power rule with n = −1 says: raise the exponent by one (getting x<sup>0</sup>) and divide by the new exponent, which is −1 + 1 = 0.</div>
+    <div class="step">Dividing by zero is meaningless, so the rule produces nonsense for exactly this one exponent. The real antiderivative isn't a power of x at all — it's ln x, a different species of function.</div>
+    <div class="ans">n = −1 makes the rule divide by zero; 1/x needs ln x instead</div></div>
+</div>
+
+<div class="q"><span class="qnum">7.</span><span class="qtag">mixed antiderivative</span>
+  <div class="qtext">Find <span class="fml">∫(x<sup>2</sup> + 1/x) dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> integrate a sum term by term, using whichever rule fits each term: the power rule handles x² (raise the power, divide by it), and the new ln rule handles 1/x. Old and new tools work side by side.</div>
+    <div class="step">Term 1: <span class="fml">∫x<sup>2</sup> dx = x<sup>3</sup>/3</span>.</div>
+    <div class="step">Term 2: <span class="fml">∫(1/x) dx = ln x</span>.</div>
+    <div class="step">Together (one + C covers everything): x³/3 + ln x + C.</div>
+    <div class="ans">x<sup>3</sup>/3 + ln x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">8.</span><span class="qtag">check by differentiating</span>
+  <div class="qtext">Your friend claims that F(x) = x³/3 + ln x is an antiderivative of f(x) = x² + 1/x. Verify the claim by differentiating F. (Recall: the derivative of x³/3 is x², and the derivative of ln x is 1/x.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> every antiderivative claim can be checked with one move: differentiate the answer and see if you land back on the original function. This check is your safety net — it never lies, and it works no matter how the antiderivative was found.</div>
+    <div class="step">Differentiate term by term: the derivative of x³/3 is 3x²/3 = x².</div>
+    <div class="step">The derivative of ln x is 1/x.</div>
+    <div class="step">Sum: x² + 1/x — exactly f(x). The claim is correct.</div>
+    <div class="ans">F′(x) = x² + 1/x = f(x) ✓ — the claim checks out</div></div>
+</div>
+
+<div class="q"><span class="qnum">9.</span><span class="qtag">definite integral</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>1</sub><sup>e</sup> (1/x) dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the Fundamental Theorem: find an antiderivative, plug in the top limit, subtract the bottom limit. Antiderivative of 1/x: ln x. Then remember your ln values: ln e = 1 and ln 1 = 0.</div>
+    <div class="step"><span class="fml">∫<sub>1</sub><sup>e</sup> (1/x) dx = ln x</span> evaluated from 1 to e.</div>
+    <div class="step">= ln e − ln 1 = 1 − 0 = 1.</div>
+    <div class="step">Meaning: the area under the curve 1/x between x = 1 and x = e is exactly 1. (In fact, that's one way mathematicians <em>define</em> e!)</div>
+    <div class="ans">1</div></div>
+</div>
+
+<div class="q"><span class="qnum">10.</span><span class="qtag">definite integral</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>1</sub><sup>e<sup>2</sup></sup> (1/x) dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> same FTC recipe; the only new skill is evaluating ln at the top limit e². Remember: ln(e²) asks "e to what power gives e²?" — answer 2, because ln undoes e-to-the-power.</div>
+    <div class="step"><span class="fml">∫<sub>1</sub><sup>e<sup>2</sup></sup> (1/x) dx = ln x</span> evaluated from 1 to e².</div>
+    <div class="step">= ln(e²) − ln 1 = 2 − 0 = 2.</div>
+    <div class="step">Nice pattern: from 1 to e the area is 1; from 1 to e² it's 2. Each extra multiplication by e adds exactly 1 more unit of area.</div>
+    <div class="ans">2</div></div>
+</div>
+
+<div class="q"><span class="qnum">11.</span><span class="qtag">definite integral</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>0</sub><sup>1</sup> e<sup>x</sup> dx</span>. Give the exact answer, then a decimal rounded to two places.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> antiderivative of e<sup>x</sup> is e<sup>x</sup>; then FTC. Useful values: e<sup>0</sup> = 1 (anything to the 0 power is 1) and e<sup>1</sup> = e ≈ 2.718. "Exact" means leave e in the answer; the decimal is an approximation.</div>
+    <div class="step"><span class="fml">∫<sub>0</sub><sup>1</sup> e<sup>x</sup> dx = e<sup>x</sup></span> evaluated from 0 to 1 = e<sup>1</sup> − e<sup>0</sup> = e − 1.</div>
+    <div class="step">Decimal: e − 1 ≈ 2.718 − 1 = 1.718 ≈ 1.72.</div>
+    <div class="ans">Exact: e − 1 &nbsp; · &nbsp; decimal ≈ 1.72</div></div>
+</div>
+
+<div class="q"><span class="qnum">12.</span><span class="qtag">definite integral</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>0</sub><sup>2</sup> e<sup>x</sup> dx</span>. Exact answer first, then a decimal (use e² ≈ 7.39).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> same recipe as the last problem, wider interval. e² means e × e ≈ 2.718 × 2.718 ≈ 7.39. Notice how fast e<sup>x</sup> grows — doubling the interval much more than doubles the area.</div>
+    <div class="step"><span class="fml">∫<sub>0</sub><sup>2</sup> e<sup>x</sup> dx = e<sup>x</sup></span> evaluated from 0 to 2 = e<sup>2</sup> − e<sup>0</sup> = e² − 1.</div>
+    <div class="step">Decimal: e² − 1 ≈ 7.39 − 1 = 6.39.</div>
+    <div class="step">Compare: [0, 1] gave ≈ 1.72; [0, 2] gives ≈ 6.39 — over 3½ times as much for twice the width. Exponential growth piles up fast!</div>
+    <div class="ans">Exact: e² − 1 &nbsp; · &nbsp; decimal ≈ 6.39</div></div>
+</div>
+
+<div class="q"><span class="qnum">13.</span><span class="qtag">mixed antiderivative</span>
+  <div class="qtext">Find <span class="fml">∫(2e<sup>x</sup> + 3/x) dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> term by term, with constant multiples passing through: ∫2e<sup>x</sup> = 2e<sup>x</sup>, and ∫3/x = 3 ln x. Both new rules in one problem.</div>
+    <div class="step">Term 1: <span class="fml">∫2e<sup>x</sup> dx = 2e<sup>x</sup></span>.</div>
+    <div class="step">Term 2: <span class="fml">∫(3/x) dx = 3 ln x</span>.</div>
+    <div class="step">Check by differentiating: derivative of 2e<sup>x</sup> + 3 ln x is 2e<sup>x</sup> + 3/x ✓.</div>
+    <div class="ans">2e<sup>x</sup> + 3 ln x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">14.</span><span class="qtag">conceptual</span>
+  <div class="qtext">In your own words: what is so special about the function e<sup>x</sup>, and why does that property make it the easiest function in the world to integrate?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> integrating means finding an antiderivative — a function whose derivative is the one you started with. Usually that's a hunt. For e<sup>x</sup>, the hunt ends before it starts.</div>
+    <div class="step">The special property: e<sup>x</sup> is its own derivative. Its slope at every point equals its height at that point — its growth rate always equals its current size (which is why it models populations and compound interest).</div>
+    <div class="step">Why that makes integration trivial: we need a function whose derivative is e<sup>x</sup>… and e<sup>x</sup> itself fits perfectly. The function is its own answer: <span class="fml">∫e<sup>x</sup> dx = e<sup>x</sup> + C</span>. Nothing to adjust, nothing to divide.</div>
+    <div class="ans">e<sup>x</sup> is its own derivative (height = slope), so it's also its own antiderivative</div></div>
+</div>
+
+<div class="q"><span class="qnum">15.</span><span class="qtag">definite · exact + decimal</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>1</sub><sup>4</sup> (2/x) dx</span>. Give the exact answer, then a decimal (use ln 4 ≈ 1.39).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> antiderivative of 2/x is 2 ln x (constant multiple rides along). At the bottom limit, ln 1 = 0 — a very convenient bottom limit! For decimals of ln values that aren't powers of e, a calculator (or a given approximation) is fine.</div>
+    <div class="step"><span class="fml">∫<sub>1</sub><sup>4</sup> (2/x) dx = 2 ln x</span> evaluated from 1 to 4.</div>
+    <div class="step">= 2 ln 4 − 2 ln 1 = 2 ln 4 − 0 = 2 ln 4.</div>
+    <div class="step">Decimal: 2 × 1.39 ≈ 2.77.</div>
+    <div class="ans">Exact: 2 ln 4 &nbsp; · &nbsp; decimal ≈ 2.77</div></div>
+</div>
+
+<div class="q"><span class="qnum">16.</span><span class="qtag">definite · surprise answer</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>1</sub><sup>e</sup> (1/x + 1) dx</span>. Simplify your exact answer as far as possible — it comes out surprisingly clean.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> term-by-term: antiderivative of 1/x is ln x, antiderivative of 1 is x. Then FTC with limits 1 and e. Keep everything exact and watch the pieces combine.</div>
+    <div class="step">Antiderivative: ln x + x. Evaluate from 1 to e:</div>
+    <div class="step">Top: ln e + e = 1 + e. Bottom: ln 1 + 1 = 0 + 1 = 1.</div>
+    <div class="step">Answer: (1 + e) − 1 = e. The whole integral collapses to just e ≈ 2.72!</div>
+    <div class="ans">e (≈ 2.72)</div></div>
+</div>
+
+<div class="q"><span class="qnum">17.</span><span class="qtag">growth story</span>
+  <div class="qtext">A bacteria colony grows so that new bacteria are added at the rate r(t) = e<sup>t</sup> hundred bacteria per hour (the rate itself grows — because more bacteria make more bacteria!). How many bacteria are added between t = 0 and t = 2 hours? Exact, then approximate (e² ≈ 7.39).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> integrating a rate gives the total accumulated (Lesson 13) — that works for ANY rate function, including our new e<sup>t</sup>. The units here are "hundred bacteria per hour," so the integral's answer is in hundreds of bacteria. This kind of self-feeding growth (rate proportional to size) is exactly where e lives in nature.</div>
+    <div class="step">Total added = <span class="fml">∫<sub>0</sub><sup>2</sup> e<sup>t</sup> dt = e<sup>t</sup></span> evaluated from 0 to 2 = e² − 1.</div>
+    <div class="step">Approximate: e² − 1 ≈ 7.39 − 1 = 6.39 hundred bacteria.</div>
+    <div class="step">6.39 hundred = about 639 bacteria.</div>
+    <div class="ans">Exact: e² − 1 hundred bacteria &nbsp; · &nbsp; ≈ 639 bacteria</div></div>
+</div>
+
+<div class="q"><span class="qnum">18.</span><span class="qtag">definite integral</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>1</sub><sup>e</sup> (5/x) dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> constant multiple + the ln antiderivative + FTC. Remember the key values: ln e = 1, ln 1 = 0. When those are the limits, ln integrals come out beautifully clean.</div>
+    <div class="step"><span class="fml">∫<sub>1</sub><sup>e</sup> (5/x) dx = 5 ln x</span> evaluated from 1 to e.</div>
+    <div class="step">= 5 ln e − 5 ln 1 = 5 × 1 − 5 × 0 = 5.</div>
+    <div class="ans">5</div></div>
+</div>
+
+<div class="q"><span class="qnum">19.</span><span class="qtag">find the function</span>
+  <div class="qtext">Find the function F such that F′(x) = 1/x AND F(1) = 4. (In words: among all the antiderivatives of 1/x, find the one whose graph passes through the point (1, 4).)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> ∫(1/x) dx = ln x + C describes a whole FAMILY of antiderivatives — one for each choice of C. An extra condition like F(1) = 4 pins down which family member you want: plug in the point and solve for C. (You did this "find the +C" move back in the antiderivative lessons; only the ln is new.)</div>
+    <div class="step">General antiderivative: F(x) = ln x + C.</div>
+    <div class="step">Use the condition: F(1) = ln 1 + C = 0 + C = C. We need this to equal 4, so C = 4.</div>
+    <div class="step">Check: F(x) = ln x + 4 has derivative 1/x ✓ and F(1) = 0 + 4 = 4 ✓.</div>
+    <div class="ans">F(x) = ln x + 4</div></div>
+</div>
+
+<div class="q"><span class="qnum">20.</span><span class="qtag">challenge</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>1</sub><sup>4</sup> (2/x + x) dx</span>. Give the exact answer, then a decimal rounded to two places (use ln 4 ≈ 1.39).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a full mixed problem: one term needs the new ln rule (2/x → 2 ln x), one needs the old power rule (x → x²/2), and the FTC stitches it together. Keep exact values (with ln 4 left as ln 4) until the very last step.</div>
+    <div class="step">Antiderivative: 2 ln x + x²/2. Evaluate from 1 to 4:</div>
+    <div class="step">Top: 2 ln 4 + 16/2 = 2 ln 4 + 8. Bottom: 2 ln 1 + 1/2 = 0 + 0.5.</div>
+    <div class="step">Exact: (2 ln 4 + 8) − 0.5 = 2 ln 4 + 7.5.</div>
+    <div class="step">Decimal: 2 × 1.39 + 7.5 ≈ 2.77 + 7.5 = 10.27.</div>
+    <div class="ans">Exact: 2 ln 4 + 7.5 &nbsp; · &nbsp; decimal ≈ 10.27</div></div>
+</div>
+
+<footer>Lesson 15 of 20 · Intuitive Integration · next: <a href="Lesson16.html">Lesson 16 — Integrating Sine &amp; Cosine</a></footer>
+
+</div>
+<script>
+document.querySelectorAll('.q').forEach(q=>{
+  const btn=q.querySelector('.revealbtn'), sol=q.querySelector('.sol');
+  btn.addEventListener('click',()=>{ sol.classList.add('show'); btn.textContent='Solution shown'; btn.disabled=true; btn.style.opacity=.6; });
+});
+</script>
+</body>
+</html>

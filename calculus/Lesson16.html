@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 16 — Integrating Sine &amp; Cosine</title>
+<style>
+  :root{--accent:#186a3b;--accent2:#239b56;--bg:#f2f7f4;--card:#fff;--ok:#1e8449;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:#1c2833;background:var(--bg);margin:0;padding:0 16px 80px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -16px 20px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  nav{display:flex;gap:10px;margin-bottom:18px;font-size:.9rem;flex-wrap:wrap;}
+  nav a{color:var(--accent);text-decoration:none;font-weight:600;background:#fff;border:1px solid #d5e8dc;border-radius:8px;padding:6px 14px;}
+  nav a:hover{background:#eafaf1;}
+  .goal{background:#fef9e7;border-left:5px solid var(--star);padding:12px 18px;border-radius:8px;margin-bottom:18px;font-size:.95rem;}
+  .goal strong{color:#7d6608;}
+  section{background:var(--card);border-radius:10px;padding:18px 22px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  h2{color:var(--accent);font-size:1.15rem;margin:0 0 10px;}
+  h2 .num{background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;border-radius:6px;padding:2px 9px;margin-right:8px;}
+  ul{margin:8px 0;padding-left:24px;}
+  li{margin-bottom:8px;}
+  strong{color:#145a32;}
+  em.hi{font-style:normal;background:#fef9e7;padding:0 4px;border-radius:3px;}
+  .fml{background:#e9f7ef;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.9em;color:#186a3b;white-space:nowrap;}
+  .ex{background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:.95rem;}
+  .ex b{color:#145a32;}
+  .graph{background:#1b2631;color:#eaeded;border-radius:8px;padding:14px 18px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.82rem;line-height:1.45;overflow-x:auto;margin:10px 0;white-space:pre;}
+  .graph .g{color:#82e0aa;} .graph .y{color:#f7dc6f;} .graph .b{color:#85c1e9;}
+  table.t{border-collapse:collapse;margin:10px 0;font-size:.92rem;}
+  table.t th,table.t td{border:1px solid #cfd8cf;padding:6px 12px;text-align:center;}
+  table.t th{background:var(--accent);color:#fff;font-weight:600;}
+  .qhead{margin:26px 0 8px;color:var(--accent);font-size:1.2rem;border-bottom:2px solid #d4efdf;padding-bottom:6px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid var(--accent2);}
+  .qnum{font-weight:800;color:var(--accent);margin-right:6px;}
+  .qtag{float:right;background:#e9f7ef;color:var(--accent);border-radius:8px;padding:1px 9px;font-size:.68rem;font-weight:700;letter-spacing:.3px;margin-left:8px;}
+  .qtext{font-size:.98rem;margin:4px 0 10px;}
+  .revealbtn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .revealbtn:hover{background:#0e4429;}
+  .sol{display:none;margin-top:12px;background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px;font-size:.93rem;}
+  .sol.show{display:block;}
+  .sol h4{margin:0 0 8px;color:var(--ok);font-size:.9rem;}
+  .sol .ctx{background:#eaf2f8;border-left:4px solid #2e86c1;border-radius:6px;padding:8px 12px;margin:0 0 10px;font-size:.88rem;}
+  .sol .ctx b{color:#1a5276;}
+  .sol .step{margin:6px 0;}
+  .sol .ans{background:#eafaf1;border-radius:6px;padding:6px 12px;margin-top:8px;font-weight:700;color:#145a32;display:inline-block;}
+  footer{text-align:center;color:#85929e;font-size:.85rem;margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Lesson 16 — Integrating Sine &amp; Cosine</h1>
+  <p>The Wave Functions Join the Toolbox · Intuitive Calculus for a Curious Student · Lesson 16 of 20</p>
+</header>
+
+<nav><a href="index.html">📚 All lessons</a><a href="Lesson15.html">← Prev: Lesson 15</a><a href="Lesson17.html">Next: Lesson 17 →</a></nav>
+
+<div class="goal"><strong>🎯 Goal of this lesson:</strong> meet the two wave functions, <em>sine</em> and <em>cosine</em>, learn their antiderivatives — <span class="fml">∫cos x dx = sin x + C</span> and <span class="fml">∫sin x dx = −cos x + C</span> — and use them to find areas under waves. One sneaky minus sign wants to trip you up; by the end you'll see it coming every time.</div>
+
+<section>
+  <h2><span class="num">1</span> Sine and cosine — the two wave functions</h2>
+  <ul>
+    <li>Picture a point riding around a circle of radius 1, counterclockwise, at a steady pace. Track two numbers as it goes: <strong>sin x</strong> is the point's <em>height</em> (how far above or below the center), and <strong>cos x</strong> is how far it is to the <em>right or left</em> of the center. Here <span class="fml">x</span> is how far around the circle the point has traveled.</li>
+    <li>As the point loops around and around, both numbers rise and fall forever between <strong>−1 and +1</strong>, over and over. Graphed, each one is a smooth, endless <em class="hi">wave</em>.</li>
+    <li>That's why these two functions matter so much: they describe <strong>anything that repeats</strong> — tides going in and out, a swing rocking back and forth, sound waves, your breathing, the seasons. Whenever nature cycles, sine and cosine are the math underneath.</li>
+    <li>They're the same wave, just shifted: cosine starts at the top (value 1), sine starts in the middle (value 0) heading up.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">2</span> Radians — the angle measure calculus loves</h2>
+  <ul>
+    <li>Instead of splitting a full turn into 360 degrees, calculus measures angles by the <strong>distance walked around a circle of radius 1</strong>. A full lap around that circle is a walk of length <span class="fml">2π ≈ 6.28</span>, so: <em class="hi">full turn = 2π, half turn = π, quarter turn = π/2</em>. That's the whole idea — an angle is just "how far around have I walked?" This measure is called <strong>radians</strong>, and the clean calculus formulas below are <strong>only true in radians</strong> (in degrees they'd sprout ugly conversion factors), so radians it is from here on.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">3</span> The value table to know</h2>
+  <ul>
+    <li>You only need sine and cosine's values at the five "landmark" points of one lap — start, quarter, half, three-quarters, full. Everything in this lesson runs on this little table:</li>
+  </ul>
+  <table class="t">
+    <tr><th>x</th><th>0</th><th>π/2</th><th>π</th><th>3π/2</th><th>2π</th></tr>
+    <tr><td><b>sin x</b></td><td>0</td><td>1</td><td>0</td><td>−1</td><td>0</td></tr>
+    <tr><td><b>cos x</b></td><td>1</td><td>0</td><td>−1</td><td>0</td><td>1</td></tr>
+  </table>
+  <ul>
+    <li>Memory helper: sine (the height) goes <em class="hi">middle → top → middle → bottom → middle</em>: 0, 1, 0, −1, 0. Cosine does the same dance but starting at the top: 1, 0, −1, 0, 1.</li>
+  </ul>
+  <div class="graph"> 1 |      <span class="g">_____</span>                          sin x
+   |    <span class="g">/</span>       <span class="g">\</span>
+   |  <span class="g">/</span>  <span class="b">area=2</span>  <span class="g">\</span>
+ 0 <span class="y">+--------------</span><span class="g">\</span><span class="y">----------------+--→</span> x
+   <span class="y">0      π/2     π</span> <span class="g">\</span>     <span class="y">3π/2</span>  <span class="g">/</span> <span class="y">2π</span>
+   |                <span class="g">\</span>  <span class="b">area=−2</span><span class="g">/</span>
+−1 |                  <span class="g">\_____/</span></div>
+</section>
+
+<section>
+  <h2><span class="num">4</span> The derivative facts (the circle of facts)</h2>
+  <ul>
+    <li>From derivatives you may remember this beautiful pair — take it as our starting point:</li>
+    <li><span class="fml">(sin x)′ = cos x</span> &nbsp; and &nbsp; <span class="fml">(cos x)′ = −sin x</span></li>
+    <li>Notice the pattern: differentiating walks you around a little circle of four facts — sin → cos → −sin → −cos → back to sin. <em class="hi">The minus sign appears only when a cosine gets differentiated.</em></li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">5</span> Reversing them — watch the minus sign!</h2>
+  <ul>
+    <li>Integration is the reverse of differentiation (Lessons 4–5): to integrate a function, ask <em>"what has THIS as its derivative?"</em></li>
+    <li><strong>Cosine is easy:</strong> what has derivative cos x? Sine does! So <span class="fml">∫cos x dx = sin x + C</span>.</li>
+    <li><strong>Sine needs care:</strong> what has derivative sin x? Your first guess might be cos x — but <span class="fml">(cos x)′ = −sin x</span>. Wrong sign! Fix it by flipping the sign of the guess: try <strong>−cos x</strong>. Check: <span class="fml">(−cos x)′ = −(−sin x) = sin x</span> ✓. So <span class="fml">∫sin x dx = −cos x + C</span>.</li>
+  </ul>
+  <div class="ex"><b>⚠️ THE classic trip-up — box this in your brain:</b><br>
+  <span class="fml">∫cos x dx = sin x + C</span> &nbsp;(no minus)<br>
+  <span class="fml">∫sin x dx = −cos x + C</span> &nbsp;(minus!)<br>
+  The minus sign lands on the <b>cosine</b>, and it appears when you integrate <b>sine</b>. If you're ever unsure, don't guess — <b>differentiate your answer</b> and see if you get back what's under the integral sign. Ten seconds of checking beats a wrong sign every time.</div>
+</section>
+
+<section>
+  <h2><span class="num">6</span> Definite integrals with the value table</h2>
+  <ul>
+    <li>Now combine the new antiderivatives with the FTC (Lessons 6–8): antiderivative at the top limit minus antiderivative at the bottom limit.</li>
+  </ul>
+  <div class="ex"><b>Worked example — one hump of sine:</b> <span class="fml">∫₀^π sin x dx = [−cos x]₀^π = (−cos π) − (−cos 0) = (−(−1)) − (−1) = 1 + 1 = 2</span>.<br>
+  The area under one full hump of the sine wave is <b>exactly 2</b>. Not 2-point-something — exactly 2. A curvy, flowing wave enclosing a perfectly whole-number area is one of calculus's most delightful little surprises.</div>
+  <div class="ex"><b>Worked example — quarter turn of cosine:</b> <span class="fml">∫₀<sup>π/2</sup> cos x dx = [sin x]₀<sup>π/2</sup> = sin(π/2) − sin 0 = 1 − 0 = 1</span>.<br>
+  Check the signs made sense: cos x is positive on that whole stretch, so a positive answer is exactly what we expected.</div>
+</section>
+
+<section>
+  <h2><span class="num">7</span> The signed-area connection</h2>
+  <ul>
+    <li>What about a whole lap? <span class="fml">∫₀<sup>2π</sup> sin x dx = [−cos x]₀<sup>2π</sup> = (−cos 2π) − (−cos 0) = (−1) − (−1) = 0</span>.</li>
+    <li>Zero?! Look at the picture in section 3: from 0 to π sine makes a hump <strong>above</strong> the axis (area +2), and from π to 2π an identical hump <strong>below</strong> the axis (signed area −2). From Lesson 9, area below the axis counts as negative — so the two humps <em class="hi">cancel exactly</em>: +2 + (−2) = 0.</li>
+    <li>Physically: if sin x is the rate water flows into a bay (in during the first half, out during the second), then after one full tide cycle the bay holds exactly what it started with. Net change: zero. The integral knew.</li>
+  </ul>
+</section>
+
+<div class="qhead">✏️ Exercises — 20 problems (write your answer on paper, then reveal)</div>
+
+<div class="q"><span class="qnum">1.</span><span class="qtag">antiderivative</span>
+  <div class="qtext">Find <span class="fml">∫cos x dx</span>. Then check your answer by differentiating it.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> an antiderivative of a function is anything whose derivative gives that function back. To integrate cos x, ask "what has derivative cos x?" — and always add + C, because any constant's derivative is 0, so a whole family of answers works.</div>
+    <div class="step">The derivative fact <span class="fml">(sin x)′ = cos x</span> answers the question directly: sin x works.</div>
+    <div class="step">Check by differentiating: (sin x + C)′ = cos x + 0 = cos x ✓ — exactly what's under the integral sign.</div>
+    <div class="ans">∫cos x dx = sin x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">2.</span><span class="qtag">antiderivative · the minus</span>
+  <div class="qtext">Find <span class="fml">∫sin x dx</span>. Then check your answer by differentiating it.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> we need something whose derivative is sin x. The tempting guess cos x fails, because <span class="fml">(cos x)′ = −sin x</span> — the sign is wrong. The fix for a wrong sign is simple: flip the sign of your guess.</div>
+    <div class="step">Guess −cos x instead. Check: <span class="fml">(−cos x)′ = −(−sin x) = sin x</span> ✓.</div>
+    <div class="step">So the antiderivative is −cos x, plus the usual constant.</div>
+    <div class="ans">∫sin x dx = −cos x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">3.</span><span class="qtag">value table</span>
+  <div class="qtext">Without looking at the table (then check yourself): what are <span class="fml">sin π</span> and <span class="fml">cos π</span>?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> x = π means a half turn around the unit circle — the moving point is now on the far LEFT of the circle. sin x is the point's height; cos x is how far right (positive) or left (negative) it is.</div>
+    <div class="step">Half way around, the point is level with the center → height = 0, so sin π = 0.</div>
+    <div class="step">It's a full radius to the LEFT → cos π = −1.</div>
+    <div class="ans">sin π = 0 &nbsp;&nbsp; cos π = −1</div></div>
+</div>
+
+<div class="q"><span class="qnum">4.</span><span class="qtag">constant multiple</span>
+  <div class="qtext">Find <span class="fml">∫2 sin x dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> from Lesson 5, a constant multiplier just rides along through integration: ∫2·(something) dx = 2·∫(something) dx. So this is the sine rule from problem 2, doubled.</div>
+    <div class="step">∫2 sin x dx = 2 · ∫sin x dx = 2 · (−cos x) + C = −2 cos x + C.</div>
+    <div class="step">Check by differentiating: (−2 cos x)′ = −2 · (−sin x) = 2 sin x ✓.</div>
+    <div class="ans">−2 cos x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">5.</span><span class="qtag">constant multiple</span>
+  <div class="qtext">Find <span class="fml">∫3 cos x dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> same idea — the constant 3 rides along. Cosine is the "friendly" one: its antiderivative is plain sin x, no minus sign anywhere.</div>
+    <div class="step">∫3 cos x dx = 3 · sin x + C = 3 sin x + C.</div>
+    <div class="step">Check: (3 sin x)′ = 3 cos x ✓.</div>
+    <div class="ans">3 sin x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">6.</span><span class="qtag">check by differentiating</span>
+  <div class="qtext">A friend claims <span class="fml">∫sin x dx = −cos x + C</span> but isn't sure about the minus sign. Settle it: differentiate −cos x, show every sign step, and explain in one sentence why the minus sign has to be there.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> "check by differentiating" is the universal answer-checker for integrals: if F′ gives back the function under the integral sign, F is right — no trust required. Here the key derivative fact is (cos x)′ = −sin x.</div>
+    <div class="step">Differentiate: (−cos x)′ = −(cos x)′ = −(−sin x) = sin x ✓. Two minus signs cancel.</div>
+    <div class="step">Why the minus must be there: differentiating cos x <b>produces</b> a minus sign, so we need to start with a minus already in place to cancel it and land on plain sin x.</div>
+    <div class="ans">(−cos x)′ = sin x, so ∫sin x dx = −cos x + C is correct</div></div>
+</div>
+
+<div class="q"><span class="qnum">7.</span><span class="qtag">sum of waves</span>
+  <div class="qtext">Find <span class="fml">∫(sin x + cos x) dx</span>, and check by differentiating.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> from Lesson 5, integrals split over plus signs: integrate each piece separately and add. The only danger here is putting the minus sign on the wrong piece — it belongs to the sine piece's answer.</div>
+    <div class="step">∫sin x dx = −cos x and ∫cos x dx = sin x.</div>
+    <div class="step">Add them: −cos x + sin x + C.</div>
+    <div class="step">Check: (−cos x + sin x)′ = sin x + cos x ✓.</div>
+    <div class="ans">sin x − cos x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">8.</span><span class="qtag">mixed with power rule</span>
+  <div class="qtext">Find <span class="fml">∫(x² + sin x) dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> old tools and new tools work side by side. The power rule (Lesson 5) says ∫x² dx = x³/3, and this lesson says ∫sin x dx = −cos x. Integrate term by term.</div>
+    <div class="step">∫x² dx = x³/3 &nbsp; and &nbsp; ∫sin x dx = −cos x.</div>
+    <div class="step">Together: x³/3 − cos x + C.</div>
+    <div class="step">Check: (x³/3 − cos x)′ = x² − (−sin x) = x² + sin x ✓.</div>
+    <div class="ans">x³/3 − cos x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">9.</span><span class="qtag">definite integral</span>
+  <div class="qtext">Compute <span class="fml">∫₀<sup>π/2</sup> cos x dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the FTC (Lessons 6–8): find an antiderivative, plug in the top limit, plug in the bottom limit, subtract. Antiderivative of cos x is sin x. You'll need the value table: sin(π/2) = 1 and sin 0 = 0.</div>
+    <div class="step">∫₀<sup>π/2</sup> cos x dx = [sin x]₀<sup>π/2</sup> = sin(π/2) − sin 0.</div>
+    <div class="step">= 1 − 0 = 1.</div>
+    <div class="step">Sanity check: cos x stays positive from 0 to π/2, so a positive area makes sense.</div>
+    <div class="ans">1</div></div>
+</div>
+
+<div class="q"><span class="qnum">10.</span><span class="qtag">definite integral</span>
+  <div class="qtext">Compute <span class="fml">∫₀<sup>π/2</sup> sin x dx</span>. (Careful — this one has the minus-sign antiderivative AND a subtraction of limits. Track every sign.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the antiderivative of sin x is −cos x, so the FTC gives [−cos x] between the limits: (−cos of top) − (−cos of bottom). Double negatives WILL appear — write every step down rather than juggling signs in your head. Table values: cos(π/2) = 0, cos 0 = 1.</div>
+    <div class="step">∫₀<sup>π/2</sup> sin x dx = [−cos x]₀<sup>π/2</sup> = (−cos(π/2)) − (−cos 0).</div>
+    <div class="step">= (−0) − (−1) = 0 + 1 = 1.</div>
+    <div class="step">Check the picture: sine climbs from 0 up to 1 on this stretch, all above the axis — a positive area a bit less than a 1-by-(π/2 ≈ 1.57) rectangle. 1 fits nicely.</div>
+    <div class="ans">1</div></div>
+</div>
+
+<div class="q"><span class="qnum">11.</span><span class="qtag">the famous hump</span>
+  <div class="qtext">Compute <span class="fml">∫₀^π sin x dx</span>, showing every sign step.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> from 0 to π, sine rises from 0 to 1 and comes back down to 0 — one complete hump above the axis. This integral is ITS area. Table values needed: cos π = −1 and cos 0 = 1.</div>
+    <div class="step">∫₀^π sin x dx = [−cos x]₀^π = (−cos π) − (−cos 0).</div>
+    <div class="step">= (−(−1)) − (−1) = 1 + 1 = 2.</div>
+    <div class="step">The area under one hump of sine is exactly 2. A smooth wave, a perfect whole number — worth remembering forever.</div>
+    <div class="ans">2</div></div>
+</div>
+
+<div class="q"><span class="qnum">12.</span><span class="qtag">signed area</span>
+  <div class="qtext">Compute <span class="fml">∫<sub>π/2</sub><sup>π</sup> cos x dx</span>. Your answer will be negative — explain what that negative means using the graph of cos x.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> from Lesson 9, a definite integral counts area BELOW the x-axis as negative. Between π/2 and π, cos x runs from 0 down to −1 — the whole stretch is below the axis, so expect a negative answer. Table values: sin π = 0, sin(π/2) = 1.</div>
+    <div class="step">∫<sub>π/2</sub><sup>π</sup> cos x dx = [sin x]<sub>π/2</sub><sup>π</sup> = sin π − sin(π/2).</div>
+    <div class="step">= 0 − 1 = −1.</div>
+    <div class="step">Meaning: the region between the cosine curve and the axis there has size 1, but it hangs below the axis, so the integral reports it as −1. If cos x were a rate (like water flow), this stretch would be "flowing out."</div>
+    <div class="ans">−1 (an area of size 1, below the axis)</div></div>
+</div>
+
+<div class="q"><span class="qnum">13.</span><span class="qtag">spot the error</span>
+  <div class="qtext">A student writes: <span class="fml">∫sin x dx = cos x + C</span>. Use check-by-differentiating to show this is wrong, then write the correct answer.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> this is THE most common sine/cosine integration mistake in the world, and differentiating catches it instantly. The test: differentiate the claimed answer — you must get back exactly what's under the integral sign, sign included.</div>
+    <div class="step">Differentiate the claim: (cos x)′ = −sin x. But the integral wanted +sin x. The sign is wrong → the claim is false.</div>
+    <div class="step">Correct answer: −cos x + C. Verify: (−cos x)′ = −(−sin x) = sin x ✓.</div>
+    <div class="ans">Wrong, because (cos x)′ = −sin x. Correct: ∫sin x dx = −cos x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">14.</span><span class="qtag">net zero</span>
+  <div class="qtext">Compute <span class="fml">∫₀<sup>2π</sup> sin x dx</span>, and explain in a sentence why the answer makes sense from the picture of the sine wave.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> 0 to 2π is one complete lap of the wave: a hump above the axis (0 to π), then a matching hump below (π to 2π). Signed area (Lesson 9) means the two can cancel. Table values: cos 2π = 1, cos 0 = 1.</div>
+    <div class="step">∫₀<sup>2π</sup> sin x dx = [−cos x]₀<sup>2π</sup> = (−cos 2π) − (−cos 0) = (−1) − (−1) = −1 + 1 = 0.</div>
+    <div class="step">Why it makes sense: the up-hump contributes +2 and the identical down-hump contributes −2; over a full cycle they cancel exactly.</div>
+    <div class="ans">0 — the hump above the axis cancels the hump below</div></div>
+</div>
+
+<div class="q"><span class="qnum">15.</span><span class="qtag">true area</span>
+  <div class="qtext">Problem 14 says the integral of sin x over [0, 2π] is 0 — but the wave clearly encloses real area! Find the TOTAL area between the curve y = sin x and the x-axis from 0 to 2π (counting the below-axis part as positive area, the way a painter buying paint would).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> from Lessons 9–10: when a curve dips below the axis, "true area" ≠ "signed integral." The recipe: split the interval where the curve crosses the axis, integrate each piece, and add the SIZES (absolute values). Sine crosses at x = π.</div>
+    <div class="step">Piece 1 (above axis): ∫₀^π sin x dx = [−cos x]₀^π = 1 + 1 = 2.</div>
+    <div class="step">Piece 2 (below axis): ∫_π<sup>2π</sup> sin x dx = [−cos x]_π<sup>2π</sup> = (−cos 2π) − (−cos π) = (−1) − (1) = −2. Its size is |−2| = 2.</div>
+    <div class="step">Total area = 2 + 2 = 4.</div>
+    <div class="ans">4 (while the signed integral is 0)</div></div>
+</div>
+
+<div class="q"><span class="qnum">16.</span><span class="qtag">half a hump</span>
+  <div class="qtext">Compute <span class="fml">∫<sub>π/2</sub><sup>π</sup> sin x dx</span>. Then explain why your answer is exactly half of the full hump from problem 11.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the sine hump on [0, π] is perfectly symmetric around its peak at x = π/2 — the downhill half mirrors the uphill half. So integrating just the second half should give exactly half the hump's area. Table values: cos π = −1, cos(π/2) = 0.</div>
+    <div class="step">∫<sub>π/2</sub><sup>π</sup> sin x dx = [−cos x]<sub>π/2</sub><sup>π</sup> = (−cos π) − (−cos(π/2)).</div>
+    <div class="step">= (−(−1)) − (−0) = 1 − 0 = 1.</div>
+    <div class="step">Half of the full hump's area 2 is 1 ✓ — the symmetry and the computation agree.</div>
+    <div class="ans">1 (half of the hump's area of 2, by symmetry)</div></div>
+</div>
+
+<div class="q"><span class="qnum">17.</span><span class="qtag">average value</span>
+  <div class="qtext">Using the Lesson 14 formula, find the average value of <span class="fml">sin x</span> on the interval [0, π]. Give the exact answer and a decimal estimate.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> Lesson 14's formula: average value = (integral over the interval) ÷ (length of the interval) — the height of the flat rectangle that holds the same area as the curve. Here the interval [0, π] has length π, and problem 11 already gave us the integral.</div>
+    <div class="step">Integral: ∫₀^π sin x dx = 2 (the hump).</div>
+    <div class="step">Average = 2 ÷ π = 2/π.</div>
+    <div class="step">Decimal: 2/π ≈ 2 ÷ 3.14159 ≈ 0.64. Sensible: sine spends time near its peak of 1 and near 0 at the ends, so an average a bit above ½ rings true.</div>
+    <div class="ans">2/π ≈ 0.64</div></div>
+</div>
+
+<div class="q"><span class="qnum">18.</span><span class="qtag">net zero · cosine</span>
+  <div class="qtext">Compute <span class="fml">∫₀<sup>2π</sup> cos x dx</span>, and explain the answer using signed area.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> cosine over one full lap starts at 1, dips down to −1, and climbs back to 1. Like sine, it spends equal amounts of "area effort" above and below the axis over a full cycle — so expect cancellation. Table values: sin 2π = 0, sin 0 = 0.</div>
+    <div class="step">∫₀<sup>2π</sup> cos x dx = [sin x]₀<sup>2π</sup> = sin 2π − sin 0 = 0 − 0 = 0.</div>
+    <div class="step">Signed-area story: cos x is above the axis on [0, π/2], below on [π/2, 3π/2], above again on [3π/2, 2π]. The positive pieces (1 + 1) exactly cancel the negative middle piece (−2).</div>
+    <div class="ans">0 — over a full cycle, cosine's above-axis and below-axis areas cancel</div></div>
+</div>
+
+<div class="q"><span class="qnum">19.</span><span class="qtag">story · tides</span>
+  <div class="qtext">The tide flows into a small harbor at the rate <span class="fml">r(t) = sin t</span> million liters per hour, where t is hours after low tide, valid from t = 0 to t = 2π (one full tide cycle, about 6.28 hours). (a) How much water flows IN during the first half of the cycle, from t = 0 to t = π? (b) What happens during the second half, from t = π to t = 2π? (c) How much more water is in the harbor at the end of the full cycle than at the start?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> from Lessons 1 and 13: integrating a flow RATE over a time interval gives the TOTAL amount accumulated. When the rate is negative, water is flowing OUT. This is the sine wave as nature actually uses it — tides really do rise and fall on (roughly) a sine schedule.</div>
+    <div class="step">(a) Water in = ∫₀^π sin t dt = [−cos t]₀^π = 1 + 1 = 2 → 2 million liters flow in.</div>
+    <div class="step">(b) On [π, 2π], sin t is negative — the tide reverses and water flows OUT. Amount: ∫_π<sup>2π</sup> sin t dt = (−cos 2π) − (−cos π) = −1 − 1 = −2, i.e. 2 million liters flow back out.</div>
+    <div class="step">(c) Net change = ∫₀<sup>2π</sup> sin t dt = 0. The harbor ends the cycle holding exactly what it started with — the in-flow and out-flow cancel perfectly.</div>
+    <div class="ans">(a) 2 million liters in &nbsp; (b) 2 million liters flow out &nbsp; (c) net change 0</div></div>
+</div>
+
+<div class="q"><span class="qnum">20.</span><span class="qtag">challenge</span>
+  <div class="qtext">Compute <span class="fml">∫₀<sup>π</sup> (sin x + cos x) dx</span> with full working: find the antiderivative of each term, evaluate at both limits, and track every sign.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> everything in this lesson at once — term-by-term integration, the minus-sign rule for sine, the FTC, and the value table (cos π = −1, cos 0 = 1, sin π = 0, sin 0 = 0). Write each stage on its own line and the signs stay tame.</div>
+    <div class="step">Antiderivative: ∫(sin x + cos x) dx = −cos x + sin x. Check: (−cos x + sin x)′ = sin x + cos x ✓.</div>
+    <div class="step">Top limit x = π: −cos π + sin π = −(−1) + 0 = 1.</div>
+    <div class="step">Bottom limit x = 0: −cos 0 + sin 0 = −1 + 0 = −1.</div>
+    <div class="step">Subtract: 1 − (−1) = 2. (Sensible: the sine part alone gives 2 — the famous hump — and the cosine part over [0, π] gives sin π − sin 0 = 0. Total 2 + 0 = 2 ✓.)</div>
+    <div class="ans">2</div></div>
+</div>
+
+<footer>Lesson 16 of 20 · Intuitive Integration · next: <a href="Lesson17.html">Lesson 17 — Substitution I: Linear Insides</a></footer>
+
+</div>
+<script>
+document.querySelectorAll('.q').forEach(q=>{
+  const btn=q.querySelector('.revealbtn'), sol=q.querySelector('.sol');
+  btn.addEventListener('click',()=>{ sol.classList.add('show'); btn.textContent='Solution shown'; btn.disabled=true; btn.style.opacity=.6; });
+});
+</script>
+</body>
+</html>

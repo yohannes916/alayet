@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 4 — The Antiderivative: Undoing the Derivative</title>
+<style>
+  :root{--accent:#186a3b;--accent2:#239b56;--bg:#f2f7f4;--card:#fff;--ok:#1e8449;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:#1c2833;background:var(--bg);margin:0;padding:0 16px 80px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -16px 20px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  nav{display:flex;gap:10px;margin-bottom:18px;font-size:.9rem;flex-wrap:wrap;}
+  nav a{color:var(--accent);text-decoration:none;font-weight:600;background:#fff;border:1px solid #d5e8dc;border-radius:8px;padding:6px 14px;}
+  nav a:hover{background:#eafaf1;}
+  .goal{background:#fef9e7;border-left:5px solid var(--star);padding:12px 18px;border-radius:8px;margin-bottom:18px;font-size:.95rem;}
+  .goal strong{color:#7d6608;}
+  section{background:var(--card);border-radius:10px;padding:18px 22px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  h2{color:var(--accent);font-size:1.15rem;margin:0 0 10px;}
+  h2 .num{background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;border-radius:6px;padding:2px 9px;margin-right:8px;}
+  ul{margin:8px 0;padding-left:24px;}
+  li{margin-bottom:8px;}
+  strong{color:#145a32;}
+  em.hi{font-style:normal;background:#fef9e7;padding:0 4px;border-radius:3px;}
+  .fml{background:#e9f7ef;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.9em;color:#186a3b;white-space:nowrap;}
+  .ex{background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:.95rem;}
+  .ex b{color:#145a32;}
+  .graph{background:#1b2631;color:#eaeded;border-radius:8px;padding:14px 18px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.82rem;line-height:1.45;overflow-x:auto;margin:10px 0;white-space:pre;}
+  .graph .g{color:#82e0aa;} .graph .y{color:#f7dc6f;} .graph .b{color:#85c1e9;}
+  table.t{border-collapse:collapse;margin:10px 0;font-size:.92rem;}
+  table.t th,table.t td{border:1px solid #cfd8cf;padding:6px 12px;text-align:center;}
+  table.t th{background:var(--accent);color:#fff;font-weight:600;}
+  .qhead{margin:26px 0 8px;color:var(--accent);font-size:1.2rem;border-bottom:2px solid #d4efdf;padding-bottom:6px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid var(--accent2);}
+  .qnum{font-weight:800;color:var(--accent);margin-right:6px;}
+  .qtag{float:right;background:#e9f7ef;color:var(--accent);border-radius:8px;padding:1px 9px;font-size:.68rem;font-weight:700;letter-spacing:.3px;margin-left:8px;}
+  .qtext{font-size:.98rem;margin:4px 0 10px;}
+  .revealbtn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .revealbtn:hover{background:#0e4429;}
+  .sol{display:none;margin-top:12px;background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px;font-size:.93rem;}
+  .sol.show{display:block;}
+  .sol h4{margin:0 0 8px;color:var(--ok);font-size:.9rem;}
+  .sol .ctx{background:#eaf2f8;border-left:4px solid #2e86c1;border-radius:6px;padding:8px 12px;margin:0 0 10px;font-size:.88rem;}
+  .sol .ctx b{color:#1a5276;}
+  .sol .step{margin:6px 0;}
+  .sol .ans{background:#eafaf1;border-radius:6px;padding:6px 12px;margin-top:8px;font-weight:700;color:#145a32;display:inline-block;}
+  footer{text-align:center;color:#85929e;font-size:.85rem;margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Lesson 4 — The Antiderivative</h1>
+  <p>Undoing the Derivative · Intuitive Calculus for a Curious Student · Lesson 4 of 20</p>
+</header>
+
+<nav><a href="index.html">📚 All lessons</a><a href="Lesson03.html">← Prev: Lesson 3</a><a href="Lesson05.html">Next: Lesson 5 →</a></nav>
+
+<div class="goal"><strong>🎯 Goal of this lesson:</strong> learn to run the derivative machine <em>backwards</em>. Given a derivative, you'll find the function it came from — that's called an <em>antiderivative</em> — and you'll meet the famous <span class="fml">+ C</span> that tags along with every answer. This skill becomes the great shortcut for finding areas and totals.</div>
+
+<section>
+  <h2><span class="num">1</span> Quick recap — the derivatives you already know</h2>
+  <ul>
+    <li>A <strong>derivative</strong> tells you the <em class="hi">slope</em> of a function — how steeply its graph is climbing at each point. You've computed a few of these before. Here are the ones we'll lean on all lesson:</li>
+    <li>The derivative of <span class="fml">x<sup>2</sup></span> is <span class="fml">2x</span>. (Why: the curve <span class="fml">x<sup>2</sup></span> gets steeper as x grows — at x = 3 its slope is 6, at x = 5 it's 10. The slope is always exactly twice the x-value.)</li>
+    <li>The derivative of <span class="fml">x<sup>3</sup></span> is <span class="fml">3x<sup>2</sup></span>. (Why: this curve steepens even faster — its slope at any x is 3 times x squared.)</li>
+    <li>The derivative of <span class="fml">5x</span> is <span class="fml">5</span>. (Why: the graph of 5x is a straight line, and a straight line has the same slope everywhere — here, 5.)</li>
+    <li>The derivative of any <strong>constant</strong> (like 7, or −2, or 100) is <span class="fml">0</span>. (Why: the graph of a constant is a flat horizontal line — it never climbs or falls, so its slope is 0 everywhere.)</li>
+    <li>The general pattern (the <strong>power rule</strong>): to differentiate <span class="fml">x<sup>n</sup></span>, the power hops down front as a multiplier and the exponent drops by one: <span class="fml">x<sup>n</sup> → n·x<sup>n−1</sup></span>.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">2</span> The reverse game — "what function was I thinking of?"</h2>
+  <ul>
+    <li>Here's a riddle: <em class="hi">"I'm thinking of a function whose derivative is 2x. What was my function?"</em></li>
+    <li>You just saw the answer in the recap: the derivative of <span class="fml">x<sup>2</sup></span> is <span class="fml">2x</span>. So <span class="fml">x<sup>2</sup></span> works!</li>
+    <li>A function that answers this kind of riddle has a name: <span class="fml">x<sup>2</sup></span> is called an <strong>antiderivative</strong> of <span class="fml">2x</span>. "Anti" means it undoes the derivative — differentiate the antiderivative and you land right back where you started.</li>
+    <li>So finding an antiderivative is playing the derivative game <strong>backwards</strong>: instead of "here's a function, find its slope," it's "here's the slope, find the function."</li>
+  </ul>
+  <div class="ex"><b>Try the riddle yourself:</b> whose derivative is <span class="fml">3x<sup>2</sup></span>? From the recap: the derivative of <span class="fml">x<sup>3</sup></span> is <span class="fml">3x<sup>2</sup></span>. So <b>x<sup>3</sup> is an antiderivative of 3x<sup>2</sup></b>.</div>
+</section>
+
+<section>
+  <h2><span class="num">3</span> The +C twist — there's a whole family of answers</h2>
+  <ul>
+    <li>Back to the riddle "whose derivative is 2x?" We said <span class="fml">x<sup>2</sup></span>. But watch this: what's the derivative of <span class="fml">x<sup>2</sup> + 7</span>? The derivative of <span class="fml">x<sup>2</sup></span> is 2x, and the derivative of the constant 7 is <strong>0</strong> — so the derivative of <span class="fml">x<sup>2</sup> + 7</span> is <span class="fml">2x + 0 = 2x</span>. <em class="hi">It ALSO solves the riddle!</em></li>
+    <li>Same for <span class="fml">x<sup>2</sup> − 3</span>, <span class="fml">x<sup>2</sup> + 100</span>, <span class="fml">x<sup>2</sup> + 0.5</span>… every one of them has derivative 2x, because tacked-on constants vanish when you differentiate.</li>
+    <li>So the riddle has a whole <strong>family</strong> of correct answers, and any two family members differ only by a constant. We write the entire family in one line: <span class="fml">x<sup>2</sup> + C</span>, where <strong>C</strong> stands for "any constant you like."</li>
+    <li>The picture: all these functions are the <em class="hi">same-shaped curve stacked at different heights</em>. Sliding a curve straight up or down doesn't change how steep it is anywhere — so all the copies have identical slopes at every x.</li>
+  </ul>
+  <div class="graph">y
+  |        <span class="y">x² + 4</span>      ← same curve, higher up
+  |      <span class="y">╲___╱</span>
+  |        <span class="g">x² + 1</span>
+  |      <span class="g">╲___╱</span>          all three have the SAME
+  |        <span class="b">x² − 2</span>       slope at every x-value:
+  |      <span class="b">╲___╱</span>          the slope is always 2x
+  +--------------------------→ x</div>
+  <ul>
+    <li>From now on: <em class="hi">every antiderivative answer ends in + C</em>. Leaving it off means you've reported only one family member and hidden all the rest.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">4</span> How to CHECK an antiderivative (never skip this!)</h2>
+  <ul>
+    <li>Antiderivatives come with a built-in answer checker: <em class="hi">differentiate your answer and see if you get the original back</em>.</li>
+    <li>Claim: an antiderivative of <span class="fml">2x</span> is <span class="fml">x<sup>2</sup> + C</span>. Check: derivative of <span class="fml">x<sup>2</sup></span> is 2x, derivative of C is 0 → total <span class="fml">2x</span> ✓. Matches the original — correct.</li>
+    <li>This check is <strong>free</strong> (differentiating is the easy direction you already know) and it catches <strong>every</strong> mistake. Make it a reflex: answer, then check, every single time.</li>
+  </ul>
+  <div class="ex"><b>A check that catches a mistake:</b> a student claims an antiderivative of <span class="fml">3x<sup>2</sup></span> is <span class="fml">x<sup>2</sup> + C</span>. Check: derivative of x<sup>2</sup> + C is 2x — but the original was 3x<sup>2</sup>. <b>No match → wrong.</b> (The right answer is x<sup>3</sup> + C, since the derivative of x<sup>3</sup> is 3x<sup>2</sup> ✓.)</div>
+</section>
+
+<section>
+  <h2><span class="num">5</span> Worked examples</h2>
+  <div class="ex"><b>Example 1 — antiderivative of 3x<sup>2</sup>:</b> ask "whose derivative is 3x<sup>2</sup>?" From the recap: x<sup>3</sup>. Answer: <span class="fml">x<sup>3</sup> + C</span>. Check: derivative of x<sup>3</sup> + C = 3x<sup>2</sup> + 0 = 3x<sup>2</sup> ✓.</div>
+  <div class="ex"><b>Example 2 — antiderivative of 5 (just a constant):</b> whose derivative is the steady number 5? A straight line with slope 5: <span class="fml">5x</span>. Answer: <span class="fml">5x + C</span>. Check: derivative of 5x + C = 5 + 0 = 5 ✓.</div>
+  <div class="ex"><b>Example 3 — antiderivative of 2x + 3 (a sum):</b> handle each piece separately. Whose derivative is 2x? → x<sup>2</sup>. Whose derivative is 3? → 3x. Answer: <span class="fml">x<sup>2</sup> + 3x + C</span> (one single + C covers the whole answer). Check: derivative = 2x + 3 ✓.</div>
+</section>
+
+<section>
+  <h2><span class="num">6</span> Why we care — the shortcut is coming</h2>
+  <ul>
+    <li>In Lessons 1–3 you found totals by adding up little rectangles under a rate graph — honest but slow.</li>
+    <li>Here's the spoiler for <strong>Lesson 7</strong>: antiderivatives are the <em class="hi">shortcut to those areas and totals</em>. Instead of adding a thousand skinny rectangles, you'll find one antiderivative and plug in two numbers. That's why this "backwards game" is worth practicing until it's automatic.</li>
+    <li>Next lesson (Lesson 5) turns today's guess-and-check into an official rule — the power rule for antiderivatives — so you can handle any power of x without guessing.</li>
+  </ul>
+</section>
+
+<div class="qhead">✏️ Exercises — 20 problems (write your answer on paper, then reveal)</div>
+
+<div class="q"><span class="qnum">1.</span><span class="qtag">find antiderivative</span>
+  <div class="qtext">Find the antiderivative of <span class="fml">2x</span>. (Give the whole family.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> an <b>antiderivative</b> of a function is any function whose derivative equals it — you're running differentiation backwards. Because adding a constant doesn't change a derivative (constants have slope 0), the full answer is always a family, written with + C.</div>
+    <div class="step">Ask: "whose derivative is 2x?" The derivative of x<sup>2</sup> is 2x — so x<sup>2</sup> works.</div>
+    <div class="step">Include the family: any constant can ride along, so write x<sup>2</sup> + C.</div>
+    <div class="step">Check by differentiating: derivative of x<sup>2</sup> + C = 2x + 0 = 2x ✓.</div>
+    <div class="ans">x<sup>2</sup> + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">2.</span><span class="qtag">find antiderivative</span>
+  <div class="qtext">Find the antiderivative of <span class="fml">3x<sup>2</sup></span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the derivative power rule says x<sup>3</sup> → 3x<sup>2</sup> (the exponent 3 hops down front, and the power drops to 2). Finding an antiderivative means spotting which function would produce this after that hop-down happens.</div>
+    <div class="step">Ask: "whose derivative is 3x<sup>2</sup>?" The derivative of x<sup>3</sup> is exactly 3x<sup>2</sup>.</div>
+    <div class="step">Add the constant family: x<sup>3</sup> + C.</div>
+    <div class="step">Check: derivative of x<sup>3</sup> + C = 3x<sup>2</sup> ✓.</div>
+    <div class="ans">x<sup>3</sup> + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">3.</span><span class="qtag">constant</span>
+  <div class="qtext">Find the antiderivative of <span class="fml">7</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a constant like 7 is a perfectly good derivative — it describes a function whose slope is 7 <i>everywhere</i>. A function with the same slope everywhere is a straight line, and a line with slope 7 is 7x (plus any starting height).</div>
+    <div class="step">Ask: "whose derivative is 7?" The line 7x has slope 7 at every point.</div>
+    <div class="step">Family answer: 7x + C.</div>
+    <div class="step">Check: derivative of 7x + C = 7 + 0 = 7 ✓.</div>
+    <div class="ans">7x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">4.</span><span class="qtag">find antiderivative</span>
+  <div class="qtext">Find the antiderivative of <span class="fml">4x<sup>3</sup></span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> by the derivative power rule, x<sup>4</sup> → 4x<sup>3</sup> (the 4 hops down, the power drops from 4 to 3). Antiderivative questions are "un-hop" questions: which power of x, after the hop-down, gives what you see?</div>
+    <div class="step">The coefficient 4 with the power 3 is the fingerprint of x<sup>4</sup>: derivative of x<sup>4</sup> = 4x<sup>3</sup>.</div>
+    <div class="step">Family answer: x<sup>4</sup> + C.</div>
+    <div class="step">Check: derivative of x<sup>4</sup> + C = 4x<sup>3</sup> ✓.</div>
+    <div class="ans">x<sup>4</sup> + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">5.</span><span class="qtag">verify by differentiating</span>
+  <div class="qtext">Check whether <span class="fml">x<sup>3</sup> + x</span> is an antiderivative of <span class="fml">3x<sup>2</sup> + 1</span>. (Don't guess — differentiate and compare.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> to test a claimed antiderivative, differentiate it and compare with the original function. Two facts you need: derivative of x<sup>3</sup> is 3x<sup>2</sup>, and derivative of x (which is a line with slope 1) is 1. Derivatives of sums work piece by piece.</div>
+    <div class="step">Differentiate x<sup>3</sup> + x term by term: derivative of x<sup>3</sup> = 3x<sup>2</sup>; derivative of x = 1.</div>
+    <div class="step">Total: 3x<sup>2</sup> + 1. Compare with the target 3x<sup>2</sup> + 1 — identical.</div>
+    <div class="ans">Yes — its derivative is exactly 3x<sup>2</sup> + 1, so it is an antiderivative ✓</div></div>
+</div>
+
+<div class="q"><span class="qnum">6.</span><span class="qtag">sum</span>
+  <div class="qtext">Find the antiderivative of <span class="fml">6x + 2</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> when a derivative is a sum, undo each piece separately, then add the results (with one + C at the end). Useful facts: derivative of 3x<sup>2</sup> is 6x, and derivative of 2x is 2.</div>
+    <div class="step">Whose derivative is 6x? Try 3x<sup>2</sup>: its derivative is 3 · 2x = 6x ✓.</div>
+    <div class="step">Whose derivative is 2? The line 2x.</div>
+    <div class="step">Combine: 3x<sup>2</sup> + 2x + C. Check: derivative = 6x + 2 ✓.</div>
+    <div class="ans">3x<sup>2</sup> + 2x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">7.</span><span class="qtag">spot the "error"</span>
+  <div class="qtext">A student says the antiderivative of <span class="fml">2x</span> is <span class="fml">x<sup>2</sup> + 5</span>. Their friend says "wrong — the answer is x<sup>2</sup> + C." Is the student actually wrong? Explain.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> "x<sup>2</sup> + C" isn't one function — it's shorthand for the whole family of functions whose derivative is 2x: x<sup>2</sup> + 1, x<sup>2</sup> − 8, x<sup>2</sup> + 5, and so on. Any single family member is a genuine antiderivative.</div>
+    <div class="step">Check the student's answer by differentiating: derivative of x<sup>2</sup> + 5 = 2x + 0 = 2x ✓. It really does have derivative 2x.</div>
+    <div class="step">So x<sup>2</sup> + 5 is a perfectly valid antiderivative — it's the family member with C = 5.</div>
+    <div class="step">The only nitpick: if the question asks for ALL antiderivatives, write x<sup>2</sup> + C to show the whole family. But calling x<sup>2</sup> + 5 "wrong" is itself wrong.</div>
+    <div class="ans">No, the student is not wrong — x<sup>2</sup> + 5 is an antiderivative (the C = 5 member of the family x<sup>2</sup> + C)</div></div>
+</div>
+
+<div class="q"><span class="qnum">8.</span><span class="qtag">sum</span>
+  <div class="qtext">Find the antiderivative of <span class="fml">4x + 1</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> undo a sum piece by piece. For the 4x piece, remember that the derivative of x<sup>2</sup> is 2x — so to get 4x (twice as big) you need twice the function: 2x<sup>2</sup>. For a lone constant, the antiderivative is that constant times x.</div>
+    <div class="step">Whose derivative is 4x? Derivative of 2x<sup>2</sup> = 2 · 2x = 4x ✓.</div>
+    <div class="step">Whose derivative is 1? The line x (slope 1 everywhere).</div>
+    <div class="step">Combine: 2x<sup>2</sup> + x + C. Check: derivative = 4x + 1 ✓.</div>
+    <div class="ans">2x<sup>2</sup> + x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">9.</span><span class="qtag">verify by differentiating</span>
+  <div class="qtext">Check whether <span class="fml">x<sup>4</sup></span> is an antiderivative of <span class="fml">4x<sup>3</sup> + 1</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the check never lies: differentiate the candidate and compare with the target, term by term. Every term must match — a missing piece means the candidate fails.</div>
+    <div class="step">Differentiate the candidate: derivative of x<sup>4</sup> = 4x<sup>3</sup>.</div>
+    <div class="step">Compare with the target 4x<sup>3</sup> + 1: the 4x<sup>3</sup> matches, but the "+ 1" is missing from the derivative.</div>
+    <div class="step">To fix it you'd need an extra term whose derivative is 1 — namely x. Indeed x<sup>4</sup> + x works: its derivative is 4x<sup>3</sup> + 1 ✓.</div>
+    <div class="ans">No — the derivative of x<sup>4</sup> is 4x<sup>3</sup>, not 4x<sup>3</sup> + 1. (x<sup>4</sup> + x + C would be correct.)</div></div>
+</div>
+
+<div class="q"><span class="qnum">10.</span><span class="qtag">find antiderivative</span>
+  <div class="qtext">Find the antiderivative of <span class="fml">10x</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> derivative of x<sup>2</sup> is 2x, so derivative of (number)·x<sup>2</sup> is (number)·2x. To land on 10x you need the number times 2 to equal 10 — so the number is 5.</div>
+    <div class="step">Try 5x<sup>2</sup>: derivative = 5 · 2x = 10x ✓.</div>
+    <div class="step">Family answer: 5x<sup>2</sup> + C.</div>
+    <div class="ans">5x<sup>2</sup> + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">11.</span><span class="qtag">concept · why + C</span>
+  <div class="qtext">In your own words: why does every antiderivative answer end in "+ C"? What would be lost if you left it off?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the derivative of any constant is 0, because a constant's graph is a flat line with no steepness. So differentiating destroys any added constant — and when we reverse the process, we can't tell what constant (if any) was there.</div>
+    <div class="step">If f(x) has derivative 2x, then f(x) + 1, f(x) + 7, f(x) − 40 ALL have derivative 2x too — the added constants vanish when differentiating.</div>
+    <div class="step">Going backwards, the derivative alone can't reveal which constant the original function had. The + C honestly records that unknown.</div>
+    <div class="step">Leaving off + C would claim there's exactly one answer, when really there's an infinite family — same-shaped curves stacked at every possible height.</div>
+    <div class="ans">Constants differentiate to 0, so infinitely many functions (differing by a constant) share the same derivative; + C records that whole family</div></div>
+</div>
+
+<div class="q"><span class="qnum">12.</span><span class="qtag">sum</span>
+  <div class="qtext">Find the antiderivative of <span class="fml">3x<sup>2</sup> + 4x</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> take the sum one term at a time. Fingerprints to recognize: 3x<sup>2</sup> is the derivative of x<sup>3</sup>, and 4x is the derivative of 2x<sup>2</sup> (since 2x<sup>2</sup> → 2·2x = 4x).</div>
+    <div class="step">Term 1: antiderivative of 3x<sup>2</sup> is x<sup>3</sup>.</div>
+    <div class="step">Term 2: antiderivative of 4x is 2x<sup>2</sup>.</div>
+    <div class="step">Combine with one + C: x<sup>3</sup> + 2x<sup>2</sup> + C. Check: derivative = 3x<sup>2</sup> + 4x ✓.</div>
+    <div class="ans">x<sup>3</sup> + 2x<sup>2</sup> + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">13.</span><span class="qtag">two students</span>
+  <div class="qtext">Maya says an antiderivative of <span class="fml">2x</span> is <span class="fml">x<sup>2</sup> + 1</span>. Leo says it's <span class="fml">x<sup>2</sup> − 3</span>. Who is right, and how are their two answers related?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> any two antiderivatives of the same function differ by a constant — they're two members of one family, two copies of the same curve stacked at different heights. Both are correct as long as each passes the differentiation check.</div>
+    <div class="step">Check Maya: derivative of x<sup>2</sup> + 1 = 2x ✓.</div>
+    <div class="step">Check Leo: derivative of x<sup>2</sup> − 3 = 2x ✓.</div>
+    <div class="step">Both are right. Their answers differ by (x<sup>2</sup> + 1) − (x<sup>2</sup> − 3) = 4, a constant — exactly the family behavior the + C describes.</div>
+    <div class="ans">Both are right; the two answers differ by the constant 4 (two members of the family x<sup>2</sup> + C)</div></div>
+</div>
+
+<div class="q"><span class="qnum">14.</span><span class="qtag">sum</span>
+  <div class="qtext">Find the antiderivative of <span class="fml">6x<sup>2</sup> + 2</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> for the 6x<sup>2</sup> piece, recall that x<sup>3</sup> → 3x<sup>2</sup>. You need double that output, so double the function: 2x<sup>3</sup> → 2·3x<sup>2</sup> = 6x<sup>2</sup>. A lone constant k always has antiderivative kx.</div>
+    <div class="step">Term 1: antiderivative of 6x<sup>2</sup> is 2x<sup>3</sup> (check: derivative of 2x<sup>3</sup> = 6x<sup>2</sup> ✓).</div>
+    <div class="step">Term 2: antiderivative of 2 is 2x.</div>
+    <div class="step">Combine: 2x<sup>3</sup> + 2x + C. Check the whole thing: derivative = 6x<sup>2</sup> + 2 ✓.</div>
+    <div class="ans">2x<sup>3</sup> + 2x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">15.</span><span class="qtag">verify with constant</span>
+  <div class="qtext">Check whether <span class="fml">x<sup>3</sup> + x<sup>2</sup> + 5</span> is an antiderivative of <span class="fml">3x<sup>2</sup> + 2x</span>. What role does the 5 play?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> when you differentiate a candidate, any lone constant in it contributes 0 and simply disappears. So a constant tucked inside a candidate never spoils the check — it just marks which family member you're holding.</div>
+    <div class="step">Differentiate term by term: x<sup>3</sup> → 3x<sup>2</sup>; x<sup>2</sup> → 2x; 5 → 0.</div>
+    <div class="step">Total: 3x<sup>2</sup> + 2x. That matches the target exactly.</div>
+    <div class="step">The 5 vanished in the check — it's the "+ C" of this particular answer, with C = 5.</div>
+    <div class="ans">Yes ✓ — its derivative is 3x<sup>2</sup> + 2x; the 5 is just the constant (C = 5) and vanishes when differentiating</div></div>
+</div>
+
+<div class="q"><span class="qnum">16.</span><span class="qtag">find the specific function</span>
+  <div class="qtext">A function f has derivative <span class="fml">f′(x) = 2x</span>, and you also know <span class="fml">f(1) = 5</span>. Find the exact function f(x) — no C left in the answer!</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the derivative alone only narrows f down to a family (here x<sup>2</sup> + C). But ONE known point — one (input, output) pair — tells you exactly which stacked copy of the curve you're on, pinning down C. This is why the extra fact f(1) = 5 is given.</div>
+    <div class="step">Antiderivative of 2x: f(x) = x<sup>2</sup> + C.</div>
+    <div class="step">Use the point: f(1) = 1<sup>2</sup> + C = 1 + C, and this must equal 5. So C = 4.</div>
+    <div class="step">Therefore f(x) = x<sup>2</sup> + 4. Check both facts: derivative = 2x ✓, and f(1) = 1 + 4 = 5 ✓.</div>
+    <div class="ans">f(x) = x<sup>2</sup> + 4</div></div>
+</div>
+
+<div class="q"><span class="qnum">17.</span><span class="qtag">find the specific function</span>
+  <div class="qtext">Find f(x) given <span class="fml">f′(x) = 3x<sup>2</sup></span> and <span class="fml">f(2) = 10</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> same two-step recipe every time: (1) find the antiderivative family with + C, (2) plug the known point into it and solve for C. "f(2) = 10" means: when the input is 2, the output is 10.</div>
+    <div class="step">Step 1: antiderivative of 3x<sup>2</sup> is f(x) = x<sup>3</sup> + C.</div>
+    <div class="step">Step 2: f(2) = 2<sup>3</sup> + C = 8 + C = 10, so C = 2.</div>
+    <div class="step">f(x) = x<sup>3</sup> + 2. Check: derivative = 3x<sup>2</sup> ✓; f(2) = 8 + 2 = 10 ✓.</div>
+    <div class="ans">f(x) = x<sup>3</sup> + 2</div></div>
+</div>
+
+<div class="q"><span class="qnum">18.</span><span class="qtag">find the specific function</span>
+  <div class="qtext">Find f(x) given <span class="fml">f′(x) = 4x + 1</span> and <span class="fml">f(0) = 3</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a point with input 0 is the friendliest kind: plugging in x = 0 kills every x-term, leaving just C. (Note 0<sup>2</sup> = 0 and 4·0 = 0.) So f(0) directly tells you the constant.</div>
+    <div class="step">Antiderivative of 4x + 1: the 4x piece comes from 2x<sup>2</sup>, the 1 comes from x. So f(x) = 2x<sup>2</sup> + x + C.</div>
+    <div class="step">f(0) = 2·0 + 0 + C = C, and this must equal 3 → C = 3.</div>
+    <div class="step">f(x) = 2x<sup>2</sup> + x + 3. Check: derivative = 4x + 1 ✓; f(0) = 3 ✓.</div>
+    <div class="ans">f(x) = 2x<sup>2</sup> + x + 3</div></div>
+</div>
+
+<div class="q"><span class="qnum">19.</span><span class="qtag">concept · graphs</span>
+  <div class="qtext">Two different antiderivatives of the same function are graphed on the same axes. Describe how the two graphs are related — their shape, their steepness at each x, and how you'd get one from the other.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> "antiderivative of the same function" means both graphs have the SAME derivative — the same slope at every single x-value. Slope is the only thing a derivative measures; height above the x-axis is invisible to it.</div>
+    <div class="step">Same slope at every x means the two curves steepen and flatten in perfect sync — they are identical in shape.</div>
+    <div class="step">Since they're not the same function, they sit at different heights: one is the other slid straight up or down by a fixed amount (their difference is a constant).</div>
+    <div class="step">Picture parallel curves stacked like pancakes: at any x, both tangent lines are parallel.</div>
+    <div class="ans">Identical shape and identical slope at every x; one graph is the other shifted vertically by a constant</div></div>
+</div>
+
+<div class="q"><span class="qnum">20.</span><span class="qtag">challenge · full recipe</span>
+  <div class="qtext">Find f(x) given <span class="fml">f′(x) = 6x + 2</span> and <span class="fml">f(1) = 10</span>. Then verify BOTH given facts about your answer.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> this combines everything from the lesson: undo a sum term by term, carry the + C, use the known point to pin down C, and finish with the differentiation check. In later lessons this exact recipe rebuilds a position from a speed, or a total from a rate.</div>
+    <div class="step">Antiderivative: 6x comes from 3x<sup>2</sup> (derivative of 3x<sup>2</sup> = 6x ✓), and 2 comes from 2x. So f(x) = 3x<sup>2</sup> + 2x + C.</div>
+    <div class="step">Pin down C: f(1) = 3·1 + 2·1 + C = 5 + C = 10 → C = 5.</div>
+    <div class="step">f(x) = 3x<sup>2</sup> + 2x + 5.</div>
+    <div class="step">Verify fact 1: derivative of 3x<sup>2</sup> + 2x + 5 = 6x + 2 + 0 = 6x + 2 ✓. Verify fact 2: f(1) = 3 + 2 + 5 = 10 ✓.</div>
+    <div class="ans">f(x) = 3x<sup>2</sup> + 2x + 5</div></div>
+</div>
+
+<footer>Lesson 4 of 20 · Intuitive Integration · next: <a href="Lesson05.html">Lesson 5 — The Power Rule for Antiderivatives</a></footer>
+
+</div>
+<script>
+document.querySelectorAll('.q').forEach(q=>{
+  const btn=q.querySelector('.revealbtn'), sol=q.querySelector('.sol');
+  btn.addEventListener('click',()=>{ sol.classList.add('show'); btn.textContent='Solution shown'; btn.disabled=true; btn.style.opacity=.6; });
+});
+</script>
+</body>
+</html>

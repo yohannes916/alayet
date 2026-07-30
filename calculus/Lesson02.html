@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 2 — Area Under a Graph = the Total</title>
+<style>
+  :root{--accent:#186a3b;--accent2:#239b56;--bg:#f2f7f4;--card:#fff;--ok:#1e8449;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:#1c2833;background:var(--bg);margin:0;padding:0 16px 80px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -16px 20px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  nav{display:flex;gap:10px;margin-bottom:18px;font-size:.9rem;flex-wrap:wrap;}
+  nav a{color:var(--accent);text-decoration:none;font-weight:600;background:#fff;border:1px solid #d5e8dc;border-radius:8px;padding:6px 14px;}
+  nav a:hover{background:#eafaf1;}
+  .goal{background:#fef9e7;border-left:5px solid var(--star);padding:12px 18px;border-radius:8px;margin-bottom:18px;font-size:.95rem;}
+  .goal strong{color:#7d6608;}
+  section{background:var(--card);border-radius:10px;padding:18px 22px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  h2{color:var(--accent);font-size:1.15rem;margin:0 0 10px;}
+  h2 .num{background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;border-radius:6px;padding:2px 9px;margin-right:8px;}
+  ul{margin:8px 0;padding-left:24px;}
+  li{margin-bottom:8px;}
+  strong{color:#145a32;}
+  em.hi{font-style:normal;background:#fef9e7;padding:0 4px;border-radius:3px;}
+  .fml{background:#e9f7ef;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.9em;color:#186a3b;white-space:nowrap;}
+  .ex{background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:.95rem;}
+  .ex b{color:#145a32;}
+  .graph{background:#1b2631;color:#eaeded;border-radius:8px;padding:14px 18px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.82rem;line-height:1.45;overflow-x:auto;margin:10px 0;white-space:pre;}
+  .graph .g{color:#82e0aa;} .graph .y{color:#f7dc6f;} .graph .b{color:#85c1e9;}
+  table.t{border-collapse:collapse;margin:10px 0;font-size:.92rem;}
+  table.t th,table.t td{border:1px solid #cfd8cf;padding:6px 12px;text-align:center;}
+  table.t th{background:var(--accent);color:#fff;font-weight:600;}
+  .qhead{margin:26px 0 8px;color:var(--accent);font-size:1.2rem;border-bottom:2px solid #d4efdf;padding-bottom:6px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid var(--accent2);}
+  .qnum{font-weight:800;color:var(--accent);margin-right:6px;}
+  .qtag{float:right;background:#e9f7ef;color:var(--accent);border-radius:8px;padding:1px 9px;font-size:.68rem;font-weight:700;letter-spacing:.3px;margin-left:8px;}
+  .qtext{font-size:.98rem;margin:4px 0 10px;}
+  .revealbtn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .revealbtn:hover{background:#0e4429;}
+  .sol{display:none;margin-top:12px;background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px;font-size:.93rem;}
+  .sol.show{display:block;}
+  .sol h4{margin:0 0 8px;color:var(--ok);font-size:.9rem;}
+  .sol .ctx{background:#eaf2f8;border-left:4px solid #2e86c1;border-radius:6px;padding:8px 12px;margin:0 0 10px;font-size:.88rem;}
+  .sol .ctx b{color:#1a5276;}
+  .sol .step{margin:6px 0;}
+  .sol .ans{background:#eafaf1;border-radius:6px;padding:6px 12px;margin-top:8px;font-weight:700;color:#145a32;display:inline-block;}
+  footer{text-align:center;color:#85929e;font-size:.85rem;margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Lesson 2 — Area Under a Graph = the Total</h1>
+  <p>Triangles, Trapezoids, and What Area Really Means · Intuitive Calculus for a Curious Student · Lesson 2 of 20</p>
+</header>
+
+<nav><a href="index.html">📚 All lessons</a><a href="Lesson01.html">← Lesson 1</a><a href="Lesson03.html">Next: Lesson 3 →</a></nav>
+
+<div class="goal"><strong>🎯 Goal of this lesson:</strong> in Lesson 1 the rate graph was made of flat steps, so the area under it was rectangles. Today the rate graph gets <em>slanted</em> — and the amazing news is that <em>"area under the rate graph = the total"</em> STILL works. You'll learn to handle slanted lines with triangles and trapezoids, and to read what an area <em>means</em> from its units.</div>
+
+<section>
+  <h2><span class="num">1</span> Quick recap of Lesson 1 — total = area of rectangles</h2>
+  <ul>
+    <li>Integration answers ONE question: <em class="hi">"I know the rate at every moment — what's the TOTAL?"</em></li>
+    <li>For a steady rate, <strong>total = rate × time</strong>. On the graph, that's a rectangle: width = time, height = rate, and <span class="fml">width × height</span> = the total.</li>
+    <li>When the rate changed in steps, we chopped the trip into steady pieces and <strong>added the rectangle areas</strong>.</li>
+    <li>So the big picture rule so far: <em class="hi">the total accumulated = the area under the rate graph</em>. Today we test that rule on graphs that aren't flat.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">2</span> A slanted line makes a triangle — and area still means total</h2>
+  <ul>
+    <li>Suppose a car <strong>speeds up smoothly from 0</strong>: at every moment it's a bit faster than the moment before. Its speed graph is a <strong>straight slanted line</strong> starting at 0 and climbing to some top speed <span class="fml">v</span>.</li>
+    <li>The region under that line isn't a rectangle — it's a <strong>triangle</strong>: flat along the bottom (the time axis), straight up the right side (the final speed), and the slanted speed line as the top.</li>
+    <li><strong>Where does ½ × base × height come from?</strong> Take a rectangle that's <span class="fml">base</span> wide and <span class="fml">height</span> tall, and slice it corner-to-corner with a diagonal. You get two identical triangles — each one is exactly <em class="hi">half the rectangle</em>. So: <span class="fml">triangle area = ½ × base × height</span>.</li>
+  </ul>
+  <div class="graph">speed
+(m/s)                        the rectangle (base × height)
+ v  | <span class="b">┌ ─ ─ ─ ─ ─ ─ ─ ─ ─</span> <span class="y">/</span><span class="b">│</span>   cut along the diagonal...
+    | <span class="b">┆</span>              <span class="y">/</span>    <span class="b">│</span>
+    | <span class="b">┆</span>         <span class="y">/</span>   <span class="g">◄ the triangle is</span>
+    | <span class="b">┆</span>    <span class="y">/</span>        <span class="g">HALF of it: ½·b·h</span>
+  0 +<span class="y">/</span>──────────────────────→ time (s)
+    0        base = time      b</div>
+  <ul>
+    <li>Why does the triangle's area still equal the distance? Same reason as before: think of the trip as many tiny moments; in each tiny moment, distance ≈ (speed right then) × (tiny time) — a skinny rectangle under the line. All those skinny rectangles together fill up the triangle. Add them all → the triangle's area. (Lesson 3 takes this "skinny rectangle" idea and runs with it.)</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">3</span> Worked example — speeding up from 0 to 20 m/s</h2>
+  <div class="ex"><b>Worked example:</b> a car speeds up steadily from <b>0 to 20 m/s over 10 seconds</b>. How far does it travel?<br><br>
+  The speed graph is a slanted line from (0, 0) up to (10, 20). The region underneath is a triangle with <b>base = 10 s</b> and <b>height = 20 m/s</b>.<br>
+  distance = area = ½ × base × height = ½ × 10 × 20 = <b>100 meters</b>.<br><br>
+  <b>Sanity check:</b> the car's slowest speed was 0 and fastest was 20, so its "middle" speed was 10 m/s. Traveling 10 s at that middle speed gives 10 × 10 = 100 m. ✓ Same answer — a steadily changing speed accumulates exactly like its halfway speed.</div>
+</section>
+
+<section>
+  <h2><span class="num">4</span> Trapezoids — when the rate starts above zero</h2>
+  <ul>
+    <li>What if the speed climbs steadily from <strong>10 m/s to 30 m/s</strong>? The graph is still a slanted line, but it starts up at height 10, not at 0. The shape underneath is a <strong>trapezoid</strong> (flat bottom, two vertical sides of different heights, slanted top).</li>
+    <li>No new formula needed! <em class="hi">Slice the trapezoid horizontally into two shapes you already know:</em></li>
+  </ul>
+  <div class="graph">speed
+(m/s)
+ 30 |                    <span class="y">/</span>│
+    |               <span class="y">/</span>     │   <span class="y">TRIANGLE on top</span>
+ 20 |          <span class="y">/</span>          │   <span class="y">height = 30 − 10 = 20</span>
+    |     <span class="y">/</span>               │
+ 10 |<span class="g">────────────────────</span>│
+    |<span class="g">   RECTANGLE below   </span>│   <span class="g">height = 10</span>
+  0 +─────────────────────┴──→ time (s)
+    0                     b</div>
+  <ul>
+    <li><strong>Rectangle below:</strong> the speed was AT LEAST 10 the whole time → a rectangle of height 10 across the full width.</li>
+    <li><strong>Triangle on top:</strong> the EXTRA speed grew steadily from 0 up to <span class="fml">30 − 10 = 20</span> → a triangle of height 20.</li>
+    <li>Total = rectangle + triangle. Over 4 seconds: <span class="fml">10 × 4 = 40</span> plus <span class="fml">½ × 4 × 20 = 40</span> → <strong>80 meters</strong>. Every trapezoid in this course surrenders to "rectangle + triangle."</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">5</span> Units — what the area actually MEANS</h2>
+  <ul>
+    <li>Area under a graph always carries the unit <em class="hi">(y-axis unit) × (x-axis unit)</em>, because area = height × width.</li>
+    <li>Speed graph: (meters/<b>second</b>) × (<b>seconds</b>) = meters. The seconds cancel — area is a distance.</li>
+    <li>Water graph: (liters/<b>minute</b>) × (<b>minutes</b>) = liters. Area is an amount of water.</li>
+    <li>Money graph: (dollars/<b>day</b>) × (<b>days</b>) = dollars. Area is money earned.</li>
+    <li>Pattern: a rate's unit is always "<em>something</em> per <em>time</em>," so the time units cancel and <strong>the area under a rate graph always carries the TOTAL's unit</strong>. If someone hands you a rate graph, you instantly know what its area means.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">6</span> Preview — what about real curves?</h2>
+  <ul>
+    <li>Rectangles handle flat graphs. Triangles and trapezoids handle straight slanted graphs. But nature loves <strong>curves</strong> — a falling skydiver, a cooling cup of cocoa, a growing colony of bacteria. A curved graph fits NO simple shape from geometry class.</li>
+    <li>Next lesson's trick: <em class="hi">chop the curve into skinny slices and pretend each slice is flat</em> — a staircase of rectangles that hugs the curve. That idea is the doorway to real integration.</li>
+  </ul>
+</section>
+
+<div class="qhead">✏️ Exercises — 20 problems (write your answer on paper, then reveal)</div>
+
+<div class="q"><span class="qnum">1.</span><span class="qtag">rectangle area</span>
+  <div class="qtext">A pump pushes water into a fish tank at a steady 5 liters per minute for 8 minutes. On the rate graph this is a flat line at height 5. What is the area of the rectangle under it, and how much water entered the tank?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a steady rate draws a flat line on the graph. The region under it is a rectangle: width = how long the rate lasted, height = the rate. The rectangle's area IS the total accumulated — that was the big discovery of Lesson 1.</div>
+    <div class="step">Width = 8 minutes, height = 5 liters/minute.</div>
+    <div class="step">Area = 8 × 5 = 40. Units: (liters/minute) × minutes = liters.</div>
+    <div class="ans">Area = 40 → 40 liters of water entered</div></div>
+</div>
+
+<div class="q"><span class="qnum">2.</span><span class="qtag">reading widths</span>
+  <div class="qtext">A car drives at a steady 50 miles per hour from t = 1 hour to t = 4 hours. How far does it travel during that stretch? (Careful: the width of the rectangle is NOT 4.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> when a graph runs "from t = a to t = b," the width of the region is <b>b − a</b> (end minus start), not just b. Forgetting to subtract the start time is one of the most common mistakes in all of calculus — the interval starts at 1, not at 0.</div>
+    <div class="step">Width = 4 − 1 = 3 hours. Height = 50 mph.</div>
+    <div class="step">Distance = area = 3 × 50 = 150 miles.</div>
+    <div class="ans">150 miles</div></div>
+</div>
+
+<div class="q"><span class="qnum">3.</span><span class="qtag">triangle area</span>
+  <div class="qtext">A go-kart starts from rest (speed 0) and speeds up steadily to 10 m/s over 4 seconds. Its speed graph is a slanted line. How far does it travel?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> "starts from rest and speeds up steadily" makes a slanted line from (0, 0) up to the top speed. The region under it is a triangle — half of the rectangle you'd get if the kart had gone top speed the whole time. Triangle area = ½ × base × height, and that area is the distance.</div>
+    <div class="step">Base = 4 seconds, height = 10 m/s.</div>
+    <div class="step">Distance = ½ × 4 × 10 = ½ × 40 = 20. Units: seconds × meters/second = meters.</div>
+    <div class="ans">20 meters</div></div>
+</div>
+
+<div class="q"><span class="qnum">4.</span><span class="qtag">triangle area</span>
+  <div class="qtext">A sprinter accelerates from 0 to 8 m/s during the first 2 seconds of a race, speeding up steadily. How many meters does she cover in those 2 seconds?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a sprinter out of the blocks is a classic speeding-up-from-zero situation. She does NOT cover 8 × 2 = 16 m — she was only at 8 m/s for the final instant! The slanted speed line makes a triangle, which is exactly half of that too-big rectangle.</div>
+    <div class="step">Base = 2 s, height = 8 m/s.</div>
+    <div class="step">Distance = ½ × 2 × 8 = 8 meters. (Exactly half of the wrong answer 16.)</div>
+    <div class="ans">8 meters</div></div>
+</div>
+
+<div class="q"><span class="qnum">5.</span><span class="qtag">money · reading widths</span>
+  <div class="qtext">You walk dogs for $6 per hour. On a graph of your earning rate, there's a flat line at height 6 from hour 3 of your day to hour 7. What is the area under that stretch, and what does it tell you?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> money accumulates at a rate too — dollars per hour. Area under an earning-rate graph = dollars earned, because (dollars/hour) × hours = dollars. And remember: width = end − start.</div>
+    <div class="step">Width = 7 − 3 = 4 hours. Height = 6 dollars/hour.</div>
+    <div class="step">Area = 4 × 6 = 24. Units: (dollars/hour) × hours = dollars.</div>
+    <div class="ans">Area = 24 → you earned $24 during those 4 hours</div></div>
+</div>
+
+<div class="q"><span class="qnum">6.</span><span class="qtag">what does area mean?</span>
+  <div class="qtext">A graph shows a faucet's flow rate: the y-axis is in liters per minute, and the x-axis is in minutes. Without computing anything, answer: what UNIT does the area under this graph carry, and what does the area MEAN in real life?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> area = height × width, so its unit is always (y-axis unit) × (x-axis unit). For any rate graph, the rate's "per minute" cancels against the minutes on the x-axis, leaving the unit of the thing that accumulated. You can know what an area means before doing any arithmetic.</div>
+    <div class="step">Unit of area = (liters/minute) × (minutes) = liters — the minutes cancel.</div>
+    <div class="step">Meaning: the total number of liters of water that came out of the faucet during that time.</div>
+    <div class="ans">Unit: liters. Meaning: the total water delivered.</div></div>
+</div>
+
+<div class="q"><span class="qnum">7.</span><span class="qtag">falling object</span>
+  <div class="qtext">A rock is dropped off a cliff. Its speed grows steadily from 0 to 30 m/s during the first 3 seconds of falling (gravity speeds things up by about 10 m/s every second). How far does the rock fall in those 3 seconds?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background (physics):</b> gravity is nature's steadiest accelerator — every second of falling adds about 10 m/s of speed. So a dropped object's speed graph is a perfect slanted line from 0, and the distance fallen is the triangle underneath it.</div>
+    <div class="step">Base = 3 s, height = 30 m/s.</div>
+    <div class="step">Distance = ½ × 3 × 30 = ½ × 90 = 45 meters.</div>
+    <div class="ans">45 meters</div></div>
+</div>
+
+<div class="q"><span class="qnum">8.</span><span class="qtag">trapezoid</span>
+  <div class="qtext">A train is already moving at 10 m/s when it starts speeding up steadily, reaching 30 m/s after 4 seconds. Split the region under its speed graph into a rectangle plus a triangle, and find the distance traveled.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> when the speed starts above zero, the region under the slanted line is a trapezoid. Slice it horizontally at the starting speed: below the slice is a rectangle (the speed the train ALWAYS had), above it is a triangle (the EXTRA speed it gained, growing from 0).</div>
+    <div class="step">Rectangle: height 10, width 4 → area = 10 × 4 = 40 m.</div>
+    <div class="step">Triangle: height 30 − 10 = 20, base 4 → area = ½ × 4 × 20 = 40 m.</div>
+    <div class="step">Total = 40 + 40 = 80 meters.</div>
+    <div class="ans">80 meters</div></div>
+</div>
+
+<div class="q"><span class="qnum">9.</span><span class="qtag">trapezoid · water</span>
+  <div class="qtext">A garden hose's flow rate rises steadily from 4 liters per minute to 10 liters per minute over 6 minutes. How much water comes out in total?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a rising flow rate makes a slanted line starting at height 4 — a trapezoid underneath. Rectangle + triangle handles it: the hose delivered AT LEAST 4 L/min the whole time (rectangle), plus an extra amount that grew from 0 to 6 L/min (triangle).</div>
+    <div class="step">Rectangle: 4 × 6 = 24 liters.</div>
+    <div class="step">Triangle: extra rate grows 0 → (10 − 4) = 6, so ½ × 6 × 6 = 18 liters.</div>
+    <div class="step">Total = 24 + 18 = 42 liters.</div>
+    <div class="ans">42 liters</div></div>
+</div>
+
+<div class="q"><span class="qnum">10.</span><span class="qtag">reverse · find the height</span>
+  <div class="qtext">A car accelerates from rest with a straight-line speed graph, and in 10 seconds it covers exactly 50 meters. What top speed did it reach at the end of the 10 seconds?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> usually we know the graph and find the area. Here it's backwards: we know the area (the distance, 50 m) and the base (10 s), and we solve for the triangle's height (the top speed). Same formula, different unknown.</div>
+    <div class="step">Set up: ½ × base × height = distance → ½ × 10 × h = 50.</div>
+    <div class="step">That's 5 × h = 50, so h = 50 ÷ 5 = 10.</div>
+    <div class="step">Check: ½ × 10 × 10 = 50 ✓.</div>
+    <div class="ans">Top speed = 10 m/s</div></div>
+</div>
+
+<div class="q"><span class="qnum">11.</span><span class="qtag">money · area meaning</span>
+  <div class="qtext">A lemonade stand earns money at a steady rate of $20 per day. On the earning-rate graph, find the area under the line from day 2 to day 5, and explain in words what that number means.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> two skills in one: reading the width from "from day a to day b" (width = b − a), and knowing what the area means (dollars, because (dollars/day) × days = dollars). The area is never just a number — it always stands for a real total.</div>
+    <div class="step">Width = 5 − 2 = 3 days. Height = 20 dollars/day.</div>
+    <div class="step">Area = 3 × 20 = 60.</div>
+    <div class="step">Meaning: the stand earned $60 during days 2 through 5.</div>
+    <div class="ans">Area = 60 → $60 earned between day 2 and day 5</div></div>
+</div>
+
+<div class="q"><span class="qnum">12.</span><span class="qtag">braking triangle</span>
+  <div class="qtext">A cyclist going 16 m/s hits the brakes and slows steadily to a complete stop over 8 seconds. Her speed graph is a slanted line going DOWN from 16 to 0. How far does she travel while braking?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a triangle doesn't care which way it slants! Slowing steadily from 16 to 0 makes a downhill line, and the region under it is still a triangle — base 8, height 16 (the height is at the START now instead of the end). Area = distance, exactly as before. This is real physics: it's how crash investigators compute stopping distances.</div>
+    <div class="step">Base = 8 s, height = 16 m/s.</div>
+    <div class="step">Distance = ½ × 8 × 16 = ½ × 128 = 64 meters.</div>
+    <div class="ans">64 meters</div></div>
+</div>
+
+<div class="q"><span class="qnum">13.</span><span class="qtag">weather trapezoid</span>
+  <div class="qtext">During a storm, the rainfall rate rises steadily from 2 millimeters per hour to 6 millimeters per hour over 4 hours. How many millimeters of rain fall in total? (Split into rectangle + triangle.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background (weather):</b> rainfall rate (mm/hour) is how fast the water level in a rain gauge rises; total rainfall (mm) is what the gauge reads afterward. A steadily strengthening storm makes a slanted rate line starting at 2 — a trapezoid. Rectangle (the rain that was always falling) + triangle (the extra as the storm grew).</div>
+    <div class="step">Rectangle: 2 mm/h × 4 h = 8 mm.</div>
+    <div class="step">Triangle: extra rate grows 0 → (6 − 2) = 4, so ½ × 4 × 4 = 8 mm.</div>
+    <div class="step">Total = 8 + 8 = 16 mm.</div>
+    <div class="ans">16 millimeters of rain</div></div>
+</div>
+
+<div class="q"><span class="qnum">14.</span><span class="qtag">reverse · find the rate</span>
+  <div class="qtext">A tank gains 90 liters of water in 6 minutes from a pump running at a perfectly steady rate. On the rate graph this is a rectangle of width 6 whose area is 90. How tall is the rectangle — that is, what was the pump's rate?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> area = width × height, so if you know the area and the width, the height is area ÷ width. In rate language: rate = total ÷ time. This is the "derivative direction" — recovering the rate from the total — and it's how you'd read a pump's speed off a water meter.</div>
+    <div class="step">height = area ÷ width = 90 ÷ 6 = 15.</div>
+    <div class="step">Check: 15 L/min × 6 min = 90 L ✓.</div>
+    <div class="ans">15 liters per minute</div></div>
+</div>
+
+<div class="q"><span class="qnum">15.</span><span class="qtag">biology triangle</span>
+  <div class="qtext">A bacteria colony starts growing slowly, then faster: its growth rate climbs steadily from 0 new bacteria per hour to 40 new bacteria per hour over 5 hours. How many new bacteria appear during those 5 hours?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background (biology):</b> a growth rate ("new bacteria per hour") is a rate like speed or water flow — it just counts organisms instead of meters or liters. The total number of NEW bacteria is the area under the growth-rate graph: (bacteria/hour) × hours = bacteria. A steadily climbing rate from 0 makes a triangle.</div>
+    <div class="step">Base = 5 hours, height = 40 bacteria/hour.</div>
+    <div class="step">New bacteria = ½ × 5 × 40 = ½ × 200 = 100.</div>
+    <div class="ans">100 new bacteria</div></div>
+</div>
+
+<div class="q"><span class="qnum">16.</span><span class="qtag">reverse trapezoid</span>
+  <div class="qtext">A motorcycle moving at 10 m/s speeds up steadily for 6 seconds and covers 90 meters during that time. What speed does it reach at the end? (Hint: rectangle + triangle, but now the triangle's height is the unknown.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the trapezoid decomposition works backwards too. The rectangle part (the starting speed held the whole time) is known, so subtract it from the total distance; whatever distance is left over must have come from the triangle of extra speed. Then solve the triangle for its height.</div>
+    <div class="step">Rectangle: 10 m/s × 6 s = 60 m. Distance left for the triangle: 90 − 60 = 30 m.</div>
+    <div class="step">Triangle: ½ × 6 × (extra speed) = 30 → 3 × (extra speed) = 30 → extra speed = 10 m/s.</div>
+    <div class="step">Final speed = starting 10 + extra 10 = 20 m/s. Check: 10×6 + ½×6×10 = 60 + 30 = 90 ✓.</div>
+    <div class="ans">20 m/s</div></div>
+</div>
+
+<div class="q"><span class="qnum">17.</span><span class="qtag">compare shapes</span>
+  <div class="qtext">Car A speeds up steadily from 0 to 20 m/s over 10 seconds. Car B drives at a constant 10 m/s for the same 10 seconds. Compute both distances. What do you notice, and why does it make sense?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a steadily changing rate accumulates exactly the same total as a constant rate equal to its <b>halfway value</b> — because the triangle (½ × b × h) has the same area as a rectangle of half the height (b × h/2). This "average rate" idea gets its own lesson later (Lesson 14).</div>
+    <div class="step">Car A: triangle, ½ × 10 × 20 = 100 m.</div>
+    <div class="step">Car B: rectangle, 10 × 10 = 100 m.</div>
+    <div class="step">They tie! Car A spent half the time below 10 m/s and half above, and the slow start exactly cancels the fast finish. Halfway between 0 and 20 is 10 — Car B drove Car A's average speed.</div>
+    <div class="ans">Both travel 100 m — a steady 10 m/s matches the average of 0-to-20</div></div>
+</div>
+
+<div class="q"><span class="qnum">18.</span><span class="qtag">energy trapezoid</span>
+  <div class="qtext">A bakery's electricity use (power) climbs steadily from 2 kilowatts to 4 kilowatts over 3 hours as the ovens heat up. How much energy, in kilowatt-hours, does the bakery use? (Power in kW is the RATE of using energy; energy in kWh is the TOTAL.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background (physics):</b> power is to energy what speed is to distance: power (kilowatts) is how FAST you're using energy, and energy (kilowatt-hours) is the total used — it's literally the unit on your family's electric bill. Area under a power graph = kW × hours = kWh, the energy.</div>
+    <div class="step">Rectangle: 2 kW × 3 h = 6 kWh.</div>
+    <div class="step">Triangle: extra power grows 0 → (4 − 2) = 2 kW, so ½ × 3 × 2 = 3 kWh.</div>
+    <div class="step">Total = 6 + 3 = 9 kWh.</div>
+    <div class="ans">9 kilowatt-hours</div></div>
+</div>
+
+<div class="q"><span class="qnum">19.</span><span class="qtag">challenge · piecewise graph</span>
+  <div class="qtext">A city bus makes this trip: cruises at 10 m/s for 20 seconds, then speeds up steadily from 10 to 20 m/s over the next 10 seconds, then cruises at 20 m/s for 30 seconds. Sketch the speed graph (flat, slanted, flat), break the region under it into rectangles and a triangle, and find the total distance.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> real trips are piecewise: flat stretches (constant speed) and slanted stretches (speeding up or slowing down). The master strategy: cut the graph at every place its shape changes, find each piece's area with rectangle or rectangle-plus-triangle, and add. Every piece's area is that piece's distance.</div>
+    <div class="step">Piece 1 (flat at 10, width 20): 10 × 20 = 200 m.</div>
+    <div class="step">Piece 2 (slanted 10 → 20, width 10): rectangle 10 × 10 = 100 m, plus triangle ½ × 10 × (20 − 10) = 50 m → 150 m.</div>
+    <div class="step">Piece 3 (flat at 20, width 30): 20 × 30 = 600 m.</div>
+    <div class="step">Total = 200 + 150 + 600 = 950 m.</div>
+    <div class="ans">950 meters</div></div>
+</div>
+
+<div class="q"><span class="qnum">20.</span><span class="qtag">challenge · full journey</span>
+  <div class="qtext">A subway train leaves a station, speeds up steadily from 0 to 15 m/s over 10 seconds, holds 15 m/s for 40 seconds, then brakes steadily from 15 m/s to 0 over 20 seconds, stopping at the next station. How far apart are the two stations?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> this triangle–rectangle–triangle shape is the true speed profile of almost every subway ride you've ever taken: accelerate, cruise, brake. The distance between stations is the whole area under it. Notice the braking triangle counts distance too — the train is still moving forward while slowing down!</div>
+    <div class="step">Speed-up triangle: ½ × 10 × 15 = 75 m.</div>
+    <div class="step">Cruise rectangle: 15 × 40 = 600 m.</div>
+    <div class="step">Braking triangle: ½ × 20 × 15 = 150 m.</div>
+    <div class="step">Total = 75 + 600 + 150 = 825 m.</div>
+    <div class="ans">825 meters between stations</div></div>
+</div>
+
+<footer>Lesson 2 of 20 · Intuitive Integration · next: <a href="Lesson03.html">Lesson 3 — Slicing Curves into Rectangles</a></footer>
+
+</div>
+<script>
+document.querySelectorAll('.q').forEach(q=>{
+  const btn=q.querySelector('.revealbtn'), sol=q.querySelector('.sol');
+  btn.addEventListener('click',()=>{ sol.classList.add('show'); btn.textContent='Solution shown'; btn.disabled=true; btn.style.opacity=.6; });
+});
+</script>
+</body>
+</html>

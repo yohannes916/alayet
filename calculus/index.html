@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Intuitive Integration — a 20-Lesson Course</title>
+<style>
+  :root{--accent:#186a3b;--accent2:#239b56;--bg:#f2f7f4;--card:#fff;--ok:#1e8449;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:#1c2833;background:var(--bg);margin:0;padding:0 16px 80px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -16px 20px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  .goal{background:#fef9e7;border-left:5px solid var(--star);padding:12px 18px;border-radius:8px;margin-bottom:18px;font-size:.95rem;}
+  .goal strong{color:#7d6608;}
+  section{background:var(--card);border-radius:10px;padding:18px 22px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  h2{color:var(--accent);font-size:1.15rem;margin:0 0 10px;}
+  h2 .num{background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;border-radius:6px;padding:2px 9px;margin-right:8px;}
+  ul{margin:8px 0;padding-left:24px;}
+  li{margin-bottom:8px;}
+  strong{color:#145a32;}
+  em.hi{font-style:normal;background:#fef9e7;padding:0 4px;border-radius:3px;}
+  .fml{background:#e9f7ef;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.9em;color:#186a3b;white-space:nowrap;}
+  table.t{border-collapse:collapse;margin:10px 0;font-size:.92rem;width:100%;}
+  table.t th,table.t td{border:1px solid #cfd8cf;padding:6px 12px;text-align:left;}
+  table.t th{background:var(--accent);color:#fff;font-weight:600;}
+  table.t td.n{text-align:center;font-weight:800;color:var(--accent);width:2.4em;}
+  table.t a{color:var(--accent);font-weight:600;text-decoration:none;}
+  table.t a:hover{text-decoration:underline;}
+  footer{text-align:center;color:#85929e;font-size:.85rem;margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Intuitive Integration — a 20-Lesson Course</h1>
+  <p>Intuitive Calculus for a Curious Student · from "rate × time" to u-substitution, one friendly step at a time</p>
+</header>
+
+<div class="goal"><strong>🎯 Welcome!</strong> This course teaches integral calculus from scratch to a curious student who knows some algebra and has met the idea of a derivative — no other background needed. <strong>How to use it:</strong> for each lesson, <em class="hi">read the notes at the top → do all 20 exercises on paper → reveal the solutions and check yourself → then take the printed test</em>. The printable tests and answer keys live in the same folder as <span class="fml">LessonNN_Test.pdf</span> / <span class="fml">LessonNN_Answers.pdf</span>. Take your time — every lesson builds on the one before it.</div>
+
+<section>
+  <h2><span class="num">Part 1</span> The Big Idea (Lessons 1–3)</h2>
+  <table class="t">
+    <tr><th>#</th><th>Lesson</th><th>What you'll learn</th></tr>
+    <tr><td class="n">1</td><td><a href="Lesson01.html">Adding Up Little Pieces</a></td><td>The one question integration answers: rate × time pieces, added up, give the total.</td></tr>
+    <tr><td class="n">2</td><td><a href="Lesson02.html">Area Under a Graph = the Total</a></td><td>Totals become areas — rectangles, triangles, and trapezoids do the work.</td></tr>
+    <tr><td class="n">3</td><td><a href="Lesson03.html">Slicing Curves into Rectangles</a></td><td>Curvy graphs surrender to skinny rectangle slices that get better and better.</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2><span class="num">Part 2</span> The Machinery (Lessons 4–8)</h2>
+  <table class="t">
+    <tr><th>#</th><th>Lesson</th><th>What you'll learn</th></tr>
+    <tr><td class="n">4</td><td><a href="Lesson04.html">The Antiderivative: Undoing the Derivative</a></td><td>Run differentiation backwards — and why every answer needs a "+ C".</td></tr>
+    <tr><td class="n">5</td><td><a href="Lesson05.html">The Power Rule for Antiderivatives</a></td><td>One rule to integrate any power of x: raise the exponent, divide by it.</td></tr>
+    <tr><td class="n">6</td><td><a href="Lesson06.html">The Definite Integral: the Official Symbol</a></td><td>Read and write ∫ from a to b of f(x) dx — the stretched-out S for "sum".</td></tr>
+    <tr><td class="n">7</td><td><a href="Lesson07.html">The Fundamental Theorem of Calculus</a></td><td>The great shortcut: the exact area is just F(b) − F(a). No slicing needed.</td></tr>
+    <tr><td class="n">8</td><td><a href="Lesson08.html">FTC Practice: Polynomial Fluency</a></td><td>Drill the shortcut until definite integrals of polynomials feel automatic.</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2><span class="num">Part 3</span> Applications (Lessons 9–14)</h2>
+  <table class="t">
+    <tr><th>#</th><th>Lesson</th><th>What you'll learn</th></tr>
+    <tr><td class="n">9</td><td><a href="Lesson09.html">Signed Area: Below the Axis</a></td><td>Area below the axis counts as negative — net change versus total activity.</td></tr>
+    <tr><td class="n">10</td><td><a href="Lesson10.html">Area Between Two Curves</a></td><td>Trap a region between two graphs and measure it: ∫ (top − bottom).</td></tr>
+    <tr><td class="n">11</td><td><a href="Lesson11.html">Motion I: From Velocity to Position</a></td><td>Integrate a velocity to rebuild where a moving object is.</td></tr>
+    <tr><td class="n">12</td><td><a href="Lesson12.html">Motion II: Acceleration &amp; Gravity</a></td><td>Integrate twice — acceleration to velocity to height — and master thrown balls (g = 10).</td></tr>
+    <tr><td class="n">13</td><td><a href="Lesson13.html">Real-World Accumulation Problems</a></td><td>Tanks, rain, money, downloads: turn any "per hour" story into an integral.</td></tr>
+    <tr><td class="n">14</td><td><a href="Lesson14.html">The Average Value of a Function</a></td><td>The one steady level that matches a changing function: (1/(b − a)) ∫ f.</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2><span class="num">Part 4</span> Power Tools &amp; Finale (Lessons 15–20)</h2>
+  <table class="t">
+    <tr><th>#</th><th>Lesson</th><th>What you'll learn</th></tr>
+    <tr><td class="n">15</td><td><a href="Lesson15.html">Two Special Functions: e^x and 1/x</a></td><td>The function that is its own antiderivative, and the one that needs ln x.</td></tr>
+    <tr><td class="n">16</td><td><a href="Lesson16.html">Integrating Sine &amp; Cosine</a></td><td>Waves join the toolbox: ∫ cos = sin + C and ∫ sin = −cos + C, in radians.</td></tr>
+    <tr><td class="n">17</td><td><a href="Lesson17.html">Substitution I: Linear Insides</a></td><td>Handle insides like 3x + 1: integrate the outside, then divide by the slope a.</td></tr>
+    <tr><td class="n">18</td><td><a href="Lesson18.html">Substitution II: u-Substitution</a></td><td>The full substitution trick: spot an inside function and its derivative, swap to u.</td></tr>
+    <tr><td class="n">19</td><td><a href="Lesson19.html">Initial Values &amp; Net Change</a></td><td>Integrals give the change; a starting amount pins down the whole story.</td></tr>
+    <tr><td class="n">20</td><td><a href="Lesson20.html">Capstone: Putting It All Together</a></td><td>The whole course on one page, a problem-attack checklist, and 20 mixed boss problems.</td></tr>
+  </table>
+</section>
+
+<footer>Intuitive Integration · 20 lessons · start with <a href="Lesson01.html">Lesson 1 — Adding Up Little Pieces</a> 🏁</footer>
+
+</div>
+</body>
+</html>

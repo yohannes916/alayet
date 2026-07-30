@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 7 — The Fundamental Theorem of Calculus</title>
+<style>
+  :root{--accent:#186a3b;--accent2:#239b56;--bg:#f2f7f4;--card:#fff;--ok:#1e8449;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:#1c2833;background:var(--bg);margin:0;padding:0 16px 80px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -16px 20px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  nav{display:flex;gap:10px;margin-bottom:18px;font-size:.9rem;flex-wrap:wrap;}
+  nav a{color:var(--accent);text-decoration:none;font-weight:600;background:#fff;border:1px solid #d5e8dc;border-radius:8px;padding:6px 14px;}
+  nav a:hover{background:#eafaf1;}
+  .goal{background:#fef9e7;border-left:5px solid var(--star);padding:12px 18px;border-radius:8px;margin-bottom:18px;font-size:.95rem;}
+  .goal strong{color:#7d6608;}
+  section{background:var(--card);border-radius:10px;padding:18px 22px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  h2{color:var(--accent);font-size:1.15rem;margin:0 0 10px;}
+  h2 .num{background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;border-radius:6px;padding:2px 9px;margin-right:8px;}
+  ul{margin:8px 0;padding-left:24px;}
+  li{margin-bottom:8px;}
+  strong{color:#145a32;}
+  em.hi{font-style:normal;background:#fef9e7;padding:0 4px;border-radius:3px;}
+  .fml{background:#e9f7ef;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.9em;color:#186a3b;white-space:nowrap;}
+  .ex{background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:.95rem;}
+  .ex b{color:#145a32;}
+  .graph{background:#1b2631;color:#eaeded;border-radius:8px;padding:14px 18px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.82rem;line-height:1.45;overflow-x:auto;margin:10px 0;white-space:pre;}
+  .graph .g{color:#82e0aa;} .graph .y{color:#f7dc6f;} .graph .b{color:#85c1e9;}
+  table.t{border-collapse:collapse;margin:10px 0;font-size:.92rem;}
+  table.t th,table.t td{border:1px solid #cfd8cf;padding:6px 12px;text-align:center;}
+  table.t th{background:var(--accent);color:#fff;font-weight:600;}
+  .qhead{margin:26px 0 8px;color:var(--accent);font-size:1.2rem;border-bottom:2px solid #d4efdf;padding-bottom:6px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid var(--accent2);}
+  .qnum{font-weight:800;color:var(--accent);margin-right:6px;}
+  .qtag{float:right;background:#e9f7ef;color:var(--accent);border-radius:8px;padding:1px 9px;font-size:.68rem;font-weight:700;letter-spacing:.3px;margin-left:8px;}
+  .qtext{font-size:.98rem;margin:4px 0 10px;}
+  .revealbtn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .revealbtn:hover{background:#0e4429;}
+  .sol{display:none;margin-top:12px;background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px;font-size:.93rem;}
+  .sol.show{display:block;}
+  .sol h4{margin:0 0 8px;color:var(--ok);font-size:.9rem;}
+  .sol .ctx{background:#eaf2f8;border-left:4px solid #2e86c1;border-radius:6px;padding:8px 12px;margin:0 0 10px;font-size:.88rem;}
+  .sol .ctx b{color:#1a5276;}
+  .sol .step{margin:6px 0;}
+  .sol .ans{background:#eafaf1;border-radius:6px;padding:6px 12px;margin-top:8px;font-weight:700;color:#145a32;display:inline-block;}
+  footer{text-align:center;color:#85929e;font-size:.85rem;margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Lesson 7 — The Fundamental Theorem of Calculus</h1>
+  <p>The Miracle Shortcut · Intuitive Calculus for a Curious Student · Lesson 7 of 20</p>
+</header>
+
+<nav><a href="index.html">📚 All lessons</a><a href="Lesson06.html">← Prev: Lesson 6</a><a href="Lesson08.html">Next: Lesson 8 →</a></nav>
+
+<div class="goal"><strong>🎯 Goal of this lesson:</strong> learn the single most important fact in this course — <span class="fml">∫<sub>a</sub><sup>b</sup> f(x) dx = F(b) − F(a)</span>, where F is any antiderivative of f. It turns "add up infinitely many skinny rectangles" into "plug in two numbers and subtract." This is the payoff for everything you've built in Lessons 1–6.</div>
+
+<section>
+  <h2><span class="num">1</span> The cliffhanger: our tools run out</h2>
+  <ul>
+    <li>Where we stand: geometry (Lesson 6) computes integrals EXACTLY... but only when the graph is made of <strong>straight lines</strong> — rectangles, triangles, trapezoids.</li>
+    <li>For a curve like <span class="fml">x²</span>, straight-edge shapes don't fit. Lesson 3's rectangle-slicing works on curves — but it never quite finishes: skinnier slices, better estimates, forever. Endless arithmetic for an answer that's still approximate.</li>
+    <li>So here's the situation: <em class="hi">exact but only for straight lines, or works-on-curves but never exact.</em> We want both. Today we get both.</li>
+    <li>There is a miracle shortcut — so central that it's called <strong>the Fundamental Theorem of Calculus</strong>. And you already own every piece needed to understand it.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">2</span> The idea in a story: the odometer</h2>
+  <ul>
+    <li>Think about a car's two dashboard displays. The <strong>speedometer</strong> shows the rate right now. The <strong>odometer</strong> shows total miles ever driven — it <em class="hi">accumulates</em> the speed, mile by mile.</li>
+    <li>Question: how far did you drive between time a and time b? Easy — <strong>read the odometer twice and subtract</strong>: distance = (odometer at b) − (odometer at a). No adding-up needed; the odometer already did all the adding for you, continuously, as you drove.</li>
+    <li>Now the key connection. What IS the odometer, mathematically? It's the function whose <strong>rate of change is your speed</strong> — the function whose derivative is the speedometer reading. From Lessons 4–5 you know what that's called: <em class="hi">the odometer is an ANTIDERIVATIVE of the speed!</em></li>
+    <li>Put the pieces together: the total accumulated from a to b (that's the integral!) equals an antiderivative read at b, minus the same antiderivative read at a.</li>
+  </ul>
+  <div class="graph"> <span class="b">speedometer</span>  =  f(t)      the RATE          (what we integrate)
+ <span class="g">odometer</span>     =  F(t)      the ACCUMULATOR   (an antiderivative of f)
+
+ distance from a to b  =  <span class="g">F(b)</span> − <span class="g">F(a)</span>
+                           read it   read it
+                           at the    at the
+                           end       start</div>
+</section>
+
+<section>
+  <h2><span class="num">3</span> The theorem, and the three-step recipe</h2>
+  <ul>
+    <li>Here it is — the Fundamental Theorem of Calculus:</li>
+    <li style="list-style:none;font-size:1.2rem;text-align:center;margin:14px 0;"><span class="fml">∫<sub>a</sub><sup>b</sup> f(x) dx = F(b) − F(a)</span></li>
+    <li>...where <span class="fml">F</span> is <strong>ANY antiderivative</strong> of <span class="fml">f</span> (any function whose derivative is f).</li>
+    <li>Read it slowly: the exact area under the rate graph f, from a to b, is found by taking an accumulator function F and subtracting its start value from its end value. The infinitely-many-rectangles sum collapses into ONE subtraction.</li>
+    <li>The recipe, every single time:
+      <ul>
+        <li><strong>Step 1:</strong> find an antiderivative F of the integrand (Lessons 4–5: power rule backwards).</li>
+        <li><strong>Step 2:</strong> plug in the upper limit → F(b). Plug in the lower limit → F(a).</li>
+        <li><strong>Step 3:</strong> subtract: F(b) − F(a). Done.</li>
+      </ul>
+    </li>
+  </ul>
+  <div class="ex"><b>Tiny first example:</b> <span class="fml">∫<sub>0</sub><sup>3</sup> 2x dx</span>. Step 1: an antiderivative of 2x is F(x) = x² (check: derivative of x² is 2x ✓). Step 2: F(3) = 9, F(0) = 0. Step 3: 9 − 0 = <b>9</b>. Geometry agrees: triangle, base 3, height 6, area ½ × 3 × 6 = 9 ✓.</div>
+</section>
+
+<section>
+  <h2><span class="num">4</span> Why the +C doesn't matter here</h2>
+  <ul>
+    <li>Lessons 4–5 drilled into you: antiderivatives come in families, always write <span class="fml">+ C</span>. So which C do we use in the theorem? Watch what happens if we keep it:</li>
+    <li style="list-style:none;text-align:center;"><span class="fml">(F(b) + C) − (F(a) + C) = F(b) − F(a) + C − C = F(b) − F(a)</span></li>
+    <li>The C's <strong>cancel</strong> — whatever C you pick, it gets added at b and subtracted right back at a. Every member of the antiderivative family gives the exact same answer.</li>
+    <li>Odometer version: it doesn't matter what your odometer read when the car left the factory — the DIFFERENCE between two readings is the same regardless.</li>
+    <li>Practical rule: <em class="hi">for definite integrals, you may drop the +C</em>. (For indefinite antiderivative questions like Lessons 4–5, keep writing it!)</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">5</span> Worked examples — with truth-checks</h2>
+  <div class="ex"><b>Example 1 (check against geometry):</b> <span class="fml">∫<sub>0</sub><sup>4</sup> 3x dx</span>.
+  Step 1: F(x) = 3x²/2 (check by differentiating: derivative of 3x²/2 is 3x ✓).
+  Step 2: F(4) = 3 × 16 / 2 = 24, and F(0) = 0.
+  Step 3: 24 − 0 = <b>24</b>.
+  Now the geometry: the region is a triangle with base 4 and height 3 × 4 = 12, so area = ½ × 4 × 12 = 24 ✓. <b>The shortcut agrees with the truth.</b> That's why we did Lesson 6 first — so you can catch the theorem telling the truth.</div>
+  <div class="ex"><b>Example 2 (a real curve — geometry can't do this one):</b> <span class="fml">∫<sub>0</sub><sup>2</sup> x² dx</span>.
+  Step 1: F(x) = x³/3 (check: derivative of x³/3 is 3x²/3 = x² ✓).
+  Step 2: F(2) = 8/3, F(0) = 0.
+  Step 3: 8/3 − 0 = <b>8/3 ≈ 2.67</b>.
+  Remember Lesson 3? Your rectangle sandwich squeezed this exact area between 1.75 and 3.75, and tightened as the slices got skinnier. The number it was closing in on — the answer to all that slicing — is exactly <b>8/3</b>. Three lines of algebra just replaced infinite rectangle-counting. That's the miracle.</div>
+  <div class="graph">      |          <span class="b">·</span>
+    4 |         <span class="b">·</span>│   y = x²
+      |        <span class="b">·</span> │
+      |      <span class="b">·</span>   │   exact area 0→2
+    1 |   <span class="b">·</span>  <span class="g">8/3</span>│   = F(2) − F(0)
+      | <span class="b">·</span>        │   = 8/3 ≈ 2.67
+    0 +<span class="b">·</span>─────────+────→ x
+      0    1     2
+  <span class="y">Lesson 3's sandwich: 1.75 &lt; area &lt; 3.75 → it was heading to 8/3 all along</span></div>
+</section>
+
+<section>
+  <h2><span class="num">6</span> Handy notation: the evaluation bracket</h2>
+  <ul>
+    <li>Writing "F(b) − F(a)" over and over gets clumsy, so there's a standard shorthand: square brackets with the limits attached, <span class="fml">[F(x)]<sub>a</sub><sup>b</sup></span>, which means "plug the top number into F, plug the bottom number in, subtract."</li>
+    <li>Example written the professional way: <span class="fml">∫<sub>0</sub><sup>2</sup> x² dx = [x³/3]<sub>0</sub><sup>2</sup> = 8/3 − 0 = 8/3</span>.</li>
+    <li>The bracket is a to-do note: "antiderivative found — evaluation still to do." You'll see it in every calculus book ever printed, so let's make friends with it now.</li>
+  </ul>
+</section>
+
+<div class="qhead">✏️ Exercises — 20 problems (write your answer on paper, then reveal)</div>
+
+<div class="q"><span class="qnum">1.</span><span class="qtag">FTC · constant</span>
+  <div class="qtext">Use the Fundamental Theorem (all three steps) to evaluate <span class="fml">∫<sub>0</sub><sup>3</sup> 2 dx</span>. Then check your answer with a rectangle.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the FTC recipe: (1) find F, an antiderivative of the integrand (a function whose derivative is the integrand); (2) plug in the top limit and the bottom limit; (3) subtract, top minus bottom. An antiderivative of the constant 2 is 2x, since the derivative of 2x is 2.</div>
+    <div class="step">Step 1: F(x) = 2x.</div>
+    <div class="step">Step 2: F(3) = 6, F(0) = 0.</div>
+    <div class="step">Step 3: 6 − 0 = 6.</div>
+    <div class="step">Geometry check: rectangle, width 3, height 2 → 2 × 3 = 6 ✓.</div>
+    <div class="ans"><span class="fml">∫<sub>0</sub><sup>3</sup> 2 dx</span> = 6</div></div>
+</div>
+
+<div class="q"><span class="qnum">2.</span><span class="qtag">FTC · constant</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>1</sub><sup>5</sup> 4 dx</span> with the FTC, then check with a rectangle.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> this time the lower limit isn't 0, so F(a) won't be 0 — don't skip the subtraction! F(x) = 4x works because the derivative of 4x is 4.</div>
+    <div class="step">Step 1: F(x) = 4x.</div>
+    <div class="step">Step 2: F(5) = 20, F(1) = 4.</div>
+    <div class="step">Step 3: 20 − 4 = 16.</div>
+    <div class="step">Geometry check: rectangle, width 5 − 1 = 4, height 4 → 16 ✓.</div>
+    <div class="ans"><span class="fml">∫<sub>1</sub><sup>5</sup> 4 dx</span> = 16</div></div>
+</div>
+
+<div class="q"><span class="qnum">3.</span><span class="qtag">FTC · line</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>0</sub><sup>4</sup> x dx</span> with the FTC, then check with a triangle.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the power rule backwards (Lesson 5): to antidifferentiate x<sup>n</sup>, raise the power by one and divide by the new power. So an antiderivative of x (which is x¹) is x²/2 — check: the derivative of x²/2 is 2x/2 = x ✓.</div>
+    <div class="step">Step 1: F(x) = x²/2.</div>
+    <div class="step">Step 2: F(4) = 16/2 = 8, F(0) = 0.</div>
+    <div class="step">Step 3: 8 − 0 = 8.</div>
+    <div class="step">Geometry check: triangle, base 4, height 4 → ½ × 4 × 4 = 8 ✓.</div>
+    <div class="ans"><span class="fml">∫<sub>0</sub><sup>4</sup> x dx</span> = 8</div></div>
+</div>
+
+<div class="q"><span class="qnum">4.</span><span class="qtag">FTC · line</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>0</sub><sup>2</sup> 6x dx</span> with the FTC, then check with a triangle.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> constants ride along: an antiderivative of 6x is 6 × (x²/2) = 3x². Always verify by differentiating: derivative of 3x² is 6x ✓. This differentiate-to-check habit catches almost every mistake.</div>
+    <div class="step">Step 1: F(x) = 3x².</div>
+    <div class="step">Step 2: F(2) = 3 × 4 = 12, F(0) = 0.</div>
+    <div class="step">Step 3: 12 − 0 = 12.</div>
+    <div class="step">Geometry check: triangle, base 2, height 6 × 2 = 12 → ½ × 2 × 12 = 12 ✓.</div>
+    <div class="ans"><span class="fml">∫<sub>0</sub><sup>2</sup> 6x dx</span> = 12</div></div>
+</div>
+
+<div class="q"><span class="qnum">5.</span><span class="qtag">FTC · first curve</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>0</sub><sup>1</sup> x² dx</span> — an exact area under a curve, something geometry alone could never give you.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> power rule backwards: an antiderivative of x² is x³/3 (check: derivative of x³/3 is 3x²/3 = x² ✓). No triangle or trapezoid fits under a curve — but the FTC doesn't care whether the graph is straight or curvy.</div>
+    <div class="step">Step 1: F(x) = x³/3.</div>
+    <div class="step">Step 2: F(1) = 1/3, F(0) = 0.</div>
+    <div class="step">Step 3: 1/3 − 0 = 1/3.</div>
+    <div class="step">Sanity check: the region fits inside the 1 × 1 square and clearly fills less than half of it — 1/3 ≈ 0.33 is believable ✓.</div>
+    <div class="ans"><span class="fml">∫<sub>0</sub><sup>1</sup> x² dx</span> = 1/3</div></div>
+</div>
+
+<div class="q"><span class="qnum">6.</span><span class="qtag">concept · why C cancels</span>
+  <div class="qtext">Your friend says: "You told me antiderivatives always need a +C. So isn't the answer to every definite integral unknown, since we don't know C?" Explain, with one line of algebra, why the friend can relax.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> an antiderivative family is F(x) + C for every possible constant C — infinitely many functions, all with the same derivative. The FTC says to compute F(b) − F(a). The question is whether different C's give different answers.</div>
+    <div class="step">Keep the C and compute: (F(b) + C) − (F(a) + C) = F(b) − F(a) + C − C = F(b) − F(a).</div>
+    <div class="step">The C is added at b and subtracted right back at a — it cancels no matter what it is. Every member of the family gives the same answer, so we may simply use the C = 0 member.</div>
+    <div class="step">Odometer picture: the factory setting of the odometer doesn't change the difference between two readings.</div>
+    <div class="ans">The C's cancel in the subtraction: (F(b)+C) − (F(a)+C) = F(b) − F(a)</div></div>
+</div>
+
+<div class="q"><span class="qnum">7.</span><span class="qtag">FTC · curve</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>1</sub><sup>3</sup> x² dx</span>. Give the exact fraction and a decimal.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> same antiderivative as before, F(x) = x³/3, but now the lower limit is 1, so F(1) is NOT zero. The most common FTC error in the world is forgetting to subtract F(a) — don't be that person.</div>
+    <div class="step">Step 1: F(x) = x³/3 (check: derivative is x² ✓).</div>
+    <div class="step">Step 2: F(3) = 27/3 = 9, F(1) = 1/3.</div>
+    <div class="step">Step 3: 9 − 1/3 = 27/3 − 1/3 = 26/3.</div>
+    <div class="ans"><span class="fml">∫<sub>1</sub><sup>3</sup> x² dx</span> = 26/3 ≈ 8.67</div></div>
+</div>
+
+<div class="q"><span class="qnum">8.</span><span class="qtag">FTC · curve</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>0</sub><sup>2</sup> x³ dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> power rule backwards on x³: raise the power to 4, divide by 4 → F(x) = x⁴/4. Check by differentiating: derivative of x⁴/4 is 4x³/4 = x³ ✓.</div>
+    <div class="step">Step 1: F(x) = x⁴/4.</div>
+    <div class="step">Step 2: F(2) = 16/4 = 4, F(0) = 0.</div>
+    <div class="step">Step 3: 4 − 0 = 4.</div>
+    <div class="ans"><span class="fml">∫<sub>0</sub><sup>2</sup> x³ dx</span> = 4</div></div>
+</div>
+
+<div class="q"><span class="qnum">9.</span><span class="qtag">FTC · polynomial</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>0</sub><sup>2</sup> (3x² + 2) dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> antidifferentiate a sum term by term (Lesson 5): 3x² becomes x³ (since the derivative of x³ is 3x²), and the constant 2 becomes 2x. So F(x) = x³ + 2x. Check: derivative of x³ + 2x is 3x² + 2 ✓.</div>
+    <div class="step">Step 1: F(x) = x³ + 2x.</div>
+    <div class="step">Step 2: F(2) = 8 + 4 = 12, F(0) = 0.</div>
+    <div class="step">Step 3: 12 − 0 = 12.</div>
+    <div class="ans"><span class="fml">∫<sub>0</sub><sup>2</sup> (3x² + 2) dx</span> = 12</div></div>
+</div>
+
+<div class="q"><span class="qnum">10.</span><span class="qtag">FTC + geometry check</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>1</sub><sup>4</sup> 2x dx</span> with the FTC, then verify with the trapezoid method from Lesson 6.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> straight-line integrands are our testing lab: geometry gives the certified-true answer, so we can confirm the FTC is honest. An antiderivative of 2x is x² (derivative of x² is 2x ✓).</div>
+    <div class="step">Step 1: F(x) = x².</div>
+    <div class="step">Step 2: F(4) = 16, F(1) = 1.</div>
+    <div class="step">Step 3: 16 − 1 = 15.</div>
+    <div class="step">Geometry check: heights at the ends are 2(1) = 2 and 2(4) = 8; trapezoid = ½(2 + 8) × 3 = 15 ✓. Same answer, both roads.</div>
+    <div class="ans"><span class="fml">∫<sub>1</sub><sup>4</sup> 2x dx</span> = 15</div></div>
+</div>
+
+<div class="q"><span class="qnum">11.</span><span class="qtag">find the mistake</span>
+  <div class="qtext">A student evaluates <span class="fml">∫<sub>2</sub><sup>5</sup> 2x dx</span> like this: "Antiderivative of 2x is x². Plug in 5: x² = 25. Answer: 25." Find the mistake and fix it.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the FTC has THREE steps, and the third one is a subtraction: F(b) − F(a). The odometer story explains why: reading the odometer only at the end tells you the car's lifetime mileage, not the length of THIS trip — you must subtract the starting reading.</div>
+    <div class="step">The student found F correctly and computed F(5) = 25 correctly — but never subtracted F(2).</div>
+    <div class="step">F(2) = 4, so the true answer is 25 − 4 = 21.</div>
+    <div class="step">Geometry confirms: trapezoid with heights 4 and 10, width 3 → ½(4 + 10) × 3 = 21 ✓ (and 25 is wrong).</div>
+    <div class="ans">Forgot to subtract F(2) = 4. Correct answer: 21</div></div>
+</div>
+
+<div class="q"><span class="qnum">12.</span><span class="qtag">word problem</span>
+  <div class="qtext">Water flows into a tank at the rate r(t) = 6t liters per minute (the flow speeds up over time). Using the FTC, find the total water added from t = 1 to t = 3 minutes.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> total accumulated from a rate = a definite integral (Lesson 6), and the FTC computes it: total = <span class="fml">∫<sub>1</sub><sup>3</sup> 6t dt</span> = F(3) − F(1). An antiderivative of 6t is 3t² (check: derivative of 3t² is 6t ✓). The antiderivative F plays the role of a "water odometer" — total liters ever delivered.</div>
+    <div class="step">Step 1: F(t) = 3t².</div>
+    <div class="step">Step 2: F(3) = 3 × 9 = 27, F(1) = 3 × 1 = 3.</div>
+    <div class="step">Step 3: 27 − 3 = 24. Units: (liters/minute) × minutes = liters.</div>
+    <div class="ans">24 liters</div></div>
+</div>
+
+<div class="q"><span class="qnum">13.</span><span class="qtag">FTC · polynomial</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>0</sub><sup>3</sup> (x² + 1) dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> term by term: x² antidifferentiates to x³/3, and the constant 1 antidifferentiates to x. F(x) = x³/3 + x. Check: derivative of x³/3 + x is x² + 1 ✓.</div>
+    <div class="step">Step 1: F(x) = x³/3 + x.</div>
+    <div class="step">Step 2: F(3) = 27/3 + 3 = 9 + 3 = 12, F(0) = 0.</div>
+    <div class="step">Step 3: 12 − 0 = 12.</div>
+    <div class="ans"><span class="fml">∫<sub>0</sub><sup>3</sup> (x² + 1) dx</span> = 12</div></div>
+</div>
+
+<div class="q"><span class="qnum">14.</span><span class="qtag">bracket notation</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>1</sub><sup>2</sup> 3x² dx</span>, writing your work in evaluation-bracket form: <span class="fml">[ ... ]<sub>1</sub><sup>2</sup></span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the bracket [F(x)]<sub>a</sub><sup>b</sup> is shorthand for F(b) − F(a): "here's the antiderivative — now plug in the top limit, plug in the bottom limit, subtract." An antiderivative of 3x² is x³ (derivative of x³ is 3x² ✓).</div>
+    <div class="step"><span class="fml">∫<sub>1</sub><sup>2</sup> 3x² dx = [x³]<sub>1</sub><sup>2</sup></span></div>
+    <div class="step">= 2³ − 1³ = 8 − 1 = 7.</div>
+    <div class="ans"><span class="fml">∫<sub>1</sub><sup>2</sup> 3x² dx = [x³]<sub>1</sub><sup>2</sup> = 7</span></div></div>
+</div>
+
+<div class="q"><span class="qnum">15.</span><span class="qtag">FTC + geometry check</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>0</sub><sup>5</sup> (4x + 3) dx</span> with the FTC, then verify with a trapezoid.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> term by term: 4x antidifferentiates to 2x² (derivative: 4x ✓), and 3 antidifferentiates to 3x. F(x) = 2x² + 3x. Because the integrand is a straight line, geometry can double-check us: heights ½(start + end) × width.</div>
+    <div class="step">Step 1: F(x) = 2x² + 3x.</div>
+    <div class="step">Step 2: F(5) = 2 × 25 + 15 = 50 + 15 = 65, F(0) = 0.</div>
+    <div class="step">Step 3: 65 − 0 = 65.</div>
+    <div class="step">Geometry check: at x = 0 height = 3; at x = 5 height = 23. Trapezoid = ½(3 + 23) × 5 = 13 × 5 = 65 ✓.</div>
+    <div class="ans"><span class="fml">∫<sub>0</sub><sup>5</sup> (4x + 3) dx</span> = 65</div></div>
+</div>
+
+<div class="q"><span class="qnum">16.</span><span class="qtag">FTC · polynomial</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>1</sub><sup>2</sup> (6x² − 2x) dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> subtraction works term by term just like addition. 6x² antidifferentiates to 2x³ (derivative: 6x² ✓); 2x antidifferentiates to x². So F(x) = 2x³ − x². Always differentiate to confirm: derivative of 2x³ − x² is 6x² − 2x ✓.</div>
+    <div class="step">Step 1: F(x) = 2x³ − x².</div>
+    <div class="step">Step 2: F(2) = 2 × 8 − 4 = 16 − 4 = 12; F(1) = 2 − 1 = 1.</div>
+    <div class="step">Step 3: 12 − 1 = 11.</div>
+    <div class="ans"><span class="fml">∫<sub>1</sub><sup>2</sup> (6x² − 2x) dx</span> = 11</div></div>
+</div>
+
+<div class="q"><span class="qnum">17.</span><span class="qtag">word problem · curve</span>
+  <div class="qtext">A tap's flow rate grows like r(t) = t² liters per minute. How much water comes out between t = 0 and t = 3 minutes? (Notice: this rate graph is a CURVE — Lesson 6's geometry couldn't have answered this at all.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> total = <span class="fml">∫<sub>0</sub><sup>3</sup> t² dt</span>. Before today, our only option was rectangle-slicing forever. Now: antiderivative of t² is t³/3 (check: derivative is t² ✓), plug in, subtract.</div>
+    <div class="step">Step 1: F(t) = t³/3.</div>
+    <div class="step">Step 2: F(3) = 27/3 = 9, F(0) = 0.</div>
+    <div class="step">Step 3: 9 − 0 = 9. Units: (liters/minute) × minutes = liters.</div>
+    <div class="ans">9 liters</div></div>
+</div>
+
+<div class="q"><span class="qnum">18.</span><span class="qtag">FTC · bigger powers</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>0</sub><sup>4</sup> (x³ − x) dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> term by term with the power rule backwards: x³ → x⁴/4, and x → x²/2. F(x) = x⁴/4 − x²/2. Check: derivative of x⁴/4 − x²/2 is x³ − x ✓. With bigger powers, keep the arithmetic tidy — compute each term separately before combining.</div>
+    <div class="step">Step 1: F(x) = x⁴/4 − x²/2.</div>
+    <div class="step">Step 2: F(4) = 256/4 − 16/2 = 64 − 8 = 56; F(0) = 0.</div>
+    <div class="step">Step 3: 56 − 0 = 56.</div>
+    <div class="ans"><span class="fml">∫<sub>0</sub><sup>4</sup> (x³ − x) dx</span> = 56</div></div>
+</div>
+
+<div class="q"><span class="qnum">19.</span><span class="qtag">concept · any antiderivative</span>
+  <div class="qtext">Ana uses F(x) = x² and Ben uses G(x) = x² + 7 to evaluate <span class="fml">∫<sub>1</sub><sup>3</sup> 2x dx</span>. Work out BOTH computations and show they agree. What does this demonstrate?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> x² and x² + 7 are both antiderivatives of 2x (both have derivative 2x — the +7 dies when you differentiate). The theorem promises ANY antiderivative works. Let's catch it keeping that promise with actual numbers.</div>
+    <div class="step">Ana: F(3) − F(1) = 9 − 1 = 8.</div>
+    <div class="step">Ben: G(3) − G(1) = (9 + 7) − (1 + 7) = 16 − 8 = 8.</div>
+    <div class="step">Identical! Ben's +7 appeared in both readings and vanished in the subtraction — a live demonstration of why the +C never matters for definite integrals.</div>
+    <div class="ans">Both get 8 — any antiderivative gives the same F(b) − F(a)</div></div>
+</div>
+
+<div class="q"><span class="qnum">20.</span><span class="qtag">challenge</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>1</sub><sup>4</sup> (x² − 2x + 5) dx</span>. Work cleanly — three terms, two plug-ins, one subtraction.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> everything from this lesson in one problem. Antidifferentiate term by term: x² → x³/3, −2x → −x², 5 → 5x. So F(x) = x³/3 − x² + 5x. Check by differentiating: x² − 2x + 5 ✓. Expect fractions — keep everything over 3 until the end.</div>
+    <div class="step">Step 1: F(x) = x³/3 − x² + 5x.</div>
+    <div class="step">Step 2: F(4) = 64/3 − 16 + 20 = 64/3 + 4 = 64/3 + 12/3 = 76/3.</div>
+    <div class="step">F(1) = 1/3 − 1 + 5 = 1/3 + 4 = 1/3 + 12/3 = 13/3.</div>
+    <div class="step">Step 3: 76/3 − 13/3 = 63/3 = 21.</div>
+    <div class="ans"><span class="fml">∫<sub>1</sub><sup>4</sup> (x² − 2x + 5) dx</span> = 21</div></div>
+</div>
+
+<footer>Lesson 7 of 20 · Intuitive Integration · next: <a href="Lesson08.html">Lesson 8 — FTC Practice: Polynomial Fluency</a></footer>
+
+</div>
+<script>
+document.querySelectorAll('.q').forEach(q=>{
+  const btn=q.querySelector('.revealbtn'), sol=q.querySelector('.sol');
+  btn.addEventListener('click',()=>{ sol.classList.add('show'); btn.textContent='Solution shown'; btn.disabled=true; btn.style.opacity=.6; });
+});
+</script>
+</body>
+</html>

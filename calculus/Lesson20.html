@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 20 — Capstone: Putting It All Together</title>
+<style>
+  :root{--accent:#186a3b;--accent2:#239b56;--bg:#f2f7f4;--card:#fff;--ok:#1e8449;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:#1c2833;background:var(--bg);margin:0;padding:0 16px 80px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -16px 20px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  nav{display:flex;gap:10px;margin-bottom:18px;font-size:.9rem;flex-wrap:wrap;}
+  nav a{color:var(--accent);text-decoration:none;font-weight:600;background:#fff;border:1px solid #d5e8dc;border-radius:8px;padding:6px 14px;}
+  nav a:hover{background:#eafaf1;}
+  .goal{background:#fef9e7;border-left:5px solid var(--star);padding:12px 18px;border-radius:8px;margin-bottom:18px;font-size:.95rem;}
+  .goal strong{color:#7d6608;}
+  section{background:var(--card);border-radius:10px;padding:18px 22px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  h2{color:var(--accent);font-size:1.15rem;margin:0 0 10px;}
+  h2 .num{background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;border-radius:6px;padding:2px 9px;margin-right:8px;}
+  ul{margin:8px 0;padding-left:24px;}
+  li{margin-bottom:8px;}
+  strong{color:#145a32;}
+  em.hi{font-style:normal;background:#fef9e7;padding:0 4px;border-radius:3px;}
+  .fml{background:#e9f7ef;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.9em;color:#186a3b;white-space:nowrap;}
+  .ex{background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:.95rem;}
+  .ex b{color:#145a32;}
+  .graph{background:#1b2631;color:#eaeded;border-radius:8px;padding:14px 18px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.82rem;line-height:1.45;overflow-x:auto;margin:10px 0;white-space:pre;}
+  .graph .g{color:#82e0aa;} .graph .y{color:#f7dc6f;} .graph .b{color:#85c1e9;}
+  table.t{border-collapse:collapse;margin:10px 0;font-size:.92rem;}
+  table.t th,table.t td{border:1px solid #cfd8cf;padding:6px 12px;text-align:center;}
+  table.t th{background:var(--accent);color:#fff;font-weight:600;}
+  .qhead{margin:26px 0 8px;color:var(--accent);font-size:1.2rem;border-bottom:2px solid #d4efdf;padding-bottom:6px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid var(--accent2);}
+  .qnum{font-weight:800;color:var(--accent);margin-right:6px;}
+  .qtag{float:right;background:#e9f7ef;color:var(--accent);border-radius:8px;padding:1px 9px;font-size:.68rem;font-weight:700;letter-spacing:.3px;margin-left:8px;}
+  .qtext{font-size:.98rem;margin:4px 0 10px;}
+  .revealbtn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .revealbtn:hover{background:#0e4429;}
+  .sol{display:none;margin-top:12px;background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px;font-size:.93rem;}
+  .sol.show{display:block;}
+  .sol h4{margin:0 0 8px;color:var(--ok);font-size:.9rem;}
+  .sol .ctx{background:#eaf2f8;border-left:4px solid #2e86c1;border-radius:6px;padding:8px 12px;margin:0 0 10px;font-size:.88rem;}
+  .sol .ctx b{color:#1a5276;}
+  .sol .step{margin:6px 0;}
+  .sol .ans{background:#eafaf1;border-radius:6px;padding:6px 12px;margin-top:8px;font-weight:700;color:#145a32;display:inline-block;}
+  footer{text-align:center;color:#85929e;font-size:.85rem;margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Lesson 20 — Capstone: Putting It All Together</h1>
+  <p>Every tool, one lesson · Intuitive Calculus for a Curious Student · Lesson 20 of 20</p>
+</header>
+
+<nav><a href="index.html">📚 All lessons</a><a href="Lesson19.html">← Prev: Lesson 19</a><a href="index.html">🏁 Course complete — back to index</a></nav>
+
+<div class="goal"><strong>🎯 Goal of this lesson:</strong> nothing new — and that's the point. Today you look back at the whole course from the top of the hill, put every tool in one toolbox, learn a checklist for attacking <em>any</em> integration problem, and then prove to yourself (with 20 mixed problems) that you really can do this.</div>
+
+<section>
+  <h2><span class="num">1</span> The whole course on one page</h2>
+  <ul>
+    <li>Twenty lessons ago, you started with one question: <em class="hi">"if I know how fast something changes, what's the TOTAL?"</em> Everything since has been one long answer to that question. Here's the map:</li>
+  </ul>
+  <div class="graph">          <span class="y">THE STORY OF THIS COURSE, IN ONE PICTURE</span>
+
+ "How fast?" (a RATE)                        "How much? (the TOTAL)"
+        │                                              ▲
+        │ <span class="g">L1: chop time into steady pieces,</span>            │
+        │ <span class="g">multiply rate × time, add them up</span>            │
+        ▼                                              │
+   little pieces ───► <span class="b">L2–L3: total = AREA under the rate graph</span>
+                          │      (triangles, trapezoids, then
+                          │       skinnier and skinnier rectangles)
+                          ▼
+        <span class="g">L4–L5: the ANTIDERIVATIVE — undo the derivative (+ C!)</span>
+                          │
+                          ▼
+   <span class="y">L6–L8: the great shortcut (FTC):  ∫ from a to b of f = F(b) − F(a)</span>
+                          │
+      ┌────────────┬──────┴──────┬─────────────┬──────────────┐
+      ▼            ▼             ▼             ▼              ▼
+  <span class="b">L9–L10</span>       <span class="b">L11–L12</span>       <span class="b">L13, L19</span>      <span class="b">L14</span>           <span class="b">L15–L18</span>
+  signed area   motion:       tanks, money, average value  new functions:
+  &amp; area        velocity,     rain — real-  = total ÷      e^x, 1/x, sin,
+  between       gravity       world totals  width          cos, and the
+  curves        (g = 10)      &amp; net change                 substitution tricks</div>
+  <ul>
+    <li>Read the map bottom-up too: every fancy tool at the bottom is still just <strong>adding up little pieces</strong>. The FTC didn't replace the idea — it just made the adding instant.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">2</span> The toolbox — every antiderivative rule you own</h2>
+  <ul>
+    <li>Here is every rule from the course in one table. (Remember: each one is checkable — <em class="hi">differentiate the answer and you must get back the function you started with.</em>)</li>
+  </ul>
+  <table class="t">
+    <tr><th>Rule (lesson)</th><th>Antiderivative</th><th>Tiny example</th></tr>
+    <tr><td>Constant (L4)</td><td><span class="fml">∫ k dx = kx + C</span></td><td><span class="fml">∫ 5 dx = 5x + C</span></td></tr>
+    <tr><td>Power rule (L5)</td><td><span class="fml">∫ xⁿ dx = xⁿ⁺¹/(n+1) + C</span></td><td><span class="fml">∫ x⁴ dx = x⁵/5 + C</span></td></tr>
+    <tr><td>Sums &amp; multiples (L5)</td><td>do each term separately</td><td><span class="fml">∫ (6x² + x) dx = 2x³ + x²/2 + C</span></td></tr>
+    <tr><td>Exponential (L15)</td><td><span class="fml">∫ eˣ dx = eˣ + C</span></td><td><span class="fml">∫ 3eˣ dx = 3eˣ + C</span></td></tr>
+    <tr><td>Reciprocal (L15)</td><td><span class="fml">∫ 1/x dx = ln x + C</span></td><td><span class="fml">∫ 2/x dx = 2 ln x + C</span></td></tr>
+    <tr><td>Cosine (L16)</td><td><span class="fml">∫ cos x dx = sin x + C</span></td><td><span class="fml">∫ 4cos x dx = 4 sin x + C</span></td></tr>
+    <tr><td>Sine (L16)</td><td><span class="fml">∫ sin x dx = −cos x + C</span></td><td><span class="fml">∫ 2sin x dx = −2 cos x + C</span></td></tr>
+    <tr><td>Linear inside (L17)</td><td>antiderivative of the outside, <b>÷ a</b></td><td><span class="fml">∫ cos(3x) dx = sin(3x)/3 + C</span></td></tr>
+    <tr><td>u-substitution (L18)</td><td>spot inside u and its derivative du</td><td><span class="fml">∫ 2x(x²+1)³ dx = (x²+1)⁴/4 + C</span></td></tr>
+  </table>
+  <div class="ex"><b>Don't forget the two bookends:</b> the <b>+ C</b> whenever there are no limits (L4), and <span class="fml">F(b) − F(a)</span> whenever there are (L7). Those two habits catch most mistakes before they happen.</div>
+</section>
+
+<section>
+  <h2><span class="num">3</span> How to attack ANY problem — the 5-question checklist</h2>
+  <ul>
+    <li>Every problem in this course (and most integration problems anywhere) surrenders to the same five questions:</li>
+    <li><strong>1. What's the rate?</strong> Find the thing measured "per second / per hour / per minute." That's the function going inside the integral. If you're given the total and asked for something else, you may be working backwards instead.</li>
+    <li><strong>2. What's the window?</strong> When does the accumulating start and stop? Those are your limits <span class="fml">a</span> and <span class="fml">b</span>. Width is always <span class="fml">end − start</span>.</li>
+    <li><strong>3. Is there a starting amount?</strong> An integral only gives the <em>change</em>. If the tank already held 30 liters or the ball started 5 meters up, <em class="hi">add the starting amount to the integral</em> (L19).</li>
+    <li><strong>4. Could it go negative?</strong> If the rate dips below zero (draining, falling, spending), decide whether you want the <strong>net</strong> change (one integral) or the <strong>total</strong> activity (split at the zero and add the sizes) — that's L9.</li>
+    <li><strong>5. Which antiderivative tool fits?</strong> Scan the toolbox table: plain power rule? A special function? Something linear inside? A u-sub pattern (inside function AND its derivative both visible)? Pick the tool, then check by differentiating.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">4</span> One big worked "boss problem" — watch all the tools at once</h2>
+  <div class="ex"><b>The problem:</b> A delivery drone's upward velocity is <span class="fml">v(t) = 6t − t²</span> meters per second, for <span class="fml">0 ≤ t ≤ 6</span> seconds. It starts slow, speeds up, peaks, and glides back to velocity 0 at t = 6. Questions: (a) when is it moving fastest, and how fast? (b) how far does it travel in total? (c) what's its average velocity? (d) if it starts at height <span class="fml">s(0) = 2</span> m, what's its height at t = 6?</div>
+  <ul>
+    <li><strong>(a) Fastest moment — a derivative question!</strong> "Fastest" asks where the rate itself peaks, so we differentiate the velocity: <span class="fml">v′(t) = 6 − 2t</span>, which is 0 at <span class="fml">t = 3</span>. Then <span class="fml">v(3) = 18 − 9 = 9</span>. Fastest at t = 3 s, moving 9 m/s. (Notice: not every question about v is an integral — the checklist's question 1 saves you here.)</li>
+    <li><strong>(b) Total distance — checklist in action.</strong> Rate: v(t). Window: 0 to 6. Negative? <span class="fml">6t − t² = t(6 − t)</span> is zero at t = 0 and t = 6 and positive in between — never negative, so net = total. Tool: power rule + FTC:
+    <br><span class="fml">∫₀⁶ (6t − t²) dt = [3t² − t³/3]₀⁶ = (108 − 72) − 0 = 36</span>. The drone travels <strong>36 meters</strong>.</li>
+    <li><strong>(c) Average velocity (L14):</strong> average = total ÷ width = <span class="fml">(1/6) × 36 = 6</span> m/s. Sanity check: v ranges from 0 up to 9 and back — an average of 6 sits sensibly inside that range.</li>
+    <li><strong>(d) Height with a starting amount (L19):</strong> height = start + change = <span class="fml">s(6) = 2 + 36 = 38</span> meters. (Or the antiderivative way: <span class="fml">s(t) = 3t² − t³/3 + C</span>, with s(0) = 2 forcing C = 2, so s(6) = 108 − 72 + 2 = 38. Same answer, of course.)</li>
+    <li>One function, four different questions, four different tools — and the checklist told us which was which every time.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">5</span> What's next in calculus (a peek over the fence)</h2>
+  <ul>
+    <li>Here's the wonderful secret about the rest of calculus: <em class="hi">it's the same slicing idea, aimed at new targets.</em> Want the <strong>volume</strong> of a vase? Slice it into thin circular disks, find each disk's tiny volume, and integrate — area under a graph becomes "volume under a surface of stacked slices." Want the <strong>length of a curvy road</strong>? Chop it into tiny nearly-straight segments and add them up. And <strong>differential equations</strong> — the language physics and biology are written in — are really just "here's a rate rule; integrate cleverly to find the total story." Every one of these starts with the move you learned in Lesson 1: chop, multiply, add.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">6</span> You did it</h2>
+  <ul>
+    <li>Look at what you can do now: you can read a rate and see a total hiding in it. You can turn a story about water, money, gravity, or waves into a definite integral, pick the right antiderivative from a toolbox of nine rules, and compute an exact answer that would have taken infinitely many rectangles the slow way. That is not "a taste of calculus" — <strong>that is the genuine core of integral calculus</strong>, the same ideas a college course spends a semester on. Be proud of it. Now go show it off on the exercises below — they mix everything, just like real life does.</li>
+  </ul>
+</section>
+
+<div class="qhead">✏️ Capstone Exercises — 20 mixed problems (write your answer on paper, then reveal)</div>
+
+<div class="q"><span class="qnum">1.</span><span class="qtag">L1 · rate × time</span>
+  <div class="qtext">Back to where it all began: a garden hose runs at a steady 15 liters per minute for 4 minutes. How much water comes out? (No symbols needed — just the Lesson 1 idea.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Tool: Lesson 1 (rate × time).</b> When a rate never changes, the total is a single multiplication: total = rate × time. This is the seed the whole course grew from — every integral is secretly lots of these little products added up.</div>
+    <div class="step">Total = 15 liters/minute × 4 minutes = 60.</div>
+    <div class="step">Units check: (liters/<b>minute</b>) × (<b>minutes</b>) = liters. ✓</div>
+    <div class="ans">60 liters</div></div>
+</div>
+
+<div class="q"><span class="qnum">2.</span><span class="qtag">L2 · area = total</span>
+  <div class="qtext">A go-kart's speed climbs in a straight line from 0 m/s to 12 m/s over 6 seconds. Use geometry (no antiderivatives!) to find how far it travels.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Tool: Lesson 2 (area under the rate graph = total).</b> The distance traveled equals the area under the speed graph. A speed rising in a straight line from 0 makes a triangle: base = time, height = final speed, area = ½ × base × height.</div>
+    <div class="step">Base = 6 seconds, height = 12 m/s.</div>
+    <div class="step">Area = ½ × 6 × 12 = 36. Units: seconds × meters/second = meters.</div>
+    <div class="ans">36 meters</div></div>
+</div>
+
+<div class="q"><span class="qnum">3.</span><span class="qtag">L7 · FTC</span>
+  <div class="qtext">Evaluate <span class="fml">∫₀³ (x² + 1) dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Tool: Lessons 5 &amp; 7 (power rule + Fundamental Theorem).</b> The FTC says: find an antiderivative F, then the definite integral is F(top) − F(bottom). Power rule: raise the exponent by 1, divide by the new exponent. A constant 1 integrates to x.</div>
+    <div class="step">Antiderivative: F(x) = x³/3 + x.</div>
+    <div class="step">F(3) = 27/3 + 3 = 9 + 3 = 12. &nbsp; F(0) = 0.</div>
+    <div class="step">Integral = 12 − 0 = 12.</div>
+    <div class="ans">12</div></div>
+</div>
+
+<div class="q"><span class="qnum">4.</span><span class="qtag">L16 · cosine</span>
+  <div class="qtext">Evaluate <span class="fml">∫₀^(π/2) cos x dx</span>. (Radians, as always.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Tool: Lesson 16 (trig antiderivatives).</b> ∫ cos x dx = sin x + C, because the derivative of sin is cos. Table values you know: sin 0 = 0, sin(π/2) = 1.</div>
+    <div class="step">Integral = [sin x] from 0 to π/2 = sin(π/2) − sin(0).</div>
+    <div class="step">= 1 − 0 = 1.</div>
+    <div class="ans">1</div></div>
+</div>
+
+<div class="q"><span class="qnum">5.</span><span class="qtag">L15 · eˣ</span>
+  <div class="qtext">Evaluate <span class="fml">∫₀¹ eˣ dx</span>, exactly and then rounded to two decimals (use e ≈ 2.718).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Tool: Lesson 15 (the special function eˣ).</b> eˣ is the function that is its own derivative — so it's also its own antiderivative: ∫ eˣ dx = eˣ + C. Also remember e⁰ = 1.</div>
+    <div class="step">Integral = [eˣ] from 0 to 1 = e¹ − e⁰ = e − 1.</div>
+    <div class="step">Numerically: 2.718 − 1 = 1.718 ≈ 1.72.</div>
+    <div class="ans">e − 1 ≈ 1.72</div></div>
+</div>
+
+<div class="q"><span class="qnum">6.</span><span class="qtag">L17 · linear inside</span>
+  <div class="qtext">Evaluate <span class="fml">∫₀¹ (2x + 1)³ dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Tool: Lesson 17 (linear insides — divide by a).</b> When the inside is a straight-line expression ax + b, integrate the outside as usual, keep the inside, and divide by the inside's slope a. Here a = 2.</div>
+    <div class="step">Antiderivative: (2x + 1)⁴/4, then ÷ 2 → (2x + 1)⁴/8.</div>
+    <div class="step">At x = 1: (3)⁴/8 = 81/8. &nbsp; At x = 0: (1)⁴/8 = 1/8.</div>
+    <div class="step">Integral = 81/8 − 1/8 = 80/8 = 10.</div>
+    <div class="ans">10</div></div>
+</div>
+
+<div class="q"><span class="qnum">7.</span><span class="qtag">L9 · net vs total</span>
+  <div class="qtext">A toy robot moves along a line with velocity <span class="fml">v(t) = 6 − 2t</span> m/s for <span class="fml">0 ≤ t ≤ 5</span>. Find (a) its net displacement and (b) the total distance it actually travels.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Tool: Lesson 9 (signed area).</b> When a velocity goes negative, the integral counts backward motion as NEGATIVE area, giving the <b>net</b> change in position. For the <b>total</b> distance, split the window where v = 0 and add the SIZES of the two pieces.</div>
+    <div class="step">(a) Net: ∫₀⁵ (6 − 2t) dt = [6t − t²]₀⁵ = 30 − 25 = 5 m.</div>
+    <div class="step">(b) v = 0 when 6 − 2t = 0 → t = 3. Forward part: ∫₀³ (6 − 2t) dt = 18 − 9 = 9 m. Backward part: ∫₃⁵ = 5 − 9 = −4 m (that is, 4 m backward).</div>
+    <div class="step">Total distance = 9 + 4 = 13 m. (Net 5 m: it ends only 5 m ahead, but its wheels rolled 13 m.)</div>
+    <div class="ans">(a) net = 5 m &nbsp; (b) total = 13 m</div></div>
+</div>
+
+<div class="q"><span class="qnum">8.</span><span class="qtag">L10 · between curves</span>
+  <div class="qtext">Find the area of the region trapped between <span class="fml">y = 6x − x²</span> and <span class="fml">y = x²</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Tool: Lesson 10 (area between curves).</b> Area between curves = ∫ (top − bottom). First find where they cross (set them equal) — those crossings are your limits. Then check which curve is on top in between.</div>
+    <div class="step">Crossings: 6x − x² = x² → 6x = 2x² → 2x(x − 3) = 0 → x = 0 and x = 3.</div>
+    <div class="step">Top check at x = 1: 6(1) − 1 = 5 versus 1² = 1 → the parabola 6x − x² is on top.</div>
+    <div class="step">Area = ∫₀³ (6x − x² − x²) dx = ∫₀³ (6x − 2x²) dx = [3x² − (2/3)x³]₀³ = 27 − 18 = 9.</div>
+    <div class="ans">9 square units</div></div>
+</div>
+
+<div class="q"><span class="qnum">9.</span><span class="qtag">L12 · gravity (g = 10)</span>
+  <div class="qtext">A ball is thrown straight up from the ground at 20 m/s. Using g = 10 m/s², find (a) when it reaches its highest point, (b) how high that is, and (c) when it lands back on the ground.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Tool: Lesson 12 (acceleration &amp; gravity).</b> Gravity pulls velocity down by 10 m/s every second, so v(t) = (start speed) − 10t. Height is the integral of velocity. The peak happens exactly when v = 0 (moving neither up nor down).</div>
+    <div class="step">(a) v(t) = 20 − 10t = 0 → t = 2 seconds.</div>
+    <div class="step">(b) Height = ∫₀² (20 − 10t) dt = [20t − 5t²]₀² = 40 − 20 = 20 m.</div>
+    <div class="step">(c) Height function: h(t) = 20t − 5t² = 5t(4 − t) = 0 → t = 4 seconds (the up trip and down trip are mirror images: 2 s up, 2 s down).</div>
+    <div class="ans">(a) t = 2 s &nbsp; (b) 20 m high &nbsp; (c) lands at t = 4 s</div></div>
+</div>
+
+<div class="q"><span class="qnum">10.</span><span class="qtag">L13 + L19 · tank</span>
+  <div class="qtext">A tank starts with 30 liters. Water flows IN at <span class="fml">2t</span> liters per minute (a growing rate) while a drain lets water OUT at a steady 4 liters per minute, for <span class="fml">0 ≤ t ≤ 6</span>. How much water is in the tank at t = 6?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Tools: Lesson 13 (accumulation with in-and-out rates) and Lesson 19 (starting amounts).</b> The tank feels only the NET rate: in − out. The integral of the net rate gives the CHANGE; then add the starting amount: final = start + ∫ net rate.</div>
+    <div class="step">Net rate = 2t − 4 liters per minute.</div>
+    <div class="step">Change = ∫₀⁶ (2t − 4) dt = [t² − 4t]₀⁶ = 36 − 24 = 12 liters gained.</div>
+    <div class="step">Final amount = 30 + 12 = 42 liters. (Fun detail: the net rate is negative until t = 2, so the tank actually dips to 30 − 4 = 26 L first, then refills and climbs.)</div>
+    <div class="ans">42 liters</div></div>
+</div>
+
+<div class="q"><span class="qnum">11.</span><span class="qtag">L14 · average value</span>
+  <div class="qtext">A machine's power use is <span class="fml">P(t) = 12t − 3t²</span> kilowatts over the interval <span class="fml">0 ≤ t ≤ 4</span> hours. Find its average power use over those 4 hours.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Tool: Lesson 14 (average value).</b> The average value of f on [a, b] is (1/(b − a)) ∫ₐᵇ f — that is, the total accumulated divided by the width of the window. It's the one steady level that would accumulate the same total.</div>
+    <div class="step">Total: ∫₀⁴ (12t − 3t²) dt = [6t² − t³]₀⁴ = 96 − 64 = 32 kilowatt-hours.</div>
+    <div class="step">Average = (1/4) × 32 = 8 kilowatts.</div>
+    <div class="step">Sanity check: P starts at 0, peaks at P(2) = 24 − 12 = 12, ends at 0 — an average of 8 sits reasonably inside [0, 12]. ✓</div>
+    <div class="ans">8 kilowatts</div></div>
+</div>
+
+<div class="q"><span class="qnum">12.</span><span class="qtag">L15 · 1/x</span>
+  <div class="qtext">Evaluate <span class="fml">∫₁^e (5/x) dx</span>. (e is the number ≈ 2.718; here it's the top limit.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Tool: Lesson 15 (the special function 1/x).</b> The power rule fails for 1/x (it would divide by zero!), so 1/x has its own rule: ∫ 1/x dx = ln x + C. Key values: ln 1 = 0 and ln e = 1 (ln asks "e to what power?").</div>
+    <div class="step">Integral = [5 ln x] from 1 to e = 5 ln e − 5 ln 1.</div>
+    <div class="step">= 5(1) − 5(0) = 5.</div>
+    <div class="ans">5</div></div>
+</div>
+
+<div class="q"><span class="qnum">13.</span><span class="qtag">L19 · initial value</span>
+  <div class="qtext">A function satisfies <span class="fml">f′(x) = 3x² − 4</span> and <span class="fml">f(1) = 5</span>. Find the formula for f(x), and then compute f(2).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Tools: Lesson 4 (antiderivatives + C) and Lesson 19 (initial values).</b> Integrating f′ recovers f only up to an unknown constant C — infinitely many parallel curves have the same slope pattern. One known point (the initial value) pins down which curve is yours: plug it in and solve for C.</div>
+    <div class="step">Antiderivative: f(x) = x³ − 4x + C.</div>
+    <div class="step">Use f(1) = 5: 1 − 4 + C = 5 → C = 8. So f(x) = x³ − 4x + 8.</div>
+    <div class="step">f(2) = 8 − 8 + 8 = 8.</div>
+    <div class="ans">f(x) = x³ − 4x + 8, and f(2) = 8</div></div>
+</div>
+
+<div class="q"><span class="qnum">14.</span><span class="qtag">L13 · story → integral</span>
+  <div class="qtext">Translate, then solve: "A bakery sells bread at a rate of <span class="fml">30 + 10t</span> loaves per hour, where t is hours after opening. The bakery is open from t = 0 to t = 8." Write the definite integral for the total loaves sold, then evaluate it.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Tools: Lesson 6 (integral notation) and Lesson 13 (real-world accumulation).</b> Translating a story: the "per hour" thing is the rate → it goes inside the integral; the open-to-close times are the limits. Total = ∫ (rate) over the window.</div>
+    <div class="step">Setup: total loaves = ∫₀⁸ (30 + 10t) dt.</div>
+    <div class="step">Antiderivative: 30t + 5t². Evaluate: (30·8 + 5·64) − 0 = 240 + 320 = 560.</div>
+    <div class="ans">∫₀⁸ (30 + 10t) dt = 560 loaves</div></div>
+</div>
+
+<div class="q"><span class="qnum">15.</span><span class="qtag">L18 · u-substitution</span>
+  <div class="qtext">Evaluate <span class="fml">∫₀² x(x² + 1)³ dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Tool: Lesson 18 (u-substitution).</b> Spot an "inside function" whose derivative also appears as a factor. Here the inside is u = x² + 1, and du = 2x dx — and we DO have an x dx (that's du/2). Change the limits to u-values too: no converting back needed.</div>
+    <div class="step">Let u = x² + 1, so du = 2x dx, meaning x dx = du/2.</div>
+    <div class="step">Limits: x = 0 → u = 1; x = 2 → u = 5.</div>
+    <div class="step">Integral = ∫₁⁵ u³ (du/2) = (1/2)[u⁴/4]₁⁵ = (1/8)(625 − 1) = 624/8 = 78.</div>
+    <div class="ans">78</div></div>
+</div>
+
+<div class="q"><span class="qnum">16.</span><span class="qtag">reverse · find the time</span>
+  <div class="qtext">A tank already holds 15 liters. Water pours in at a rate of <span class="fml">6t</span> liters per minute. The tank is full at exactly 90 liters. At what time T is the tank full?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Tools: Lessons 13 &amp; 19, run backwards.</b> Usually you know the time window and compute the total. Here the total is GIVEN and the end time is the unknown — so write the amount as a function of T (start + integral up to T), set it equal to the target, and solve the equation.</div>
+    <div class="step">Amount at time T: 15 + ∫₀ᵀ 6t dt = 15 + [3t²]₀ᵀ = 15 + 3T².</div>
+    <div class="step">Set it to 90: 15 + 3T² = 90 → 3T² = 75 → T² = 25 → T = 5 (time can't be negative).</div>
+    <div class="step">Check: 15 + 3(25) = 15 + 75 = 90. ✓</div>
+    <div class="ans">T = 5 minutes</div></div>
+</div>
+
+<div class="q"><span class="qnum">17.</span><span class="qtag">two-phase rate</span>
+  <div class="qtext">A cyclist accelerates smoothly with <span class="fml">v(t) = 4t</span> m/s for the first 2 seconds, then holds a steady 8 m/s from t = 2 until t = 10. How far does she travel in the whole 10 seconds?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Tools: Lesson 1's chop-and-add applied to integrals (with Lessons 7 &amp; 11).</b> When a rate follows different formulas on different stretches, split the integral at the changeover and add the pieces — exactly the Lesson 1 move, with an integral for each piece. (Nice check: 4t at t = 2 gives 8, matching the steady phase, so the speed doesn't jump.)</div>
+    <div class="step">Phase 1: ∫₀² 4t dt = [2t²]₀² = 8 meters.</div>
+    <div class="step">Phase 2: steady rate → 8 m/s × (10 − 2) s = 64 meters. (Same as ∫₂¹⁰ 8 dt = 80 − 16 = 64.)</div>
+    <div class="step">Total = 8 + 64 = 72 meters.</div>
+    <div class="ans">72 meters</div></div>
+</div>
+
+<div class="q"><span class="qnum">18.</span><span class="qtag">spot the error</span>
+  <div class="qtext">Maya computes: <span class="fml">∫₀² (3x + 1)² dx = [(3x + 1)³/3]₀² = 343/3 − 1/3 = 114</span>. Her answer is wrong. Find her exact mistake, then compute the correct value — and verify it a second way by multiplying out (3x + 1)² first.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Tool: Lesson 17 (linear insides — divide by a).</b> With an inside function 3x + 1, the chain rule of derivatives sneaks a ×3 in — so the antiderivative must divide by that 3 to cancel it. Forgetting the ÷a is the single most common integration error. Always check by differentiating your answer!</div>
+    <div class="step"><b>The error:</b> Maya divided by the new exponent 3 but forgot to ALSO divide by the inside slope a = 3. Check her answer by differentiating: d/dx[(3x+1)³/3] = 3(3x+1)²·3/3 = 3(3x + 1)² — three times too big.</div>
+    <div class="step"><b>Correct way:</b> antiderivative = (3x + 1)³/(3·3) = (3x + 1)³/9. Evaluate: 7³/9 − 1³/9 = (343 − 1)/9 = 342/9 = 38.</div>
+    <div class="step"><b>Second check:</b> (3x + 1)² = 9x² + 6x + 1, so ∫₀² = [3x³ + 3x² + x]₀² = 24 + 12 + 2 = 38. ✓ Same answer, so 38 is right (and 114 = 3 × 38 is exactly 3 times too big, matching the missing ÷3).</div>
+    <div class="ans">Error: forgot to divide by the inside slope 3. Correct value: 38</div></div>
+</div>
+
+<div class="q"><span class="qnum">19.</span><span class="qtag">compare scenarios</span>
+  <div class="qtext">Two pumps fill identical empty tanks. Pump A delivers a steady 12 liters per minute. Pump B starts slow but speeds up: <span class="fml">3t</span> liters per minute. (a) After 10 minutes, which tank holds more, and by how much? (b) At what time (after t = 0) do the two tanks hold exactly the same amount?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Tool: Lesson 13 (accumulation), twice.</b> Comparing scenarios = computing two accumulations with the same window and comparing. For the tie time, write each total as a function of T and set them equal — steady rates win early, growing rates win late, so there's a crossover.</div>
+    <div class="step">(a) Tank A: 12 × 10 = 120 L. Tank B: ∫₀¹⁰ 3t dt = [1.5t²]₀¹⁰ = 150 L. B holds more, by 150 − 120 = 30 L.</div>
+    <div class="step">(b) Totals at time T: A has 12T, B has 1.5T². Set equal: 12T = 1.5T² → 12 = 1.5T (dividing by T since T ≠ 0) → T = 8.</div>
+    <div class="step">Check: at T = 8, A has 96 L and B has 1.5 × 64 = 96 L. ✓ Before t = 8 the steady pump leads; after, the accelerating one takes over for good.</div>
+    <div class="ans">(a) Tank B, by 30 liters &nbsp; (b) tied at T = 8 minutes (96 L each)</div></div>
+</div>
+
+<div class="q"><span class="qnum">20.</span><span class="qtag">grand finale 🚀</span>
+  <div class="qtext"><b>The rocket launch (multi-part — take it in stages!)</b> A model rocket starts at rest on the ground. Its engine burns for 4 seconds, producing a steady upward acceleration of 5 m/s². Then the engine cuts out and gravity takes over (g = 10 m/s²). Find:
+  (a) the rocket's velocity when the engine cuts out;
+  (b) its height at that moment;
+  (c) the time and height of its highest point;
+  (d) its average velocity during the 4-second powered climb;
+  (e) its height 2 seconds after the peak.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Tools, by part:</b> (a) Lesson 12 (integrate acceleration to get velocity) · (b) Lesson 11 (integrate velocity to get position) · (c) Lessons 12 &amp; 19 (gravity phase with initial values, peak where v = 0) · (d) Lesson 14 (average value) · (e) Lesson 12 again (falling from rest). A two-phase problem like Lesson 1's chopped trips — solve one phase, carry its ending values into the next as starting values.</div>
+    <div class="step"><b>(a) Powered phase, velocity:</b> starts at rest, so v(4) = ∫₀⁴ 5 dt = 5 × 4 = 20 m/s.</div>
+    <div class="step"><b>(b) Powered phase, height:</b> v(t) = 5t during the burn, so height = ∫₀⁴ 5t dt = [2.5t²]₀⁴ = 40 m. (It's the triangle ½ × 4 × 20 = 40 — Lesson 2 agrees!)</div>
+    <div class="step"><b>(c) Coasting phase:</b> new clock s = t − 4. Starting values: velocity 20 m/s, height 40 m. Gravity: v = 20 − 10s, which is 0 at s = 2, i.e. <b>t = 6 seconds</b>. Extra height gained: ∫₀² (20 − 10s) ds = [20s − 5s²]₀² = 40 − 20 = 20 m. Peak height = 40 + 20 = <b>60 m</b>.</div>
+    <div class="step"><b>(d) Average velocity while powered:</b> average = total ÷ width = (1/4) ∫₀⁴ 5t dt = 40 ÷ 4 = 10 m/s — sensible, exactly halfway between the starting 0 and the ending 20, because the speed grew in a straight line.</div>
+    <div class="step"><b>(e) Falling from the peak:</b> at the peak the velocity is 0, so in the next 2 seconds it falls ∫₀² 10s ds = [5s²]₀² = 20 m. Height = 60 − 20 = 40 m — right back to its engine-cutout height, at t = 8 s.</div>
+    <div class="ans">(a) 20 m/s &nbsp; (b) 40 m &nbsp; (c) peak at t = 6 s, 60 m high &nbsp; (d) 10 m/s &nbsp; (e) 40 m</div></div>
+</div>
+
+<footer>Lesson 20 of 20 · Intuitive Integration · 🏁 Course complete — <a href="index.html">back to index</a></footer>
+
+</div>
+<script>
+document.querySelectorAll('.q').forEach(q=>{
+  const btn=q.querySelector('.revealbtn'), sol=q.querySelector('.sol');
+  btn.addEventListener('click',()=>{ sol.classList.add('show'); btn.textContent='Solution shown'; btn.disabled=true; btn.style.opacity=.6; });
+});
+</script>
+</body>
+</html>

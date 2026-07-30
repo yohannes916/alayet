@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 3 — Slicing Curves into Rectangles</title>
+<style>
+  :root{--accent:#186a3b;--accent2:#239b56;--bg:#f2f7f4;--card:#fff;--ok:#1e8449;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:#1c2833;background:var(--bg);margin:0;padding:0 16px 80px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -16px 20px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  nav{display:flex;gap:10px;margin-bottom:18px;font-size:.9rem;flex-wrap:wrap;}
+  nav a{color:var(--accent);text-decoration:none;font-weight:600;background:#fff;border:1px solid #d5e8dc;border-radius:8px;padding:6px 14px;}
+  nav a:hover{background:#eafaf1;}
+  .goal{background:#fef9e7;border-left:5px solid var(--star);padding:12px 18px;border-radius:8px;margin-bottom:18px;font-size:.95rem;}
+  .goal strong{color:#7d6608;}
+  section{background:var(--card);border-radius:10px;padding:18px 22px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  h2{color:var(--accent);font-size:1.15rem;margin:0 0 10px;}
+  h2 .num{background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;border-radius:6px;padding:2px 9px;margin-right:8px;}
+  ul{margin:8px 0;padding-left:24px;}
+  li{margin-bottom:8px;}
+  strong{color:#145a32;}
+  em.hi{font-style:normal;background:#fef9e7;padding:0 4px;border-radius:3px;}
+  .fml{background:#e9f7ef;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.9em;color:#186a3b;white-space:nowrap;}
+  .ex{background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:.95rem;}
+  .ex b{color:#145a32;}
+  .graph{background:#1b2631;color:#eaeded;border-radius:8px;padding:14px 18px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.82rem;line-height:1.45;overflow-x:auto;margin:10px 0;white-space:pre;}
+  .graph .g{color:#82e0aa;} .graph .y{color:#f7dc6f;} .graph .b{color:#85c1e9;}
+  table.t{border-collapse:collapse;margin:10px 0;font-size:.92rem;}
+  table.t th,table.t td{border:1px solid #cfd8cf;padding:6px 12px;text-align:center;}
+  table.t th{background:var(--accent);color:#fff;font-weight:600;}
+  .qhead{margin:26px 0 8px;color:var(--accent);font-size:1.2rem;border-bottom:2px solid #d4efdf;padding-bottom:6px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid var(--accent2);}
+  .qnum{font-weight:800;color:var(--accent);margin-right:6px;}
+  .qtag{float:right;background:#e9f7ef;color:var(--accent);border-radius:8px;padding:1px 9px;font-size:.68rem;font-weight:700;letter-spacing:.3px;margin-left:8px;}
+  .qtext{font-size:.98rem;margin:4px 0 10px;}
+  .revealbtn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .revealbtn:hover{background:#0e4429;}
+  .sol{display:none;margin-top:12px;background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px;font-size:.93rem;}
+  .sol.show{display:block;}
+  .sol h4{margin:0 0 8px;color:var(--ok);font-size:.9rem;}
+  .sol .ctx{background:#eaf2f8;border-left:4px solid #2e86c1;border-radius:6px;padding:8px 12px;margin:0 0 10px;font-size:.88rem;}
+  .sol .ctx b{color:#1a5276;}
+  .sol .step{margin:6px 0;}
+  .sol .ans{background:#eafaf1;border-radius:6px;padding:6px 12px;margin-top:8px;font-weight:700;color:#145a32;display:inline-block;}
+  footer{text-align:center;color:#85929e;font-size:.85rem;margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Lesson 3 — Slicing Curves into Rectangles</h1>
+  <p>Left Sums, Right Sums, and the Sandwich · Intuitive Calculus for a Curious Student · Lesson 3 of 20</p>
+</header>
+
+<nav><a href="index.html">📚 All lessons</a><a href="Lesson02.html">← Lesson 2</a><a href="Lesson04.html">Next: Lesson 4 →</a></nav>
+
+<div class="goal"><strong>🎯 Goal of this lesson:</strong> rectangles handled flat graphs, triangles handled straight slanted graphs — but a genuinely <em>curved</em> graph fits neither. Today you learn the single most important trick in integration: <em>slice the region into skinny rectangles</em>, get an estimate from the left edges and another from the right edges, and trap the true answer between them.</div>
+
+<section>
+  <h2><span class="num">1</span> The problem — curves fit no shape we know</h2>
+  <ul>
+    <li>Suppose a car's speed is <span class="fml">v = t<sup>2</sup></span> — after 1 second it moves at 1 m/s, after 2 seconds at 4 m/s. The speed doesn't climb steadily; it climbs <strong>faster and faster</strong>. The graph is a <strong>curve</strong> that bends upward.</li>
+    <li>From Lesson 2 we know the distance is the <strong>area under this graph</strong>… but no rectangle fits under a curve exactly, and no triangle does either — a triangle has a straight top, and this top <em>bends</em>.</li>
+    <li>Geometry class has no formula for "area under a bendy line." We need a completely new strategy.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">2</span> The trick — slice it and pretend</h2>
+  <ul>
+    <li><em class="hi">Chop the time interval into slices, and PRETEND the rate is constant within each slice.</em> Each slice becomes a skinny rectangle — and rectangles we can do!</li>
+    <li>Is the pretending a lie? A small one. Within a half-second slice the speed only changes a little, so a flat-topped rectangle is <em>close</em> to the truth. The total of all the rectangle areas is an <strong>estimate</strong> of the true area.</li>
+    <li>Every rectangle's area = (slice width) × (the height we picked for it). The whole game is: which height do we pick for each slice?</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">3</span> LEFT estimate vs RIGHT estimate</h2>
+  <ul>
+    <li><strong>LEFT estimate:</strong> give each rectangle the curve's height at the slice's <em>starting</em> (left) edge.</li>
+    <li><strong>RIGHT estimate:</strong> give each rectangle the curve's height at the slice's <em>ending</em> (right) edge.</li>
+    <li>For a graph that is <strong>increasing</strong> (always climbing): the left edge is the LOWEST point of each slice, so every left rectangle sits under the curve → the left sum is an <em class="hi">underestimate</em>. The right edge is the HIGHEST point, so every right rectangle pokes above the curve → the right sum is an <em class="hi">overestimate</em>.</li>
+    <li>So the true area is <strong>sandwiched</strong>: left sum ≤ true area ≤ right sum. We may not know the exact answer yet, but we can <em>trap</em> it!</li>
+    <li>(For a <strong>decreasing</strong> graph it flips: left = overestimate, right = underestimate. The sandwich still works, just with the bread swapped.)</li>
+  </ul>
+  <div class="graph">y                LEFT rectangles                    y               RIGHT rectangles
+  |            (tops touch curve at              |             (tops touch curve at
+  |             each slice's LEFT edge)     <span class="y">●</span>    |              each slice's RIGHT edge)  <span class="y">●</span>
+  |                              <span class="y">●</span>_____          |                            <span class="b">●┌────┐</span>
+  |                       <span class="y">●</span>____<span class="g">|</span>     <span class="g">|</span>         |                     <span class="b">●┌────┤</span>    <span class="b">│</span>
+  |              <span class="y">●</span>_____<span class="g">|</span>    <span class="g">|</span>      <span class="g">|</span>         |             <span class="b">●┌─────┤</span>    <span class="b">│</span>    <span class="b">│</span>
+  |      <span class="y">●</span>_____<span class="g">|</span>     <span class="g">|</span>    <span class="g">|</span>      <span class="g">|</span>         |      <span class="b">┌──────┤</span>     <span class="b">│</span>    <span class="b">│</span>    <span class="b">│</span>
+  +──────┴─────┴─────┴────┴──────┴──→ t     +──────┴──────┴─────┴────┴────┴──→ t
+     <span class="g">stays BELOW the curve: too small</span>            <span class="b">pokes ABOVE the curve: too big</span></div>
+</section>
+
+<section>
+  <h2><span class="num">4</span> Full worked example — area under y = x² from 0 to 2</h2>
+  <div class="ex"><b>Setup:</b> estimate the area under <b>y = x²</b> from x = 0 to x = 2, using <b>4 slices</b>. Each slice's width = (2 − 0) ÷ 4 = <b>0.5</b>. The slice edges are at x = 0, 0.5, 1, 1.5, 2. The curve's heights there:
+  <br>x = 0 → 0² = 0 &nbsp;·&nbsp; x = 0.5 → 0.5² = 0.25 &nbsp;·&nbsp; x = 1 → 1² = 1 &nbsp;·&nbsp; x = 1.5 → 1.5² = 2.25 &nbsp;·&nbsp; x = 2 → 2² = 4
+  <br><br><b>LEFT sum</b> (heights at each slice's left edge: 0, 0.5, 1, 1.5):
+  <br><span class="fml">0.5 × (0² + 0.5² + 1² + 1.5²) = 0.5 × (0 + 0.25 + 1 + 2.25) = 0.5 × 3.5 = 1.75</span>
+  <br><br><b>RIGHT sum</b> (heights at each slice's right edge: 0.5, 1, 1.5, 2):
+  <br><span class="fml">0.5 × (0.5² + 1² + 1.5² + 2²) = 0.5 × (0.25 + 1 + 2.25 + 4) = 0.5 × 7.5 = 3.75</span>
+  <br><br><b>The sandwich:</b> since y = x² is increasing here, the true area is trapped: <b>1.75 &lt; true area &lt; 3.75</b>. The exact answer (you'll be able to compute it yourself in Lesson 8!) is <span class="fml">8/3 ≈ 2.67</span> — and sure enough, 2.67 sits right inside the sandwich. ✓</div>
+</section>
+
+<section>
+  <h2><span class="num">5</span> More slices = a better estimate</h2>
+  <ul>
+    <li>With 4 slices, our sandwich was wide: from 1.75 to 3.75. Why so sloppy? Because each rectangle's flat top misses the curve by a visible gap.</li>
+    <li>Use <strong>more, skinnier slices</strong> and each rectangle only has to "pretend" over a tinier stretch — the staircase of rectangle tops <em class="hi">hugs the curve more closely</em>, and the left and right sums squeeze toward each other:</li>
+  </ul>
+  <table class="t">
+    <tr><th>Number of slices</th><th>Left sum</th><th>Right sum</th><th>Gap</th></tr>
+    <tr><td>4</td><td>1.75</td><td>3.75</td><td>2</td></tr>
+    <tr><td>8</td><td>2.1875</td><td>3.1875</td><td>1</td></tr>
+    <tr><td>100</td><td>≈ 2.6268</td><td>≈ 2.7068</td><td>0.08</td></tr>
+    <tr><td>1000</td><td>≈ 2.6627</td><td>≈ 2.6707</td><td>0.008</td></tr>
+  </table>
+  <ul>
+    <li>Both sums are marching toward the same number: <span class="fml">8/3 ≈ 2.6667</span>. The sandwich is closing, and the true area has nowhere to hide.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">6</span> The big reveal — what integration actually IS</h2>
+  <ul>
+    <li>Keep slicing forever: 1000 slices, a million, more… As the slices get <strong>infinitely skinny</strong>, the left and right sums squeeze together onto a single number. That number is the <strong>exact</strong> area — no estimate, no error, none.</li>
+    <li><em class="hi">THAT is integration:</em> the exact total you get when the slice-and-add estimate is pushed to infinitely skinny slices. The famous integral sign <span class="fml">∫</span> is literally a stretched-out letter S, for "sum" — a sum of infinitely many, infinitely skinny rectangles.</li>
+    <li>You now understand what the symbol <span class="fml">∫<sub>0</sub><sup>2</sup> x<sup>2</sup> dx</span> means: "the exact area under x² from 0 to 2." The next lessons build the shortcut for computing it without adding a million rectangles.</li>
+  </ul>
+</section>
+
+<div class="qhead">✏️ Exercises — 20 problems (write your answer on paper, then reveal)</div>
+
+<div class="q"><span class="qnum">1.</span><span class="qtag">left sum from a table</span>
+  <div class="qtext">Water flows into a tub at an increasing rate. Measurements, one minute apart:
+  <br>t = 0: 2 L/min · t = 1: 4 L/min · t = 2: 6 L/min · t = 3: 8 L/min · t = 4: 10 L/min.
+  <br>Estimate the total water from t = 0 to t = 4 with a LEFT sum using 4 slices of width 1 minute.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> between measurements we don't know the rate, so we PRETEND it stays at the value measured at the start (left edge) of each minute. Each minute becomes a rectangle of width 1; total water ≈ sum of (rate at left edge) × 1. The interval 0-to-4 has 4 slices, so a left sum uses the first 4 measurements — the t = 4 reading is never a left edge.</div>
+    <div class="step">Slices: 0→1 uses rate 2; 1→2 uses rate 4; 2→3 uses rate 6; 3→4 uses rate 8.</div>
+    <div class="step">Left sum = 1 × (2 + 4 + 6 + 8) = 20.</div>
+    <div class="ans">≈ 20 liters (an underestimate, since the rate is increasing)</div></div>
+</div>
+
+<div class="q"><span class="qnum">2.</span><span class="qtag">right sum from a table</span>
+  <div class="qtext">Using the same table as #1 (rates 2, 4, 6, 8, 10 L/min at t = 0, 1, 2, 3, 4), estimate the total water from t = 0 to t = 4 with a RIGHT sum.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a right sum pretends each minute's rate is the value at the END (right edge) of that minute. So now the first reading (t = 0) is skipped and the last one (t = 4) gets used. Same four slices, different pretend heights.</div>
+    <div class="step">Slices: 0→1 uses rate 4; 1→2 uses rate 6; 2→3 uses rate 8; 3→4 uses rate 10.</div>
+    <div class="step">Right sum = 1 × (4 + 6 + 8 + 10) = 28.</div>
+    <div class="step">Sandwich: the true total is somewhere between 20 (left) and 28 (right).</div>
+    <div class="ans">≈ 28 liters (an overestimate; truth is between 20 and 28)</div></div>
+</div>
+
+<div class="q"><span class="qnum">3.</span><span class="qtag">left sum · formula</span>
+  <div class="qtext">Estimate the area under the line <span class="fml">y = 2x</span> from x = 0 to x = 2 using a LEFT sum with 2 slices of width 1. (First find the heights: y at x = 0 and at x = 1.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> when the graph comes from a formula, you compute the heights yourself by plugging in x-values. y = 2x means "the height at any x is double the x." The slice edges here are x = 0, 1, 2; a left sum uses the heights at x = 0 and x = 1.</div>
+    <div class="step">Heights: at x = 0, y = 2 × 0 = 0. At x = 1, y = 2 × 1 = 2.</div>
+    <div class="step">Left sum = 1 × (0 + 2) = 2.</div>
+    <div class="ans">Left sum = 2</div></div>
+</div>
+
+<div class="q"><span class="qnum">4.</span><span class="qtag">right sum + sandwich</span>
+  <div class="qtext">Same setup as #3 (y = 2x from 0 to 2, two slices of width 1). (a) Compute the RIGHT sum. (b) The region under y = 2x from 0 to 2 is a triangle — compute its TRUE area with ½ × base × height, and check it lands between your two estimates.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> this problem lets you CATCH the sandwich in the act, because for a straight line we can also get the exact area with Lesson 2's triangle formula. The left/right estimates should trap it.</div>
+    <div class="step">(a) Right-edge heights: at x = 1, y = 2; at x = 2, y = 4. Right sum = 1 × (2 + 4) = 6.</div>
+    <div class="step">(b) True area: triangle with base 2 and height 4 → ½ × 2 × 4 = 4.</div>
+    <div class="step">Sandwich check: left 2 &lt; true 4 &lt; right 6 ✓ — and 4 is exactly in the middle (a straight-line special treat; see #20).</div>
+    <div class="ans">(a) Right sum = 6 &nbsp; (b) True area = 4, safely between 2 and 6</div></div>
+</div>
+
+<div class="q"><span class="qnum">5.</span><span class="qtag">over or under?</span>
+  <div class="qtext">A runner's speed graph is INCREASING the whole time (she keeps speeding up). Without computing anything: does a LEFT sum overestimate or underestimate her true distance? Explain why in a sentence.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> on an increasing graph, the left edge of every slice is the slice's LOWEST point — the curve only climbs from there. So each left rectangle uses the smallest height available in its slice and fits entirely under the curve.</div>
+    <div class="step">Every left rectangle is shorter than the curve everywhere else in its slice, so the rectangles miss some area under the curve.</div>
+    <div class="step">Therefore the left sum comes out SMALLER than the truth: an underestimate. (In running terms: pretending each stretch was run at its starting speed short-changes a runner who's speeding up.)</div>
+    <div class="ans">Underestimate — each left rectangle sits completely below the rising curve</div></div>
+</div>
+
+<div class="q"><span class="qnum">6.</span><span class="qtag">slice width</span>
+  <div class="qtext">You want to estimate an area from t = 1 to t = 4 using 6 equal slices. How wide is each slice, and at what t-values are the slice edges?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> slice width = (length of the whole interval) ÷ (number of slices), and the interval's length is end − start — NOT just the end value. Getting the width right is step zero of every slicing problem.</div>
+    <div class="step">Interval length = 4 − 1 = 3. Width = 3 ÷ 6 = 0.5.</div>
+    <div class="step">Edges: start at 1 and step by 0.5 → t = 1, 1.5, 2, 2.5, 3, 3.5, 4. (Seven edges make six slices — always one more edge than slices.)</div>
+    <div class="ans">Width = 0.5; edges at t = 1, 1.5, 2, 2.5, 3, 3.5, 4</div></div>
+</div>
+
+<div class="q"><span class="qnum">7.</span><span class="qtag">left sum · y = x + 1</span>
+  <div class="qtext">Estimate the area under <span class="fml">y = x + 1</span> from x = 0 to x = 2 with a LEFT sum using 4 slices of width 0.5.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> y = x + 1 means "height = the x-value plus one." With width 0.5 the edges are x = 0, 0.5, 1, 1.5, 2; a left sum uses the first four. Recipe: width × (sum of left-edge heights).</div>
+    <div class="step">Left heights: x = 0 → 1; x = 0.5 → 1.5; x = 1 → 2; x = 1.5 → 2.5.</div>
+    <div class="step">Sum of heights = 1 + 1.5 + 2 + 2.5 = 7.</div>
+    <div class="step">Left sum = 0.5 × 7 = 3.5.</div>
+    <div class="ans">Left sum = 3.5</div></div>
+</div>
+
+<div class="q"><span class="qnum">8.</span><span class="qtag">right sum · y = x + 1</span>
+  <div class="qtext">Same setup as #7 (y = x + 1 from 0 to 2, four slices of width 0.5). (a) Compute the RIGHT sum. (b) The exact area (a trapezoid: rectangle of height 1 plus a triangle, Lesson 2 style) is 4 — check the sandwich.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> right sum = width × (sum of right-edge heights): skip the first edge, include the last. And the exact check: rectangle 1 × 2 = 2 plus triangle ½ × 2 × 2 = 2 gives 4, our Lesson 2 method.</div>
+    <div class="step">(a) Right heights: x = 0.5 → 1.5; x = 1 → 2; x = 1.5 → 2.5; x = 2 → 3. Sum = 9.</div>
+    <div class="step">Right sum = 0.5 × 9 = 4.5.</div>
+    <div class="step">(b) Sandwich: left 3.5 &lt; true 4 &lt; right 4.5 ✓.</div>
+    <div class="ans">(a) Right sum = 4.5 &nbsp; (b) 3.5 &lt; 4 &lt; 4.5 — the sandwich holds</div></div>
+</div>
+
+<div class="q"><span class="qnum">9.</span><span class="qtag">car data · left sum</span>
+  <div class="qtext">A car's speedometer is read every 2 seconds while it accelerates:
+  <br>t = 0 s: 3 m/s · t = 2 s: 5 m/s · t = 4 s: 6 m/s · t = 6 s: 10 m/s.
+  <br>Estimate the distance traveled from t = 0 to t = 6 with a LEFT sum (3 slices of width 2).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> this is how real GPS units and fitness trackers estimate distance — they only get speed readings every so often, and they assume the speed held steady between readings. Note the slice width is 2 here (readings are 2 s apart), so each rectangle is rate × 2.</div>
+    <div class="step">Left edges: rates 3, 5, 6 (the t = 6 reading is not a left edge).</div>
+    <div class="step">Left sum = 2 × (3 + 5 + 6) = 2 × 14 = 28.</div>
+    <div class="ans">≈ 28 meters (underestimate — the car is speeding up)</div></div>
+</div>
+
+<div class="q"><span class="qnum">10.</span><span class="qtag">car data · right sum + sandwich</span>
+  <div class="qtext">Using the same speed table as #9, (a) compute the RIGHT sum, and (b) write one sentence saying what you now know about the car's TRUE distance.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> with both sums in hand, you can make a guarantee about the truth without ever knowing the exact speeds between readings. Since the speeds are increasing, left is too small and right is too big — the truth is pinned between them. This "trap the answer" style of thinking is a superpower in science, where data always comes in samples.</div>
+    <div class="step">(a) Right edges: rates 5, 6, 10. Right sum = 2 × (5 + 6 + 10) = 2 × 21 = 42.</div>
+    <div class="step">(b) The true distance is somewhere between 28 and 42 meters — guaranteed, as long as the speed never dipped between readings.</div>
+    <div class="ans">(a) 42 meters &nbsp; (b) true distance is trapped between 28 m and 42 m</div></div>
+</div>
+
+<div class="q"><span class="qnum">11.</span><span class="qtag">y = x² · 2 slices</span>
+  <div class="qtext">Estimate the area under <span class="fml">y = x<sup>2</sup></span> from x = 0 to x = 2 using just 2 slices of width 1. Compute BOTH the left sum and the right sum.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> y = x² means "height = x times itself": at x = 0, 1, 2 the heights are 0, 1, 4. Only two fat slices this time — compare your sandwich to the lesson's 4-slice sandwich (1.75 to 3.75) to see how much fatter slices make a sloppier trap.</div>
+    <div class="step">Left sum (heights at x = 0 and 1): 1 × (0 + 1) = 1.</div>
+    <div class="step">Right sum (heights at x = 1 and 2): 1 × (1 + 4) = 5.</div>
+    <div class="step">Sandwich: 1 &lt; true area &lt; 5. (With 4 slices it tightened to 1.75–3.75; the true answer is 8/3 ≈ 2.67.)</div>
+    <div class="ans">Left = 1, Right = 5</div></div>
+</div>
+
+<div class="q"><span class="qnum">12.</span><span class="qtag">decreasing graph</span>
+  <div class="qtext">A bathtub is draining, and the outflow rate is DECREASING the whole time (water leaves fast at first, then slower as the tub empties). For estimating the total water drained: which is the overestimate, the left sum or the right sum? Explain.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> everything flips for a decreasing graph. Now each slice's LEFT edge is its HIGHEST point (the rate only drops from there), so left rectangles poke above the curve; right rectangles hide below it. The rule isn't "left = under" — it's "the edge where the graph is taller gives the overestimate."</div>
+    <div class="step">Left edges catch the rate at its biggest moment in each slice → left rectangles are too tall → LEFT sum is the overestimate.</div>
+    <div class="step">Right edges catch the smallest rate in each slice → RIGHT sum is the underestimate. The truth is still sandwiched between them.</div>
+    <div class="ans">Left sum overestimates; right sum underestimates (the reverse of an increasing graph)</div></div>
+</div>
+
+<div class="q"><span class="qnum">13.</span><span class="qtag">y = 2x · 4 slices + check</span>
+  <div class="qtext">For <span class="fml">y = 2x</span> from x = 0 to x = 4, with 4 slices of width 1: (a) compute the left sum, (b) compute the right sum, (c) compute the TRUE area (it's a triangle!), and (d) confirm the sandwich.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> heights of y = 2x at the edges x = 0, 1, 2, 3, 4 are 0, 2, 4, 6, 8. The true region is a triangle with base 4 and height 8, so Lesson 2's formula gives us the exact answer to test the estimates against.</div>
+    <div class="step">(a) Left sum = 1 × (0 + 2 + 4 + 6) = 12.</div>
+    <div class="step">(b) Right sum = 1 × (2 + 4 + 6 + 8) = 20.</div>
+    <div class="step">(c) True area = ½ × 4 × 8 = 16.</div>
+    <div class="step">(d) 12 &lt; 16 &lt; 20 ✓ — and again the truth is exactly halfway between (straight lines do that).</div>
+    <div class="ans">(a) 12 &nbsp; (b) 20 &nbsp; (c) 16 &nbsp; (d) 12 &lt; 16 &lt; 20 ✓</div></div>
+</div>
+
+<div class="q"><span class="qnum">14.</span><span class="qtag">sandwich logic</span>
+  <div class="qtext">For an increasing rate graph, your left sum is 14 and your right sum is 22. Your friend announces "the true total is 25." Without knowing anything else about the graph, how do you know your friend is wrong? What CAN you say about the true total?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the sandwich isn't a vibe — it's a guarantee. For an increasing graph, every left rectangle fits fully under the curve (left sum too small) and every right rectangle fully covers it (right sum too big). No true area can escape those bounds.</div>
+    <div class="step">The truth must satisfy: 14 ≤ true total ≤ 22.</div>
+    <div class="step">25 is bigger than the overestimate 22 — impossible. Even the too-generous right sum only reached 22.</div>
+    <div class="step">What we can say: the true total is between 14 and 22. Without more slices, that's the honest limit of our knowledge.</div>
+    <div class="ans">25 lies outside the sandwich [14, 22], so it's impossible; the truth is between 14 and 22</div></div>
+</div>
+
+<div class="q"><span class="qnum">15.</span><span class="qtag">half-width slices</span>
+  <div class="qtext">A sprinter's speed is measured every HALF second:
+  <br>t = 0: 1 m/s · t = 0.5: 2 m/s · t = 1: 4 m/s · t = 1.5: 7 m/s · t = 2: 11 m/s.
+  <br>Estimate her distance from t = 0 to t = 2 with (a) a left sum and (b) a right sum. Careful: the slice width is 0.5, not 1!</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> when readings are half a second apart, each rectangle is only 0.5 wide, so each contributes (rate × 0.5). Forgetting to multiply by the width is the #1 slicing error — a sum of raw rates has the wrong units entirely (it would be m/s, not meters).</div>
+    <div class="step">(a) Left edges: 1, 2, 4, 7. Left sum = 0.5 × (1 + 2 + 4 + 7) = 0.5 × 14 = 7.</div>
+    <div class="step">(b) Right edges: 2, 4, 7, 11. Right sum = 0.5 × (2 + 4 + 7 + 11) = 0.5 × 24 = 12.</div>
+    <div class="step">True distance: between 7 and 12 meters (speeds are increasing).</div>
+    <div class="ans">(a) 7 meters &nbsp; (b) 12 meters</div></div>
+</div>
+
+<div class="q"><span class="qnum">16.</span><span class="qtag">interval not starting at 0</span>
+  <div class="qtext">Estimate the area under <span class="fml">y = x<sup>2</sup></span> from x = 1 to x = 3 using 2 slices of width 1. Compute both the left and right sums.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> nothing says slicing must start at 0! The interval is 1 to 3, so the edges are x = 1, 2, 3, and the heights there are 1² = 1, 2² = 4, 3² = 9. Same recipe: width × (sum of chosen heights).</div>
+    <div class="step">Left sum (heights at x = 1 and 2): 1 × (1 + 4) = 5.</div>
+    <div class="step">Right sum (heights at x = 2 and 3): 1 × (4 + 9) = 13.</div>
+    <div class="step">The true area (Lesson 8 will confirm) is 26/3 ≈ 8.67 — inside the sandwich 5 to 13 ✓.</div>
+    <div class="ans">Left = 5, Right = 13</div></div>
+</div>
+
+<div class="q"><span class="qnum">17.</span><span class="qtag">challenge · average the sums</span>
+  <div class="qtext">In the lesson's worked example (y = x² from 0 to 2, four slices), the left sum was 1.75 and the right sum was 3.75. (a) Compute the AVERAGE of the two sums. (b) The true area is 8/3 ≈ 2.67. How close is your average — and why would averaging be a smart move in general?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> if one estimate is guaranteed too small and the other guaranteed too big, meeting in the middle should cancel most of the error. (Averaging left and right is secretly the same as using trapezoids instead of rectangles — mathematicians call it the "trapezoid rule.")</div>
+    <div class="step">(a) Average = (1.75 + 3.75) ÷ 2 = 5.5 ÷ 2 = 2.75.</div>
+    <div class="step">(b) True ≈ 2.67. The average misses by only about 0.08 — compare that to the left sum missing by ≈ 0.92 and the right by ≈ 1.08. One tiny idea bought us a 10× better estimate!</div>
+    <div class="ans">(a) 2.75 &nbsp; (b) off by only ≈ 0.08 — averaging cancels most of the over/under error</div></div>
+</div>
+
+<div class="q"><span class="qnum">18.</span><span class="qtag">concept · why more slices?</span>
+  <div class="qtext">In your own words (2–3 sentences): WHY does using more, skinnier slices make the rectangle estimate better? Mention what happens to the gap between the staircase and the curve.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the error in each slice comes from the lie we told — "the rate is constant here." The lie's size depends on how much the curve actually changes within one slice. Skinnier slice → less change inside it → smaller lie.</div>
+    <div class="step">Sample answer: "Each rectangle is wrong only where its flat top misses the curve. If a slice is skinny, the curve barely has room to rise or fall inside it, so the flat top stays very close to the curve. With more and more skinny slices, the staircase of tops hugs the curve tighter and tighter, and the total error shrinks toward zero."</div>
+    <div class="step">Evidence from the lesson's table: 4 slices → sandwich gap of 2; 1000 slices → gap of 0.008.</div>
+    <div class="ans">Skinnier slices mean the curve changes less within each one, so every flat top lies closer to the curve and the total error shrinks toward zero</div></div>
+</div>
+
+<div class="q"><span class="qnum">19.</span><span class="qtag">challenge · decreasing data</span>
+  <div class="qtext">A pot of hot cocoa is cooling, losing heat at a decreasing rate:
+  <br>t = 0: 10 units/min · t = 1: 8 · t = 2: 5 · t = 3: 3 · t = 4: 2 (units of heat per minute).
+  <br>For the total heat lost from t = 0 to t = 4 (width-1 slices): (a) compute the left sum, (b) compute the right sum, (c) label each one over- or underestimate, and (d) give the sandwich for the true total.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background (physics):</b> hot things cool fastest when they're hottest — as the cocoa approaches room temperature, heat leaks out slower and slower, so this rate graph DECREASES. That flips the roles: left edges are the tall ones now, so the left sum is the overestimate.</div>
+    <div class="step">(a) Left sum = 1 × (10 + 8 + 5 + 3) = 26.</div>
+    <div class="step">(b) Right sum = 1 × (8 + 5 + 3 + 2) = 18.</div>
+    <div class="step">(c) Decreasing graph → left = OVERestimate, right = UNDERestimate.</div>
+    <div class="step">(d) Sandwich: 18 ≤ true heat lost ≤ 26.</div>
+    <div class="ans">(a) 26 &nbsp; (b) 18 &nbsp; (c) left over, right under &nbsp; (d) truth between 18 and 26 units</div></div>
+</div>
+
+<div class="q"><span class="qnum">20.</span><span class="qtag">challenge · when the average is PERFECT</span>
+  <div class="qtext">For the straight line <span class="fml">y = 2x</span> from x = 0 to x = 2 with 2 slices (from #3 and #4): the left sum was 2, the right sum was 6, and the true area was 4. (a) Average the left and right sums. (b) You should hit the true area EXACTLY. Explain why averaging is perfect for straight lines but only approximately right for curves like x².</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> averaging the left and right rectangle in each slice is the same as replacing the rectangle with a trapezoid whose slanted top connects the curve's two edge points. If the graph IS a straight line, that slanted top lies exactly ON the graph — zero error. If the graph curves, the straight top misses it slightly (for x², which bends upward, the straight top sits a hair above the curve).</div>
+    <div class="step">(a) Average = (2 + 6) ÷ 2 = 4. Exactly the true area ✓.</div>
+    <div class="step">(b) In each slice, averaging left and right heights builds a trapezoid whose top is a straight segment between two points on the graph. A straight line graph passes through both points AND every point between — perfect match. A curve like x² touches the segment only at its two ends and sags below it in between, so a small (but only small!) error survives — which is why the average 2.75 in #17 was close to 8/3 but not exact.</div>
+    <div class="ans">(a) Average = 4 = the exact area &nbsp; (b) the trapezoid's straight top lies exactly on a straight-line graph, but only near a curved one</div></div>
+</div>
+
+<footer>Lesson 3 of 20 · Intuitive Integration · next: <a href="Lesson04.html">Lesson 4 — The Antiderivative — Undoing the Derivative</a></footer>
+
+</div>
+<script>
+document.querySelectorAll('.q').forEach(q=>{
+  const btn=q.querySelector('.revealbtn'), sol=q.querySelector('.sol');
+  btn.addEventListener('click',()=>{ sol.classList.add('show'); btn.textContent='Solution shown'; btn.disabled=true; btn.style.opacity=.6; });
+});
+</script>
+</body>
+</html>

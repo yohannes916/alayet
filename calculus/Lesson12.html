@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 12 — Motion II: Acceleration &amp; Gravity</title>
+<style>
+  :root{--accent:#186a3b;--accent2:#239b56;--bg:#f2f7f4;--card:#fff;--ok:#1e8449;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:#1c2833;background:var(--bg);margin:0;padding:0 16px 80px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -16px 20px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  nav{display:flex;gap:10px;margin-bottom:18px;font-size:.9rem;flex-wrap:wrap;}
+  nav a{color:var(--accent);text-decoration:none;font-weight:600;background:#fff;border:1px solid #d5e8dc;border-radius:8px;padding:6px 14px;}
+  nav a:hover{background:#eafaf1;}
+  .goal{background:#fef9e7;border-left:5px solid var(--star);padding:12px 18px;border-radius:8px;margin-bottom:18px;font-size:.95rem;}
+  .goal strong{color:#7d6608;}
+  section{background:var(--card);border-radius:10px;padding:18px 22px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  h2{color:var(--accent);font-size:1.15rem;margin:0 0 10px;}
+  h2 .num{background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;border-radius:6px;padding:2px 9px;margin-right:8px;}
+  ul{margin:8px 0;padding-left:24px;}
+  li{margin-bottom:8px;}
+  strong{color:#145a32;}
+  em.hi{font-style:normal;background:#fef9e7;padding:0 4px;border-radius:3px;}
+  .fml{background:#e9f7ef;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.9em;color:#186a3b;white-space:nowrap;}
+  .ex{background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:.95rem;}
+  .ex b{color:#145a32;}
+  .graph{background:#1b2631;color:#eaeded;border-radius:8px;padding:14px 18px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.82rem;line-height:1.45;overflow-x:auto;margin:10px 0;white-space:pre;}
+  .graph .g{color:#82e0aa;} .graph .y{color:#f7dc6f;} .graph .b{color:#85c1e9;}
+  table.t{border-collapse:collapse;margin:10px 0;font-size:.92rem;}
+  table.t th,table.t td{border:1px solid #cfd8cf;padding:6px 12px;text-align:center;}
+  table.t th{background:var(--accent);color:#fff;font-weight:600;}
+  .qhead{margin:26px 0 8px;color:var(--accent);font-size:1.2rem;border-bottom:2px solid #d4efdf;padding-bottom:6px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid var(--accent2);}
+  .qnum{font-weight:800;color:var(--accent);margin-right:6px;}
+  .qtag{float:right;background:#e9f7ef;color:var(--accent);border-radius:8px;padding:1px 9px;font-size:.68rem;font-weight:700;letter-spacing:.3px;margin-left:8px;}
+  .qtext{font-size:.98rem;margin:4px 0 10px;}
+  .revealbtn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .revealbtn:hover{background:#0e4429;}
+  .sol{display:none;margin-top:12px;background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px;font-size:.93rem;}
+  .sol.show{display:block;}
+  .sol h4{margin:0 0 8px;color:var(--ok);font-size:.9rem;}
+  .sol .ctx{background:#eaf2f8;border-left:4px solid #2e86c1;border-radius:6px;padding:8px 12px;margin:0 0 10px;font-size:.88rem;}
+  .sol .ctx b{color:#1a5276;}
+  .sol .step{margin:6px 0;}
+  .sol .ans{background:#eafaf1;border-radius:6px;padding:6px 12px;margin-top:8px;font-weight:700;color:#145a32;display:inline-block;}
+  footer{text-align:center;color:#85929e;font-size:.85rem;margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Lesson 12 — Motion II: Acceleration &amp; Gravity</h1>
+  <p>Integrating twice: from acceleration to velocity to position · Lesson 12 of 20</p>
+</header>
+
+<nav><a href="index.html">📚 All lessons</a><a href="Lesson11.html">← Prev: Lesson 11</a><a href="Lesson13.html">Next: Lesson 13 →</a></nav>
+
+<div class="goal"><strong>🎯 Goal of this lesson:</strong> in Lesson 11 you integrated velocity to get position. Now we go one level deeper: <em>acceleration</em> tells how fast the velocity changes, so integrating acceleration gives velocity — and integrating again gives position. By the end you'll understand falling balls, thrown balls, and braking cars, and you'll see that the famous physics formulas are just integrals in disguise.</div>
+
+<section>
+  <h2><span class="num">1</span> Acceleration, from scratch</h2>
+  <ul>
+    <li>You know <strong>velocity</strong>: how fast your <em>position</em> is changing, measured in meters per second (m/s).</li>
+    <li><strong>Acceleration</strong> is one level up: it's how fast your <em class="hi">VELOCITY</em> is changing. Pressing a car's gas pedal doesn't teleport you forward — it makes your speedometer needle climb. That climbing is acceleration.</li>
+    <li>Units: if your velocity grows by 4 m/s during every second, your acceleration is "4 m/s <em>per second</em>", written <span class="fml">4 m/s²</span>. The little ² just means "per second, twice" — meters per second, per second.</li>
+    <li>So acceleration is the <strong>derivative of velocity</strong> — and that means, running our machine backwards, <em class="hi">velocity is the integral of acceleration</em>.</li>
+    <li>Here is the full chain, which this whole lesson lives on:</li>
+  </ul>
+  <div class="graph"><span class="y">acceleration a(t)</span>  --integrate-->  <span class="g">velocity v(t)</span>  --integrate-->  <span class="b">position s(t)</span>
+
+     each arrow needs a STARTING VALUE:
+     starting velocity v₀ for the first arrow,
+     starting position s₀ for the second.</div>
+  <ul>
+    <li>Why the starting values? Remember Lesson 5: an integral only tells you the <strong>change</strong>. If your velocity changed by +12 m/s, you still need to know where the speedometer <em>started</em> to know where it ends. Same for position.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">2</span> Constant acceleration, worked slowly</h2>
+  <div class="ex"><b>Example:</b> a cart accelerates at a steady <span class="fml">a = 4 m/s²</span>, and it's already moving at <span class="fml">2 m/s</span> when we start the clock.
+  <br><br><b>Step 1 — velocity.</b> The change in velocity up to time t is the integral of acceleration: <span class="fml">∫<sub>0</sub><sup>t</sup> 4 du = 4t</span>. Add the starting velocity:
+  <br><span class="fml">v(t) = 2 + 4t</span> &nbsp;(velocity = start + integral of a). Check: at t = 0 it gives 2 ✓, and it grows by 4 every second ✓.
+  <br><br><b>Step 2 — position.</b> Now integrate the velocity (Lesson 11): distance traveled in the first t seconds = <span class="fml">∫<sub>0</sub><sup>t</sup> (2 + 4u) du = 2t + 2t²</span>. If the cart starts at position 0, then <span class="fml">s(t) = 2t + 2t²</span>.
+  <br><br>After 3 seconds: v(3) = 2 + 12 = <b>14 m/s</b>, and s(3) = 6 + 18 = <b>24 meters</b>. Two integrations, two starting values, whole story known.</div>
+  <ul>
+    <li>That's the entire method. Everything else in this lesson is this method wearing different costumes.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">3</span> Gravity — the acceleration you live with every day</h2>
+  <ul>
+    <li>Here's a physics fact you can test with a pencil: near the ground, <em class="hi">everything that falls speeds up at about 9.8 m/s² </em>— a rock, a phone, a bowling ball. Gravity pulls, and the speed of a falling object climbs by about 9.8 m/s every second. That number is called <strong>g</strong>.</li>
+    <li>In this course we'll round it to <strong>g = 10 m/s²</strong> to keep the arithmetic friendly (real scientists use 9.8; the method is identical).</li>
+    <li><strong>A dropped ball</strong> (dropped = starts with velocity 0, measuring downward as positive):
+      <ul>
+        <li>Velocity: <span class="fml">v(t) = 0 + ∫<sub>0</sub><sup>t</sup> 10 du = 10t</span> m/s.</li>
+        <li>Distance fallen: <span class="fml">s(t) = ∫<sub>0</sub><sup>t</sup> 10u du = 5t²</span> meters.</li>
+      </ul>
+    </li>
+    <li>So a dropped ball falls <em class="hi">5t² meters in t seconds</em>, moving at 10t m/s. Memorize the pattern, but know it comes from two integrals.</li>
+  </ul>
+  <div class="ex"><b>Worked example:</b> you drop a ball off a bridge. After 3 seconds: velocity = 10 × 3 = <b>30 m/s</b> (about highway speed!), and it has fallen 5 × 3² = 5 × 9 = <b>45 meters</b>. Notice how fast falling gets serious — that's why heights are dangerous.</div>
+  <table class="t">
+    <tr><th>t (s)</th><th>speed v = 10t (m/s)</th><th>fallen s = 5t² (m)</th></tr>
+    <tr><td>1</td><td>10</td><td>5</td></tr>
+    <tr><td>2</td><td>20</td><td>20</td></tr>
+    <tr><td>3</td><td>30</td><td>45</td></tr>
+    <tr><td>4</td><td>40</td><td>80</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2><span class="num">4</span> Throwing a ball UP — the full story arc</h2>
+  <ul>
+    <li>Now let's call <strong>up</strong> the positive direction. Gravity pulls down, so it <em>subtracts</em> from your velocity: acceleration = <span class="fml">−10 m/s²</span>.</li>
+    <li>Throw a ball straight up at 20 m/s. Velocity = start + integral of acceleration:
+      <span class="fml">v(t) = 20 − 10t</span>.</li>
+    <li>Read that formula like a story:
+      <ul>
+        <li><strong>Rising:</strong> while <span class="fml">v &gt; 0</span> the ball is still moving up. That's for t &lt; 2.</li>
+        <li><strong>The peak:</strong> at the very top the ball hangs for an instant with velocity exactly 0. Solve 20 − 10t = 0 → <em class="hi">t = 2 seconds</em>.</li>
+        <li><strong>Falling:</strong> after t = 2, v is negative — moving downward.</li>
+      </ul>
+    </li>
+    <li><strong>How high did it go?</strong> Height gained = integral of velocity while rising:
+      <span class="fml">∫<sub>0</sub><sup>2</sup> (20 − 10t) dt = [20t − 5t²]<sub>0</sub><sup>2</sup> = 40 − 20 = 20</span> → <em class="hi">20 meters</em>.</li>
+    <li><strong>When does it land?</strong> Height at time t is <span class="fml">s(t) = 20t − 5t²</span>. Set it to 0: 20t − 5t² = 5t(4 − t) = 0 → t = 4 s. Exactly twice the peak time — the trip up and the trip down are mirror images.</li>
+  </ul>
+  <div class="graph"><span class="g">v (m/s)</span>
+ 20 <span class="g">●</span>
+    | <span class="g">\</span>          v = 20 − 10t
+ 10 |   <span class="g">\</span>
+    |     <span class="g">\</span>       <span class="y">peak: v = 0 at t = 2</span>
+  0 +-------<span class="y">●</span>--------------→ t (s)
+    |         <span class="g">\</span>
+−10 |           <span class="g">\</span>   <span class="b">negative v = falling</span>
+−20 |             <span class="g">●</span>
+    0    1    2    3    4</div>
+  <ul>
+    <li>This is signed area from Lesson 9 in action: area above the axis (rising, +20 m) and area below the axis (falling, −20 m) cancel — the ball ends where it started.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">5</span> The famous physics formulas are just integrals</h2>
+  <ul>
+    <li>Physics textbooks hand students two formulas to memorize. You can now <strong>build them yourself</strong>. Suppose acceleration is a constant <span class="fml">a</span>, starting velocity is <span class="fml">v₀</span>, starting position is <span class="fml">s₀</span>.</li>
+    <li><strong>First integration</strong> (a → v): change in velocity = <span class="fml">∫<sub>0</sub><sup>t</sup> a du = at</span>, so
+      <em class="hi">v = v₀ + at</em>.</li>
+    <li><strong>Second integration</strong> (v → s): change in position = <span class="fml">∫<sub>0</sub><sup>t</sup> (v₀ + au) du = v₀t + ½at²</span>, so
+      <em class="hi">s = s₀ + v₀t + ½at²</em>.</li>
+    <li>Sanity-check the dropped ball: v₀ = 0, s₀ = 0, a = 10 → v = 10t ✓ and s = ½ × 10 × t² = 5t² ✓. The "5" in 5t² is just ½ of g.</li>
+    <li>Moral: <em class="hi">the physics formulas aren't magic — they're what integration produces</em>. If you ever forget them, you can re-derive them in four lines.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">6</span> Sanity habits (use these on every problem)</h2>
+  <ul>
+    <li><strong>Carry units at every step.</strong> m/s² × s = m/s (acceleration times time gives velocity ✓). m/s × s = m (velocity times time gives meters ✓). If your units come out wrong, your setup is wrong.</li>
+    <li><strong>Check by differentiating.</strong> Integration and differentiation undo each other (Lesson 4). If you claim s(t) = 2t + 2t², differentiate: slope = 2 + 4t — that should be your v(t). It is ✓. Differentiate again: 4 — that should be a ✓. Two free error checks!</li>
+    <li><strong>Check t = 0.</strong> Your v(t) should equal v₀ at t = 0, and s(t) should equal s₀. Takes two seconds, catches most mistakes.</li>
+  </ul>
+</section>
+
+<div class="qhead">✏️ Exercises — 20 problems (write your answer on paper, then reveal)</div>
+
+<div class="q"><span class="qnum">1.</span><span class="qtag">a → v</span>
+  <div class="qtext">A cart starts from rest (velocity 0) and accelerates at a steady 3 m/s². Write the velocity formula v(t), and find the velocity after 4 seconds.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> acceleration is the rate at which velocity changes, so velocity = starting velocity + the integral of acceleration. For a constant acceleration a, that integral is just a × t (a rectangle of height a and width t on the acceleration graph).</div>
+    <div class="step">v(t) = v₀ + <span class="fml">∫<sub>0</sub><sup>t</sup> 3 du</span> = 0 + 3t = 3t.</div>
+    <div class="step">At t = 4: v(4) = 3 × 4 = 12. Units: (m/s²) × s = m/s ✓.</div>
+    <div class="ans">v(t) = 3t; after 4 s the velocity is 12 m/s</div></div>
+</div>
+
+<div class="q"><span class="qnum">2.</span><span class="qtag">a → v · with a start</span>
+  <div class="qtext">A bike is already rolling at 2 m/s when its rider starts pedaling, adding a constant acceleration of 4 m/s². Write v(t) and find the velocity after 5 seconds.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> an integral only gives the CHANGE in velocity. To get the actual velocity you must add the starting velocity: v(t) = v₀ + ∫a. Forgetting the starting value is the #1 mistake in this lesson.</div>
+    <div class="step">Change in velocity by time t: <span class="fml">∫<sub>0</sub><sup>t</sup> 4 du</span> = 4t.</div>
+    <div class="step">v(t) = 2 + 4t. Check t = 0: v = 2 ✓.</div>
+    <div class="step">v(5) = 2 + 20 = 22 m/s.</div>
+    <div class="ans">v(t) = 2 + 4t; after 5 s the velocity is 22 m/s</div></div>
+</div>
+
+<div class="q"><span class="qnum">3.</span><span class="qtag">gravity · dropped</span>
+  <div class="qtext">You drop a ball from a tall bridge (use g = 10 m/s²). How fast is it moving after 3 seconds, and how far has it fallen?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background (physics):</b> gravity makes every falling object speed up by about 10 m/s each second (really 9.8, rounded for friendly numbers). "Dropped" means starting velocity 0. Integrating twice gives the standard pair: v = 10t and distance fallen = 5t².</div>
+    <div class="step">Velocity: v(3) = 10 × 3 = 30 m/s.</div>
+    <div class="step">Distance: s(3) = 5 × 3² = 5 × 9 = 45 m.</div>
+    <div class="ans">30 m/s, having fallen 45 meters</div></div>
+</div>
+
+<div class="q"><span class="qnum">4.</span><span class="qtag">gravity · dropped</span>
+  <div class="qtext">A rock is dropped from a cliff. After 2 seconds, what is its speed and how far has it fallen? (g = 10 m/s²)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> for any dropped object (starting velocity 0), integrating the constant acceleration 10 gives v = 10t, and integrating that velocity gives distance fallen = 5t². These two formulas answer every "dropped object" question.</div>
+    <div class="step">Speed: v(2) = 10 × 2 = 20 m/s.</div>
+    <div class="step">Distance: s(2) = 5 × 2² = 5 × 4 = 20 m.</div>
+    <div class="step">Fun coincidence: at t = 2 the two numbers match (20 and 20) — but only at t = 2!</div>
+    <div class="ans">20 m/s, having fallen 20 meters</div></div>
+</div>
+
+<div class="q"><span class="qnum">5.</span><span class="qtag">v → s</span>
+  <div class="qtext">A scooter's velocity is v(t) = 6t m/s (it started from rest with acceleration 6 m/s²). How far does it travel in the first 3 seconds?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> this is the second link of the chain: distance = integral of velocity (Lesson 11). The antiderivative of 6t is 3t², because the derivative of 3t² is 6t.</div>
+    <div class="step">Distance = <span class="fml">∫<sub>0</sub><sup>3</sup> 6t dt</span> = [3t²]<sub>0</sub><sup>3</sup> = 3 × 9 − 0 = 27.</div>
+    <div class="step">Units: (m/s) × s = m ✓.</div>
+    <div class="ans">27 meters</div></div>
+</div>
+
+<div class="q"><span class="qnum">6.</span><span class="qtag">graph · Δv = area</span>
+  <div class="qtext">An acceleration graph shows one flat step: a = 2 m/s² from t = 0 to t = 5 s. The object's starting velocity is 3 m/s. Use the area under the acceleration graph to find the velocity at t = 5.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> just as area under a velocity graph = change in position, <b>area under an acceleration graph = change in velocity</b>. Same "area under the rate graph" idea from Lesson 2, one level up the chain.</div>
+    <div class="step">Area = width × height = 5 s × 2 m/s² = 10 m/s. That's the CHANGE in velocity, Δv.</div>
+    <div class="step">Final velocity = starting velocity + change = 3 + 10 = 13 m/s.</div>
+    <div class="ans">13 m/s</div></div>
+</div>
+
+<div class="q"><span class="qnum">7.</span><span class="qtag">how long to fall</span>
+  <div class="qtext">A ball is dropped from an 80-meter tower (g = 10 m/s²). How long does it take to reach the ground, and how fast is it going when it lands?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> distance fallen = 5t². Here the distance is GIVEN (80 m) and time is the unknown — so set 5t² equal to 80 and solve backwards. Then plug that time into v = 10t for the landing speed.</div>
+    <div class="step">5t² = 80 → t² = 16 → t = 4 seconds.</div>
+    <div class="step">Landing speed: v(4) = 10 × 4 = 40 m/s.</div>
+    <div class="step">Check: 5 × 4² = 5 × 16 = 80 ✓.</div>
+    <div class="ans">4 seconds, landing at 40 m/s</div></div>
+</div>
+
+<div class="q"><span class="qnum">8.</span><span class="qtag">thrown up · full arc</span>
+  <div class="qtext">A ball is thrown straight up at 30 m/s (g = 10 m/s², up = positive). (a) When does it reach its peak? (b) How high is the peak? (c) When does it land back at its starting height?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> with up as positive, gravity is a = −10, so v(t) = 30 − 10t. The peak is the instant the ball stops rising: v = 0. Peak height = integral of v from 0 to the peak time. It lands when its height s(t) = 30t − 5t² returns to 0.</div>
+    <div class="step">(a) 30 − 10t = 0 → t = 3 seconds.</div>
+    <div class="step">(b) Height = <span class="fml">∫<sub>0</sub><sup>3</sup> (30 − 10t) dt</span> = [30t − 5t²]<sub>0</sub><sup>3</sup> = 90 − 45 = 45 meters.</div>
+    <div class="step">(c) 30t − 5t² = 5t(6 − t) = 0 → t = 6 seconds — exactly double the peak time, since up and down are mirror images.</div>
+    <div class="ans">(a) t = 3 s &nbsp; (b) 45 m high &nbsp; (c) lands at t = 6 s</div></div>
+</div>
+
+<div class="q"><span class="qnum">9.</span><span class="qtag">braking car</span>
+  <div class="qtext">A car moving at 20 m/s slams the brakes, giving a constant acceleration of −5 m/s² (negative = slowing down). (a) Write v(t). (b) When does the car stop? (c) How far does it travel while stopping?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> braking is just negative acceleration — it subtracts from the velocity every second. The car "stops" when v = 0. Stopping distance = the integral of v from 0 to the stopping time (area of a triangle on the velocity graph).</div>
+    <div class="step">(a) v(t) = 20 + (−5)t = 20 − 5t.</div>
+    <div class="step">(b) 20 − 5t = 0 → t = 4 seconds.</div>
+    <div class="step">(c) Distance = <span class="fml">∫<sub>0</sub><sup>4</sup> (20 − 5t) dt</span> = [20t − 2.5t²]<sub>0</sub><sup>4</sup> = 80 − 40 = 40 meters. (Triangle check: ½ × 4 × 20 = 40 ✓.)</div>
+    <div class="ans">(a) v = 20 − 5t &nbsp; (b) stops at t = 4 s &nbsp; (c) 40 meters</div></div>
+</div>
+
+<div class="q"><span class="qnum">10.</span><span class="qtag">braking car</span>
+  <div class="qtext">A truck moving at 40 m/s brakes with acceleration −8 m/s². How long until it stops, and what is its stopping distance?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> same recipe as the last problem: v(t) = v₀ + at with a negative a; stop when v = 0; distance = integral of v up to that moment.</div>
+    <div class="step">v(t) = 40 − 8t. Stops when 40 − 8t = 0 → t = 5 seconds.</div>
+    <div class="step">Distance = <span class="fml">∫<sub>0</sub><sup>5</sup> (40 − 8t) dt</span> = [40t − 4t²]<sub>0</sub><sup>5</sup> = 200 − 100 = 100 meters.</div>
+    <div class="step">Triangle check: ½ × 5 × 40 = 100 ✓. Notice: double the speed of a 20 m/s car doesn't just double the stopping distance — it's much worse. That's why speeding is dangerous.</div>
+    <div class="ans">Stops in 5 seconds, after 100 meters</div></div>
+</div>
+
+<div class="q"><span class="qnum">11.</span><span class="qtag">full chain a → v → s</span>
+  <div class="qtext">An object has constant acceleration 2 m/s², starting velocity 3 m/s, and starting position 5 m. Build v(t), then s(t), then find s(4).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> this is the whole chain in one problem: integrate a (plus starting velocity) to get v, then integrate v (plus starting position) to get s. Two integrations, two starting values.</div>
+    <div class="step">Velocity: v(t) = 3 + <span class="fml">∫<sub>0</sub><sup>t</sup> 2 du</span> = 3 + 2t.</div>
+    <div class="step">Position: s(t) = 5 + <span class="fml">∫<sub>0</sub><sup>t</sup> (3 + 2u) du</span> = 5 + 3t + t².</div>
+    <div class="step">s(4) = 5 + 12 + 16 = 33. Check t = 0: s = 5 ✓, v = 3 ✓.</div>
+    <div class="ans">v(t) = 3 + 2t; s(t) = 5 + 3t + t²; s(4) = 33 meters</div></div>
+</div>
+
+<div class="q"><span class="qnum">12.</span><span class="qtag">thrown up · big throw</span>
+  <div class="qtext">A toy rocket is launched straight up at 50 m/s (treat it as a thrown ball: a = −10 m/s² the whole time). Find the peak time, the peak height, and the landing time.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the thrown-ball recipe: v(t) = v₀ − 10t; peak when v = 0; peak height = ∫ v from 0 to peak time; lands at double the peak time (starting and ending at the same height).</div>
+    <div class="step">Peak: 50 − 10t = 0 → t = 5 s.</div>
+    <div class="step">Peak height = <span class="fml">∫<sub>0</sub><sup>5</sup> (50 − 10t) dt</span> = [50t − 5t²]<sub>0</sub><sup>5</sup> = 250 − 125 = 125 m.</div>
+    <div class="step">Lands: s(t) = 50t − 5t² = 5t(10 − t) = 0 → t = 10 s (double the peak time ✓).</div>
+    <div class="ans">Peak at t = 5 s, height 125 m, lands at t = 10 s</div></div>
+</div>
+
+<div class="q"><span class="qnum">13.</span><span class="qtag">reverse gravity</span>
+  <div class="qtext">A phone slips from a balcony 45 meters above the ground (g = 10 m/s², and yes, it's doomed). How fast is it moving when it hits the ground?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> two-step reverse problem: first use distance fallen = 5t² to find WHEN it lands, then plug that time into v = 10t to find HOW FAST. You can't get the speed without the time first.</div>
+    <div class="step">5t² = 45 → t² = 9 → t = 3 seconds.</div>
+    <div class="step">v(3) = 10 × 3 = 30 m/s.</div>
+    <div class="step">(30 m/s is about 67 miles per hour. Phone case recommended.)</div>
+    <div class="ans">30 m/s</div></div>
+</div>
+
+<div class="q"><span class="qnum">14.</span><span class="qtag">graph · two steps</span>
+  <div class="qtext">An acceleration graph is a staircase: a = 3 m/s² from t = 0 to t = 4 s, then a = 1 m/s² from t = 4 to t = 6 s. The object starts from rest. Find its velocity at t = 6 by adding rectangle areas.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> area under the acceleration graph = change in velocity. A staircase graph means two rectangles; add their areas just like the staircase speed graphs in Lesson 1. Careful: the second rectangle's width is 6 − 4 = 2, not 6.</div>
+    <div class="step">Rectangle 1: 3 m/s² × 4 s = 12 m/s of velocity gained.</div>
+    <div class="step">Rectangle 2: 1 m/s² × 2 s = 2 m/s gained.</div>
+    <div class="step">v(6) = 0 + 12 + 2 = 14 m/s.</div>
+    <div class="ans">14 m/s</div></div>
+</div>
+
+<div class="q"><span class="qnum">15.</span><span class="qtag">derive the formula</span>
+  <div class="qtext">Derive the formula <span class="fml">v = v₀ + at</span> yourself: start from a constant acceleration a and starting velocity v₀, and explain each step of the integration.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> "derive" means: don't quote the formula — BUILD it. The only two ingredients are (1) velocity change = integral of acceleration, and (2) actual velocity = starting velocity + change.</div>
+    <div class="step">Step 1: acceleration is the rate of change of velocity, so the total change in velocity from time 0 to time t is <span class="fml">∫<sub>0</sub><sup>t</sup> a du</span>.</div>
+    <div class="step">Step 2: a is constant, so the antiderivative of a is au, and <span class="fml">∫<sub>0</sub><sup>t</sup> a du = [au]<sub>0</sub><sup>t</sup> = at − 0 = at</span>. (Picture: a rectangle of height a, width t.)</div>
+    <div class="step">Step 3: velocity = start + change: v = v₀ + at. Check by differentiating: derivative of v₀ + at is a ✓, and at t = 0 it gives v₀ ✓.</div>
+    <div class="ans">v = v₀ + at — built from one integral, nothing memorized</div></div>
+</div>
+
+<div class="q"><span class="qnum">16.</span><span class="qtag">derive the formula</span>
+  <div class="qtext">Now derive the position formula <span class="fml">s = s₀ + v₀t + ½at²</span> by integrating the velocity v(t) = v₀ + at you built in problem 15.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> second link of the chain: position change = integral of velocity. Integrate each piece of v₀ + au separately (the antiderivative of a constant v₀ is v₀u; the antiderivative of au is ½au², since the derivative of ½au² is au).</div>
+    <div class="step">Change in position = <span class="fml">∫<sub>0</sub><sup>t</sup> (v₀ + au) du = [v₀u + ½au²]<sub>0</sub><sup>t</sup> = v₀t + ½at²</span>.</div>
+    <div class="step">Add the starting position: s = s₀ + v₀t + ½at².</div>
+    <div class="step">Check by differentiating: derivative = v₀ + at = v ✓. Check the dropped ball: s₀ = 0, v₀ = 0, a = 10 → s = ½(10)t² = 5t² ✓ — the famous falling formula is just this one in disguise.</div>
+    <div class="ans">s = s₀ + v₀t + ½at² — the physics formula is an integral</div></div>
+</div>
+
+<div class="q"><span class="qnum">17.</span><span class="qtag">check by differentiating</span>
+  <div class="qtext">A friend claims that an object with position s(t) = 5 + 3t + t² has velocity v(t) = 3 + 2t and acceleration 2 m/s². Verify both claims by differentiating, and explain why this works as a check.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> integration and differentiation undo each other (the Fundamental Theorem, Lesson 7). So you can verify any integration by differentiating the result: the derivative of position must give back velocity, and the derivative of velocity must give back acceleration.</div>
+    <div class="step">Derivative of s = 5 + 3t + t²: the 5 gives 0, the 3t gives 3, the t² gives 2t → v = 3 + 2t ✓.</div>
+    <div class="step">Derivative of v = 3 + 2t: the 3 gives 0, the 2t gives 2 → a = 2 ✓.</div>
+    <div class="step">Both claims check out. This is the same object as problem 11 — and the check works because differentiating retraces each integration step backwards.</div>
+    <div class="ans">Both correct: s′ = 3 + 2t = v, and v′ = 2 = a</div></div>
+</div>
+
+<div class="q"><span class="qnum">18.</span><span class="qtag">challenge · two-phase rocket</span>
+  <div class="qtext">A model rocket slides along a horizontal track. <b>Phase 1:</b> its engine gives a = 6 m/s² for 5 seconds, starting from rest. <b>Phase 2:</b> the engine cuts out and it coasts at a constant velocity for 10 more seconds (ignore friction). Find its velocity at the end of phase 1, and the TOTAL distance covered over all 15 seconds.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> when the motion has phases with different rules, split the problem at the phase change (the splitting idea from Lesson 6). Work phase 1 fully — its FINAL velocity becomes phase 2's STARTING velocity. "Coasting" means a = 0, so velocity stays constant.</div>
+    <div class="step">Phase 1 velocity: v(t) = 6t, so at t = 5, v = 30 m/s.</div>
+    <div class="step">Phase 1 distance: <span class="fml">∫<sub>0</sub><sup>5</sup> 6t dt</span> = [3t²]<sub>0</sub><sup>5</sup> = 75 meters.</div>
+    <div class="step">Phase 2 distance: constant 30 m/s × 10 s = 300 meters.</div>
+    <div class="step">Total = 75 + 300 = 375 meters.</div>
+    <div class="ans">v = 30 m/s after phase 1; total distance 375 meters</div></div>
+</div>
+
+<div class="q"><span class="qnum">19.</span><span class="qtag">challenge · where is it now?</span>
+  <div class="qtext">A ball is thrown straight up at 30 m/s. You showed in problem 8 that it peaks at t = 3 (height 45 m) and lands at t = 6. How high is the ball at t = 4 seconds — and is it moving up or down at that moment?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the height formula s(t) = 30t − 5t² works for the WHOLE flight, before and after the peak — you don't need separate formulas for up and down. To tell the direction of motion, check the sign of v(t) = 30 − 10t: positive means rising, negative means falling (Lesson 9's signed velocity).</div>
+    <div class="step">Height: s(4) = 30 × 4 − 5 × 4² = 120 − 80 = 40 meters.</div>
+    <div class="step">Velocity: v(4) = 30 − 40 = −10 m/s → negative, so it's falling.</div>
+    <div class="step">Sense check: at t = 4 it's one second past the peak (t = 3, 45 m), so it should be a bit below 45 m and heading down. 40 m and falling ✓.</div>
+    <div class="ans">40 meters up, moving DOWNWARD at 10 m/s</div></div>
+</div>
+
+<div class="q"><span class="qnum">20.</span><span class="qtag">challenge · speed up then brake</span>
+  <div class="qtext">A go-kart starts from rest, accelerates at 4 m/s² for 5 seconds, then immediately brakes at −5 m/s² until it stops. Find (a) the top speed, (b) the total time of the trip, and (c) the total distance.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a two-phase problem where BOTH phases have acceleration. Handle each phase with its own clock and its own starting velocity: phase 1 ends at some speed, and that speed is where phase 2 begins. Add the times and add the distances at the end.</div>
+    <div class="step">(a) Phase 1: v = 4t, so top speed = 4 × 5 = 20 m/s.</div>
+    <div class="step">Phase 1 distance: <span class="fml">∫<sub>0</sub><sup>5</sup> 4t dt</span> = [2t²]<sub>0</sub><sup>5</sup> = 50 meters.</div>
+    <div class="step">(b) Phase 2 (new clock, v₀ = 20, a = −5): v = 20 − 5t → stops at t = 4. Total time = 5 + 4 = 9 seconds.</div>
+    <div class="step">(c) Phase 2 distance: <span class="fml">∫<sub>0</sub><sup>4</sup> (20 − 5t) dt</span> = [20t − 2.5t²]<sub>0</sub><sup>4</sup> = 80 − 40 = 40 meters. Total = 50 + 40 = 90 meters.</div>
+    <div class="ans">(a) 20 m/s &nbsp; (b) 9 seconds &nbsp; (c) 90 meters</div></div>
+</div>
+
+<footer>Lesson 12 of 20 · Intuitive Integration · next: <a href="Lesson13.html">Lesson 13 — Real-World Accumulation Problems</a></footer>
+
+</div>
+<script>
+document.querySelectorAll('.q').forEach(q=>{
+  const btn=q.querySelector('.revealbtn'), sol=q.querySelector('.sol');
+  btn.addEventListener('click',()=>{ sol.classList.add('show'); btn.textContent='Solution shown'; btn.disabled=true; btn.style.opacity=.6; });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 14 — The Average Value of a Function</title>
+<style>
+  :root{--accent:#186a3b;--accent2:#239b56;--bg:#f2f7f4;--card:#fff;--ok:#1e8449;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:#1c2833;background:var(--bg);margin:0;padding:0 16px 80px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -16px 20px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  nav{display:flex;gap:10px;margin-bottom:18px;font-size:.9rem;flex-wrap:wrap;}
+  nav a{color:var(--accent);text-decoration:none;font-weight:600;background:#fff;border:1px solid #d5e8dc;border-radius:8px;padding:6px 14px;}
+  nav a:hover{background:#eafaf1;}
+  .goal{background:#fef9e7;border-left:5px solid var(--star);padding:12px 18px;border-radius:8px;margin-bottom:18px;font-size:.95rem;}
+  .goal strong{color:#7d6608;}
+  section{background:var(--card);border-radius:10px;padding:18px 22px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  h2{color:var(--accent);font-size:1.15rem;margin:0 0 10px;}
+  h2 .num{background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;border-radius:6px;padding:2px 9px;margin-right:8px;}
+  ul{margin:8px 0;padding-left:24px;}
+  li{margin-bottom:8px;}
+  strong{color:#145a32;}
+  em.hi{font-style:normal;background:#fef9e7;padding:0 4px;border-radius:3px;}
+  .fml{background:#e9f7ef;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.9em;color:#186a3b;white-space:nowrap;}
+  .ex{background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:.95rem;}
+  .ex b{color:#145a32;}
+  .graph{background:#1b2631;color:#eaeded;border-radius:8px;padding:14px 18px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.82rem;line-height:1.45;overflow-x:auto;margin:10px 0;white-space:pre;}
+  .graph .g{color:#82e0aa;} .graph .y{color:#f7dc6f;} .graph .b{color:#85c1e9;}
+  table.t{border-collapse:collapse;margin:10px 0;font-size:.92rem;}
+  table.t th,table.t td{border:1px solid #cfd8cf;padding:6px 12px;text-align:center;}
+  table.t th{background:var(--accent);color:#fff;font-weight:600;}
+  .qhead{margin:26px 0 8px;color:var(--accent);font-size:1.2rem;border-bottom:2px solid #d4efdf;padding-bottom:6px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid var(--accent2);}
+  .qnum{font-weight:800;color:var(--accent);margin-right:6px;}
+  .qtag{float:right;background:#e9f7ef;color:var(--accent);border-radius:8px;padding:1px 9px;font-size:.68rem;font-weight:700;letter-spacing:.3px;margin-left:8px;}
+  .qtext{font-size:.98rem;margin:4px 0 10px;}
+  .revealbtn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .revealbtn:hover{background:#0e4429;}
+  .sol{display:none;margin-top:12px;background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px;font-size:.93rem;}
+  .sol.show{display:block;}
+  .sol h4{margin:0 0 8px;color:var(--ok);font-size:.9rem;}
+  .sol .ctx{background:#eaf2f8;border-left:4px solid #2e86c1;border-radius:6px;padding:8px 12px;margin:0 0 10px;font-size:.88rem;}
+  .sol .ctx b{color:#1a5276;}
+  .sol .step{margin:6px 0;}
+  .sol .ans{background:#eafaf1;border-radius:6px;padding:6px 12px;margin-top:8px;font-weight:700;color:#145a32;display:inline-block;}
+  footer{text-align:center;color:#85929e;font-size:.85rem;margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Lesson 14 — The Average Value of a Function</h1>
+  <p>What "average temperature all day" really means · Intuitive Calculus for a Curious Student · Lesson 14 of 20</p>
+</header>
+
+<nav><a href="index.html">📚 All lessons</a><a href="Lesson13.html">← Prev: Lesson 13</a><a href="Lesson15.html">Next: Lesson 15 →</a></nav>
+
+<div class="goal"><strong>🎯 Goal of this lesson:</strong> learn what the <em>average value</em> of a changing quantity means, and how to compute it: <em>average = (total accumulated) ÷ (length of the interval)</em>. The integral finds the total — then one division finishes the job.</div>
+
+<section>
+  <h2><span class="num">1</span> The everyday question</h2>
+  <ul>
+    <li>The weather report says: <em class="hi">"the average temperature today was 62°F."</em> But the temperature changed <strong>every instant</strong> — it was one thing at 6 AM, another at noon, another at 4 PM. What can "average" possibly mean here?</li>
+    <li>You know how to average a <strong>list</strong> of numbers: add them up, divide by how many there are. Your test average = (sum of scores) ÷ (number of tests).</li>
+    <li>But a temperature graph has <strong>infinitely many</strong> values — one for every instant of the day. You can't add up infinitely many numbers one at a time, and you can't divide by "infinity many"…</li>
+    <li>…or can you? You already own a tool whose whole job is <em class="hi">adding up infinitely many tiny contributions</em>: the integral. This lesson puts it to work.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">2</span> Build it from a trick you already know</h2>
+  <ul>
+    <li>Back in Lesson 1 you met <strong>average speed</strong>: if a trip covers 90 miles in 2 hours, the average speed is <span class="fml">90 ÷ 2 = 45 mph</span>. In words: <em class="hi">average rate = total distance ÷ total time</em>.</li>
+    <li>Notice what that recipe needs: a <strong>total</strong> (which the integral computes) divided by a <strong>length of time</strong>. Nothing in the recipe cares that it's about speed — it works for ANY changing quantity.</li>
+    <li>So here is the definition, for any function <span class="fml">f</span> on an interval from <span class="fml">a</span> to <span class="fml">b</span>:</li>
+  </ul>
+  <div class="ex"><b>The average value formula:</b><br>
+  average value of f from a to b = (total accumulated) ÷ (length of interval) = <span class="fml">(1/(b−a)) ∫<sub>a</sub><sup>b</sup> f(x) dx</span><br><br>
+  Two steps, always the same: <b>Step 1</b> — integrate f from a to b (that's the "adding up infinitely many values" part). <b>Step 2</b> — divide by the interval's length, <span class="fml">b − a</span>.</div>
+  <ul>
+    <li>Why does dividing by the length make sense? Because the integral counts <em>value × width</em> for every skinny slice. Dividing the grand total by the total width tells you the <strong>value per unit of width</strong> — exactly what "average" should mean.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">3</span> The picture: water settling flat</h2>
+  <ul>
+    <li>Here's the picture to keep forever. The region under the graph of <span class="fml">f</span> is like <strong>water in a wavy container</strong> — tall in some places, short in others.</li>
+    <li>Now let the water <strong>settle flat</strong>. Same water, same area — but now it's a <strong>rectangle</strong> with the same width, <span class="fml">b − a</span>. The height of that flat water level is the <em class="hi">average value</em>.</li>
+  </ul>
+  <div class="graph">   the wavy water…                …settles flat
+ 9 |              <span class="y">·</span>          9 |
+   |            <span class="y">·</span>              |
+ 6 |          <span class="y">·</span>              6 |
+   |       <span class="y">·</span>                   |            height =
+ 3 |    <span class="y">·</span>     <span class="b">area = 9</span>     3 | <span class="g">█████████████</span>  <span class="g">AVERAGE = 3</span>
+   | <span class="y">·</span>                        | <span class="g">█ area = 9  █</span>
+ 0 +<span class="y">·</span>—————————————→ x       0 +——————————————→ x
+   0             3             0              3</div>
+  <ul>
+    <li>So the average value is <em class="hi">the height of the rectangle that has the same area as the region under f</em>. That's why the formula is area ÷ width: for a rectangle, height = area ÷ width.</li>
+    <li>Check it makes sense: the flat level must sit <strong>below the peaks</strong> and <strong>above the valleys</strong> of the graph — an average is always between the biggest and smallest values.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">4</span> Worked example: f(x) = x² on [0, 3]</h2>
+  <div class="ex"><b>Find the average value of f(x) = x² from x = 0 to x = 3.</b><br><br>
+  <b>Step 1 — the total:</b> <span class="fml">∫<sub>0</sub><sup>3</sup> x<sup>2</sup> dx = x<sup>3</sup>/3</span> evaluated from 0 to 3 = 27/3 − 0 = <b>9</b>.<br>
+  <b>Step 2 — divide by the length:</b> the interval runs from 0 to 3, so its length is 3. Average = 9 ÷ 3 = <b>3</b>.</div>
+  <ul>
+    <li><strong>Plausibility check:</strong> on this interval, <span class="fml">f</span> runs from f(0) = 0 up to f(3) = 9, so the average had to land between 0 and 9. ✓</li>
+    <li>But notice: the average is 3, which is <strong>below</strong> the midpoint 4.5. Why? Look at the graph of x² — it stays <em class="hi">low for a long time</em> and only shoots up near the end. The curve spends more of its time at small values, so the average leans low. A nice honesty check: the answer isn't just legal, it <em>makes sense</em>.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">5</span> Worked example with motion: average velocity</h2>
+  <div class="ex"><b>A cart's velocity is v(t) = 6t m/s from t = 0 to t = 4 seconds. Find its average velocity.</b><br><br>
+  <b>Step 1 — total distance:</b> <span class="fml">∫<sub>0</sub><sup>4</sup> 6t dt = 3t<sup>2</sup></span> evaluated from 0 to 4 = 48 − 0 = <b>48 meters</b>.<br>
+  <b>Step 2 — divide by the time:</b> average velocity = 48 ÷ 4 = <b>12 m/s</b>.</div>
+  <ul>
+    <li>Quick sanity check: the velocity starts at v(0) = 0 and ends at v(4) = 24, and <span class="fml">(0 + 24)/2 = 12</span>. It matches!</li>
+    <li>But careful — that endpoint shortcut worked <em class="hi">only because v = 6t is a straight line</em>. A straight line climbs at a perfectly steady pace, so it spends equal time above and below its middle. Curves don't play fair like that.</li>
+    <li>The integral formula works for <strong>everything</strong> — lines, curves, wiggles, all of it. The endpoint trick is a special-case coincidence.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">6</span> The classic mistake (don't fall for it!)</h2>
+  <ul>
+    <li>The tempting shortcut: "average of f from a to b = <span class="fml">(f(a) + f(b))/2</span>." <strong>Usually wrong!</strong> It only looks at the two endpoints and ignores everything the function did in between.</li>
+    <li>Watch it fail: for <span class="fml">f(x) = x<sup>2</sup></span> on [0, 3], the endpoints give (0 + 9)/2 = 4.5. But we computed the true average: <strong>3</strong>. The shortcut overshot because x² hugs the ground early on, and the endpoints can't see that.</li>
+    <li>The rule: <em class="hi">endpoint-averaging is only guaranteed for straight lines.</em> For anything curved, you must integrate — the integral is the only method that listens to every single value along the way.</li>
+  </ul>
+</section>
+
+<div class="qhead">✏️ Exercises — 20 problems (write your answer on paper, then reveal)</div>
+
+<div class="q"><span class="qnum">1.</span><span class="qtag">sanity check</span>
+  <div class="qtext">Find the average value of the constant function f(x) = 7 on the interval [0, 10]. Before computing, predict the answer!</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the average value of f on [a, b] is <span class="fml">(1/(b−a)) ∫<sub>a</sub><sup>b</sup> f(x) dx</span> — total accumulated, divided by the interval's length. A constant function never changes, so its average should be… itself. If the formula is any good, it must agree.</div>
+    <div class="step">Prediction: a function that is always 7 should average to 7.</div>
+    <div class="step">Step 1 (total): <span class="fml">∫<sub>0</sub><sup>10</sup> 7 dx = 7x</span> from 0 to 10 = 70.</div>
+    <div class="step">Step 2 (divide by length): interval length = 10 − 0 = 10. Average = 70 ÷ 10 = 7. The formula passes the sanity check!</div>
+    <div class="ans">Average value = 7</div></div>
+</div>
+
+<div class="q"><span class="qnum">2.</span><span class="qtag">straight line</span>
+  <div class="qtext">Find the average value of f(x) = 2x on [0, 4]. Then check your answer by averaging the two endpoint values.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> average value = total ÷ length. The total comes from the integral, using the power rule backwards: an antiderivative of 2x is x². For straight lines (and ONLY straight lines), the endpoint average <span class="fml">(f(a)+f(b))/2</span> gives the same answer — a handy way to double-check.</div>
+    <div class="step">Step 1: <span class="fml">∫<sub>0</sub><sup>4</sup> 2x dx = x<sup>2</sup></span> from 0 to 4 = 16 − 0 = 16.</div>
+    <div class="step">Step 2: length = 4 − 0 = 4. Average = 16 ÷ 4 = 4.</div>
+    <div class="step">Endpoint check: f(0) = 0 and f(4) = 8, so (0 + 8)/2 = 4. ✓ It agrees, because 2x is a straight line.</div>
+    <div class="ans">Average value = 4</div></div>
+</div>
+
+<div class="q"><span class="qnum">3.</span><span class="qtag">straight line</span>
+  <div class="qtext">Find the average value of f(x) = x + 3 on [0, 6]. Check with the endpoint average.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> to integrate a sum, integrate each piece: an antiderivative of x is x²/2, and an antiderivative of 3 is 3x. Then average = total ÷ length as always.</div>
+    <div class="step">Step 1: <span class="fml">∫<sub>0</sub><sup>6</sup> (x + 3) dx = x<sup>2</sup>/2 + 3x</span> from 0 to 6 = (18 + 18) − 0 = 36.</div>
+    <div class="step">Step 2: length = 6. Average = 36 ÷ 6 = 6.</div>
+    <div class="step">Endpoint check: f(0) = 3, f(6) = 9, and (3 + 9)/2 = 6. ✓ (straight line, so the shortcut is allowed).</div>
+    <div class="ans">Average value = 6</div></div>
+</div>
+
+<div class="q"><span class="qnum">4.</span><span class="qtag">reverse problem</span>
+  <div class="qtext">The average value of f on [0, 4] is 5. What is the total, <span class="fml">∫<sub>0</sub><sup>4</sup> f(x) dx</span>?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the formula average = total ÷ length can be run backwards: total = average × length. This is just like "average speed 5 mph for 4 hours means 20 miles total" — you don't need to know the details of f at all!</div>
+    <div class="step">total = average × length = 5 × (4 − 0) = 5 × 4 = 20.</div>
+    <div class="step">Picture version: the settled water level is at height 5 across a width of 4, so the water's area is 5 × 4 = 20 — and that's the area under f too.</div>
+    <div class="ans">∫<sub>0</sub><sup>4</sup> f(x) dx = 20</div></div>
+</div>
+
+<div class="q"><span class="qnum">5.</span><span class="qtag">curve</span>
+  <div class="qtext">Find the average value of f(x) = x² on [0, 6].</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> same two steps for curves as for lines — the formula doesn't care about the shape. Power rule backwards: an antiderivative of x² is x³/3.</div>
+    <div class="step">Step 1: <span class="fml">∫<sub>0</sub><sup>6</sup> x<sup>2</sup> dx = x<sup>3</sup>/3</span> from 0 to 6 = 216/3 − 0 = 72.</div>
+    <div class="step">Step 2: length = 6. Average = 72 ÷ 6 = 12.</div>
+    <div class="step">Plausibility: f runs from 0 up to f(6) = 36, and 12 is between them — but well below the midpoint 18, because x² spends most of its time low. Makes sense.</div>
+    <div class="ans">Average value = 12</div></div>
+</div>
+
+<div class="q"><span class="qnum">6.</span><span class="qtag">average velocity</span>
+  <div class="qtext">A scooter's velocity is v(t) = 10t m/s from t = 0 to t = 6 seconds. Find its average velocity, and check it with the endpoint trick (allowed here — why?).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> average velocity = (total distance) ÷ (total time) — the original Lesson 1 idea. The integral of velocity gives total distance (Lesson 11). The endpoint shortcut (v(start)+v(end))/2 is legal only because v = 10t is a straight line.</div>
+    <div class="step">Step 1: distance = <span class="fml">∫<sub>0</sub><sup>6</sup> 10t dt = 5t<sup>2</sup></span> from 0 to 6 = 180 meters.</div>
+    <div class="step">Step 2: average velocity = 180 ÷ 6 = 30 m/s.</div>
+    <div class="step">Endpoint check: v(0) = 0, v(6) = 60, (0 + 60)/2 = 30 ✓ — allowed because the velocity graph is a straight line.</div>
+    <div class="ans">Average velocity = 30 m/s</div></div>
+</div>
+
+<div class="q"><span class="qnum">7.</span><span class="qtag">cubic</span>
+  <div class="qtext">Find the average value of f(x) = x³ on [0, 2].</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> power rule backwards: an antiderivative of x³ is x⁴/4 (raise the power by one, divide by the new power). Then divide the total by the interval length.</div>
+    <div class="step">Step 1: <span class="fml">∫<sub>0</sub><sup>2</sup> x<sup>3</sup> dx = x<sup>4</sup>/4</span> from 0 to 2 = 16/4 − 0 = 4.</div>
+    <div class="step">Step 2: length = 2. Average = 4 ÷ 2 = 2.</div>
+    <div class="step">Plausibility: f runs from 0 to f(2) = 8, and the average 2 is well below the midpoint 4 — x³ hugs the ground even harder than x² does, so a low average is exactly right.</div>
+    <div class="ans">Average value = 2</div></div>
+</div>
+
+<div class="q"><span class="qnum">8.</span><span class="qtag">polynomial</span>
+  <div class="qtext">Find the average value of f(x) = 3x² on [0, 4].</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a constant multiplier rides along for free: an antiderivative of 3x² is 3 · (x³/3) = x³. (Differentiate x³ to check: you get 3x². ✓)</div>
+    <div class="step">Step 1: <span class="fml">∫<sub>0</sub><sup>4</sup> 3x<sup>2</sup> dx = x<sup>3</sup></span> from 0 to 4 = 64 − 0 = 64.</div>
+    <div class="step">Step 2: length = 4. Average = 64 ÷ 4 = 16.</div>
+    <div class="ans">Average value = 16</div></div>
+</div>
+
+<div class="q"><span class="qnum">9.</span><span class="qtag">polynomial</span>
+  <div class="qtext">Find the average value of f(x) = x² + 1 on [0, 3].</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> integrate term by term: antiderivative of x² is x³/3, antiderivative of 1 is x. Interesting shortcut to notice afterwards: f is just "x² lifted up by 1," so its average should be the average of x² on [0,3] (which the lesson computed: 3) lifted up by 1.</div>
+    <div class="step">Step 1: <span class="fml">∫<sub>0</sub><sup>3</sup> (x<sup>2</sup> + 1) dx = x<sup>3</sup>/3 + x</span> from 0 to 3 = (9 + 3) − 0 = 12.</div>
+    <div class="step">Step 2: length = 3. Average = 12 ÷ 3 = 4.</div>
+    <div class="step">Check with the shortcut idea: average of x² on [0,3] is 3, plus the lift of 1 → 4. ✓</div>
+    <div class="ans">Average value = 4</div></div>
+</div>
+
+<div class="q"><span class="qnum">10.</span><span class="qtag">temperature story</span>
+  <div class="qtext">Starting at 6 AM (call that t = 0), the temperature in a greenhouse is T(t) = 2t + 50 degrees Fahrenheit, where t is in hours. What is the average temperature from 6 AM to 6 PM (t = 0 to t = 12)?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> this is the weather-report question from the start of the lesson! "Average temperature" over a stretch of time means exactly: integrate the temperature function over the interval, then divide by how long the interval is.</div>
+    <div class="step">Step 1: <span class="fml">∫<sub>0</sub><sup>12</sup> (2t + 50) dt = t<sup>2</sup> + 50t</span> from 0 to 12 = 144 + 600 = 744.</div>
+    <div class="step">Step 2: length = 12 hours. Average = 744 ÷ 12 = 62.</div>
+    <div class="step">Check: T is a straight line from T(0) = 50 up to T(12) = 74, and (50 + 74)/2 = 62 ✓.</div>
+    <div class="ans">Average temperature = 62°F</div></div>
+</div>
+
+<div class="q"><span class="qnum">11.</span><span class="qtag">average speed</span>
+  <div class="qtext">A drone's velocity is v(t) = 3t² m/s from t = 0 to t = 4 seconds. (a) How far does it travel? (b) What is its average velocity?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> total distance = the integral of velocity (Lesson 11). Average velocity = that total ÷ the elapsed time. Since v = 3t² is a curve, do NOT expect the endpoint trick to work.</div>
+    <div class="step">(a) <span class="fml">∫<sub>0</sub><sup>4</sup> 3t<sup>2</sup> dt = t<sup>3</sup></span> from 0 to 4 = 64 meters.</div>
+    <div class="step">(b) Average velocity = 64 ÷ 4 = 16 m/s.</div>
+    <div class="step">Compare: the endpoint trick would say (v(0) + v(4))/2 = (0 + 48)/2 = 24 — too big! The curve spends most of the trip slow, so the true average (16) is lower.</div>
+    <div class="ans">(a) 64 meters &nbsp; (b) average velocity = 16 m/s</div></div>
+</div>
+
+<div class="q"><span class="qnum">12.</span><span class="qtag">reverse problem</span>
+  <div class="qtext">The average value of f on the interval [2, 7] is 10. What is <span class="fml">∫<sub>2</sub><sup>7</sup> f(x) dx</span>?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> total = average × length. Careful with the length when the interval doesn't start at 0: it's (end − start), not just the end value. This is the same "width = end − start" care you used with rectangle widths back in Lesson 1.</div>
+    <div class="step">Length = 7 − 2 = 5 (not 7!).</div>
+    <div class="step">Total = average × length = 10 × 5 = 50.</div>
+    <div class="ans">∫<sub>2</sub><sup>7</sup> f(x) dx = 50</div></div>
+</div>
+
+<div class="q"><span class="qnum">13.</span><span class="qtag">shifted interval</span>
+  <div class="qtext">Find the average value of f(x) = x² on the interval [1, 4].</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> two places to be careful when the interval starts at 1 instead of 0: the definite integral needs BOTH endpoints plugged in (top value minus bottom value, from the Fundamental Theorem), and the length is b − a = 4 − 1 = 3.</div>
+    <div class="step">Step 1: <span class="fml">∫<sub>1</sub><sup>4</sup> x<sup>2</sup> dx = x<sup>3</sup>/3</span> from 1 to 4 = 64/3 − 1/3 = 63/3 = 21.</div>
+    <div class="step">Step 2: length = 4 − 1 = 3. Average = 21 ÷ 3 = 7.</div>
+    <div class="step">Plausibility: f(1) = 1 and f(4) = 16, and 7 sits between them (below the midpoint 8.5, as x² curves demand).</div>
+    <div class="ans">Average value = 7</div></div>
+</div>
+
+<div class="q"><span class="qnum">14.</span><span class="qtag">conceptual</span>
+  <div class="qtext">Your friend says: "To average f(x) = x² on [0, 3], I'll just average the ends: (0 + 9)/2 = 4.5. Done!" Explain, in your own words, why the true average (3) is smaller — and for what kind of function your friend's method WOULD be correct.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the endpoint average only sees two values and assumes the function climbed at a steady pace between them. The integral sees every value. When a function lingers at low values, its true average leans low — no two-point shortcut can detect lingering.</div>
+    <div class="step">The graph of x² stays close to the ground for most of [0, 3] — for example, all the way out at x = 1.5 (half the interval!) it has only reached 2.25 out of 9. It saves its big values for a short sprint at the end.</div>
+    <div class="step">An average is a time-share: values you spend MORE time near count for more. Since x² spends most of the interval low, the true average (3) is below the endpoint midpoint (4.5).</div>
+    <div class="step">The friend's method is correct exactly when the function climbs at a perfectly steady rate — a straight line. Lines spend equal time above and below their middle, so the two endpoints tell the whole story.</div>
+    <div class="ans">x² lingers low, so its average sits below 4.5; endpoint-averaging only works for straight lines</div></div>
+</div>
+
+<div class="q"><span class="qnum">15.</span><span class="qtag">find c</span>
+  <div class="qtext">The average value of f(x) = x² on the interval [0, c] is 12. Find c.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> now the interval itself is the unknown. Strategy: write the average-value formula with c left as a letter, simplify, then solve the resulting equation. You'll need <span class="fml">∫<sub>0</sub><sup>c</sup> x<sup>2</sup> dx = c<sup>3</sup>/3</span> — the same power-rule computation as always, just with c at the top.</div>
+    <div class="step">Total: <span class="fml">∫<sub>0</sub><sup>c</sup> x<sup>2</sup> dx = x<sup>3</sup>/3</span> from 0 to c = c³/3.</div>
+    <div class="step">Average = (c³/3) ÷ c = c²/3.</div>
+    <div class="step">Set it equal to 12: c²/3 = 12 → c² = 36 → c = 6 (take the positive answer, since the interval runs forward from 0).</div>
+    <div class="step">Check: on [0, 6], total = 216/3 = 72, average = 72/6 = 12 ✓.</div>
+    <div class="ans">c = 6</div></div>
+</div>
+
+<div class="q"><span class="qnum">16.</span><span class="qtag">find c</span>
+  <div class="qtext">The average value of f(x) = 4x on the interval [0, c] is 10. Find c.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> same strategy as the last problem: express the average in terms of c, then solve. Bonus check available here: 4x is a straight line, so the average should also equal (f(0) + f(c))/2 = (0 + 4c)/2 = 2c.</div>
+    <div class="step">Total: <span class="fml">∫<sub>0</sub><sup>c</sup> 4x dx = 2x<sup>2</sup></span> from 0 to c = 2c².</div>
+    <div class="step">Average = 2c² ÷ c = 2c.</div>
+    <div class="step">Set 2c = 10 → c = 5.</div>
+    <div class="step">Check: on [0, 5], total = 2 × 25 = 50, average = 50/5 = 10 ✓. And the endpoint shortcut agrees: (0 + 20)/2 = 10 ✓.</div>
+    <div class="ans">c = 5</div></div>
+</div>
+
+<div class="q"><span class="qnum">17.</span><span class="qtag">rectangle picture</span>
+  <div class="qtext">Consider f(x) = 6x − x² on [0, 6] (an arch that starts at 0, peaks at height 9 when x = 3, and comes back to 0). (a) Find its average value. (b) Describe the rectangle that has the same area as the region under the arch. (c) Does your answer sit sensibly between the arch's lowest and highest values?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the average value IS the height of the equal-area rectangle — the "settled water level." A settled level must sit between the region's lowest point and its peak: some of the arch pokes above the level, and exactly enough gap sits below it to balance.</div>
+    <div class="step">(a) Total: <span class="fml">∫<sub>0</sub><sup>6</sup> (6x − x<sup>2</sup>) dx = 3x<sup>2</sup> − x<sup>3</sup>/3</span> from 0 to 6 = 108 − 72 = 36. Average = 36 ÷ 6 = 6.</div>
+    <div class="step">(b) The rectangle has width 6 (the whole interval) and height 6 (the average), so its area is 36 — exactly the area under the arch. If the arch were water, it would settle to a flat level at height 6.</div>
+    <div class="step">(c) The arch runs from height 0 (at the ends) up to 9 (at the middle), and 6 is between 0 and 9 ✓. The arch pokes above the level near the middle and dips below near the ends — the extra and the missing balance perfectly.</div>
+    <div class="ans">(a) average = 6 &nbsp; (b) a 6-wide, 6-tall rectangle, area 36 &nbsp; (c) yes: 0 &lt; 6 &lt; 9</div></div>
+</div>
+
+<div class="q"><span class="qnum">18.</span><span class="qtag">average rate story</span>
+  <div class="qtext">Water pours into a tank at the rate r(t) = t² liters per minute, from t = 0 to t = 6 minutes. (a) How much water enters in total? (b) What is the average fill rate? (c) Check: if a plain faucet ran at that constant average rate for 6 minutes, would it deliver the same total?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> integrating a flow rate gives the total amount delivered (Lesson 13). The average rate is the one CONSTANT rate that would deliver the same total in the same time — that's the real meaning of "average": a fair stand-in.</div>
+    <div class="step">(a) Total = <span class="fml">∫<sub>0</sub><sup>6</sup> t<sup>2</sup> dt = t<sup>3</sup>/3</span> from 0 to 6 = 216/3 = 72 liters.</div>
+    <div class="step">(b) Average rate = 72 ÷ 6 = 12 liters per minute.</div>
+    <div class="step">(c) A constant 12 L/min for 6 minutes delivers 12 × 6 = 72 liters — the same total ✓. The wavy inflow and the steady faucet fill the tank equally.</div>
+    <div class="ans">(a) 72 liters &nbsp; (b) 12 L/min &nbsp; (c) yes: 12 × 6 = 72 ✓</div></div>
+</div>
+
+<div class="q"><span class="qnum">19.</span><span class="qtag">two-piece journey</span>
+  <div class="qtext">A robot's velocity is v(t) = 2t m/s from t = 0 to t = 3 seconds, and then a constant 6 m/s from t = 3 to t = 5 seconds. Find its average velocity over the whole trip [0, 5].</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> when a function is described in pieces, integrate each piece separately and add the totals (chop–compute–add, the Lesson 1 move). Then divide by the FULL interval length — the average belongs to the whole trip, not to either piece.</div>
+    <div class="step">Piece 1: <span class="fml">∫<sub>0</sub><sup>3</sup> 2t dt = t<sup>2</sup></span> from 0 to 3 = 9 meters.</div>
+    <div class="step">Piece 2: constant rate → 6 m/s × 2 s = 12 meters. (Total time there: 5 − 3 = 2 seconds.)</div>
+    <div class="step">Whole trip: 9 + 12 = 21 meters in 5 seconds. Average velocity = 21 ÷ 5 = 4.2 m/s.</div>
+    <div class="ans">Average velocity = 4.2 m/s</div></div>
+</div>
+
+<div class="q"><span class="qnum">20.</span><span class="qtag">challenge · average + net change</span>
+  <div class="qtext">A particle's velocity is v(t) = 3t² − 2t m/s from t = 0 to t = 3 seconds. (a) Find the net change in the particle's position. (b) Find its average velocity. (c) Verify your two answers fit together: a particle moving at the constant average velocity for 3 seconds should end up with the same net change.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> two big ideas meet here. Net change in position = the integral of velocity (Lesson 12: the FTC says the integral of a rate equals the change in the total). Average velocity = that same integral ÷ elapsed time. So (a) and (b) share one integral, and (c) is the water-settling story told with motion.</div>
+    <div class="step">(a) <span class="fml">∫<sub>0</sub><sup>3</sup> (3t<sup>2</sup> − 2t) dt = t<sup>3</sup> − t<sup>2</sup></span> from 0 to 3 = 27 − 9 = 18. Net change = 18 meters.</div>
+    <div class="step">(b) Average velocity = 18 ÷ 3 = 6 m/s.</div>
+    <div class="step">(c) Constant 6 m/s for 3 seconds → 6 × 3 = 18 meters ✓. The real, changing motion and the steady stand-in motion produce the identical net change — that's exactly what "average" promises.</div>
+    <div class="ans">(a) 18 meters &nbsp; (b) 6 m/s &nbsp; (c) 6 × 3 = 18 ✓</div></div>
+</div>
+
+<footer>Lesson 14 of 20 · Intuitive Integration · next: <a href="Lesson15.html">Lesson 15 — Two Special Functions: e^x and 1/x</a></footer>
+
+</div>
+<script>
+document.querySelectorAll('.q').forEach(q=>{
+  const btn=q.querySelector('.revealbtn'), sol=q.querySelector('.sol');
+  btn.addEventListener('click',()=>{ sol.classList.add('show'); btn.textContent='Solution shown'; btn.disabled=true; btn.style.opacity=.6; });
+});
+</script>
+</body>
+</html>

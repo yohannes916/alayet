@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 1 — Adding Up Little Pieces: the Big Idea of Integration</title>
+<style>
+  :root{--accent:#186a3b;--accent2:#239b56;--bg:#f2f7f4;--card:#fff;--ok:#1e8449;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:#1c2833;background:var(--bg);margin:0;padding:0 16px 80px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -16px 20px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  nav{display:flex;gap:10px;margin-bottom:18px;font-size:.9rem;flex-wrap:wrap;}
+  nav a{color:var(--accent);text-decoration:none;font-weight:600;background:#fff;border:1px solid #d5e8dc;border-radius:8px;padding:6px 14px;}
+  nav a:hover{background:#eafaf1;}
+  .goal{background:#fef9e7;border-left:5px solid var(--star);padding:12px 18px;border-radius:8px;margin-bottom:18px;font-size:.95rem;}
+  .goal strong{color:#7d6608;}
+  section{background:var(--card);border-radius:10px;padding:18px 22px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  h2{color:var(--accent);font-size:1.15rem;margin:0 0 10px;}
+  h2 .num{background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;border-radius:6px;padding:2px 9px;margin-right:8px;}
+  ul{margin:8px 0;padding-left:24px;}
+  li{margin-bottom:8px;}
+  strong{color:#145a32;}
+  em.hi{font-style:normal;background:#fef9e7;padding:0 4px;border-radius:3px;}
+  .fml{background:#e9f7ef;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.9em;color:#186a3b;white-space:nowrap;}
+  .ex{background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:.95rem;}
+  .ex b{color:#145a32;}
+  .graph{background:#1b2631;color:#eaeded;border-radius:8px;padding:14px 18px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.82rem;line-height:1.45;overflow-x:auto;margin:10px 0;white-space:pre;}
+  .graph .g{color:#82e0aa;} .graph .y{color:#f7dc6f;} .graph .b{color:#85c1e9;}
+  table.t{border-collapse:collapse;margin:10px 0;font-size:.92rem;}
+  table.t th,table.t td{border:1px solid #cfd8cf;padding:6px 12px;text-align:center;}
+  table.t th{background:var(--accent);color:#fff;font-weight:600;}
+  .qhead{margin:26px 0 8px;color:var(--accent);font-size:1.2rem;border-bottom:2px solid #d4efdf;padding-bottom:6px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid var(--accent2);}
+  .qnum{font-weight:800;color:var(--accent);margin-right:6px;}
+  .qtag{float:right;background:#e9f7ef;color:var(--accent);border-radius:8px;padding:1px 9px;font-size:.68rem;font-weight:700;letter-spacing:.3px;margin-left:8px;}
+  .qtext{font-size:.98rem;margin:4px 0 10px;}
+  .revealbtn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .revealbtn:hover{background:#0e4429;}
+  .sol{display:none;margin-top:12px;background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px;font-size:.93rem;}
+  .sol.show{display:block;}
+  .sol h4{margin:0 0 8px;color:var(--ok);font-size:.9rem;}
+  .sol .ctx{background:#eaf2f8;border-left:4px solid #2e86c1;border-radius:6px;padding:8px 12px;margin:0 0 10px;font-size:.88rem;}
+  .sol .ctx b{color:#1a5276;}
+  .sol .step{margin:6px 0;}
+  .sol .ans{background:#eafaf1;border-radius:6px;padding:6px 12px;margin-top:8px;font-weight:700;color:#145a32;display:inline-block;}
+  footer{text-align:center;color:#85929e;font-size:.85rem;margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Lesson 1 — Adding Up Little Pieces</h1>
+  <p>The Big Idea of Integration · Intuitive Calculus for a Curious Student · Lesson 1 of 20</p>
+</header>
+
+<nav><a href="index.html">📚 All lessons</a><a href="Lesson02.html">Next: Lesson 2 →</a></nav>
+
+<div class="goal"><strong>🎯 Goal of this lesson:</strong> understand the ONE question integration answers — <em>"if I know how fast something is changing, what's the TOTAL?"</em> — and learn to answer it by adding up little pieces. No new symbols yet; just the idea, with numbers you can handle.</div>
+
+<section>
+  <h2><span class="num">1</span> Quick recap — what a derivative is (you've seen this)</h2>
+  <ul>
+    <li>A <strong>derivative</strong> answers the question: <em class="hi">"how fast is this changing, right now?"</em></li>
+    <li>Example: your position while riding a bike. The derivative of your position is your <strong>speed</strong> — it tells how quickly the position is changing at each instant. On a graph, the derivative is the <strong>slope</strong> (steepness) at a point.</li>
+    <li>If your position after <span class="fml">t</span> hours is <span class="fml">s = 10t</span> miles, the derivative is 10 — you're moving at a steady <strong>10 miles per hour</strong>.</li>
+    <li>So a derivative takes a <strong>total</strong> (like position) and gives you a <strong>rate</strong> (like speed).</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">2</span> The reverse question — the one integration answers</h2>
+  <ul>
+    <li>Imagine your bike's <strong>odometer is broken</strong> (it can't count miles), but the <strong>speedometer works fine</strong>. At the end of a ride, can you figure out how far you went?</li>
+    <li>You know the <strong>rate</strong> at every moment. You want the <strong>total</strong>. That is exactly the reverse of what a derivative does.</li>
+    <li><em class="hi">Integration is the reverse of differentiation:</em> derivatives turn totals into rates; <strong>integration turns rates back into totals</strong>.</li>
+    <li>This "reverse" question shows up everywhere: speed → distance, water flowing in → water in the tank, money earned per day → total money, rain per hour → total rainfall.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">3</span> The easiest case — a constant rate</h2>
+  <ul>
+    <li>If you ride at a <strong>steady 10 miles per hour for 3 hours</strong>, you went <span class="fml">10 × 3 = 30 miles</span>. You already integrate — you just called it multiplying!</li>
+    <li>The rule for a constant rate: <em class="hi">total = rate × time</em>.</li>
+  </ul>
+  <div class="ex"><b>Worked example:</b> A faucet pours 2 liters of water per minute into a bucket for 5 minutes. Total water = 2 × 5 = <b>10 liters</b>. Rate × time = total.</div>
+</section>
+
+<section>
+  <h2><span class="num">4</span> When the rate changes — chop it into pieces</h2>
+  <ul>
+    <li>Real rides aren't steady. Suppose you ride <strong>10 mph for 1 hour</strong>, then <strong>14 mph for 2 hours</strong>, then <strong>6 mph for 1 hour</strong>.</li>
+    <li>No single multiplication works — so <em class="hi">chop the trip into pieces where the rate IS steady</em>, multiply each piece, and <strong>add</strong>:</li>
+  </ul>
+  <table class="t">
+    <tr><th>Piece</th><th>Speed</th><th>Time</th><th>Distance</th></tr>
+    <tr><td>1</td><td>10 mph</td><td>1 h</td><td>10 mi</td></tr>
+    <tr><td>2</td><td>14 mph</td><td>2 h</td><td>28 mi</td></tr>
+    <tr><td>3</td><td>6 mph</td><td>1 h</td><td>6 mi</td></tr>
+  </table>
+  <ul>
+    <li>Total: <span class="fml">10 + 28 + 6 = 44 miles</span>. That's it. That's the heart of integration: <em class="hi">total = add up (rate × little chunk of time) for every piece</em>.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">5</span> Seeing it as a picture (this becomes important!)</h2>
+  <ul>
+    <li>Draw the speed graph: time along the bottom, speed going up. Each steady piece is a flat step, and each piece's distance (<span class="fml">speed × time</span>) is exactly the <strong>area of a rectangle</strong> — width = time, height = speed.</li>
+  </ul>
+  <div class="graph">speed
+(mph)
+ 14 |        <span class="y">┌────────────┐</span>
+    |        <span class="y">│            │</span>
+ 10 | <span class="g">┌──────┤</span>  <span class="b">28 mi</span>      <span class="y">│</span>
+    | <span class="g">│</span>10 mi <span class="g">│</span>            <span class="y">│</span>
+  6 | <span class="g">│</span>      <span class="g">│</span>            <span class="y">├──────┐</span>
+    | <span class="g">│</span>      <span class="g">│</span>            <span class="y">│</span> 6 mi <span class="y">│</span>
+  0 +--------------------------------→ time (h)
+    0       1            3      4</div>
+  <ul>
+    <li>Total distance = total <strong>area under the speed graph</strong>. This picture is the secret weapon of the whole course: <em class="hi">the total accumulated = the area under the rate graph</em>.</li>
+    <li>Next lessons: what if the graph is a slanted line, or a curve? (Preview: we'll slice it into skinny rectangles.)</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">6</span> The word and where we're going</h2>
+  <ul>
+    <li>This process — chop into pieces, multiply, add up — is called <strong>integration</strong>. "To integrate" literally means <em>to combine pieces into a whole</em>.</li>
+    <li>Every lesson in this course builds on this one idea. If you can do <span class="fml">rate × time</span> and add, you already understand what integration <em>is</em>. The rest is learning clever shortcuts for when the pieces get infinitely skinny.</li>
+  </ul>
+</section>
+
+<div class="qhead">✏️ Exercises — 20 problems (write your answer on paper, then reveal)</div>
+
+<div class="q"><span class="qnum">1.</span><span class="qtag">constant rate</span>
+  <div class="qtext">A car drives at a steady 60 miles per hour for 2 hours. How far does it travel?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> "Miles per hour" is a <b>rate</b> — it tells how many miles get added to your trip for each hour that passes. When a rate never changes, the total is one multiplication: total = rate × time.</div>
+    <div class="step">The speed is steady, so: distance = speed × time = 60 miles/hour × 2 hours.</div>
+    <div class="step">Notice how the units work: (miles/<b>hour</b>) × (<b>hours</b>) — the hours cancel out, leaving just miles. Units cancelling correctly is a great way to check you set up a problem right.</div>
+    <div class="ans">120 miles</div></div>
+</div>
+
+<div class="q"><span class="qnum">2.</span><span class="qtag">constant rate</span>
+  <div class="qtext">A hose fills a pool with 8 gallons of water per minute. How much water flows in during 15 minutes?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> water flow is measured as a rate (gallons per minute). The pool doesn't care about the rate itself — it accumulates the TOTAL. Turning a flow rate into a total amount is exactly what integration does.</div>
+    <div class="step">Total water = rate × time = 8 gallons/minute × 15 minutes.</div>
+    <div class="step">8 × 15 = 120. The "per minute" and "minutes" cancel, leaving gallons.</div>
+    <div class="ans">120 gallons</div></div>
+</div>
+
+<div class="q"><span class="qnum">3.</span><span class="qtag">constant rate · reverse</span>
+  <div class="qtext">A snail travels 42 centimeters in 6 minutes at a perfectly steady pace. What was its speed, in centimeters per minute? (This is the derivative question — the reverse of the last two!)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> derivatives and integrals are reverse operations. Integration: rate × time = total. Derivative (for a steady rate): total ÷ time = rate. Recognizing WHICH direction a question asks is half of calculus.</div>
+    <div class="step">We know the total (42 cm) and the time (6 min), and we want the rate.</div>
+    <div class="step">rate = total ÷ time = 42 ÷ 6 = 7.</div>
+    <div class="ans">7 centimeters per minute</div></div>
+</div>
+
+<div class="q"><span class="qnum">4.</span><span class="qtag">two pieces</span>
+  <div class="qtext">You walk at 3 miles per hour for 2 hours, then jog at 5 miles per hour for 1 hour. What is your total distance?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> when the rate changes, no single multiplication works. The fix: chop the trip into pieces where the rate IS steady, compute each piece, and add. This "chop–multiply–add" is the heart of integration.</div>
+    <div class="step">Piece 1 (walking): 3 mph × 2 h = 6 miles.</div>
+    <div class="step">Piece 2 (jogging): 5 mph × 1 h = 5 miles.</div>
+    <div class="step">Total = 6 + 5 = 11 miles.</div>
+    <div class="ans">11 miles</div></div>
+</div>
+
+<div class="q"><span class="qnum">5.</span><span class="qtag">three pieces</span>
+  <div class="qtext">A delivery truck drives 30 mph for 1 hour, 50 mph for 2 hours, and 20 mph for half an hour. How far does it go in total?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> same chop–multiply–add idea, now with a fractional time. A rate works for ANY amount of time, including half an hour: in half an hour at 20 mph you cover half of 20 miles.</div>
+    <div class="step">Piece 1: 30 × 1 = 30 miles.</div>
+    <div class="step">Piece 2: 50 × 2 = 100 miles.</div>
+    <div class="step">Piece 3: 20 × 0.5 = 10 miles.</div>
+    <div class="step">Total = 30 + 100 + 10 = 140 miles.</div>
+    <div class="ans">140 miles</div></div>
+</div>
+
+<div class="q"><span class="qnum">6.</span><span class="qtag">rate table</span>
+  <div class="qtext">A faucet's flow rate changes every minute:
+  minute 1: 4 L/min · minute 2: 6 L/min · minute 3: 5 L/min · minute 4: 1 L/min.
+  How much water total flows in the 4 minutes?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a table of rates is like a staircase graph — each row is one steady piece lasting 1 minute. Since each piece is 1 minute wide, each piece contributes rate × 1 = the rate itself.</div>
+    <div class="step">Minute 1: 4 × 1 = 4 L. Minute 2: 6 × 1 = 6 L. Minute 3: 5 × 1 = 5 L. Minute 4: 1 × 1 = 1 L.</div>
+    <div class="step">Total = 4 + 6 + 5 + 1 = 16 liters.</div>
+    <div class="ans">16 liters</div></div>
+</div>
+
+<div class="q"><span class="qnum">7.</span><span class="qtag">money rate</span>
+  <div class="qtext">You earn $12 per hour babysitting. You work 3 hours on Friday and 4 hours on Saturday. How much do you earn in total?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> money can accumulate at a rate too — dollars per hour instead of miles per hour. Integration doesn't care WHAT is accumulating: distance, water, money, anything with a "per".</div>
+    <div class="step">Friday: 12 × 3 = $36. Saturday: 12 × 4 = $48.</div>
+    <div class="step">Total = 36 + 48 = $84. (Shortcut: the rate never changed, so 12 × 7 total hours = $84 — chopping is optional when the rate is constant.)</div>
+    <div class="ans">$84</div></div>
+</div>
+
+<div class="q"><span class="qnum">8.</span><span class="qtag">area = total</span>
+  <div class="qtext">A speed graph shows a single flat step: speed 40 km/h from time 0 to time 3 hours. What is the area of the rectangle under this step, and what does that area mean physically?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> on a rate graph, a steady rate makes a rectangle: width = the time it lasts, height = the rate. Area = width × height = time × rate = the TOTAL accumulated. Area under a rate graph isn't just geometry — it has a real-world meaning.</div>
+    <div class="step">Width = 3 hours, height = 40 km/h.</div>
+    <div class="step">Area = 3 × 40 = 120. The units: hours × km/hour = km.</div>
+    <div class="ans">Area = 120 → the car traveled 120 kilometers</div></div>
+</div>
+
+<div class="q"><span class="qnum">9.</span><span class="qtag">staircase graph</span>
+  <div class="qtext">A speed graph is a staircase: 5 m/s from t = 0 to t = 2 s, then 8 m/s from t = 2 to t = 6 s. Find the total distance by adding rectangle areas.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> careful with the second rectangle — its width is NOT 6. The step lasts FROM t = 2 TO t = 6, so its width is 6 − 2 = 4 seconds. Width is always (end time − start time).</div>
+    <div class="step">Rectangle 1: width 2 − 0 = 2 s, height 5 m/s → area = 10 m.</div>
+    <div class="step">Rectangle 2: width 6 − 2 = 4 s, height 8 m/s → area = 32 m.</div>
+    <div class="step">Total = 10 + 32 = 42 meters.</div>
+    <div class="ans">42 meters</div></div>
+</div>
+
+<div class="q"><span class="qnum">10.</span><span class="qtag">reverse lookup</span>
+  <div class="qtext">A bakery oven uses electricity at 2 kilowatts (2 kW means 2 kilowatt-hours of energy per hour). The bakery used 9 kilowatt-hours today. For how many hours was the oven on?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background (physics):</b> power (kilowatts) is the RATE of using energy; energy (kilowatt-hours) is the TOTAL. Energy = power × time — same pattern as distance = speed × time. Here we know the total and the rate, and solve backwards for the time.</div>
+    <div class="step">total = rate × time → 9 = 2 × time.</div>
+    <div class="step">time = 9 ÷ 2 = 4.5.</div>
+    <div class="ans">4.5 hours</div></div>
+</div>
+
+<div class="q"><span class="qnum">11.</span><span class="qtag">unit check</span>
+  <div class="qtext">A plane flies at 500 miles per hour for 90 minutes. How far does it fly? (Careful with the units!)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the rate is "per hour" but the time is in minutes — multiplying 500 × 90 would be nonsense (it mixes units). Always convert so the time units match the rate's units first.</div>
+    <div class="step">90 minutes = 90 ÷ 60 = 1.5 hours.</div>
+    <div class="step">distance = 500 × 1.5 = 750 miles.</div>
+    <div class="ans">750 miles</div></div>
+</div>
+
+<div class="q"><span class="qnum">12.</span><span class="qtag">two-part day</span>
+  <div class="qtext">Rain falls at 3 millimeters per hour from 6 AM to 10 AM, then at 1 millimeter per hour from 10 AM to 1 PM. How many millimeters of rain fell in total?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background (weather):</b> rainfall rate (mm per hour) tells how fast the water level in a straight-sided bucket would rise. The total rainfall is what a rain gauge shows at the end — the accumulated depth. First find how long each piece lasts.</div>
+    <div class="step">Piece 1: 6 AM → 10 AM is 4 hours at 3 mm/h → 12 mm.</div>
+    <div class="step">Piece 2: 10 AM → 1 PM is 3 hours at 1 mm/h → 3 mm.</div>
+    <div class="step">Total = 12 + 3 = 15 mm.</div>
+    <div class="ans">15 millimeters</div></div>
+</div>
+
+<div class="q"><span class="qnum">13.</span><span class="qtag">compare trips</span>
+  <div class="qtext">Rider A goes 12 mph for 3 hours. Rider B goes 8 mph for 2 hours, then 10 mph for 2 hours. Who travels farther, and by how much?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> comparing two accumulations = computing two totals separately, then subtracting. On graphs, you'd be comparing the areas under two different speed graphs.</div>
+    <div class="step">Rider A: 12 × 3 = 36 miles.</div>
+    <div class="step">Rider B: 8 × 2 = 16 miles, plus 10 × 2 = 20 miles → 36... wait, 16 + 20 = 36 miles. They're tied? Check the arithmetic: 16 + 20 = 36. Yes!</div>
+    <div class="step">Both traveled exactly 36 miles — different speed patterns can accumulate the same total. (Different-shaped graphs can enclose the same area.)</div>
+    <div class="ans">It's a tie — both travel 36 miles</div></div>
+</div>
+
+<div class="q"><span class="qnum">14.</span><span class="qtag">filling + draining</span>
+  <div class="qtext">Water flows INTO a tank at 10 liters per minute while a drain lets water OUT at 4 liters per minute. Both run for 6 minutes. How much water does the tank gain?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> when things flow in AND out, the tank only feels the NET rate: in-rate minus out-rate. Negative-feeling rates (draining) subtract from the accumulation — a preview of Lesson 10, where "area below the axis" counts as negative.</div>
+    <div class="step">Net rate = 10 − 4 = 6 liters per minute (gaining).</div>
+    <div class="step">Gain = 6 × 6 = 36 liters.</div>
+    <div class="step">(Same answer the long way: in = 60 L, out = 24 L, gain = 60 − 24 = 36 L.)</div>
+    <div class="ans">36 liters</div></div>
+</div>
+
+<div class="q"><span class="qnum">15.</span><span class="qtag">derivative ↔ integral</span>
+  <div class="qtext">In one sentence each, say what question a DERIVATIVE answers and what question an INTEGRAL answers, using a car trip as your example.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> this pair of questions is the whole subject of calculus. Keeping them straight ("rate ↔ total") is more valuable than any single computation.</div>
+    <div class="step"><b>Derivative:</b> "Given my position at every moment, how FAST am I going right now?" (total → rate; the speedometer computed from the odometer).</div>
+    <div class="step"><b>Integral:</b> "Given my speed at every moment, how FAR have I gone in total?" (rate → total; the odometer rebuilt from the speedometer).</div>
+    <div class="ans">Derivative: rate right now. Integral: total accumulated.</div></div>
+</div>
+
+<div class="q"><span class="qnum">16.</span><span class="qtag">heartbeats</span>
+  <div class="qtext">During a workout, your heart beats at 90 beats per minute for 10 minutes, then 150 beats per minute for 20 minutes, then 100 beats per minute for 5 minutes while cooling down. How many times does your heart beat in total?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background (biology):</b> heart rate is a rate like any other — beats per minute. A fitness tracker that reports "total beats" is literally integrating your heart-rate graph all day.</div>
+    <div class="step">Piece 1: 90 × 10 = 900 beats.</div>
+    <div class="step">Piece 2: 150 × 20 = 3000 beats.</div>
+    <div class="step">Piece 3: 100 × 5 = 500 beats.</div>
+    <div class="step">Total = 900 + 3000 + 500 = 4400 beats.</div>
+    <div class="ans">4400 beats</div></div>
+</div>
+
+<div class="q"><span class="qnum">17.</span><span class="qtag">find the missing piece</span>
+  <div class="qtext">A cyclist wants to cover exactly 50 miles. She rides 12 mph for 2 hours, then 10 mph for 1 hour. She finishes the ride at 8 mph. How many hours must she ride at 8 mph?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> here the total is the GIVEN and one piece is unknown — so add up the known pieces, see what's missing, and solve backwards with total = rate × time.</div>
+    <div class="step">Known pieces: 12 × 2 = 24 miles, and 10 × 1 = 10 miles → 34 miles done.</div>
+    <div class="step">Missing distance = 50 − 34 = 16 miles.</div>
+    <div class="step">At 8 mph: time = 16 ÷ 8 = 2 hours.</div>
+    <div class="ans">2 hours</div></div>
+</div>
+
+<div class="q"><span class="qnum">18.</span><span class="qtag">average rate preview</span>
+  <div class="qtext">A bus travels 30 mph for 1 hour, then 60 mph for 1 hour. (a) What is the total distance? (b) What single steady speed for 2 hours would give the same total? (That's called the average speed.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the "average rate" is the one constant rate that would accumulate the SAME total in the same time. It's total ÷ time. (Lesson 14 turns this into the official "average value" formula.) Note: you can only average the two speeds directly (30+60)/2 = 45 because the two pieces lasted EQUAL times.</div>
+    <div class="step">(a) 30 × 1 + 60 × 1 = 30 + 60 = 90 miles.</div>
+    <div class="step">(b) average speed = total ÷ time = 90 ÷ 2 = 45 mph. Check: 45 × 2 = 90 ✓.</div>
+    <div class="ans">(a) 90 miles &nbsp; (b) 45 mph</div></div>
+</div>
+
+<div class="q"><span class="qnum">19.</span><span class="qtag">build the graph</span>
+  <div class="qtext">Describe (or sketch on paper) the speed graph of this trip, then find the total distance: stand still for 1 hour, walk 4 mph for 2 hours, run 8 mph for 1 hour.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> "standing still" is a rate of 0 — its rectangle has height 0 and adds NO area. Every rate graph piece contributes exactly its rectangle's area, even when that area is zero.</div>
+    <div class="step">The graph: a flat line at height 0 from t = 0 to 1, a step up to height 4 from t = 1 to 3, a step up to height 8 from t = 3 to 4.</div>
+    <div class="step">Areas: 0 × 1 = 0, then 4 × 2 = 8, then 8 × 1 = 8.</div>
+    <div class="step">Total = 0 + 8 + 8 = 16 miles.</div>
+    <div class="ans">16 miles</div></div>
+</div>
+
+<div class="q"><span class="qnum">20.</span><span class="qtag">challenge · think ahead</span>
+  <div class="qtext">A rocket sled speeds up smoothly from 0 to 20 m/s over 10 seconds (its speed graph is a straight slanted line, not a staircase). Its speed is never steady, so rectangles don't fit exactly. (a) Why does our chop-multiply-add method have trouble here? (b) The area under this slanted line is a triangle — use the triangle area formula (½ × base × height) to find the distance anyway.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background (physics):</b> smoothly increasing speed = constant acceleration, like a falling ball or a drag racer. This problem is the bridge to Lesson 2: when the rate changes continuously, we can't chop it into perfectly steady pieces — but the "area under the rate graph = total" idea STILL works, so geometry can save us.</div>
+    <div class="step">(a) The speed is different at every single instant — there's no interval, however small, where it's exactly constant. Any staircase of rectangles only approximates the true slanted line (we'll exploit that in Lesson 3!).</div>
+    <div class="step">(b) The region under the line from t = 0 to 10 is a triangle: base = 10 seconds, height = 20 m/s.</div>
+    <div class="step">Area = ½ × 10 × 20 = 100. Units: seconds × meters/second = meters.</div>
+    <div class="ans">(a) the rate is never constant, so no rectangle is exact &nbsp; (b) 100 meters</div></div>
+</div>
+
+<footer>Lesson 1 of 20 · Intuitive Integration · next: <a href="Lesson02.html">Lesson 2 — Area Under a Graph = Total</a></footer>
+
+</div>
+<script>
+document.querySelectorAll('.q').forEach(q=>{
+  const btn=q.querySelector('.revealbtn'), sol=q.querySelector('.sol');
+  btn.addEventListener('click',()=>{ sol.classList.add('show'); btn.textContent='Solution shown'; btn.disabled=true; btn.style.opacity=.6; });
+});
+</script>
+</body>
+</html>

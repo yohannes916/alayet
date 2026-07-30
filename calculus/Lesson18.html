@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 18 — Substitution II: u-Substitution</title>
+<style>
+  :root{--accent:#186a3b;--accent2:#239b56;--bg:#f2f7f4;--card:#fff;--ok:#1e8449;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:#1c2833;background:var(--bg);margin:0;padding:0 16px 80px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -16px 20px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  nav{display:flex;gap:10px;margin-bottom:18px;font-size:.9rem;flex-wrap:wrap;}
+  nav a{color:var(--accent);text-decoration:none;font-weight:600;background:#fff;border:1px solid #d5e8dc;border-radius:8px;padding:6px 14px;}
+  nav a:hover{background:#eafaf1;}
+  .goal{background:#fef9e7;border-left:5px solid var(--star);padding:12px 18px;border-radius:8px;margin-bottom:18px;font-size:.95rem;}
+  .goal strong{color:#7d6608;}
+  section{background:var(--card);border-radius:10px;padding:18px 22px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  h2{color:var(--accent);font-size:1.15rem;margin:0 0 10px;}
+  h2 .num{background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;border-radius:6px;padding:2px 9px;margin-right:8px;}
+  ul{margin:8px 0;padding-left:24px;}
+  li{margin-bottom:8px;}
+  strong{color:#145a32;}
+  em.hi{font-style:normal;background:#fef9e7;padding:0 4px;border-radius:3px;}
+  .fml{background:#e9f7ef;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.9em;color:#186a3b;white-space:nowrap;}
+  .ex{background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:.95rem;}
+  .ex b{color:#145a32;}
+  .graph{background:#1b2631;color:#eaeded;border-radius:8px;padding:14px 18px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.82rem;line-height:1.45;overflow-x:auto;margin:10px 0;white-space:pre;}
+  .graph .g{color:#82e0aa;} .graph .y{color:#f7dc6f;} .graph .b{color:#85c1e9;}
+  table.t{border-collapse:collapse;margin:10px 0;font-size:.92rem;}
+  table.t th,table.t td{border:1px solid #cfd8cf;padding:6px 12px;text-align:center;}
+  table.t th{background:var(--accent);color:#fff;font-weight:600;}
+  .qhead{margin:26px 0 8px;color:var(--accent);font-size:1.2rem;border-bottom:2px solid #d4efdf;padding-bottom:6px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid var(--accent2);}
+  .qnum{font-weight:800;color:var(--accent);margin-right:6px;}
+  .qtag{float:right;background:#e9f7ef;color:var(--accent);border-radius:8px;padding:1px 9px;font-size:.68rem;font-weight:700;letter-spacing:.3px;margin-left:8px;}
+  .qtext{font-size:.98rem;margin:4px 0 10px;}
+  .revealbtn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .revealbtn:hover{background:#0e4429;}
+  .sol{display:none;margin-top:12px;background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px;font-size:.93rem;}
+  .sol.show{display:block;}
+  .sol h4{margin:0 0 8px;color:var(--ok);font-size:.9rem;}
+  .sol .ctx{background:#eaf2f8;border-left:4px solid #2e86c1;border-radius:6px;padding:8px 12px;margin:0 0 10px;font-size:.88rem;}
+  .sol .ctx b{color:#1a5276;}
+  .sol .step{margin:6px 0;}
+  .sol .ans{background:#eafaf1;border-radius:6px;padding:6px 12px;margin-top:8px;font-weight:700;color:#145a32;display:inline-block;}
+  footer{text-align:center;color:#85929e;font-size:.85rem;margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Lesson 18 — Substitution II: u-Substitution</h1>
+  <p>Undoing the Chain Rule · Intuitive Calculus for a Curious Student · Lesson 18 of 20</p>
+</header>
+
+<nav><a href="index.html">📚 All lessons</a><a href="Lesson17.html">← Prev: Lesson 17</a><a href="Lesson19.html">Next: Lesson 19 →</a></nav>
+
+<div class="goal"><strong>🎯 Goal of this lesson:</strong> learn the most powerful integration tool in this course — <em>u-substitution</em>. Last lesson you handled a LINEAR inside (like 3x + 2) with the divide-by-a trick. Today the inside can be anything (like x² + 1), as long as you can spot one telltale clue: <em>the derivative of the inside is sitting right there in the integral</em>.</div>
+
+<section>
+  <h2><span class="num">1</span> The next-level problem — and a suspicious coincidence</h2>
+  <ul>
+    <li>Try this one: <span class="fml">∫ 2x(x²+1)<sup>4</sup> dx</span>. There's an "inside function" again — the <span class="fml">x²+1</span> tucked inside the 4th power.</li>
+    <li>Your first instinct might be Lesson 17: integrate the outside and divide by something. <strong>Stop!</strong> That trick was only legal because the inside was <em>linear</em> (its derivative was a plain constant, so dividing by that constant fixed everything). Here the inside is <span class="fml">x²+1</span>, whose derivative is <span class="fml">2x</span> — that's <strong>not a constant</strong>, and you can never "divide by 2x" to fix an answer. The divide trick is <em class="hi">illegal</em> here.</li>
+    <li>But look closer at the problem. The derivative of the inside is <span class="fml">2x</span>... and there's a <span class="fml">2x</span> <strong>sitting right there as a factor</strong> in the integral. That is not a coincidence.</li>
+    <li>Remember what the chain rule does when you differentiate something with an inside: <em class="hi">derivative of the outside × derivative of the inside</em>. So whenever a function like <span class="fml">(x²+1)<sup>5</sup></span> gets differentiated, a copy of <span class="fml">2x</span> pops out in front. Seeing <span class="fml">2x(x²+1)<sup>4</sup></span> is like finding a <strong>chain-rule fingerprint</strong> at the scene: this integrand was <em>produced by</em> a chain-rule differentiation, and our job is to run it backwards.</li>
+  </ul>
+  <div class="graph"><span class="y">the chain-rule fingerprint</span>
+
+   ∫ <span class="g">2x</span> (<span class="b">x²+1</span>)⁴ dx
+     <span class="g">↑</span>      <span class="b">↑</span>
+     <span class="g">│</span>      <span class="b">└── the INSIDE function</span>
+     <span class="g">└──────── the derivative of that inside (2x),</span>
+     <span class="g">          waiting there as a factor  ✓ fingerprint!</span></div>
+</section>
+
+<section>
+  <h2><span class="num">2</span> The u-substitution ritual — six steps, every time</h2>
+  <ul>
+    <li>The trick is to rename the messy inside with a single letter, <span class="fml">u</span>, and rewrite the WHOLE integral in the u-language. If the fingerprint is there, every x disappears and you're left with an easy integral.</li>
+  </ul>
+  <div class="ex"><b>The recipe (memorize this — it never changes):</b>
+    <table class="t">
+      <tr><th>Step</th><th>What you do</th><th>For ∫ 2x(x²+1)⁴ dx</th></tr>
+      <tr><td>1</td><td>Pick u = the inside</td><td><span class="fml">u = x²+1</span></td></tr>
+      <tr><td>2</td><td>Compute du = (derivative of u) dx</td><td><span class="fml">du = 2x dx</span></td></tr>
+      <tr><td>3</td><td>Swap everything into u-language</td><td><span class="fml">∫ u<sup>4</sup> du</span> — every x is gone!</td></tr>
+      <tr><td>4</td><td>Integrate the easy u-integral</td><td><span class="fml">u<sup>5</sup>/5 + C</span></td></tr>
+      <tr><td>5</td><td>Substitute back (u → inside)</td><td><span class="fml">(x²+1)<sup>5</sup>/5 + C</span></td></tr>
+      <tr><td>6</td><td>CHECK by differentiating</td><td>chain rule: <span class="fml">5(x²+1)<sup>4</sup> · 2x / 5 = 2x(x²+1)<sup>4</sup></span> ✓</td></tr>
+    </table>
+  </div>
+  <ul>
+    <li>In step 3, notice how the pieces pair up: the <span class="fml">(x²+1)<sup>4</sup></span> becomes <span class="fml">u<sup>4</sup></span>, and the leftover <span class="fml">2x dx</span> is <em>exactly</em> <span class="fml">du</span>. The fingerprint factor gets absorbed into du — that's why it had to be there.</li>
+    <li>Step 6 is not optional politeness — it's your safety net. Differentiating takes ten seconds and catches every mistake.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">3</span> How to CHOOSE u</h2>
+  <ul>
+    <li>Rule of thumb: <em class="hi">u = the inside</em> — whatever is inside a power, inside an e-exponent, or inside a sin/cos.</li>
+    <li>Then run the fingerprint check: <strong>does the derivative of your u appear as a multiplier in the integral</strong> (exactly, or off by just a constant factor)? If yes, u-substitution will work. If no x-stuff matches, it won't.</li>
+  </ul>
+  <table class="t">
+    <tr><th>Integral</th><th>The inside → u</th><th>du needs</th><th>Is it there?</th></tr>
+    <tr><td><span class="fml">∫ 2x(x²+1)<sup>4</sup> dx</span></td><td><span class="fml">u = x²+1</span></td><td><span class="fml">2x dx</span></td><td>yes — exactly ✓</td></tr>
+    <tr><td><span class="fml">∫ 3x² e<sup>x³</sup> dx</span></td><td><span class="fml">u = x³</span></td><td><span class="fml">3x² dx</span></td><td>yes — exactly ✓</td></tr>
+    <tr><td><span class="fml">∫ cos x (sin x)² dx</span></td><td><span class="fml">u = sin x</span></td><td><span class="fml">cos x dx</span></td><td>yes — exactly ✓</td></tr>
+    <tr><td><span class="fml">∫ x(x²+3)<sup>4</sup> dx</span></td><td><span class="fml">u = x²+3</span></td><td><span class="fml">2x dx</span></td><td>almost — off by the constant 2 (fixable, next section)</td></tr>
+    <tr><td><span class="fml">∫ (x²+1)<sup>4</sup> dx</span></td><td><span class="fml">u = x²+1</span></td><td><span class="fml">2x dx</span></td><td><strong>no</strong> — no x factor at all (u-sub fails, section 6)</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2><span class="num">4</span> Handling a constant mismatch — the "borrow" move</h2>
+  <ul>
+    <li>Try <span class="fml">∫ x(x²+3)<sup>4</sup> dx</span>. Pick <span class="fml">u = x²+3</span>, so <span class="fml">du = 2x dx</span>. We need <span class="fml">2x dx</span> but the integral only offers <span class="fml">x dx</span>. Off by a factor of 2 — a <strong>constant</strong>, and constants are always fixable.</li>
+    <li>Just solve the du equation for the piece you actually have: <span class="fml">du = 2x dx</span> means <em class="hi">x dx = du/2</em>. That's the borrow.</li>
+  </ul>
+  <div class="ex"><b>Worked:</b> <span class="fml">∫ x(x²+3)<sup>4</sup> dx</span> with <span class="fml">u = x²+3, du = 2x dx, x dx = du/2</span>.<br>
+  Swap: <span class="fml">∫ u<sup>4</sup> · (du/2) = ½ ∫ u<sup>4</sup> du = ½ · u<sup>5</sup>/5 = u<sup>5</sup>/10</span>.<br>
+  Back: <span class="fml">(x²+3)<sup>5</sup>/10 + C</span>.<br>
+  Check: derivative = <span class="fml">5(x²+3)<sup>4</sup> · 2x / 10 = x(x²+3)<sup>4</sup></span> ✓ — the 5, the 2, and the 10 cancel perfectly.</div>
+  <ul>
+    <li>This only works for a missing <strong>constant</strong>. If the mismatch involves x (say du needs <span class="fml">x²</span> but you only have <span class="fml">x</span>), no borrowing can save you — that's a genuine failure (section 6).</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">5</span> More worked examples — powers, e, and sin</h2>
+  <div class="ex"><b>Example (e-flavored):</b> <span class="fml">∫ 2x e<sup>x²</sup> dx</span>. Inside the exponent: <span class="fml">u = x²</span>, so <span class="fml">du = 2x dx</span> — there it is, exactly.<br>
+  Swap: <span class="fml">∫ e<sup>u</sup> du = e<sup>u</sup> + C</span>. Back: <span class="fml">e<sup>x²</sup> + C</span>.<br>
+  Check: <span class="fml">d/dx e<sup>x²</sup> = e<sup>x²</sup> · 2x</span> ✓ (e is its own derivative; the chain rule multiplies by the inside's derivative).</div>
+  <div class="ex"><b>Example (e with a cube):</b> <span class="fml">∫ 3x² e<sup>x³</sup> dx</span>. Take <span class="fml">u = x³, du = 3x² dx</span> — exact match.<br>
+  Swap: <span class="fml">∫ e<sup>u</sup> du = e<sup>u</sup> + C</span>. Back: <span class="fml">e<sup>x³</sup> + C</span>.<br>
+  Check: <span class="fml">d/dx e<sup>x³</sup> = e<sup>x³</sup> · 3x² = 3x² e<sup>x³</sup></span> ✓.</div>
+  <div class="ex"><b>Example (trig inside a power):</b> <span class="fml">∫ cos x (sin x)² dx</span>. The inside of the square is <span class="fml">sin x</span>, so <span class="fml">u = sin x, du = cos x dx</span> — exact match.<br>
+  Swap: <span class="fml">∫ u² du = u³/3 + C</span>. Back: <span class="fml">(sin x)³/3 + C</span>.<br>
+  Check: <span class="fml">d/dx (sin x)³/3 = 3(sin x)² · cos x / 3 = cos x (sin x)²</span> ✓.</div>
+  <ul>
+    <li>Notice the pattern in all three: <strong>rename the inside, watch its derivative get absorbed into du, integrate something easy, swap back, check.</strong> Same six steps every single time.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">6</span> When u-substitution DOESN'T work — recognizing failure is a skill</h2>
+  <ul>
+    <li>Try <span class="fml">∫ (x²+1)<sup>4</sup> dx</span> — same inside as before, but with <strong>no 2x factor</strong> (and no x factor of any kind).</li>
+    <li>Pick <span class="fml">u = x²+1</span>, <span class="fml">du = 2x dx</span>. To swap, you'd need a <span class="fml">2x dx</span> in the integral — or at least an <span class="fml">x dx</span> to borrow with. There's <em>nothing</em>. You can't invent an x out of thin air (dividing by 2x is not allowed — only constants can be borrowed).</li>
+    <li>So u-substitution simply <strong>fails</strong> here. The honest way through is old-fashioned: <em class="hi">expand the power and integrate term by term</em> — <span class="fml">(x²+1)²= x⁴+2x²+1</span> is quick; the 4th power is longer but doable.</li>
+    <li>Knowing when a tool <em>doesn't</em> apply is just as valuable as using it. A good habit: run the fingerprint check FIRST, before touching anything. No fingerprint (up to a constant) → no u-substitution.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">7</span> Definite integrals with u-substitution</h2>
+  <ul>
+    <li>What about <span class="fml">∫₀¹ 2x(x²+1)² dx</span>, with limits attached? Keep it simple — <strong>one method, three moves</strong>:</li>
+    <li><em class="hi">Move 1:</em> ignore the limits and find the indefinite antiderivative by u-substitution. Here: <span class="fml">u = x²+1, du = 2x dx</span>, so <span class="fml">∫ u² du = u³/3</span>.</li>
+    <li><em class="hi">Move 2:</em> substitute back to x-language: <span class="fml">(x²+1)³/3</span>.</li>
+    <li><em class="hi">Move 3:</em> now use the FTC exactly as always — plug in the limits: <span class="fml">(1²+1)³/3 − (0²+1)³/3 = 8/3 − 1/3 = 7/3</span>.</li>
+    <li>(There is a fancier method where the limits themselves get converted to u-values, but it's easy to garble — we'll stick to "solve indefinite, swap back, then plug in." It always works.)</li>
+  </ul>
+</section>
+
+<div class="qhead">✏️ Exercises — 20 problems (write your answer on paper, then reveal)</div>
+
+<div class="q"><span class="qnum">1.</span><span class="qtag">spot the fingerprint</span>
+  <div class="qtext">For <span class="fml">∫ 2x(x²+1)<sup>5</sup> dx</span>: what should u be, and what is du? (Don't integrate yet — just identify the pieces.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> u-substitution starts by naming the "inside" function u — whatever sits inside a power, an e-exponent, or a sin/cos. Then du = (derivative of u) dx. Before integrating anything, you check whether that du is available in the integral as a factor.</div>
+    <div class="step">The inside of the 5th power is x²+1, so <span class="fml">u = x²+1</span>.</div>
+    <div class="step">Derivative of x²+1 is 2x, so <span class="fml">du = 2x dx</span>.</div>
+    <div class="step">Fingerprint check: is 2x dx present as a factor? Yes — exactly. u-substitution will work here.</div>
+    <div class="ans">u = x²+1, du = 2x dx — and yes, the fingerprint is there</div></div>
+</div>
+
+<div class="q"><span class="qnum">2.</span><span class="qtag">spot the fingerprint</span>
+  <div class="qtext">For <span class="fml">∫ 3x²(x³−2)<sup>7</sup> dx</span>: what should u be, and what is du? Is the fingerprint present?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the "fingerprint" is the derivative of the inside appearing as a multiplying factor. When you differentiate something like (x³−2)⁸, the chain rule pushes out a 3x² in front — so seeing 3x² next to (x³−2)⁷ means this integrand came from a chain-rule differentiation.</div>
+    <div class="step">The inside of the 7th power is x³−2, so <span class="fml">u = x³−2</span>.</div>
+    <div class="step">Derivative of x³−2 is 3x², so <span class="fml">du = 3x² dx</span>.</div>
+    <div class="step">Fingerprint check: the factor 3x² is sitting right there. Exact match ✓.</div>
+    <div class="ans">u = x³−2, du = 3x² dx — fingerprint present, exact match</div></div>
+</div>
+
+<div class="q"><span class="qnum">3.</span><span class="qtag">straight u-sub</span>
+  <div class="qtext">Compute <span class="fml">∫ 2x(x²+1)³ dx</span> using the full six-step ritual, including the check.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the ritual — (1) u = inside, (2) du = derivative × dx, (3) swap so every x disappears, (4) integrate in u, (5) substitute back, (6) check by differentiating. For step 4, remember the power rule for antiderivatives: <span class="fml">∫ u<sup>n</sup> du = u<sup>n+1</sup>/(n+1) + C</span>.</div>
+    <div class="step">Steps 1–2: <span class="fml">u = x²+1, du = 2x dx</span>.</div>
+    <div class="step">Step 3: <span class="fml">∫ u³ du</span> — the (x²+1)³ became u³ and the 2x dx became du. No x left.</div>
+    <div class="step">Step 4: <span class="fml">u⁴/4 + C</span>. Step 5: <span class="fml">(x²+1)⁴/4 + C</span>.</div>
+    <div class="step">Step 6 (check): derivative of (x²+1)⁴/4 = 4(x²+1)³ · 2x / 4 = 2x(x²+1)³ ✓ — the original integrand.</div>
+    <div class="ans">(x²+1)⁴/4 + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">4.</span><span class="qtag">straight u-sub</span>
+  <div class="qtext">Compute <span class="fml">∫ 3x²(x³−2)<sup>4</sup> dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> same ritual, cube inside. The key sanity check at the swap step: after replacing the inside with u and the fingerprint with du, there should be ZERO letters x remaining. If any x survives, something's wrong — stop and re-check.</div>
+    <div class="step"><span class="fml">u = x³−2, du = 3x² dx</span> — exact match with the factor in front.</div>
+    <div class="step">Swap: <span class="fml">∫ u⁴ du = u⁵/5 + C</span>.</div>
+    <div class="step">Back: <span class="fml">(x³−2)⁵/5 + C</span>.</div>
+    <div class="step">Check: derivative = 5(x³−2)⁴ · 3x² / 5 = 3x²(x³−2)⁴ ✓.</div>
+    <div class="ans">(x³−2)⁵/5 + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">5.</span><span class="qtag">e-flavored</span>
+  <div class="qtext">Compute <span class="fml">∫ 2x e<sup>x²</sup> dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> from Lesson 15, <span class="fml">∫ e<sup>u</sup> du = e<sup>u</sup> + C</span> — e is its own antiderivative. For e-integrals, the "inside" is whatever sits in the exponent.</div>
+    <div class="step"><span class="fml">u = x², du = 2x dx</span> — the 2x is right there. Exact match.</div>
+    <div class="step">Swap: <span class="fml">∫ e<sup>u</sup> du = e<sup>u</sup> + C</span>.</div>
+    <div class="step">Back: <span class="fml">e<sup>x²</sup> + C</span>.</div>
+    <div class="step">Check: derivative of e<sup>x²</sup> = e<sup>x²</sup> · 2x (chain rule) = 2x e<sup>x²</sup> ✓.</div>
+    <div class="ans">e<sup>x²</sup> + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">6.</span><span class="qtag">trig-flavored</span>
+  <div class="qtext">Compute <span class="fml">∫ cos x (sin x)³ dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> from Lesson 16, the derivative of sin x is cos x. So when sin x is the inside of a power and cos x sits in front, that cos x IS the fingerprint — it becomes du and vanishes into the substitution.</div>
+    <div class="step"><span class="fml">u = sin x, du = cos x dx</span> — exact match.</div>
+    <div class="step">Swap: <span class="fml">∫ u³ du = u⁴/4 + C</span>.</div>
+    <div class="step">Back: <span class="fml">(sin x)⁴/4 + C</span>.</div>
+    <div class="step">Check: derivative = 4(sin x)³ · cos x / 4 = cos x (sin x)³ ✓.</div>
+    <div class="ans">(sin x)⁴/4 + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">7.</span><span class="qtag">constant mismatch</span>
+  <div class="qtext">Compute <span class="fml">∫ x(x²+3)<sup>4</sup> dx</span>. (Careful — du wants 2x, but you only have x.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> when du = 2x dx but the integral only has x dx, you're off by a CONSTANT factor of 2 — and constants are always fixable. Solve the du equation for what you actually have: du = 2x dx means x dx = du/2. That's the "borrow" move.</div>
+    <div class="step"><span class="fml">u = x²+3, du = 2x dx</span>, so <span class="fml">x dx = du/2</span>.</div>
+    <div class="step">Swap: <span class="fml">∫ u⁴ · (du/2) = ½ ∫ u⁴ du = ½ · u⁵/5 = u⁵/10</span>.</div>
+    <div class="step">Back: <span class="fml">(x²+3)⁵/10 + C</span>.</div>
+    <div class="step">Check: derivative = 5(x²+3)⁴ · 2x / 10 = x(x²+3)⁴ ✓ — the 5 × 2 upstairs cancels the 10 downstairs.</div>
+    <div class="ans">(x²+3)⁵/10 + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">8.</span><span class="qtag">constant mismatch</span>
+  <div class="qtext">Compute <span class="fml">∫ x²(x³+1)² dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> same borrow move, different constant. Here u = x³+1 gives du = 3x² dx, and the integral offers x² dx — off by a factor of 3. Solve for the piece you have: x² dx = du/3.</div>
+    <div class="step"><span class="fml">u = x³+1, du = 3x² dx</span>, so <span class="fml">x² dx = du/3</span>.</div>
+    <div class="step">Swap: <span class="fml">∫ u² · (du/3) = ⅓ · u³/3 = u³/9</span>.</div>
+    <div class="step">Back: <span class="fml">(x³+1)³/9 + C</span>.</div>
+    <div class="step">Check: derivative = 3(x³+1)² · 3x² / 9 = x²(x³+1)² ✓ — the 3 × 3 upstairs cancels the 9.</div>
+    <div class="ans">(x³+1)³/9 + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">9.</span><span class="qtag">mismatch · e-flavored</span>
+  <div class="qtext">Compute <span class="fml">∫ x e<sup>x²</sup> dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> compare with exercise 5 — same inside (u = x²), but now the factor out front is x instead of 2x. Off by the constant 2, so borrow: x dx = du/2.</div>
+    <div class="step"><span class="fml">u = x², du = 2x dx</span>, so <span class="fml">x dx = du/2</span>.</div>
+    <div class="step">Swap: <span class="fml">∫ e<sup>u</sup> · (du/2) = ½ e<sup>u</sup> + C</span>.</div>
+    <div class="step">Back: <span class="fml">e<sup>x²</sup>/2 + C</span>.</div>
+    <div class="step">Check: derivative of e<sup>x²</sup>/2 = (e<sup>x²</sup> · 2x)/2 = x e<sup>x²</sup> ✓.</div>
+    <div class="ans">e<sup>x²</sup>/2 + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">10.</span><span class="qtag">check task</span>
+  <div class="qtext">A friend claims that <span class="fml">∫ 2x(x²+5)³ dx = (x²+5)⁴/4 + C</span>. Differentiate the claimed answer to decide whether the friend is right.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> every integration answer can be verified by differentiating it — if you get back the original integrand, the answer is right. For a power with an inside, use the chain rule: bring the exponent down, lower the power by one, then multiply by the derivative of the inside.</div>
+    <div class="step">Differentiate (x²+5)⁴/4: bring down the 4 → 4(x²+5)³/4 = (x²+5)³.</div>
+    <div class="step">Chain rule — multiply by the derivative of the inside (2x): (x²+5)³ · 2x = 2x(x²+5)³.</div>
+    <div class="step">That is exactly the original integrand. The friend is right.</div>
+    <div class="ans">Yes — the derivative is 2x(x²+5)³, so the claim is correct ✓</div></div>
+</div>
+
+<div class="q"><span class="qnum">11.</span><span class="qtag">does u-sub work?</span>
+  <div class="qtext">Does u-substitution work on <span class="fml">∫ (x²+1)<sup>4</sup> dx</span>? Explain why or why not, and say what you would do instead. (You don't have to finish the computation.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> u-substitution requires the fingerprint — the derivative of the inside must appear as a factor, at least up to a constant. If it's missing entirely, no legal move can create it: you may only borrow CONSTANTS, never expressions with x in them.</div>
+    <div class="step">Candidate: u = x²+1, so du = 2x dx. The integral would need a 2x (or at least an x) factor. There is none — just (x²+1)⁴ alone.</div>
+    <div class="step">Dividing the answer by 2x is illegal (that only works for constants, which is why Lesson 17's trick demanded a LINEAR inside).</div>
+    <div class="step">Instead: expand (x²+1)⁴ into a plain polynomial (x⁸ + 4x⁶ + 6x⁴ + 4x² + 1) and integrate term by term with the power rule. Longer, but honest.</div>
+    <div class="ans">No — the fingerprint (an x factor) is missing; expand the power and integrate term by term</div></div>
+</div>
+
+<div class="q"><span class="qnum">12.</span><span class="qtag">does u-sub work? · then solve</span>
+  <div class="qtext">Does u-substitution work on <span class="fml">∫ x³(x⁴+7)² dx</span>? If yes, compute it.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> run the fingerprint check first. Inside = x⁴+7, its derivative is 4x³. The integral offers x³ — off by the constant 4 only. A constant mismatch means YES, it works, with a borrow.</div>
+    <div class="step"><span class="fml">u = x⁴+7, du = 4x³ dx</span>, so <span class="fml">x³ dx = du/4</span>.</div>
+    <div class="step">Swap: <span class="fml">∫ u² · (du/4) = ¼ · u³/3 = u³/12</span>.</div>
+    <div class="step">Back: <span class="fml">(x⁴+7)³/12 + C</span>.</div>
+    <div class="step">Check: derivative = 3(x⁴+7)² · 4x³ / 12 = x³(x⁴+7)² ✓.</div>
+    <div class="ans">Yes it works — (x⁴+7)³/12 + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">13.</span><span class="qtag">trig u-sub</span>
+  <div class="qtext">Compute <span class="fml">∫ sin x · cos x dx</span> using <span class="fml">u = sin x</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> think of sin x · cos x as (sin x)¹ · cos x — a first power of sin x with its derivative (cos x) standing by. That's a perfect u = sin x setup. Fun fact: choosing u = cos x instead gives −(cos x)²/2 + C, which looks different but differs from our answer only by a constant — both are correct, because +C absorbs constant differences.</div>
+    <div class="step"><span class="fml">u = sin x, du = cos x dx</span> — exact match.</div>
+    <div class="step">Swap: <span class="fml">∫ u du = u²/2 + C</span>.</div>
+    <div class="step">Back: <span class="fml">(sin x)²/2 + C</span>.</div>
+    <div class="step">Check: derivative = 2 sin x · cos x / 2 = sin x cos x ✓.</div>
+    <div class="ans">(sin x)²/2 + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">14.</span><span class="qtag">definite integral</span>
+  <div class="qtext">Compute <span class="fml">∫₀¹ 2x(x²+1)² dx</span>. (Solve the indefinite integral first, substitute back, then plug in the limits.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> for definite integrals with u-substitution, use three moves — (1) find the antiderivative by u-sub, ignoring the limits; (2) substitute back to x-language; (3) apply the FTC: plug in the top limit, plug in the bottom limit, subtract.</div>
+    <div class="step">Move 1: <span class="fml">u = x²+1, du = 2x dx</span> → <span class="fml">∫ u² du = u³/3</span>.</div>
+    <div class="step">Move 2: back to x: <span class="fml">(x²+1)³/3</span>.</div>
+    <div class="step">Move 3: at x = 1: (1+1)³/3 = 8/3. At x = 0: (0+1)³/3 = 1/3. Subtract: 8/3 − 1/3 = 7/3.</div>
+    <div class="step">(Quick sanity check on the antiderivative: derivative of (x²+1)³/3 = 3(x²+1)² · 2x / 3 = 2x(x²+1)² ✓.)</div>
+    <div class="ans">7/3</div></div>
+</div>
+
+<div class="q"><span class="qnum">15.</span><span class="qtag">mismatch · e-flavored</span>
+  <div class="qtext">Compute <span class="fml">∫ x³ e<sup>x⁴</sup> dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the inside is the exponent x⁴, whose derivative is 4x³. We have x³ — a constant mismatch of 4. Borrow: x³ dx = du/4. Then it's a plain e-integral.</div>
+    <div class="step"><span class="fml">u = x⁴, du = 4x³ dx</span>, so <span class="fml">x³ dx = du/4</span>.</div>
+    <div class="step">Swap: <span class="fml">∫ e<sup>u</sup> · (du/4) = ¼ e<sup>u</sup> + C</span>.</div>
+    <div class="step">Back: <span class="fml">e<sup>x⁴</sup>/4 + C</span>.</div>
+    <div class="step">Check: derivative = (e<sup>x⁴</sup> · 4x³)/4 = x³ e<sup>x⁴</sup> ✓.</div>
+    <div class="ans">e<sup>x⁴</sup>/4 + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">16.</span><span class="qtag">does u-sub work? · trap!</span>
+  <div class="qtext">Does u-substitution work on <span class="fml">∫ x(x³+1)² dx</span>? Look carefully before you answer — then find the integral by whatever method IS legal.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> this looks like exercise 8, but the powers don't cooperate. u = x³+1 needs du = 3x² dx — an x-SQUARED factor. The integral offers plain x. The gap between x and x² is a factor of x, not a constant, and only constants can be borrowed. So u-sub fails; the fallback is to expand and use the power rule.</div>
+    <div class="step">Fingerprint check: u = x³+1 → du = 3x² dx. We have x dx. Mismatch involves x itself → u-substitution does NOT work.</div>
+    <div class="step">Expand instead: (x³+1)² = x⁶ + 2x³ + 1, so the integrand is x(x⁶ + 2x³ + 1) = x⁷ + 2x⁴ + x.</div>
+    <div class="step">Integrate term by term: <span class="fml">x⁸/8 + 2x⁵/5 + x²/2 + C</span>.</div>
+    <div class="step">Check: derivative = x⁷ + 2x⁴ + x = x(x⁶ + 2x³ + 1) = x(x³+1)² ✓.</div>
+    <div class="ans">u-sub fails (mismatch is x, not a constant) — expanding gives x⁸/8 + 2x⁵/5 + x²/2 + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">17.</span><span class="qtag">story problem</span>
+  <div class="qtext">Pollution flows into a lake at a rate of <span class="fml">r(t) = 4t(t²+4)</span> grams per hour, where t is in hours. How many grams enter the lake between t = 0 and t = 2? (Use u-substitution — then notice you could check by expanding.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> total accumulated = the definite integral of the rate (Lessons 1–3 and 13). Here the rate has a u-sub structure: inside = t²+4, derivative 2t, and we have 4t = 2 · (2t) — a constant multiple, so it works.</div>
+    <div class="step"><span class="fml">u = t²+4, du = 2t dt</span>, so <span class="fml">4t dt = 2 du</span>.</div>
+    <div class="step">Indefinite: <span class="fml">∫ u · 2 du = 2 · u²/2 = u²</span> → back: <span class="fml">(t²+4)²</span>.</div>
+    <div class="step">Check: derivative of (t²+4)² = 2(t²+4) · 2t = 4t(t²+4) ✓.</div>
+    <div class="step">Plug in limits: at t = 2: (4+4)² = 64. At t = 0: (0+4)² = 16. Total = 64 − 16 = 48.</div>
+    <div class="ans">48 grams of pollution</div></div>
+</div>
+
+<div class="q"><span class="qnum">18.</span><span class="qtag">definite · trig</span>
+  <div class="qtext">Compute <span class="fml">∫₀<sup>π/2</sup> cos x (sin x)² dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> from Lesson 16, sin 0 = 0 and sin(π/2) = 1 — those clean values are why π/2 shows up so often as a limit. Method: indefinite u-sub first, swap back, then FTC.</div>
+    <div class="step"><span class="fml">u = sin x, du = cos x dx</span> → <span class="fml">∫ u² du = u³/3</span> → back: <span class="fml">(sin x)³/3</span>.</div>
+    <div class="step">Check: derivative = 3(sin x)² cos x / 3 = cos x (sin x)² ✓.</div>
+    <div class="step">At x = π/2: (sin π/2)³/3 = 1³/3 = 1/3. At x = 0: 0³/3 = 0.</div>
+    <div class="step">Answer: 1/3 − 0 = 1/3.</div>
+    <div class="ans">1/3</div></div>
+</div>
+
+<div class="q"><span class="qnum">19.</span><span class="qtag">trig inside</span>
+  <div class="qtext">Compute <span class="fml">∫ x cos(x²) dx</span>. (This time the inside is hiding inside a cosine.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the inside can live inside ANY familiar function — a power, an e-exponent, or here a cosine. From Lesson 16, <span class="fml">∫ cos u du = sin u + C</span>. The inside is x², derivative 2x; we have x, so borrow the constant 2.</div>
+    <div class="step"><span class="fml">u = x², du = 2x dx</span>, so <span class="fml">x dx = du/2</span>.</div>
+    <div class="step">Swap: <span class="fml">∫ cos u · (du/2) = ½ sin u + C</span>.</div>
+    <div class="step">Back: <span class="fml">sin(x²)/2 + C</span>.</div>
+    <div class="step">Check: derivative of sin(x²)/2 = cos(x²) · 2x / 2 = x cos(x²) ✓.</div>
+    <div class="ans">sin(x²)/2 + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">20.</span><span class="qtag">challenge</span>
+  <div class="qtext">Compute <span class="fml">∫ (2x+2)(x²+2x)³ dx</span>. (Hint: the fingerprint can be a whole expression, not just a single term.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> so far every fingerprint was one term (2x, 3x², cos x...). But the derivative of an inside with several terms has several terms too: if u = x²+2x, then du = (2x+2) dx. The entire (2x+2) factor is the fingerprint — spot it as one chunk.</div>
+    <div class="step"><span class="fml">u = x²+2x, du = (2x+2) dx</span> — and (2x+2) dx is sitting right there. Exact match.</div>
+    <div class="step">Swap: <span class="fml">∫ u³ du = u⁴/4 + C</span>.</div>
+    <div class="step">Back: <span class="fml">(x²+2x)⁴/4 + C</span>.</div>
+    <div class="step">Check: derivative = 4(x²+2x)³ · (2x+2) / 4 = (2x+2)(x²+2x)³ ✓.</div>
+    <div class="ans">(x²+2x)⁴/4 + C</div></div>
+</div>
+
+<footer>Lesson 18 of 20 · Intuitive Integration · next: <a href="Lesson19.html">Lesson 19 — Initial Values &amp; Net Change</a></footer>
+
+</div>
+<script>
+document.querySelectorAll('.q').forEach(q=>{
+  const btn=q.querySelector('.revealbtn'), sol=q.querySelector('.sol');
+  btn.addEventListener('click',()=>{ sol.classList.add('show'); btn.textContent='Solution shown'; btn.disabled=true; btn.style.opacity=.6; });
+});
+</script>
+</body>
+</html>

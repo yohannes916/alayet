@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 5 — The Power Rule for Antiderivatives</title>
+<style>
+  :root{--accent:#186a3b;--accent2:#239b56;--bg:#f2f7f4;--card:#fff;--ok:#1e8449;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:#1c2833;background:var(--bg);margin:0;padding:0 16px 80px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -16px 20px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  nav{display:flex;gap:10px;margin-bottom:18px;font-size:.9rem;flex-wrap:wrap;}
+  nav a{color:var(--accent);text-decoration:none;font-weight:600;background:#fff;border:1px solid #d5e8dc;border-radius:8px;padding:6px 14px;}
+  nav a:hover{background:#eafaf1;}
+  .goal{background:#fef9e7;border-left:5px solid var(--star);padding:12px 18px;border-radius:8px;margin-bottom:18px;font-size:.95rem;}
+  .goal strong{color:#7d6608;}
+  section{background:var(--card);border-radius:10px;padding:18px 22px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  h2{color:var(--accent);font-size:1.15rem;margin:0 0 10px;}
+  h2 .num{background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;border-radius:6px;padding:2px 9px;margin-right:8px;}
+  ul{margin:8px 0;padding-left:24px;}
+  li{margin-bottom:8px;}
+  strong{color:#145a32;}
+  em.hi{font-style:normal;background:#fef9e7;padding:0 4px;border-radius:3px;}
+  .fml{background:#e9f7ef;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.9em;color:#186a3b;white-space:nowrap;}
+  .ex{background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:.95rem;}
+  .ex b{color:#145a32;}
+  .graph{background:#1b2631;color:#eaeded;border-radius:8px;padding:14px 18px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.82rem;line-height:1.45;overflow-x:auto;margin:10px 0;white-space:pre;}
+  .graph .g{color:#82e0aa;} .graph .y{color:#f7dc6f;} .graph .b{color:#85c1e9;}
+  table.t{border-collapse:collapse;margin:10px 0;font-size:.92rem;}
+  table.t th,table.t td{border:1px solid #cfd8cf;padding:6px 12px;text-align:center;}
+  table.t th{background:var(--accent);color:#fff;font-weight:600;}
+  .qhead{margin:26px 0 8px;color:var(--accent);font-size:1.2rem;border-bottom:2px solid #d4efdf;padding-bottom:6px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid var(--accent2);}
+  .qnum{font-weight:800;color:var(--accent);margin-right:6px;}
+  .qtag{float:right;background:#e9f7ef;color:var(--accent);border-radius:8px;padding:1px 9px;font-size:.68rem;font-weight:700;letter-spacing:.3px;margin-left:8px;}
+  .qtext{font-size:.98rem;margin:4px 0 10px;}
+  .revealbtn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .revealbtn:hover{background:#0e4429;}
+  .sol{display:none;margin-top:12px;background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px;font-size:.93rem;}
+  .sol.show{display:block;}
+  .sol h4{margin:0 0 8px;color:var(--ok);font-size:.9rem;}
+  .sol .ctx{background:#eaf2f8;border-left:4px solid #2e86c1;border-radius:6px;padding:8px 12px;margin:0 0 10px;font-size:.88rem;}
+  .sol .ctx b{color:#1a5276;}
+  .sol .step{margin:6px 0;}
+  .sol .ans{background:#eafaf1;border-radius:6px;padding:6px 12px;margin-top:8px;font-weight:700;color:#145a32;display:inline-block;}
+  footer{text-align:center;color:#85929e;font-size:.85rem;margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Lesson 5 — The Power Rule for Antiderivatives</h1>
+  <p>Raise the Power, Divide by It · Intuitive Calculus for a Curious Student · Lesson 5 of 20</p>
+</header>
+
+<nav><a href="index.html">📚 All lessons</a><a href="Lesson04.html">← Prev: Lesson 4</a><a href="Lesson06.html">Next: Lesson 6 →</a></nav>
+
+<div class="goal"><strong>🎯 Goal of this lesson:</strong> turn last lesson's guess-and-check into a machine. One rule — <em>raise the power by one, divide by the new power</em> — lets you write the antiderivative of ANY power of x, and with two helper rules you can handle any polynomial. Plus the habit that makes you unstoppable: always check by differentiating.</div>
+
+<section>
+  <h2><span class="num">1</span> The pattern, made official</h2>
+  <ul>
+    <li>In Lesson 4 you found antiderivatives by asking "whose derivative is this?" and hunting. There's a pattern hiding in those hunts.</li>
+    <li>Differentiating <span class="fml">x<sup>n</sup></span> does two things: the exponent <strong>hops down front</strong> as a multiplier, and the power <strong>drops by one</strong>. To undo that, do the opposite moves in the opposite order: <em class="hi">RAISE the power by one, then DIVIDE by the new power.</em></li>
+    <li>The official rule: the antiderivative of <span class="fml">x<sup>n</sup></span> is <span class="fml">x<sup>n+1</sup>/(n+1) + C</span>.</li>
+    <li><strong>Why does dividing work?</strong> Watch the check for <span class="fml">x<sup>3</sup></span>. The rule says: raise the power (x<sup>4</sup>), divide by the new power → <span class="fml">x<sup>4</sup>/4 + C</span>. Now differentiate it: the derivative of x<sup>4</sup> is 4x<sup>3</sup>, so the derivative of <span class="fml">x<sup>4</sup>/4</span> is <span class="fml">4x<sup>3</sup>/4 = x<sup>3</sup></span> ✓. The ÷4 is there precisely to cancel the 4 that hops down when you differentiate.</li>
+  </ul>
+  <table class="t">
+    <tr><th>Start with</th><th>Raise power</th><th>Divide by new power</th><th>Check (differentiate)</th></tr>
+    <tr><td>x</td><td>x<sup>2</sup></td><td>x<sup>2</sup>/2 + C</td><td>2x/2 = x ✓</td></tr>
+    <tr><td>x<sup>2</sup></td><td>x<sup>3</sup></td><td>x<sup>3</sup>/3 + C</td><td>3x<sup>2</sup>/3 = x<sup>2</sup> ✓</td></tr>
+    <tr><td>x<sup>3</sup></td><td>x<sup>4</sup></td><td>x<sup>4</sup>/4 + C</td><td>4x<sup>3</sup>/4 = x<sup>3</sup> ✓</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2><span class="num">2</span> Special cases — 1 and plain constants</h2>
+  <ul>
+    <li><strong>Antiderivative of 1:</strong> remember that <span class="fml">1 = x<sup>0</sup></span> (anything to the power 0 is 1). Apply the rule: raise the power to 1, divide by 1 → <span class="fml">x<sup>1</sup>/1 = x</span>. So the antiderivative of 1 is <span class="fml">x + C</span>. (Sanity check: the derivative of x is 1 ✓.)</li>
+    <li><strong>Antiderivative of any constant k:</strong> it's <span class="fml">kx + C</span> — a straight line with slope k. Check: the derivative of kx is k ✓. Example: antiderivative of 9 is 9x + C.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">3</span> The constant-multiple rule — constants ride along</h2>
+  <ul>
+    <li>A number multiplied in front just <em class="hi">rides along</em>: take the antiderivative of the power part, then keep the multiplier.</li>
+    <li>Example: antiderivative of <span class="fml">6x<sup>2</sup></span>. The x<sup>2</sup> part becomes x<sup>3</sup>/3, and the 6 rides along: <span class="fml">6 · x<sup>3</sup>/3 = 2x<sup>3</sup></span>. Answer: <span class="fml">2x<sup>3</sup> + C</span>.</li>
+    <li>Check: derivative of 2x<sup>3</sup> = 2 · 3x<sup>2</sup> = 6x<sup>2</sup> ✓. Often the riding constant and the dividing number simplify into something clean, like the 6/3 = 2 here.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">4</span> The sum rule — one term at a time</h2>
+  <ul>
+    <li>To find the antiderivative of a sum (or difference), just <em class="hi">do each term separately</em> and keep the + and − signs between them. One single + C at the end covers everything.</li>
+    <li>Why it works: derivatives also work term by term, so undoing them can too.</li>
+    <li>This means you can now handle <strong>any polynomial</strong>: constants, powers, multipliers, sums — every tool is on the table.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">5</span> Worked examples</h2>
+  <div class="ex"><b>Example 1 — antiderivative of 4x<sup>3</sup> + 2x:</b> term 1: 4 · x<sup>4</sup>/4 = x<sup>4</sup>. Term 2: 2 · x<sup>2</sup>/2 = x<sup>2</sup>. Answer: <span class="fml">x<sup>4</sup> + x<sup>2</sup> + C</span>. Check: derivative = 4x<sup>3</sup> + 2x ✓.</div>
+  <div class="ex"><b>Example 2 — antiderivative of x<sup>2</sup> + x + 1:</b> term by term: x<sup>3</sup>/3, then x<sup>2</sup>/2, then x. Answer: <span class="fml">x<sup>3</sup>/3 + x<sup>2</sup>/2 + x + C</span>. Check: 3x<sup>2</sup>/3 + 2x/2 + 1 = x<sup>2</sup> + x + 1 ✓. Fractions like these are normal — leave them as fractions; don't turn them into messy decimals.</div>
+  <div class="ex"><b>Example 3 — antiderivative of 9x<sup>2</sup> − 4x + 5 (keeping fractions tidy):</b> term 1: 9 · x<sup>3</sup>/3 = 3x<sup>3</sup>. Term 2: −4 · x<sup>2</sup>/2 = −2x<sup>2</sup>. Term 3: 5x. Answer: <span class="fml">3x<sup>3</sup> − 2x<sup>2</sup> + 5x + C</span>. Check: 9x<sup>2</sup> − 4x + 5 ✓. Notice how the fractions simplified away — that happens whenever the coefficient is a multiple of the new power.</div>
+</section>
+
+<section>
+  <h2><span class="num">6</span> The habit — ALWAYS check by differentiating</h2>
+  <ul>
+    <li>Every antiderivative you ever write can be verified in five seconds: <em class="hi">differentiate it and compare with what you started with</em>. If they match, you're right. Period.</li>
+    <li>The two most common slips — forgetting to divide by the new power, and dropping the + C — are BOTH caught instantly by this check (the first gives the wrong derivative; the second you catch by asking "did I write the family?").</li>
+    <li>From this lesson to the end of the course: <strong>no answer is finished until it's checked</strong>. The solutions below model this every time.</li>
+  </ul>
+</section>
+
+<div class="qhead">✏️ Exercises — 20 problems (write your answer on paper, then reveal)</div>
+
+<div class="q"><span class="qnum">1.</span><span class="qtag">single power</span>
+  <div class="qtext">Find the antiderivative of <span class="fml">x</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the power rule for antiderivatives: raise the power by one, divide by the new power, add C. Here x means x<sup>1</sup>, so the current power is 1.</div>
+    <div class="step">Raise the power: x<sup>1</sup> becomes x<sup>2</sup>. Divide by the new power 2: x<sup>2</sup>/2.</div>
+    <div class="step">Answer: x<sup>2</sup>/2 + C.</div>
+    <div class="step">Check: derivative of x<sup>2</sup>/2 = 2x/2 = x ✓.</div>
+    <div class="ans">x<sup>2</sup>/2 + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">2.</span><span class="qtag">single power</span>
+  <div class="qtext">Find the antiderivative of <span class="fml">x<sup>2</sup></span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> same recipe every time: power up by one, divide by the new power. The division is what cancels the number that will hop down when someone differentiates your answer.</div>
+    <div class="step">Raise: x<sup>2</sup> → x<sup>3</sup>. Divide by 3: x<sup>3</sup>/3.</div>
+    <div class="step">Check: derivative of x<sup>3</sup>/3 = 3x<sup>2</sup>/3 = x<sup>2</sup> ✓.</div>
+    <div class="ans">x<sup>3</sup>/3 + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">3.</span><span class="qtag">single power</span>
+  <div class="qtext">Find the antiderivative of <span class="fml">x<sup>5</sup></span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the rule works for any power, big or small: antiderivative of x<sup>n</sup> = x<sup>n+1</sup>/(n+1) + C. With n = 5, the new power is 6.</div>
+    <div class="step">Raise: x<sup>5</sup> → x<sup>6</sup>. Divide by the new power: x<sup>6</sup>/6.</div>
+    <div class="step">Check: derivative of x<sup>6</sup>/6 = 6x<sup>5</sup>/6 = x<sup>5</sup> ✓.</div>
+    <div class="ans">x<sup>6</sup>/6 + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">4.</span><span class="qtag">constant</span>
+  <div class="qtext">Find the antiderivative of <span class="fml">9</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a lone constant k is a rate that never changes, and the function that grows at a steady rate k is the line kx. (You can also see it through the rule: 9 = 9x<sup>0</sup>, raise the power to 1, divide by 1 → 9x.)</div>
+    <div class="step">Antiderivative of 9 is 9x + C.</div>
+    <div class="step">Check: derivative of 9x + C = 9 ✓.</div>
+    <div class="ans">9x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">5.</span><span class="qtag">constant multiple</span>
+  <div class="qtext">Find the antiderivative of <span class="fml">8x<sup>3</sup></span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a number multiplied in front "rides along": handle the power of x with the rule, then multiply by the riding number. Often it simplifies against the division.</div>
+    <div class="step">The x<sup>3</sup> part: raise to x<sup>4</sup>, divide by 4 → x<sup>4</sup>/4.</div>
+    <div class="step">The 8 rides along: 8 · x<sup>4</sup>/4 = 2x<sup>4</sup>.</div>
+    <div class="step">Check: derivative of 2x<sup>4</sup> = 2 · 4x<sup>3</sup> = 8x<sup>3</sup> ✓.</div>
+    <div class="ans">2x<sup>4</sup> + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">6.</span><span class="qtag">constant multiple</span>
+  <div class="qtext">Find the antiderivative of <span class="fml">10x<sup>4</sup></span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> same riding-along idea. The x<sup>4</sup> part gets the power rule (new power 5), and the coefficient 10 multiplies the result. 10/5 simplifies to 2.</div>
+    <div class="step">x<sup>4</sup> → x<sup>5</sup>/5. Then 10 · x<sup>5</sup>/5 = 2x<sup>5</sup>.</div>
+    <div class="step">Check: derivative of 2x<sup>5</sup> = 2 · 5x<sup>4</sup> = 10x<sup>4</sup> ✓.</div>
+    <div class="ans">2x<sup>5</sup> + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">7.</span><span class="qtag">sum of powers</span>
+  <div class="qtext">Find the antiderivative of <span class="fml">x<sup>3</sup> + x</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the sum rule: antidifferentiate each term on its own and keep the plus sign between the results. One + C at the end covers the whole answer — you don't write a separate C for each term.</div>
+    <div class="step">Term 1: x<sup>3</sup> → x<sup>4</sup>/4.</div>
+    <div class="step">Term 2: x → x<sup>2</sup>/2.</div>
+    <div class="step">Combine: x<sup>4</sup>/4 + x<sup>2</sup>/2 + C. Check: 4x<sup>3</sup>/4 + 2x/2 = x<sup>3</sup> + x ✓.</div>
+    <div class="ans">x<sup>4</sup>/4 + x<sup>2</sup>/2 + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">8.</span><span class="qtag">polynomial</span>
+  <div class="qtext">Find the antiderivative of <span class="fml">6x<sup>2</sup> + 4x</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> this combines the sum rule (term by term) with the constant-multiple rule (coefficients ride along). Watch the coefficients simplify against the new powers: 6/3 and 4/2 both come out whole.</div>
+    <div class="step">Term 1: 6x<sup>2</sup> → 6 · x<sup>3</sup>/3 = 2x<sup>3</sup>.</div>
+    <div class="step">Term 2: 4x → 4 · x<sup>2</sup>/2 = 2x<sup>2</sup>.</div>
+    <div class="step">Combine: 2x<sup>3</sup> + 2x<sup>2</sup> + C. Check: 6x<sup>2</sup> + 4x ✓.</div>
+    <div class="ans">2x<sup>3</sup> + 2x<sup>2</sup> + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">9.</span><span class="qtag">polynomial with constant</span>
+  <div class="qtext">Find the antiderivative of <span class="fml">x<sup>2</sup> + 5</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> mixed terms are fine — each term gets whichever tool fits. Powers of x get the power rule; a lone constant k becomes kx. And it's completely normal for one term to keep a fraction while another doesn't.</div>
+    <div class="step">Term 1: x<sup>2</sup> → x<sup>3</sup>/3.</div>
+    <div class="step">Term 2: 5 → 5x.</div>
+    <div class="step">Combine: x<sup>3</sup>/3 + 5x + C. Check: 3x<sup>2</sup>/3 + 5 = x<sup>2</sup> + 5 ✓.</div>
+    <div class="ans">x<sup>3</sup>/3 + 5x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">10.</span><span class="qtag">verify by differentiating</span>
+  <div class="qtext">Check whether <span class="fml">x<sup>4</sup>/4 + x<sup>2</sup>/2</span> is an antiderivative of <span class="fml">x<sup>3</sup> + x</span>. Show the differentiation.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> checking is the reverse trip: differentiate the candidate and see if you land on the original. When differentiating a fraction like x<sup>4</sup>/4, the 4 that hops down cancels the 4 underneath — that's the whole design of the power rule.</div>
+    <div class="step">Derivative of x<sup>4</sup>/4 = 4x<sup>3</sup>/4 = x<sup>3</sup>.</div>
+    <div class="step">Derivative of x<sup>2</sup>/2 = 2x/2 = x.</div>
+    <div class="step">Total: x<sup>3</sup> + x — an exact match with the target.</div>
+    <div class="ans">Yes ✓ — its derivative is exactly x<sup>3</sup> + x</div></div>
+</div>
+
+<div class="q"><span class="qnum">11.</span><span class="qtag">polynomial · minus sign</span>
+  <div class="qtext">Find the antiderivative of <span class="fml">5x<sup>4</sup> − 3x<sup>2</sup></span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> subtraction works exactly like addition — do each term separately and keep the minus sign between the results. A negative coefficient just rides along like any other constant.</div>
+    <div class="step">Term 1: 5x<sup>4</sup> → 5 · x<sup>5</sup>/5 = x<sup>5</sup>.</div>
+    <div class="step">Term 2: 3x<sup>2</sup> → 3 · x<sup>3</sup>/3 = x<sup>3</sup>, keeping the minus: −x<sup>3</sup>.</div>
+    <div class="step">Combine: x<sup>5</sup> − x<sup>3</sup> + C. Check: 5x<sup>4</sup> − 3x<sup>2</sup> ✓.</div>
+    <div class="ans">x<sup>5</sup> − x<sup>3</sup> + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">12.</span><span class="qtag">constant multiple</span>
+  <div class="qtext">Find the antiderivative of <span class="fml">7x<sup>6</sup></span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> when the coefficient equals the NEW power (here both are 7), the division cancels it completely — a satisfying special case worth recognizing on sight.</div>
+    <div class="step">x<sup>6</sup> → x<sup>7</sup>/7, and the 7 rides along: 7 · x<sup>7</sup>/7 = x<sup>7</sup>.</div>
+    <div class="step">Check: derivative of x<sup>7</sup> = 7x<sup>6</sup> ✓.</div>
+    <div class="ans">x<sup>7</sup> + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">13.</span><span class="qtag">spot the error</span>
+  <div class="qtext">A student claims the antiderivative of <span class="fml">x<sup>3</sup></span> is <span class="fml">x<sup>4</sup>/3 + C</span>. Use the differentiation check to decide if they're right, and fix the answer if needed.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the classic slip: dividing by the OLD power instead of the NEW one. The rule says divide by the new power (n + 1), because that's the number that will hop down when the answer is differentiated. The check exposes the slip immediately.</div>
+    <div class="step">Check the claim: derivative of x<sup>4</sup>/3 = 4x<sup>3</sup>/3. That is NOT x<sup>3</sup> (it's 4/3 as big). Wrong.</div>
+    <div class="step">Fix: divide by the new power 4, not the old power 3 → x<sup>4</sup>/4 + C.</div>
+    <div class="step">Check the fix: derivative of x<sup>4</sup>/4 = 4x<sup>3</sup>/4 = x<sup>3</sup> ✓.</div>
+    <div class="ans">The student is wrong (derivative comes out 4x<sup>3</sup>/3); correct answer: x<sup>4</sup>/4 + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">14.</span><span class="qtag">full polynomial</span>
+  <div class="qtext">Find the antiderivative of <span class="fml">4x<sup>3</sup> + 6x + 1</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a three-term polynomial uses everything at once: power rule per term, coefficients riding along, constant term becoming (constant)·x, one + C at the end.</div>
+    <div class="step">Term 1: 4x<sup>3</sup> → 4 · x<sup>4</sup>/4 = x<sup>4</sup>.</div>
+    <div class="step">Term 2: 6x → 6 · x<sup>2</sup>/2 = 3x<sup>2</sup>.</div>
+    <div class="step">Term 3: 1 → x.</div>
+    <div class="step">Combine: x<sup>4</sup> + 3x<sup>2</sup> + x + C. Check: 4x<sup>3</sup> + 6x + 1 ✓.</div>
+    <div class="ans">x<sup>4</sup> + 3x<sup>2</sup> + x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">15.</span><span class="qtag">challenge polynomial</span>
+  <div class="qtext">Find the antiderivative of <span class="fml">12x<sup>5</sup> − 6x<sup>2</sup> + 7</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> nothing new here — just more terms, bigger powers, and a minus sign. Work left to right, one term at a time, and finish with the check. Speed comes from calm repetition, not from skipping steps.</div>
+    <div class="step">Term 1: 12x<sup>5</sup> → 12 · x<sup>6</sup>/6 = 2x<sup>6</sup>.</div>
+    <div class="step">Term 2: −6x<sup>2</sup> → −6 · x<sup>3</sup>/3 = −2x<sup>3</sup>.</div>
+    <div class="step">Term 3: 7 → 7x.</div>
+    <div class="step">Combine: 2x<sup>6</sup> − 2x<sup>3</sup> + 7x + C. Check: 12x<sup>5</sup> − 6x<sup>2</sup> + 7 ✓.</div>
+    <div class="ans">2x<sup>6</sup> − 2x<sup>3</sup> + 7x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">16.</span><span class="qtag">find the specific function</span>
+  <div class="qtext">Find f(x) given <span class="fml">f′(x) = 3x<sup>2</sup></span> and <span class="fml">f(1) = 4</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> from Lesson 4: the derivative pins f down only to a family (+ C); one known point picks out the exact member. Recipe: antidifferentiate, plug in the point, solve for C.</div>
+    <div class="step">Antiderivative: 3x<sup>2</sup> → 3 · x<sup>3</sup>/3 = x<sup>3</sup>, so f(x) = x<sup>3</sup> + C.</div>
+    <div class="step">Point: f(1) = 1 + C = 4 → C = 3.</div>
+    <div class="step">f(x) = x<sup>3</sup> + 3. Check: derivative = 3x<sup>2</sup> ✓; f(1) = 1 + 3 = 4 ✓.</div>
+    <div class="ans">f(x) = x<sup>3</sup> + 3</div></div>
+</div>
+
+<div class="q"><span class="qnum">17.</span><span class="qtag">find the specific function</span>
+  <div class="qtext">Find f(x) given <span class="fml">f′(x) = x</span> and <span class="fml">f(2) = 5</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> same recipe, but now the antiderivative keeps a fraction — that's fine. When plugging the point into x<sup>2</sup>/2, square first, then halve: 2<sup>2</sup>/2 = 4/2 = 2.</div>
+    <div class="step">Antiderivative: f(x) = x<sup>2</sup>/2 + C.</div>
+    <div class="step">Point: f(2) = 4/2 + C = 2 + C = 5 → C = 3.</div>
+    <div class="step">f(x) = x<sup>2</sup>/2 + 3. Check: derivative = x ✓; f(2) = 2 + 3 = 5 ✓.</div>
+    <div class="ans">f(x) = x<sup>2</sup>/2 + 3</div></div>
+</div>
+
+<div class="q"><span class="qnum">18.</span><span class="qtag">challenge · multiply first</span>
+  <div class="qtext">Find the antiderivative of <span class="fml">(x + 2)(x + 3)</span>. Hint: multiply it out first!</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> our rules handle powers, multiples, and sums — NOT products of two x-expressions. So first rewrite the product as a plain polynomial using FOIL (First, Outer, Inner, Last): (x + 2)(x + 3) = x·x + x·3 + 2·x + 2·3.</div>
+    <div class="step">Multiply out: x<sup>2</sup> + 3x + 2x + 6 = x<sup>2</sup> + 5x + 6.</div>
+    <div class="step">Now antidifferentiate term by term: x<sup>2</sup> → x<sup>3</sup>/3; 5x → 5x<sup>2</sup>/2; 6 → 6x.</div>
+    <div class="step">Combine: x<sup>3</sup>/3 + 5x<sup>2</sup>/2 + 6x + C.</div>
+    <div class="step">Check: derivative = x<sup>2</sup> + 5x + 6 = (x + 2)(x + 3) ✓.</div>
+    <div class="ans">x<sup>3</sup>/3 + 5x<sup>2</sup>/2 + 6x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">19.</span><span class="qtag">challenge · function + point</span>
+  <div class="qtext">Find f(x) given <span class="fml">f′(x) = 4x<sup>3</sup> − 2x</span> and <span class="fml">f(1) = 6</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> full recipe with a twist at the end: sometimes the x-terms cancel each other when you plug in the point, and C carries the whole value. Don't panic when that happens — just read off C.</div>
+    <div class="step">Antiderivative: 4x<sup>3</sup> → x<sup>4</sup>; −2x → −x<sup>2</sup>. So f(x) = x<sup>4</sup> − x<sup>2</sup> + C.</div>
+    <div class="step">Point: f(1) = 1 − 1 + C = 0 + C = 6 → C = 6.</div>
+    <div class="step">f(x) = x<sup>4</sup> − x<sup>2</sup> + 6. Check: derivative = 4x<sup>3</sup> − 2x ✓; f(1) = 1 − 1 + 6 = 6 ✓.</div>
+    <div class="ans">f(x) = x<sup>4</sup> − x<sup>2</sup> + 6</div></div>
+</div>
+
+<div class="q"><span class="qnum">20.</span><span class="qtag">challenge finale</span>
+  <div class="qtext">Find f(x) given <span class="fml">f′(x) = (x + 1)(x − 1)</span> and <span class="fml">f(3) = 7</span>. (Multiply out first, then use the full recipe.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the grand combo: expand a product, antidifferentiate term by term, pin down C from a point, and verify. Handy expansion: (x + 1)(x − 1) = x<sup>2</sup> − x + x − 1 = x<sup>2</sup> − 1 (the middle terms cancel — this is the "difference of squares" pattern).</div>
+    <div class="step">Multiply out: f′(x) = x<sup>2</sup> − 1.</div>
+    <div class="step">Antiderivative: x<sup>2</sup> → x<sup>3</sup>/3; −1 → −x. So f(x) = x<sup>3</sup>/3 − x + C.</div>
+    <div class="step">Point: f(3) = 27/3 − 3 + C = 9 − 3 + C = 6 + C = 7 → C = 1.</div>
+    <div class="step">f(x) = x<sup>3</sup>/3 − x + 1. Check: derivative = 3x<sup>2</sup>/3 − 1 = x<sup>2</sup> − 1 = (x + 1)(x − 1) ✓; f(3) = 9 − 3 + 1 = 7 ✓.</div>
+    <div class="ans">f(x) = x<sup>3</sup>/3 − x + 1</div></div>
+</div>
+
+<footer>Lesson 5 of 20 · Intuitive Integration · next: <a href="Lesson06.html">Lesson 6 — The Definite Integral — the Official Symbol</a></footer>
+
+</div>
+<script>
+document.querySelectorAll('.q').forEach(q=>{
+  const btn=q.querySelector('.revealbtn'), sol=q.querySelector('.sol');
+  btn.addEventListener('click',()=>{ sol.classList.add('show'); btn.textContent='Solution shown'; btn.disabled=true; btn.style.opacity=.6; });
+});
+</script>
+</body>
+</html>

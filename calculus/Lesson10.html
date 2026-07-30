@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 10 — Area Between Two Curves</title>
+<style>
+  :root{--accent:#186a3b;--accent2:#239b56;--bg:#f2f7f4;--card:#fff;--ok:#1e8449;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:#1c2833;background:var(--bg);margin:0;padding:0 16px 80px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -16px 20px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  nav{display:flex;gap:10px;margin-bottom:18px;font-size:.9rem;flex-wrap:wrap;}
+  nav a{color:var(--accent);text-decoration:none;font-weight:600;background:#fff;border:1px solid #d5e8dc;border-radius:8px;padding:6px 14px;}
+  nav a:hover{background:#eafaf1;}
+  .goal{background:#fef9e7;border-left:5px solid var(--star);padding:12px 18px;border-radius:8px;margin-bottom:18px;font-size:.95rem;}
+  .goal strong{color:#7d6608;}
+  section{background:var(--card);border-radius:10px;padding:18px 22px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  h2{color:var(--accent);font-size:1.15rem;margin:0 0 10px;}
+  h2 .num{background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;border-radius:6px;padding:2px 9px;margin-right:8px;}
+  ul{margin:8px 0;padding-left:24px;}
+  li{margin-bottom:8px;}
+  strong{color:#145a32;}
+  em.hi{font-style:normal;background:#fef9e7;padding:0 4px;border-radius:3px;}
+  .fml{background:#e9f7ef;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.9em;color:#186a3b;white-space:nowrap;}
+  .ex{background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:.95rem;}
+  .ex b{color:#145a32;}
+  .graph{background:#1b2631;color:#eaeded;border-radius:8px;padding:14px 18px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.82rem;line-height:1.45;overflow-x:auto;margin:10px 0;white-space:pre;}
+  .graph .g{color:#82e0aa;} .graph .y{color:#f7dc6f;} .graph .b{color:#85c1e9;}
+  table.t{border-collapse:collapse;margin:10px 0;font-size:.92rem;}
+  table.t th,table.t td{border:1px solid #cfd8cf;padding:6px 12px;text-align:center;}
+  table.t th{background:var(--accent);color:#fff;font-weight:600;}
+  .qhead{margin:26px 0 8px;color:var(--accent);font-size:1.2rem;border-bottom:2px solid #d4efdf;padding-bottom:6px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid var(--accent2);}
+  .qnum{font-weight:800;color:var(--accent);margin-right:6px;}
+  .qtag{float:right;background:#e9f7ef;color:var(--accent);border-radius:8px;padding:1px 9px;font-size:.68rem;font-weight:700;letter-spacing:.3px;margin-left:8px;}
+  .qtext{font-size:.98rem;margin:4px 0 10px;}
+  .revealbtn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .revealbtn:hover{background:#0e4429;}
+  .sol{display:none;margin-top:12px;background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px;font-size:.93rem;}
+  .sol.show{display:block;}
+  .sol h4{margin:0 0 8px;color:var(--ok);font-size:.9rem;}
+  .sol .ctx{background:#eaf2f8;border-left:4px solid #2e86c1;border-radius:6px;padding:8px 12px;margin:0 0 10px;font-size:.88rem;}
+  .sol .ctx b{color:#1a5276;}
+  .sol .step{margin:6px 0;}
+  .sol .ans{background:#eafaf1;border-radius:6px;padding:6px 12px;margin-top:8px;font-weight:700;color:#145a32;display:inline-block;}
+  footer{text-align:center;color:#85929e;font-size:.85rem;margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Lesson 10 — Area Between Two Curves</h1>
+  <p>Area Between Two Curves · Intuitive Calculus for a Curious Student · Lesson 10 of 20</p>
+</header>
+
+<nav><a href="index.html">📚 All lessons</a><a href="Lesson09.html">← Prev: Lesson 9</a><a href="Lesson11.html">Next: Lesson 11 →</a></nav>
+
+<div class="goal"><strong>🎯 Goal of this lesson:</strong> learn to find the area of the region <em>between two graphs</em> — not just under one. The whole trick fits in one line: at every x the strip's height is <em>top minus bottom</em>, so you integrate <span class="fml">∫ (top − bottom) dx</span>. Plus: how to figure out which curve is on top, and how to find where curves cross when nobody tells you the limits.</div>
+
+<section>
+  <h2><span class="num">1</span> A new question — the gap between two graphs</h2>
+  <ul>
+    <li>So far, every area problem was <strong>one graph and the floor</strong> (the x-axis): area under a curve = total accumulated. Today the question changes: what's the area of the region <em class="hi">between TWO graphs</em>?</li>
+    <li>Picture two runners. The fast one's speed graph sits above the slow one's speed graph. The region <strong>between</strong> the two graphs isn't decoration — it's the <strong>lead</strong> that opens up between them. Fast runner's area = fast runner's distance; slow runner's area = slow runner's distance; the strip between the graphs = the difference = <em class="hi">how far ahead the fast runner gets</em>.</li>
+    <li>This "gap between two accumulations" shows up everywhere: two faucets filling different amounts, money coming in vs money going out, one car pulling away from another.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">2</span> The idea: height of the strip = top − bottom</h2>
+  <ul>
+    <li>Think in rectangles first (like Lesson 1). At some x, the top curve has height <span class="fml">top(x)</span> and the bottom curve has height <span class="fml">bottom(x)</span>. A skinny rectangle standing between them has height <span class="fml">top(x) − bottom(x)</span> — not the full height from the floor, just the gap.</li>
+    <li>Add up all the skinny rectangles and you get the familiar move: <em class="hi">area between = ∫ (top − bottom) dx</em>.</li>
+    <li>Another way to see the same thing: <strong>big area minus small area</strong>. The area under the top curve includes the whole region down to the floor. Subtract the area under the bottom curve, and what's left is exactly the strip between them:</li>
+  </ul>
+  <div class="graph">      <span class="y">top curve</span>
+   |      <span class="y">____________</span>
+   |     <span class="y">/</span>            <span class="y">\</span>
+   |    <span class="y">/</span>  <span class="b">← the strip →</span> <span class="y">\</span>
+   |   <span class="g">_____________________</span>
+   |  <span class="g">/</span>    <span class="g">bottom curve</span>    <span class="g">\</span>
+   | <span class="g">/</span>                       <span class="g">\</span>
+   +----------------------------→ x
+
+ area of strip = (area under <span class="y">top</span>) − (area under <span class="g">bottom</span>)
+               = ∫ top dx − ∫ bottom dx = ∫ (top − bottom) dx</div>
+  <ul>
+    <li>Those two views are the same because integrals let you subtract inside: <span class="fml">∫ top dx − ∫ bottom dx = ∫ (top − bottom) dx</span>.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">3</span> The recipe (3 steps, every time)</h2>
+  <ul>
+    <li><strong>Step 1 — Who's on top?</strong> Pick a test x between the limits and plug it into both functions. The bigger answer belongs to the top curve. Don't guess from the formulas — <em class="hi">test a point!</em></li>
+    <li><strong>Step 2 — What are the limits?</strong> If the problem gives you "from x = a to x = b", great. If it says "the region <em>enclosed</em> by the two curves", the limits are where the curves <strong>cross</strong>: set the two functions <em class="hi">equal to each other and solve</em>. Those crossing points are your a and b.</li>
+    <li><strong>Step 3 — Integrate the gap:</strong> <span class="fml">area = ∫<sub>a</sub><sup>b</sup> (top − bottom) dx</span>, using antiderivatives and the Fundamental Theorem exactly like Lessons 6–8.</li>
+  </ul>
+  <div class="ex"><b>Why "top − bottom" and never the reverse:</b> the gap top − bottom is a positive height, so the integral comes out positive — a real area. If you accidentally do bottom − top, every strip's height goes negative and you get the same number with a minus sign. If your "area" comes out negative, you subtracted in the wrong order — flip it.</div>
+</section>
+
+<section>
+  <h2><span class="num">4</span> Worked example with flat lines (check it with a rectangle)</h2>
+  <div class="ex"><b>Problem:</b> find the area between <span class="fml">y = 6</span> and <span class="fml">y = 2</span> from x = 0 to x = 5.<br><br>
+  <b>Step 1 — top?</b> 6 &gt; 2 everywhere, so y = 6 is the top and y = 2 is the bottom.<br>
+  <b>Step 2 — limits?</b> Given: 0 to 5.<br>
+  <b>Step 3 — integrate the gap:</b> <span class="fml">∫<sub>0</sub><sup>5</sup> (6 − 2) dx = ∫<sub>0</sub><sup>5</sup> 4 dx = 4x |<sub>0</sub><sup>5</sup> = 20 − 0 = 20</span>.<br><br>
+  <b>Check with plain geometry:</b> the region is a rectangle — width 5, height 6 − 2 = 4 — so area = 4 × 5 = <b>20 ✓</b>. The calculus recipe agrees with what your eyes already know. That's how you build trust in a new tool.</div>
+</section>
+
+<section>
+  <h2><span class="num">5</span> Worked example with a curve: y = x and y = x²</h2>
+  <div class="ex"><b>Problem:</b> find the area of the region enclosed by <span class="fml">y = x</span> and <span class="fml">y = x<sup>2</sup></span>.<br><br>
+  <b>Step 2 first (find the limits) —</b> nobody gave us limits, so find the crossings: set <span class="fml">x = x<sup>2</sup></span>, so <span class="fml">x<sup>2</sup> − x = 0</span>, so <span class="fml">x(x − 1) = 0</span> → they cross at <b>x = 0 and x = 1</b>.<br>
+  <b>Step 1 — who's on top between 0 and 1?</b> Test x = ½: the line gives 0.5, the parabola gives (½)² = 0.25. So <b>y = x is on top</b> (0.5 &gt; 0.25).<br>
+  <b>Step 3 — integrate the gap:</b></div>
+  <div class="graph">  y
+ 1 |            <span class="b">✕</span>  ← they cross again at (1, 1)
+   |         <span class="y">/</span> <span class="g">.</span>
+   |       <span class="y">/</span>  <span class="g">.</span>     <span class="y">line y = x (top)</span>
+   |     <span class="y">/</span> ▒ <span class="g">.</span>      <span class="g">curve y = x² (bottom)</span>
+   |   <span class="y">/</span> ▒ <span class="g">.</span>        ▒ = the enclosed sliver
+   | <span class="y">/</span> <span class="g">..</span>
+ 0 <span class="b">✕</span>------------------→ x
+   0            1</div>
+  <div class="ex"><span class="fml">∫<sub>0</sub><sup>1</sup> (x − x<sup>2</sup>) dx</span>. Antiderivative (power rule, Lesson 5): <span class="fml">x<sup>2</sup>/2 − x<sup>3</sup>/3</span>. (Check by differentiating: derivative of x²/2 is x ✓, derivative of x³/3 is x² ✓.)<br>
+  Plug in the top limit: <span class="fml">1/2 − 1/3 = 3/6 − 2/6 = 1/6</span>. Plug in the bottom limit: 0 − 0 = 0.<br>
+  Area = <span class="fml">1/6 − 0</span> = <b>1/6</b>. A thin little sliver — and the numbers agree: it should be small.</div>
+</section>
+
+<section>
+  <h2><span class="num">6</span> Why "the floor" doesn't matter</h2>
+  <ul>
+    <li>Worry you might have: "what if both curves are way up high — doesn't all that empty space under them mess things up?" No — and here's why: <em class="hi">the strip only cares about the gap, not the distance to the floor.</em></li>
+    <li>Try it: the area between <span class="fml">y = 103</span> and <span class="fml">y = 100</span> from x = 0 to 2 is <span class="fml">∫<sub>0</sub><sup>2</sup> (103 − 100) dx = ∫<sub>0</sub><sup>2</sup> 3 dx = 6</span> — exactly the same as the area between y = 3 and y = 0. The "100" cancels in the subtraction.</li>
+    <li>Same with curves: between <span class="fml">y = x<sup>2</sup> + 100</span> and <span class="fml">y = x<sup>2</sup></span>, the x² cancels and the gap is a constant 100. Sliding both curves up or down together doesn't change the strip between them — the subtraction erases whatever they share.</li>
+    <li>This even rescues negative territory: if both curves dip below the x-axis, top − bottom is still the honest positive gap, so the recipe keeps working without any Lesson-9-style sign headaches — <em>as long as you keep the true top on top</em>.</li>
+  </ul>
+</section>
+
+<div class="qhead">✏️ Exercises — 20 problems (write your answer on paper, then reveal)</div>
+
+<div class="q"><span class="qnum">1.</span><span class="qtag">flat lines</span>
+  <div class="qtext">Find the area between the horizontal lines <span class="fml">y = 8</span> and <span class="fml">y = 3</span> from x = 0 to x = 4. Then check your answer with the rectangle formula.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> two horizontal lines make the simplest possible "between" region: a rectangle. The strip's height at every x is top − bottom, so the recipe says integrate that constant gap. It should match width × height exactly.</div>
+    <div class="step">Top: y = 8 (since 8 &gt; 3 everywhere). Gap = 8 − 3 = 5.</div>
+    <div class="step"><span class="fml">∫<sub>0</sub><sup>4</sup> 5 dx = 5x |<sub>0</sub><sup>4</sup> = 20 − 0 = 20</span>.</div>
+    <div class="step">Rectangle check: width 4, height 5 → 4 × 5 = 20 ✓.</div>
+    <div class="ans">20 square units</div></div>
+</div>
+
+<div class="q"><span class="qnum">2.</span><span class="qtag">flat lines</span>
+  <div class="qtext">Find the area between <span class="fml">y = 10</span> and <span class="fml">y = 4</span> from x = 1 to x = 7.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> same rectangle idea, but watch the width — the region runs FROM x = 1 TO x = 7, so the width is 7 − 1 = 6, not 7. Width is always (right end − left end), just like rectangle widths in Lesson 1.</div>
+    <div class="step">Top is y = 10, bottom is y = 4, gap = 10 − 4 = 6.</div>
+    <div class="step"><span class="fml">∫<sub>1</sub><sup>7</sup> 6 dx = 6x |<sub>1</sub><sup>7</sup> = 42 − 6 = 36</span>.</div>
+    <div class="step">Rectangle check: width 6 × height 6 = 36 ✓.</div>
+    <div class="ans">36 square units</div></div>
+</div>
+
+<div class="q"><span class="qnum">3.</span><span class="qtag">parallel lines</span>
+  <div class="qtext">Find the area between the slanted lines <span class="fml">y = x + 5</span> and <span class="fml">y = x + 1</span> from x = 0 to x = 3.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> these two lines are parallel (same slope, 1), like two lanes of a slanted road. Even though BOTH lines climb, the gap between them never changes — and the recipe automatically notices that when you subtract.</div>
+    <div class="step">Test x = 0: top candidate gives 5, other gives 1 → y = x + 5 is on top.</div>
+    <div class="step">Gap = (x + 5) − (x + 1) = 4. The x's cancel — constant gap!</div>
+    <div class="step"><span class="fml">∫<sub>0</sub><sup>3</sup> 4 dx = 4x |<sub>0</sub><sup>3</sup> = 12</span>. (It's a slanted strip, but slanting a strip sideways doesn't change its area — think of a stack of cards pushed over.)</div>
+    <div class="ans">12 square units</div></div>
+</div>
+
+<div class="q"><span class="qnum">4.</span><span class="qtag">line vs line</span>
+  <div class="qtext">Find the area between <span class="fml">y = x + 2</span> and <span class="fml">y = x</span> from x = 0 to x = 4. Do the two lines ever cross?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> to check whether two graphs cross, set them equal and try to solve. If the equation turns into something impossible, they never meet — which is exactly what parallel lines do.</div>
+    <div class="step">Crossing check: x + 2 = x → 2 = 0, which is impossible. They never cross; y = x + 2 stays on top forever.</div>
+    <div class="step">Gap = (x + 2) − x = 2.</div>
+    <div class="step"><span class="fml">∫<sub>0</sub><sup>4</sup> 2 dx = 2x |<sub>0</sub><sup>4</sup> = 8</span>.</div>
+    <div class="ans">Area = 8; the lines never cross</div></div>
+</div>
+
+<div class="q"><span class="qnum">5.</span><span class="qtag">which is on top?</span>
+  <div class="qtext">Between x = 0 and x = 1, which is on top: <span class="fml">y = x</span> or <span class="fml">y = x<sup>2</sup></span>? And between x = 1 and x = 3, which is on top? (Test points — no integrating needed.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> squaring a number between 0 and 1 makes it SMALLER (half of a half is a quarter), but squaring a number bigger than 1 makes it BIGGER. So these two graphs swap places at x = 1. Testing one point inside each stretch is the reliable way to see who's on top there.</div>
+    <div class="step">Test x = ½ (between 0 and 1): line → 0.5, parabola → 0.25. The line y = x is on top.</div>
+    <div class="step">Test x = 2 (between 1 and 3): line → 2, parabola → 4. Now y = x² is on top.</div>
+    <div class="step">They trade places exactly at the crossing points x = 0 and x = 1 (where x = x²). That's why the recipe says to find crossings first — the "top" can change!</div>
+    <div class="ans">On (0, 1): y = x is on top. On (1, 3): y = x² is on top.</div></div>
+</div>
+
+<div class="q"><span class="qnum">6.</span><span class="qtag">two runners</span>
+  <div class="qtext">Runner A runs at a steady 8 m/s and runner B at a steady 5 m/s, both starting together. After 10 seconds, how big is A's lead? Explain why this is an area-between-two-curves question.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background (physics):</b> a speed of 8 m/s means 8 meters get added to your distance every second (Lesson 1: distance = area under the speed graph). Two runners give two speed graphs. The area between the graphs = A's distance − B's distance = the LEAD, i.e., the gap that opens up between them on the track.</div>
+    <div class="step">Both speed graphs are horizontal lines: A at height 8 (top), B at height 5 (bottom).</div>
+    <div class="step">Lead = <span class="fml">∫<sub>0</sub><sup>10</sup> (8 − 5) dt = ∫<sub>0</sub><sup>10</sup> 3 dt = 3t |<sub>0</sub><sup>10</sup> = 30</span>.</div>
+    <div class="step">Sanity check: A ran 80 m, B ran 50 m, difference 30 m ✓ — big area minus small area.</div>
+    <div class="ans">30 meters</div></div>
+</div>
+
+<div class="q"><span class="qnum">7.</span><span class="qtag">line under a roof</span>
+  <div class="qtext">Find the area between <span class="fml">y = 6</span> (top) and <span class="fml">y = 2x</span> from x = 0 to x = 3. Then check your answer using the triangle area formula.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the line y = 2x starts at the floor and climbs until it hits the roof y = 6 exactly at x = 3 (since 2 × 3 = 6). The region between them is a triangle with the right angle at the top-left — so geometry can double-check the calculus. Triangle area = ½ × base × height.</div>
+    <div class="step">Top check at x = 1: roof gives 6, line gives 2 → the roof y = 6 is on top on [0, 3].</div>
+    <div class="step"><span class="fml">∫<sub>0</sub><sup>3</sup> (6 − 2x) dx = (6x − x<sup>2</sup>) |<sub>0</sub><sup>3</sup></span>. (Check: derivative of 6x − x² is 6 − 2x ✓.)</div>
+    <div class="step">At 3: 18 − 9 = 9. At 0: 0. Area = 9.</div>
+    <div class="step">Triangle check: base 3, height 6 → ½ × 3 × 6 = 9 ✓.</div>
+    <div class="ans">9 square units</div></div>
+</div>
+
+<div class="q"><span class="qnum">8.</span><span class="qtag">curve vs roof</span>
+  <div class="qtext">Find the area between <span class="fml">y = 4</span> and <span class="fml">y = x<sup>2</sup></span> from x = 0 to x = 2. (Notice the parabola reaches the roof exactly at x = 2.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the parabola y = x² climbs from 0 and touches the horizontal line y = 4 at x = 2 (because 2² = 4). Between x = 0 and x = 2 the region is the curvy space under the roof and above the bowl — a shape no rectangle or triangle formula handles. That's exactly what the integral recipe is for.</div>
+    <div class="step">Top check at x = 1: roof → 4, parabola → 1 → y = 4 is on top.</div>
+    <div class="step"><span class="fml">∫<sub>0</sub><sup>2</sup> (4 − x<sup>2</sup>) dx = (4x − x<sup>3</sup>/3) |<sub>0</sub><sup>2</sup></span>. (Check: derivative of 4x − x³/3 is 4 − x² ✓.)</div>
+    <div class="step">At 2: 8 − 8/3 = 24/3 − 8/3 = 16/3. At 0: 0.</div>
+    <div class="ans">16/3 square units (≈ 5.33)</div></div>
+</div>
+
+<div class="q"><span class="qnum">9.</span><span class="qtag">find the crossings</span>
+  <div class="qtext">Find the area of the region enclosed by <span class="fml">y = 2x</span> and <span class="fml">y = x<sup>2</sup></span>. (No limits given — you find them!)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> "the region enclosed by" means the pocket trapped between the two graphs. Its left and right edges are where the graphs CROSS — so step one is solving top = bottom. Setting the functions equal finds every x where the two graphs share a point.</div>
+    <div class="step">Crossings: 2x = x² → x² − 2x = 0 → x(x − 2) = 0 → x = 0 and x = 2.</div>
+    <div class="step">Top check at x = 1: line → 2, parabola → 1 → y = 2x is on top between the crossings.</div>
+    <div class="step"><span class="fml">∫<sub>0</sub><sup>2</sup> (2x − x<sup>2</sup>) dx = (x<sup>2</sup> − x<sup>3</sup>/3) |<sub>0</sub><sup>2</sup></span> = (4 − 8/3) − 0 = 12/3 − 8/3 = 4/3.</div>
+    <div class="ans">4/3 square units</div></div>
+</div>
+
+<div class="q"><span class="qnum">10.</span><span class="qtag">two runners, one speeding up</span>
+  <div class="qtext">Runner A's speed is <span class="fml">v = 2t</span> m/s (speeding up) and runner B's speed is <span class="fml">v = t</span> m/s (also speeding up, but slower). Both start together. How far ahead is A after 4 seconds?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background (physics):</b> when speeds change over time, "how far ahead" is still the area between the two speed graphs — but now the graphs are slanted lines instead of flat ones, so we integrate instead of multiplying. The gap in speeds at time t is 2t − t = t, and integrating that gap accumulates the lead second by second.</div>
+    <div class="step">Top check at t = 1: A → 2, B → 1 → A's graph is on top for t &gt; 0.</div>
+    <div class="step">Lead = <span class="fml">∫<sub>0</sub><sup>4</sup> (2t − t) dt = ∫<sub>0</sub><sup>4</sup> t dt = t<sup>2</sup>/2 |<sub>0</sub><sup>4</sup> = 16/2 = 8</span>.</div>
+    <div class="step">Check the long way: A went ∫2t = t² → 16 m; B went ∫t = t²/2 → 8 m; difference 8 m ✓.</div>
+    <div class="ans">8 meters ahead</div></div>
+</div>
+
+<div class="q"><span class="qnum">11.</span><span class="qtag">two faucets</span>
+  <div class="qtext">Faucet A pours water at a steady 6 liters per minute. Faucet B starts at zero and pours at <span class="fml">t</span> liters per minute at time t (it opens up gradually). From t = 0 to t = 6 minutes, how many MORE liters does A deliver than B?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a flow rate (liters per minute) is like a speed for water — total water = area under the rate graph (Lesson 1). "How many more liters" is the difference of two totals, which is the area between the two rate graphs. Note B's rate reaches 6 exactly at t = 6, so on this whole interval A's graph stays on top.</div>
+    <div class="step">Top check at t = 2: A → 6, B → 2 → A on top on [0, 6].</div>
+    <div class="step">Extra water = <span class="fml">∫<sub>0</sub><sup>6</sup> (6 − t) dt = (6t − t<sup>2</sup>/2) |<sub>0</sub><sup>6</sup></span> = (36 − 18) − 0 = 18.</div>
+    <div class="step">Check: A delivered 6 × 6 = 36 L; B delivered ∫t = t²/2 → 18 L; 36 − 18 = 18 ✓.</div>
+    <div class="ans">18 liters more</div></div>
+</div>
+
+<div class="q"><span class="qnum">12.</span><span class="qtag">revenue vs cost</span>
+  <div class="qtext">A lemonade stand earns money at a steady rate of <span class="fml">R = 12</span> dollars per day. Its costs grow: it spends at a rate of <span class="fml">C = 2t</span> dollars per day at time t. What is the total profit from t = 0 to t = 5 days?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background (money):</b> revenue rate = dollars flowing IN per day; cost rate = dollars flowing OUT per day. Profit accumulates at the rate (revenue − cost), so total profit = area between the revenue graph and the cost graph. Note the cost rate 2t only reaches 10 at day 5, still below 12, so revenue stays on top the whole time.</div>
+    <div class="step">Top check at t = 1: revenue → 12, cost → 2 → revenue on top on [0, 5].</div>
+    <div class="step">Profit = <span class="fml">∫<sub>0</sub><sup>5</sup> (12 − 2t) dt = (12t − t<sup>2</sup>) |<sub>0</sub><sup>5</sup></span>. (Check: derivative of 12t − t² is 12 − 2t ✓.)</div>
+    <div class="step">At 5: 60 − 25 = 35. At 0: 0.</div>
+    <div class="ans">$35 profit</div></div>
+</div>
+
+<div class="q"><span class="qnum">13.</span><span class="qtag">crossing lines</span>
+  <div class="qtext">The lines <span class="fml">y = 2x</span> and <span class="fml">y = 8 − 2x</span> cross somewhere. Find the crossing point, then find the area between the lines from x = 0 up to that crossing.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> one line climbs (y = 2x) and one falls (y = 8 − 2x), so they must cross exactly once — like two hikers walking toward each other. Set them equal to find where. Before the crossing, the falling line starts higher, so it's the top.</div>
+    <div class="step">Crossing: 2x = 8 − 2x → 4x = 8 → x = 2 (both give y = 4 there).</div>
+    <div class="step">Top check at x = 0: falling line → 8, climbing line → 0 → y = 8 − 2x is on top on [0, 2].</div>
+    <div class="step"><span class="fml">∫<sub>0</sub><sup>2</sup> ((8 − 2x) − 2x) dx = ∫<sub>0</sub><sup>2</sup> (8 − 4x) dx = (8x − 2x<sup>2</sup>) |<sub>0</sub><sup>2</sup></span> = (16 − 8) − 0 = 8.</div>
+    <div class="ans">They cross at x = 2; area = 8 square units</div></div>
+</div>
+
+<div class="q"><span class="qnum">14.</span><span class="qtag">the floor doesn't matter</span>
+  <div class="qtext">Find the area between <span class="fml">y = x<sup>2</sup> + 10</span> and <span class="fml">y = x<sup>2</sup> + 7</span> from x = 0 to x = 4 — and explain why you never actually had to integrate x².</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> both curves are the same parabola, one slid up 10 and one slid up 7 — like two identical hills, one stacked 3 units above the other. The strip between two graphs depends only on the GAP, not on how high either one floats above the floor. Whatever the two formulas share cancels in the subtraction.</div>
+    <div class="step">Top check at x = 0: 10 vs 7 → y = x² + 10 is on top (it's higher at every x, since the +10 beats the +7).</div>
+    <div class="step">Gap = (x² + 10) − (x² + 7) = 3. The x² terms cancel completely — that's why no x² integration is needed.</div>
+    <div class="step"><span class="fml">∫<sub>0</sub><sup>4</sup> 3 dx = 3x |<sub>0</sub><sup>4</sup> = 12</span>.</div>
+    <div class="ans">12 square units — the x² cancels because both curves share it</div></div>
+</div>
+
+<div class="q"><span class="qnum">15.</span><span class="qtag">crossings on both sides</span>
+  <div class="qtext">Find the area of the region enclosed by <span class="fml">y = 4</span> and <span class="fml">y = x<sup>2</sup></span>. (Careful: the parabola crosses the line in TWO places, one of them negative.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the parabola y = x² is a symmetric bowl. A horizontal line slices the bowl on both sides of the y-axis, because squaring a negative gives a positive: (−2)² = 4 just as 2² = 4. So when you solve x² = 4, keep BOTH square roots. The enclosed region is the cap of the bowl between the two crossings.</div>
+    <div class="step">Crossings: x² = 4 → x = −2 and x = 2.</div>
+    <div class="step">Top check at x = 0: line → 4, parabola → 0 → y = 4 is on top between the crossings.</div>
+    <div class="step"><span class="fml">∫<sub>−2</sub><sup>2</sup> (4 − x<sup>2</sup>) dx = (4x − x<sup>3</sup>/3) |<sub>−2</sub><sup>2</sup></span>.</div>
+    <div class="step">At 2: 8 − 8/3 = 16/3. At −2: −8 − (−8/3) = −8 + 8/3 = −16/3.</div>
+    <div class="step">Area = 16/3 − (−16/3) = 32/3. (Symmetry check: it's twice problem 8's answer of 16/3 ✓ — the left half mirrors the right half.)</div>
+    <div class="ans">32/3 square units (≈ 10.67)</div></div>
+</div>
+
+<div class="q"><span class="qnum">16.</span><span class="qtag">curves that touch</span>
+  <div class="qtext">Show that <span class="fml">y = x<sup>2</sup> + 1</span> and <span class="fml">y = 2x</span> touch at exactly one point, decide which is on top everywhere else, and find the area between them from x = 0 to x = 2.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> when you set two curves equal and the equation has a DOUBLE root (a perfect square like (x − 1)² = 0), the curves don't cross — they kiss at one point and separate again, like a ball resting on a ramp. The same curve stays on top on both sides, and the "gap" briefly shrinks to zero without ever going negative.</div>
+    <div class="step">Set equal: x² + 1 = 2x → x² − 2x + 1 = 0 → (x − 1)² = 0 → only x = 1. One touching point at (1, 2).</div>
+    <div class="step">Top check at x = 0: parabola → 1, line → 0. At x = 2: parabola → 5, line → 4. The parabola is on top on both sides of the touch.</div>
+    <div class="step"><span class="fml">∫<sub>0</sub><sup>2</sup> (x<sup>2</sup> + 1 − 2x) dx = (x<sup>3</sup>/3 − x<sup>2</sup> + x) |<sub>0</sub><sup>2</sup></span>. (Check: derivative is x² − 2x + 1 ✓.)</div>
+    <div class="step">At 2: 8/3 − 4 + 2 = 8/3 − 2 = 2/3. At 0: 0.</div>
+    <div class="ans">They touch only at (1, 2); area = 2/3 square units</div></div>
+</div>
+
+<div class="q"><span class="qnum">17.</span><span class="qtag">runner catch-up · challenge</span>
+  <div class="qtext">Runner A runs at a steady 6 m/s. Runner B starts from rest with speed <span class="fml">v = 2t</span> m/s. (a) At what time do their SPEEDS become equal? (b) How big is A's lead at that moment? (c) At what time does B actually CATCH UP to A?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background (physics):</b> two different questions hide here. Speeds equal = the graphs cross (set 6 = 2t). But B catching up in POSITION means the lead shrinks back to zero — the area between the graphs where A is on top (before the crossing) gets exactly cancelled by the area where B is on top (after). The lead is biggest at the moment the speeds match, because until then A is still pulling away.</div>
+    <div class="step">(a) Speeds equal: 6 = 2t → t = 3 seconds.</div>
+    <div class="step">(b) Lead at t = 3: A on top before then (test t = 1: 6 vs 2). <span class="fml">∫<sub>0</sub><sup>3</sup> (6 − 2t) dt = (6t − t<sup>2</sup>) |<sub>0</sub><sup>3</sup> = 18 − 9 = 9</span> meters.</div>
+    <div class="step">(c) Catch-up when total lead = 0: <span class="fml">∫<sub>0</sub><sup>T</sup> (6 − 2t) dt = 6T − T<sup>2</sup> = 0</span> → T(6 − T) = 0 → T = 6 seconds.</div>
+    <div class="step">Check at t = 6: A has run 6 × 6 = 36 m; B has run ∫2t = t² → 36 m ✓. Dead even.</div>
+    <div class="ans">(a) t = 3 s &nbsp; (b) 9 m lead &nbsp; (c) B catches A at t = 6 s</div></div>
+</div>
+
+<div class="q"><span class="qnum">18.</span><span class="qtag">enclosed by two curves</span>
+  <div class="qtext">Find the area of the region enclosed by <span class="fml">y = x</span> and <span class="fml">y = x<sup>3</sup></span> in the first quadrant (where x ≥ 0).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> cubing acts like squaring did in problem 5: numbers between 0 and 1 get smaller when cubed ((½)³ = ⅛), so the cubic dips below the line there, and they meet again at x = 1 where 1³ = 1. "First quadrant" just means we only look at the pocket where x ≥ 0.</div>
+    <div class="step">Crossings (x ≥ 0): x = x³ → x³ − x = 0 → x(x² − 1) = 0 → x = 0 and x = 1.</div>
+    <div class="step">Top check at x = ½: line → 0.5, cubic → 0.125 → y = x is on top on (0, 1).</div>
+    <div class="step"><span class="fml">∫<sub>0</sub><sup>1</sup> (x − x<sup>3</sup>) dx = (x<sup>2</sup>/2 − x<sup>4</sup>/4) |<sub>0</sub><sup>1</sup></span> = (1/2 − 1/4) − 0 = 1/4. (Check: derivative of x²/2 − x⁴/4 is x − x³ ✓.)</div>
+    <div class="ans">1/4 square unit</div></div>
+</div>
+
+<div class="q"><span class="qnum">19.</span><span class="qtag">top changes mid-way · challenge</span>
+  <div class="qtext">Find the TOTAL area between <span class="fml">y = x</span> and <span class="fml">y = x<sup>2</sup></span> from x = 0 all the way to x = 2. (Warning: the curves cross inside this interval, and the top switches!)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> this is the between-curves version of Lesson 9's net-vs-total idea. If the top switches inside your interval and you integrate one single (top − bottom) the whole way, the two parts partly cancel — like mixing positive and negative area. For TRUE total area: split at the crossing, keep the correct top on each piece, and add the (positive) pieces.</div>
+    <div class="step">Crossing inside (0, 2): x = x² → x = 1. Piece 1 is [0, 1], piece 2 is [1, 2].</div>
+    <div class="step">Piece 1, top = x (test ½): <span class="fml">∫<sub>0</sub><sup>1</sup> (x − x<sup>2</sup>) dx = (x<sup>2</sup>/2 − x<sup>3</sup>/3) |<sub>0</sub><sup>1</sup> = 1/2 − 1/3 = 1/6</span>.</div>
+    <div class="step">Piece 2, top = x² (test x = 1.5: 2.25 vs 1.5): <span class="fml">∫<sub>1</sub><sup>2</sup> (x<sup>2</sup> − x) dx = (x<sup>3</sup>/3 − x<sup>2</sup>/2) |<sub>1</sub><sup>2</sup></span> = (8/3 − 2) − (1/3 − 1/2) = 2/3 − (−1/6) = 2/3 + 1/6 = 5/6.</div>
+    <div class="step">Total = 1/6 + 5/6 = 1. (If you'd integrated (x − x²) straight across [0, 2] you'd get 1/6 − 5/6 = −2/3 — a cancelled, meaningless "net".)</div>
+    <div class="ans">Total area = 1 square unit exactly</div></div>
+</div>
+
+<div class="q"><span class="qnum">20.</span><span class="qtag">grand challenge</span>
+  <div class="qtext">Find the area of the region enclosed by <span class="fml">y = x<sup>2</sup></span> and <span class="fml">y = x + 2</span>. Do all three recipe steps yourself: find the crossings, test who's on top, then integrate.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the full recipe with nothing given. To find where a parabola meets a line, set them equal and solve the quadratic by factoring: get everything on one side, then look for two numbers that multiply to the constant and add to the middle coefficient. Expect two crossings — a line generally slices through a bowl in two places.</div>
+    <div class="step">Step 2 (crossings): x² = x + 2 → x² − x − 2 = 0 → (x − 2)(x + 1) = 0 → x = −1 and x = 2.</div>
+    <div class="step">Step 1 (top, test x = 0 between them): line → 0 + 2 = 2, parabola → 0 → the line y = x + 2 is on top.</div>
+    <div class="step">Step 3: <span class="fml">∫<sub>−1</sub><sup>2</sup> (x + 2 − x<sup>2</sup>) dx = (x<sup>2</sup>/2 + 2x − x<sup>3</sup>/3) |<sub>−1</sub><sup>2</sup></span>. (Check: derivative is x + 2 − x² ✓.)</div>
+    <div class="step">At 2: 4/2 + 4 − 8/3 = 2 + 4 − 8/3 = 6 − 8/3 = 10/3.</div>
+    <div class="step">At −1: 1/2 − 2 + 1/3 = 3/6 − 12/6 + 2/6 = −7/6.</div>
+    <div class="step">Area = 10/3 − (−7/6) = 20/6 + 7/6 = 27/6 = 9/2.</div>
+    <div class="ans">9/2 square units (= 4.5)</div></div>
+</div>
+
+<footer>Lesson 10 of 20 · Intuitive Integration · next: <a href="Lesson11.html">Lesson 11 — Motion I: From Velocity to Position</a></footer>
+
+</div>
+<script>
+document.querySelectorAll('.q').forEach(q=>{
+  const btn=q.querySelector('.revealbtn'), sol=q.querySelector('.sol');
+  btn.addEventListener('click',()=>{ sol.classList.add('show'); btn.textContent='Solution shown'; btn.disabled=true; btn.style.opacity=.6; });
+});
+</script>
+</body>
+</html>

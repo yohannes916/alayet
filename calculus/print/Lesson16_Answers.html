@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Lesson 16 Answer Key — Integrating Sine &amp; Cosine</title>
+<style>
+  @page { size: letter; margin: 0.75in; }
+  *{box-sizing:border-box;}
+  body{font-family:Georgia,"Times New Roman",serif;color:#111;margin:0;font-size:11.5pt;line-height:1.5;}
+  .head{border-bottom:3px solid #b03a2e;padding-bottom:8px;margin-bottom:14px;}
+  .head h1{font-family:Helvetica,Arial,sans-serif;font-size:16pt;margin:0 0 2px;color:#b03a2e;}
+  .head p{margin:0;font-size:10.5pt;color:#333;}
+  .q{margin:0 0 12px;page-break-inside:avoid;}
+  .q .txt{margin-bottom:4px;}
+  .q b.n{color:#b03a2e;font-family:Helvetica,Arial,sans-serif;}
+  .a{background:#f7f7f7;border-left:4px solid #1e8449;border-radius:4px;padding:7px 12px;font-size:11pt;}
+  .a b{color:#145a32;}
+  .ans{color:#145a32;font-weight:bold;}
+</style>
+</head>
+<body>
+
+<div class="head">
+  <h1>ANSWER KEY — Integration Lesson 16 Test: Integrating Sine &amp; Cosine</h1>
+  <p>For the grader · full working shown · give credit for correct method with small arithmetic slips · missing + C on an indefinite integral costs half</p>
+</div>
+
+<div class="q"><div class="txt"><b class="n">1.</b> From the value table: what are sin(3π/2) and cos(2π)?</div>
+<div class="a"><b>Work:</b> 3π/2 is three-quarters around the circle — the point is at the very BOTTOM: height −1, sideways position 0. So sin(3π/2) = −1. 2π is a full lap, back to the start on the far right: cos(2π) = 1. <span class="ans">Answer: sin(3π/2) = −1 and cos(2π) = 1.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">2.</b> Find ∫cos x dx, and check by differentiating.</div>
+<div class="a"><b>Work:</b> we need something whose derivative is cos x, and (sin x)′ = cos x does it. Check: (sin x + C)′ = cos x ✓. <span class="ans">Answer: sin x + C.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">3.</b> Find ∫sin x dx. Why must the minus sign appear?</div>
+<div class="a"><b>Work:</b> guess cos x fails, since (cos x)′ = −sin x (wrong sign). Flip the sign: (−cos x)′ = −(−sin x) = sin x ✓. The minus must be there because differentiating cosine PRODUCES a minus sign, and we need a second minus already in place to cancel it. <span class="ans">Answer: −cos x + C.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">4.</b> Find ∫5 sin x dx.</div>
+<div class="a"><b>Work:</b> the constant 5 rides along: 5 · (−cos x) + C. Check: (−5 cos x)′ = −5 · (−sin x) = 5 sin x ✓. <span class="ans">Answer: −5 cos x + C.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">5.</b> Find ∫(cos x − sin x) dx, and check by differentiating.</div>
+<div class="a"><b>Work:</b> term by term: ∫cos x dx = sin x, and ∫(−sin x) dx = −(−cos x) = +cos x. Sum: sin x + cos x + C. Check: (sin x + cos x)′ = cos x − sin x ✓. <span class="ans">Answer: sin x + cos x + C.</span> (Common error: sin x − cos x, whose derivative is cos x + sin x — wrong.)</div></div>
+
+<div class="q"><div class="txt"><b class="n">6.</b> Compute ∫₀<sup>π/2</sup> sin x dx.</div>
+<div class="a"><b>Work:</b> antiderivative −cos x. FTC: [−cos x]₀<sup>π/2</sup> = (−cos(π/2)) − (−cos 0) = (−0) − (−1) = 0 + 1 = 1. <span class="ans">Answer: 1.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">7.</b> Compute ∫₀<sup>π</sup> cos x dx and explain via signed area.</div>
+<div class="a"><b>Work:</b> [sin x]₀<sup>π</sup> = sin π − sin 0 = 0 − 0 = 0. Explanation: cos x is ABOVE the axis on [0, π/2] (contributing +1) and BELOW it on [π/2, π] (contributing −1); the two pieces cancel exactly. <span class="ans">Answer: 0 — equal areas above and below the axis cancel.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">8.</b> Compute ∫<sub>π</sub><sup>2π</sup> sin x dx. What does the sign tell you?</div>
+<div class="a"><b>Work:</b> [−cos x]<sub>π</sub><sup>2π</sup> = (−cos 2π) − (−cos π) = (−1) − (−(−1)) = −1 − 1 = −2. The negative sign says the sine curve lies BELOW the x-axis on this whole interval (it's the downward hump); the region has size 2 but counts as −2 in signed area. <span class="ans">Answer: −2; sine is below the axis there.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">9.</b> Average value of cos x on [0, π/2].</div>
+<div class="a"><b>Work:</b> average value = (integral) ÷ (interval length). Integral: ∫₀<sup>π/2</sup> cos x dx = [sin x]₀<sup>π/2</sup> = 1 − 0 = 1. Length: π/2. Average = 1 ÷ (π/2) = 2/π ≈ 0.64. <span class="ans">Answer: 2/π (≈ 0.64).</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">10.</b> Challenge: compute ∫₀<sup>π</sup> (2 sin x + x) dx.</div>
+<div class="a"><b>Work:</b> antiderivative term by term: ∫2 sin x dx = −2 cos x and ∫x dx = x²/2, so F(x) = −2 cos x + x²/2. (Check: F′ = 2 sin x + x ✓.) Top limit: F(π) = −2 cos π + π²/2 = −2(−1) + π²/2 = 2 + π²/2. Bottom limit: F(0) = −2 cos 0 + 0 = −2. Subtract: (2 + π²/2) − (−2) = 4 + π²/2. <span class="ans">Answer: 4 + π²/2 (≈ 8.93).</span></div></div>
+
+</body>
+</html>

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 6 — The Definite Integral: the Official Symbol</title>
+<style>
+  :root{--accent:#186a3b;--accent2:#239b56;--bg:#f2f7f4;--card:#fff;--ok:#1e8449;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:#1c2833;background:var(--bg);margin:0;padding:0 16px 80px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -16px 20px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  nav{display:flex;gap:10px;margin-bottom:18px;font-size:.9rem;flex-wrap:wrap;}
+  nav a{color:var(--accent);text-decoration:none;font-weight:600;background:#fff;border:1px solid #d5e8dc;border-radius:8px;padding:6px 14px;}
+  nav a:hover{background:#eafaf1;}
+  .goal{background:#fef9e7;border-left:5px solid var(--star);padding:12px 18px;border-radius:8px;margin-bottom:18px;font-size:.95rem;}
+  .goal strong{color:#7d6608;}
+  section{background:var(--card);border-radius:10px;padding:18px 22px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  h2{color:var(--accent);font-size:1.15rem;margin:0 0 10px;}
+  h2 .num{background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;border-radius:6px;padding:2px 9px;margin-right:8px;}
+  ul{margin:8px 0;padding-left:24px;}
+  li{margin-bottom:8px;}
+  strong{color:#145a32;}
+  em.hi{font-style:normal;background:#fef9e7;padding:0 4px;border-radius:3px;}
+  .fml{background:#e9f7ef;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.9em;color:#186a3b;white-space:nowrap;}
+  .ex{background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:.95rem;}
+  .ex b{color:#145a32;}
+  .graph{background:#1b2631;color:#eaeded;border-radius:8px;padding:14px 18px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.82rem;line-height:1.45;overflow-x:auto;margin:10px 0;white-space:pre;}
+  .graph .g{color:#82e0aa;} .graph .y{color:#f7dc6f;} .graph .b{color:#85c1e9;}
+  table.t{border-collapse:collapse;margin:10px 0;font-size:.92rem;}
+  table.t th,table.t td{border:1px solid #cfd8cf;padding:6px 12px;text-align:center;}
+  table.t th{background:var(--accent);color:#fff;font-weight:600;}
+  .qhead{margin:26px 0 8px;color:var(--accent);font-size:1.2rem;border-bottom:2px solid #d4efdf;padding-bottom:6px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid var(--accent2);}
+  .qnum{font-weight:800;color:var(--accent);margin-right:6px;}
+  .qtag{float:right;background:#e9f7ef;color:var(--accent);border-radius:8px;padding:1px 9px;font-size:.68rem;font-weight:700;letter-spacing:.3px;margin-left:8px;}
+  .qtext{font-size:.98rem;margin:4px 0 10px;}
+  .revealbtn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .revealbtn:hover{background:#0e4429;}
+  .sol{display:none;margin-top:12px;background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px;font-size:.93rem;}
+  .sol.show{display:block;}
+  .sol h4{margin:0 0 8px;color:var(--ok);font-size:.9rem;}
+  .sol .ctx{background:#eaf2f8;border-left:4px solid #2e86c1;border-radius:6px;padding:8px 12px;margin:0 0 10px;font-size:.88rem;}
+  .sol .ctx b{color:#1a5276;}
+  .sol .step{margin:6px 0;}
+  .sol .ans{background:#eafaf1;border-radius:6px;padding:6px 12px;margin-top:8px;font-weight:700;color:#145a32;display:inline-block;}
+  footer{text-align:center;color:#85929e;font-size:.85rem;margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Lesson 6 — The Definite Integral: the Official Symbol</h1>
+  <p>Naming the Thing We've Been Doing All Along · Intuitive Calculus for a Curious Student · Lesson 6 of 20</p>
+</header>
+
+<nav><a href="index.html">📚 All lessons</a><a href="Lesson05.html">← Prev: Lesson 5</a><a href="Lesson07.html">Next: Lesson 7 →</a></nav>
+
+<div class="goal"><strong>🎯 Goal of this lesson:</strong> meet the official symbol <span class="fml">∫<sub>a</sub><sup>b</sup> f(x) dx</span>, learn what every piece of it means, and get comfortable reading it, writing it, and evaluating it with plain geometry. No new math today — just a beautiful new name for the thing you've been doing since Lesson 1.</div>
+
+<section>
+  <h2><span class="num">1</span> Time to name the thing we've been doing</h2>
+  <ul>
+    <li>For five lessons you've been answering the same question over and over: <em class="hi">"what is the TOTAL accumulated from a to b?"</em> Total distance from hour 0 to hour 3. Total water from minute 2 to minute 9. Total area under the rate graph between two moments.</li>
+    <li>Mathematicians got tired of writing that whole sentence, so about 350 years ago they invented a compact symbol for it. Here it is, the star of the course:</li>
+    <li style="list-style:none;font-size:1.3rem;text-align:center;margin:14px 0;"><span class="fml">∫<sub>a</sub><sup>b</sup> f(x) dx</span></li>
+    <li>This is called a <strong>definite integral</strong> — "definite" because it has a definite start (<span class="fml">a</span>) and a definite end (<span class="fml">b</span>), so it comes out to be one definite number.</li>
+    <li>Nothing about the IDEA is new. You already know what this means. Today you just learn to read and write it like a pro.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">2</span> Anatomy of the symbol, piece by piece</h2>
+  <div class="graph">        upper limit → <span class="y">b</span>
+                     <span class="g">⌠</span>
+   "add up..."  →    <span class="g">⎮</span>   <span class="b">f(x)</span>  <span class="y">dx</span>  ← "...a tiny bit of x"
+                     <span class="g">⌡</span>      ↑
+        lower limit → <span class="y">a</span>   the integrand
+                          (the rate / height)</div>
+  <ul>
+    <li><strong>∫</strong> — this is a stretched-out letter <strong>S</strong>, and it stands for <em class="hi">Sum</em>. It's the "add everything up" command. (Chop–multiply–add from Lesson 1, remember?)</li>
+    <li><strong>a and b</strong> — the numbers at the bottom and top are the <strong>limits of integration</strong>: <span class="fml">a</span> is where you start adding, <span class="fml">b</span> is where you stop. "Limits" here just means "boundaries," nothing scary.</li>
+    <li><strong>f(x)</strong> — the function in the middle is called the <strong>integrand</strong>. It's the rate — the HEIGHT of the graph at each spot.</li>
+    <li><strong>dx</strong> — read it as <em class="hi">"a tiny little bit of x."</em> It's the infinitely skinny WIDTH of each slice. In Lesson 3 our rectangles had widths like 1, then 0.5, then 0.25... <span class="fml">dx</span> is what the width becomes when the slices get infinitely skinny.</li>
+    <li>Put it all together and the whole symbol literally reads: <em class="hi">"add up rectangles that are f(x) tall and dx skinny, from x = a to x = b."</em> Height × width, summed. That's all it says.</li>
+  </ul>
+  <div class="ex"><b>Reading practice:</b> <span class="fml">∫<sub>2</sub><sup>9</sup> r(t) dt</span> reads "add up r(t)-tall, dt-skinny slices from t = 2 to t = 9" — in plain English, <b>the total amount accumulated between time 2 and time 9 when the rate is r(t)</b>. (When the variable is time we write <span class="fml">t</span> and <span class="fml">dt</span> instead of <span class="fml">x</span> and <span class="fml">dx</span> — same idea, different letter.)</div>
+</section>
+
+<section>
+  <h2><span class="num">3</span> What it equals: the EXACT area</h2>
+  <ul>
+    <li>In Lesson 3 you sandwiched the true area between too-small and too-big staircases of rectangles, and watched the sandwich squeeze tighter as the rectangles got skinnier.</li>
+    <li><span class="fml">∫<sub>a</sub><sup>b</sup> f(x) dx</span> is defined to be the number those estimates are closing in on: <em class="hi">the EXACT area under the graph of f from a to b</em>.</li>
+    <li>Not an approximation. Not "close enough." The definite integral is the perfect, exact answer that infinitely many infinitely skinny rectangles would give.</li>
+    <li>So from now on, "find <span class="fml">∫<sub>a</sub><sup>b</sup> f(x) dx</span>" and "find the exact area under f from a to b" and "find the exact total accumulated from a to b" are three ways of saying <strong>the same thing</strong>.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">4</span> Evaluating with pure geometry (no shortcuts yet)</h2>
+  <ul>
+    <li>We don't have the magic shortcut yet (that's Lesson 7!). But when the graph is made of straight lines, we can compute integrals EXACTLY with shapes you already know.</li>
+    <li><strong>Constant integrand → rectangle.</strong> <span class="fml">∫<sub>1</sub><sup>4</sup> 5 dx</span>: the graph of 5 is a flat line at height 5, from x = 1 to x = 4. That's a rectangle: width = 4 − 1 = 3, height = 5. Area = 5 × 3 = <strong>15</strong>.</li>
+    <li><strong>Line through the origin → triangle.</strong> <span class="fml">∫<sub>0</sub><sup>4</sup> 3x dx</span>: the graph of 3x starts at height 0 and rises to height 3 × 4 = 12 at x = 4. The region underneath is a triangle: base = 4, height = 12. Area = ½ × 4 × 12 = <strong>24</strong>.</li>
+  </ul>
+  <div class="graph"> height                        height
+  5 | <span class="g">┌─────────┐</span>            12 |          <span class="y">/│</span>
+    | <span class="g">│</span>         <span class="g">│</span>               |        <span class="y">/</span> <span class="y">│</span>
+    | <span class="g">│  15     │</span>               |      <span class="y">/</span>   <span class="y">│</span>
+    | <span class="g">│</span>         <span class="g">│</span>               |    <span class="y">/</span>  24 <span class="y">│</span>
+    | <span class="g">│</span>         <span class="g">│</span>               |  <span class="y">/</span>       <span class="y">│</span>
+  0 +--+---------+--→ x        0 +<span class="y">/</span>─────────+──→ x
+    0  1         4               0          4
+   <span class="b">∫₁⁴ 5 dx = 5×3 = 15</span>          <span class="b">∫₀⁴ 3x dx = ½·4·12 = 24</span></div>
+  <ul>
+    <li><strong>Line that starts above zero → trapezoid (or rectangle + triangle).</strong> <span class="fml">∫<sub>1</sub><sup>3</sup> (x+1) dx</span>: at x = 1 the height is 2; at x = 3 the height is 4. The region is a trapezoid. Two ways to get its area:
+      <ul>
+        <li><em>Slice it:</em> a rectangle 2 tall and 2 wide (area 4) with a triangle on top, base 2, height 4 − 2 = 2 (area ½ × 2 × 2 = 2). Total = 4 + 2 = <strong>6</strong>.</li>
+        <li><em>Trapezoid formula:</em> average of the two parallel sides × width = <span class="fml">½(2+4) × 2 = 6</span>. Same answer, of course.</li>
+      </ul>
+    </li>
+  </ul>
+  <div class="ex"><b>Worked example:</b> evaluate <span class="fml">∫<sub>0</sub><sup>5</sup> 2x dx</span> by geometry. The line 2x goes from height 0 (at x = 0) up to height 10 (at x = 5). Triangle: base 5, height 10, area = ½ × 5 × 10 = <b>25</b>.</div>
+</section>
+
+<section>
+  <h2><span class="num">5</span> Two friendly properties (with pictures)</h2>
+  <ul>
+    <li><strong>Splitting:</strong> <span class="fml">∫<sub>a</sub><sup>b</sup> f(x) dx = ∫<sub>a</sub><sup>c</sup> f(x) dx + ∫<sub>c</sub><sup>b</sup> f(x) dx</span> for any point c between a and b. Why? Chop the region under the graph with a vertical cut at x = c. The left piece plus the right piece is obviously the whole thing. A road-trip version: miles from 9 AM to noon + miles from noon to 5 PM = miles from 9 AM to 5 PM.</li>
+  </ul>
+  <div class="graph">      |     _<span class="b">.-·˙˙·-.</span>_
+      |   <span class="b">.·</span>˙    <span class="y">┊</span>     ˙<span class="b">·.</span>
+      |  <span class="g">left</span>     <span class="y">┊</span>  <span class="g">right</span>
+      | <span class="g">piece</span>    <span class="y">┊</span>  <span class="g">piece</span>
+      +---+-------+------+---→ x
+          a       c      b
+   <span class="b">whole area (a to b) = left (a to c) + right (c to b)</span></div>
+  <ul>
+    <li><strong>Zero width:</strong> <span class="fml">∫<sub>a</sub><sup>a</sup> f(x) dx = 0</span>. Start at a and stop at... a. The "region" is a line with no width at all, so it encloses no area. In trip language: how far do you travel between 3 PM and 3 PM? Nowhere. Zero.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">6</span> Units and meaning: what kind of number comes out</h2>
+  <ul>
+    <li>A definite integral isn't just a number — it carries <strong>units</strong>, and they follow the height × width rule.</li>
+    <li>If <span class="fml">f</span> is measured in <strong>liters per minute</strong> and <span class="fml">x</span> is in <strong>minutes</strong>, then each slice is (liters/minute) × (minutes) = liters. The whole integral is in <em class="hi">liters</em> — a total amount of water, not a rate.</li>
+    <li>General rule: <em class="hi">units of the integral = (units of f) × (units of x)</em>. The "per" always cancels: miles per hour × hours = miles; dollars per day × days = dollars.</li>
+    <li>This is a great sanity check. If someone claims <span class="fml">∫<sub>0</sub><sup>10</sup> v(t) dt</span> is a speed, they've made a mistake — integrating a rate always gives back a total.</li>
+  </ul>
+</section>
+
+<div class="qhead">✏️ Exercises — 20 problems (write your answer on paper, then reveal)</div>
+
+<div class="q"><span class="qnum">1.</span><span class="qtag">words → symbol</span>
+  <div class="qtext">Water flows into a tank at a rate of r(t) liters per minute. Write the definite integral that means "the total water that flowed in from minute 2 to minute 9."</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a definite integral has four parts — the ∫ sign ("add up"), the lower limit (start), the upper limit (end), the integrand (the rate function), and the little d ("tiny bit of the variable"). To translate a sentence, just find the start, the end, and the rate.</div>
+    <div class="step">Start = minute 2 → lower limit is 2. End = minute 9 → upper limit is 9.</div>
+    <div class="step">The rate is r(t), and the variable is t, so the tiny width is dt.</div>
+    <div class="ans"><span class="fml">∫<sub>2</sub><sup>9</sup> r(t) dt</span></div></div>
+</div>
+
+<div class="q"><span class="qnum">2.</span><span class="qtag">symbol → words</span>
+  <div class="qtext">A car's speed after t hours is v(t), measured in miles per hour. Translate <span class="fml">∫<sub>0</sub><sup>5</sup> v(t) dt</span> into a plain-English sentence.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> reading an integral out loud: "add up v(t)-tall, dt-skinny slices from t = 0 to t = 5." Each slice is speed × a tiny bit of time = a tiny bit of distance. Adding up all the tiny bits of distance gives the total distance.</div>
+    <div class="step">The limits say: from time 0 to time 5 hours.</div>
+    <div class="step">The integrand v(t) is a speed, so each little piece v(t) × dt is a little piece of distance.</div>
+    <div class="ans">The total distance (in miles) the car travels between t = 0 and t = 5 hours.</div></div>
+</div>
+
+<div class="q"><span class="qnum">3.</span><span class="qtag">name the parts</span>
+  <div class="qtext">In the integral <span class="fml">∫<sub>1</sub><sup>6</sup> (2x + 3) dx</span>, identify: (a) the integrand, (b) the lower limit, (c) the upper limit, (d) what the dx means.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> vocabulary check! The <b>integrand</b> is the function being added up (the height of the graph). The <b>limits of integration</b> are the start and end values on the x-axis. The <b>dx</b> is the infinitely skinny width of each slice.</div>
+    <div class="step">(a) The integrand is 2x + 3 — the function sandwiched between the ∫ and the dx.</div>
+    <div class="step">(b) The lower limit is 1 (the small number at the bottom — where the adding starts).</div>
+    <div class="step">(c) The upper limit is 6 (the number at the top — where the adding stops).</div>
+    <div class="step">(d) dx means "a tiny little bit of x" — the width of each infinitely skinny rectangle.</div>
+    <div class="ans">(a) 2x + 3 &nbsp; (b) 1 &nbsp; (c) 6 &nbsp; (d) the tiny slice width</div></div>
+</div>
+
+<div class="q"><span class="qnum">4.</span><span class="qtag">geometry · rectangle</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>2</sub><sup>6</sup> 4 dx</span> using geometry.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> when the integrand is a constant, its graph is a flat horizontal line, and the region under it is a plain rectangle. Width = (upper limit − lower limit), height = the constant. A definite integral of a constant is just width × height.</div>
+    <div class="step">Width = 6 − 2 = 4. Height = 4.</div>
+    <div class="step">Area = 4 × 4 = 16.</div>
+    <div class="ans"><span class="fml">∫<sub>2</sub><sup>6</sup> 4 dx</span> = 16</div></div>
+</div>
+
+<div class="q"><span class="qnum">5.</span><span class="qtag">geometry · rectangle</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>0</sub><sup>7</sup> 3 dx</span> using geometry.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> same idea as the last problem — a constant integrand makes a rectangle. Don't let the lower limit of 0 bother you: the width is still (end − start).</div>
+    <div class="step">Width = 7 − 0 = 7. Height = 3.</div>
+    <div class="step">Area = 3 × 7 = 21.</div>
+    <div class="ans"><span class="fml">∫<sub>0</sub><sup>7</sup> 3 dx</span> = 21</div></div>
+</div>
+
+<div class="q"><span class="qnum">6.</span><span class="qtag">zero width</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>3</sub><sup>3</sup> (x² + 100) dx</span> — no computing allowed! Explain your answer in one sentence.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the limits of integration are the start and the end of the region. Look closely at these limits before you touch the integrand — the region runs from x = 3 to x = 3.</div>
+    <div class="step">Start and end are the same point, so the region has width 3 − 3 = 0.</div>
+    <div class="step">A region with zero width encloses zero area — no matter how tall the function is. (Trip version: distance traveled between 3 PM and 3 PM is zero, even in a rocket.)</div>
+    <div class="ans"><span class="fml">∫<sub>3</sub><sup>3</sup> (x² + 100) dx</span> = 0</div></div>
+</div>
+
+<div class="q"><span class="qnum">7.</span><span class="qtag">geometry · triangle</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>0</sub><sup>5</sup> 2x dx</span> using geometry.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the graph of 2x is a straight line through the origin (at x = 0 the height is 0). Under such a line, from 0 out to some point, sits a right triangle: base = the upper limit, height = the line's height at that endpoint. Area = ½ × base × height.</div>
+    <div class="step">At x = 5, the height is 2 × 5 = 10.</div>
+    <div class="step">Triangle: base = 5, height = 10 → area = ½ × 5 × 10 = 25.</div>
+    <div class="ans"><span class="fml">∫<sub>0</sub><sup>5</sup> 2x dx</span> = 25</div></div>
+</div>
+
+<div class="q"><span class="qnum">8.</span><span class="qtag">geometry · triangle</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>0</sub><sup>6</sup> x dx</span> using geometry.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the integrand here is just x itself — the line of slope 1 through the origin. Its height at any point equals the x-value there. Same triangle setup as before.</div>
+    <div class="step">At x = 6, the height is 6.</div>
+    <div class="step">Triangle: base = 6, height = 6 → area = ½ × 6 × 6 = 18.</div>
+    <div class="ans"><span class="fml">∫<sub>0</sub><sup>6</sup> x dx</span> = 18</div></div>
+</div>
+
+<div class="q"><span class="qnum">9.</span><span class="qtag">geometry · trapezoid</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>1</sub><sup>3</sup> (x + 1) dx</span> by splitting the region into a rectangle plus a triangle. Then confirm with the trapezoid formula.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the line x + 1 doesn't pass through the origin, so the region from x = 1 to x = 3 is a trapezoid (a slanted-top shape). Find the height at each end first: at x = 1, height = 1 + 1 = 2; at x = 3, height = 3 + 1 = 4. Then either slice it (rectangle + triangle) or use the trapezoid formula: ½(side 1 + side 2) × width.</div>
+    <div class="step">Rectangle part: 2 tall, 2 wide (from x = 1 to 3) → area = 4.</div>
+    <div class="step">Triangle on top: base 2, height 4 − 2 = 2 → area = ½ × 2 × 2 = 2.</div>
+    <div class="step">Total = 4 + 2 = 6. Trapezoid check: ½(2 + 4) × 2 = 3 × 2 = 6 ✓.</div>
+    <div class="ans"><span class="fml">∫<sub>1</sub><sup>3</sup> (x + 1) dx</span> = 6</div></div>
+</div>
+
+<div class="q"><span class="qnum">10.</span><span class="qtag">splitting property</span>
+  <div class="qtext">You're told <span class="fml">∫<sub>0</sub><sup>4</sup> f(x) dx = 10</span> and <span class="fml">∫<sub>4</sub><sup>7</sup> f(x) dx = 6</span>. Find <span class="fml">∫<sub>0</sub><sup>7</sup> f(x) dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the splitting property says a region cut by a vertical line at x = c satisfies ∫<sub>a</sub><sup>b</sup> = ∫<sub>a</sub><sup>c</sup> + ∫<sub>c</sub><sup>b</sup>. Here the pieces already fit together perfectly: one runs 0 → 4, the next runs 4 → 7, so together they cover 0 → 7 with no gap and no overlap.</div>
+    <div class="step"><span class="fml">∫<sub>0</sub><sup>7</sup> f = ∫<sub>0</sub><sup>4</sup> f + ∫<sub>4</sub><sup>7</sup> f</span> = 10 + 6.</div>
+    <div class="ans"><span class="fml">∫<sub>0</sub><sup>7</sup> f(x) dx</span> = 16</div></div>
+</div>
+
+<div class="q"><span class="qnum">11.</span><span class="qtag">splitting · solve backwards</span>
+  <div class="qtext">You're told <span class="fml">∫<sub>0</sub><sup>8</sup> f(x) dx = 20</span> and <span class="fml">∫<sub>0</sub><sup>3</sup> f(x) dx = 7</span>. Find <span class="fml">∫<sub>3</sub><sup>8</sup> f(x) dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> splitting works in reverse too. If (whole) = (left piece) + (right piece), then (right piece) = (whole) − (left piece). Trip version: if the whole day was 20 miles and the morning was 7 miles, the afternoon was 13 miles.</div>
+    <div class="step"><span class="fml">∫<sub>0</sub><sup>8</sup> f = ∫<sub>0</sub><sup>3</sup> f + ∫<sub>3</sub><sup>8</sup> f</span>, so 20 = 7 + <span class="fml">∫<sub>3</sub><sup>8</sup> f</span>.</div>
+    <div class="step"><span class="fml">∫<sub>3</sub><sup>8</sup> f</span> = 20 − 7 = 13.</div>
+    <div class="ans"><span class="fml">∫<sub>3</sub><sup>8</sup> f(x) dx</span> = 13</div></div>
+</div>
+
+<div class="q"><span class="qnum">12.</span><span class="qtag">units</span>
+  <div class="qtext">In <span class="fml">∫<sub>2</sub><sup>9</sup> r(t) dt</span>, the rate r(t) is in liters per minute and t is in minutes. What units does the value of the integral have, and why?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> every slice of an integral is height × width = (units of the integrand) × (units of the variable). Adding slices doesn't change units, so the whole integral has those same multiplied units. The "per" always cancels.</div>
+    <div class="step">Each slice: (liters/minute) × (minutes) = liters — the minutes cancel.</div>
+    <div class="step">A sum of liters is liters. The integral is a total amount of water, not a rate.</div>
+    <div class="ans">Liters — because (liters per minute) × (minutes) = liters</div></div>
+</div>
+
+<div class="q"><span class="qnum">13.</span><span class="qtag">words → symbol → number</span>
+  <div class="qtext">A hiker walks at a steady v(t) = 3 miles per hour. (a) Write the integral meaning "total distance from hour 1 to hour 4." (b) Evaluate it with geometry.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> two skills in one — translating (start, end, rate → limits and integrand) and then evaluating. Since the rate is the constant 3, the region under the graph is a rectangle, and this whole integral is secretly the rate × time formula from Lesson 1 wearing its fancy new symbol.</div>
+    <div class="step">(a) Start 1, end 4, rate 3: <span class="fml">∫<sub>1</sub><sup>4</sup> 3 dt</span>.</div>
+    <div class="step">(b) Rectangle: width = 4 − 1 = 3 hours, height = 3 mph → area = 3 × 3 = 9. Units: mph × hours = miles.</div>
+    <div class="ans">(a) <span class="fml">∫<sub>1</sub><sup>4</sup> 3 dt</span> &nbsp; (b) 9 miles</div></div>
+</div>
+
+<div class="q"><span class="qnum">14.</span><span class="qtag">geometry · trapezoid</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>2</sub><sup>5</sup> 2x dx</span> using geometry. (Careful — this triangle-looking problem doesn't start at 0!)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the graph of 2x IS a line through the origin, but our region only runs from x = 2 to x = 5 — so the piece we want is a trapezoid, not a full triangle. Heights at the ends: at x = 2 the line is at 2 × 2 = 4; at x = 5 it's at 2 × 5 = 10. Trapezoid area = ½(side 1 + side 2) × width.</div>
+    <div class="step">Left height = 4, right height = 10, width = 5 − 2 = 3.</div>
+    <div class="step">Area = ½(4 + 10) × 3 = ½ × 14 × 3 = 21.</div>
+    <div class="step">(Another way: big triangle 0→5 is ½ × 5 × 10 = 25; cut away the small triangle 0→2, which is ½ × 2 × 4 = 4. Left over: 25 − 4 = 21 ✓ — that's the splitting property in action!)</div>
+    <div class="ans"><span class="fml">∫<sub>2</sub><sup>5</sup> 2x dx</span> = 21</div></div>
+</div>
+
+<div class="q"><span class="qnum">15.</span><span class="qtag">geometry · trapezoid</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>0</sub><sup>4</sup> (2x + 1) dx</span> using geometry.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the line 2x + 1 starts at height 1 (not 0!) when x = 0, so even starting from x = 0 the region is a trapezoid. Step one is always the same: find the height at each end, then use ½(side 1 + side 2) × width.</div>
+    <div class="step">At x = 0: height = 2(0) + 1 = 1. At x = 4: height = 2(4) + 1 = 9.</div>
+    <div class="step">Width = 4 − 0 = 4. Area = ½(1 + 9) × 4 = ½ × 10 × 4 = 20.</div>
+    <div class="step">(Slicing check: rectangle 1 × 4 = 4, plus triangle ½ × 4 × 8 = 16 → 4 + 16 = 20 ✓.)</div>
+    <div class="ans"><span class="fml">∫<sub>0</sub><sup>4</sup> (2x + 1) dx</span> = 20</div></div>
+</div>
+
+<div class="q"><span class="qnum">16.</span><span class="qtag">words → symbol → number</span>
+  <div class="qtext">Water pours from a hose at a steady 6 liters per minute. (a) Write the definite integral for the total water from minute 3 to minute 10. (b) Evaluate it and give the units.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the full translate-then-evaluate pipeline. The rate is the constant 6 (liters per minute), the clock runs from 3 to 10, and a constant integrand always makes a rectangle: width × height.</div>
+    <div class="step">(a) <span class="fml">∫<sub>3</sub><sup>10</sup> 6 dt</span>.</div>
+    <div class="step">(b) Width = 10 − 3 = 7 minutes, height = 6 L/min → 6 × 7 = 42. Units: (liters/minute) × minutes = liters.</div>
+    <div class="ans">(a) <span class="fml">∫<sub>3</sub><sup>10</sup> 6 dt</span> &nbsp; (b) 42 liters</div></div>
+</div>
+
+<div class="q"><span class="qnum">17.</span><span class="qtag">splitting · missing piece</span>
+  <div class="qtext">A function f satisfies <span class="fml">∫<sub>0</sub><sup>10</sup> f(x) dx = 30</span> and <span class="fml">∫<sub>6</sub><sup>10</sup> f(x) dx = 12</span>. Find <span class="fml">∫<sub>0</sub><sup>6</sup> f(x) dx</span>, and say which property you used.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the splitting property ∫<sub>0</sub><sup>10</sup> = ∫<sub>0</sub><sup>6</sup> + ∫<sub>6</sub><sup>10</sup> is really just "whole = left + right." When you know the whole and one piece, subtract to get the other piece. This time the UNKNOWN is the left piece.</div>
+    <div class="step">30 = <span class="fml">∫<sub>0</sub><sup>6</sup> f</span> + 12.</div>
+    <div class="step"><span class="fml">∫<sub>0</sub><sup>6</sup> f</span> = 30 − 12 = 18.</div>
+    <div class="ans"><span class="fml">∫<sub>0</sub><sup>6</sup> f(x) dx</span> = 18 (splitting property, chopping at x = 6)</div></div>
+</div>
+
+<div class="q"><span class="qnum">18.</span><span class="qtag">symbol → words · units</span>
+  <div class="qtext">A house uses electricity at the rate p(t) kilowatts, where t is measured in hours after midnight. Translate <span class="fml">∫<sub>0</sub><sup>24</sup> p(t) dt</span> into plain English, including what units the answer carries. (Reminder from Lesson 1: a kilowatt is a rate of energy use — kilowatt-hours of energy per hour.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background (physics):</b> power (kilowatts) is the RATE of using energy, and energy (kilowatt-hours) is the TOTAL — the thing the electric company bills you for. Integrating a rate over a time window always gives the total accumulated in that window, with units (rate units) × (time units).</div>
+    <div class="step">Limits 0 to 24 hours = midnight to midnight, one full day.</div>
+    <div class="step">Each slice: kilowatts × hours = kilowatt-hours. So the integral is a total energy.</div>
+    <div class="ans">The total energy the house uses in the whole day, measured in kilowatt-hours</div></div>
+</div>
+
+<div class="q"><span class="qnum">19.</span><span class="qtag">geometry · downhill line</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>0</sub><sup>4</sup> (6 − x) dx</span> using geometry.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> nothing in the trapezoid method cares whether the line goes uphill or downhill. The graph of 6 − x starts high and slopes DOWN — but the recipe is identical: height at each end, then ½(side 1 + side 2) × width. (The line would hit zero at x = 6, but we stop at x = 4, so the whole region is still above the axis.)</div>
+    <div class="step">At x = 0: height = 6 − 0 = 6. At x = 4: height = 6 − 4 = 2.</div>
+    <div class="step">Width = 4. Area = ½(6 + 2) × 4 = ½ × 8 × 4 = 16.</div>
+    <div class="ans"><span class="fml">∫<sub>0</sub><sup>4</sup> (6 − x) dx</span> = 16</div></div>
+</div>
+
+<div class="q"><span class="qnum">20.</span><span class="qtag">challenge · piecewise graph</span>
+  <div class="qtext">A machine's output rate f(x) (parts per hour, x in hours) follows this graph: it holds steady at 5 from x = 0 to x = 2, then drops along a straight line from 5 (at x = 2) down to 0 (at x = 6). Evaluate <span class="fml">∫<sub>0</sub><sup>6</sup> f(x) dx</span> and say what the number means.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a piecewise graph is made of simple shapes glued together, and the splitting property lets us handle each piece separately: ∫<sub>0</sub><sup>6</sup> = ∫<sub>0</sub><sup>2</sup> + ∫<sub>2</sub><sup>6</sup>. The flat part makes a rectangle; the straight-line drop to zero makes a triangle.</div>
+    <div class="step">Piece 1 (flat): rectangle from x = 0 to 2, height 5 → area = 5 × 2 = 10.</div>
+    <div class="step">Piece 2 (ramp down): triangle from x = 2 to 6, base = 6 − 2 = 4, height 5 → area = ½ × 4 × 5 = 10.</div>
+    <div class="step">Total = 10 + 10 = 20. Units: (parts/hour) × hours = parts.</div>
+    <div class="ans"><span class="fml">∫<sub>0</sub><sup>6</sup> f(x) dx</span> = 20 — the machine makes 20 parts in the 6 hours</div></div>
+</div>
+
+<footer>Lesson 6 of 20 · Intuitive Integration · next: <a href="Lesson07.html">Lesson 7 — The Fundamental Theorem of Calculus</a></footer>
+
+</div>
+<script>
+document.querySelectorAll('.q').forEach(q=>{
+  const btn=q.querySelector('.revealbtn'), sol=q.querySelector('.sol');
+  btn.addEventListener('click',()=>{ sol.classList.add('show'); btn.textContent='Solution shown'; btn.disabled=true; btn.style.opacity=.6; });
+});
+</script>
+</body>
+</html>

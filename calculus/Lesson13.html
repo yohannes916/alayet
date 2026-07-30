@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 13 — Real-World Accumulation Problems</title>
+<style>
+  :root{--accent:#186a3b;--accent2:#239b56;--bg:#f2f7f4;--card:#fff;--ok:#1e8449;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:#1c2833;background:var(--bg);margin:0;padding:0 16px 80px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -16px 20px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  nav{display:flex;gap:10px;margin-bottom:18px;font-size:.9rem;flex-wrap:wrap;}
+  nav a{color:var(--accent);text-decoration:none;font-weight:600;background:#fff;border:1px solid #d5e8dc;border-radius:8px;padding:6px 14px;}
+  nav a:hover{background:#eafaf1;}
+  .goal{background:#fef9e7;border-left:5px solid var(--star);padding:12px 18px;border-radius:8px;margin-bottom:18px;font-size:.95rem;}
+  .goal strong{color:#7d6608;}
+  section{background:var(--card);border-radius:10px;padding:18px 22px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  h2{color:var(--accent);font-size:1.15rem;margin:0 0 10px;}
+  h2 .num{background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;border-radius:6px;padding:2px 9px;margin-right:8px;}
+  ul{margin:8px 0;padding-left:24px;}
+  li{margin-bottom:8px;}
+  strong{color:#145a32;}
+  em.hi{font-style:normal;background:#fef9e7;padding:0 4px;border-radius:3px;}
+  .fml{background:#e9f7ef;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.9em;color:#186a3b;white-space:nowrap;}
+  .ex{background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:.95rem;}
+  .ex b{color:#145a32;}
+  .graph{background:#1b2631;color:#eaeded;border-radius:8px;padding:14px 18px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.82rem;line-height:1.45;overflow-x:auto;margin:10px 0;white-space:pre;}
+  .graph .g{color:#82e0aa;} .graph .y{color:#f7dc6f;} .graph .b{color:#85c1e9;}
+  table.t{border-collapse:collapse;margin:10px 0;font-size:.92rem;}
+  table.t th,table.t td{border:1px solid #cfd8cf;padding:6px 12px;text-align:center;}
+  table.t th{background:var(--accent);color:#fff;font-weight:600;}
+  .qhead{margin:26px 0 8px;color:var(--accent);font-size:1.2rem;border-bottom:2px solid #d4efdf;padding-bottom:6px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid var(--accent2);}
+  .qnum{font-weight:800;color:var(--accent);margin-right:6px;}
+  .qtag{float:right;background:#e9f7ef;color:var(--accent);border-radius:8px;padding:1px 9px;font-size:.68rem;font-weight:700;letter-spacing:.3px;margin-left:8px;}
+  .qtext{font-size:.98rem;margin:4px 0 10px;}
+  .revealbtn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .revealbtn:hover{background:#0e4429;}
+  .sol{display:none;margin-top:12px;background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px;font-size:.93rem;}
+  .sol.show{display:block;}
+  .sol h4{margin:0 0 8px;color:var(--ok);font-size:.9rem;}
+  .sol .ctx{background:#eaf2f8;border-left:4px solid #2e86c1;border-radius:6px;padding:8px 12px;margin:0 0 10px;font-size:.88rem;}
+  .sol .ctx b{color:#1a5276;}
+  .sol .step{margin:6px 0;}
+  .sol .ans{background:#eafaf1;border-radius:6px;padding:6px 12px;margin-top:8px;font-weight:700;color:#145a32;display:inline-block;}
+  footer{text-align:center;color:#85929e;font-size:.85rem;margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Lesson 13 — Real-World Accumulation Problems</h1>
+  <p>One pattern, many costumes: water, money, bacteria, weather · Lesson 13 of 20</p>
+</header>
+
+<nav><a href="index.html">📚 All lessons</a><a href="Lesson12.html">← Prev: Lesson 12</a><a href="Lesson14.html">Next: Lesson 14 →</a></nav>
+
+<div class="goal"><strong>🎯 Goal of this lesson:</strong> realize that the motion problems you've mastered were never really about motion. Whenever ANYTHING flows, arrives, or grows at a known rate, the total is an integral. Today you'll meet the same math wearing four costumes — water, money, bacteria, and weather — and learn to read a word problem like a detective.</div>
+
+<section>
+  <h2><span class="num">1</span> The universal pattern</h2>
+  <ul>
+    <li>Every rate problem in this course has secretly been the same sentence:
+      <em class="hi">if something changes at a rate r(t), then the TOTAL change from time a to time b is</em>
+      <span class="fml">∫<sub>a</sub><sup>b</sup> r(t) dt</span>.</li>
+    <li>Velocity was just one example — nothing about motion is special. Liters per minute, dollars per day, bacteria per hour, millimeters of rain per hour: <strong>anything with a "per" is a rate, and integrating a rate gives a total</strong>.</li>
+  </ul>
+  <div class="graph"><span class="y">rate of change r(t)</span>   --integrate-->   <span class="g">total accumulated</span>
+
+  speed (m/s)          --∫-->  distance (m)
+  flow (L/min)         --∫-->  water (L)
+  earnings ($/day)     --∫-->  money ($)
+  growth (bugs/hour)   --∫-->  new bacteria (bugs)
+  rainfall (mm/hour)   --∫-->  rain depth (mm)</div>
+  <ul>
+    <li>And just like position needed a starting value: if there was already some amount at the start, then
+      <em class="hi">amount at time b = starting amount + ∫ of the rate</em>.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">2</span> Costume 1 — water and liquids</h2>
+  <ul>
+    <li>A rate like <span class="fml">r(t) = 6t</span> liters per minute means the flow is getting stronger over time: at t = 1 the water pours in at 6 L/min, at t = 2 it's 12 L/min, and so on — like slowly opening a faucet.</li>
+  </ul>
+  <div class="ex"><b>Worked example:</b> a tank fills at <span class="fml">r(t) = 6t</span> L/min. How much water enters during the first 4 minutes?
+  <br><span class="fml">∫<sub>0</sub><sup>4</sup> 6t dt = [3t²]<sub>0</sub><sup>4</sup> = 48 − 0 = <b>48 liters</b></span>.
+  <br>Units: (L/min) × min = L ✓. And if the tank already held 10 L at the start, it now holds 10 + 48 = <b>58 liters</b> — starting amount plus integral.</div>
+</section>
+
+<section>
+  <h2><span class="num">3</span> Costume 2 — money</h2>
+  <ul>
+    <li>Money accumulates at a rate too. Suppose a lemonade stand earns at the rate <span class="fml">r(t) = 50 + 10t</span> dollars per day — $50/day at first, and growing by $10/day each day as word spreads.</li>
+    <li>Total earned over the first week: <span class="fml">∫<sub>0</sub><sup>7</sup> (50 + 10t) dt = [50t + 5t²]<sub>0</sub><sup>7</sup> = 350 + 245 = 595</span> → <em class="hi">$595</em>.</li>
+    <li>Business people have their own names for this rate — "revenue rate" or "cash flow" — but it's the same object: dollars <em>per</em> day, waiting to be integrated.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">4</span> Costume 3 — biology (growing populations)</h2>
+  <ul>
+    <li>A colony of bacteria might grow at the rate <span class="fml">r(t) = 3t²</span> bacteria per hour — slow at first, then faster and faster as more bacteria are around to divide.</li>
+    <li>New bacteria gained in the first 4 hours: <span class="fml">∫<sub>0</sub><sup>4</sup> 3t² dt = [t³]<sub>0</sub><sup>4</sup> = 64</span> bacteria.</li>
+    <li>Population = <strong>starting population + integral</strong>. If the dish started with 200 bacteria: 200 + 64 = <em class="hi">264 bacteria after 4 hours</em>.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">5</span> Costume 4 — weather and the environment</h2>
+  <ul>
+    <li><strong>Rainfall:</strong> a weather station reports rain rate in mm per hour. Integrate over the storm → total rainfall depth in your rain gauge.</li>
+    <li><strong>Pollution:</strong> a factory pipe leaks chemicals into a lake at some liters-per-hour rate. Integrate → total liters of pollution in the lake. (This is how environmental scientists estimate spills.)</li>
+    <li><strong>Snow melting:</strong> melting is a rate OUT — the snow pile's height <em>loses</em> the integral: height = starting height − ∫ (melt rate).</li>
+    <li>New words, same machine. When you see a new field's jargon, hunt for the "per" — that's your r(t).</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">6</span> Reading a word problem like a detective</h2>
+  <ul>
+    <li>Four things to spot, in order:
+      <ul>
+        <li><strong>① The rate:</strong> the quantity with a <em class="hi">"per"</em> in its units (L per min, $ per day...). That's r(t).</li>
+        <li><strong>② The window:</strong> the <em class="hi">"from ... to ..."</em> times. Those are your limits a and b.</li>
+        <li><strong>③ A starting amount:</strong> does the story mention something <em class="hi">already there</em> ("the tank already holds 30 L")? If so, add it after integrating.</li>
+        <li><strong>④ In minus out:</strong> is something flowing in AND out at once? Then the thing only feels the <em class="hi">NET rate = in-rate − out-rate</em> (Lessons 1 and 9).</li>
+      </ul>
+    </li>
+  </ul>
+  <div class="ex"><b>Fully worked in-and-out example:</b> a pool fills from a hose at a steady <span class="fml">8 L/min</span>, but it has a leak that drains water at <span class="fml">2 + t</span> L/min (the leak worsens over time).
+  <br><br><b>① Rates:</b> in = 8, out = 2 + t. <b>④ Net rate:</b> <span class="fml">8 − (2 + t) = 6 − t</span> L/min.
+  <br><b>Read the net rate:</b> it's positive until t = 6 (pool gaining), zero at t = 6, negative after (leak wins — pool draining!). The pool is fullest at t = 6.
+  <br><b>Water gained in the first 6 minutes:</b> <span class="fml">∫<sub>0</sub><sup>6</sup> (6 − t) dt = [6t − ½t²]<sub>0</sub><sup>6</sup> = 36 − 18 = <b>18 liters</b></span>.
+  <br>After t = 6 the level starts dropping — the same "signed area" story as a ball past its peak in Lesson 12.</div>
+</section>
+
+<div class="qhead">✏️ Exercises — 20 problems (write your answer on paper, then reveal)</div>
+
+<div class="q"><span class="qnum">1.</span><span class="qtag">water</span>
+  <div class="qtext">Water flows into a tank at the rate r(t) = 4t liters per minute. How much water enters during the first 5 minutes?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> "liters per minute" is a rate, so the total water is the integral of the rate over the time window. The antiderivative of 4t is 2t² (check: the derivative of 2t² is 4t ✓).</div>
+    <div class="step">Total = <span class="fml">∫<sub>0</sub><sup>5</sup> 4t dt</span> = [2t²]<sub>0</sub><sup>5</sup> = 2 × 25 − 0 = 50.</div>
+    <div class="step">Units: (L/min) × min = liters ✓.</div>
+    <div class="ans">50 liters</div></div>
+</div>
+
+<div class="q"><span class="qnum">2.</span><span class="qtag">money</span>
+  <div class="qtext">A dog-walking business earns money at a steady rate of 20 dollars per day. Use an integral to find the total earned in 6 days.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a constant rate is the easiest integral — it's just rate × time, the rectangle from Lesson 1. Writing it as an integral shows the pattern: total = ∫ (dollars per day) over the days.</div>
+    <div class="step">Total = <span class="fml">∫<sub>0</sub><sup>6</sup> 20 dt</span> = [20t]<sub>0</sub><sup>6</sup> = 120.</div>
+    <div class="step">Sanity check: $20/day for 6 days = 20 × 6 = 120 ✓ — the integral agrees with common sense.</div>
+    <div class="ans">$120</div></div>
+</div>
+
+<div class="q"><span class="qnum">3.</span><span class="qtag">water</span>
+  <div class="qtext">A bathtub fills at the rate r(t) = 5 + 2t liters per minute. How much water enters in the first 4 minutes?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> integrate each piece separately: the antiderivative of the constant 5 is 5t, and the antiderivative of 2t is t². A rate like 5 + 2t means "starts at 5 L/min and strengthens by 2 L/min every minute".</div>
+    <div class="step">Total = <span class="fml">∫<sub>0</sub><sup>4</sup> (5 + 2t) dt</span> = [5t + t²]<sub>0</sub><sup>4</sup> = 20 + 16 = 36.</div>
+    <div class="ans">36 liters</div></div>
+</div>
+
+<div class="q"><span class="qnum">4.</span><span class="qtag">biology</span>
+  <div class="qtext">A bacteria colony grows at the rate r(t) = t² bacteria per hour. How many NEW bacteria appear during the first 3 hours?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> "bacteria per hour" is a growth rate; integrating it counts the total new arrivals. The antiderivative of t² is t³/3 (check: derivative of t³/3 is t² ✓).</div>
+    <div class="step">New bacteria = <span class="fml">∫<sub>0</sub><sup>3</sup> t² dt</span> = [t³/3]<sub>0</sub><sup>3</sup> = 27/3 = 9.</div>
+    <div class="ans">9 new bacteria</div></div>
+</div>
+
+<div class="q"><span class="qnum">5.</span><span class="qtag">weather</span>
+  <div class="qtext">During a storm, rain falls at the rate r(t) = 6 − t millimeters per hour (heavy at first, easing off). How much rain falls between t = 0 and t = 4 hours?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> rainfall rate (mm per hour) tells how fast the water depth in a rain gauge rises. A decreasing rate like 6 − t means the storm weakens — but it's still raining as long as the rate is positive (it stays positive until t = 6, so our whole window is fine).</div>
+    <div class="step">Total rain = <span class="fml">∫<sub>0</sub><sup>4</sup> (6 − t) dt</span> = [6t − ½t²]<sub>0</sub><sup>4</sup> = 24 − 8 = 16.</div>
+    <div class="ans">16 millimeters of rain</div></div>
+</div>
+
+<div class="q"><span class="qnum">6.</span><span class="qtag">starting amount</span>
+  <div class="qtext">A tank already holds 30 liters. Water flows in at a steady 5 liters per minute for 8 minutes. How much water is in the tank at the end?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the integral only counts water that arrives DURING the window — it knows nothing about what was already there. Final amount = starting amount + integral of the rate. (Same reason velocity problems needed v₀.)</div>
+    <div class="step">Water added = <span class="fml">∫<sub>0</sub><sup>8</sup> 5 dt</span> = 5 × 8 = 40 liters.</div>
+    <div class="step">Final amount = 30 + 40 = 70 liters.</div>
+    <div class="ans">70 liters</div></div>
+</div>
+
+<div class="q"><span class="qnum">7.</span><span class="qtag">interpret</span>
+  <div class="qtext">Water enters a reservoir at the rate r(t) liters per minute, where t is in minutes. In plain English, what does <span class="fml">∫<sub>2</sub><sup>5</sup> r(t) dt</span> mean in this story, and what are its units?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> an "interpret the integral" question doesn't want a number — it wants the MEANING. Recipe: the integral of a rate over a window = the total amount accumulated during that window. The limits tell you the window; the rate's units divided by "per what" tell you the answer's units: (L/min) × min = L.</div>
+    <div class="step">The window is from minute 2 to minute 5.</div>
+    <div class="step">So the integral is the total number of liters of water that entered the reservoir between t = 2 and t = 5 minutes.</div>
+    <div class="ans">The water (in liters) added between minute 2 and minute 5</div></div>
+</div>
+
+<div class="q"><span class="qnum">8.</span><span class="qtag">money</span>
+  <div class="qtext">A summer lemonade stand earns at the rate r(t) = 50 + 10t dollars per day. Find the total earned over the first week (t = 0 to t = 7).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a growing earnings rate — $50/day at the start, climbing $10/day each day (maybe good reviews are spreading). Businesses call r(t) a "revenue rate"; math calls it a function to integrate.</div>
+    <div class="step">Total = <span class="fml">∫<sub>0</sub><sup>7</sup> (50 + 10t) dt</span> = [50t + 5t²]<sub>0</sub><sup>7</sup>.</div>
+    <div class="step">= 50 × 7 + 5 × 49 = 350 + 245 = 595.</div>
+    <div class="ans">$595</div></div>
+</div>
+
+<div class="q"><span class="qnum">9.</span><span class="qtag">reverse · find the time</span>
+  <div class="qtext">A tank starts empty and fills at the rate r(t) = 4t liters per minute. At what time does the tank reach 50 liters?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a reverse problem — the total is given, the TIME is unknown. Strategy: write the amount as a formula of t (integrate up to an unknown time t), set it equal to the target, and solve. Same trick as "how long to fall 80 m" in Lesson 12.</div>
+    <div class="step">Amount at time t = <span class="fml">∫<sub>0</sub><sup>t</sup> 4u du</span> = 2t² liters.</div>
+    <div class="step">Set 2t² = 50 → t² = 25 → t = 5.</div>
+    <div class="step">Check: 2 × 5² = 50 ✓.</div>
+    <div class="ans">At t = 5 minutes</div></div>
+</div>
+
+<div class="q"><span class="qnum">10.</span><span class="qtag">in minus out</span>
+  <div class="qtext">Water pours into a barrel at 10 L/min while a crack leaks water out at 3 + t L/min. (a) Write the net rate. (b) How much water does the barrel gain in the first 4 minutes? (c) At what time does the barrel stop gaining?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> with flow in AND out, the barrel only feels the NET rate = in − out. While the net rate is positive the barrel gains; when it hits zero the level peaks; after that the barrel loses. This is exactly the peak-of-the-thrown-ball logic from Lesson 12.</div>
+    <div class="step">(a) Net rate = 10 − (3 + t) = 7 − t L/min.</div>
+    <div class="step">(b) Gain = <span class="fml">∫<sub>0</sub><sup>4</sup> (7 − t) dt</span> = [7t − ½t²]<sub>0</sub><sup>4</sup> = 28 − 8 = 20 liters.</div>
+    <div class="step">(c) Net rate = 0 when 7 − t = 0 → t = 7 minutes. After that the leak wins.</div>
+    <div class="ans">(a) 7 − t L/min &nbsp; (b) 20 liters &nbsp; (c) at t = 7 minutes</div></div>
+</div>
+
+<div class="q"><span class="qnum">11.</span><span class="qtag">biology · with start</span>
+  <div class="qtext">A dish starts with 200 bacteria, and the colony grows at r(t) = 3t² bacteria per hour. What is the population after 4 hours?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> two ingredients: the starting population (already there — the integral doesn't know about it) plus the new arrivals (the integral of the growth rate). The antiderivative of 3t² is t³.</div>
+    <div class="step">New bacteria = <span class="fml">∫<sub>0</sub><sup>4</sup> 3t² dt</span> = [t³]<sub>0</sub><sup>4</sup> = 64.</div>
+    <div class="step">Population = 200 + 64 = 264.</div>
+    <div class="ans">264 bacteria</div></div>
+</div>
+
+<div class="q"><span class="qnum">12.</span><span class="qtag">two-phase</span>
+  <div class="qtext">A hose fills a kiddie pool at 6 L/min for the first 5 minutes, then someone turns it down to 2 L/min for the next 5 minutes. How much water enters in total?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> when the rate follows different rules on different stretches, split the integral at the change (Lesson 6's splitting property): ∫₀¹⁰ = ∫₀⁵ + ∫₅¹⁰, using the right formula on each piece.</div>
+    <div class="step">Phase 1: <span class="fml">∫<sub>0</sub><sup>5</sup> 6 dt</span> = 6 × 5 = 30 liters.</div>
+    <div class="step">Phase 2: <span class="fml">∫<sub>5</sub><sup>10</sup> 2 dt</span> = 2 × 5 = 10 liters.</div>
+    <div class="step">Total = 30 + 10 = 40 liters.</div>
+    <div class="ans">40 liters</div></div>
+</div>
+
+<div class="q"><span class="qnum">13.</span><span class="qtag">weather · melting</span>
+  <div class="qtext">A snow pile is 60 cm tall when the sun comes out. It melts at the rate r(t) = 2t centimeters per hour (melting speeds up as the day warms). How tall is the pile after 5 hours?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> melting is a rate OUT, so it subtracts: height = starting height − ∫ (melt rate). Compute the total melted, then take it away from what was there.</div>
+    <div class="step">Total melted = <span class="fml">∫<sub>0</sub><sup>5</sup> 2t dt</span> = [t²]<sub>0</sub><sup>5</sup> = 25 cm.</div>
+    <div class="step">Height = 60 − 25 = 35 cm.</div>
+    <div class="ans">35 centimeters tall</div></div>
+</div>
+
+<div class="q"><span class="qnum">14.</span><span class="qtag">reverse · with start</span>
+  <div class="qtext">A tank already holds 20 liters and fills at the rate r(t) = 6t liters per minute. At what time does the tank hold 95 liters?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> combine two skills: amount = start + integral, and solve-for-the-time. Write the amount formula first, THEN set it equal to the target — don't forget the starting 20 is part of the 95.</div>
+    <div class="step">Amount at time t = 20 + <span class="fml">∫<sub>0</sub><sup>t</sup> 6u du</span> = 20 + 3t².</div>
+    <div class="step">Set 20 + 3t² = 95 → 3t² = 75 → t² = 25 → t = 5.</div>
+    <div class="step">Check: 20 + 3 × 25 = 95 ✓.</div>
+    <div class="ans">At t = 5 minutes</div></div>
+</div>
+
+<div class="q"><span class="qnum">15.</span><span class="qtag">two-phase · mixed formulas</span>
+  <div class="qtext">Water enters a tank at r(t) = 4t L/min for the first 3 minutes; after t = 3 the flow locks at a constant 12 L/min. How much water enters from t = 0 to t = 8?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the rate has two different FORMULAS, so split the integral at t = 3. Notice the rate is continuous: 4t at t = 3 equals 12, exactly where the constant phase picks up — the faucet stops opening wider and holds steady.</div>
+    <div class="step">Phase 1: <span class="fml">∫<sub>0</sub><sup>3</sup> 4t dt</span> = [2t²]<sub>0</sub><sup>3</sup> = 18 liters.</div>
+    <div class="step">Phase 2: <span class="fml">∫<sub>3</sub><sup>8</sup> 12 dt</span> = 12 × (8 − 3) = 60 liters.</div>
+    <div class="step">Total = 18 + 60 = 78 liters.</div>
+    <div class="ans">78 liters</div></div>
+</div>
+
+<div class="q"><span class="qnum">16.</span><span class="qtag">compare scenarios</span>
+  <div class="qtext">Business A earns at a steady 40 dollars per day. Business B starts from nothing but grows: it earns at 10t dollars per day. Over the first 10 days, which business earns more, and by how much?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> comparing two accumulations = computing two integrals and subtracting. Graphically, A's rate is a flat line at 40 and B's is a ramp reaching 100 by day 10; the winner is whoever encloses more AREA, not whoever ends with the higher rate.</div>
+    <div class="step">A: <span class="fml">∫<sub>0</sub><sup>10</sup> 40 dt</span> = 400 dollars.</div>
+    <div class="step">B: <span class="fml">∫<sub>0</sub><sup>10</sup> 10t dt</span> = [5t²]<sub>0</sub><sup>10</sup> = 500 dollars.</div>
+    <div class="step">B wins by 500 − 400 = 100 dollars — even though B earned almost nothing the first few days.</div>
+    <div class="ans">Business B earns more, by $100</div></div>
+</div>
+
+<div class="q"><span class="qnum">17.</span><span class="qtag">in minus out · peak</span>
+  <div class="qtext">A pond holds 10 kiloliters of water. A stream feeds it at 8 kL/hour while evaporation and outflow remove water at 2t kL/hour. (a) When is the pond fullest? (b) How much water does it hold at that moment?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> net rate = in − out = 8 − 2t. The pond rises while the net rate is positive and peaks the instant it hits zero — exactly like a thrown ball peaking when v = 0. Peak amount = start + integral of the net rate up to the peak time.</div>
+    <div class="step">(a) 8 − 2t = 0 → t = 4 hours. Before t = 4 the net rate is positive (filling); after, negative (draining).</div>
+    <div class="step">(b) Gain by t = 4: <span class="fml">∫<sub>0</sub><sup>4</sup> (8 − 2t) dt</span> = [8t − t²]<sub>0</sub><sup>4</sup> = 32 − 16 = 16 kL.</div>
+    <div class="step">Peak amount = 10 + 16 = 26 kL.</div>
+    <div class="ans">(a) fullest at t = 4 hours &nbsp; (b) 26 kiloliters</div></div>
+</div>
+
+<div class="q"><span class="qnum">18.</span><span class="qtag">weather · rise and fall</span>
+  <div class="qtext">A storm's rain rate is r(t) = 6t − t² millimeters per hour, for t from 0 to 6 hours (it builds up, peaks, then dies out — the rate is 0 at both t = 0 and t = 6). How much total rain falls during the whole 6-hour storm?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a realistic storm: the rate rises, peaks (at t = 3, where r = 9 mm/h), and fades. Integrate each piece: the antiderivative of 6t is 3t², and of t² is t³/3. The rate stays ≥ 0 on the whole window, so the integral is straight accumulation — no signed-area worries.</div>
+    <div class="step">Total = <span class="fml">∫<sub>0</sub><sup>6</sup> (6t − t²) dt</span> = [3t² − t³/3]<sub>0</sub><sup>6</sup>.</div>
+    <div class="step">= 3 × 36 − 216/3 = 108 − 72 = 36.</div>
+    <div class="ans">36 millimeters of rain</div></div>
+</div>
+
+<div class="q"><span class="qnum">19.</span><span class="qtag">challenge · reverse biology</span>
+  <div class="qtext">A dish starts with 50 bacteria, and the colony grows at r(t) = 3t² bacteria per hour. After how many hours does the population reach 175?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the full detective kit in one problem: population = start + integral, target given, time unknown. Build the population formula, set it to 175, solve. A cube root appears — look for a number whose cube you know.</div>
+    <div class="step">Population at time t = 50 + <span class="fml">∫<sub>0</sub><sup>t</sup> 3u² du</span> = 50 + t³.</div>
+    <div class="step">Set 50 + t³ = 175 → t³ = 125 → t = 5 (since 5 × 5 × 5 = 125).</div>
+    <div class="step">Check: 50 + 125 = 175 ✓.</div>
+    <div class="ans">After 5 hours</div></div>
+</div>
+
+<div class="q"><span class="qnum">20.</span><span class="qtag">challenge · full pool story</span>
+  <div class="qtext">A pool holds 100 liters. A hose adds water at 12 L/min while a widening leak drains it at 2t L/min. (a) When is the pool fullest, and how much does it hold then? (b) At what time is the pool back down to its starting 100 liters?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> net rate = 12 − 2t: positive until t = 6, negative after. The pool's whole story: amount(t) = 100 + ∫₀ᵗ (12 − 2u) du = 100 + 12t − t². Part (b) is the "ball lands back where it started" question — the gained area above the axis is exactly cancelled by lost area below it (Lesson 9's signed area).</div>
+    <div class="step">(a) Fullest when net rate = 0: 12 − 2t = 0 → t = 6 min. Amount = 100 + 12 × 6 − 6² = 100 + 72 − 36 = 136 liters.</div>
+    <div class="step">(b) Back to the start when 12t − t² = 0 → t(12 − t) = 0 → t = 12 minutes.</div>
+    <div class="step">Note the symmetry: 6 minutes filling up, 6 minutes draining back — just like the thrown ball's mirror-image flight in Lesson 12.</div>
+    <div class="ans">(a) fullest at t = 6 min with 136 liters &nbsp; (b) back to 100 L at t = 12 min</div></div>
+</div>
+
+<footer>Lesson 13 of 20 · Intuitive Integration · next: <a href="Lesson14.html">Lesson 14 — The Average Value of a Function</a></footer>
+
+</div>
+<script>
+document.querySelectorAll('.q').forEach(q=>{
+  const btn=q.querySelector('.revealbtn'), sol=q.querySelector('.sol');
+  btn.addEventListener('click',()=>{ sol.classList.add('show'); btn.textContent='Solution shown'; btn.disabled=true; btn.style.opacity=.6; });
+});
+</script>
+</body>
+</html>
