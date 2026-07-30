@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 39 — Parametric &amp; Polar Integration</title>
+<style>
+  :root{--accent:#186a3b;--accent2:#239b56;--bg:#f2f7f4;--card:#fff;--ok:#1e8449;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:#1c2833;background:var(--bg);margin:0;padding:0 16px 80px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -16px 20px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  nav{display:flex;gap:10px;margin-bottom:18px;font-size:.9rem;flex-wrap:wrap;}
+  nav a{color:var(--accent);text-decoration:none;font-weight:600;background:#fff;border:1px solid #d5e8dc;border-radius:8px;padding:6px 14px;}
+  nav a:hover{background:#eafaf1;}
+  .goal{background:#fef9e7;border-left:5px solid var(--star);padding:12px 18px;border-radius:8px;margin-bottom:18px;font-size:.95rem;}
+  .goal strong{color:#7d6608;}
+  section{background:var(--card);border-radius:10px;padding:18px 22px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  h2{color:var(--accent);font-size:1.15rem;margin:0 0 10px;}
+  h2 .num{background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;border-radius:6px;padding:2px 9px;margin-right:8px;}
+  ul{margin:8px 0;padding-left:24px;}
+  li{margin-bottom:8px;}
+  strong{color:#145a32;}
+  em.hi{font-style:normal;background:#fef9e7;padding:0 4px;border-radius:3px;}
+  .fml{background:#e9f7ef;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.9em;color:#186a3b;white-space:nowrap;}
+  .ex{background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:.95rem;}
+  .ex b{color:#145a32;}
+  .graph{background:#1b2631;color:#eaeded;border-radius:8px;padding:14px 18px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.82rem;line-height:1.45;overflow-x:auto;margin:10px 0;white-space:pre;}
+  .graph .g{color:#82e0aa;} .graph .y{color:#f7dc6f;} .graph .b{color:#85c1e9;}
+  table.t{border-collapse:collapse;margin:10px 0;font-size:.92rem;}
+  table.t th,table.t td{border:1px solid #cfd8cf;padding:6px 12px;text-align:center;}
+  table.t th{background:var(--accent);color:#fff;font-weight:600;}
+  .qhead{margin:26px 0 8px;color:var(--accent);font-size:1.2rem;border-bottom:2px solid #d4efdf;padding-bottom:6px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid var(--accent2);}
+  .qnum{font-weight:800;color:var(--accent);margin-right:6px;}
+  .qtag{float:right;background:#e9f7ef;color:var(--accent);border-radius:8px;padding:1px 9px;font-size:.68rem;font-weight:700;letter-spacing:.3px;margin-left:8px;}
+  .qtext{font-size:.98rem;margin:4px 0 10px;}
+  .revealbtn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .revealbtn:hover{background:#0e4429;}
+  .sol{display:none;margin-top:12px;background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px;font-size:.93rem;}
+  .sol.show{display:block;}
+  .sol h4{margin:0 0 8px;color:var(--ok);font-size:.9rem;}
+  .sol .ctx{background:#eaf2f8;border-left:4px solid #2e86c1;border-radius:6px;padding:8px 12px;margin:0 0 10px;font-size:.88rem;}
+  .sol .ctx b{color:#1a5276;}
+  .sol .step{margin:6px 0;}
+  .sol .ans{background:#eafaf1;border-radius:6px;padding:6px 12px;margin-top:8px;font-weight:700;color:#145a32;display:inline-block;}
+  footer{text-align:center;color:#85929e;font-size:.85rem;margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Lesson 39 — Parametric &amp; Polar Integration</h1>
+  <p>Curves That Move &amp; Pizza-Slice Areas · Intuitive Calculus for a Curious Student · Lesson 39 of 40</p>
+</header>
+
+<nav><a href="index.html">📚 All lessons</a><a href="Lesson38.html">← Lesson 38</a><a href="Lesson40.html">Next: Lesson 40 →</a></nav>
+
+<div class="goal"><strong>🎯 Goal of this lesson:</strong> learn TWO new languages for describing curves — <em>parametric</em> (a moving point with a clock) and <em>polar</em> (distance-and-angle addresses) — and discover that your old integration ideas still work perfectly: <em>distance traveled = ∫ speed dt</em>, and <em>polar area = adding up pizza wedges</em>. This is the last new machinery of the course!</div>
+
+<section>
+  <h2><span class="num">1</span> Parametric curves — a point driven by a clock</h2>
+  <ul>
+    <li>Every graph so far was <span class="fml">y = f(x)</span>: for each x, one height. But think of a <strong>video-game character</strong> moving around the screen. At each moment <span class="fml">t</span> (time!), the character has an x-coordinate AND a y-coordinate — and each is its own function of time:</li>
+  </ul>
+  <div class="ex"><b>A parametric curve</b> is a moving point <span class="fml">( x(t), y(t) )</span> — two separate "clock-driven" functions, one for each coordinate. The variable <span class="fml">t</span> is called the <b>parameter</b>, and it usually means time.</div>
+  <ul>
+    <li>Let's plot one by hand: <span class="fml">x = t², y = t</span> for t from −2 to 2. Just feed in clock times:</li>
+  </ul>
+  <table class="t">
+    <tr><th>t</th><th>x = t²</th><th>y = t</th><th>point</th></tr>
+    <tr><td>−2</td><td>4</td><td>−2</td><td>(4, −2)</td></tr>
+    <tr><td>−1</td><td>1</td><td>−1</td><td>(1, −1)</td></tr>
+    <tr><td>0</td><td>0</td><td>0</td><td>(0, 0)</td></tr>
+    <tr><td>1</td><td>1</td><td>1</td><td>(1, 1)</td></tr>
+    <tr><td>2</td><td>4</td><td>2</td><td>(4, 2)</td></tr>
+  </table>
+  <div class="graph">  y
+  2 |                          <span class="g">●</span> t = 2
+  1 |        <span class="g">●</span> t = 1          <span class="b">the point sweeps UP</span>
+  0 | <span class="g">●</span> t = 0                <span class="b">along a sideways parabola</span>
+ −1 |        <span class="g">●</span> t = −1
+ −2 |                          <span class="g">●</span> t = −2
+    +——————————————————————————————→ x
+    0        1        2   3   4</div>
+  <ul>
+    <li>Since <span class="fml">y = t</span>, we have <span class="fml">x = y²</span> — a <strong>sideways parabola</strong>. Notice: this is NOT the graph of a function y = f(x) (it fails the vertical line test — x = 1 has two points!). Parametric language handles it easily.</li>
+    <li><strong>Why we need this:</strong> ① curves that aren't function graphs — circles, loops, spirals; ② <em class="hi">motion with direction</em> — the curve knows WHERE the point is at each time and WHICH WAY it's going.</li>
+    <li>The star example: <span class="fml">x = cos t, y = sin t</span>. At t = 0 the point is (1, 0) (east). At t = π/2 it's (0, 1) (north). At t = π it's (−1, 0) (west). It traces the <strong>unit circle, counterclockwise</strong>, one full lap every 2π of time.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">2</span> Velocity in 2-D — and speed via Pythagoras</h2>
+  <ul>
+    <li>The moving point has TWO velocities at once: <span class="fml">dx/dt</span> = how fast it moves <strong>horizontally</strong>, and <span class="fml">dy/dt</span> = how fast it moves <strong>vertically</strong>. Just ordinary derivatives of the two clock functions.</li>
+    <li>But how fast is the point <em>actually</em> moving along its path? Picture the two velocities as the sides of a rectangle: in a tiny slice of time the point moves a little bit right AND a little bit up, so its true motion is the <strong>diagonal</strong>. Diagonals come from the <strong>Pythagorean theorem</strong>:</li>
+  </ul>
+  <div class="graph">          <span class="g">↗ true motion (the diagonal)</span>
+         <span class="g">/</span> |
+        <span class="g">/</span>  | <span class="y">dy/dt (vertical speed)</span>
+       <span class="g">/</span>   |
+      ●————————
+      <span class="y">dx/dt (horizontal speed)</span>
+
+  speed² = (dx/dt)² + (dy/dt)²   <span class="b">← Pythagoras!</span></div>
+  <div class="ex"><b>Speed of a parametric point:</b> <span class="fml">speed = √( (dx/dt)² + (dy/dt)² )</span></div>
+  <div class="ex"><b>Worked example:</b> <span class="fml">x = 3t, y = 4t</span>. Then dx/dt = 3 and dy/dt = 4, so speed = √(3² + 4²) = √(9 + 16) = √25 = <b>5, at every moment</b>. A 3-4-5 right triangle! The point slides along a straight line at a perfectly steady speed of 5.</div>
+</section>
+
+<section>
+  <h2><span class="num">3</span> Distance traveled = ∫ speed dt — Lesson 1's idea, now in 2-D!</h2>
+  <ul>
+    <li>Way back in Lesson 1: <em class="hi">distance = speed × time</em>, and when speed changes, distance = <strong>∫ speed dt</strong>. That idea never stopped being true — it works even when the path curves through 2-D:</li>
+  </ul>
+  <div class="ex"><b>Parametric arc length (= distance traveled):</b> <span class="fml">L = ∫ √( (dx/dt)² + (dy/dt)² ) dt</span> — literally "add up speed × tiny time" over the trip.</div>
+  <ul>
+    <li><strong>First worked example — the circle.</strong> Take <span class="fml">x = cos t, y = sin t</span> on [0, 2π]. Then dx/dt = −sin t and dy/dt = cos t, so speed = √(sin²t + cos²t).</li>
+    <li>Why is <span class="fml">sin²t + cos²t = 1</span>? Look at the unit circle: the point (cos t, sin t) sits at distance 1 from the origin, and its coordinates are the legs of a right triangle whose hypotenuse is that radius. Pythagoras: (leg)² + (leg)² = (hypotenuse)², i.e. <em class="hi">cos²t + sin²t = 1²= 1, always</em>. (Check t = 0: 0 + 1 = 1 ✓.)</li>
+    <li>So speed = √1 = 1: the point cruises at constant speed 1. Distance = <span class="fml">∫₀^2π 1 dt = 2π</span> — exactly the circumference of a circle of radius 1. <strong>The formula rediscovered geometry!</strong> ✓</li>
+  </ul>
+  <div class="ex"><b>Second worked example (a beautiful u-sub):</b> <span class="fml">x = t², y = (2/3)t³</span> for t in [0, √3]. Find the distance traveled.<br><br>
+  <b>Step 1 — velocities:</b> dx/dt = 2t, &nbsp; dy/dt = 2t².<br>
+  <b>Step 2 — speed²:</b> (2t)² + (2t²)² = 4t² + 4t⁴ = 4t²(1 + t²). Factoring made it a perfect setup!<br>
+  <b>Step 3 — speed:</b> √(4t²(1+t²)) = 2t√(1 + t²) (fine since t ≥ 0 here, so √(4t²) = 2t).<br>
+  <b>Step 4 — integrate:</b> L = ∫₀^√3 2t√(1 + t²) dt. The fingerprint! Let u = 1 + t², so du = 2t dt — exactly what's sitting there.<br>
+  <b>Step 5 — new limits:</b> t = 0 → u = 1; &nbsp; t = √3 → u = 1 + 3 = 4.<br>
+  <b>Step 6:</b> L = ∫₁⁴ √u du = [ (2/3)u^(3/2) ]₁⁴ = (2/3)(4^(3/2) − 1) = (2/3)(8 − 1) = <b>14/3</b>.<br>
+  <b>Check:</b> d/du of (2/3)u^(3/2) is u^(1/2) = √u ✓, and 4^(3/2) = (√4)³ = 2³ = 8 ✓.</div>
+</section>
+
+<section>
+  <h2><span class="num">4</span> Polar coordinates — a new address system</h2>
+  <ul>
+    <li>Instead of "go right x, go up y," describe a point by: <em class="hi">how far from the origin (r), and at what angle from due east (θ)</em>. Same points, new language — like giving directions by "2 miles northeast" instead of street grid.</li>
+    <li>Simple polar equations:
+      <ul>
+        <li><span class="fml">r = 2</span>: all points at distance 2, any angle — a <strong>circle of radius 2</strong>.</li>
+        <li><span class="fml">θ = π/4</span>: all points at angle 45°, any distance — a <strong>ray</strong> heading northeast.</li>
+      </ul>
+    </li>
+    <li>Now a surprise: <span class="fml">r = 2cos θ</span>. Plot it by table:</li>
+  </ul>
+  <table class="t">
+    <tr><th>θ</th><th>0</th><th>π/6</th><th>π/4</th><th>π/3</th><th>π/2</th></tr>
+    <tr><td>r = 2cos θ</td><td>2</td><td>√3 ≈ 1.73</td><td>√2 ≈ 1.41</td><td>1</td><td>0</td></tr>
+  </table>
+  <ul>
+    <li>Start 2 units east; as the angle swings up, the distance shrinks until the point comes home to the origin at θ = π/2. The mirror happens for negative angles. The result is a <strong>circle of radius 1 passing through the origin</strong>, centered at (1, 0). A circle, hiding inside a cosine!</li>
+    <li>And the famous <strong>cardioid</strong> ("heart curve") <span class="fml">r = 1 + cos θ</span>:</li>
+  </ul>
+  <table class="t">
+    <tr><th>θ</th><th>0</th><th>π/2</th><th>π</th><th>3π/2</th></tr>
+    <tr><td>r = 1 + cos θ</td><td>2</td><td>1</td><td>0</td><td>1</td></tr>
+  </table>
+  <div class="graph">              θ = π/2, r = 1
+                 <span class="g">●</span>
+            <span class="g">╭“```╮</span>
+   θ = π  <span class="g">●</span><span class="y">dimple</span> <span class="g">╲</span>
+   r = 0  <span class="g">╰</span>       <span class="g">●</span>  θ = 0, r = 2   → east
+            <span class="g">╰....╱</span>
+                 <span class="g">●</span>
+              θ = 3π/2, r = 1        <span class="b">a heart lying on its side ♥</span></div>
+  <ul>
+    <li>Fat side (r = 2) toward east, a dimple pinching to r = 0 at the west. Curves like this are painful in x-y language and effortless in polar.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">5</span> Polar area — the slices are pizza wedges now</h2>
+  <ul>
+    <li>For y = f(x) we found area with skinny <strong>vertical rectangles</strong>. In polar land, the natural slice is a skinny <strong>pizza wedge</strong>: fix a tiny angle dθ, and the curve carves out a thin sector of radius r.</li>
+  </ul>
+  <div class="graph">            <span class="g">arc</span>
+          <span class="g">——</span>
+        <span class="g">╱</span><span class="y">╲ dθ wedge</span>       <span class="b">a full circle of radius r has area πr²</span>
+   <span class="g">r ╱</span>  <span class="y">│</span>              <span class="b">this wedge is the fraction dθ/(2π) of it:</span>
+    <span class="g">╱</span> <span class="y">↖ tiny angle dθ</span>
+   ●————————             <span class="b">wedge area = (dθ/2π) · πr² = ½ r² dθ</span>
+ origin</div>
+  <ul>
+    <li><strong>Deriving the wedge formula:</strong> a whole circle of radius r has area πr². A wedge with angle dθ is the fraction <span class="fml">dθ/(2π)</span> of the whole circle. So its area is <span class="fml">(dθ/2π) · πr² = ½ r² dθ</span>. The π's cancel — clean!</li>
+    <li>Add up all the wedges as θ sweeps around:</li>
+  </ul>
+  <div class="ex"><b>Polar area formula:</b> <span class="fml">A = ½ ∫ r² dθ</span> &nbsp; (r may depend on θ; the limits are the starting and ending angles of the sweep).</div>
+  <div class="ex"><b>Sanity check</b> — the circle r = 2, swept all the way around: A = ½ ∫₀^2π (2)² dθ = ½ ∫₀^2π 4 dθ = ½ · 4 · 2π = <b>4π</b>. And geometry says π · 2² = 4π ✓. The wedge machine agrees with elementary school!</div>
+</section>
+
+<section>
+  <h2><span class="num">6</span> Worked: the area of the cardioid (and the cos² trick)</h2>
+  <ul>
+    <li>Area inside <span class="fml">r = 1 + cos θ</span>: sweep θ from 0 to 2π: <span class="fml">A = ½ ∫₀^2π (1 + cos θ)² dθ</span>.</li>
+    <li><strong>Expand:</strong> (1 + cos θ)² = 1 + 2cos θ + cos²θ. The first two pieces are easy; but what is the integral of <strong>cos²θ</strong>? We need one new identity.</li>
+    <li><em class="hi">The half-angle identity: cos²θ = (1 + cos 2θ)/2.</em> It converts a <em>square</em> (hard to integrate) into a plain cosine of a doubled angle (easy!). Verify it before trusting it:
+      <ul>
+        <li>θ = 0: left side cos²0 = 1; right side (1 + cos 0)/2 = (1+1)/2 = 1 ✓</li>
+        <li>θ = π/2: left side cos²(π/2) = 0; right side (1 + cos π)/2 = (1−1)/2 = 0 ✓</li>
+      </ul>
+    </li>
+    <li><strong>Integrate the three pieces from 0 to 2π:</strong>
+      <ul>
+        <li>∫₀^2π 1 dθ = 2π.</li>
+        <li>∫₀^2π 2cos θ dθ = [2 sin θ]₀^2π = 0 − 0 = 0. (A full lap of cosine cancels itself.)</li>
+        <li>∫₀^2π cos²θ dθ = ∫₀^2π (1 + cos 2θ)/2 dθ = [ θ/2 + (sin 2θ)/4 ]₀^2π = (π + 0) − (0 + 0) = π.</li>
+      </ul>
+    </li>
+    <li><strong>Assemble:</strong> A = ½ (2π + 0 + π) = ½ · 3π = <em class="hi">3π/2</em>. The heart holds exactly one-and-a-half π of area. ❤️</li>
+    <li>Check the antiderivative used: d/dθ [θ/2 + (sin 2θ)/4] = 1/2 + (2cos 2θ)/4 = (1 + cos 2θ)/2 = cos²θ ✓.</li>
+  </ul>
+</section>
+
+<div class="qhead">✏️ Exercises — 20 problems (write your answer on paper, then reveal)</div>
+
+<div class="q"><span class="qnum">1.</span><span class="qtag">parametric table</span>
+  <div class="qtext">A point moves with x = t + 1, y = 2t for t in [0, 3]. Make a table of points at t = 0, 1, 2, 3, then describe the curve the point traces. (Hint: solve for t in the x-equation and substitute.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a parametric curve is a moving point (x(t), y(t)) — each coordinate is its own clock-driven function. To identify the shape, "eliminate the parameter": solve one equation for t and substitute into the other.</div>
+    <div class="step">Table: t = 0 → (1, 0); t = 1 → (2, 2); t = 2 → (3, 4); t = 3 → (4, 6).</div>
+    <div class="step">From x = t + 1 we get t = x − 1, so y = 2t = 2(x − 1) = 2x − 2.</div>
+    <div class="step">That's a straight line of slope 2 — the point starts at (1, 0) and slides up-right along it.</div>
+    <div class="ans">The line y = 2x − 2, traced from (1, 0) to (4, 6)</div></div>
+</div>
+
+<div class="q"><span class="qnum">2.</span><span class="qtag">parametric table</span>
+  <div class="qtext">Plot x = t², y = t + 1 at t = −2, −1, 0, 1, 2. What familiar shape is this, and how is it different from the lesson's example x = t², y = t?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> feeding times into both clock functions gives the points; comparing to a known curve reveals the shape. Since y = t + 1 means t = y − 1, we can substitute into x = t².</div>
+    <div class="step">Table: t = −2 → (4, −1); t = −1 → (1, 0); t = 0 → (0, 1); t = 1 → (1, 2); t = 2 → (4, 3).</div>
+    <div class="step">t = y − 1, so x = (y − 1)²: a sideways parabola opening right, with its nose at (0, 1).</div>
+    <div class="step">It's the lesson's sideways parabola x = y² shifted UP by 1 (because the y-clock runs 1 ahead).</div>
+    <div class="ans">The sideways parabola x = (y − 1)² — the lesson's curve shifted up 1 unit</div></div>
+</div>
+
+<div class="q"><span class="qnum">3.</span><span class="qtag">velocity + speed</span>
+  <div class="qtext">A point moves with x = t³, y = 5t. Find dx/dt and dy/dt at t = 2, then find the speed at t = 2.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> dx/dt is the horizontal speed and dy/dt is the vertical speed. The actual speed along the path is the diagonal of the velocity rectangle: speed = √((dx/dt)² + (dy/dt)²) — Pythagoras.</div>
+    <div class="step">dx/dt = 3t², so at t = 2: 3(4) = 12. &nbsp; dy/dt = 5 (constant).</div>
+    <div class="step">speed = √(12² + 5²) = √(144 + 25) = √169 = 13.</div>
+    <div class="step">A 5-12-13 right triangle — the cousin of the lesson's 3-4-5!</div>
+    <div class="ans">dx/dt = 12, dy/dt = 5, speed = 13</div></div>
+</div>
+
+<div class="q"><span class="qnum">4.</span><span class="qtag">constant speed check</span>
+  <div class="qtext">Show that the point x = 3t, y = 4t − 1 moves at the same speed at EVERY time. What is that speed?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> if both velocity components are constants, the diagonal (the speed) is constant too — the point cruises along a straight line at a steady pace. The "− 1" in y only shifts where the point starts; it vanishes when we differentiate.</div>
+    <div class="step">dx/dt = 3 and dy/dt = 4 — both constant, no t anywhere.</div>
+    <div class="step">speed = √(3² + 4²) = √(9 + 16) = √25 = 5, at every moment.</div>
+    <div class="ans">Speed = 5 always (constant velocity components → constant speed)</div></div>
+</div>
+
+<div class="q"><span class="qnum">5.</span><span class="qtag">the circle</span>
+  <div class="qtext">For the parametric circle x = cos t, y = sin t: (a) where is the point at t = π/2? (b) Show that x² + y² = 1 at every time t — why does that prove the point stays on the unit circle?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> x² + y² is the squared distance from the origin (Pythagoras: the legs are x and y, the hypotenuse is the distance). If x² + y² = 1 forever, the point stays exactly 1 unit from the origin — that IS the unit circle.</div>
+    <div class="step">(a) At t = π/2: x = cos(π/2) = 0, y = sin(π/2) = 1 → the point (0, 1), the top of the circle.</div>
+    <div class="step">(b) x² + y² = cos²t + sin²t = 1 by the Pythagorean identity (the coordinates of a unit-circle point are the legs of a right triangle with hypotenuse 1).</div>
+    <div class="step">Distance from origin = √1 = 1 at all times → the point never leaves the unit circle.</div>
+    <div class="ans">(a) (0, 1) &nbsp; (b) cos²t + sin²t = 1, so the distance from the origin is always 1</div></div>
+</div>
+
+<div class="q"><span class="qnum">6.</span><span class="qtag">distance = ∫ speed</span>
+  <div class="qtext">A point moves with x = 6t, y = 8t. Find its speed, then use L = ∫ speed dt to find the distance it travels from t = 0 to t = 3.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> distance traveled = ∫ speed dt — Lesson 1's "rate × time" idea in 2-D. When the speed is constant, the integral is just speed × elapsed time.</div>
+    <div class="step">dx/dt = 6, dy/dt = 8 → speed = √(36 + 64) = √100 = 10.</div>
+    <div class="step">L = ∫₀³ 10 dt = 10 · 3 = 30.</div>
+    <div class="step">Check: the point goes from (0,0) to (18, 24); straight-line distance = √(18² + 24²) = √(324 + 576) = √900 = 30 ✓.</div>
+    <div class="ans">Speed = 10, distance = 30</div></div>
+</div>
+
+<div class="q"><span class="qnum">7.</span><span class="qtag">speed at a time</span>
+  <div class="qtext">A point moves with x = 2t², y = 3t. (a) Find its speed at t = 1. (b) Find its speed at t = 0 — and explain in words what the point is doing at that instant.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> speed can change from moment to moment when a velocity component contains t. Plug the specific time into dx/dt and dy/dt first, THEN apply Pythagoras.</div>
+    <div class="step">dx/dt = 4t, dy/dt = 3.</div>
+    <div class="step">(a) At t = 1: dx/dt = 4, dy/dt = 3 → speed = √(16 + 9) = √25 = 5. (A 3-4-5 triangle!)</div>
+    <div class="step">(b) At t = 0: dx/dt = 0, dy/dt = 3 → speed = √(0 + 9) = 3. The point has NO horizontal motion at that instant — it is moving straight up at speed 3.</div>
+    <div class="ans">(a) 5 &nbsp; (b) 3 — moving purely vertically at that moment</div></div>
+</div>
+
+<div class="q"><span class="qnum">8.</span><span class="qtag">polar plotting</span>
+  <div class="qtext">Describe the graph of each polar equation in words: (a) r = 3, (b) θ = π/3. (c) Name the one point that satisfies BOTH equations, and give its ordinary (x, y) coordinates. (Recall: x = r cos θ, y = r sin θ.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> polar addresses are (distance from origin, angle from east). Fixing r and letting θ roam gives a circle; fixing θ and letting r roam gives a ray. To translate a polar point to x-y, use x = r cos θ, y = r sin θ.</div>
+    <div class="step">(a) r = 3: every point at distance 3 — a circle of radius 3 centered at the origin.</div>
+    <div class="step">(b) θ = π/3: every point at angle 60° — a ray from the origin heading up-and-right.</div>
+    <div class="step">(c) Both: distance 3 at angle π/3, i.e. the polar point (3, π/3). Then x = 3cos(π/3) = 3 · 1/2 = 3/2, y = 3sin(π/3) = 3 · (√3/2) = 3√3/2.</div>
+    <div class="ans">(a) circle of radius 3 &nbsp; (b) ray at 60° &nbsp; (c) (3/2, 3√3/2)</div></div>
+</div>
+
+<div class="q"><span class="qnum">9.</span><span class="qtag">polar table</span>
+  <div class="qtext">Make a table of r = 2cos θ at θ = 0, π/6, π/4, π/3, π/2 (exact values), and describe what shape the points trace.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> plotting a polar curve = walking around the angles and marking the distance at each. The standard-angle cosine values are cos 0 = 1, cos(π/6) = √3/2, cos(π/4) = √2/2, cos(π/3) = 1/2, cos(π/2) = 0.</div>
+    <div class="step">r values: θ = 0 → 2; π/6 → √3; π/4 → √2; π/3 → 1; π/2 → 0.</div>
+    <div class="step">The point starts 2 units due east and spirals inward as the angle rises, arriving at the origin at θ = π/2.</div>
+    <div class="step">Together with the mirror image below the axis, this traces a circle of radius 1 centered at (1, 0) — a circle through the origin.</div>
+    <div class="ans">r = 2, √3, √2, 1, 0 — a radius-1 circle through the origin, centered at (1, 0)</div></div>
+</div>
+
+<div class="q"><span class="qnum">10.</span><span class="qtag">polar area check</span>
+  <div class="qtext">Use the polar area formula A = ½∫ r² dθ to find the area inside r = 5 (sweep θ from 0 to 2π), and confirm your answer with the ordinary circle-area formula.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> polar area adds up pizza wedges of area ½r²dθ. Testing a new formula on a shape you already know (a plain circle) is the best way to trust it.</div>
+    <div class="step">A = ½ ∫₀^2π 5² dθ = ½ ∫₀^2π 25 dθ = ½ · 25 · 2π = 25π.</div>
+    <div class="step">Geometry check: πr² = π · 5² = 25π ✓. The wedge formula agrees.</div>
+    <div class="ans">25π</div></div>
+</div>
+
+<div class="q"><span class="qnum">11.</span><span class="qtag">wedge limits</span>
+  <div class="qtext">Find the area swept out by r = 4 as θ goes from 0 to π only. How does your answer compare to the full circle's area?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> in polar area the LIMITS are angles — they say how far around you sweep. Sweeping only 0 to π covers only the upper half-plane, so you should get exactly half a circle.</div>
+    <div class="step">A = ½ ∫₀^π 4² dθ = ½ ∫₀^π 16 dθ = ½ · 16 · π = 8π.</div>
+    <div class="step">Full circle: π · 4² = 16π. Our sweep gave 8π — exactly half ✓. Limits matter!</div>
+    <div class="ans">8π — half of the full circle's 16π</div></div>
+</div>
+
+<div class="q"><span class="qnum">12.</span><span class="qtag">cos² drill</span>
+  <div class="qtext">Use the half-angle identity cos²θ = (1 + cos 2θ)/2 to compute ∫₀^π cos²θ dθ. (First verify the identity at θ = π.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> squares of sine and cosine can't be integrated directly — the half-angle identity trades cos²θ for (1 + cos 2θ)/2, which is just a constant plus an easy cosine. Remember the linear-inside rule: ∫cos 2θ dθ = (sin 2θ)/2.</div>
+    <div class="step">Identity check at θ = π: left side cos²π = (−1)² = 1; right side (1 + cos 2π)/2 = (1 + 1)/2 = 1 ✓.</div>
+    <div class="step">∫₀^π cos²θ dθ = ∫₀^π (1 + cos 2θ)/2 dθ = [ θ/2 + (sin 2θ)/4 ]₀^π.</div>
+    <div class="step">At π: π/2 + (sin 2π)/4 = π/2 + 0. At 0: 0 + 0. Difference = π/2.</div>
+    <div class="step">Sanity: cos²θ wobbles between 0 and 1 with average ½, and ½ × (length π) = π/2 ✓.</div>
+    <div class="ans">π/2</div></div>
+</div>
+
+<div class="q"><span class="qnum">13.</span><span class="qtag">laps!</span>
+  <div class="qtext">A point moves with x = cos 2t, y = sin 2t for t in [0, 2π]. (a) Find its speed. (b) Find the total distance traveled. (c) The unit circle's circumference is only 2π — explain your answer to (b)!</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> distance traveled = ∫ speed dt counts EVERY bit of motion, even retraced ground — just like total distance vs. net displacement for 1-D motion. The "2t" inside makes the clock spin twice as fast (chain rule brings out a 2).</div>
+    <div class="step">(a) dx/dt = −2 sin 2t, dy/dt = 2 cos 2t. Speed = √(4sin²2t + 4cos²2t) = √(4(sin²2t + cos²2t)) = √4 = 2.</div>
+    <div class="step">(b) L = ∫₀^2π 2 dt = 2 · 2π = 4π.</div>
+    <div class="step">(c) The point still travels the unit circle (x² + y² = cos²2t + sin²2t = 1), but at speed 2 it completes a lap every π of time — so in time 2π it goes around TWICE. Distance 4π = two circumferences.</div>
+    <div class="ans">(a) speed = 2 &nbsp; (b) 4π &nbsp; (c) it laps the circle twice</div></div>
+</div>
+
+<div class="q"><span class="qnum">14.</span><span class="qtag">setup only</span>
+  <div class="qtext">A point moves with x = t, y = t² for t in [0, 2]. Write the integral for the distance it travels — set it up completely but do NOT evaluate it. What familiar curve is this the arc length of?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> on the AP exam, "set up but do not evaluate" is a real instruction — the setup shows you understand the formula. Note: with x = t, the parametric arc length formula becomes exactly Lesson 35's L = ∫√(1 + (f′)²) dx. They're the same idea!</div>
+    <div class="step">dx/dt = 1, dy/dt = 2t.</div>
+    <div class="step">L = ∫₀² √( 1² + (2t)² ) dt = ∫₀² √(1 + 4t²) dt.</div>
+    <div class="step">Since y = x² (because t = x), this is the arc length of the parabola y = x² from (0,0) to (2,4).</div>
+    <div class="ans">L = ∫₀² √(1 + 4t²) dt — the arc length of the parabola y = x²</div></div>
+</div>
+
+<div class="q"><span class="qnum">15.</span><span class="qtag">u-sub arc length</span>
+  <div class="qtext">A point moves with x = t², y = (2/3)t³ for t in [0, 2√2]. Find the exact distance it travels. (This is the lesson's worked family with new limits — factor the speed first!)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the speed √(4t² + 4t⁴) looks scary until you factor: 4t²(1 + t²) has a perfect square factor. Then the leftover 2t is exactly the du for u = 1 + t² — the u-sub fingerprint.</div>
+    <div class="step">dx/dt = 2t, dy/dt = 2t² → speed² = 4t² + 4t⁴ = 4t²(1 + t²) → speed = 2t√(1 + t²) (t ≥ 0).</div>
+    <div class="step">L = ∫₀^(2√2) 2t√(1 + t²) dt. Let u = 1 + t², du = 2t dt.</div>
+    <div class="step">Limits: t = 0 → u = 1; t = 2√2 → u = 1 + (2√2)² = 1 + 8 = 9.</div>
+    <div class="step">L = ∫₁⁹ √u du = [ (2/3)u^(3/2) ]₁⁹ = (2/3)(9^(3/2) − 1) = (2/3)(27 − 1) = 52/3.</div>
+    <div class="step">Check: 9^(3/2) = (√9)³ = 3³ = 27 ✓, and (2/3)(26) = 52/3 ✓.</div>
+    <div class="ans">52/3</div></div>
+</div>
+
+<div class="q"><span class="qnum">16.</span><span class="qtag">polar area · limits!</span>
+  <div class="qtext">Find the area inside the circle r = 2cos θ. Warning: the correct sweep is θ from −π/2 to π/2 — explain why, then compute. (Check your answer against the geometry from Exercise 9.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> r = 2cos θ finishes drawing its whole circle as θ runs from −π/2 to π/2 (r shrinks to 0 at both ends). If you keep sweeping to 2π, the curve just retraces itself and the integral double-counts the area. Always ask: "over which angles does the curve get drawn ONCE?"</div>
+    <div class="step">A = ½ ∫_(−π/2)^(π/2) (2cos θ)² dθ = ½ ∫_(−π/2)^(π/2) 4cos²θ dθ = 2 ∫_(−π/2)^(π/2) cos²θ dθ.</div>
+    <div class="step">Half-angle: cos²θ = (1 + cos 2θ)/2, antiderivative θ/2 + (sin 2θ)/4.</div>
+    <div class="step">At π/2: π/4 + (sin π)/4 = π/4. At −π/2: −π/4 + (sin(−π))/4 = −π/4. Difference = π/2.</div>
+    <div class="step">A = 2 · (π/2) = π. Geometry check: it's a circle of radius 1 (Exercise 9), area π · 1² = π ✓.</div>
+    <div class="ans">π (sweeping 0 to 2π would wrongly give 2π — double-counted)</div></div>
+</div>
+
+<div class="q"><span class="qnum">17.</span><span class="qtag">cardioid variant</span>
+  <div class="qtext">Find the area inside the cardioid r = 1 + sin θ. (You'll need sin²θ = (1 − cos 2θ)/2 — the sine version of the half-angle identity; verify it at θ = π/2 first.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> r = 1 + sin θ is the lesson's cardioid rotated to point north (fat side up) — rotating a shape can't change its area, so we expect 3π/2 again. The sine half-angle identity: sin²θ = (1 − cos 2θ)/2. Check at θ = π/2: left side 1; right side (1 − cos π)/2 = (1+1)/2 = 1 ✓.</div>
+    <div class="step">A = ½ ∫₀^2π (1 + sin θ)² dθ = ½ ∫₀^2π (1 + 2sin θ + sin²θ) dθ.</div>
+    <div class="step">∫₀^2π 1 dθ = 2π. &nbsp; ∫₀^2π 2sin θ dθ = [−2cos θ]₀^2π = −2 − (−2) = 0.</div>
+    <div class="step">∫₀^2π sin²θ dθ = ∫₀^2π (1 − cos 2θ)/2 dθ = [ θ/2 − (sin 2θ)/4 ]₀^2π = π − 0 = π.</div>
+    <div class="step">A = ½ (2π + 0 + π) = 3π/2 — same as the cosine cardioid, as the rotation argument predicted ✓.</div>
+    <div class="ans">3π/2</div></div>
+</div>
+
+<div class="q"><span class="qnum">18.</span><span class="qtag">spot the error</span>
+  <div class="qtext">A student computes the area inside r = 3 like this: "A = ∫₀^2π 3 dθ = 6π." The true area is π · 3² = 9π. Find the error in the student's setup and fix it.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> polar slices are pizza WEDGES, not rectangles. A thin wedge's area is ½r²dθ (fraction of the circle: (dθ/2π)·πr²), not r dθ. Forgetting the square and the ½ is the #1 polar-area error.</div>
+    <div class="step">The error: the student integrated r dθ instead of ½r² dθ. (r dθ is actually the length of the little ARC, not the area of the wedge.)</div>
+    <div class="step">Fix: A = ½ ∫₀^2π 3² dθ = ½ ∫₀^2π 9 dθ = ½ · 9 · 2π = 9π.</div>
+    <div class="step">Matches geometry: π · 3² = 9π ✓.</div>
+    <div class="ans">Error: used ∫r dθ instead of ½∫r² dθ. Correct area = 9π</div></div>
+</div>
+
+<div class="q"><span class="qnum">19.</span><span class="qtag">spot the error</span>
+  <div class="qtext">A student finds the area inside r = 4cos θ using A = ½∫₀^2π (4cos θ)² dθ and gets 8π. But r = 4cos θ is a circle of radius 2, whose area is only 4π. What went wrong, and what is the correct computation?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> like r = 2cos θ, the circle r = 4cos θ is completely drawn as θ sweeps −π/2 to π/2. Continuing to 2π retraces the same circle a second time, so the integral counts every wedge twice — the answer comes out exactly doubled.</div>
+    <div class="step">The setup error: wrong limits. Over [0, 2π] the curve is traced TWICE, so ½∫₀^2π gives 2 × (true area) = 8π. (Notice 8π is exactly double 4π — the fingerprint of double-counting.)</div>
+    <div class="step">Correct: A = ½ ∫_(−π/2)^(π/2) 16cos²θ dθ = 8 ∫_(−π/2)^(π/2) cos²θ dθ.</div>
+    <div class="step">From Exercise 16, ∫_(−π/2)^(π/2) cos²θ dθ = π/2. So A = 8 · π/2 = 4π.</div>
+    <div class="step">Geometry check: radius-2 circle → π · 2² = 4π ✓.</div>
+    <div class="ans">Error: limits [0, 2π] trace the circle twice. Correct area = 4π</div></div>
+</div>
+
+<div class="q"><span class="qnum">20.</span><span class="qtag">challenge · rose petal</span>
+  <div class="qtext">The polar curve r = 2 sin(2θ) is a four-petaled rose; one petal is drawn as θ runs from 0 to π/2 (r starts at 0, blooms out to 2 at θ = π/4, and returns to 0). Find the exact area of one petal.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> everything in this lesson at once: pick the sweep of angles for ONE tracing (here 0 to π/2), square r, and handle the square of sine with the half-angle identity. Careful — the angle inside is already 2θ, so sin²(2θ) = (1 − cos 4θ)/2 (double the inner angle).</div>
+    <div class="step">A = ½ ∫₀^(π/2) (2 sin 2θ)² dθ = ½ ∫₀^(π/2) 4 sin²2θ dθ = 2 ∫₀^(π/2) sin²2θ dθ.</div>
+    <div class="step">Identity: sin²(2θ) = (1 − cos 4θ)/2. (Check θ = π/4: left side sin²(π/2) = 1; right side (1 − cos π)/2 = 1 ✓.)</div>
+    <div class="step">2 ∫₀^(π/2) (1 − cos 4θ)/2 dθ = ∫₀^(π/2) (1 − cos 4θ) dθ = [ θ − (sin 4θ)/4 ]₀^(π/2).</div>
+    <div class="step">At π/2: π/2 − (sin 2π)/4 = π/2 − 0. At 0: 0. So A = π/2.</div>
+    <div class="step">Check the antiderivative: d/dθ [θ − (sin 4θ)/4] = 1 − cos 4θ ✓.</div>
+    <div class="ans">Area of one petal = π/2</div></div>
+</div>
+
+<footer>Lesson 39 of 40 · Intuitive Integration · next: <a href="Lesson40.html">Lesson 40 — BC Capstone: The Whole Toolbox</a></footer>
+
+</div>
+<script>
+document.querySelectorAll('.q').forEach(q=>{
+  const btn=q.querySelector('.revealbtn'), sol=q.querySelector('.sol');
+  btn.addEventListener('click',()=>{ sol.classList.add('show'); btn.textContent='Solution shown'; btn.disabled=true; btn.style.opacity=.6; });
+});
+</script>
+</body>
+</html>

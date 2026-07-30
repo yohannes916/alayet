@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 32 — Partial Fractions</title>
+<style>
+  :root{--accent:#186a3b;--accent2:#239b56;--bg:#f2f7f4;--card:#fff;--ok:#1e8449;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:#1c2833;background:var(--bg);margin:0;padding:0 16px 80px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -16px 20px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  nav{display:flex;gap:10px;margin-bottom:18px;font-size:.9rem;flex-wrap:wrap;}
+  nav a{color:var(--accent);text-decoration:none;font-weight:600;background:#fff;border:1px solid #d5e8dc;border-radius:8px;padding:6px 14px;}
+  nav a:hover{background:#eafaf1;}
+  .goal{background:#fef9e7;border-left:5px solid var(--star);padding:12px 18px;border-radius:8px;margin-bottom:18px;font-size:.95rem;}
+  .goal strong{color:#7d6608;}
+  section{background:var(--card);border-radius:10px;padding:18px 22px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  h2{color:var(--accent);font-size:1.15rem;margin:0 0 10px;}
+  h2 .num{background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;border-radius:6px;padding:2px 9px;margin-right:8px;}
+  ul{margin:8px 0;padding-left:24px;}
+  li{margin-bottom:8px;}
+  strong{color:#145a32;}
+  em.hi{font-style:normal;background:#fef9e7;padding:0 4px;border-radius:3px;}
+  .fml{background:#e9f7ef;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.9em;color:#186a3b;white-space:nowrap;}
+  .ex{background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:.95rem;}
+  .ex b{color:#145a32;}
+  .graph{background:#1b2631;color:#eaeded;border-radius:8px;padding:14px 18px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.82rem;line-height:1.45;overflow-x:auto;margin:10px 0;white-space:pre;}
+  .graph .g{color:#82e0aa;} .graph .y{color:#f7dc6f;} .graph .b{color:#85c1e9;}
+  table.t{border-collapse:collapse;margin:10px 0;font-size:.92rem;}
+  table.t th,table.t td{border:1px solid #cfd8cf;padding:6px 12px;text-align:center;}
+  table.t th{background:var(--accent);color:#fff;font-weight:600;}
+  .qhead{margin:26px 0 8px;color:var(--accent);font-size:1.2rem;border-bottom:2px solid #d4efdf;padding-bottom:6px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid var(--accent2);}
+  .qnum{font-weight:800;color:var(--accent);margin-right:6px;}
+  .qtag{float:right;background:#e9f7ef;color:var(--accent);border-radius:8px;padding:1px 9px;font-size:.68rem;font-weight:700;letter-spacing:.3px;margin-left:8px;}
+  .qtext{font-size:.98rem;margin:4px 0 10px;}
+  .revealbtn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .revealbtn:hover{background:#0e4429;}
+  .sol{display:none;margin-top:12px;background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px;font-size:.93rem;}
+  .sol.show{display:block;}
+  .sol h4{margin:0 0 8px;color:var(--ok);font-size:.9rem;}
+  .sol .ctx{background:#eaf2f8;border-left:4px solid #2e86c1;border-radius:6px;padding:8px 12px;margin:0 0 10px;font-size:.88rem;}
+  .sol .ctx b{color:#1a5276;}
+  .sol .step{margin:6px 0;}
+  .sol .ans{background:#eafaf1;border-radius:6px;padding:6px 12px;margin-top:8px;font-weight:700;color:#145a32;display:inline-block;}
+  footer{text-align:center;color:#85929e;font-size:.85rem;margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Lesson 32 — Partial Fractions</h1>
+  <p>Splitting Fractions to Conquer Them · Intuitive Calculus for a Curious Student · Lesson 32 of 40</p>
+</header>
+
+<nav><a href="Lesson31.html">← Lesson 31</a><a href="index.html">📚 All lessons</a><a href="Lesson33.html">Next: Lesson 33 →</a></nav>
+
+<div class="goal"><strong>🎯 Goal of this lesson:</strong> learn to integrate fractions like <span class="fml">5/((x−2)(x+3))</span> by <em>splitting</em> them into simple pieces — a technique called <strong>partial fractions</strong>. Each simple piece integrates to a logarithm. Along the way you'll pick up log rules, a factoring refresher, and a sharp decision habit: always check for ∫&nbsp;f′/f first.</div>
+
+<section>
+  <h2><span class="num">1</span> The problem — a fraction none of our tools can eat</h2>
+  <ul>
+    <li>Try to integrate <span class="fml">∫ 5/((x−2)(x+3)) dx</span> with what we know:</li>
+    <li><strong>Is it f′/f?</strong> The bottom is (x−2)(x+3) = x² + x − 6, whose derivative is 2x + 1. The top is 5 — not a match. ✗</li>
+    <li><strong>Is it an arctan shape?</strong> Arctan wants x² + a² on the bottom (no real factors). Our bottom factors nicely, so no. ✗</li>
+    <li><strong>Parts? u-sub?</strong> No useful product, no fingerprint. ✗</li>
+    <li>We need a genuinely new idea — and it comes from ordinary fraction arithmetic, the kind you've done since elementary school.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">2</span> The idea — run fraction addition BACKWARD</h2>
+  <ul>
+    <li>Remember how fractions add: find a common denominator, then combine the tops. Watch it with algebra:
+      <div class="ex"><span class="fml">1/(x−2) + 1/(x+3)</span> &nbsp;→ common denominator (x−2)(x+3):<br>
+      <span class="fml">= (x+3)/((x−2)(x+3)) + (x−2)/((x−2)(x+3)) = ((x+3) + (x−2))/((x−2)(x+3)) = (2x+1)/((x−2)(x+3))</span></div></li>
+    <li>So two SIMPLE fractions added up to one COMPLICATED one. Here's the flip: <em class="hi">partial fractions runs this backward</em> — given the complicated fraction, we recover the simple pieces it was built from.</li>
+    <li>Why bother? Because each simple piece is trivially integrable: <span class="fml">∫ 1/(x−2) dx = ln|x−2| + C</span> (it's f′/f with f = x−2, since the top 1 is exactly the derivative of the bottom). <strong>Every piece gives a ln!</strong></li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">3</span> The method — distinct linear factors, step by step</h2>
+  <ul>
+    <li><strong>Step 1 — set up the template.</strong> Guess that the fraction splits into one piece per bottom factor, with unknown numbers A and B on top:
+      <div class="ex"><span class="fml">5/((x−2)(x+3)) = A/(x−2) + B/(x+3)</span></div></li>
+    <li><strong>Step 2 — clear the denominators.</strong> Multiply both sides by (x−2)(x+3):
+      <div class="ex"><span class="fml">5 = A(x+3) + B(x−2)</span> &nbsp; (must hold for EVERY x)</div></li>
+    <li><strong>Step 3 — plug in the magic values.</strong> Since the equation holds for every x, choose x-values that make a factor vanish:
+      <ul>
+        <li>x = 2 kills the B term: <span class="fml">5 = A(2+3) + B·0 = 5A</span> → <strong>A = 1</strong>.</li>
+        <li>x = −3 kills the A term: <span class="fml">5 = A·0 + B(−3−2) = −5B</span> → <strong>B = −1</strong>.</li>
+      </ul></li>
+    <li><strong>Step 4 — verify by re-adding</strong> (always!): <span class="fml">1/(x−2) − 1/(x+3) = ((x+3) − (x−2))/((x−2)(x+3)) = 5/((x−2)(x+3))</span> ✓.</li>
+    <li><em class="hi">The cover-up shortcut</em> — the same thing, faster: to find A, cover up the (x−2) in the original fraction with your finger, and plug x = 2 into what's left: <span class="fml">5/(x+3)</span> at x = 2 gives 5/5 = 1 = A. For B: cover (x+3), plug x = −3: 5/(−3−2) = −1 = B. It works because it's exactly Step 3 in disguise.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">4</span> Now integrate — and a log rule bonus</h2>
+  <ul>
+    <li>With the split done, the integral falls apart into easy logs:
+      <div class="ex"><span class="fml">∫ 5/((x−2)(x+3)) dx = ∫ 1/(x−2) dx − ∫ 1/(x+3) dx = ln|x−2| − ln|x+3| + C</span></div></li>
+    <li><strong>Log rules, from scratch.</strong> Logarithms turn multiplication into addition. The three rules:
+      <ul>
+        <li><span class="fml">ln a + ln b = ln(ab)</span> — logs add when the insides multiply.</li>
+        <li><span class="fml">ln a − ln b = ln(a/b)</span> — logs subtract when the insides divide. (Sanity check with numbers: ln 8 − ln 2 = ln(8/2) = ln 4. Calculator: 2.079 − 0.693 = 1.386 = ln 4 ✓.)</li>
+        <li><span class="fml">k·ln a = ln(a<sup>k</sup>)</span> — a coefficient becomes an exponent inside. (Check: 2 ln 3 = ln 9, since 1.099 × 2 = 2.197 = ln 9 ✓.)</li>
+      </ul></li>
+    <li>So our answer has a tidy bonus form: <span class="fml">ln|x−2| − ln|x+3| + C = ln|(x−2)/(x+3)| + C</span>. Both forms are correct; the combined one is often shorter.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">5</span> Factoring warm-up (you'll need it)</h2>
+  <ul>
+    <li>Often the bottom arrives UNfactored, like <span class="fml">x² − x − 2</span>. Partial fractions needs factors, so factor first.</li>
+    <li><strong>The recipe for x² + bx + c:</strong> find two numbers that <em>multiply to c</em> and <em>add to b</em>. For x² − x − 2: multiply to −2, add to −1 → the numbers are −2 and +1. So <span class="fml">x² − x − 2 = (x−2)(x+1)</span>. (Check by expanding: x² + x − 2x − 2 = x² − x − 2 ✓.)</li>
+    <li><strong>Difference of squares:</strong> <span class="fml">x² − 9 = (x−3)(x+3)</span> — anything of the form x² − a² splits as (x−a)(x+a). (Check: x² + 3x − 3x − 9 ✓.)</li>
+    <li>Habit: <em class="hi">when the bottom isn't factored yet, factor first</em> — then set up the A/B template.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">6</span> When NOT to use partial fractions</h2>
+  <ul>
+    <li>If the top happens to be the <strong>derivative of the bottom</strong>, you already own a one-step tool from Lesson 25: <span class="fml">∫ f′/f dx = ln|f| + C</span>. Partial fractions would get the same answer with triple the work.</li>
+    <li>Example: <span class="fml">∫ (2x−1)/(x²−x−2) dx</span>. Derivative of the bottom: 2x − 1 — exactly the top! So the answer is instantly <span class="fml">ln|x² − x − 2| + C</span>. No splitting needed.</li>
+    <li><em class="hi">The decision habit: always check f′/f FIRST.</em> Differentiate the bottom in your head; if it matches the top (up to a constant factor), take the shortcut.</li>
+  </ul>
+  <table class="t">
+    <tr><th>What you see (a fraction)</th><th>Tool</th><th>Example</th></tr>
+    <tr><td>top = derivative of bottom (up to a constant)</td><td><strong>∫ f′/f = ln|f|</strong> — check FIRST</td><td>∫ (2x−1)/(x²−x−2) dx</td></tr>
+    <tr><td>bottom factors into linear pieces</td><td><strong>partial fractions</strong> → sum of ln's</td><td>∫ 5/((x−2)(x+3)) dx</td></tr>
+    <tr><td>bottom is x² + a² (won't factor)</td><td><strong>arctan</strong>: (1/a) arctan(x/a) + C</td><td>∫ 1/(x²+4) dx</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2><span class="num">7</span> A definite example, start to finish</h2>
+  <ul>
+    <li>Compute <span class="fml">∫<sub>3</sub><sup>4</sup> 5/((x−2)(x+3)) dx</span>. (Limits 3 and 4 stay safely away from x = 2 and x = −3, where the fraction blows up.)</li>
+    <li>From Sections 3–4, the antiderivative is <span class="fml">ln|x−2| − ln|x+3|</span>. Now FTC:
+      <div class="ex"><span class="fml">[ln|x−2| − ln|x+3|]<sub>3</sub><sup>4</sup> = (ln 2 − ln 7) − (ln 1 − ln 6)</span><br>
+      Since ln 1 = 0: <span class="fml">= ln 2 − ln 7 + ln 6</span>. Combine with the log rules: <span class="fml">= ln(2·6/7) = ln(12/7)</span> ≈ 0.539.</div></li>
+    <li>An exact answer like <strong>ln(12/7)</strong> is the finished product — just like leaving π in a circle answer. The decimal is only a sanity check.</li>
+  </ul>
+</section>
+
+<div class="qhead">✏️ Exercises — 20 problems (write your answer on paper, then reveal)</div>
+
+<div class="q"><span class="qnum">1.</span><span class="qtag">warm-up · forward direction</span>
+  <div class="qtext">Add the fractions: 1/(x−1) + 1/(x+2). (This is the FORWARD direction — combining simple pieces into one fraction.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> to add fractions with different denominators, rewrite each over the common denominator — here (x−1)(x+2) — by multiplying top and bottom of each fraction by the factor it's missing. Then add the tops. Partial fractions will be exactly this process in reverse.</div>
+    <div class="step">1/(x−1) = (x+2)/((x−1)(x+2)) &nbsp; and &nbsp; 1/(x+2) = (x−1)/((x−1)(x+2)).</div>
+    <div class="step">Sum = ((x+2) + (x−1))/((x−1)(x+2)) = (2x+1)/((x−1)(x+2)).</div>
+    <div class="ans">(2x+1)/((x−1)(x+2))</div></div>
+</div>
+
+<div class="q"><span class="qnum">2.</span><span class="qtag">warm-up · forward direction</span>
+  <div class="qtext">Add the fractions: 2/(x+1) + 3/(x−4).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> same common-denominator routine, now with numbers on top. The coefficients 2 and 3 ride along: each top gets multiplied by the other fraction's factor, then everything combines. Expanding carefully and combining like terms is the whole game.</div>
+    <div class="step">Common denominator (x+1)(x−4): sum = [2(x−4) + 3(x+1)] / ((x+1)(x−4)).</div>
+    <div class="step">Top: 2x − 8 + 3x + 3 = 5x − 5.</div>
+    <div class="ans">(5x−5)/((x+1)(x−4))</div></div>
+</div>
+
+<div class="q"><span class="qnum">3.</span><span class="qtag">warm-up · log rules</span>
+  <div class="qtext">Use the log rules to: (a) write ln|x−1| − ln|x+2| as a single log; (b) simplify ln 8 − ln 2 to the log of one number; (c) write 2 ln 5 as the log of one number.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> logarithms convert multiplication into addition, so: ln a − ln b = ln(a/b) (subtraction ↔ division) and k ln a = ln(a^k) (coefficient ↔ exponent). These rules are how partial-fraction answers get compressed into one tidy log.</div>
+    <div class="step">(a) ln|x−1| − ln|x+2| = ln|(x−1)/(x+2)|.</div>
+    <div class="step">(b) ln 8 − ln 2 = ln(8/2) = ln 4.</div>
+    <div class="step">(c) 2 ln 5 = ln(5²) = ln 25.</div>
+    <div class="ans">(a) ln|(x−1)/(x+2)| &nbsp; (b) ln 4 &nbsp; (c) ln 25</div></div>
+</div>
+
+<div class="q"><span class="qnum">4.</span><span class="qtag">warm-up · factoring</span>
+  <div class="qtext">Factor each: (a) x² − x − 6 &nbsp; (b) x² − 25 &nbsp; (c) x² + 5x + 6.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> for x² + bx + c, hunt for two numbers that MULTIPLY to c and ADD to b; then the factors are (x + first)(x + second). For x² − a² (no middle term, minus a perfect square), it's always (x−a)(x+a). Always check by expanding back.</div>
+    <div class="step">(a) multiply to −6, add to −1 → −3 and +2. So (x−3)(x+2). Check: x² + 2x − 3x − 6 = x² − x − 6 ✓.</div>
+    <div class="step">(b) difference of squares: x² − 25 = (x−5)(x+5).</div>
+    <div class="step">(c) multiply to 6, add to 5 → 2 and 3. So (x+2)(x+3).</div>
+    <div class="ans">(a) (x−3)(x+2) &nbsp; (b) (x−5)(x+5) &nbsp; (c) (x+2)(x+3)</div></div>
+</div>
+
+<div class="q"><span class="qnum">5.</span><span class="qtag">decompose only</span>
+  <div class="qtext">Find A and B: 1/((x−1)(x+2)) = A/(x−1) + B/(x+2). (Don't integrate yet — just split.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> after multiplying through by the denominator, the equation 1 = A(x+2) + B(x−1) must hold for EVERY x — that's what lets us plug in "magic values" chosen to make one unknown's factor vanish, isolating the other.</div>
+    <div class="step">Multiply through: 1 = A(x+2) + B(x−1).</div>
+    <div class="step">x = 1 (kills B): 1 = A(3) → A = 1/3.</div>
+    <div class="step">x = −2 (kills A): 1 = B(−3) → B = −1/3.</div>
+    <div class="step">Verify by re-adding: (1/3)(x+2) − (1/3)(x−1) = (1/3)(x + 2 − x + 1) = (1/3)(3) = 1 ✓.</div>
+    <div class="ans">A = 1/3, B = −1/3 &nbsp;→&nbsp; 1/(3(x−1)) − 1/(3(x+2))</div></div>
+</div>
+
+<div class="q"><span class="qnum">6.</span><span class="qtag">decompose only</span>
+  <div class="qtext">Find A and B: (x+7)/((x−1)(x+3)) = A/(x−1) + B/(x+3), and verify your answer by re-adding the two pieces.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the top can be a full expression like x+7, not just a number — the method doesn't change. When you plug in a magic value, evaluate the top at that value too. The re-adding check catches nearly every slip, so make it a reflex.</div>
+    <div class="step">Multiply through: x + 7 = A(x+3) + B(x−1).</div>
+    <div class="step">x = 1: 1 + 7 = 8 = A(4) → A = 2.</div>
+    <div class="step">x = −3: −3 + 7 = 4 = B(−4) → B = −1.</div>
+    <div class="step">Verify: 2(x+3) − 1(x−1) = 2x + 6 − x + 1 = x + 7 ✓.</div>
+    <div class="ans">A = 2, B = −1 &nbsp;→&nbsp; 2/(x−1) − 1/(x+3)</div></div>
+</div>
+
+<div class="q"><span class="qnum">7.</span><span class="qtag">decompose &amp; integrate</span>
+  <div class="qtext">Find ∫ 3/(x(x−3)) dx.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a plain x counts as a linear factor too — its piece is A/x, and its magic value is x = 0. After splitting, each piece integrates to a log: ∫ 1/x dx = ln|x| + C and ∫ 1/(x−3) dx = ln|x−3| + C.</div>
+    <div class="step">Template: 3/(x(x−3)) = A/x + B/(x−3). Multiply through: 3 = A(x−3) + Bx.</div>
+    <div class="step">x = 0: 3 = A(−3) → A = −1. &nbsp; x = 3: 3 = 3B → B = 1.</div>
+    <div class="step">Verify: −1(x−3) + 1·x = −x + 3 + x = 3 ✓.</div>
+    <div class="step">∫ = ∫ (−1/x) dx + ∫ 1/(x−3) dx = −ln|x| + ln|x−3| + C = ln|(x−3)/x| + C.</div>
+    <div class="ans">ln|x−3| − ln|x| + C &nbsp;(= ln|(x−3)/x| + C)</div></div>
+</div>
+
+<div class="q"><span class="qnum">8.</span><span class="qtag">decompose &amp; integrate</span>
+  <div class="qtext">Find ∫ 1/(x² − 1) dx. (Factor the bottom first!)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> x² − 1 is a difference of squares: (x−1)(x+1). Note this is NOT the arctan shape — arctan needs x² PLUS a constant (which never factors); x² MINUS a constant factors, so it's partial-fractions territory.</div>
+    <div class="step">1/((x−1)(x+1)) = A/(x−1) + B/(x+1) → 1 = A(x+1) + B(x−1).</div>
+    <div class="step">x = 1: 1 = 2A → A = 1/2. &nbsp; x = −1: 1 = −2B → B = −1/2.</div>
+    <div class="step">Verify: (1/2)(x+1) − (1/2)(x−1) = (1/2)(2) = 1 ✓.</div>
+    <div class="step">∫ = (1/2) ln|x−1| − (1/2) ln|x+1| + C = (1/2) ln|(x−1)/(x+1)| + C.</div>
+    <div class="ans">(1/2) ln|(x−1)/(x+1)| + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">9.</span><span class="qtag">decompose &amp; integrate</span>
+  <div class="qtext">Find ∫ (2x+3)/((x+1)(x+2)) dx — then discover something neat about this particular problem.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> sometimes two different tools both work — and MUST give the same answer (up to log rules). Here partial fractions works, but so does f′/f: the bottom expands to x² + 3x + 2, whose derivative is exactly the top, 2x + 3. Agreement between methods is a powerful self-check.</div>
+    <div class="step">Partial fractions: 2x + 3 = A(x+2) + B(x+1). x = −1: 2(−1)+3 = 1 = A(1) → A = 1. x = −2: 2(−2)+3 = −1 = B(−1) → B = 1.</div>
+    <div class="step">Verify: 1(x+2) + 1(x+1) = 2x + 3 ✓. So ∫ = ln|x+1| + ln|x+2| + C.</div>
+    <div class="step">The neat part: d/dx[x² + 3x + 2] = 2x + 3 = the top! So f′/f gives ∫ = ln|x² + 3x + 2| + C instantly.</div>
+    <div class="step">Same answer? ln|x+1| + ln|x+2| = ln|(x+1)(x+2)| = ln|x² + 3x + 2| ✓ — the log addition rule says yes.</div>
+    <div class="ans">ln|x+1| + ln|x+2| + C &nbsp;(= ln|x² + 3x + 2| + C)</div></div>
+</div>
+
+<div class="q"><span class="qnum">10.</span><span class="qtag">classify · the decision habit</span>
+  <div class="qtext">For each integral, name the right tool (f′/f, partial fractions, or arctan), and solve (a) and (c): (a) ∫ (2x+1)/(x²+x−6) dx &nbsp; (b) ∫ 5/(x²+x−6) dx &nbsp; (c) ∫ 1/(x²+4) dx</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> three fraction integrals, three tools — the ONLY difference is the top and whether the bottom factors. Check in this order: (1) is the top the bottom's derivative? → ln|f|. (2) Does the bottom factor? → partial fractions. (3) Is it x² + a²? → arctan, using ∫ 1/(x²+a²) dx = (1/a) arctan(x/a) + C.</div>
+    <div class="step">(a) d/dx[x²+x−6] = 2x+1 = the top → <b>f′/f</b>. Answer: ln|x²+x−6| + C.</div>
+    <div class="step">(b) top is 5, not the derivative; bottom factors as (x+3)(x−2) → <b>partial fractions</b>. (Set-up: 5/((x+3)(x−2)) = A/(x+3) + B/(x−2).)</div>
+    <div class="step">(c) x² + 4 never factors → <b>arctan</b> with a = 2. Answer: (1/2) arctan(x/2) + C. (Check: derivative = (1/2)·(1/(1+(x/2)²))·(1/2) = (1/4)/(1+x²/4) = 1/(4+x²) ✓.)</div>
+    <div class="ans">(a) f′/f: ln|x²+x−6| + C &nbsp; (b) partial fractions &nbsp; (c) arctan: (1/2) arctan(x/2) + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">11.</span><span class="qtag">factor first</span>
+  <div class="qtext">Find ∫ 1/(x² − x − 6) dx.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the bottom arrives unfactored, so the very first move is the factoring recipe: two numbers that multiply to −6 and add to −1 are −3 and +2. Only then can the A/B template be set up. (Quick f′/f check first: derivative of the bottom is 2x−1 ≠ 1, so no shortcut.)</div>
+    <div class="step">Factor: x² − x − 6 = (x−3)(x+2).</div>
+    <div class="step">1 = A(x+2) + B(x−3). x = 3: 1 = 5A → A = 1/5. x = −2: 1 = −5B → B = −1/5.</div>
+    <div class="step">Verify: (1/5)(x+2) − (1/5)(x−3) = (1/5)(5) = 1 ✓.</div>
+    <div class="step">∫ = (1/5) ln|x−3| − (1/5) ln|x+2| + C = (1/5) ln|(x−3)/(x+2)| + C.</div>
+    <div class="ans">(1/5) ln|(x−3)/(x+2)| + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">12.</span><span class="qtag">decompose &amp; integrate</span>
+  <div class="qtext">Find ∫ 1/(x² − 4) dx.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> another difference of squares: x² − 4 = (x−2)(x+2). Compare with ∫ 1/(x²+4) dx from exercise 10 — one sign flips the whole method from partial fractions (two logs) to arctan. The sign of the constant is the switch.</div>
+    <div class="step">1 = A(x+2) + B(x−2). x = 2: 1 = 4A → A = 1/4. x = −2: 1 = −4B → B = −1/4.</div>
+    <div class="step">Verify: (1/4)(x+2) − (1/4)(x−2) = (1/4)(4) = 1 ✓.</div>
+    <div class="step">∫ = (1/4) ln|x−2| − (1/4) ln|x+2| + C = (1/4) ln|(x−2)/(x+2)| + C.</div>
+    <div class="ans">(1/4) ln|(x−2)/(x+2)| + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">13.</span><span class="qtag">check task</span>
+  <div class="qtext">Verify by differentiating that ln|x−2| − ln|x+3| really is an antiderivative of 5/((x−2)(x+3)).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the derivative of ln|x−a| is 1/(x−a) (chain rule with inside x−a, whose derivative is 1). Checking a partial-fractions answer means differentiating each log, then RE-COMBINING the two simple fractions over a common denominator — the forward direction from exercise 1.</div>
+    <div class="step">d/dx[ln|x−2| − ln|x+3|] = 1/(x−2) − 1/(x+3).</div>
+    <div class="step">Combine: ((x+3) − (x−2))/((x−2)(x+3)) = (x + 3 − x + 2)/((x−2)(x+3)) = 5/((x−2)(x+3)).</div>
+    <div class="step">Exactly the original integrand ✓.</div>
+    <div class="ans">Verified: derivative = 5/((x−2)(x+3)) ✓</div></div>
+</div>
+
+<div class="q"><span class="qnum">14.</span><span class="qtag">definite</span>
+  <div class="qtext">Compute ∫<sub>0</sub><sup>1</sup> 1/((x+1)(x+2)) dx exactly, simplifying to a single log.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the full pipeline: decompose → integrate to logs → FTC with the limits → compress using log rules. Useful facts: ln 1 = 0, and 2 ln 2 = ln 4. On [0, 1] the factors x+1 and x+2 are positive, so the absolute values can be dropped.</div>
+    <div class="step">Decompose: 1 = A(x+2) + B(x+1). x = −1: 1 = A(1) → A = 1. x = −2: 1 = B(−1) → B = −1. Verify: (x+2) − (x+1) = 1 ✓.</div>
+    <div class="step">Antiderivative: ln(x+1) − ln(x+2).</div>
+    <div class="step">At 1: ln 2 − ln 3. &nbsp; At 0: ln 1 − ln 2 = −ln 2.</div>
+    <div class="step">Integral = (ln 2 − ln 3) − (−ln 2) = 2 ln 2 − ln 3 = ln 4 − ln 3 = ln(4/3) ≈ 0.288.</div>
+    <div class="ans">ln(4/3)</div></div>
+</div>
+
+<div class="q"><span class="qnum">15.</span><span class="qtag">spot the error</span>
+  <div class="qtext">A student splits 4/((x+1)(x−3)) like this: "4 = A(x−3) + B(x+1). To find A, plug in x = 1 so the (x+1) part disappears: 4 = A(1−3) = −2A, so A = −2." Find the error, then finish the problem correctly.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the magic value must make a FACTOR equal zero. The factor x+1 is zero when x = −1, not x = +1 — flipping this sign is the most common partial-fractions error. Quick guard: after choosing your magic value, actually substitute it into the factor and confirm you get 0.</div>
+    <div class="step">The error: x = 1 does NOT make x+1 zero (1+1 = 2 ≠ 0). The correct magic value is x = −1. Also note: A is found by killing the B term — which happens at x = −1, since B multiplies (x+1).</div>
+    <div class="step">Correctly: x = −1: 4 = A(−1−3) = −4A → A = −1. &nbsp; x = 3: 4 = B(3+1) = 4B → B = 1.</div>
+    <div class="step">Verify: −1(x−3) + 1(x+1) = −x + 3 + x + 1 = 4 ✓.</div>
+    <div class="step">So 4/((x+1)(x−3)) = −1/(x+1) + 1/(x−3), and ∫ = ln|x−3| − ln|x+1| + C.</div>
+    <div class="ans">Magic value sign error; correct split: 1/(x−3) − 1/(x+1); integral = ln|(x−3)/(x+1)| + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">16.</span><span class="qtag">definite</span>
+  <div class="qtext">Compute ∫<sub>2</sub><sup>3</sup> 1/(x(x+1)) dx exactly, as a single log.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the split of 1/(x(x+1)) into 1/x − 1/(x+1) is one of the most famous in mathematics (it powers "telescoping sums"). The definite evaluation collects four logs; the log rules crush them into one fraction inside a single ln.</div>
+    <div class="step">Decompose: 1 = A(x+1) + Bx. x = 0: A = 1. x = −1: 1 = −B → B = −1. Verify: (x+1) − x = 1 ✓.</div>
+    <div class="step">Antiderivative: ln x − ln(x+1) (positive factors on [2,3], no bars needed).</div>
+    <div class="step">At 3: ln 3 − ln 4. &nbsp; At 2: ln 2 − ln 3.</div>
+    <div class="step">Integral = (ln 3 − ln 4) − (ln 2 − ln 3) = 2 ln 3 − ln 4 − ln 2 = ln 9 − ln 8 = ln(9/8) ≈ 0.118.</div>
+    <div class="ans">ln(9/8)</div></div>
+</div>
+
+<div class="q"><span class="qnum">17.</span><span class="qtag">factor first · bigger top</span>
+  <div class="qtext">Find ∫ (x+5)/(x² − 1) dx.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> f′/f check first: derivative of x²−1 is 2x, not x+5 — no shortcut. So: factor (difference of squares), split with an x+5 top, integrate to logs. Different A and B values mean the two logs get different coefficients.</div>
+    <div class="step">Factor: x² − 1 = (x−1)(x+1). Template: (x+5)/((x−1)(x+1)) = A/(x−1) + B/(x+1).</div>
+    <div class="step">x + 5 = A(x+1) + B(x−1). x = 1: 6 = 2A → A = 3. x = −1: 4 = −2B → B = −2.</div>
+    <div class="step">Verify: 3(x+1) − 2(x−1) = 3x + 3 − 2x + 2 = x + 5 ✓.</div>
+    <div class="step">∫ = 3 ln|x−1| − 2 ln|x+1| + C. (Log-rules form: ln( |x−1|³/(x+1)² ) + C.)</div>
+    <div class="ans">3 ln|x−1| − 2 ln|x+1| + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">18.</span><span class="qtag">factor first · bigger top</span>
+  <div class="qtext">Find ∫ (x+2)/(x² − 5x + 6) dx.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> full pipeline on a fresh quadratic. Factoring recipe: multiply to +6, add to −5 → −2 and −3, so the bottom is (x−2)(x−3). Watch the signs when plugging magic values into the top: at x = 2 the top is 2+2 = 4, at x = 3 it's 5.</div>
+    <div class="step">f′/f check: derivative of bottom is 2x−5 ≠ x+2. Proceed with partial fractions.</div>
+    <div class="step">x + 2 = A(x−3) + B(x−2). x = 2: 4 = A(−1) → A = −4. x = 3: 5 = B(1) → B = 5.</div>
+    <div class="step">Verify: −4(x−3) + 5(x−2) = −4x + 12 + 5x − 10 = x + 2 ✓.</div>
+    <div class="step">∫ = −4 ln|x−2| + 5 ln|x−3| + C.</div>
+    <div class="ans">5 ln|x−3| − 4 ln|x−2| + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">19.</span><span class="qtag">classify · mixed review</span>
+  <div class="qtext">Name the right tool for each (and give the answer for (a), (b), and (d), pulling from earlier lessons): (a) ∫ (2x−5)/(x²−5x+6) dx &nbsp; (b) ∫ 1/(x²+1) dx &nbsp; (c) ∫ 1/(x²−1) dx &nbsp; (d) ∫ x ln x dx</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> AP problems don't announce their method — recognition IS the skill. Run the checklist: top = bottom's derivative? bottom factors? x² + a²? a product needing parts? Each of these four hits a different branch.</div>
+    <div class="step">(a) derivative of x²−5x+6 is 2x−5 = the top → <b>f′/f</b>: ln|x²−5x+6| + C.</div>
+    <div class="step">(b) x²+1 never factors → <b>arctan</b>: arctan x + C.</div>
+    <div class="step">(c) x²−1 = (x−1)(x+1) → <b>partial fractions</b> (worked in exercise 8: (1/2)ln|(x−1)/(x+1)| + C).</div>
+    <div class="step">(d) product of unrelated pieces, one is a log → <b>integration by parts</b> (Lesson 31: (x²/2)ln x − x²/4 + C).</div>
+    <div class="ans">(a) f′/f: ln|x²−5x+6| + C &nbsp; (b) arctan x + C &nbsp; (c) partial fractions &nbsp; (d) parts: (x²/2)ln x − x²/4 + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">20.</span><span class="qtag">challenge · full pipeline</span>
+  <div class="qtext">Let f(x) = (x+11)/((x−1)(x+2)). (a) Decompose f into partial fractions. (b) Find ∫ f(x) dx. (c) Compute ∫<sub>2</sub><sup>3</sup> f(x) dx exactly. (d) Use the log rules to squeeze your answer into a single log.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the whole lesson in one problem: decompose → integrate → FTC → log-compress. In part (d) you'll need the power rule twice: 4 ln 2 = ln 2⁴ = ln 16, and 3 ln 4 = ln 64, 3 ln 5 = ln 125. Then adds and subtracts become one fraction inside ln.</div>
+    <div class="step">(a) x + 11 = A(x+2) + B(x−1). x = 1: 12 = 3A → A = 4. x = −2: 9 = B(−3) → B = −3. Verify: 4(x+2) − 3(x−1) = 4x + 8 − 3x + 3 = x + 11 ✓. So f = 4/(x−1) − 3/(x+2).</div>
+    <div class="step">(b) ∫ f dx = 4 ln|x−1| − 3 ln|x+2| + C.</div>
+    <div class="step">(c) At 3: 4 ln 2 − 3 ln 5. At 2: 4 ln 1 − 3 ln 4 = −3 ln 4. Integral = 4 ln 2 − 3 ln 5 + 3 ln 4.</div>
+    <div class="step">(d) = ln 16 − ln 125 + ln 64 = ln(16 · 64 / 125) = ln(1024/125) ≈ 2.10. (Sanity: f is positive on [2,3] and roughly 3–4 tall, so an answer a bit above 2 over a width-1 interval is plausible ✓.)</div>
+    <div class="ans">(a) 4/(x−1) − 3/(x+2) &nbsp; (b) 4 ln|x−1| − 3 ln|x+2| + C &nbsp; (c)(d) ln(1024/125) ≈ 2.10</div></div>
+</div>
+
+<footer>Lesson 32 of 40 · Intuitive Integration · next: <a href="Lesson33.html">Lesson 33 — Improper Integrals</a></footer>
+
+</div>
+<script>
+document.querySelectorAll('.q').forEach(q=>{
+  const btn=q.querySelector('.revealbtn'), sol=q.querySelector('.sol');
+  btn.addEventListener('click',()=>{ sol.classList.add('show'); btn.textContent='Solution shown'; btn.disabled=true; btn.style.opacity=.6; });
+});
+</script>
+</body>
+</html>

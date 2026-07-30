@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 23 — The Trapezoidal Rule</title>
+<style>
+  :root{--accent:#186a3b;--accent2:#239b56;--bg:#f2f7f4;--card:#fff;--ok:#1e8449;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:#1c2833;background:var(--bg);margin:0;padding:0 16px 80px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -16px 20px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  nav{display:flex;gap:10px;margin-bottom:18px;font-size:.9rem;flex-wrap:wrap;}
+  nav a{color:var(--accent);text-decoration:none;font-weight:600;background:#fff;border:1px solid #d5e8dc;border-radius:8px;padding:6px 14px;}
+  nav a:hover{background:#eafaf1;}
+  .goal{background:#fef9e7;border-left:5px solid var(--star);padding:12px 18px;border-radius:8px;margin-bottom:18px;font-size:.95rem;}
+  .goal strong{color:#7d6608;}
+  section{background:var(--card);border-radius:10px;padding:18px 22px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  h2{color:var(--accent);font-size:1.15rem;margin:0 0 10px;}
+  h2 .num{background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;border-radius:6px;padding:2px 9px;margin-right:8px;}
+  ul{margin:8px 0;padding-left:24px;}
+  li{margin-bottom:8px;}
+  strong{color:#145a32;}
+  em.hi{font-style:normal;background:#fef9e7;padding:0 4px;border-radius:3px;}
+  .fml{background:#e9f7ef;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.9em;color:#186a3b;white-space:nowrap;}
+  .ex{background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:.95rem;}
+  .ex b{color:#145a32;}
+  .graph{background:#1b2631;color:#eaeded;border-radius:8px;padding:14px 18px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.82rem;line-height:1.45;overflow-x:auto;margin:10px 0;white-space:pre;}
+  .graph .g{color:#82e0aa;} .graph .y{color:#f7dc6f;} .graph .b{color:#85c1e9;}
+  table.t{border-collapse:collapse;margin:10px 0;font-size:.92rem;}
+  table.t th,table.t td{border:1px solid #cfd8cf;padding:6px 12px;text-align:center;}
+  table.t th{background:var(--accent);color:#fff;font-weight:600;}
+  .qhead{margin:26px 0 8px;color:var(--accent);font-size:1.2rem;border-bottom:2px solid #d4efdf;padding-bottom:6px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid var(--accent2);}
+  .qnum{font-weight:800;color:var(--accent);margin-right:6px;}
+  .qtag{float:right;background:#e9f7ef;color:var(--accent);border-radius:8px;padding:1px 9px;font-size:.68rem;font-weight:700;letter-spacing:.3px;margin-left:8px;}
+  .qtext{font-size:.98rem;margin:4px 0 10px;}
+  .revealbtn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .revealbtn:hover{background:#0e4429;}
+  .sol{display:none;margin-top:12px;background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px;font-size:.93rem;}
+  .sol.show{display:block;}
+  .sol h4{margin:0 0 8px;color:var(--ok);font-size:.9rem;}
+  .sol .ctx{background:#eaf2f8;border-left:4px solid #2e86c1;border-radius:6px;padding:8px 12px;margin:0 0 10px;font-size:.88rem;}
+  .sol .ctx b{color:#1a5276;}
+  .sol .step{margin:6px 0;}
+  .sol .ans{background:#eafaf1;border-radius:6px;padding:6px 12px;margin-top:8px;font-weight:700;color:#145a32;display:inline-block;}
+  footer{text-align:center;color:#85929e;font-size:.85rem;margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Lesson 23 — The Trapezoidal Rule</h1>
+  <p>Slanted Tops that Hug the Curve · Intuitive Calculus for a Curious Student · Lesson 23 of 40</p>
+</header>
+
+<nav><a href="index.html">📚 All lessons</a><a href="Lesson22.html">← Prev: Lesson 22</a><a href="Lesson24.html">Next: Lesson 24 →</a></nav>
+
+<div class="goal"><strong>🎯 Goal of this lesson:</strong> upgrade your Riemann-sum rectangles to <em>trapezoids</em> — shapes whose slanted tops hug a curve far better than flat tops ever could. You'll learn the trapezoid area formula from scratch, a beautiful shortcut (trapezoid sum = average of left and right sums), how to handle the AP-favorite <em>unequal-width table</em>, and how concavity tells you whether your estimate is too big or too small.</div>
+
+<section>
+  <h2><span class="num">1</span> The idea: flat tops miss, slanted tops hug</h2>
+  <ul>
+    <li>In Lesson 22 you approximated areas with <strong>rectangles</strong>. A rectangle's top is <em class="hi">flat</em>, but the curve underneath it is usually rising or falling — so every rectangle either pokes above the curve or leaves a gap under it.</li>
+    <li>Fix: replace the flat top with a <strong>slanted top</strong> that connects the curve's height on the left edge straight to its height on the right edge. The shape you get is a <strong>trapezoid</strong> — and its slanted top hugs the curve much more closely.</li>
+  </ul>
+  <div class="graph">   RECTANGLE (flat top)            TRAPEZOID (slanted top)
+
+   |        _,-•  ← curve          |        _,-•  ← curve
+   |    _,-'  gap!                 |    _,-<span class="y">'</span>
+   |  <span class="g">•────────┐</span>                   |  <span class="y">•</span>_,-<span class="y">'</span>   <span class="b">← top follows</span>
+   |  <span class="g">│████████│</span>                   |  <span class="y">│████████│</span>  <span class="b">the curve!</span>
+   |  <span class="g">│████████│</span>                   |  <span class="y">│████████│</span>
+   +--+--------+---→ x             +--+--------+---→ x</div>
+  <ul>
+    <li><strong>Trapezoid area, from scratch.</strong> A trapezoid standing on the x-axis has two parallel vertical sides: a left side of height <span class="fml">y_left</span> and a right side of height <span class="fml">y_right</span>, with width <span class="fml">Δx</span> between them. Here's the trick: slice off the triangle on top. What's left is a rectangle of height <span class="fml">y_left</span> (area <span class="fml">y_left · Δx</span>), and the triangle on top has base <span class="fml">Δx</span> and height <span class="fml">y_right − y_left</span> (area <span class="fml">½(y_right − y_left)·Δx</span>). Add them: <span class="fml">y_left·Δx + ½(y_right − y_left)·Δx = ½(y_left + y_right)·Δx</span>.</li>
+    <li>So the formula is beautifully simple: <em class="hi">area = (average of the two parallel sides) × width</em>:</li>
+  </ul>
+  <div class="ex"><b>Trapezoid area:</b> <span class="fml">A = ½ (y_left + y_right) · Δx</span> — average the two heights, multiply by the width. It makes sense: a trapezoid is like a rectangle whose height is the <b>average</b> of its two edge heights.</div>
+  <div class="ex"><b>Worked example:</b> a trapezoid with left side 4, right side 10, width 3. Area = ½(4 + 10)(3) = ½(14)(3) = <b>21</b>. (Check: a rectangle of the average height 7 and width 3 also has area 21 ✓.)</div>
+</section>
+
+<section>
+  <h2><span class="num">2</span> One slice at a time: ∫₀² x² dx with 4 trapezoids</h2>
+  <ul>
+    <li>Let's approximate <span class="fml">∫₀² x² dx</span> using 4 trapezoids of equal width <span class="fml">Δx = 0.5</span>. First, the heights of the curve at the 5 slice edges:</li>
+  </ul>
+  <table class="t">
+    <tr><th>x</th><td>0</td><td>0.5</td><td>1</td><td>1.5</td><td>2</td></tr>
+    <tr><th>y = x²</th><td>0</td><td>0.25</td><td>1</td><td>2.25</td><td>4</td></tr>
+  </table>
+  <ul>
+    <li>Each trapezoid uses two neighboring heights:</li>
+  </ul>
+  <div class="ex"><b>Slice by slice:</b><br>
+  ½(0 + 0.25)(0.5) = 0.0625<br>
+  ½(0.25 + 1)(0.5) = 0.3125<br>
+  ½(1 + 2.25)(0.5) = 0.8125<br>
+  ½(2.25 + 4)(0.5) = 1.5625<br>
+  <b>Total = 0.0625 + 0.3125 + 0.8125 + 1.5625 = 2.75</b></div>
+  <ul>
+    <li>The true value (Lesson 8, FTC): <span class="fml">∫₀² x² dx = x³/3 |₀² = 8/3 ≈ 2.667</span>.</li>
+    <li>Compare the three estimates with the same 4 slices: <strong>left sum = 1.75</strong> (way low), <strong>right sum = 3.75</strong> (way high), <strong>trapezoid sum = 2.75</strong> — off by only about 0.08. <em class="hi">Slanted tops win.</em></li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">3</span> The shortcut: trapezoid = average of left and right</h2>
+  <ul>
+    <li>Look at one slice: the left rectangle uses <span class="fml">y_left·Δx</span>, the right rectangle uses <span class="fml">y_right·Δx</span>, and the trapezoid uses <span class="fml">½(y_left + y_right)·Δx</span> — exactly the <strong>average of the two rectangles</strong>. Since that's true for every slice, it's true for the whole sum:</li>
+  </ul>
+  <div class="ex"><b>Shortcut (equal widths only):</b> <span class="fml">Trapezoid sum = (Left sum + Right sum) / 2</span></div>
+  <ul>
+    <li><strong>Verify</strong> with our x² numbers: (1.75 + 3.75)/2 = 5.5/2 = <strong>2.75</strong> ✓ — exactly what the slice-by-slice work gave.</li>
+    <li>⚠️ This shortcut only works when <em class="hi">all slices have equal widths</em>. With unequal widths (next section) the left/right sums pair up with the wrong widths, so you must do each trapezoid separately.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">4</span> Tables with UNEQUAL widths — the AP classic</h2>
+  <ul>
+    <li>On the AP exam, data often comes as a table with <strong>unevenly spaced</strong> times. No shortcut here — just do each trapezoid on its own: <em class="hi">for each pair of neighboring columns, average the two readings and multiply by that gap's width</em>.</li>
+  </ul>
+  <div class="ex"><b>Worked example:</b> water flows into a tank at rate <span class="fml">r(t)</span> liters per minute, measured at five times:
+  <table class="t">
+    <tr><th>t (minutes)</th><td>0</td><td>3</td><td>5</td><td>9</td><td>12</td></tr>
+    <tr><th>r(t) (L/min)</th><td>10</td><td>14</td><td>18</td><td>12</td><td>8</td></tr>
+  </table>
+  Estimate <span class="fml">∫₀¹² r(t) dt</span> with 4 trapezoids. The widths are the gaps between times: 3, 2, 4, 3.<br><br>
+  ½(10 + 14)·3 = 12·3 = 36<br>
+  ½(14 + 18)·2 = 16·2 = 32<br>
+  ½(18 + 12)·4 = 15·4 = 60<br>
+  ½(12 + 8)·3 = 10·3 = 30<br>
+  <b>Total = 36 + 32 + 60 + 30 = 158 liters.</b><br><br>
+  <b>Meaning:</b> approximately 158 liters of water flowed into the tank during the 12 minutes. Units check: (L/min) × min = L ✓.</div>
+</section>
+
+<section>
+  <h2><span class="num">5</span> Too big or too small? Concavity decides</h2>
+  <ul>
+    <li><strong>New word, from scratch: concavity.</strong> A curve is <strong>concave up</strong> if it bends upward like a cup ∪ (its slope keeps increasing — think of <span class="fml">y = x²</span>). It's <strong>concave down</strong> if it bends downward like a frown ∩ (slope keeps decreasing — think of <span class="fml">y = √x</span>).</li>
+    <li>A trapezoid's slanted top is a <strong>chord</strong> — a straight line connecting two points on the curve. Where does a chord sit?</li>
+  </ul>
+  <div class="graph">  CONCAVE UP (cup ∪)                 CONCAVE DOWN (frown ∩)
+
+  |            <span class="y">•</span>                     |      _<span class="g">--•--</span>_   ← curve bulges
+  |  chord   <span class="y">/</span>                       |   <span class="y">•</span><span class="g">'</span>~~~~~~~<span class="g">'</span><span class="y">•</span>   ABOVE chord
+  |  ABOVE <span class="y">/</span>  ← straight line        |   <span class="y">chord sags BELOW</span>
+  |       <span class="y">/</span>_<span class="g">.-'</span>                     |
+  |  <span class="y">•</span><span class="g">--'</span><span class="y">'</span>  ← curve sags below       |
+  +---------------→ x                +---------------→ x
+  chord ABOVE curve                  chord BELOW curve
+  → trapezoids OVERestimate          → trapezoids UNDERestimate</div>
+  <ul>
+    <li><strong>Concave up:</strong> the curve sags below its chords, so every trapezoid top sits <em class="hi">above</em> the curve → the trapezoid sum <strong>OVERestimates</strong>. (That's why we got 2.75 &gt; 8/3 for x², which is concave up.)</li>
+    <li><strong>Concave down:</strong> the curve bulges above its chords, so trapezoid tops sit <em class="hi">below</em> the curve → the trapezoid sum <strong>UNDERestimates</strong>.</li>
+    <li>Memory hook: <em class="hi">cup ∪ catches extra area → over; frown ∩ hides area → under</em>.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">6</span> When would you actually use this?</h2>
+  <ul>
+    <li>When you have a <strong>formula</strong>, the FTC gives exact answers — no approximation needed. But real life often hands you <strong>measurements</strong> instead: a nurse records a patient's heart rate every few minutes, a weather station logs rainfall rates, a chemist measures a reaction rate at scattered times. <em class="hi">No formula exists — only data.</em></li>
+    <li>The trapezoidal rule is the standard tool for turning a table of rate measurements into a total. That's why AP loves it: it's the honest, practical face of integration.</li>
+  </ul>
+</section>
+
+<div class="qhead">✏️ Exercises — 20 problems (write your answer on paper, then reveal)</div>
+
+<div class="q"><span class="qnum">1.</span><span class="qtag">single trapezoid</span>
+  <div class="qtext">A trapezoid standing on the x-axis has a left side of height 4, a right side of height 6, and width 2. Find its area.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a trapezoid's area is the <b>average of its two parallel sides times the width</b>: A = ½(y_left + y_right)·Δx. It works because a trapezoid is a rectangle whose height is the average of the two edge heights.</div>
+    <div class="step">A = ½(4 + 6)(2) = ½(10)(2) = 10.</div>
+    <div class="step">Check with the average-height idea: average height = 5, width = 2, so 5 × 2 = 10 ✓.</div>
+    <div class="ans">10</div></div>
+</div>
+
+<div class="q"><span class="qnum">2.</span><span class="qtag">single trapezoid</span>
+  <div class="qtext">A function has f(1) = 3 and f(3) = 7. Use ONE trapezoid to estimate <span class="fml">∫₁³ f(x) dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> one trapezoid needs just three numbers: the height at the left end, the height at the right end, and the width of the interval. The width here is the length of [1, 3], which is 3 − 1 = 2 (end minus start, just like rectangle widths in Lesson 22).</div>
+    <div class="step">Heights: y_left = f(1) = 3, y_right = f(3) = 7. Width: Δx = 3 − 1 = 2.</div>
+    <div class="step">Estimate = ½(3 + 7)(2) = ½(10)(2) = 10.</div>
+    <div class="ans">∫₁³ f(x) dx ≈ 10</div></div>
+</div>
+
+<div class="q"><span class="qnum">3.</span><span class="qtag">single trapezoid · motion</span>
+  <div class="qtext">A car's velocity is measured as v(0) = 20 m/s and v(10) = 30 m/s. Use one trapezoid to estimate the distance traveled from t = 0 to t = 10 seconds, and say what your answer means.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> from Lessons 1 and 12: distance = area under the velocity graph = ∫ v(t) dt. With only two measurements, our best simple estimate is a single trapezoid — it assumes the velocity changed steadily (a straight line) between the readings.</div>
+    <div class="step">Estimate = ½(20 + 30)(10) = ½(50)(10) = 250.</div>
+    <div class="step">Units: (m/s) × s = meters ✓.</div>
+    <div class="ans">≈ 250 meters — the approximate distance traveled in those 10 seconds</div></div>
+</div>
+
+<div class="q"><span class="qnum">4.</span><span class="qtag">exact for lines!</span>
+  <div class="qtext">Use TWO trapezoids (Δx = 1) to estimate <span class="fml">∫₀² x dx</span>, then compute the true value with the FTC. What do you notice, and why does it happen?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a trapezoid's top is a straight line. If the curve itself IS a straight line (like y = x), the slanted top doesn't just hug the curve — it lies exactly ON it, so there is no error at all.</div>
+    <div class="step">Heights: f(0) = 0, f(1) = 1, f(2) = 2.</div>
+    <div class="step">Trapezoids: ½(0 + 1)(1) + ½(1 + 2)(1) = 0.5 + 1.5 = 2.</div>
+    <div class="step">True value: ∫₀² x dx = x²/2 |₀² = 4/2 − 0 = 2.</div>
+    <div class="step">They match exactly! The trapezoid tops sit right on the line y = x, so the trapezoids fill the region perfectly. The trapezoidal rule is <b>exact for straight-line functions</b>.</div>
+    <div class="ans">Both give 2 — trapezoids are exact when the graph is a straight line</div></div>
+</div>
+
+<div class="q"><span class="qnum">5.</span><span class="qtag">equal widths</span>
+  <div class="qtext">Use two trapezoids (Δx = 0.5) to estimate <span class="fml">∫₀¹ x² dx</span>. Compare with the true value 1/3. Too big or too small?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the slice edges are x = 0, 0.5, 1, and the heights come from y = x². True value from the FTC (Lesson 8): ∫₀¹ x² dx = x³/3 |₀¹ = 1/3 ≈ 0.333.</div>
+    <div class="step">Heights: f(0) = 0, f(0.5) = 0.25, f(1) = 1.</div>
+    <div class="step">Trapezoid 1: ½(0 + 0.25)(0.5) = 0.0625. Trapezoid 2: ½(0.25 + 1)(0.5) = 0.3125.</div>
+    <div class="step">Total = 0.0625 + 0.3125 = 0.375.</div>
+    <div class="step">0.375 &gt; 0.333… — an overestimate, as expected: x² is concave up (cup shape), so the chords sit above the curve.</div>
+    <div class="ans">≈ 0.375, an overestimate of 1/3</div></div>
+</div>
+
+<div class="q"><span class="qnum">6.</span><span class="qtag">shortcut</span>
+  <div class="qtext">For a certain function on [0, 4] with equal-width slices, the left Riemann sum is 10 and the right Riemann sum is 14. What is the trapezoid sum?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> for EQUAL widths, each trapezoid is the average of the left rectangle and the right rectangle on its slice — so the whole trapezoid sum is the average of the whole left sum and the whole right sum: T = (L + R)/2.</div>
+    <div class="step">T = (10 + 14)/2 = 24/2 = 12.</div>
+    <div class="ans">12</div></div>
+</div>
+
+<div class="q"><span class="qnum">7.</span><span class="qtag">1/x</span>
+  <div class="qtext">Use two trapezoids (Δx = 1) to estimate <span class="fml">∫₁³ (1/x) dx</span>. Give your answer as an exact fraction, then compare with the true value ln 3 ≈ 1.099.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> from Lesson 21, ∫₁³ (1/x) dx = ln|x| |₁³ = ln 3 − ln 1 = ln 3 ≈ 1.099. The curve y = 1/x is concave up (it bends like a cup as it flattens out), so predict an overestimate before you even compute.</div>
+    <div class="step">Heights: f(1) = 1, f(2) = 1/2, f(3) = 1/3.</div>
+    <div class="step">Trapezoid 1: ½(1 + 1/2)(1) = ½ · 3/2 = 3/4.</div>
+    <div class="step">Trapezoid 2: ½(1/2 + 1/3)(1) = ½ · 5/6 = 5/12.</div>
+    <div class="step">Total = 3/4 + 5/12 = 9/12 + 5/12 = 14/12 = 7/6 ≈ 1.167.</div>
+    <div class="step">1.167 &gt; 1.099 — an overestimate, matching the concave-up prediction ✓.</div>
+    <div class="ans">7/6 ≈ 1.167 (overestimates ln 3 ≈ 1.099)</div></div>
+</div>
+
+<div class="q"><span class="qnum">8.</span><span class="qtag">√x</span>
+  <div class="qtext">Use four trapezoids (Δx = 1) to estimate <span class="fml">∫₀⁴ √x dx</span> (use √2 ≈ 1.414 and √3 ≈ 1.732). Compare with the true value from the FTC. Too big or too small?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> from Lesson 21, √x = x<sup>1/2</sup>, so ∫₀⁴ √x dx = (2/3)x<sup>3/2</sup> |₀⁴ = (2/3)(8) = 16/3 ≈ 5.333. And y = √x is concave DOWN (a frown: it rises quickly then flattens), so predict an underestimate.</div>
+    <div class="step">Heights: f(0) = 0, f(1) = 1, f(2) ≈ 1.414, f(3) ≈ 1.732, f(4) = 2.</div>
+    <div class="step">½(0 + 1)(1) = 0.500</div>
+    <div class="step">½(1 + 1.414)(1) = 1.207</div>
+    <div class="step">½(1.414 + 1.732)(1) = 1.573</div>
+    <div class="step">½(1.732 + 2)(1) = 1.866</div>
+    <div class="step">Total ≈ 0.500 + 1.207 + 1.573 + 1.866 = 5.146.</div>
+    <div class="step">5.146 &lt; 5.333 — an underestimate, matching the concave-down prediction ✓.</div>
+    <div class="ans">≈ 5.146, an underestimate of 16/3 ≈ 5.333</div></div>
+</div>
+
+<div class="q"><span class="qnum">9.</span><span class="qtag">verify the shortcut</span>
+  <div class="qtext">For <span class="fml">∫₀³ x² dx</span> with three slices (Δx = 1): (a) compute the left sum and right sum; (b) average them; (c) compute the trapezoid sum slice by slice and confirm it matches.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> Lesson 22 sums: the left sum uses heights at each slice's left edge, the right sum uses the right edges. The claim to verify: with equal widths, T = (L + R)/2 — not just approximately, but exactly.</div>
+    <div class="step">Heights at x = 0, 1, 2, 3: 0, 1, 4, 9.</div>
+    <div class="step">(a) Left sum = (0 + 1 + 4)(1) = 5. Right sum = (1 + 4 + 9)(1) = 14.</div>
+    <div class="step">(b) Average = (5 + 14)/2 = 19/2 = 9.5.</div>
+    <div class="step">(c) Trapezoids: ½(0+1)(1) + ½(1+4)(1) + ½(4+9)(1) = 0.5 + 2.5 + 6.5 = 9.5 ✓ — a perfect match.</div>
+    <div class="step">(For the curious: the true value is 3³/3 = 9, so 9.5 overestimates — x² is concave up.)</div>
+    <div class="ans">L = 5, R = 14, average = 9.5 = trapezoid sum ✓</div></div>
+</div>
+
+<div class="q"><span class="qnum">10.</span><span class="qtag">unequal widths · velocity</span>
+  <div class="qtext">A cyclist's velocity (m/s) is recorded at uneven times:
+  <table class="t">
+    <tr><th>t (s)</th><td>0</td><td>2</td><td>5</td><td>8</td><td>10</td></tr>
+    <tr><th>v(t) (m/s)</th><td>4</td><td>10</td><td>16</td><td>10</td><td>6</td></tr>
+  </table>
+  Use a trapezoidal sum with 4 trapezoids to estimate <span class="fml">∫₀¹⁰ v(t) dt</span>, with units, and say what the number means.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> unequal spacing means NO shortcut — handle each gap separately. Each trapezoid's width is the gap between neighboring times: 2, 3, 3, 2. And ∫ v dt = distance (area under a velocity graph is distance traveled).</div>
+    <div class="step">½(4 + 10)·2 = 7·2 = 14</div>
+    <div class="step">½(10 + 16)·3 = 13·3 = 39</div>
+    <div class="step">½(16 + 10)·3 = 13·3 = 39</div>
+    <div class="step">½(10 + 6)·2 = 8·2 = 16</div>
+    <div class="step">Total = 14 + 39 + 39 + 16 = 108. Units: (m/s)·s = meters.</div>
+    <div class="ans">≈ 108 meters — the approximate distance the cyclist traveled during the 10 seconds</div></div>
+</div>
+
+<div class="q"><span class="qnum">11.</span><span class="qtag">unequal widths · water</span>
+  <div class="qtext">Water flows into a tank at rate R(t) gallons per minute:
+  <table class="t">
+    <tr><th>t (min)</th><td>0</td><td>4</td><td>6</td><td>10</td></tr>
+    <tr><th>R(t) (gal/min)</th><td>12</td><td>20</td><td>24</td><td>16</td></tr>
+  </table>
+  Use a trapezoidal sum with 3 trapezoids to estimate the total water added from t = 0 to t = 10, with units.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> total water added = ∫₀¹⁰ R(t) dt (accumulating a rate, Lesson 13). Widths are the time gaps: 4, 2, 4 minutes.</div>
+    <div class="step">½(12 + 20)·4 = 16·4 = 64</div>
+    <div class="step">½(20 + 24)·2 = 22·2 = 44</div>
+    <div class="step">½(24 + 16)·4 = 20·4 = 80</div>
+    <div class="step">Total = 64 + 44 + 80 = 188. Units: (gal/min)·min = gallons.</div>
+    <div class="ans">≈ 188 gallons of water flowed in during the 10 minutes</div></div>
+</div>
+
+<div class="q"><span class="qnum">12.</span><span class="qtag">shortcut · backwards</span>
+  <div class="qtext">For equal-width slices on [0, 6], the trapezoid sum is 20 and the left sum is 17. (a) Find the right sum. (b) Why would this reasoning FAIL if the slices had unequal widths?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> T = (L + R)/2 is an equation with three players — know any two, solve for the third. It's exactly the "average of two numbers" relationship: if the average of 17 and R is 20, R must sit as far above 20 as 17 sits below.</div>
+    <div class="step">(a) 20 = (17 + R)/2 → 40 = 17 + R → R = 23.</div>
+    <div class="step">(b) The shortcut came from pairing each slice's left rectangle with the SAME slice's right rectangle, both with the SAME width Δx, and averaging. With unequal widths, each height gets multiplied by different widths in the left and right sums, so averaging the two totals no longer averages each slice correctly. You'd have to go trapezoid by trapezoid.</div>
+    <div class="ans">(a) right sum = 23 &nbsp; (b) the slice-by-slice averaging needs one common width</div></div>
+</div>
+
+<div class="q"><span class="qnum">13.</span><span class="qtag">concavity</span>
+  <div class="qtext">The curve y = x² is concave up on [0, 2]. (a) Explain, using chords, whether a trapezoidal sum for <span class="fml">∫₀² x² dx</span> overestimates or underestimates. (b) Check your answer against the numbers from the notes (trapezoid sum 2.75, true value 8/3).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> concave up = bends like a cup ∪ (slope increasing). A trapezoid's top is a <b>chord</b> — a straight segment joining two points on the curve. For a concave-up curve, the curve sags BELOW each chord, like a rope hanging between two posts.</div>
+    <div class="step">(a) Each trapezoid top (chord) lies above the curve, so each trapezoid contains a bit MORE area than the region under the curve → the sum <b>overestimates</b>.</div>
+    <div class="step">(b) Check: 2.75 &gt; 8/3 ≈ 2.667 ✓ — the estimate is indeed too big.</div>
+    <div class="ans">Overestimate — chords sit above a concave-up curve; 2.75 &gt; 2.667 confirms it</div></div>
+</div>
+
+<div class="q"><span class="qnum">14.</span><span class="qtag">concavity + direction</span>
+  <div class="qtext">On [1, 4], the function f(x) = √x is increasing and concave down. Without computing anything, state whether each estimate of <span class="fml">∫₁⁴ √x dx</span> is an overestimate or underestimate, with a one-line reason each: (a) left sum, (b) right sum, (c) trapezoid sum.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> two SEPARATE rules, don't mix them up. Left/right rectangles care about <b>increasing vs decreasing</b> (Lesson 22): for an increasing function, left edges are the short edges. Trapezoids care about <b>concavity</b>: chords vs curve.</div>
+    <div class="step">(a) Left sum: f is increasing, so each left-edge height is the smallest on its slice → rectangles sit under the curve → <b>underestimate</b>.</div>
+    <div class="step">(b) Right sum: right-edge heights are the biggest on each slice → rectangles poke above → <b>overestimate</b>.</div>
+    <div class="step">(c) Trapezoid sum: f is concave down, so the curve bulges above its chords → trapezoid tops sit below the curve → <b>underestimate</b>.</div>
+    <div class="ans">(a) under (increasing) &nbsp; (b) over (increasing) &nbsp; (c) under (concave down)</div></div>
+</div>
+
+<div class="q"><span class="qnum">15.</span><span class="qtag">four-way showdown</span>
+  <div class="qtext">For <span class="fml">∫₀² x² dx</span> with just TWO slices (Δx = 1), compute (a) the left sum, (b) the right sum, (c) the trapezoid sum, (d) the midpoint sum. (e) The true value is 8/3 ≈ 2.667 — rank the four estimates from closest to farthest.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the midpoint sum (Lesson 22) uses the height at the CENTER of each slice: midpoints of [0,1] and [1,2] are 0.5 and 1.5. This showdown reveals a famous fact: midpoint is usually about twice as accurate as trapezoid, and they err on opposite sides.</div>
+    <div class="step">Heights at edges: f(0) = 0, f(1) = 1, f(2) = 4. At midpoints: f(0.5) = 0.25, f(1.5) = 2.25.</div>
+    <div class="step">(a) L = (0 + 1)(1) = 1.</div>
+    <div class="step">(b) R = (1 + 4)(1) = 5.</div>
+    <div class="step">(c) T = ½(0+1)(1) + ½(1+4)(1) = 0.5 + 2.5 = 3. (Shortcut check: (1+5)/2 = 3 ✓.)</div>
+    <div class="step">(d) M = (0.25 + 2.25)(1) = 2.5.</div>
+    <div class="step">(e) Errors from 8/3 ≈ 2.667: M is off by ≈ 0.167 (under), T by ≈ 0.333 (over), L by ≈ 1.667, R by ≈ 2.333.</div>
+    <div class="ans">L = 1, R = 5, T = 3, M = 2.5; ranking: midpoint, trapezoid, left, right</div></div>
+</div>
+
+<div class="q"><span class="qnum">16.</span><span class="qtag">marathon runner · multi-part</span>
+  <div class="qtext">A marathon runner's speed (mph) is recorded during a 3-hour training run:
+  <table class="t">
+    <tr><th>t (hours)</th><td>0</td><td>0.5</td><td>1.5</td><td>2.5</td><td>3</td></tr>
+    <tr><th>v(t) (mph)</th><td>0</td><td>8</td><td>7</td><td>6</td><td>5</td></tr>
+  </table>
+  (a) Use a trapezoidal sum with all 4 subintervals to estimate <span class="fml">∫₀³ v(t) dt</span>. (b) Using correct units, explain what your answer represents.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> classic AP phrasing! "Trapezoidal sum with the subintervals indicated by the table" means: use each gap in the table as one trapezoid. Widths: 0.5, 1, 1, 0.5 hours. Note v(0) = 0 — the runner starts from rest, and a zero height is a perfectly fine trapezoid side (it just makes that trapezoid a triangle).</div>
+    <div class="step">(a) ½(0 + 8)(0.5) = 4·0.5 = 2</div>
+    <div class="step">½(8 + 7)(1) = 7.5</div>
+    <div class="step">½(7 + 6)(1) = 6.5</div>
+    <div class="step">½(6 + 5)(0.5) = 5.5·0.5 = 2.75</div>
+    <div class="step">Total = 2 + 7.5 + 6.5 + 2.75 = 18.75.</div>
+    <div class="step">(b) Units: (miles/hour)·hours = miles.</div>
+    <div class="ans">(a) 18.75 &nbsp; (b) the runner traveled approximately 18.75 miles during the 3 hours</div></div>
+</div>
+
+<div class="q"><span class="qnum">17.</span><span class="qtag">which is closest?</span>
+  <div class="qtext">For <span class="fml">∫₁³ x² dx</span> with two slices (Δx = 1): compute the left, right, trapezoid, and midpoint estimates, then compute the TRUE value using the FTC. Which estimate is closest?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the FTC (Lesson 8) gives the exact answer: ∫₁³ x² dx = x³/3 |₁³ = 27/3 − 1/3 = 26/3 ≈ 8.667. That's our measuring stick for judging the four estimates.</div>
+    <div class="step">Edge heights: f(1) = 1, f(2) = 4, f(3) = 9. Midpoint heights: f(1.5) = 2.25, f(2.5) = 6.25.</div>
+    <div class="step">Left = (1 + 4)(1) = 5. Right = (4 + 9)(1) = 13.</div>
+    <div class="step">Trapezoid = (5 + 13)/2 = 9. Midpoint = (2.25 + 6.25)(1) = 8.5.</div>
+    <div class="step">Errors from 26/3 ≈ 8.667: left 3.667, right 4.333, trapezoid 0.333 (over — concave up ✓), midpoint 0.167 (under).</div>
+    <div class="ans">True value 26/3 ≈ 8.667; the midpoint estimate 8.5 is closest</div></div>
+</div>
+
+<div class="q"><span class="qnum">18.</span><span class="qtag">average value · temperature</span>
+  <div class="qtext">An oven's temperature (°F) is recorded every 3 minutes as it preheats:
+  <table class="t">
+    <tr><th>t (min)</th><td>0</td><td>3</td><td>6</td><td>9</td><td>12</td></tr>
+    <tr><th>T(t) (°F)</th><td>70</td><td>130</td><td>190</td><td>230</td><td>250</td></tr>
+  </table>
+  Use a trapezoidal sum to estimate the AVERAGE temperature of the oven over the 12 minutes. (Recall Lesson 14: average value = (1/(b−a)) ∫ₐᵇ T(t) dt.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> average value (Lesson 14) = total ÷ length of interval = (1/(12−0)) ∫₀¹² T(t) dt. We can't do the integral exactly (no formula, just data), so we estimate it with trapezoids first, then divide by 12. Widths are all 3 minutes.</div>
+    <div class="step">½(70 + 130)·3 = 100·3 = 300</div>
+    <div class="step">½(130 + 190)·3 = 160·3 = 480</div>
+    <div class="step">½(190 + 230)·3 = 210·3 = 630</div>
+    <div class="step">½(230 + 250)·3 = 240·3 = 720</div>
+    <div class="step">∫₀¹² T dt ≈ 300 + 480 + 630 + 720 = 2130 (°F·min).</div>
+    <div class="step">Average ≈ 2130 / 12 = 177.5 °F. (Sanity check: it should land between 70 and 250 ✓.)</div>
+    <div class="ans">Average temperature ≈ 177.5 °F</div></div>
+</div>
+
+<div class="q"><span class="qnum">19.</span><span class="qtag">justify · AP style</span>
+  <div class="qtext">Fuel flows into a storage tank at rate R(t) liters per minute, where R is differentiable and <strong>concave down</strong> on [0, 10]:
+  <table class="t">
+    <tr><th>t (min)</th><td>0</td><td>2</td><td>4</td><td>7</td><td>10</td></tr>
+    <tr><th>R(t) (L/min)</th><td>30</td><td>38</td><td>42</td><td>44</td><td>40</td></tr>
+  </table>
+  (a) Use a trapezoidal sum with the four subintervals in the table to estimate <span class="fml">∫₀¹⁰ R(t) dt</span>. (b) Is your estimate greater than or less than the true value? Justify your answer.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> part (b) is a pure "justify" point on the AP exam. The magic word is <b>concave down → chords below the curve → trapezoids underestimate</b>. Graders want the concavity stated AND connected to the trapezoid tops.</div>
+    <div class="step">(a) Widths: 2, 2, 3, 3.</div>
+    <div class="step">½(30 + 38)·2 = 34·2 = 68</div>
+    <div class="step">½(38 + 42)·2 = 40·2 = 80</div>
+    <div class="step">½(42 + 44)·3 = 43·3 = 129</div>
+    <div class="step">½(44 + 40)·3 = 42·3 = 126</div>
+    <div class="step">Total = 68 + 80 + 129 + 126 = 403 liters.</div>
+    <div class="step">(b) Because R is concave down, the graph of R bulges ABOVE every chord. Each trapezoid top is a chord, so each trapezoid misses a sliver of area under the curve. Therefore 403 is <b>less than</b> the true value of ∫₀¹⁰ R(t) dt.</div>
+    <div class="ans">(a) ≈ 403 liters &nbsp; (b) an underestimate — R is concave down, so trapezoid tops (chords) lie below the curve</div></div>
+</div>
+
+<div class="q"><span class="qnum">20.</span><span class="qtag">challenge · full AP-style FRQ</span>
+  <div class="qtext">Water is pumped into a tank at rate R(t) liters per minute, measured at selected times:
+  <table class="t">
+    <tr><th>t (min)</th><td>0</td><td>4</td><td>10</td><td>15</td><td>20</td></tr>
+    <tr><th>R(t) (L/min)</th><td>5</td><td>9</td><td>12</td><td>10</td><td>6</td></tr>
+  </table>
+  (a) Estimate <span class="fml">∫₀²⁰ R(t) dt</span> with a LEFT Riemann sum using the four subintervals in the table.
+  (b) Estimate <span class="fml">∫₀²⁰ R(t) dt</span> with a trapezoidal sum using the same subintervals.
+  (c) Using correct units, explain the meaning of <span class="fml">∫₀²⁰ R(t) dt</span> in this situation.
+  (d) The tank held 50 liters at t = 0. Using your answer from (b), estimate how much water the tank holds at t = 20.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> this is the full AP table-problem experience: two different sum types on unequal widths, a units/meaning sentence, and an initial-value finish (Lesson 15: final amount = starting amount + accumulated change). Widths: 4, 6, 5, 5 minutes.</div>
+    <div class="step">(a) Left sum uses the LEFT edge of each gap: 5·4 + 9·6 + 12·5 + 10·5 = 20 + 54 + 60 + 50 = 184 liters.</div>
+    <div class="step">(b) Trapezoids: ½(5 + 9)·4 = 7·4 = 28; &nbsp; ½(9 + 12)·6 = 10.5·6 = 63; &nbsp; ½(12 + 10)·5 = 11·5 = 55; &nbsp; ½(10 + 6)·5 = 8·5 = 40.</div>
+    <div class="step">Total = 28 + 63 + 55 + 40 = 186 liters. (Note: no averaging-L-and-R shortcut allowed — the widths are unequal!)</div>
+    <div class="step">(c) ∫₀²⁰ R(t) dt is the total number of liters of water pumped into the tank during the 20 minutes from t = 0 to t = 20. Units: (L/min) × min = liters.</div>
+    <div class="step">(d) amount at t = 20 ≈ starting amount + water added ≈ 50 + 186 = 236 liters.</div>
+    <div class="ans">(a) 184 L &nbsp; (b) 186 L &nbsp; (c) total liters pumped in during the 20 minutes &nbsp; (d) ≈ 236 liters</div></div>
+</div>
+
+<footer>Lesson 23 of 40 · Intuitive Integration · next: <a href="Lesson24.html">Lesson 24 — Growing the Library: Tangent, Secant &amp; Friends</a></footer>
+
+</div>
+<script>
+document.querySelectorAll('.q').forEach(q=>{
+  const btn=q.querySelector('.revealbtn'), sol=q.querySelector('.sol');
+  btn.addEventListener('click',()=>{ sol.classList.add('show'); btn.textContent='Solution shown'; btn.disabled=true; btn.style.opacity=.6; });
+});
+</script>
+</body>
+</html>

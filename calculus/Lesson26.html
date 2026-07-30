@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 26 — u-Substitution Mastery: Changing Limits &amp; Classic Patterns</title>
+<style>
+  :root{--accent:#186a3b;--accent2:#239b56;--bg:#f2f7f4;--card:#fff;--ok:#1e8449;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:#1c2833;background:var(--bg);margin:0;padding:0 16px 80px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -16px 20px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  nav{display:flex;gap:10px;margin-bottom:18px;font-size:.9rem;flex-wrap:wrap;}
+  nav a{color:var(--accent);text-decoration:none;font-weight:600;background:#fff;border:1px solid #d5e8dc;border-radius:8px;padding:6px 14px;}
+  nav a:hover{background:#eafaf1;}
+  .goal{background:#fef9e7;border-left:5px solid var(--star);padding:12px 18px;border-radius:8px;margin-bottom:18px;font-size:.95rem;}
+  .goal strong{color:#7d6608;}
+  section{background:var(--card);border-radius:10px;padding:18px 22px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  h2{color:var(--accent);font-size:1.15rem;margin:0 0 10px;}
+  h2 .num{background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;border-radius:6px;padding:2px 9px;margin-right:8px;}
+  ul{margin:8px 0;padding-left:24px;}
+  li{margin-bottom:8px;}
+  strong{color:#145a32;}
+  em.hi{font-style:normal;background:#fef9e7;padding:0 4px;border-radius:3px;}
+  .fml{background:#e9f7ef;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.9em;color:#186a3b;white-space:nowrap;}
+  .ex{background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:.95rem;}
+  .ex b{color:#145a32;}
+  .graph{background:#1b2631;color:#eaeded;border-radius:8px;padding:14px 18px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.82rem;line-height:1.45;overflow-x:auto;margin:10px 0;white-space:pre;}
+  .graph .g{color:#82e0aa;} .graph .y{color:#f7dc6f;} .graph .b{color:#85c1e9;}
+  table.t{border-collapse:collapse;margin:10px 0;font-size:.92rem;}
+  table.t th,table.t td{border:1px solid #cfd8cf;padding:6px 12px;text-align:center;}
+  table.t th{background:var(--accent);color:#fff;font-weight:600;}
+  .qhead{margin:26px 0 8px;color:var(--accent);font-size:1.2rem;border-bottom:2px solid #d4efdf;padding-bottom:6px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid var(--accent2);}
+  .qnum{font-weight:800;color:var(--accent);margin-right:6px;}
+  .qtag{float:right;background:#e9f7ef;color:var(--accent);border-radius:8px;padding:1px 9px;font-size:.68rem;font-weight:700;letter-spacing:.3px;margin-left:8px;}
+  .qtext{font-size:.98rem;margin:4px 0 10px;}
+  .revealbtn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .revealbtn:hover{background:#0e4429;}
+  .sol{display:none;margin-top:12px;background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px;font-size:.93rem;}
+  .sol.show{display:block;}
+  .sol h4{margin:0 0 8px;color:var(--ok);font-size:.9rem;}
+  .sol .ctx{background:#eaf2f8;border-left:4px solid #2e86c1;border-radius:6px;padding:8px 12px;margin:0 0 10px;font-size:.88rem;}
+  .sol .ctx b{color:#1a5276;}
+  .sol .step{margin:6px 0;}
+  .sol .ans{background:#eafaf1;border-radius:6px;padding:6px 12px;margin-top:8px;font-weight:700;color:#145a32;display:inline-block;}
+  footer{text-align:center;color:#85929e;font-size:.85rem;margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Lesson 26 — u-Substitution Mastery: Changing Limits &amp; Classic Patterns</h1>
+  <p>The Definite-Integral Upgrade and a Pattern Gallery · Intuitive Calculus for a Curious Student · Lesson 26 of 40</p>
+</header>
+
+<nav><a href="index.html">📚 All lessons</a><a href="Lesson25.html">← Prev: Lesson 25</a><a href="Lesson27.html">Next: Lesson 27 →</a></nav>
+
+<div class="goal"><strong>🎯 Goal of this lesson:</strong> level up u-substitution in two ways. First, the definite-integral upgrade: <em>change the limits along with the variable</em> and never go back to x. Second, a gallery of classic patterns — <span class="fml">∫ f′/f = ln|f|</span>, the (ln x)/x fingerprint, and the sinⁿx·cos x family — that AP exams recycle year after year. Spot the pattern, and the integral falls in three lines.</div>
+
+<section>
+  <h2><span class="num">1</span> The ritual, plus the definite-integral upgrade</h2>
+  <ul>
+    <li><strong>Recap of Lesson 18's u-substitution ritual:</strong> ① pick <span class="fml">u</span> = the inside function, ② compute <span class="fml">du</span>, ③ swap everything into u-language (borrowing a constant if needed), ④ integrate in u, ⑤ back-substitute to x. That ritual still runs the show.</li>
+    <li>Here's the upgrade for <strong>definite</strong> integrals: when you change the variable, <em class="hi">change the LIMITS too</em>. The old limits say "x runs from 0 to 2." But once we're living in u-language, we should say where <strong>u</strong> runs. Just feed the x-limits into the u formula.</li>
+    <li>If <span class="fml">u = x²+1</span> and x runs from 0 to 2, then u runs from <span class="fml">u(0) = 0²+1 = 1</span> up to <span class="fml">u(2) = 2²+1 = 5</span>. New limits: 1 to 5. And then — this is the beautiful part — <em class="hi">you NEVER go back to x</em>. Finish the whole problem in u.</li>
+  </ul>
+  <div class="ex"><b>Worked example (the limits-changing way):</b> compute <span class="fml">∫₀² x(x²+1)³ dx</span>.<br>
+  u = x²+1, du = 2x dx → x dx = du/2. Limits: u(0) = 1, u(2) = 5.<br>
+  <span class="fml">∫₀² x(x²+1)³ dx = (1/2)∫₁⁵ u³ du = (1/2)[u⁴/4]₁⁵ = (5⁴ − 1⁴)/8 = (625 − 1)/8 = 624/8 = 78</span>.</div>
+  <div class="ex"><b>Same problem, old way (back-substitute):</b> ∫ x(x²+1)³ dx = (1/2)·u⁴/4 = (x²+1)⁴/8. Then plug in the ORIGINAL x-limits: at x = 2: (4+1)⁴/8 = 625/8; at x = 0: 1/8. Difference: 624/8 = <b>78</b>. Same answer — two roads, one truth ✓.</div>
+</section>
+
+<section>
+  <h2><span class="num">2</span> Why changing limits is safer AND faster</h2>
+  <ul>
+    <li><strong>Faster:</strong> the back-substitution step (rewriting u⁴/4 as (x²+1)⁴/8) disappears entirely. You integrate in u, plug in u-numbers, done.</li>
+    <li><strong>Safer:</strong> the #1 exam disaster with definite u-subs is a mismatch — plugging <em class="hi">x-limits into a u-antiderivative</em> (or u-limits into an x-antiderivative). If you convert the limits the moment you convert the variable, the whole problem lives consistently in u-world and the mismatch becomes impossible.</li>
+    <li>The one rule to burn in: <em class="hi">limits always belong to the variable next to the d</em>. Writing <span class="fml">∫₁⁵ u³ du</span> means "u runs 1 → 5". Writing ∫₀² next to u³ du would be a lie — u never goes near 0 or 2 in our example.</li>
+    <li>Both roads stay legal. But from now on, <strong>changed limits is our default</strong> for definite integrals; back-substituting is the road for indefinite ones (where there are no limits, so you must return to x for the final answer).</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">3</span> The classic pattern gallery</h2>
+  <ul>
+    <li>Certain u-subs appear so often that AP graders can recite them in their sleep. Learn these four as <strong>patterns</strong> — each one fully worked, then boxed.</li>
+  </ul>
+  <div class="ex"><b>Pattern 1 — tangent (recap from Lesson 24):</b> <span class="fml">∫ tan x dx = ∫ sin x/cos x dx</span>. Let u = cos x, du = −sin x dx → sin x dx = −du. Integral becomes −∫ du/u = −ln|u|.<br>
+  <b>Box:</b> <span class="fml">∫ tan x dx = −ln|cos x| + C</span></div>
+  <div class="ex"><b>Pattern 2 — (ln x)/x:</b> the fingerprint is <em>ln x and its derivative 1/x both present</em>. Let u = ln x, du = (1/x) dx — and the (1/x) dx is sitting right there. <span class="fml">∫ (ln x)/x dx = ∫ u du = u²/2</span>.<br>
+  <b>Box:</b> <span class="fml">∫ (ln x)/x dx = (ln x)²/2 + C</span></div>
+  <div class="ex"><b>Pattern 3 — derivative-of-bottom-on-top → ln:</b> try <span class="fml">∫ eˣ/(1+eˣ) dx</span>. Let u = the bottom = 1+eˣ; then du = eˣ dx = exactly the top. Integral becomes ∫ du/u = ln|u| = ln(1+eˣ).<br>
+  This works EVERY time the top is the derivative of the bottom. State it as a general rule and box it:<br>
+  <b>Box:</b> <span class="fml">∫ f′(x)/f(x) dx = ln|f(x)| + C</span> &nbsp; (so ∫ eˣ/(1+eˣ) dx = ln(1+eˣ) + C — no |·| needed since 1+eˣ &gt; 0)</div>
+  <div class="ex"><b>Pattern 4 — sinⁿx · cos x:</b> a power of sine, times cosine standing guard. Let u = sin x, du = cos x dx — the cosine IS the du. <span class="fml">∫ sinⁿx cos x dx = ∫ uⁿ du = uⁿ⁺¹/(n+1)</span>.<br>
+  <b>Box:</b> <span class="fml">∫ sinⁿx cos x dx = sinⁿ⁺¹x/(n+1) + C</span> &nbsp; (mirror version: ∫ cosⁿx sin x dx = −cosⁿ⁺¹x/(n+1) + C — the minus comes from du = −sin x dx!)</div>
+</section>
+
+<section>
+  <h2><span class="num">4</span> The fingerprint checklist, upgraded</h2>
+  <ul>
+    <li>Before integrating anything, run this scan:</li>
+  </ul>
+  <table class="t">
+    <tr><th>Question to ask</th><th>If yes...</th></tr>
+    <tr><td>Is there an inside function whose derivative appears elsewhere (up to a constant)?</td><td>u = the inside; borrow a constant for du if needed</td></tr>
+    <tr><td>Top-and-bottom check: is the TOP (about) the derivative of the BOTTOM?</td><td>u = bottom → the ln pattern: ∫ f′/f = ln|f|</td></tr>
+    <tr><td>Is it a power of sin (or cos) with the OTHER one standing next to dx?</td><td>u = the powered one; watch the minus for cos</td></tr>
+    <tr><td>Do I see ln x together with 1/x?</td><td>u = ln x</td></tr>
+    <tr><td>Definite integral?</td><td>convert the limits immediately; never return to x</td></tr>
+  </table>
+  <ul>
+    <li>The phrase "up to a constant" matters: for <span class="fml">∫ x²/(x³+1) dx</span> the derivative of the bottom is 3x², and we only have x² — off by the constant 3. That's fine: borrow it, answer (1/3)ln|x³+1| + C. What you can NOT borrow is an x — only constants slide through integrals.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">5</span> A definite integral with trig, start to finish</h2>
+  <div class="ex"><b>Worked example:</b> compute <span class="fml">∫₀^(π/2) sin²x cos x dx</span>.<br>
+  Pattern 4: u = sin x, du = cos x dx. Convert the limits: u(0) = sin 0 = 0, u(π/2) = sin(π/2) = 1.<br>
+  <span class="fml">∫₀^(π/2) sin²x cos x dx = ∫₀¹ u² du = [u³/3]₀¹ = 1/3 − 0 = 1/3</span>.<br>
+  Notice how civilized that was: trig limits (0 and π/2) became plain numbers (0 and 1), and the finish line was a one-step power rule. That's the changed-limits upgrade earning its keep.</div>
+  <div class="graph">          x-world                       u-world
+  1 <span class="y">|      sin²x·cosx</span>              1 <span class="g">|        u²   _/</span>
+    <span class="y">|      _/\_</span>                      <span class="g">|           _/</span>
+    <span class="y">|    _/    \</span>          u=sin x    <span class="g">|     ___/</span>
+    <span class="y">|  _/       \</span>       =======&gt;     <span class="g">|__——</span>
+  0 <span class="y">+—————————————→ x</span>             0 <span class="g">+————————————→ u</span>
+    0         π/2                    0            1
+     <span class="b">same area, easier shape</span></div>
+</section>
+
+<section>
+  <h2><span class="num">6</span> Honesty corner — when u-sub simply fails</h2>
+  <ul>
+    <li>u-substitution is powerful, not almighty. It needs a du in the picture. Look at <span class="fml">∫ x eˣ dx</span>: try u = x (then du = dx, but eˣ won't translate into u-language) or u = eˣ (then du = eˣ dx, but there's a leftover lone x). <em class="hi">No choice of u makes the du appear.</em> Same story for ∫ ln x dx and ∫ x cos x dx.</li>
+    <li>These aren't broken integrals — they need a genuinely new tool: <strong>integration by parts</strong>, the product rule read backward. That's Lesson 30. For now, the honest skill is <em>recognizing</em> "no du in sight → u-sub is the wrong key for this lock," and saying so instead of forcing it.</li>
+  </ul>
+</section>
+
+<div class="qhead">✏️ Exercises — 20 problems (write your answer on paper, then reveal)</div>
+
+<div class="q"><span class="qnum">1.</span><span class="qtag">change the limits</span>
+  <div class="qtext">Compute <span class="fml">∫₀¹ 2x(x²+1)² dx</span> by u-substitution with changed limits. Do not back-substitute.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the full upgraded ritual: pick u, compute du, AND feed the x-limits through the u formula to get u-limits. From then on the problem lives entirely in u-world.</div>
+    <div class="step">u = x²+1, du = 2x dx — and 2x dx sits right there, no borrowing needed.</div>
+    <div class="step">Limits: u(0) = 0+1 = 1; u(1) = 1+1 = 2.</div>
+    <div class="step">∫₀¹ 2x(x²+1)² dx = ∫₁² u² du = [u³/3]₁² = 8/3 − 1/3 = 7/3.</div>
+    <div class="ans">7/3</div></div>
+</div>
+
+<div class="q"><span class="qnum">2.</span><span class="qtag">limits drill</span>
+  <div class="qtext">Just find the new u-limits (no integrating!): (a) u = x²+4, x from 0 to 2 &nbsp; (b) u = sin x, x from 0 to π/2 &nbsp; (c) u = ln x, x from 1 to e &nbsp; (d) u = cos x, x from 0 to π/2.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> converting limits is pure plug-in: feed each x-limit into the u formula. One surprise to notice in (d): u-limits are allowed to run DOWNHILL (start bigger than they end) — that's fine, just keep them in order: bottom limit from the bottom x, top limit from the top x.</div>
+    <div class="step">(a) u(0) = 4, u(2) = 8 → u: 4 → 8.</div>
+    <div class="step">(b) u(0) = sin 0 = 0, u(π/2) = 1 → u: 0 → 1.</div>
+    <div class="step">(c) u(1) = ln 1 = 0, u(e) = ln e = 1 → u: 0 → 1.</div>
+    <div class="step">(d) u(0) = cos 0 = 1, u(π/2) = 0 → u: 1 → 0 (downhill — perfectly legal).</div>
+    <div class="ans">(a) 4→8 &nbsp; (b) 0→1 &nbsp; (c) 0→1 &nbsp; (d) 1→0</div></div>
+</div>
+
+<div class="q"><span class="qnum">3.</span><span class="qtag">ln x pattern</span>
+  <div class="qtext">Find <span class="fml">∫ (ln x)/x dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the fingerprint: ln x AND its derivative 1/x both present. Whenever a function and its derivative show up together, u-sub is knocking. Here u = ln x makes du = (1/x) dx, which is exactly the rest of the integrand.</div>
+    <div class="step">u = ln x, du = (1/x) dx.</div>
+    <div class="step">∫ (ln x)/x dx = ∫ u du = u²/2 + C.</div>
+    <div class="step">Back-substitute (indefinite integral, so we must return to x): (ln x)²/2 + C.</div>
+    <div class="step">Check: d/dx[(ln x)²/2] = (1/2)·2(ln x)·(1/x) = (ln x)/x ✓.</div>
+    <div class="ans">(ln x)²/2 + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">4.</span><span class="qtag">f′/f → ln</span>
+  <div class="qtext">Find <span class="fml">∫ eˣ/(eˣ+3) dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the top-and-bottom check: the derivative of the bottom (eˣ+3) is eˣ — exactly the top. That's the ∫ f′/f = ln|f| pattern. Since eˣ+3 is always positive (eˣ &gt; 0), we can drop the absolute value.</div>
+    <div class="step">u = eˣ+3, du = eˣ dx = the top.</div>
+    <div class="step">∫ eˣ/(eˣ+3) dx = ∫ du/u = ln|u| + C = ln(eˣ+3) + C.</div>
+    <div class="step">Check: d/dx[ln(eˣ+3)] = eˣ/(eˣ+3) ✓.</div>
+    <div class="ans">ln(eˣ+3) + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">5.</span><span class="qtag">sinⁿ · cos</span>
+  <div class="qtext">Find <span class="fml">∫ sin⁴x cos x dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> Pattern 4: a power of sine with cosine standing next to dx. The cosine IS the du for u = sin x, so the whole thing collapses to the power rule on u⁴.</div>
+    <div class="step">u = sin x, du = cos x dx.</div>
+    <div class="step">∫ sin⁴x cos x dx = ∫ u⁴ du = u⁵/5 + C = sin⁵x/5 + C.</div>
+    <div class="step">Check: d/dx[sin⁵x/5] = (5 sin⁴x · cos x)/5 = sin⁴x cos x ✓.</div>
+    <div class="ans">sin⁵x/5 + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">6.</span><span class="qtag">tan recap</span>
+  <div class="qtext">Find <span class="fml">∫ tan x dx</span>, showing the u-substitution that produces the answer.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> tan x = sin x/cos x, and the top is (almost) the derivative of the bottom: (cos x)′ = −sin x, off only by a minus sign. So this is secretly the f′/f → ln pattern with one minus to manage.</div>
+    <div class="step">u = cos x, du = −sin x dx → sin x dx = −du.</div>
+    <div class="step">∫ tan x dx = ∫ sin x/cos x dx = ∫ (−du)/u = −ln|u| + C.</div>
+    <div class="step">Back-substitute: −ln|cos x| + C.</div>
+    <div class="step">Check: d/dx[−ln|cos x|] = −(1/cos x)(−sin x) = tan x ✓.</div>
+    <div class="ans">−ln|cos x| + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">7.</span><span class="qtag">change the limits</span>
+  <div class="qtext">Compute <span class="fml">∫₀² x(x²+4)³ dx</span> with changed limits.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> same recipe as the notes' showcase problem, but now the du needs the constant-borrow trick: du = 2x dx while we only have x dx, so x dx = du/2 and a 1/2 pops out front.</div>
+    <div class="step">u = x²+4, du = 2x dx → x dx = du/2. Limits: u(0) = 4, u(2) = 8.</div>
+    <div class="step">∫₀² x(x²+4)³ dx = (1/2)∫₄⁸ u³ du = (1/2)[u⁴/4]₄⁸ = (8⁴ − 4⁴)/8.</div>
+    <div class="step">8⁴ = 4096 and 4⁴ = 256, so (4096 − 256)/8 = 3840/8 = 480.</div>
+    <div class="ans">480</div></div>
+</div>
+
+<div class="q"><span class="qnum">8.</span><span class="qtag">f′/f · borrow</span>
+  <div class="qtext">Find <span class="fml">∫ x²/(x³+1) dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> top-and-bottom check: derivative of the bottom is 3x², and the top is x² — a match up to the constant 3. Constants can be borrowed (only constants!), so this is the ln pattern with a 1/3 out front.</div>
+    <div class="step">u = x³+1, du = 3x² dx → x² dx = du/3.</div>
+    <div class="step">∫ x²/(x³+1) dx = (1/3)∫ du/u = (1/3) ln|u| + C = (1/3) ln|x³+1| + C.</div>
+    <div class="step">Check: d/dx[(1/3)ln|x³+1|] = (1/3)·3x²/(x³+1) = x²/(x³+1) ✓.</div>
+    <div class="ans">(1/3) ln|x³+1| + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">9.</span><span class="qtag">f′/f · trig</span>
+  <div class="qtext">Find <span class="fml">∫ cos x/sin x dx</span> for x between 0 and π (where sin x &gt; 0).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> this is cot x, tangent's upside-down cousin from Lesson 24. Top-and-bottom check: derivative of sin x is cos x = the top, exactly — no borrowing, no minus sign this time. On (0, π), sin x is positive, so ln|sin x| = ln(sin x).</div>
+    <div class="step">u = sin x, du = cos x dx = the top.</div>
+    <div class="step">∫ cos x/sin x dx = ∫ du/u = ln|u| + C = ln(sin x) + C on this interval.</div>
+    <div class="step">Check: d/dx[ln(sin x)] = cos x/sin x ✓. (Compare tan: THAT one got a minus because (cos x)′ = −sin x. Here (sin x)′ = +cos x, so no minus.)</div>
+    <div class="ans">ln(sin x) + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">10.</span><span class="qtag">definite · ln x pattern</span>
+  <div class="qtext">Compute <span class="fml">∫₁^e (ln x)/x dx</span> with changed limits.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> e ≈ 2.718 is the natural base from Lesson 16, and ln e = 1 (ln asks "e to WHAT power?"). Watch the limits transform: the awkward pair (1, e) becomes the friendly pair (0, 1).</div>
+    <div class="step">u = ln x, du = (1/x) dx. Limits: u(1) = ln 1 = 0; u(e) = ln e = 1.</div>
+    <div class="step">∫₁^e (ln x)/x dx = ∫₀¹ u du = [u²/2]₀¹ = 1/2 − 0 = 1/2.</div>
+    <div class="ans">1/2</div></div>
+</div>
+
+<div class="q"><span class="qnum">11.</span><span class="qtag">cosⁿ · sin — the minus!</span>
+  <div class="qtext">Find <span class="fml">∫ cos³x sin x dx</span>. (Careful: there's a minus sign hiding in this one.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the mirror of Pattern 4: a power of COSINE with sine standing guard. u = cos x — but now du = −sin x dx, so sin x dx = −du and a minus sign rides along to the final answer. Forgetting it is the single most common slip in this family.</div>
+    <div class="step">u = cos x, du = −sin x dx → sin x dx = −du.</div>
+    <div class="step">∫ cos³x sin x dx = ∫ u³(−du) = −u⁴/4 + C = −cos⁴x/4 + C.</div>
+    <div class="step">Check: d/dx[−cos⁴x/4] = −(4cos³x)(−sin x)/4 = cos³x sin x ✓ — the two minuses cancel, confirming ours was needed.</div>
+    <div class="ans">−cos⁴x/4 + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">12.</span><span class="qtag">definite · downhill limits</span>
+  <div class="qtext">Compute <span class="fml">∫₀^(π/2) cos²x sin x dx</span> with changed limits.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> two twists at once: the cosⁿ·sin minus sign AND downhill u-limits (u = cos x runs from 1 down to 0). Handle each mechanically and they cooperate — in fact a handy flip rule saves the day: ∫ from a to b = −∫ from b to a.</div>
+    <div class="step">u = cos x, du = −sin x dx → sin x dx = −du. Limits: u(0) = 1, u(π/2) = 0.</div>
+    <div class="step">∫₀^(π/2) cos²x sin x dx = −∫₁⁰ u² du = +∫₀¹ u² du (flipping the limits eats the minus).</div>
+    <div class="step">= [u³/3]₀¹ = 1/3.</div>
+    <div class="step">Sanity: the integrand is positive on (0, π/2), so a positive answer is right ✓.</div>
+    <div class="ans">1/3</div></div>
+</div>
+
+<div class="q"><span class="qnum">13.</span><span class="qtag">both ways</span>
+  <div class="qtext">Compute <span class="fml">∫₀¹ x(x²+3)² dx</span> BOTH ways — (a) back-substitute and use x-limits, (b) change the limits — and confirm they agree.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> both roads are legal; this exercise is your proof-by-experience. Setup shared by both: u = x²+3, du = 2x dx → x dx = du/2.</div>
+    <div class="step">(a) Back-substitute: ∫ x(x²+3)² dx = (1/2)·u³/3 = (x²+3)³/6. Evaluate at x-limits: at x = 1: 4³/6 = 64/6; at x = 0: 3³/6 = 27/6. Difference: 37/6.</div>
+    <div class="step">(b) Changed limits: u(0) = 3, u(1) = 4. (1/2)∫₃⁴ u² du = (1/2)[u³/3]₃⁴ = (64 − 27)/6 = 37/6.</div>
+    <div class="step">Same answer, 37/6 ✓ — but count the steps: road (b) never needed to rebuild (x²+3)³/6.</div>
+    <div class="ans">37/6 both ways</div></div>
+</div>
+
+<div class="q"><span class="qnum">14.</span><span class="qtag">which pattern?</span>
+  <div class="qtext">Name the pattern (f′/f → ln, sinⁿ·cos, or ln x pattern) and give the antiderivative:
+  (a) <span class="fml">∫ 2x/(x²+7) dx</span> &nbsp; (b) <span class="fml">∫ sin⁵x cos x dx</span> &nbsp; (c) <span class="fml">∫ (ln x)³/x dx</span></div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> pattern recognition is the real exam skill — the computing is easy once the pattern is named. Run the checklist: top ≈ derivative of bottom? Power of sine with a cos·dx? ln x with a 1/x?</div>
+    <div class="step">(a) Derivative of bottom (x²+7) is 2x = the top → <b>f′/f → ln</b>: ln(x²+7) + C (bottom always positive, no |·| needed).</div>
+    <div class="step">(b) Power of sine, cosine on guard → <b>sinⁿ·cos</b>: sin⁶x/6 + C.</div>
+    <div class="step">(c) ln x (cubed) with its derivative 1/x present → <b>ln x pattern</b>, u = ln x: ∫u³du = u⁴/4 → (ln x)⁴/4 + C.</div>
+    <div class="ans">(a) ln(x²+7) + C &nbsp; (b) sin⁶x/6 + C &nbsp; (c) (ln x)⁴/4 + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">15.</span><span class="qtag">definite · tan</span>
+  <div class="qtext">Compute <span class="fml">∫₀^(π/4) tan x dx</span> exactly, using changed limits. Simplify your answer to a single ln.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> definite version of the tan pattern. You'll need cos(π/4) = √2/2 and two ln rules from Lesson 17: ln 1 = 0, and −ln(a/b) = ln(b/a). Also handy: √2/2 = 1/√2.</div>
+    <div class="step">u = cos x, sin x dx = −du. Limits: u(0) = cos 0 = 1; u(π/4) = √2/2.</div>
+    <div class="step">∫₀^(π/4) tan x dx = −∫₁^(√2/2) du/u = −[ln u]₁^(√2/2) = −(ln(√2/2) − ln 1) = −ln(√2/2).</div>
+    <div class="step">Simplify: −ln(1/√2) = ln √2 = (1/2) ln 2 ≈ 0.347.</div>
+    <div class="step">Sanity: tan is small and positive on (0, π/4), so a small positive area is right ✓.</div>
+    <div class="ans">(1/2) ln 2 &nbsp; (= ln √2)</div></div>
+</div>
+
+<div class="q"><span class="qnum">16.</span><span class="qtag">definite · f′/f</span>
+  <div class="qtext">Compute <span class="fml">∫₀¹ eˣ/(1+eˣ) dx</span> exactly, using changed limits. Write the answer as a single ln.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the f′/f pattern, definite edition. Remember e⁰ = 1, so the bottom limit converts to 1+1 = 2. And ln a − ln b = ln(a/b) collapses the answer into one logarithm — AP exams love that final compression.</div>
+    <div class="step">u = 1+eˣ, du = eˣ dx. Limits: u(0) = 1+e⁰ = 2; u(1) = 1+e.</div>
+    <div class="step">∫₀¹ eˣ/(1+eˣ) dx = ∫₂^(1+e) du/u = [ln u]₂^(1+e) = ln(1+e) − ln 2.</div>
+    <div class="step">Compress: ln((1+e)/2) ≈ ln(1.859) ≈ 0.620.</div>
+    <div class="ans">ln((1+e)/2)</div></div>
+</div>
+
+<div class="q"><span class="qnum">17.</span><span class="qtag">spot the error</span>
+  <div class="qtext">A student computes <span class="fml">∫₀² x(x²+1)³ dx</span> like this: "u = x²+1, x dx = du/2, and u goes from 1 to 5. So I get (1/2)∫₁⁵ u³ du. Integrating: (1/2)·u⁴/4 = (x²+1)⁴/8. Now I plug my limits 1 and 5 into that: (1+1)⁴/8... wait, no — ((5²+1)⁴ − (1²+1)⁴)/8 = (26⁴ − 2⁴)/8." Find the error and give the correct answer.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> this is the dreaded DOUBLE conversion: the student changed the limits to u-values (1 and 5) AND back-substituted to an x-formula — then fed the u-limits into the x-formula as if they were x-values. Limits belong to the variable next to the d; the two roads must never be mixed.</div>
+    <div class="step">The error: after writing (x²+1)⁴/8 (an x-world formula), the student plugged in 1 and 5 — which are u-limits, not x-limits. Numbers converted once must not be converted again.</div>
+    <div class="step">Fix, road A (stay in u): (1/2)[u⁴/4]₁⁵ = (625 − 1)/8 = 78.</div>
+    <div class="step">Fix, road B (back to x, use ORIGINAL x-limits 0 and 2): [(x²+1)⁴/8]₀² = (625 − 1)/8 = 78.</div>
+    <div class="step">Either lane works — the crash comes only from switching lanes mid-problem.</div>
+    <div class="ans">Error: u-limits plugged into an x-formula. Correct answer: 78</div></div>
+</div>
+
+<div class="q"><span class="qnum">18.</span><span class="qtag">definite · tan again</span>
+  <div class="qtext">Compute <span class="fml">∫₀^(π/3) tan x dx</span> exactly. (Answer is a famous single ln.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> same routine as exercise 15 but ending at π/3, where cos(π/3) = 1/2. One more ln rule pays off: −ln(1/2) = ln 2.</div>
+    <div class="step">Antiderivative (Pattern 1): −ln|cos x|. So the integral = [−ln(cos x)]₀^(π/3).</div>
+    <div class="step">Top: −ln(cos(π/3)) = −ln(1/2). Bottom: −ln(cos 0) = −ln 1 = 0.</div>
+    <div class="step">Answer: −ln(1/2) − 0 = ln 2 ≈ 0.693.</div>
+    <div class="step">Compare exercise 15: doubling the arc from π/4 to π/3 doubled the area from (1/2)ln 2 to ln 2 — a pretty coincidence of the cosine values (√2/2)² = 1/2.</div>
+    <div class="ans">ln 2</div></div>
+</div>
+
+<div class="q"><span class="qnum">19.</span><span class="qtag">definite · ln x squared</span>
+  <div class="qtext">Compute <span class="fml">∫₁^e (ln x)²/x dx</span> with changed limits.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the ln x pattern scales to any power: u = ln x turns (ln x)²/x dx into u² du. Compare exercise 10 — same limits (0 to 1 in u-world), one power higher.</div>
+    <div class="step">u = ln x, du = (1/x) dx. Limits: u(1) = 0, u(e) = 1.</div>
+    <div class="step">∫₁^e (ln x)²/x dx = ∫₀¹ u² du = [u³/3]₀¹ = 1/3.</div>
+    <div class="step">(Pattern preview: with (ln x)ⁿ the answer is 1/(n+1). Exercise 10 was n = 1 → 1/2 ✓.)</div>
+    <div class="ans">1/3</div></div>
+</div>
+
+<div class="q"><span class="qnum">20.</span><span class="qtag">challenge · two roads</span>
+  <div class="qtext">Compute <span class="fml">∫₀^(π/4) tan x sec²x dx</span> TWO ways: (a) u = tan x, (b) u = sec x. (Recall from Lesson 24: (tan x)′ = sec²x and (sec x)′ = sec x tan x.) You'll get identical answers from different-looking antiderivatives — explain how that's possible.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a single integrand can contain TWO valid patterns at once. The resolution of the puzzle uses the trig identity sec²x = 1 + tan²x: the two antiderivatives differ by a constant — and "+ C" was invented for exactly this. Values needed: tan(π/4) = 1, sec(π/4) = √2, sec 0 = 1.</div>
+    <div class="step">(a) u = tan x, du = sec²x dx. Limits: u(0) = 0, u(π/4) = 1. Integral = ∫₀¹ u du = [u²/2]₀¹ = 1/2.</div>
+    <div class="step">(b) u = sec x, du = sec x tan x dx. Regroup the integrand: tan x sec²x dx = sec x · (sec x tan x dx) = u du. Limits: u(0) = 1, u(π/4) = √2. Integral = ∫₁^√2 u du = [u²/2]₁^√2 = (2 − 1)/2 = 1/2.</div>
+    <div class="step">Same answer, 1/2 ✓ — yet the antiderivatives look different: tan²x/2 vs sec²x/2. How? sec²x = 1 + tan²x, so sec²x/2 = tan²x/2 + 1/2 — they differ by the constant 1/2, i.e., by a choice of C. In a DEFINITE integral the constant cancels in the subtraction, so both roads must agree.</div>
+    <div class="ans">1/2 by both roads; the antiderivatives differ by the constant 1/2 (sec² = 1 + tan²), which cancels in any definite integral</div></div>
+</div>
+
+<footer>Lesson 26 of 40 · Intuitive Integration · next: <a href="Lesson27.html">Lesson 27 — FTC Part 2: Derivatives of Accumulation Functions</a></footer>
+
+</div>
+<script>
+document.querySelectorAll('.q').forEach(q=>{
+  const btn=q.querySelector('.revealbtn'), sol=q.querySelector('.sol');
+  btn.addEventListener('click',()=>{ sol.classList.add('show'); btn.textContent='Solution shown'; btn.disabled=true; btn.style.opacity=.6; });
+});
+</script>
+</body>
+</html>

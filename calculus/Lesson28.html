@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 28 — Reading Accumulation Graphs (the AP Classic)</title>
+<style>
+  :root{--accent:#186a3b;--accent2:#239b56;--bg:#f2f7f4;--card:#fff;--ok:#1e8449;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:#1c2833;background:var(--bg);margin:0;padding:0 16px 80px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -16px 20px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  nav{display:flex;gap:10px;margin-bottom:18px;font-size:.9rem;flex-wrap:wrap;}
+  nav a{color:var(--accent);text-decoration:none;font-weight:600;background:#fff;border:1px solid #d5e8dc;border-radius:8px;padding:6px 14px;}
+  nav a:hover{background:#eafaf1;}
+  .goal{background:#fef9e7;border-left:5px solid var(--star);padding:12px 18px;border-radius:8px;margin-bottom:18px;font-size:.95rem;}
+  .goal strong{color:#7d6608;}
+  section{background:var(--card);border-radius:10px;padding:18px 22px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  h2{color:var(--accent);font-size:1.15rem;margin:0 0 10px;}
+  h2 .num{background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;border-radius:6px;padding:2px 9px;margin-right:8px;}
+  ul{margin:8px 0;padding-left:24px;}
+  li{margin-bottom:8px;}
+  strong{color:#145a32;}
+  em.hi{font-style:normal;background:#fef9e7;padding:0 4px;border-radius:3px;}
+  .fml{background:#e9f7ef;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.9em;color:#186a3b;white-space:nowrap;}
+  .ex{background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:.95rem;}
+  .ex b{color:#145a32;}
+  .graph{background:#1b2631;color:#eaeded;border-radius:8px;padding:14px 18px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.82rem;line-height:1.45;overflow-x:auto;margin:10px 0;white-space:pre;}
+  .graph .g{color:#82e0aa;} .graph .y{color:#f7dc6f;} .graph .b{color:#85c1e9;}
+  table.t{border-collapse:collapse;margin:10px 0;font-size:.92rem;}
+  table.t th,table.t td{border:1px solid #cfd8cf;padding:6px 12px;text-align:center;}
+  table.t th{background:var(--accent);color:#fff;font-weight:600;}
+  .qhead{margin:26px 0 8px;color:var(--accent);font-size:1.2rem;border-bottom:2px solid #d4efdf;padding-bottom:6px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid var(--accent2);}
+  .qnum{font-weight:800;color:var(--accent);margin-right:6px;}
+  .qtag{float:right;background:#e9f7ef;color:var(--accent);border-radius:8px;padding:1px 9px;font-size:.68rem;font-weight:700;letter-spacing:.3px;margin-left:8px;}
+  .qtext{font-size:.98rem;margin:4px 0 10px;}
+  .revealbtn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .revealbtn:hover{background:#0e4429;}
+  .sol{display:none;margin-top:12px;background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px;font-size:.93rem;}
+  .sol.show{display:block;}
+  .sol h4{margin:0 0 8px;color:var(--ok);font-size:.9rem;}
+  .sol .ctx{background:#eaf2f8;border-left:4px solid #2e86c1;border-radius:6px;padding:8px 12px;margin:0 0 10px;font-size:.88rem;}
+  .sol .ctx b{color:#1a5276;}
+  .sol .step{margin:6px 0;}
+  .sol .ans{background:#eafaf1;border-radius:6px;padding:6px 12px;margin-top:8px;font-weight:700;color:#145a32;display:inline-block;}
+  footer{text-align:center;color:#85929e;font-size:.85rem;margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Lesson 28 — Reading Accumulation Graphs</h1>
+  <p>The AP Classic · Intuitive Calculus for a Curious Student · Lesson 28 of 40</p>
+</header>
+
+<nav><a href="index.html">📚 All lessons</a><a href="Lesson27.html">← Prev: Lesson 27</a><a href="Lesson29.html">Next: Lesson 29 →</a></nav>
+
+<div class="goal"><strong>🎯 Goal of this lesson:</strong> master the single most classic AP Calculus problem — you're shown the <em>graph</em> of f (line segments and half-circles), and asked everything about <span class="fml">g(x) = ∫₀ˣ f(t) dt</span>. Two superpowers crack it: <em>values of g come from geometry</em> (areas of triangles, rectangles, half-circles), and <em>g′ = f</em> (Lesson 27) turns every shape question about g into a sign-reading question about f. Plus: the exact justification sentences graders want.</div>
+
+<section>
+  <h2><span class="num">1</span> The AP setup, from scratch</h2>
+  <ul>
+    <li>Here's the game. The exam hands you a picture of some function f — almost always built from <strong>straight line segments and half-circles</strong>, so every area is computable with school geometry. Then it defines <span class="fml">g(x) = ∫₀ˣ f(t) dt</span> and asks a barrage of questions about g: values, maxima, concavity, sketches.</li>
+    <li>The trap: you can't "solve" for g with algebra — you were never given a formula for f! The whole point is to reason from the <strong>picture</strong>. You have exactly two superpowers:</li>
+    <li><strong>Superpower 1 — geometry for VALUES.</strong> g(5) is the area between f and the t-axis from 0 to 5. Chop the region into triangles (½·base·height), rectangles (base·height), and half-circles, and remember Lesson 10's rule: <em class="hi">regions below the axis count as NEGATIVE</em>.</li>
+    <li><strong>Superpower 2 — FTC 2 for SHAPE.</strong> By Lesson 27, <span class="fml">g′(x) = f(x)</span>: <em class="hi">the graph you're LOOKING at is the derivative of the function they're ASKING about.</em> Every "where is g increasing / peaking / bending?" question becomes "where is f positive / crossing zero / rising?"</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">2</span> The master translation table</h2>
+  <ul>
+    <li>Since g′ = f (and therefore g″ = f′), every fact about g's shape translates into a fact you can read straight off f's graph. This table is worth memorizing cold:</li>
+  </ul>
+  <table class="t">
+    <tr><th>The graph of g ...</th><th>... exactly where the graph of f ...</th></tr>
+    <tr><td>is increasing</td><td>is above the axis (f &gt; 0)</td></tr>
+    <tr><td>is decreasing</td><td>is below the axis (f &lt; 0)</td></tr>
+    <tr><td>has a local MAX</td><td>crosses zero going down (+ to −)</td></tr>
+    <tr><td>has a local MIN</td><td>crosses zero going up (− to +)</td></tr>
+    <tr><td>is concave UP</td><td>is increasing (rising)</td></tr>
+    <tr><td>is concave DOWN</td><td>is decreasing (falling)</td></tr>
+    <tr><td>has an inflection point</td><td>changes direction (f's own local max or min)</td></tr>
+  </table>
+  <ul>
+    <li>Why the concavity rows? g″ = f′, and "concave up" means g″ &gt; 0, i.e. f′ &gt; 0, i.e. <strong>f rising</strong>. Notice the level-shift: questions about g's <em>bending</em> are answered by f's <em>slope</em>, one derivative deeper.</li>
+    <li>Careful with the max/min rows: a local max of g is NOT where f is highest! It's where f <strong>crosses zero from + to −</strong> — the moment the inflow stops and the outflow begins. (Tank story: the water level peaks the instant the net flow switches from filling to draining.)</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">3</span> Fully worked flagship example</h2>
+  <div class="ex"><b>Setup:</b> f is piecewise-linear on [0, 8]: it rises in a straight line from (0, 0) to (2, 4), stays flat at height 4 until t = 4, then descends in a straight line from (4, 4) through (6, 0) down to (8, −4). Let g(x) = ∫₀ˣ f(t) dt.</div>
+  <div class="graph">f(t)
+  4 |    <span class="g">●━━━━━━━●</span>   (2,4) flat to (4,4)
+    |   <span class="g">╱</span>         <span class="g">╲</span>
+  2 |  <span class="g">╱</span>           <span class="g">╲</span>
+    | <span class="g">╱</span>             <span class="g">╲</span>          (crosses 0 at t = 6)
+  0 <span class="g">●</span>───┬───┬───┬───┬───<span class="g">●</span>───┬───→ t
+    0   1   2   3   4   6<span class="g">╲</span>  7
+ −2 |                      <span class="g">╲</span>
+ −4 |                       <span class="g">●</span> (8,−4)</div>
+  <ul>
+    <li><strong>Values by geometry:</strong>
+      <br>• g(2) = triangle from 0 to 2: ½ · 2 · 4 = <strong>4</strong>.
+      <br>• g(4) = g(2) + rectangle from 2 to 4: 4 + (2 · 4) = <strong>12</strong>.
+      <br>• g(6) = g(4) + triangle from 4 to 6 (base 2, height 4): 12 + ½ · 2 · 4 = <strong>16</strong>.
+      <br>• g(8) = g(6) + region from 6 to 8, which is a triangle BELOW the axis (base 2, height 4, area 4, counted negative): 16 − 4 = <strong>12</strong>.</li>
+    <li><strong>Where is g maximized?</strong> g′ = f is positive on (0, 6) and negative on (6, 8), so g climbs all the way to x = 6 and then falls. Justification sentence: <em class="hi">"g has a maximum at x = 6 because g′ = f changes from positive to negative there."</em> Its value: g(6) = 16 (bigger than the endpoint values g(0) = 0 and g(8) = 12, so it's the absolute max too).</li>
+    <li><strong>A derivative value:</strong> g′(1) = f(1) = <strong>2</strong> (just read the height of f: the segment from (0,0) to (2,4) has slope 2, so f(1) = 2).</li>
+    <li><strong>Concavity:</strong> g″ = f′. On (0, 2), f is rising → g concave up. On (2, 4), f is constant → g is a straight line (slope 4, no bending). On (4, 8), f is falling → g concave down.</li>
+    <li><strong>Sketch of g in words:</strong> starts at (0, 0) rising ever more steeply (concave up) to (2, 4); climbs as a straight ramp of slope 4 to (4, 12); keeps rising but leveling off (concave down) to a rounded peak at (6, 16); then falls, steeper and steeper, to (8, 12).</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">4</span> Justification language for the AP</h2>
+  <ul>
+    <li>On the AP exam, a correct answer with a vague reason ("because the graph goes down") scores ZERO justification points. The grader is looking for a sentence that names <strong>g′ (or f) and its sign behavior</strong>. Memorize these model sentences:</li>
+  </ul>
+  <div class="ex"><b>Model sentences:</b><br>
+  • "g has a relative <b>maximum</b> at x = 6 because g′ = f changes from <b>positive to negative</b> there."<br>
+  • "g has a relative <b>minimum</b> at x = 2 because g′ = f changes from <b>negative to positive</b> there."<br>
+  • "g is <b>increasing</b> on (0, 6) because g′ = f &gt; 0 on that interval."<br>
+  • "g is <b>concave down</b> on (4, 8) because g′ = f is <b>decreasing</b> there."<br>
+  • "g has an <b>inflection point</b> at x = 4 because g′ = f changes from increasing to decreasing there (so g″ changes sign)."</div>
+  <ul>
+    <li>The pattern in every sentence: <em class="hi">name the tool (g′ = f), state its sign or direction, name the place.</em> Facts you state must be visible on the given graph — never claim to know a formula for f.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">5</span> Half-circles: the area you must know</h2>
+  <ul>
+    <li>AP graph problems love half-circles, so let's nail the area from scratch. A full circle of radius r has area <span class="fml">πr²</span> (that's the famous formula). So:
+      <div class="ex" style="text-align:center;"><b>half-circle area = ½ π r²</b> &nbsp;·&nbsp; quarter-circle area = ¼ π r²</div></li>
+    <li>Example: a half-circle of radius 2 sitting on the t-axis has area ½ · π · 2² = <strong>2π</strong>. If it bulges BELOW the axis, it contributes <strong>−2π</strong> to the integral. Answers stay exact: write 2π, not 6.28.</li>
+  </ul>
+  <div class="ex"><b>Quarter-circle example:</b> suppose f traces a quarter-circle of radius 3 from (0, 3) down to (3, 0) (a quarter of the circle of radius 3 centered at the origin, staying above the axis). Then ∫₀³ f(t) dt = ¼ · π · 3² = <b>9π/4</b>.</div>
+</section>
+
+<section>
+  <h2><span class="num">6</span> The initial-condition twist</h2>
+  <ul>
+    <li>A favorite variation: <span class="fml">h(x) = 3 + ∫₀ˣ f(t) dt</span>. Don't panic — this is just g(x) shifted UP by 3. The tank started with 3 liters already in it.</li>
+    <li>What changes: every VALUE goes up by 3 (h(0) = 3, not 0; h(5) = 3 + g(5)).</li>
+    <li>What doesn't change: <strong>everything about shape</strong>. h′ = g′ = f, so h increases, peaks, and bends at exactly the same x-values as g. Shifting a graph up doesn't move its hills sideways.</li>
+  </ul>
+</section>
+
+<div class="qhead">✏️ Exercises — 20 problems (four graphs, described in words + picture; write your answer, then reveal)</div>
+
+<div class="ex"><b>GRAPH A (used in #1–7):</b> f is piecewise-linear on [0, 6]: flat at height 4 from t = 0 to t = 2, then a straight line from (2, 4) down to (6, −4), crossing zero at t = 4. Let g(x) = ∫₀ˣ f(t) dt.
+<div class="graph">f(t)
+  4 <span class="g">●━━━━━━━●</span>  (0,4) flat to (2,4)
+    |        <span class="g">╲</span>
+  2 |         <span class="g">╲</span>
+    |          <span class="g">╲</span>       (crosses 0 at t = 4)
+  0 +───┬───┬───<span class="g">●</span>───┬───→ t
+    0   1   2   4<span class="g">╲</span>  5
+ −2 |             <span class="g">╲</span>
+ −4 |              <span class="g">●</span> (6,−4)</div></div>
+
+<div class="q"><span class="qnum">1.</span><span class="qtag">Graph A · values</span>
+  <div class="qtext">Find g(0) and g(2).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> g(x) = ∫₀ˣ f(t) dt is the area collected under f from 0 to x. Two tools: ∫₀⁰ = 0 always (zero width), and steady heights make rectangles (area = base × height).</div>
+    <div class="step">g(0) = ∫₀⁰ f(t) dt = 0 — nothing accumulated at the starting line.</div>
+    <div class="step">g(2): from t = 0 to 2, f is flat at height 4 → rectangle, area = 2 × 4 = 8.</div>
+    <div class="ans">g(0) = 0, &nbsp; g(2) = 8</div></div>
+</div>
+
+<div class="q"><span class="qnum">2.</span><span class="qtag">Graph A · values</span>
+  <div class="qtext">Find g(4).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> build on what you have: g(4) = g(2) + (area from 2 to 4). From (2, 4) the line descends to zero at t = 4, making a triangle with the axis. Triangle area = ½ × base × height.</div>
+    <div class="step">Area from 2 to 4: triangle with base 4 − 2 = 2 and height 4 → ½ · 2 · 4 = 4. It's above the axis, so it counts positive.</div>
+    <div class="step">g(4) = g(2) + 4 = 8 + 4 = 12.</div>
+    <div class="ans">g(4) = 12</div></div>
+</div>
+
+<div class="q"><span class="qnum">3.</span><span class="qtag">Graph A · negative area</span>
+  <div class="qtext">Find g(6).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> from t = 4 to 6, f is BELOW the axis (it drops from 0 down to −4). Below-axis regions subtract from the accumulation — the tank is draining. Compute the geometric area, then attach a minus sign.</div>
+    <div class="step">Region from 4 to 6: triangle with base 2 and height 4 (from 0 down to −4) → area ½ · 2 · 4 = 4, counted as −4.</div>
+    <div class="step">g(6) = g(4) − 4 = 12 − 4 = 8.</div>
+    <div class="ans">g(6) = 8</div></div>
+</div>
+
+<div class="q"><span class="qnum">4.</span><span class="qtag">Graph A · g′ values</span>
+  <div class="qtext">Find g′(1) and g′(5).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> FTC 2 (Lesson 27): g′(x) = f(x). So g′ at a point is just the HEIGHT of the given graph there — no computing, just reading. For t in [2, 6] the line from (2, 4) to (6, −4) has slope −8/4 = −2, so f(t) = 4 − 2(t − 2).</div>
+    <div class="step">g′(1) = f(1) = 4 (the flat part).</div>
+    <div class="step">g′(5) = f(5) = 4 − 2(5 − 2) = 4 − 6 = −2. (Check against the picture: at t = 5 the line is halfway between 0 at t = 4 and −4 at t = 6 → −2. ✓)</div>
+    <div class="ans">g′(1) = 4, &nbsp; g′(5) = −2</div></div>
+</div>
+
+<div class="q"><span class="qnum">5.</span><span class="qtag">Graph A · increase/decrease</span>
+  <div class="qtext">On what interval is g increasing, and on what interval is g decreasing? Justify with an AP-style sentence.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the translation table: g increasing ⟺ f &gt; 0 (positive stuff being added), g decreasing ⟺ f &lt; 0. Just find where the given graph is above/below the axis. The justification must name g′ = f and its sign.</div>
+    <div class="step">f is above the axis from t = 0 until it crosses zero at t = 4, and below the axis from 4 to 6.</div>
+    <div class="step">Sentence: "g is increasing on (0, 4) because g′ = f is positive there, and decreasing on (4, 6) because g′ = f is negative there."</div>
+    <div class="ans">increasing on (0, 4); decreasing on (4, 6) — because g′ = f changes sign at x = 4</div></div>
+</div>
+
+<div class="q"><span class="qnum">6.</span><span class="qtag">Graph A · max</span>
+  <div class="qtext">At what x does g have its maximum on [0, 6]? Justify, and give the maximum value.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a local max of g sits where g′ = f crosses zero from + to − (inflow becomes outflow). For an ABSOLUTE max on a closed interval, also compare against the endpoints. The max is NOT where f is tallest — it's where f crosses zero downward.</div>
+    <div class="step">f changes from positive to negative at x = 4, so g has its only local max there. Value: g(4) = 12 (from #2).</div>
+    <div class="step">Endpoints: g(0) = 0 and g(6) = 8. Both smaller than 12.</div>
+    <div class="step">Sentence: "g has its absolute maximum at x = 4 because g′ = f changes from positive to negative there, and g(4) = 12 exceeds g(0) = 0 and g(6) = 8."</div>
+    <div class="ans">maximum at x = 4; maximum value g(4) = 12</div></div>
+</div>
+
+<div class="q"><span class="qnum">7.</span><span class="qtag">Graph A · concavity</span>
+  <div class="qtext">Describe the shape of g on (0, 2). Then: is g concave up or concave down on (2, 6)? Find g″(3).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> g″ = f′ — the second derivative of g is the SLOPE of the given graph. Where f is constant, g′ is constant, so g is a straight line. Where f falls, g″ &lt; 0: concave down.</div>
+    <div class="step">On (0, 2): f is constant at 4, so g climbs at a steady slope 4 — a straight line segment (from (0,0) up to (2,8)), no bending.</div>
+    <div class="step">On (2, 6): f is a falling line, so g′ = f is decreasing → g is concave down. (It arcs over its peak at x = 4.)</div>
+    <div class="step">g″(3) = f′(3) = slope of f at t = 3 = −2 (the segment from (2,4) to (6,−4) drops 8 over 4).</div>
+    <div class="ans">straight line of slope 4 on (0, 2); concave down on (2, 6); g″(3) = −2</div></div>
+</div>
+
+<div class="ex"><b>GRAPH B (used in #8–13):</b> f on [0, 8]: a half-circle of radius 2 ABOVE the axis from t = 0 to t = 4 (centered at (2, 0)), then a straight line from (4, 0) down to (6, −4), then a straight line from (6, −4) back up to (8, 0). Let g(x) = ∫₀ˣ f(t) dt.
+<div class="graph">f(t)
+  2 |   <span class="b">·──·</span>
+    |  <span class="b">╱</span>    <span class="b">╲</span>    half-circle, radius 2
+  0 <span class="b">●</span>─┬───┬──<span class="b">●</span>───┬───<span class="b">●</span>──→ t
+    0 1   3  4<span class="g">╲</span>  5  <span class="g">╱</span>8
+ −2 |          <span class="g">╲</span>   <span class="g">╱</span>
+ −4 |           <span class="g">●</span><span class="g">╱</span>  (6,−4)</div></div>
+
+<div class="q"><span class="qnum">8.</span><span class="qtag">Graph B · half-circle</span>
+  <div class="qtext">Find g(4). Give an exact answer (leave π in it).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a full circle of radius r has area πr², so a half-circle has area ½πr². This half-circle has radius 2 (it spans t = 0 to 4, diameter 4) and sits above the axis, so its area counts positive. Keep answers exact: 2π, not 6.28.</div>
+    <div class="step">g(4) = area of the half-circle = ½ · π · 2² = ½ · π · 4 = 2π.</div>
+    <div class="ans">g(4) = 2π</div></div>
+</div>
+
+<div class="q"><span class="qnum">9.</span><span class="qtag">Graph B · mixed areas</span>
+  <div class="qtext">Find g(6) and g(8), exactly.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> keep a running total from g(4) = 2π. From t = 4 to 8 the graph makes a triangle-shaped dip below the axis: down from (4,0) to (6,−4), back up to (8,0). Below the axis → negative contributions. Split it at t = 6 into two triangles.</div>
+    <div class="step">From 4 to 6: triangle, base 2, height 4 → area 4, below the axis → contributes −4. So g(6) = 2π − 4.</div>
+    <div class="step">From 6 to 8: another triangle, base 2, height 4 → contributes −4 more. So g(8) = 2π − 4 − 4 = 2π − 8.</div>
+    <div class="step">(Whole dip at once: triangle base 4, height 4 → ½·4·4 = 8 below the axis. Same thing.)</div>
+    <div class="ans">g(6) = 2π − 4, &nbsp; g(8) = 2π − 8</div></div>
+</div>
+
+<div class="q"><span class="qnum">10.</span><span class="qtag">Graph B · g′ values</span>
+  <div class="qtext">Find g′(2) and g′(7).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> g′(x) = f(x) — read heights off the picture. The top of a half-circle of radius 2 centered at (2, 0) is the point (2, 2). The segment from (6, −4) to (8, 0) rises 4 over 2, slope 2, so f(t) = −4 + 2(t − 6) there.</div>
+    <div class="step">g′(2) = f(2) = 2 (the very top of the half-circle).</div>
+    <div class="step">g′(7) = f(7) = −4 + 2(1) = −2 (halfway back up from −4 to 0).</div>
+    <div class="ans">g′(2) = 2, &nbsp; g′(7) = −2</div></div>
+</div>
+
+<div class="q"><span class="qnum">11.</span><span class="qtag">Graph B · absolute max</span>
+  <div class="qtext">Find the absolute maximum value of g on [0, 8], and justify your answer AP-style.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> absolute max on a closed interval: find where g′ = f changes + to − (the only candidates for an interior peak), then compare g there with g at the endpoints. Note f is 0 at t = 0 and t = 8 too, but no sign CHANGE happens at an endpoint — endpoints are compared by value.</div>
+    <div class="step">f is positive on (0, 4) (the half-circle) and negative on (4, 8) (the dip). So f changes from + to − only at x = 4.</div>
+    <div class="step">Candidates: g(4) = 2π; endpoints g(0) = 0 and g(8) = 2π − 8 (negative, since 2π ≈ 6.28 &lt; 8).</div>
+    <div class="step">Sentence: "g has its absolute maximum at x = 4 because g′ = f changes from positive to negative there, and g(4) = 2π is greater than g(0) = 0 and g(8) = 2π − 8."</div>
+    <div class="ans">absolute maximum g(4) = 2π, at x = 4</div></div>
+</div>
+
+<div class="q"><span class="qnum">12.</span><span class="qtag">Graph B · g = 0 · justify</span>
+  <div class="qtext">Explain why there must be some x between 6 and 8 where g(x) = 0. (You computed g(6) and g(8) in #9. You may use the fact that 2π ≈ 6.28.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a continuous function that is positive at one point and negative at another must cross zero somewhere in between — it can't teleport across the axis. (This is the Intermediate Value Theorem; accumulation functions are always continuous.) So the whole argument is: show a sign change.</div>
+    <div class="step">g(6) = 2π − 4 ≈ 6.28 − 4 = 2.28 &gt; 0.</div>
+    <div class="step">g(8) = 2π − 8 ≈ 6.28 − 8 = −1.72 &lt; 0.</div>
+    <div class="step">Sentence: "g is continuous, g(6) &gt; 0, and g(8) &lt; 0; therefore g must equal 0 at some x between 6 and 8." (Meaning: the dip after t = 4 eventually cancels all the half-circle's area — the tank empties partway between 6 and 8.)</div>
+    <div class="ans">g(6) = 2π − 4 &gt; 0 and g(8) = 2π − 8 &lt; 0, and g is continuous, so g crosses 0 in (6, 8)</div></div>
+</div>
+
+<div class="q"><span class="qnum">13.</span><span class="qtag">Graph B · initial condition</span>
+  <div class="qtext">Let h(x) = 3 + ∫₀ˣ f(t) dt. Find h(0) and h(4). At what x does h have its maximum on [0, 8] — and did the +3 move it?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> h is just g shifted up 3 (the tank starts with 3 liters already in it). Shifting up changes every VALUE by +3, but h′ = f is unchanged — so all increasing/decreasing/peak locations stay exactly where they were.</div>
+    <div class="step">h(0) = 3 + ∫₀⁰ = 3 + 0 = 3.</div>
+    <div class="step">h(4) = 3 + g(4) = 3 + 2π.</div>
+    <div class="step">h′ = f changes from + to − at x = 4, same as before, so the max is still at x = 4. The +3 lifts the whole graph without sliding any hill sideways.</div>
+    <div class="ans">h(0) = 3, &nbsp; h(4) = 3 + 2π, &nbsp; max still at x = 4 — shifting up never moves the peak's location</div></div>
+</div>
+
+<div class="ex"><b>GRAPH C (used in #14–19):</b> f on [0, 10]: a straight line rising from (0, −2) to (4, 2) (slope 1, crossing zero at t = 2), then flat at height 2 from t = 4 to t = 7, then a straight line falling from (7, 2) to (10, −4) (slope −2, crossing zero at t = 8). Let g(x) = ∫₀ˣ f(t) dt.
+<div class="graph">f(t)
+  2 |         <span class="g">●━━━━━●</span>  (4,2) flat to (7,2)
+    |        <span class="g">╱</span>       <span class="g">╲</span>
+  0 +───<span class="g">●</span>───┬───┬───┬──<span class="g">●</span>──┬──→ t
+    |  <span class="g">╱</span>2   4   5   6  8<span class="g">╲</span> 9
+ −2 <span class="g">●</span>                     <span class="g">╲</span>
+ −4 | (0,−2)               <span class="g">●</span> (10,−4)</div></div>
+
+<div class="q"><span class="qnum">14.</span><span class="qtag">Graph C · negative start</span>
+  <div class="qtext">Find g(2) and g(4).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> this graph starts BELOW the axis, so g goes negative first — the tank is draining before it fills. From (0, −2) up to zero at t = 2 makes a below-axis triangle; from 2 to 4 a matching above-axis triangle.</div>
+    <div class="step">From 0 to 2: triangle, base 2, height 2 → area 2, below the axis → g(2) = −2.</div>
+    <div class="step">From 2 to 4: triangle, base 2, height 2 → +2. So g(4) = −2 + 2 = 0. The loss and the gain cancel exactly.</div>
+    <div class="ans">g(2) = −2, &nbsp; g(4) = 0</div></div>
+</div>
+
+<div class="q"><span class="qnum">15.</span><span class="qtag">Graph C · values</span>
+  <div class="qtext">Find g(7), g(8), and g(10).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> keep the running total going from g(4) = 0. Pieces: a rectangle (4 to 7), a small triangle above the axis (7 to 8, where f falls from 2 to 0), and a triangle below the axis (8 to 10, where f falls from 0 to −4).</div>
+    <div class="step">4 to 7: rectangle 3 × 2 = 6 → g(7) = 0 + 6 = 6.</div>
+    <div class="step">7 to 8: triangle, base 1, height 2 → ½·1·2 = 1 → g(8) = 6 + 1 = 7.</div>
+    <div class="step">8 to 10: triangle, base 2, height 4 → ½·2·4 = 4, below the axis → g(10) = 7 − 4 = 3.</div>
+    <div class="ans">g(7) = 6, &nbsp; g(8) = 7, &nbsp; g(10) = 3</div></div>
+</div>
+
+<div class="q"><span class="qnum">16.</span><span class="qtag">Graph C · classify extremes</span>
+  <div class="qtext">Find all x in (0, 10) where g has a local minimum or local maximum, classify each, and justify each with an AP-style sentence.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> interior candidates are where g′ = f crosses zero. This f crosses zero twice: at t = 2 (going up, − to +) and t = 8 (going down, + to −). Direction of the crossing decides: − to + is a local MIN (draining turns to filling); + to − is a local MAX.</div>
+    <div class="step">At x = 2: "g has a local minimum at x = 2 because g′ = f changes from negative to positive there." (Value: g(2) = −2.)</div>
+    <div class="step">At x = 8: "g has a local maximum at x = 8 because g′ = f changes from positive to negative there." (Value: g(8) = 7.)</div>
+    <div class="ans">local min at x = 2 (f goes − to +); local max at x = 8 (f goes + to −)</div></div>
+</div>
+
+<div class="q"><span class="qnum">17.</span><span class="qtag">Graph C · concavity</span>
+  <div class="qtext">On what intervals is g concave up? Concave down? What is g on (4, 7)? Also compute g″(1) and g″(9).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> g″ = f′ = the slope of the pictured graph. Rising f → concave up; falling f → concave down; constant f → g is a straight line (zero concavity). Read slopes segment by segment.</div>
+    <div class="step">On (0, 4): f rises (slope 1) → g concave up, and g″(1) = f′(1) = 1.</div>
+    <div class="step">On (4, 7): f constant → g is a straight line of slope 2 (no concavity).</div>
+    <div class="step">On (7, 10): f falls (slope −2) → g concave down, and g″(9) = f′(9) = −2.</div>
+    <div class="ans">concave up on (0, 4); straight on (4, 7); concave down on (7, 10); g″(1) = 1, g″(9) = −2</div></div>
+</div>
+
+<div class="q"><span class="qnum">18.</span><span class="qtag">Graph C · absolute extremes</span>
+  <div class="qtext">Find the absolute maximum and absolute minimum values of g on [0, 10]. Show the candidate comparison, AP-style.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> on a closed interval the absolute extremes live either at interior critical points (where f changes sign) or at the endpoints. So build the full candidate list — x = 0, 2, 8, 10 — evaluate g at each, and compare. Writing the table IS the justification.</div>
+    <div class="step">Candidates: g(0) = 0, g(2) = −2 (local min), g(8) = 7 (local max), g(10) = 3.</div>
+    <div class="step">Largest: 7 at x = 8. Smallest: −2 at x = 2.</div>
+    <div class="step">Sentence: "The candidates for absolute extremes are the critical points x = 2, 8 (where g′ = f changes sign) and the endpoints x = 0, 10. Comparing g(0) = 0, g(2) = −2, g(8) = 7, g(10) = 3: the absolute maximum is 7 at x = 8 and the absolute minimum is −2 at x = 2."</div>
+    <div class="ans">absolute max g(8) = 7; absolute min g(2) = −2</div></div>
+</div>
+
+<div class="q"><span class="qnum">19.</span><span class="qtag">Graph C · sketch g + zeros</span>
+  <div class="qtext">(a) Describe the graph of g on [0, 10] in words — where it starts, falls, rises, bends, peaks, and ends. (b) Find every x in [0, 10] where g(x) = 0, and explain why there are no others.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> to sketch g, combine everything: values (#14–15), increase/decrease (sign of f), and concavity (#17). For zeros of g, use computed values plus the increasing/decreasing story to rule out extra crossings.</div>
+    <div class="step">(a) g starts at (0, 0), dips DOWN (f &lt; 0) to a valley at (2, −2), curving concave-up the whole way to t = 4; climbs back to (4, 0), then rises as a straight ramp of slope 2 to (7, 6); keeps rising but bending over (concave down) to a rounded peak at (8, 7); then falls, steepening, to end at (10, 3).</div>
+    <div class="step">(b) Zeros: g(0) = 0 and g(4) = 0. No others: on (0, 2) and (2, 4), g is below zero except at the two endpoints of that stretch (it dips to −2 and comes back); after x = 4, g climbs to 7 and only falls back to 3, so it stays strictly positive on (4, 10].</div>
+    <div class="ans">(a) fall to (2, −2), rise through (4, 0) to peak (8, 7), fall to (10, 3) &nbsp; (b) g = 0 only at x = 0 and x = 4</div></div>
+</div>
+
+<div class="q"><span class="qnum">20.</span><span class="qtag">challenge · full AP FRQ</span>
+  <div class="qtext"><b>GRAPH D:</b> f on [0, 8]: a half-circle of radius 2 BELOW the axis from t = 0 to t = 4 (centered at (2, 0), dipping to (2, −2)), then a straight line rising from (4, 0) to (5, 3), then flat at height 3 from t = 5 to t = 8. Let g(x) = ∫₀ˣ f(t) dt.
+  <div class="graph">f(t)
+  3 |              <span class="g">●━━━━━━━●</span> (5,3) flat to (8,3)
+    |             <span class="g">╱</span>
+  0 <span class="b">●</span>─┬───┬───<span class="b">●</span>─┬───┬───┬──→ t
+    0<span class="b">╲</span>1   3  <span class="b">╱</span>4 5   6   7  8
+ −2 |  <span class="b">·──·</span>     half-circle, radius 2, BELOW axis</div>
+  (a) Find g(4) and g(8), exactly. &nbsp; (b) On what intervals is g increasing and decreasing? Justify. &nbsp; (c) Find the x-coordinate of the absolute minimum of g on [0, 8], and justify. &nbsp; (d) Find all x in (0, 8] with g(x) = 0, exactly. (Use 2π ≈ 6.28 to check your candidate is in the right piece.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a complete AP-style FRQ. Strategy: (a) geometry with signs; (b) sign of f; (c) the − to + crossing plus endpoint comparison; (d) write a formula for g on the piece where the crossing happens — on a flat-at-3 stretch, g grows linearly: g(x) = g(5) + 3(x − 5).</div>
+    <div class="step">(a) g(4) = −(½π·2²) = −2π (half-circle below the axis). Then 4 to 5: triangle, base 1, height 3 → +3/2, so g(5) = −2π + 3/2. Then 5 to 8: rectangle 3 × 3 = 9. g(8) = −2π + 3/2 + 9 = 21/2 − 2π. (≈ 10.5 − 6.28 = 4.22.)</div>
+    <div class="step">(b) f &lt; 0 on (0, 4) and f &gt; 0 on (4, 8). "g is decreasing on (0, 4) because g′ = f &lt; 0 there, and increasing on (4, 8) because g′ = f &gt; 0 there."</div>
+    <div class="step">(c) "g has its absolute minimum at x = 4 because g′ = f changes from negative to positive there (the only critical point), and the endpoint values g(0) = 0 and g(8) = 21/2 − 2π &gt; 0 both exceed g(4) = −2π." Minimum value: −2π.</div>
+    <div class="step">(d) g is negative from just after 0 all the way past x = 5 (g(5) = 3/2 − 2π ≈ −4.78 &lt; 0), then climbs linearly on (5, 8]: g(x) = g(5) + 3(x − 5). Set it to zero: 3(x − 5) = 2π − 3/2 → x = 5 + (2π − 3/2)/3 = 9/2 + 2π/3 ≈ 4.5 + 2.09 = 6.59, which is indeed in (5, 8). ✓ On (0, 5] g stays below 0 (it only falls then partially recovers), so this is the only zero in (0, 8].</div>
+    <div class="ans">(a) g(4) = −2π, g(8) = 21/2 − 2π &nbsp; (b) decreasing (0,4), increasing (4,8) by sign of f &nbsp; (c) absolute min at x = 4, value −2π &nbsp; (d) x = 9/2 + 2π/3 ≈ 6.59</div></div>
+</div>
+
+<footer>Lesson 28 of 40 · Intuitive Integration · next: <a href="Lesson29.html">Lesson 29 — Integral Properties &amp; Symmetry</a></footer>
+
+</div>
+<script>
+document.querySelectorAll('.q').forEach(q=>{
+  const btn=q.querySelector('.revealbtn'), sol=q.querySelector('.sol');
+  btn.addEventListener('click',()=>{ sol.classList.add('show'); btn.textContent='Solution shown'; btn.disabled=true; btn.style.opacity=.6; });
+});
+</script>
+</body>
+</html>

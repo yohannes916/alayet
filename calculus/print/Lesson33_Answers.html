@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Lesson 33 Answer Key — Improper Integrals: Infinite Endpoints</title>
+<style>
+  @page { size: letter; margin: 0.75in; }
+  *{box-sizing:border-box;}
+  body{font-family:Georgia,"Times New Roman",serif;color:#111;margin:0;font-size:11.5pt;line-height:1.5;}
+  .head{border-bottom:3px solid #b03a2e;padding-bottom:8px;margin-bottom:14px;}
+  .head h1{font-family:Helvetica,Arial,sans-serif;font-size:16pt;margin:0 0 2px;color:#b03a2e;}
+  .head p{margin:0;font-size:10.5pt;color:#333;}
+  .q{margin:0 0 12px;page-break-inside:avoid;}
+  .q .txt{margin-bottom:4px;}
+  .q b.n{color:#b03a2e;font-family:Helvetica,Arial,sans-serif;}
+  .a{background:#f7f7f7;border-left:4px solid #1e8449;border-radius:4px;padding:7px 12px;font-size:11pt;}
+  .a b{color:#145a32;}
+  .ans{color:#145a32;font-weight:bold;}
+</style>
+</head>
+<body>
+
+<div class="head">
+  <h1>ANSWER KEY — Integration Lesson 33 Test: Improper Integrals</h1>
+  <p>For the grader · full working shown · full credit needs the limit written out, not ∞ plugged in as a number</p>
+</div>
+
+<div class="q"><div class="txt"><b class="n">1.</b> Find each limit: (a) lim<sub>b→∞</sub> 1/b² &nbsp; (b) lim<sub>b→∞</sub> (4 + 1/b) &nbsp; (c) lim<sub>b→∞</sub> ln b</div>
+<div class="a"><b>Work:</b> (a) 1/b² shrinks to nothing as b grows (1/100, 1/10000, ...) → 0. (b) the 1/b piece fades to 0, leaving the 4 → 4. (c) ln b climbs slowly but never stops → ∞ (no finite limit). <span class="ans">Answer: (a) 0 &nbsp; (b) 4 &nbsp; (c) ∞.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">2.</b> Evaluate ∫₁^∞ 1/x⁵ dx.</div>
+<div class="a"><b>Work:</b> antiderivative of x<sup>−5</sup> is x<sup>−4</sup>/(−4) = −1/(4x⁴). So ∫₁^b = [−1/(4x⁴)]₁^b = −1/(4b⁴) + 1/4. As b → ∞, 1/(4b⁴) → 0, so the limit is 1/4. (p-rule check: p = 5 &gt; 1, value 1/(5−1) = 1/4 ✓.) <span class="ans">Answer: converges to 1/4.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">3.</b> Evaluate ∫₃^∞ 1/x² dx.</div>
+<div class="a"><b>Work:</b> ∫₃^b 1/x² dx = [−1/x]₃^b = −1/b + 1/3. As b → ∞, −1/b → 0, leaving 1/3. (The p-rule value 1/(p−1) = 1 is only for a lower limit of 1 — starting at 3 skips the fattest part of the tail.) <span class="ans">Answer: converges to 1/3.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">4.</b> Show that ∫₁^∞ 1/x<sup>1/3</sup> dx diverges, and explain why.</div>
+<div class="a"><b>Work:</b> ∫x<sup>−1/3</sup> dx = x<sup>2/3</sup>/(2/3) = (3/2)x<sup>2/3</sup>. So ∫₁^b = (3/2)b<sup>2/3</sup> − 3/2 → ∞ as b → ∞. Why: shrinking to 0 isn't enough — the tail must shrink FAST ENOUGH, and 1/x<sup>1/3</sup> shrinks even more slowly than the borderline 1/x (p = 1/3 ≤ 1). <span class="ans">Answer: diverges — the tail is too fat.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">5.</b> Evaluate ∫₀^∞ e<sup>−3x</sup> dx.</div>
+<div class="a"><b>Work:</b> antiderivative of e<sup>−3x</sup> is e<sup>−3x</sup>/(−3) = −⅓e<sup>−3x</sup>. So ∫₀^b = [−⅓e<sup>−3x</sup>]₀^b = −⅓e<sup>−3b</sup> + ⅓. As b → ∞, e<sup>−3b</sup> → 0, leaving ⅓. <span class="ans">Answer: converges to 1/3.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">6.</b> p-rule: (a) ∫₁^∞ 1/x⁶ dx &nbsp; (b) ∫₁^∞ 1/x<sup>0.8</sup> dx</div>
+<div class="a"><b>Work:</b> the p-rule: ∫₁^∞ 1/x^p dx converges exactly when p &gt; 1, with value 1/(p−1). (a) p = 6 &gt; 1 → converges to 1/(6−1) = 1/5. (b) p = 0.8 ≤ 1 → diverges. <span class="ans">Answer: (a) converges to 1/5 &nbsp; (b) diverges.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">7.</b> Evaluate ∫₀⁹ 1/√x dx.</div>
+<div class="a"><b>Work:</b> spike at x = 0, so use a wall at a: ∫ₐ⁹ x<sup>−1/2</sup> dx = [2√x]ₐ⁹ = 2·3 − 2√a = 6 − 2√a. As a → 0⁺, √a → 0, so the limit is 6. An infinitely tall spike with area exactly 6. <span class="ans">Answer: converges to 6.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">8.</b> Show that ∫₀¹ 1/x dx diverges.</div>
+<div class="a"><b>Work:</b> ∫ₐ¹ 1/x dx = [ln x]ₐ¹ = ln 1 − ln a = −ln a. As a → 0⁺, ln a → −∞, so −ln a → +∞ (check: a = 0.001 gives −ln 0.001 ≈ 6.9; a = 10⁻⁹ gives ≈ 20.7 — it keeps climbing). The area never settles. <span class="ans">Answer: diverges — the spike at 0 is too fat.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">9.</b> What does CONVERGE mean, and how can an infinitely long region have finite area?</div>
+<div class="a"><b>Work (sample answer):</b> converge means: as the wall b slides out to infinity, the areas ∫₁^b head toward one fixed finite number — that number is the area. It's possible because the curve's tail shrinks so fast that each new stretch adds almost nothing: for 1/x², the area up to b is 1 − 1/b (0.9, then 0.99, then 0.999...), settling at exactly 1. Like 1/2 + 1/4 + 1/8 + ... = 1, infinitely many pieces can total a finite amount. <span class="ans">Give credit for: "the running area settles toward one number because the added slivers shrink fast enough."</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">10.</b> Challenge: evaluate ∫₂^∞ 1/(x(x−1)) dx.</div>
+<div class="a"><b>Work:</b> partial fractions: 1/(x(x−1)) = A/x + B/(x−1) → 1 = A(x−1) + Bx. At x = 0: A = −1; at x = 1: B = 1. So the integrand is 1/(x−1) − 1/x. Then ∫₂^b = [ln(x−1) − ln x]₂^b = [ln((x−1)/x)]₂^b = ln((b−1)/b) − ln(1/2). As b → ∞, (b−1)/b → 1, so ln((b−1)/b) → ln 1 = 0. Total: 0 − ln(1/2) = ln 2 ≈ 0.693. <span class="ans">Answer: converges to ln 2.</span></div></div>
+
+</body>
+</html>

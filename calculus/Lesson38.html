@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 38 — Differential Equations II: Growth, Decay &amp; Logistic</title>
+<style>
+  :root{--accent:#186a3b;--accent2:#239b56;--bg:#f2f7f4;--card:#fff;--ok:#1e8449;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:#1c2833;background:var(--bg);margin:0;padding:0 16px 80px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -16px 20px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  nav{display:flex;gap:10px;margin-bottom:18px;font-size:.9rem;flex-wrap:wrap;}
+  nav a{color:var(--accent);text-decoration:none;font-weight:600;background:#fff;border:1px solid #d5e8dc;border-radius:8px;padding:6px 14px;}
+  nav a:hover{background:#eafaf1;}
+  .goal{background:#fef9e7;border-left:5px solid var(--star);padding:12px 18px;border-radius:8px;margin-bottom:18px;font-size:.95rem;}
+  .goal strong{color:#7d6608;}
+  section{background:var(--card);border-radius:10px;padding:18px 22px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  h2{color:var(--accent);font-size:1.15rem;margin:0 0 10px;}
+  h2 .num{background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;border-radius:6px;padding:2px 9px;margin-right:8px;}
+  ul{margin:8px 0;padding-left:24px;}
+  li{margin-bottom:8px;}
+  strong{color:#145a32;}
+  em.hi{font-style:normal;background:#fef9e7;padding:0 4px;border-radius:3px;}
+  .fml{background:#e9f7ef;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.9em;color:#186a3b;white-space:nowrap;}
+  .ex{background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:.95rem;}
+  .ex b{color:#145a32;}
+  .graph{background:#1b2631;color:#eaeded;border-radius:8px;padding:14px 18px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.82rem;line-height:1.45;overflow-x:auto;margin:10px 0;white-space:pre;}
+  .graph .g{color:#82e0aa;} .graph .y{color:#f7dc6f;} .graph .b{color:#85c1e9;}
+  table.t{border-collapse:collapse;margin:10px 0;font-size:.92rem;}
+  table.t th,table.t td{border:1px solid #cfd8cf;padding:6px 12px;text-align:center;}
+  table.t th{background:var(--accent);color:#fff;font-weight:600;}
+  .qhead{margin:26px 0 8px;color:var(--accent);font-size:1.2rem;border-bottom:2px solid #d4efdf;padding-bottom:6px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid var(--accent2);}
+  .qnum{font-weight:800;color:var(--accent);margin-right:6px;}
+  .qtag{float:right;background:#e9f7ef;color:var(--accent);border-radius:8px;padding:1px 9px;font-size:.68rem;font-weight:700;letter-spacing:.3px;margin-left:8px;}
+  .qtext{font-size:.98rem;margin:4px 0 10px;}
+  .revealbtn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .revealbtn:hover{background:#0e4429;}
+  .sol{display:none;margin-top:12px;background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px;font-size:.93rem;}
+  .sol.show{display:block;}
+  .sol h4{margin:0 0 8px;color:var(--ok);font-size:.9rem;}
+  .sol .ctx{background:#eaf2f8;border-left:4px solid #2e86c1;border-radius:6px;padding:8px 12px;margin:0 0 10px;font-size:.88rem;}
+  .sol .ctx b{color:#1a5276;}
+  .sol .step{margin:6px 0;}
+  .sol .ans{background:#eafaf1;border-radius:6px;padding:6px 12px;margin-top:8px;font-weight:700;color:#145a32;display:inline-block;}
+  footer{text-align:center;color:#85929e;font-size:.85rem;margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Lesson 38 — Differential Equations II: Growth, Decay &amp; Logistic</h1>
+  <p>Doubling, Half-Life, Cooling Coffee &amp; the S-Curve · Intuitive Calculus for a Curious Student · Lesson 38 of 40</p>
+</header>
+
+<nav><a href="index.html">📚 All lessons</a><a href="Lesson37.html">← Prev: Lesson 37</a><a href="Lesson39.html">Next: Lesson 39 →</a></nav>
+
+<div class="goal"><strong>🎯 Goal of this lesson:</strong> put Lesson 37's star equation <em>dy/dt = ky</em> to work in the real world — populations that double, medicine that halves, coffee that cools — and meet the BC classic, <em>logistic growth</em>, where populations hit a ceiling. Best part: most AP logistic questions can be answered <em>without solving anything</em>.</div>
+
+<section>
+  <h2><span class="num">1</span> The exponential family in the wild</h2>
+  <ul>
+    <li>Lesson 37 proved: <span class="fml">dy/dt = ky</span> ("rate proportional to size") has solution <span class="fml">y = Ce^(kt)</span>. Now the upgrade: set t = 0 → y(0) = C·e⁰ = C. So <em class="hi">the constant IS the starting amount.</em> Write it with its real name:</li>
+    <li style="list-style:none;"><span class="fml">y = y₀·e^(kt)</span> &nbsp; where y₀ = the amount you start with.</li>
+    <li>No mystery constant to hunt for — read the starting value straight off the problem. Then just two behaviors:
+      <ul>
+        <li><strong>k &gt; 0: growth.</strong> Bacteria, invested money, virus spread — the more you have, the faster it grows.</li>
+        <li><strong>k &lt; 0: decay.</strong> Radioactive atoms, medicine in your blood, foam on hot chocolate — the more there is, the faster it disappears.</li>
+      </ul>
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">2</span> Doubling time &amp; half-life, from scratch</h2>
+  <ul>
+    <li>Exponential things have a magic property: they multiply by the SAME factor over every equal stretch of time. Growing things <strong>double every fixed time</strong> (the <em>doubling time</em>); decaying things <strong>halve every fixed time</strong> (the <em>half-life</em>).</li>
+    <li>That gives a wonderfully friendly formula. If something doubles every d hours: <span class="fml">y = y₀·2^(t/d)</span>. Read the exponent as <em class="hi">"how many doublings have happened so far."</em> After d hours, t/d = 1 → one doubling. After 2d, two doublings. Halving: <span class="fml">y = y₀·(1/2)^(t/h)</span>.</li>
+  </ul>
+  <div class="ex"><b>Worked example:</b> a bacteria population starts at 500 and doubles every 3 hours.<br>
+  Model: <span class="fml">P = 500·2^(t/3)</span> (t in hours).<br>
+  After 9 hours: t/3 = 3 doublings → P(9) = 500·2³ = 500·8 = <b>4000</b>.<br>
+  Sanity check: 500 → 1000 (3 h) → 2000 (6 h) → 4000 (9 h) ✓.</div>
+  <ul>
+    <li>Base-2 and base-e are the <strong>same function in different clothes</strong>: since 2 = e^(ln 2), we get <span class="fml">2^(t/3) = e^((ln 2/3)·t)</span>, so P = 500·2^(t/3) = <span class="fml">500·e^((ln 2/3)t)</span> — an exponential with k = ln 2/3 ≈ 0.231 (using ln 2 ≈ 0.693). In general: <em class="hi">k = ln 2 ÷ doubling time</em>, and for decay k = −ln 2 ÷ half-life.</li>
+    <li>Use whichever outfit fits the question: base-2 for "how many doublings," base-e for matching a DE.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">3</span> Solving for TIME — ln opens the exponent</h2>
+  <ul>
+    <li>"How much after 9 hours?" is plug-in. The reverse — <em class="hi">"WHEN does it reach 16,000?"</em> — needs to free a variable trapped in an exponent. That's exactly what logarithms do.</li>
+  </ul>
+  <div class="ex"><b>Worked example:</b> same colony, P = 500·2^(t/3). When does P hit 16,000?<br>
+  500·2^(t/3) = 16000 → divide by 500: 2^(t/3) = 32.<br>
+  Recognize the power: 32 = 2⁵ → t/3 = 5 → <b>t = 15 hours</b>.<br>
+  Check: 15 h = 5 doublings; 500·32 = 16,000 ✓.<br>
+  <b>The ln route</b> (for when the power isn't recognizable): take ln of both sides of 2^(t/3) = 32 → (t/3)·ln 2 = ln 32 → t = 3·ln 32/ln 2 = 3·5 = 15 ✓ (since ln 32 = ln 2⁵ = 5 ln 2).</div>
+  <ul>
+    <li>Habit to build: <em class="hi">isolate the exponential first</em>, THEN take the log. (Taking ln of "500·2^(t/3)" before dividing just makes a mess.)</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">4</span> Newton's Law of Cooling — decay of the GAP</h2>
+  <ul>
+    <li>Hot coffee doesn't cool at a constant rate — it cools fast when it's much hotter than the room, slowly when it's nearly room temperature. Newton's Law says: <em class="hi">"cools at a rate proportional to how much hotter it is than the room"</em>:</li>
+    <li style="list-style:none;"><span class="fml">dT/dt = −k(T − T_room)</span> &nbsp; (k &gt; 0; the minus sign says hotter-than-room → cooling).</li>
+    <li>Clever substitution: let <span class="fml">u = T − T_room</span>, the <strong>GAP</strong> above room temperature. Since T_room is constant, du/dt = dT/dt = −ku — pure exponential decay! So the gap decays: u = u₀e^(−kt), which unwraps to:</li>
+    <li style="list-style:none;"><span class="fml">T = T_room + (T₀ − T_room)e^(−kt)</span> &nbsp; — room temperature plus a shrinking gap.</li>
+    <li>Everything from section 2 applies <strong>to the gap</strong>: the gap has a half-life; the temperature itself does NOT halve. (Classic trap — exercise 18 springs it.)</li>
+  </ul>
+  <div class="ex"><b>Worked example:</b> coffee at 90°, room at 20°. After 10 minutes it's 55°. Predict the temperature after 20 minutes.<br>
+  Starting gap: 90 − 20 = 70°. After 10 min the gap is 55 − 20 = 35° — exactly half! So <span class="fml">e^(−10k) = 1/2</span>: the gap's half-life is 10 minutes.<br>
+  After 20 min (two half-lives): gap = 70/4 = 17.5° → T = 20 + 17.5 = <b>37.5°</b>.<br>
+  Check with the formula: T = 20 + 70·e^(−20k) = 20 + 70·(e^(−10k))² = 20 + 70·(1/2)² = 20 + 17.5 ✓.</div>
+</section>
+
+<section>
+  <h2><span class="num">5</span> Logistic growth — the S-curve with a ceiling (BC classic)</h2>
+  <ul>
+    <li>Real populations can't double forever — food, space, and patience run out. The fix: multiply the exponential DE by a <strong>braking factor</strong> that shuts growth down near a ceiling <span class="fml">L</span>, the <em class="hi">carrying capacity</em>:</li>
+    <li style="list-style:none;"><span class="fml">dP/dt = kP(1 − P/L)</span></li>
+    <li><strong>Read the equation like a story:</strong>
+      <ul>
+        <li>P tiny (way below L): the brake (1 − P/L) ≈ 1 → dP/dt ≈ kP → <em>almost pure exponential growth</em>.</li>
+        <li>P near L: the brake ≈ 0 → growth grinds to a halt. The population levels off at the ceiling.</li>
+        <li>P &gt; L (overcrowded): the brake goes negative → population <em>shrinks back down</em> toward L.</li>
+      </ul>
+    </li>
+    <li><strong>Where is growth FASTEST?</strong> Expand: kP(1 − P/L) = kP − kP²/L — as a function of P this is a <em class="hi">downward-opening parabola</em> with roots at P = 0 and P = L. A parabola peaks midway between its roots: at <span class="fml">P = L/2</span>. Growth is fastest at HALF the carrying capacity — that's the steepest point of the S-curve.</li>
+  </ul>
+  <div class="graph">the logistic S-curve
+
+ P
+ L ─┤ · · · · · · · · <span class="b">· · · · ─────────</span>  ← ceiling: P → L, never crosses
+   │              <span class="b">╱</span>
+L/2┤· · · · ·<span class="y">╳</span><span class="b">╱</span>            ← steepest here: growth fastest at P = L/2
+   │       <span class="g">╱</span>
+   │   <span class="g">__╱</span>   ← starts almost exponential
+   └─────────────────────────→ t</div>
+  <ul>
+    <li>The solution formula (learn to <strong>recognize</strong> it; deriving it would use partial fractions — a Lesson 32 wink, but the AP never asks for the derivation): <span class="fml">P = L/(1 + Ae^(−kt))</span>. As t → ∞, e^(−kt) → 0, so <em class="hi">P → L no matter where it started</em>. At t = 0: P(0) = L/(1 + A), so A is set by the starting population.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">6</span> AP question patterns — answers WITHOUT solving</h2>
+  <ul>
+    <li>Logistic questions look scary but are usually <em class="hi">reading questions</em>. Given dP/dt = kP(1 − P/L):
+      <ul>
+        <li><strong>"What is lim P as t → ∞?"</strong> → L, the carrying capacity (read it from the DE: growth stops there). Just check whether the start is below L (grows up to L) or above (falls to L).</li>
+        <li><strong>"When is growth fastest?" / "Find P when dP/dt is greatest"</strong> → P = L/2, always.</li>
+        <li><strong>"What is dP/dt when P = (number)?"</strong> → plug into the DE. Arithmetic, not calculus.</li>
+      </ul>
+    </li>
+    <li>Example, in one breath: dP/dt = 0.4P(1 − P/1200) → carrying capacity 1200, limit 1200, growth fastest at P = 600, and at P = 300 the growth rate is 0.4·300·(3/4) = 90. Four answers, zero integrals.</li>
+  </ul>
+</section>
+
+<div class="qhead">✏️ Exercises — 20 problems (write your answer on paper, then reveal)</div>
+
+<div class="q"><span class="qnum">1.</span><span class="qtag">words → DE</span>
+  <div class="qtext">A population of fish, P, grows at a rate proportional to its size. Write the differential equation, and state what its solution family looks like.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> "rate" = dP/dt; "proportional to its size" = a constant times P. Translating sentences into DEs is the first line of nearly every AP growth problem — and Lesson 37 already solved this equation once and for all.</div>
+    <div class="step">"Rate of growth" → dP/dt. "Proportional to its size" → = kP for some constant k &gt; 0.</div>
+    <div class="step">So dP/dt = kP, whose solutions are P = P₀e^(kt) (exponential growth from the starting amount P₀).</div>
+    <div class="ans">dP/dt = kP (k &gt; 0) — solutions P = P₀e^(kt), exponential growth</div></div>
+</div>
+
+<div class="q"><span class="qnum">2.</span><span class="qtag">words → DE</span>
+  <div class="qtext">A mug of tea at temperature T sits in a 20° room and cools at a rate proportional to how much hotter it is than the room. Write the differential equation (careful with the sign!).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> Newton's Law of Cooling. The "how much hotter than the room" quantity is the gap T − 20. When the tea IS hotter (gap positive), the temperature must be FALLING — so the rate needs a minus sign.</div>
+    <div class="step">Gap above room temperature: T − 20.</div>
+    <div class="step">"Cools at a rate proportional to the gap": dT/dt = −k(T − 20), with k &gt; 0.</div>
+    <div class="step">Sign check: if T = 90, then dT/dt = −70k &lt; 0 → cooling ✓. If T somehow were 10 (colder than the room), dT/dt = +10k &gt; 0 → warming up toward the room ✓. The equation is smarter than it looks.</div>
+    <div class="ans">dT/dt = −k(T − 20), k &gt; 0</div></div>
+</div>
+
+<div class="q"><span class="qnum">3.</span><span class="qtag">doubling</span>
+  <div class="qtext">A bacteria colony starts at 300 cells and doubles every 4 hours. Write a formula for P(t) (t in hours) and find the population after 12 hours.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> doubling every d hours → P = P₀·2^(t/d). The exponent t/d counts how many doublings have happened. This friendly base-2 form is exactly equivalent to P₀e^(kt) with k = ln 2/d.</div>
+    <div class="step">Model: P = 300·2^(t/4).</div>
+    <div class="step">At t = 12: t/4 = 3 doublings → P(12) = 300·2³ = 300·8 = 2400.</div>
+    <div class="step">Sanity check: 300 → 600 (4 h) → 1200 (8 h) → 2400 (12 h) ✓.</div>
+    <div class="ans">P = 300·2^(t/4); P(12) = 2400 cells</div></div>
+</div>
+
+<div class="q"><span class="qnum">4.</span><span class="qtag">half-life</span>
+  <div class="qtext">Caffeine leaves your body with a half-life of about 6 hours. If a large coffee delivers 200 mg of caffeine, how much remains after 18 hours?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background (biology):</b> your liver removes caffeine at a rate proportional to how much is present — the decay DE dy/dt = −ky in action, which is why caffeine has a half-life. Halving formula: y = y₀·(1/2)^(t/h).</div>
+    <div class="step">Number of half-lives in 18 hours: 18/6 = 3.</div>
+    <div class="step">y = 200·(1/2)³ = 200/8 = 25.</div>
+    <div class="step">Ladder check: 200 → 100 (6 h) → 50 (12 h) → 25 (18 h) ✓.</div>
+    <div class="ans">25 mg of caffeine remains</div></div>
+</div>
+
+<div class="q"><span class="qnum">5.</span><span class="qtag">logistic reading</span>
+  <div class="qtext">A deer population follows dP/dt = 0.4P(1 − P/1200), starting at P(0) = 100. (a) What is the carrying capacity? (b) What is the limit of P as t → ∞?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> in dP/dt = kP(1 − P/L), the number under P in the brake factor IS the carrying capacity L — the ceiling where growth stops. Every logistic population heads to L in the long run (from below or above), no solving required.</div>
+    <div class="step">(a) Match dP/dt = 0.4P(1 − P/1200) to kP(1 − P/L): k = 0.4 and L = 1200.</div>
+    <div class="step">(b) Since P starts at 100 (below the ceiling), it grows along the S-curve and levels off at the ceiling: lim P = 1200. (Check the DE: at P = 1200 the brake is 1 − 1 = 0, so growth stops exactly there.)</div>
+    <div class="ans">(a) carrying capacity L = 1200 deer &nbsp; (b) lim P = 1200</div></div>
+</div>
+
+<div class="q"><span class="qnum">6.</span><span class="qtag">C = starting amount</span>
+  <div class="qtext">Solve dy/dt = ky with initial condition y(0) = y₀, and explain in one sentence why writing the solution as y = y₀e^(kt) is nicer than y = Ce^(kt).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> Lesson 37 derived the general solution y = Ce^(kt) via separation. An initial condition at t = 0 is the friendliest possible: e⁰ = 1, so the constant stops being mysterious.</div>
+    <div class="step">General solution: y = Ce^(kt).</div>
+    <div class="step">Plug in t = 0: y₀ = C·e⁰ = C·1 = C. So C = y₀.</div>
+    <div class="step">Therefore y = y₀e^(kt). Verify: derivative = k·y₀e^(kt) = ky ✓ and y(0) = y₀ ✓.</div>
+    <div class="step">Why nicer: the constant has a physical MEANING — it's the starting amount, readable straight from the problem instead of solved for.</div>
+    <div class="ans">y = y₀e^(kt); the constant is simply the initial amount</div></div>
+</div>
+
+<div class="q"><span class="qnum">7.</span><span class="qtag">solve for time</span>
+  <div class="qtext">A colony follows P = 100·2^(t/5) (t in hours). At what time does the population reach 3200?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> to free t from an exponent: isolate the exponential FIRST (divide off the 100), then either recognize a power of 2 or take ln of both sides. Recognizing 32 = 2⁵ is faster when it works.</div>
+    <div class="step">100·2^(t/5) = 3200 → 2^(t/5) = 32.</div>
+    <div class="step">32 = 2⁵ → t/5 = 5 → t = 25.</div>
+    <div class="step">(ln route: (t/5)ln 2 = ln 32 → t = 5·ln 32/ln 2 = 5·5 = 25, same answer.)</div>
+    <div class="step">Check: 25 hours = 5 doublings; 100·32 = 3200 ✓.</div>
+    <div class="ans">t = 25 hours</div></div>
+</div>
+
+<div class="q"><span class="qnum">8.</span><span class="qtag">doubling money</span>
+  <div class="qtext">A savings account doubles in value every 10 years. You deposit $2000. (a) How much is in the account after 30 years? (b) When will the account hold $32,000?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background (finance):</b> compound interest grows money at a rate proportional to the balance — the same DE as bacteria, so the same doubling formula: A = 2000·2^(t/10). "Doublings" is the natural unit of thought.</div>
+    <div class="step">(a) 30 years = 3 doublings: A = 2000·2³ = 2000·8 = $16,000.</div>
+    <div class="step">(b) 2000·2^(t/10) = 32000 → 2^(t/10) = 16 = 2⁴ → t/10 = 4 → t = 40.</div>
+    <div class="step">Check: $2000 → 4000 → 8000 → 16,000 (30 yr) → 32,000 (40 yr) ✓.</div>
+    <div class="ans">(a) $16,000 &nbsp; (b) after 40 years</div></div>
+</div>
+
+<div class="q"><span class="qnum">9.</span><span class="qtag">base-2 ↔ base-e</span>
+  <div class="qtext">(a) Rewrite P = 500·2^(t/3) in the form P = 500·e^(kt) — what is k (exactly, and as a decimal using ln 2 ≈ 0.693)? (b) A different culture follows N = 40·e^(0.173t) with t in hours. Using 0.173 ≈ ln 2/4, what is its doubling time?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> 2 = e^(ln 2), so 2^(t/d) = e^((ln 2/d)t). The dictionary between the two outfits: k = ln 2 ÷ (doubling time), and doubling time = ln 2 ÷ k. One function, two costumes.</div>
+    <div class="step">(a) 2^(t/3) = (e^(ln 2))^(t/3) = e^((ln 2/3)t), so k = ln 2/3 ≈ 0.693/3 = 0.231. Thus P = 500e^(0.231t) (approximately).</div>
+    <div class="step">(b) doubling time = ln 2/k ≈ ln 2/(ln 2/4) = 4. So N doubles every 4 hours.</div>
+    <div class="step">Check (b): N = 40e^((ln2/4)t) = 40·2^(t/4) — after 4 hours, 40·2 = 80, doubled ✓.</div>
+    <div class="ans">(a) k = ln 2/3 ≈ 0.231 &nbsp; (b) doubling time = 4 hours</div></div>
+</div>
+
+<div class="q"><span class="qnum">10.</span><span class="qtag">half-life · solve for time</span>
+  <div class="qtext">A radioactive sample starts at 800 grams and has a half-life of 12 years. After how many years will only 100 grams remain?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background (physics):</b> each atom decays at random, but with so many atoms the total follows dy/dt = −ky exactly — hence a fixed half-life. Ask: how many halvings turn 800 into 100?</div>
+    <div class="step">800 → 400 → 200 → 100: that's 3 halvings.</div>
+    <div class="step">Each halving takes 12 years → t = 3·12 = 36 years.</div>
+    <div class="step">Formula check: 800·(1/2)^(36/12) = 800·(1/2)³ = 800/8 = 100 ✓.</div>
+    <div class="ans">36 years</div></div>
+</div>
+
+<div class="q"><span class="qnum">11.</span><span class="qtag">Newton's cooling</span>
+  <div class="qtext">A bowl of soup at 100° sits in a 20° room. After 5 minutes it has cooled to 60°. (a) Find the half-life of the GAP between soup and room. (b) Predict the soup's temperature after 15 minutes.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> Newton's Law makes the GAP u = T − T_room decay exponentially: u = u₀e^(−kt). Work entirely in gap-language, then translate back by adding room temperature at the end.</div>
+    <div class="step">(a) Starting gap: 100 − 20 = 80°. After 5 min: gap = 60 − 20 = 40° — exactly half. So the gap's half-life is 5 minutes.</div>
+    <div class="step">(b) 15 minutes = 3 gap-halvings: 80 → 40 → 20 → 10°. Temperature: T = 20 + 10 = 30°.</div>
+    <div class="step">Formula check: T = 20 + 80·(1/2)^(15/5) = 20 + 80/8 = 20 + 10 = 30 ✓.</div>
+    <div class="ans">(a) gap half-life = 5 minutes &nbsp; (b) T(15) = 30°</div></div>
+</div>
+
+<div class="q"><span class="qnum">12.</span><span class="qtag">logistic reading</span>
+  <div class="qtext">For dP/dt = 0.4P(1 − P/1200): (a) at what population is growth fastest? (b) What is the growth rate dP/dt when P = 300? (c) And when P = 600?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> dP/dt = kP(1 − P/L) is a downward parabola in P with roots 0 and L, so it peaks at P = L/2 — growth is fastest at HALF the carrying capacity. For specific rates, just plug the P-value into the DE: arithmetic, not calculus.</div>
+    <div class="step">(a) L = 1200 → fastest growth at P = L/2 = 600.</div>
+    <div class="step">(b) dP/dt = 0.4·300·(1 − 300/1200) = 120·(1 − 1/4) = 120·3/4 = 90 deer per year.</div>
+    <div class="step">(c) dP/dt = 0.4·600·(1 − 600/1200) = 240·(1/2) = 120 — bigger than at P = 300, as expected: 600 is the peak.</div>
+    <div class="ans">(a) P = 600 &nbsp; (b) 90 per year &nbsp; (c) 120 per year (the maximum rate)</div></div>
+</div>
+
+<div class="q"><span class="qnum">13.</span><span class="qtag">words → logistic DE</span>
+  <div class="qtext">A pond can support at most 5000 fish. The fish population grows logistically with constant k = 0.2 (per month). Write the differential equation, and state the population at which the pond's fish population grows fastest.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> "can support at most" is the carrying capacity L — it goes under P inside the brake factor (1 − P/L). Then the fastest-growth population is automatic: L/2, no solving.</div>
+    <div class="step">L = 5000, k = 0.2 → dP/dt = 0.2P(1 − P/5000).</div>
+    <div class="step">Growth fastest at P = L/2 = 2500 fish.</div>
+    <div class="step">Check the shape: at P = 2500, dP/dt = 0.2·2500·(1/2) = 250/month; at P = 1000, 0.2·1000·(4/5) = 160; at P = 4000, 0.2·4000·(1/5) = 160 — symmetric around the peak ✓.</div>
+    <div class="ans">dP/dt = 0.2P(1 − P/5000); fastest growth at P = 2500</div></div>
+</div>
+
+<div class="q"><span class="qnum">14.</span><span class="qtag">asymptote thinking</span>
+  <div class="qtext">Your hot chocolate is at 70° in a 20° room. Your friend says: "Just wait long enough and it will reach exactly 20°." Is your friend right? Use the formula T = 20 + 50e^(−kt) to answer precisely.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> e^(−kt) shrinks toward 0 as t grows but NEVER equals 0 — an exponential is always positive. So the gap shrinks forever without vanishing: room temperature is a horizontal asymptote, approached but never touched (in the model).</div>
+    <div class="step">T = 20 + 50e^(−kt). For T to equal exactly 20, we'd need 50e^(−kt) = 0, i.e. e^(−kt) = 0.</div>
+    <div class="step">But e^(anything) &gt; 0 always. So T &gt; 20 for every finite t.</div>
+    <div class="step">However, lim T as t → ∞ = 20 + 50·0 = 20: it gets as CLOSE as you like. After enough half-lives the difference is far too small to taste or even measure.</div>
+    <div class="ans">Not exactly ever — T approaches 20° as an asymptote, getting arbitrarily close but never touching it</div></div>
+</div>
+
+<div class="q"><span class="qnum">15.</span><span class="qtag">derive · u-substitution</span>
+  <div class="qtext">Starting from dT/dt = −k(T − T_room), use the substitution u = T − T_room to derive the formula T = T_room + (T₀ − T_room)e^(−kt), where T₀ is the starting temperature. Verify your answer satisfies the DE.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the substitution works because T_room is a CONSTANT — differentiating u = T − T_room kills it, leaving du/dt = dT/dt. This turns an unfamiliar DE into the pure-decay equation we already solved in Lesson 37.</div>
+    <div class="step">Let u = T − T_room (the gap). Then du/dt = dT/dt − 0 = dT/dt.</div>
+    <div class="step">The DE becomes du/dt = −ku — pure exponential decay! Solution: u = u₀e^(−kt), where u₀ = u(0) = T₀ − T_room.</div>
+    <div class="step">Translate back: T − T_room = (T₀ − T_room)e^(−kt) → T = T_room + (T₀ − T_room)e^(−kt).</div>
+    <div class="step">Verify: dT/dt = (T₀ − T_room)·(−k)e^(−kt) = −k·[(T₀ − T_room)e^(−kt)] = −k(T − T_room) ✓. And T(0) = T_room + (T₀ − T_room)·1 = T₀ ✓.</div>
+    <div class="ans">T = T_room + (T₀ − T_room)e^(−kt) — room temperature plus an exponentially decaying gap</div></div>
+</div>
+
+<div class="q"><span class="qnum">16.</span><span class="qtag">verify logistic form</span>
+  <div class="qtext">Without doing the full algebra, give a conceptual verification that P = L/(1 + Ae^(−kt)) (with A &gt; 0) behaves like a solution of dP/dt = kP(1 − P/L): check (a) the limit as t → ∞, (b) the value at t = 0, (c) that P stays strictly between 0 and L, and (d) the behavior when P is far below L.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> "conceptual verification" = check that the formula has every behavior the DE demands. (A full check would substitute and grind the algebra — partial fractions could even DERIVE the formula, Lesson 32 style — but behavior-checking is what the AP expects you to do fluently.)</div>
+    <div class="step">(a) As t → ∞: e^(−kt) → 0, so P → L/(1 + 0) = L. Matches the DE's ceiling: growth stops at carrying capacity ✓.</div>
+    <div class="step">(b) At t = 0: P(0) = L/(1 + A). Since A &gt; 0, this is less than L — some starting value below the ceiling, and A can be tuned to hit any such start ✓.</div>
+    <div class="step">(c) The denominator 1 + Ae^(−kt) is always bigger than 1 (so P &lt; L) and always finite (so P &gt; 0): the curve lives strictly between 0 and L, exactly where the DE keeps dP/dt positive ✓.</div>
+    <div class="step">(d) Early on (t small, P far below L): the brake (1 − P/L) ≈ 1, and the DE says growth ≈ kP — near-exponential. The formula agrees: for large Ae^(−kt), P ≈ (L/A)e^(kt), an exponential ✓.</div>
+    <div class="ans">All four behaviors match the DE: rises from L/(1+A), nearly exponential at first, stays below L, levels off at L</div></div>
+</div>
+
+<div class="q"><span class="qnum">17.</span><span class="qtag">exponential or logistic?</span>
+  <div class="qtext">Two colonies are measured daily.
+  Colony A: 100, 200, 400, 800, 1600, ...
+  Colony B: 100, 190, 340, 550, 640, 690, 699, 700, 700, ...
+  Which model fits each colony — exponential or logistic? Estimate any constants you can (doubling time, carrying capacity, fastest-growth population).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> fingerprints of each model. Exponential: same multiplying factor every step, forever. Logistic: starts out exponential-ish, then growth slows and the values flatten toward a ceiling. Real data usually shows the ceiling — nothing doubles forever.</div>
+    <div class="step">Colony A: each day is exactly ×2 the day before — a constant ratio. Exponential, doubling time = 1 day (P = 100·2^t).</div>
+    <div class="step">Colony B: early growth is quick (100 → 190 is nearly ×2), but the jumps shrink and the values level off at 700. Logistic with carrying capacity L ≈ 700.</div>
+    <div class="step">Colony B's fastest growth happened near L/2 = 350 — consistent with the data: the biggest one-day jump (340 → 550, a jump of 210) straddles P = 350 ✓.</div>
+    <div class="ans">A: exponential (doubles daily) · B: logistic, L ≈ 700, fastest growth near P = 350</div></div>
+</div>
+
+<div class="q"><span class="qnum">18.</span><span class="qtag">spot the error</span>
+  <div class="qtext">A student says: "The cocoa is 80° in a 20° room, and the half-life is 10 minutes — so after 10 minutes the cocoa will be at 40°, half of 80." Find the error and compute the correct 10-minute temperature.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> in Newton's cooling, the exponentially decaying quantity is the GAP above room temperature, not the temperature itself. Halving the raw temperature would absurdly predict the cocoa keeps halving toward 0° — colder than the room!</div>
+    <div class="step">The error: applying the half-life to T = 80 instead of to the gap u = T − 20.</div>
+    <div class="step">Correct: starting gap = 80 − 20 = 60°. After one half-life the gap is 30°.</div>
+    <div class="step">T = 20 + 30 = 50° — not 40°.</div>
+    <div class="step">(Sanity: the student's rule, applied twice more, would give 20° then 10° — below room temperature, impossible. The gap version gives 50 → 35 → 27.5°, gliding down toward 20° ✓.)</div>
+    <div class="ans">Half-life applies to the gap (T − 20), not T: after 10 minutes T = 20 + 60/2 = 50°</div></div>
+</div>
+
+<div class="q"><span class="qnum">19.</span><span class="qtag">doubling time from k</span>
+  <div class="qtext">An investment grows continuously: A = 300·e^(0.10t) (t in years). Derive its doubling time from scratch (set up the equation and solve with ln), then give a decimal using ln 2 ≈ 0.693.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the doubling time d satisfies "after d years the amount is twice the start": A(d) = 2·A(0). The 300 cancels — doubling time never depends on how much you start with, only on k. The result d = ln 2/k is the famous "rule of 69.3" (bankers round it to the Rule of 72).</div>
+    <div class="step">Set up: 300e^(0.10d) = 2·300 → e^(0.10d) = 2.</div>
+    <div class="step">Take ln: 0.10d = ln 2 → d = ln 2/0.10.</div>
+    <div class="step">Decimal: d ≈ 0.693/0.10 = 6.93 years.</div>
+    <div class="step">Check: e^(0.10·6.93) = e^(0.693) ≈ 2 ✓.</div>
+    <div class="ans">d = ln 2/0.10 ≈ 6.93 years (about 7 years to double)</div></div>
+</div>
+
+<div class="q"><span class="qnum">20.</span><span class="qtag">challenge · AP-style mixed</span>
+  <div class="qtext">Part I — Fish: a lake's population follows dP/dt = 0.6P(1 − P/2400) with P(0) = 200.
+  (a) Find lim P as t → ∞. (b) Find the population at which dP/dt is greatest, and the value of dP/dt there. (c) Find dP/dt when P = 400.
+  Part II — Pie: a pie at 100° sits in a 20° room and cools to 60° in 15 minutes.
+  (d) Find the half-life of the pie's gap above room temperature. (e) When will the pie reach 25°?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a full AP-style workout mixing both stars of this lesson. Notice how much is answerable by READING: (a) is the carrying capacity, (b) is L/2, (c) is plug-in arithmetic. Only Part II needs the half-life machinery — and even that is counting halvings.</div>
+    <div class="step">(a) Carrying capacity L = 2400; starting below it (200), the population climbs the S-curve → lim P = 2400.</div>
+    <div class="step">(b) Fastest at P = L/2 = 1200. There dP/dt = 0.6·1200·(1 − 1200/2400) = 720·(1/2) = 360 fish per unit time.</div>
+    <div class="step">(c) At P = 400: dP/dt = 0.6·400·(1 − 400/2400) = 240·(5/6) = 200.</div>
+    <div class="step">(d) Starting gap: 100 − 20 = 80°. After 15 min: gap = 60 − 20 = 40° = half. Gap half-life = 15 minutes.</div>
+    <div class="step">(e) Reaching 25° means gap = 5°. From 80: 80 → 40 → 20 → 10 → 5, that's 4 halvings → t = 4·15 = 60 minutes. Check: T = 20 + 80·(1/2)^(60/15) = 20 + 80/16 = 20 + 5 = 25 ✓.</div>
+    <div class="ans">(a) 2400 &nbsp; (b) P = 1200, dP/dt = 360 &nbsp; (c) 200 &nbsp; (d) 15 minutes &nbsp; (e) after 60 minutes</div></div>
+</div>
+
+<footer>Lesson 38 of 40 · Intuitive Integration · next: <a href="Lesson39.html">Lesson 39 — Parametric &amp; Polar Integration</a></footer>
+
+</div>
+<script>
+document.querySelectorAll('.q').forEach(q=>{
+  const btn=q.querySelector('.revealbtn'), sol=q.querySelector('.sol');
+  btn.addEventListener('click',()=>{ sol.classList.add('show'); btn.textContent='Solution shown'; btn.disabled=true; btn.style.opacity=.6; });
+});
+</script>
+</body>
+</html>

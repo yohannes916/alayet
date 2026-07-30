@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 22 — Sigma Notation &amp; Riemann Sums, Formalized</title>
+<style>
+  :root{--accent:#186a3b;--accent2:#239b56;--bg:#f2f7f4;--card:#fff;--ok:#1e8449;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:#1c2833;background:var(--bg);margin:0;padding:0 16px 80px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -16px 20px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  nav{display:flex;gap:10px;margin-bottom:18px;font-size:.9rem;flex-wrap:wrap;}
+  nav a{color:var(--accent);text-decoration:none;font-weight:600;background:#fff;border:1px solid #d5e8dc;border-radius:8px;padding:6px 14px;}
+  nav a:hover{background:#eafaf1;}
+  .goal{background:#fef9e7;border-left:5px solid var(--star);padding:12px 18px;border-radius:8px;margin-bottom:18px;font-size:.95rem;}
+  .goal strong{color:#7d6608;}
+  section{background:var(--card);border-radius:10px;padding:18px 22px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  h2{color:var(--accent);font-size:1.15rem;margin:0 0 10px;}
+  h2 .num{background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;border-radius:6px;padding:2px 9px;margin-right:8px;}
+  ul{margin:8px 0;padding-left:24px;}
+  li{margin-bottom:8px;}
+  strong{color:#145a32;}
+  em.hi{font-style:normal;background:#fef9e7;padding:0 4px;border-radius:3px;}
+  .fml{background:#e9f7ef;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.9em;color:#186a3b;white-space:nowrap;}
+  .ex{background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:.95rem;}
+  .ex b{color:#145a32;}
+  .graph{background:#1b2631;color:#eaeded;border-radius:8px;padding:14px 18px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.82rem;line-height:1.45;overflow-x:auto;margin:10px 0;white-space:pre;}
+  .graph .g{color:#82e0aa;} .graph .y{color:#f7dc6f;} .graph .b{color:#85c1e9;}
+  table.t{border-collapse:collapse;margin:10px 0;font-size:.92rem;}
+  table.t th,table.t td{border:1px solid #cfd8cf;padding:6px 12px;text-align:center;}
+  table.t th{background:var(--accent);color:#fff;font-weight:600;}
+  .qhead{margin:26px 0 8px;color:var(--accent);font-size:1.2rem;border-bottom:2px solid #d4efdf;padding-bottom:6px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid var(--accent2);}
+  .qnum{font-weight:800;color:var(--accent);margin-right:6px;}
+  .qtag{float:right;background:#e9f7ef;color:var(--accent);border-radius:8px;padding:1px 9px;font-size:.68rem;font-weight:700;letter-spacing:.3px;margin-left:8px;}
+  .qtext{font-size:.98rem;margin:4px 0 10px;}
+  .revealbtn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .revealbtn:hover{background:#0e4429;}
+  .sol{display:none;margin-top:12px;background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px;font-size:.93rem;}
+  .sol.show{display:block;}
+  .sol h4{margin:0 0 8px;color:var(--ok);font-size:.9rem;}
+  .sol .ctx{background:#eaf2f8;border-left:4px solid #2e86c1;border-radius:6px;padding:8px 12px;margin:0 0 10px;font-size:.88rem;}
+  .sol .ctx b{color:#1a5276;}
+  .sol .step{margin:6px 0;}
+  .sol .ans{background:#eafaf1;border-radius:6px;padding:6px 12px;margin-top:8px;font-weight:700;color:#145a32;display:inline-block;}
+  footer{text-align:center;color:#85929e;font-size:.85rem;margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Lesson 22 — Sigma Notation &amp; Riemann Sums, Formalized</h1>
+  <p>Professional Notation for Rectangle Slicing · Intuitive Calculus for a Curious Student · Lesson 22 of 40</p>
+</header>
+
+<nav><a href="index.html">📚 All lessons</a><a href="Lesson21.html">← Lesson 21</a><a href="Lesson23.html">Next: Lesson 23 →</a></nav>
+
+<div class="goal"><strong>🎯 Goal of this lesson:</strong> take the rectangle-slicing you invented back in Lesson 3 and dress it in its official uniform: <em>sigma notation</em> and <em>Riemann sums</em>. You'll also meet the midpoint sum (usually the most accurate), handle tables with unequal spacing, and learn to JUSTIFY whether an estimate is too big or too small — the exact skills AP exams test again and again.</div>
+
+<section>
+  <h2><span class="num">1</span> Back to Lesson 3 — but official this time</h2>
+  <ul>
+    <li>Remember Lesson 3? To find the area under a curve, you covered it with skinny rectangles, added their areas, and noticed the estimate improved as the rectangles got skinnier. You've been using that idea ever since.</li>
+    <li>Today we give that idea its <strong>professional name and notation</strong>. It's called a <strong>Riemann sum</strong> (after Bernhard Riemann, who pinned the idea down in the 1850s), and the adding-up gets written with the symbol <strong>Σ</strong>.</li>
+    <li>Why bother, if we already have the FTC to compute areas exactly? Two reasons: <em class="hi">(1) AP exams use this notation constantly</em>, especially for functions given as TABLES of data, where there's no formula to antidifferentiate; <em class="hi">(2) the notation IS the definition</em> — it says precisely what a definite integral means.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">2</span> Sigma (Σ) from scratch: a machine for adding</h2>
+  <ul>
+    <li><strong>Σ</strong> is the Greek capital letter sigma — the Greek "S", for <strong>Sum</strong>. It's an instruction: <em class="hi">"add up copies of the expression that follows."</em></li>
+    <li>Three pieces of information ride along with it: the <strong>index variable</strong> (a counter, often k), its <strong>starting value</strong> (written below the Σ), and its <strong>ending value</strong> (written above).</li>
+  </ul>
+  <div class="ex"><b>Reading one aloud:</b> <span class="fml">Σ<sub>k=1</sub><sup>4</sup> k</span> says: "let k run 1, 2, 3, 4; write down the expression (just k) for each; add them all."<br>
+  <span class="fml">Σ<sub>k=1</sub><sup>4</sup> k = 1 + 2 + 3 + 4 = 10</span>.</div>
+  <div class="ex"><b>With a formula inside:</b> <span class="fml">Σ<sub>k=1</sub><sup>3</sup> k²</span>: plug k = 1, 2, 3 into k² and add:<br>
+  <span class="fml">1² + 2² + 3² = 1 + 4 + 9 = 14</span>.</div>
+  <ul>
+    <li><strong>Writing sums IN sigma notation</strong> is the reverse skill: spot the pattern, express it with k. Example: <span class="fml">2 + 4 + 6 + 8</span> is "2k for k from 1 to 4," so it's <span class="fml">Σ<sub>k=1</sub><sup>4</sup> 2k</span>.</li>
+    <li>The index letter is a private counter — <span class="fml">Σ<sub>k=1</sub><sup>4</sup> k</span> and <span class="fml">Σ<sub>i=1</sub><sup>4</sup> i</span> mean exactly the same thing. And the start needn't be 1: <span class="fml">Σ<sub>k=3</sub><sup>5</sup> k = 3 + 4 + 5 = 12</span>.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">3</span> The formal Riemann sum — left, right, and (new!) midpoint</h2>
+  <ul>
+    <li>To estimate <span class="fml">∫<sub>a</sub><sup>b</sup> f(x) dx</span> with n rectangles: slice [a, b] into n equal pieces, each of width <em class="hi">Δx = (b − a)/n</em>. (Δ is Greek capital delta — "a chunk of." Δx = a chunk of x.)</li>
+    <li>Every rectangle's area is height × Δx. The only question is <strong>where you measure the height</strong> on each slice:
+      <br>• <strong>Left sum</strong> — height at each slice's left edge.
+      <br>• <strong>Right sum</strong> — height at each slice's right edge.
+      <br>• <strong>Midpoint sum</strong> (new today!) — height at each slice's exact middle. Usually the most accurate of the three, because on each slice the function is typically a bit above the midpoint height on one side and a bit below on the other — the errors partly cancel.</li>
+  </ul>
+  <div class="ex"><b>Worked example:</b> <span class="fml">f(x) = x²</span> on [0, 2] with n = 4, so <span class="fml">Δx = (2−0)/4 = 0.5</span>. Slice edges: 0, 0.5, 1, 1.5, 2. Midpoints: 0.25, 0.75, 1.25, 1.75.<br>
+  <b>Left</b> (heights at 0, 0.5, 1, 1.5): <span class="fml">0.5(0 + 0.25 + 1 + 2.25) = 0.5(3.5) = 1.75</span> — familiar from Lesson 3!<br>
+  <b>Right</b> (heights at 0.5, 1, 1.5, 2): <span class="fml">0.5(0.25 + 1 + 2.25 + 4) = 0.5(7.5) = 3.75</span>.<br>
+  <b>Midpoint</b>: <span class="fml">0.5(0.25² + 0.75² + 1.25² + 1.75²) = 0.5(0.0625 + 0.5625 + 1.5625 + 3.0625) = 0.5(5.25) = 2.625</span>.<br>
+  True value (FTC): <span class="fml">∫<sub>0</sub><sup>2</sup> x² dx = 8/3 ≈ 2.667</span>. The midpoint sum (2.625) is FAR closer than left (1.75) or right (3.75).</div>
+  <div class="graph">y = x²          left sum (under)      midpoint sum (very close!)
+ 4 |                  <span class="b">·</span>                        <span class="b">·</span>
+   |                <span class="b">.·</span>                       <span class="b">.·</span><span class="y">┌─┐</span>
+   |              <span class="b">.·</span> <span class="g">┌─┐</span>                   <span class="b">.·</span> <span class="y">│░│</span>
+ 2 |           <span class="b">.·</span>    <span class="g">│░│</span>                <span class="b">.·</span><span class="y">┌─┼─┤</span>
+   |        <span class="b">.·</span>    <span class="g">┌─┼─┤</span>             <span class="b">.·</span>   <span class="y">│░│░│</span>
+ 1 |     <span class="b">.·</span>    <span class="g">┌─┼─┤░│</span>          <span class="b">.·</span> <span class="y">┌─┼─┼─┤</span>
+   |  <span class="b">.·</span>  <span class="g">┌──┼─┤░│░│</span>       <span class="b">.·</span><span class="y">┌─┼─┤░│░│</span>
+ 0 +<span class="b">·</span>─────┴──┴─┴─┴─┴──→  +<span class="b">·</span>──┴─┴─┴─┴─┴──→ x
+   0  .5   1  1.5  2       0  .5  1  1.5  2</div>
+  <ul>
+    <li>In sigma notation, with <span class="fml">x<sub>k</sub></span> meaning the k-th sample point: <em class="hi">Riemann sum = Σ f(x<sub>k</sub>) · Δx</em> — literally "add up height × width for every slice." The notation just compresses what you've done since Lesson 3.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">4</span> The definition: the integral IS the limit of Riemann sums</h2>
+  <ul>
+    <li>Watch what happens as n grows: n = 4 gives 1.75 (left) … n = 100 gives ≈ 2.647 … n = 1000 gives ≈ 2.665 … creeping toward 8/3. The staircase hugs the curve tighter and tighter.</li>
+    <li>Mathematicians define the definite integral as exactly this destination: <em class="hi">∫<sub>a</sub><sup>b</sup> f(x) dx is the limit of Σ f(x<sub>k</sub>)Δx as n → ∞</em> — the value the Riemann sums close in on as the slices become infinitely skinny.</li>
+    <li>Now the integral symbol itself makes sense (remember the Lesson 6 story?): <span class="fml">∫</span> is a stretched-out S — the Σ pushed to its limit — and <span class="fml">dx</span> is what Δx becomes: the "infinitely skinny width." The notation <span class="fml">∫ f(x) dx</span> literally says "sum of height × skinny width."</li>
+    <li>So nothing is circular: Riemann sums aren't just an approximation TOOL, they're the very <strong>meaning</strong> of the integral. The FTC is the miracle shortcut for computing that limit without ever building a staircase.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">5</span> AP's favorite: Riemann sums from tables (unequal widths!)</h2>
+  <ul>
+    <li>Real data comes as tables, not formulas — and the measurement times are often <strong>unevenly spaced</strong>. No formula means no FTC: <em class="hi">a Riemann sum is the ONLY way</em>, which is why AP loves this question.</li>
+    <li>Key move: <em class="hi">each rectangle's width is the gap between consecutive t-values</em> — compute each gap separately, no shared Δx.</li>
+  </ul>
+  <div class="ex"><b>Worked example:</b> a car's velocity is measured five times:
+  <table class="t">
+    <tr><th>t (seconds)</th><td>0</td><td>2</td><td>5</td><td>6</td><td>10</td></tr>
+    <tr><th>v(t) (m/s)</th><td>3</td><td>8</td><td>6</td><td>4</td><td>5</td></tr>
+  </table>
+  Estimate the distance traveled, <span class="fml">∫<sub>0</sub><sup>10</sup> v(t) dt</span>, with a <b>left</b> Riemann sum using all four subintervals.<br>
+  Widths: 2−0 = 2, 5−2 = 3, 6−5 = 1, 10−6 = 4. Left heights: the value at each subinterval's LEFT end: 3, 8, 6, 4 (the last value, 5, goes unused — a left sum never uses the final entry).<br>
+  <span class="fml">Left sum = 3·2 + 8·3 + 6·1 + 4·4 = 6 + 24 + 6 + 16 = 52 meters</span>.</div>
+  <ul>
+    <li>A right sum on the same table uses heights 8, 6, 4, 5 (skipping the first entry): <span class="fml">8·2 + 6·3 + 4·1 + 5·4 = 16 + 18 + 4 + 20 = 58 meters</span>.</li>
+    <li>Bookkeeping tip: with 5 table entries you get 4 subintervals — always one fewer rectangle than data points.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">6</span> Over or under? The justification AP wants</h2>
+  <ul>
+    <li>You noticed this pattern in Lesson 3 — now let's make the reasoning airtight, because AP graders award points for the <strong>justification</strong>, not just the word "over" or "under."</li>
+    <li><strong>If f is increasing</strong> on the interval: on each slice the left edge is the LOWEST point, so left rectangles sit under the curve → <em class="hi">left sum underestimates</em>; the right edge is the HIGHEST point → <em class="hi">right sum overestimates</em>.</li>
+    <li><strong>If f is decreasing</strong>, everything flips: the left edge is now the highest point on each slice → left overestimates, right underestimates.</li>
+  </ul>
+  <table class="t">
+    <tr><th></th><th>f increasing</th><th>f decreasing</th></tr>
+    <tr><th>Left sum</th><td>underestimate</td><td>overestimate</td></tr>
+    <tr><th>Right sum</th><td>overestimate</td><td>underestimate</td></tr>
+  </table>
+  <ul>
+    <li>A full-credit sentence sounds like: <em class="hi">"Because v(t) is increasing on [0, 10], each left-endpoint height is the smallest value of v on its subinterval, so every rectangle lies below the curve and the left sum underestimates the integral."</em> Name the behavior (increasing/decreasing), connect it to the rectangle heights, conclude.</li>
+    <li>If f goes up AND down on the interval, no blanket conclusion is allowed — say so.</li>
+  </ul>
+</section>
+
+<div class="qhead">✏️ Exercises — 20 problems (write your answer on paper, then reveal)</div>
+
+<div class="q"><span class="qnum">1.</span><span class="qtag">read a sigma</span>
+  <div class="qtext">Evaluate: <span class="fml">Σ<sub>k=1</sub><sup>5</sup> k</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> Σ is an adding machine: the index k starts at the bottom value (1), counts up to the top value (5), and you add one copy of the expression (here just k) for each value.</div>
+    <div class="step">k runs 1, 2, 3, 4, 5 → add: 1 + 2 + 3 + 4 + 5.</div>
+    <div class="step">1+2 = 3; 3+3 = 6; 6+4 = 10; 10+5 = 15.</div>
+    <div class="ans">15</div></div>
+</div>
+
+<div class="q"><span class="qnum">2.</span><span class="qtag">read a sigma</span>
+  <div class="qtext">Evaluate: <span class="fml">Σ<sub>k=1</sub><sup>4</sup> k²</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> when a formula follows the Σ, plug each index value INTO the formula before adding. Here the formula is k²: square each k, then add the squares.</div>
+    <div class="step">1² + 2² + 3² + 4² = 1 + 4 + 9 + 16.</div>
+    <div class="step">1+4 = 5; 5+9 = 14; 14+16 = 30.</div>
+    <div class="ans">30</div></div>
+</div>
+
+<div class="q"><span class="qnum">3.</span><span class="qtag">formula inside</span>
+  <div class="qtext">Evaluate: <span class="fml">Σ<sub>k=1</sub><sup>4</sup> (k + 1)</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the expression can be anything built from k. For (k + 1), each term is one more than its index — so you're really adding 2, 3, 4, 5. Careful not to add the 1 only once; it appears in EVERY term.</div>
+    <div class="step">k = 1 → 2; k = 2 → 3; k = 3 → 4; k = 4 → 5.</div>
+    <div class="step">2 + 3 + 4 + 5 = 14.</div>
+    <div class="ans">14</div></div>
+</div>
+
+<div class="q"><span class="qnum">4.</span><span class="qtag">start ≠ 1</span>
+  <div class="qtext">Evaluate: <span class="fml">Σ<sub>k=3</sub><sup>6</sup> 2k</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the index doesn't have to start at 1 — it starts wherever the bottom label says. Here k begins at 3 and ends at 6, giving four terms (count them: 3, 4, 5, 6 — that's 6 − 3 + 1 = 4 terms).</div>
+    <div class="step">2·3 + 2·4 + 2·5 + 2·6 = 6 + 8 + 10 + 12.</div>
+    <div class="step">6+8 = 14; 14+10 = 24; 24+12 = 36.</div>
+    <div class="ans">36</div></div>
+</div>
+
+<div class="q"><span class="qnum">5.</span><span class="qtag">write the sigma</span>
+  <div class="qtext">Write in sigma notation (don't evaluate): <span class="fml">2 + 4 + 6 + 8 + 10</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> to write a sum in sigma notation, find the pattern as a formula in k: the terms here are the even numbers, and the k-th even number is 2k. Then read off the start (first term ↔ k = 1) and end (last term ↔ k = 5, since 2·5 = 10).</div>
+    <div class="step">Terms: 2·1, 2·2, 2·3, 2·4, 2·5 → expression 2k, k from 1 to 5.</div>
+    <div class="step">Check by expanding: <span class="fml">Σ<sub>k=1</sub><sup>5</sup> 2k = 2+4+6+8+10</span> ✓.</div>
+    <div class="ans">Σ<sub>k=1</sub><sup>5</sup> 2k</div></div>
+</div>
+
+<div class="q"><span class="qnum">6.</span><span class="qtag">write the sigma</span>
+  <div class="qtext">Write in sigma notation: <span class="fml">1² + 2² + 3² + ⋯ + 10²</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the "⋯" means the pattern continues — you don't write every term, the formula carries the pattern. Every term is (its position)², so the expression is k², from position 1 to position 10.</div>
+    <div class="step">Expression: k². Start: k = 1. End: k = 10.</div>
+    <div class="ans">Σ<sub>k=1</sub><sup>10</sup> k²</div></div>
+</div>
+
+<div class="q"><span class="qnum">7.</span><span class="qtag">left &amp; right sums</span>
+  <div class="qtext">For <span class="fml">f(x) = x + 1</span> on [0, 4] with n = 4, compute the left sum and the right sum. (The true area, by geometry, is 12 — a trapezoid. Compare!)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> Δx = (b − a)/n = (4 − 0)/4 = 1, so the slice edges are 0, 1, 2, 3, 4. A left sum reads heights at edges 0–3; a right sum at edges 1–4. Each sum = Δx × (sum of its heights).</div>
+    <div class="step">Heights: f(0)=1, f(1)=2, f(2)=3, f(3)=4, f(4)=5.</div>
+    <div class="step">Left = 1·(1 + 2 + 3 + 4) = 10. Right = 1·(2 + 3 + 4 + 5) = 14.</div>
+    <div class="step">True area 12 sits exactly halfway between — makes sense, since f is a straight line and left/right miss by the same little triangles.</div>
+    <div class="ans">Left = 10, Right = 14 (true value 12)</div></div>
+</div>
+
+<div class="q"><span class="qnum">8.</span><span class="qtag">midpoint sum</span>
+  <div class="qtext">Same setup — <span class="fml">f(x) = x + 1</span> on [0, 4], n = 4 — but now compute the MIDPOINT sum. Something special happens; explain why.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the midpoint sum reads each height at the CENTER of its slice. Slices [0,1], [1,2], [2,3], [3,4] have midpoints 0.5, 1.5, 2.5, 3.5. For a straight-line function, the little triangle the rectangle misses on one side of the midpoint exactly equals the extra triangle it gains on the other side.</div>
+    <div class="step">Heights: f(0.5)=1.5, f(1.5)=2.5, f(2.5)=3.5, f(3.5)=4.5.</div>
+    <div class="step">Midpoint sum = 1·(1.5 + 2.5 + 3.5 + 4.5) = 12.</div>
+    <div class="step">That's EXACTLY the true area! For straight lines the midpoint errors cancel perfectly — which hints why midpoint is so strong on curves too: the cancellation is merely approximate there instead of perfect.</div>
+    <div class="ans">Midpoint sum = 12 — exactly right, because the over/under triangles cancel on a straight line</div></div>
+</div>
+
+<div class="q"><span class="qnum">9.</span><span class="qtag">all three sums</span>
+  <div class="qtext">For <span class="fml">f(x) = x²</span> on [1, 3] with n = 2, compute the left, right, and midpoint sums. The true value is <span class="fml">∫<sub>1</sub><sup>3</sup> x² dx = 26/3 ≈ 8.67</span> — which estimate wins?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> Δx = (3 − 1)/2 = 1. Slices: [1,2] and [2,3]. Left edges 1, 2; right edges 2, 3; midpoints 1.5, 2.5. Only two rectangles, so this is quick — the point is comparing the three methods on equal footing.</div>
+    <div class="step">Left = 1·(f(1) + f(2)) = 1 + 4 = 5.</div>
+    <div class="step">Right = 1·(f(2) + f(3)) = 4 + 9 = 13.</div>
+    <div class="step">Midpoint = 1·(f(1.5) + f(2.5)) = 2.25 + 6.25 = 8.5.</div>
+    <div class="step">Distances from 26/3 ≈ 8.667: left misses by ≈ 3.67, right by ≈ 4.33, midpoint by only ≈ 0.17.</div>
+    <div class="ans">Left = 5, Right = 13, Midpoint = 8.5 — midpoint wins by a mile</div></div>
+</div>
+
+<div class="q"><span class="qnum">10.</span><span class="qtag">table · unequal widths</span>
+  <div class="qtext">Values of <span class="fml">f(x) = √x</span> at perfect squares:
+  x: 0, 1, 4, 9 &nbsp;→&nbsp; f(x): 0, 1, 2, 3.
+  Using these three (unequal!) subintervals, compute the left and right sums estimating <span class="fml">∫<sub>0</sub><sup>9</sup> √x dx</span>. (True value: 18, from Lesson 21's techniques!)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> with unequal spacing there is no single Δx — each rectangle's width is the gap to the next x-value: 1 − 0 = 1, 4 − 1 = 3, 9 − 4 = 5. Then it's still height × width for each slice, added up.</div>
+    <div class="step">Widths: 1, 3, 5.</div>
+    <div class="step">Left (heights 0, 1, 2): 0·1 + 1·3 + 2·5 = 0 + 3 + 10 = 13.</div>
+    <div class="step">Right (heights 1, 2, 3): 1·1 + 2·3 + 3·5 = 1 + 6 + 15 = 22.</div>
+    <div class="step">True value 18 lies between, as it must: √x is increasing, so left under, right over.</div>
+    <div class="ans">Left = 13, Right = 22 (true value 18)</div></div>
+</div>
+
+<div class="q"><span class="qnum">11.</span><span class="qtag">table · equal widths</span>
+  <div class="qtext">Water flows into a tank; the flow rate is measured every 3 minutes:
+  <span class="fml">t (min): 0, 3, 6, 9, 12 · R(t) (L/min): 10, 8, 7, 5, 4</span>.
+  Estimate the total liters added over the 12 minutes with (a) a left sum and (b) a right sum.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the integral of a flow rate is total volume (the course's oldest idea). Five readings → four subintervals, each 3 minutes wide. Left sum uses the first four readings; right sum uses the last four.</div>
+    <div class="step">(a) Left = 3·(10 + 8 + 7 + 5) = 3·30 = 90 liters.</div>
+    <div class="step">(b) Right = 3·(8 + 7 + 5 + 4) = 3·24 = 72 liters.</div>
+    <div class="step">Units check: (L/min)·min = L ✓. Since R is decreasing, left is the overestimate here — the flip side of the usual pattern!</div>
+    <div class="ans">(a) 90 liters &nbsp; (b) 72 liters</div></div>
+</div>
+
+<div class="q"><span class="qnum">12.</span><span class="qtag">table · unequal widths</span>
+  <div class="qtext">A runner's velocity is measured at uneven times:
+  <span class="fml">t (s): 0, 1, 3, 7, 8 · v(t) (m/s): 2, 5, 7, 4, 3</span>.
+  Estimate the distance run over [0, 8] with (a) a left sum and (b) a right sum.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> uneven times are the AP classic. First compute each gap: 1−0 = 1, 3−1 = 2, 7−3 = 4, 8−7 = 1. Then pair each width with the height at that subinterval's left (or right) end. Writing the four width·height products in a row prevents mix-ups.</div>
+    <div class="step">(a) Left = 2·1 + 5·2 + 7·4 + 4·1 = 2 + 10 + 28 + 4 = 44 meters.</div>
+    <div class="step">(b) Right = 5·1 + 7·2 + 4·4 + 3·1 = 5 + 14 + 16 + 3 = 38 meters.</div>
+    <div class="step">Note: v rises then falls, so neither sum is guaranteed over or under — no justification is possible here, and saying so is the smart answer.</div>
+    <div class="ans">(a) 44 meters &nbsp; (b) 38 meters</div></div>
+</div>
+
+<div class="q"><span class="qnum">13.</span><span class="qtag">table · biology</span>
+  <div class="qtext">A bacteria colony grows at these measured rates:
+  <span class="fml">t (hours): 0, 2, 4, 10 · r(t) (bacteria/hour): 100, 150, 200, 300</span>.
+  Estimate how many bacteria are added from t = 0 to t = 10 using (a) a left sum and (b) a right sum. (c) Which is the underestimate, if r(t) keeps increasing between readings?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> integrating a growth RATE (bacteria per hour) gives total new bacteria — same rate→total logic as velocity→distance. Widths: 2−0 = 2, 4−2 = 2, 10−4 = 6. Watch that last wide gap: it carries the most weight in the sum.</div>
+    <div class="step">(a) Left = 100·2 + 150·2 + 200·6 = 200 + 300 + 1200 = 1700 bacteria.</div>
+    <div class="step">(b) Right = 150·2 + 200·2 + 300·6 = 300 + 400 + 1800 = 2500 bacteria.</div>
+    <div class="step">(c) r is increasing, so each left height is the smallest on its subinterval → rectangles sit below the curve → the left sum, 1700, underestimates.</div>
+    <div class="ans">(a) 1700 &nbsp; (b) 2500 &nbsp; (c) the left sum underestimates (r increasing)</div></div>
+</div>
+
+<div class="q"><span class="qnum">14.</span><span class="qtag">midpoint vs. the rest</span>
+  <div class="qtext">For <span class="fml">f(x) = x²</span> on [0, 4] with n = 2, compute the left, right, and midpoint sums, and compare to the true value <span class="fml">∫<sub>0</sub><sup>4</sup> x² dx = 64/3 ≈ 21.33</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> Δx = (4 − 0)/2 = 2 — wide slices, a real stress test. Slices [0,2] and [2,4]; midpoints 1 and 3. With only two fat rectangles, left and right will be terrible; the question is how well midpoint holds up.</div>
+    <div class="step">Left = 2·(f(0) + f(2)) = 2·(0 + 4) = 8.</div>
+    <div class="step">Right = 2·(f(2) + f(4)) = 2·(4 + 16) = 40.</div>
+    <div class="step">Midpoint = 2·(f(1) + f(3)) = 2·(1 + 9) = 20.</div>
+    <div class="step">Against ≈ 21.33: left misses by ≈ 13.3, right by ≈ 18.7, midpoint by only ≈ 1.3 — even with just two slices!</div>
+    <div class="ans">Left = 8, Right = 40, Midpoint = 20 (true ≈ 21.33)</div></div>
+</div>
+
+<div class="q"><span class="qnum">15.</span><span class="qtag">over/under · justify</span>
+  <div class="qtext">Let <span class="fml">f(x) = x³</span> on [1, 2] (an increasing function there). Without computing anything, state whether a right Riemann sum overestimates or underestimates <span class="fml">∫<sub>1</sub><sup>2</sup> x³ dx</span> — and justify it in a full sentence, AP style.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> AP graders award the point for the REASONING chain: (1) name the behavior (increasing/decreasing), (2) connect it to where the sampled height sits relative to the curve on each slice, (3) conclude over/under. The word "overestimate" alone earns nothing.</div>
+    <div class="step">f(x) = x³ is increasing on [1, 2] (bigger x → bigger cube).</div>
+    <div class="step">On each slice, the right endpoint is where f is LARGEST, so every rectangle pokes above the curve.</div>
+    <div class="step">Full-credit sentence: "Since f is increasing on [1, 2], each right-endpoint height is the maximum of f on its subinterval, so each rectangle contains area above the curve; therefore the right Riemann sum overestimates the integral."</div>
+    <div class="ans">Right sum overestimates — because f is increasing, each right-edge height tops the curve on its slice</div></div>
+</div>
+
+<div class="q"><span class="qnum">16.</span><span class="qtag">over/under · decreasing</span>
+  <div class="qtext">Now let <span class="fml">f(x) = 1/x</span> on [1, 3] (a decreasing function). Does a LEFT Riemann sum overestimate or underestimate <span class="fml">∫<sub>1</sub><sup>3</sup> 1/x dx</span>? Justify with a full sentence.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> for decreasing functions the table flips: the LEFT edge of each slice is now where the function is tallest. Don't memorize the four cases blindly — re-derive them each time by asking "on one slice, is the sampled edge the high point or the low point?"</div>
+    <div class="step">f(x) = 1/x is decreasing on [1, 3] (bigger x → smaller 1/x).</div>
+    <div class="step">On each slice, the left endpoint gives the LARGEST height, so each rectangle pokes above the curve.</div>
+    <div class="step">Sentence: "Since f is decreasing on [1, 3], each left-endpoint height is the maximum of f on its subinterval, so the rectangles contain extra area above the curve; the left sum therefore overestimates the integral."</div>
+    <div class="ans">Left sum overestimates — decreasing function, so left edges are the high points</div></div>
+</div>
+
+<div class="q"><span class="qnum">17.</span><span class="qtag">which is best? · reasoning</span>
+  <div class="qtext">In the notes, for x² on [0, 2] with n = 4, we got left = 1.75, right = 3.75, midpoint = 2.625, true value 8/3 ≈ 2.667. (a) Explain in words WHY the midpoint sum usually beats both left and right. (b) A friend proposes a different fix: average the left and right sums. Compute that average here and compare it to the midpoint sum.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> left and right sums make ONE-SIDED errors on a monotone stretch — all-under or all-over. A midpoint rectangle splits its slice: the curve is below the sampled height on part of the slice and above it on the rest, so its errors partially cancel WITHIN each slice. Averaging left and right instead cancels errors ACROSS the two whole sums — that's a preview of Lesson 23's trapezoidal rule!</div>
+    <div class="step">(a) Midpoint: each rectangle overshoots on one side of the midpoint and undershoots on the other, so most of the error cancels slice by slice. Left/right rectangles err in the same direction on every slice, so their errors pile up instead of cancelling.</div>
+    <div class="step">(b) Average = (1.75 + 3.75)/2 = 5.5/2 = 2.75. Compare: midpoint 2.625 is off by ≈ 0.042; the average 2.75 is off by ≈ 0.083.</div>
+    <div class="step">Both are big upgrades, but midpoint wins here — and that ranking (midpoint slightly beating the left/right average) is typical for curves like x².</div>
+    <div class="ans">(a) midpoint errors cancel within each slice &nbsp; (b) average = 2.75; midpoint (2.625) is closer to 8/3</div></div>
+</div>
+
+<div class="q"><span class="qnum">18.</span><span class="qtag">Gauss's shortcut</span>
+  <div class="qtext">Evaluate <span class="fml">Σ<sub>k=1</sub><sup>100</sup> k</span> WITHOUT adding 100 numbers. (Hint — a trick young Carl Gauss reportedly found in school: pair the first term with the last, the second with the second-to-last…)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> story time: Gauss's teacher assigned 1 + 2 + ⋯ + 100 to keep the class busy; Gauss answered almost instantly. His idea: clever GROUPING beats brute-force adding. Pairing tricks like this are why sigma notation matters — you can manipulate a whole sum at once instead of term by term.</div>
+    <div class="step">Pair up: (1 + 100), (2 + 99), (3 + 98), … every pair totals 101.</div>
+    <div class="step">100 numbers make 50 pairs → 50 × 101 = 5050.</div>
+    <div class="step">General formula worth remembering: <span class="fml">Σ<sub>k=1</sub><sup>n</sup> k = n(n+1)/2</span>. Check: 100·101/2 = 5050 ✓, and for n = 5 it gives 15, matching exercise 1 ✓.</div>
+    <div class="ans">5050</div></div>
+</div>
+
+<div class="q"><span class="qnum">19.</span><span class="qtag">the definition · conceptual</span>
+  <div class="qtext">Write the right-endpoint Riemann sum, in sigma notation, whose limit as n → ∞ equals <span class="fml">∫<sub>1</sub><sup>3</sup> x² dx</span>. (Give Δx, the k-th sample point x<sub>k</sub>, and the full Σ expression — no evaluating!)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> to build a Riemann sum from scratch you need two ingredients: the width Δx = (b − a)/n, and a formula for the k-th sample point. Starting at a and taking k steps of size Δx lands you at a + k·Δx — that's the k-th RIGHT endpoint (k = 1 gives the end of slice 1, … , k = n gives b). This "build the sum" direction appears on AP exams in reverse too: they show the sum, you name the integral.</div>
+    <div class="step">Width: <span class="fml">Δx = (3 − 1)/n = 2/n</span>.</div>
+    <div class="step">Right endpoints: <span class="fml">x<sub>k</sub> = 1 + 2k/n</span> for k = 1 to n. (Check: k = n gives 1 + 2 = 3 = b ✓.)</div>
+    <div class="step">Sum: <span class="fml">Σ<sub>k=1</sub><sup>n</sup> (1 + 2k/n)² · (2/n)</span> — and the definition says <span class="fml">∫<sub>1</sub><sup>3</sup> x² dx = lim<sub>n→∞</sub> Σ<sub>k=1</sub><sup>n</sup> (1 + 2k/n)² · (2/n)</span>.</div>
+    <div class="ans">Δx = 2/n, x<sub>k</sub> = 1 + 2k/n, sum = Σ<sub>k=1</sub><sup>n</sup> (1 + 2k/n)²·(2/n)</div></div>
+</div>
+
+<div class="q"><span class="qnum">20.</span><span class="qtag">challenge · full AP style</span>
+  <div class="qtext">Water is pumped out of a flooded basement. The pumping rate R(t), in gallons per hour, is measured at selected times:
+  <table class="t">
+    <tr><th>t (hours)</th><td>0</td><td>2</td><td>5</td><td>7</td><td>12</td></tr>
+    <tr><th>R(t) (gal/hr)</th><td>40</td><td>30</td><td>25</td><td>20</td><td>15</td></tr>
+  </table>
+  (a) Estimate <span class="fml">∫<sub>0</sub><sup>12</sup> R(t) dt</span> with a left Riemann sum using all four subintervals.
+  (b) Estimate it with a right Riemann sum.
+  (c) Using correct units, explain what <span class="fml">∫<sub>0</sub><sup>12</sup> R(t) dt</span> represents.
+  (d) R(t) is decreasing throughout. Which of your two estimates is an overestimate? Justify.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> this is the anatomy of a real AP free-response question: compute (a)–(b), interpret with units (c), justify (d). Graders score each part separately, so ALWAYS attempt every part. Widths first, always: 2−0 = 2, 5−2 = 3, 7−5 = 2, 12−7 = 5.</div>
+    <div class="step">(a) Left (heights 40, 30, 25, 20): 40·2 + 30·3 + 25·2 + 20·5 = 80 + 90 + 50 + 100 = 320 gallons.</div>
+    <div class="step">(b) Right (heights 30, 25, 20, 15): 30·2 + 25·3 + 20·2 + 15·5 = 60 + 75 + 40 + 75 = 250 gallons.</div>
+    <div class="step">(c) <span class="fml">∫<sub>0</sub><sup>12</sup> R(t) dt</span> is the total number of GALLONS of water pumped out of the basement during the first 12 hours — a rate (gal/hr) integrated over hours yields gallons.</div>
+    <div class="step">(d) Since R is decreasing, each left-endpoint height is the largest value of R on its subinterval, so every left rectangle contains area above the curve — the left sum, 320 gallons, is the overestimate (and the right sum, 250, underestimates).</div>
+    <div class="ans">(a) 320 gallons &nbsp; (b) 250 gallons &nbsp; (c) total gallons pumped in 12 hours &nbsp; (d) the left sum — R decreasing makes left heights the maxima</div></div>
+</div>
+
+<footer>Lesson 22 of 40 · Intuitive Integration · next: <a href="Lesson23.html">Lesson 23 — The Trapezoidal Rule</a></footer>
+
+</div>
+<script>
+document.querySelectorAll('.q').forEach(q=>{
+  const btn=q.querySelector('.revealbtn'), sol=q.querySelector('.sol');
+  btn.addEventListener('click',()=>{ sol.classList.add('show'); btn.textContent='Solution shown'; btn.disabled=true; btn.style.opacity=.6; });
+});
+</script>
+</body>
+</html>

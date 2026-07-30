@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 27 — FTC Part 2: Derivatives of Accumulation Functions</title>
+<style>
+  :root{--accent:#186a3b;--accent2:#239b56;--bg:#f2f7f4;--card:#fff;--ok:#1e8449;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:#1c2833;background:var(--bg);margin:0;padding:0 16px 80px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -16px 20px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  nav{display:flex;gap:10px;margin-bottom:18px;font-size:.9rem;flex-wrap:wrap;}
+  nav a{color:var(--accent);text-decoration:none;font-weight:600;background:#fff;border:1px solid #d5e8dc;border-radius:8px;padding:6px 14px;}
+  nav a:hover{background:#eafaf1;}
+  .goal{background:#fef9e7;border-left:5px solid var(--star);padding:12px 18px;border-radius:8px;margin-bottom:18px;font-size:.95rem;}
+  .goal strong{color:#7d6608;}
+  section{background:var(--card);border-radius:10px;padding:18px 22px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  h2{color:var(--accent);font-size:1.15rem;margin:0 0 10px;}
+  h2 .num{background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;border-radius:6px;padding:2px 9px;margin-right:8px;}
+  ul{margin:8px 0;padding-left:24px;}
+  li{margin-bottom:8px;}
+  strong{color:#145a32;}
+  em.hi{font-style:normal;background:#fef9e7;padding:0 4px;border-radius:3px;}
+  .fml{background:#e9f7ef;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.9em;color:#186a3b;white-space:nowrap;}
+  .ex{background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:.95rem;}
+  .ex b{color:#145a32;}
+  .graph{background:#1b2631;color:#eaeded;border-radius:8px;padding:14px 18px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.82rem;line-height:1.45;overflow-x:auto;margin:10px 0;white-space:pre;}
+  .graph .g{color:#82e0aa;} .graph .y{color:#f7dc6f;} .graph .b{color:#85c1e9;}
+  table.t{border-collapse:collapse;margin:10px 0;font-size:.92rem;}
+  table.t th,table.t td{border:1px solid #cfd8cf;padding:6px 12px;text-align:center;}
+  table.t th{background:var(--accent);color:#fff;font-weight:600;}
+  .qhead{margin:26px 0 8px;color:var(--accent);font-size:1.2rem;border-bottom:2px solid #d4efdf;padding-bottom:6px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid var(--accent2);}
+  .qnum{font-weight:800;color:var(--accent);margin-right:6px;}
+  .qtag{float:right;background:#e9f7ef;color:var(--accent);border-radius:8px;padding:1px 9px;font-size:.68rem;font-weight:700;letter-spacing:.3px;margin-left:8px;}
+  .qtext{font-size:.98rem;margin:4px 0 10px;}
+  .revealbtn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .revealbtn:hover{background:#0e4429;}
+  .sol{display:none;margin-top:12px;background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px;font-size:.93rem;}
+  .sol.show{display:block;}
+  .sol h4{margin:0 0 8px;color:var(--ok);font-size:.9rem;}
+  .sol .ctx{background:#eaf2f8;border-left:4px solid #2e86c1;border-radius:6px;padding:8px 12px;margin:0 0 10px;font-size:.88rem;}
+  .sol .ctx b{color:#1a5276;}
+  .sol .step{margin:6px 0;}
+  .sol .ans{background:#eafaf1;border-radius:6px;padding:6px 12px;margin-top:8px;font-weight:700;color:#145a32;display:inline-block;}
+  footer{text-align:center;color:#85929e;font-size:.85rem;margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Lesson 27 — FTC Part 2: Derivatives of Accumulation Functions</h1>
+  <p>The Rate at Which the Total Grows · Intuitive Calculus for a Curious Student · Lesson 27 of 40</p>
+</header>
+
+<nav><a href="index.html">📚 All lessons</a><a href="Lesson26.html">← Prev: Lesson 26</a><a href="Lesson28.html">Next: Lesson 28 →</a></nav>
+
+<div class="goal"><strong>🎯 Goal of this lesson:</strong> meet the <em>accumulation function</em> — an integral whose upper limit is a variable, like <span class="fml">g(x) = ∫₀ˣ f(t) dt</span> — and learn the second half of the Fundamental Theorem: <em>the derivative of the total is the current rate</em>, <span class="fml">g′(x) = f(x)</span>. This one line is the beating heart of AP Calculus, and by the end of today you'll be able to differentiate integrals you could never compute by hand.</div>
+
+<section>
+  <h2><span class="num">1</span> The accumulation function: an integral that's still running</h2>
+  <ul>
+    <li>Every definite integral you've done so far had two fixed numbers on it: <span class="fml">∫₀⁵ f(t) dt</span> is one number, done, finished. Today we let the <strong>upper limit stay open</strong>:
+      <div class="ex" style="text-align:center;font-size:1.05rem;"><b>g(x) = ∫₀ˣ f(t) dt</b> &nbsp;=&nbsp; "the total collected from 0 up to x"</div></li>
+    <li>This is a <strong>function of x</strong>. Feed in x = 3 and you get the number <span class="fml">∫₀³ f(t) dt</span>. Feed in x = 7 and you get <span class="fml">∫₀⁷ f(t) dt</span>. Different stopping points, different totals. <em class="hi">g(x) = the total collected so far, as a function of where you stop.</em></li>
+    <li><strong>The odometer story:</strong> if <span class="fml">f(t)</span> is your speed at time t, then <span class="fml">g(x) = ∫₀ˣ f(t) dt</span> is your <strong>odometer reading at time x</strong> — the distance accumulated from the start of the trip up to time x. As x moves forward, g(x) keeps updating. It's an integral that's still running.</li>
+    <li><strong>Why is there a t inside and an x outside?</strong> The letter t is a <strong>dummy variable</strong> — a placeholder that sweeps through all the moments from 0 to x while the adding-up happens, then vanishes. It's exactly like the index k in sigma notation: in <span class="fml">Σₖ₌₁ⁿ k²</span>, the answer depends on n, not on k — k is just the counter doing the sweeping. Same here: the answer g(x) depends on <strong>x</strong> (where you stop), not on t.</li>
+    <li>That's why we must NOT write <span class="fml">∫₀ˣ f(x) dx</span> — the letter x would be doing two jobs at once (the stopping point AND the sweeping variable), and the expression becomes ambiguous nonsense. One letter, one job: <em class="hi">t sweeps inside, x waits outside.</em></li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">2</span> The theorem: FTC Part 2</h2>
+  <ul>
+    <li>Since g(x) is a function, we can ask the derivative question: <em>how fast is g growing?</em> How fast is the odometer ticking up? You already know the answer from real life: the odometer ticks up at exactly your <strong>current speed</strong>. That everyday fact is the theorem:
+      <div class="ex" style="text-align:center;font-size:1.1rem;"><b>FTC Part 2:</b>&nbsp; <span class="fml">d/dx ∫<sub>a</sub><sup>x</sup> f(t) dt = f(x)</span></div></li>
+    <li>In words: <em class="hi">the RATE at which the total grows equals the CURRENT height being added.</em> If water pours into a tank at 5 L/min right now, then the total amount in the tank is growing at 5 L/min right now. Nothing else could be true!</li>
+    <li>Picture it: g(x) is the area collected under f from a up to x. Nudge x forward by a sliver dx. The new area gained is a skinny strip of height f(x) and width dx — area ≈ <span class="fml">f(x)·dx</span>. So the growth rate is <span class="fml">f(x)·dx / dx = f(x)</span>. The area grows at the speed of the current height.</li>
+    <li><strong>This closes the circle we opened in Lesson 4.</strong> FTC Part 1 said: to compute an integral, undo a derivative (<span class="fml">∫ₐᵇ f = F(b) − F(a)</span>). FTC Part 2 says the reverse: if you differentiate an integral, you get the original function back. <em class="hi">Integrate then differentiate — you return home.</em> Differentiation and integration are true inverses, like squaring and square-rooting.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">3</span> Immediate examples — and a superpower</h2>
+  <div class="ex"><b>Example 1:</b> <span class="fml">d/dx ∫₂ˣ t² dt = x²</span>. Just replace every t with x. Done.<br>
+  (Check the long way: ∫₂ˣ t² dt = x³/3 − 8/3, and its derivative is x². ✓ Same answer, no antiderivative needed.)</div>
+  <div class="ex"><b>Example 2:</b> <span class="fml">d/dx ∫₀ˣ √(1+t³) dt = √(1+x³)</span>.<br>
+  Here's the superpower: <b>nobody on Earth can write a simple antiderivative of √(1+t³)</b> — it doesn't exist in terms of familiar functions. Yet the derivative of its accumulation function is instant. FTC 2 works even for integrals we could never do by hand!</div>
+  <ul>
+    <li><strong>The lower limit doesn't matter.</strong> Compare <span class="fml">g(x) = ∫₀ˣ f(t) dt</span> and <span class="fml">h(x) = ∫₅ˣ f(t) dt</span>. They differ only by the fixed chunk <span class="fml">∫₀⁵ f(t) dt</span> — a <strong>constant</strong>. Constants die under d/dx, so <span class="fml">g′ = h′ = f(x)</span>. Starting the odometer in a different city changes the reading, but not how fast it ticks.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">4</span> The chain-rule upgrade: a moving upper limit</h2>
+  <ul>
+    <li>What if the upper limit isn't plain x but a <strong>function</strong> of x, like x²? Then g is a composition — "integrate up to (x²)" — and compositions call for the <strong>chain rule</strong>: plug the upper limit into f, then <em class="hi">multiply by the derivative of the upper limit</em>:
+      <div class="ex" style="text-align:center;"><span class="fml">d/dx ∫₀^(x²) f(t) dt = f(x²) · 2x</span></div></li>
+    <li>Why the extra factor? When x nudges forward by dx, the upper limit x² lurches forward by 2x·dx — the stopping point moves <strong>faster</strong> than x does, so area gets swallowed 2x times as fast.</li>
+  </ul>
+  <div class="ex"><b>Worked example:</b> find <span class="fml">d/dx ∫₁^(x³) cos t dt</span>.<br>
+  Step 1 — plug the upper limit into f: cos(x³).<br>
+  Step 2 — multiply by the derivative of the upper limit: d/dx(x³) = 3x².<br>
+  Answer: <b>cos(x³) · 3x²</b>.<br>
+  (Check the long way: ∫₁^(x³) cos t dt = sin(x³) − sin 1; its derivative is cos(x³)·3x². ✓)</div>
+</section>
+
+<section>
+  <h2><span class="num">5</span> Flipped: the variable in the LOWER limit</h2>
+  <ul>
+    <li>Sometimes the x sits on the bottom: <span class="fml">∫ₓ⁵ f(t) dt</span>. Use the flip rule from Lesson 10 — swapping the limits flips the sign: <span class="fml">∫ₓ⁵ f(t) dt = −∫₅ˣ f(t) dt</span>.</li>
+    <li>Now it's a normal accumulation function with a minus sign in front:
+      <div class="ex" style="text-align:center;"><span class="fml">d/dx ∫ₓ⁵ f(t) dt = −f(x)</span></div></li>
+    <li>Makes sense: as x grows, the interval [x, 5] <strong>shrinks</strong>, so the total is being eaten away — the derivative should be negative (when f is positive).</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">6</span> Using g′ = f to analyze g — the bridge to Lesson 28</h2>
+  <ul>
+    <li>You know from derivative-land: a function is <strong>increasing where its derivative is positive</strong> and decreasing where its derivative is negative. But now we know g′ IS f. So:</li>
+  </ul>
+  <table class="t">
+    <tr><th>Question about g</th><th>Just look at f!</th></tr>
+    <tr><td>Where is g increasing?</td><td>where f &gt; 0 (positive stuff is being added)</td></tr>
+    <tr><td>Where is g decreasing?</td><td>where f &lt; 0 (negative stuff is being added)</td></tr>
+    <tr><td>What is g′(3)?</td><td>it's just f(3)</td></tr>
+    <tr><td>What is g(a)? (a = lower limit)</td><td>0 — because ∫ₐᵃ = 0: you haven't collected anything yet</td></tr>
+  </table>
+  <ul>
+    <li>This turns hard-looking questions about a mysterious integral function into easy sign-reading questions about f. In Lesson 28 you'll be handed the <strong>graph</strong> of f and asked everything about g — the single most classic AP Calculus problem. Today's theorem is the key that unlocks it.</li>
+  </ul>
+</section>
+
+<div class="qhead">✏️ Exercises — 20 problems (write your answer on paper, then reveal)</div>
+
+<div class="q"><span class="qnum">1.</span><span class="qtag">plain FTC 2</span>
+  <div class="qtext">Let g(x) = ∫₀ˣ t² dt. Find g′(x).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> g(x) = ∫₀ˣ f(t) dt is an accumulation function — the total area under f collected from 0 up to x. FTC Part 2 says its derivative is simply the current height: g′(x) = f(x). To use it, take the function inside and replace the dummy variable t with x.</div>
+    <div class="step">Here f(t) = t². By FTC 2, g′(x) = f(x) = x².</div>
+    <div class="step">Check the long way: g(x) = ∫₀ˣ t² dt = x³/3, and d/dx (x³/3) = x². Same answer — but FTC 2 needed no antiderivative at all.</div>
+    <div class="ans">g′(x) = x²</div></div>
+</div>
+
+<div class="q"><span class="qnum">2.</span><span class="qtag">plain FTC 2</span>
+  <div class="qtext">Find d/dx ∫₂ˣ (t³ + 5t) dt.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> FTC 2: d/dx ∫ₐˣ f(t) dt = f(x), no matter what the lower limit a is. The lower limit only shifts g by a constant, and constants vanish under d/dx.</div>
+    <div class="step">The inside function is f(t) = t³ + 5t. Replace t with x:</div>
+    <div class="step">d/dx ∫₂ˣ (t³ + 5t) dt = x³ + 5x. The "2" on the bottom plays no role in the derivative.</div>
+    <div class="ans">x³ + 5x</div></div>
+</div>
+
+<div class="q"><span class="qnum">3.</span><span class="qtag">impossible integral, easy derivative</span>
+  <div class="qtext">Find d/dx ∫₀ˣ √(1 + t³) dt. (Fun fact: no simple antiderivative of √(1 + t³) exists!)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> some functions, like √(1+t³), have no antiderivative writable with familiar functions — you can never "find F and plug in." But FTC 2 doesn't care: the accumulation function still exists (the area is real!), and its derivative is still just the inside function evaluated at x.</div>
+    <div class="step">By FTC 2, the answer is the integrand with t replaced by x.</div>
+    <div class="ans">√(1 + x³)</div></div>
+</div>
+
+<div class="q"><span class="qnum">4.</span><span class="qtag">trig library</span>
+  <div class="qtext">Let g(x) = ∫₁ˣ 1/(1 + t²) dt. Find g′(x) and g′(1).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> you met 1/(1+t²) in Lesson 25 — its antiderivative is arctan t. You COULD write g(x) = arctan x − arctan 1 and differentiate. But FTC 2 skips all that: g′(x) = f(x) directly.</div>
+    <div class="step">g′(x) = 1/(1 + x²).</div>
+    <div class="step">g′(1) = 1/(1 + 1²) = 1/2.</div>
+    <div class="ans">g′(x) = 1/(1 + x²), &nbsp; g′(1) = 1/2</div></div>
+</div>
+
+<div class="q"><span class="qnum">5.</span><span class="qtag">g(a) = 0</span>
+  <div class="qtext">Let g(x) = ∫₃ˣ cos t dt. Find g(3) and g′(x). (One of these needs no computing at all.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> an integral from a number to itself, ∫ₐᵃ, is always 0 — the region has zero width, so zero area is collected. For an accumulation function g(x) = ∫ₐˣ f(t) dt, that means g(a) = 0 automatically: at the starting line, nothing has accumulated yet.</div>
+    <div class="step">g(3) = ∫₃³ cos t dt = 0. No work needed — you haven't gone anywhere yet.</div>
+    <div class="step">g′(x) = cos x by FTC 2.</div>
+    <div class="ans">g(3) = 0, &nbsp; g′(x) = cos x</div></div>
+</div>
+
+<div class="q"><span class="qnum">6.</span><span class="qtag">dummy variable · conceptual</span>
+  <div class="qtext">A student defines an accumulation function as g(x) = ∫₀ˣ x² dx. Explain why this notation is broken, and write it correctly. Why must the inside variable be a different letter, like t?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> in g(x) = ∫₀ˣ f(t) dt, the letter t is a dummy variable: it sweeps through every moment from 0 to x while the adding-up happens, then disappears from the answer. It's exactly like the index k in Σₖ₌₁ⁿ k² — the sum depends on n, never on k. The upper limit x is the real input: it says where to stop.</div>
+    <div class="step">In "∫₀ˣ x² dx", the letter x is doing two different jobs at once: it's the fixed stopping point (upper limit) AND the sweeping variable that's supposed to run from 0 up to that stopping point. A single letter can't both stand still and move — the expression is ambiguous.</div>
+    <div class="step">Correct version: g(x) = ∫₀ˣ t² dt. Now t sweeps from 0 to x (and vanishes), while x waits outside as the input. One letter, one job.</div>
+    <div class="ans">Write g(x) = ∫₀ˣ t² dt; the inside letter must differ from the limit so each letter has exactly one job</div></div>
+</div>
+
+<div class="q"><span class="qnum">7.</span><span class="qtag">lower limit doesn't matter</span>
+  <div class="qtext">Let g(x) = ∫₀ˣ 2t dt and h(x) = ∫₃ˣ 2t dt. (a) Compute g(x) and h(x) explicitly using FTC Part 1. (b) Find g′(x) and h′(x). (c) What is g(x) − h(x), and why does it explain part (b)?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> this problem lets you SEE why the lower limit is irrelevant to the derivative. Two accumulation functions with the same f but different starting points differ by a constant — the fixed chunk of area between the two starting points — and constants have derivative 0.</div>
+    <div class="step">(a) An antiderivative of 2t is t². So g(x) = x² − 0² = x², and h(x) = x² − 3² = x² − 9.</div>
+    <div class="step">(b) g′(x) = 2x and h′(x) = 2x. Identical! Both match FTC 2's prediction: the inside function with t → x.</div>
+    <div class="step">(c) g(x) − h(x) = x² − (x² − 9) = 9, which is exactly ∫₀³ 2t dt = 9 — the head start g has over h. A constant gap between two functions means equal derivatives: they climb at the same rate, just from different floors.</div>
+    <div class="ans">(a) g = x², h = x² − 9 &nbsp; (b) both derivatives are 2x &nbsp; (c) g − h = 9, a constant, so g′ = h′</div></div>
+</div>
+
+<div class="q"><span class="qnum">8.</span><span class="qtag">chain rule limit</span>
+  <div class="qtext">Find d/dx ∫₀^(x²) sin t dt.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> when the upper limit is a function of x (here x²), the accumulation function is a composition: "integrate up to (something)". The chain rule applies: plug the upper limit into f, then multiply by the derivative of the upper limit. d/dx ∫ₐ^(u(x)) f(t) dt = f(u(x)) · u′(x).</div>
+    <div class="step">Plug the upper limit into f: sin(x²).</div>
+    <div class="step">Multiply by the derivative of the upper limit: d/dx (x²) = 2x.</div>
+    <div class="step">Check the long way: ∫₀^(x²) sin t dt = 1 − cos(x²); its derivative is sin(x²)·2x. ✓</div>
+    <div class="ans">sin(x²) · 2x</div></div>
+</div>
+
+<div class="q"><span class="qnum">9.</span><span class="qtag">chain rule limit</span>
+  <div class="qtext">Find d/dx ∫₁^(x³) cos t dt.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> same chain-rule pattern: f(upper limit) × (derivative of upper limit). The stopping point x³ races ahead of x, so the area accumulates faster by the factor 3x².</div>
+    <div class="step">f(t) = cos t and the upper limit is x³, so the first factor is cos(x³).</div>
+    <div class="step">d/dx (x³) = 3x², so multiply: cos(x³) · 3x².</div>
+    <div class="ans">3x² cos(x³)</div></div>
+</div>
+
+<div class="q"><span class="qnum">10.</span><span class="qtag">chain rule limit</span>
+  <div class="qtext">Find d/dx ∫₀^(2x) √(1 + t²) dt.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the chain-rule factor appears even for simple upper limits like 2x — its derivative is 2, not 1, so forgetting it silently doubles/halves your answer. Always ask: "what is the upper limit, and what is ITS derivative?"</div>
+    <div class="step">Plug the upper limit 2x into f: √(1 + (2x)²) = √(1 + 4x²).</div>
+    <div class="step">Multiply by d/dx (2x) = 2.</div>
+    <div class="ans">2√(1 + 4x²)</div></div>
+</div>
+
+<div class="q"><span class="qnum">11.</span><span class="qtag">flipped limits</span>
+  <div class="qtext">Find d/dx ∫ₓ⁵ t² dt.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> when the variable sits in the LOWER limit, first flip the limits (which flips the sign, Lesson 10): ∫ₓ⁵ = −∫₅ˣ. Then it's a standard accumulation function with a minus sign riding along: the derivative is −f(x).</div>
+    <div class="step">∫ₓ⁵ t² dt = −∫₅ˣ t² dt.</div>
+    <div class="step">d/dx [−∫₅ˣ t² dt] = −x².</div>
+    <div class="step">Sense check: as x grows toward 5, the interval [x, 5] shrinks, so positive area is being LOST — a negative derivative is exactly right.</div>
+    <div class="ans">−x²</div></div>
+</div>
+
+<div class="q"><span class="qnum">12.</span><span class="qtag">flipped limits</span>
+  <div class="qtext">Find d/dx ∫ₓ⁷ sin(t²) dt.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> sin(t²) is another famous function with no elementary antiderivative (it appears in optics as the "Fresnel integral"). Doesn't matter: flip the limits, pick up a minus, apply FTC 2.</div>
+    <div class="step">∫ₓ⁷ sin(t²) dt = −∫₇ˣ sin(t²) dt.</div>
+    <div class="step">Derivative: −sin(x²).</div>
+    <div class="ans">−sin(x²)</div></div>
+</div>
+
+<div class="q"><span class="qnum">13.</span><span class="qtag">full analysis</span>
+  <div class="qtext">Let g(x) = ∫₁ˣ (t² − 4) dt for x ≥ 1. Find: (a) g(1); (b) g′(x); (c) g′(3); (d) the interval where g is decreasing and the interval where g is increasing, with justification.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> this is the classic four-question bundle about an accumulation function. Two free facts do most of the work: g(lower limit) = 0 (zero-width integral), and g′ = f (FTC 2). Then "where is g increasing?" becomes "where is f positive?" — a sign question about t² − 4.</div>
+    <div class="step">(a) g(1) = ∫₁¹ (t² − 4) dt = 0. Starting line: nothing collected.</div>
+    <div class="step">(b) g′(x) = x² − 4 by FTC 2.</div>
+    <div class="step">(c) g′(3) = 3² − 4 = 5.</div>
+    <div class="step">(d) g′(x) = x² − 4 = (x − 2)(x + 2). For x in (1, 2): g′ &lt; 0 (e.g. at x = 1.5, 2.25 − 4 &lt; 0), so g is decreasing on (1, 2). For x &gt; 2: g′ &gt; 0, so g is increasing on (2, ∞). Justification sentence: "g is decreasing on (1, 2) because g′(x) = x² − 4 is negative there, and increasing on (2, ∞) because g′ is positive there."</div>
+    <div class="ans">(a) 0 &nbsp; (b) x² − 4 &nbsp; (c) 5 &nbsp; (d) decreasing on (1, 2), increasing on (2, ∞), since g′ = x² − 4 changes sign at x = 2</div></div>
+</div>
+
+<div class="q"><span class="qnum">14.</span><span class="qtag">evaluate g and g′</span>
+  <div class="qtext">Let g(x) = ∫₀ˣ 1/(1 + t²) dt. Find g(0), g′(0), and g′(1). Then say in one sentence what g′(0) = 1 means about the graph of g near x = 0.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> g(0) uses the zero-width fact; the derivatives use FTC 2. And remember the meaning of a derivative: g′(0) is the slope of g's graph at x = 0.</div>
+    <div class="step">g(0) = ∫₀⁰ = 0.</div>
+    <div class="step">g′(x) = 1/(1 + x²), so g′(0) = 1/(1 + 0) = 1 and g′(1) = 1/(1 + 1) = 1/2.</div>
+    <div class="step">Meaning: near x = 0 the graph of g passes through (0, 0) climbing with slope 1 — locally it looks like the line y = x. (This g is actually arctan x, and this is why arctan x ≈ x for small x!)</div>
+    <div class="ans">g(0) = 0, &nbsp; g′(0) = 1, &nbsp; g′(1) = 1/2; near 0, g climbs like the line y = x</div></div>
+</div>
+
+<div class="q"><span class="qnum">15.</span><span class="qtag">tangent line · AP flavor</span>
+  <div class="qtext">Let g(x) = ∫₂ˣ 2t dt. Write the equation of the tangent line to the graph of g at x = 3. (You need two things: the point and the slope. Get g(3) by geometry — the region under f(t) = 2t from t = 2 to t = 3 is a trapezoid — and get the slope from FTC 2.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a tangent line at x = a is y = g(a) + g′(a)(x − a). For accumulation functions, the two ingredients come from two different tools: g(a) is an AREA (geometry or FTC 1), while g′(a) = f(a) is free from FTC 2. A trapezoid's area is (average of the two parallel sides) × (width).</div>
+    <div class="step">Point: g(3) = ∫₂³ 2t dt = area under the line y = 2t from 2 to 3. The trapezoid has parallel sides f(2) = 4 and f(3) = 6 and width 1, so area = ((4 + 6)/2) × 1 = 5. So the point is (3, 5). (Check with FTC 1: t² from 2 to 3 gives 9 − 4 = 5. ✓)</div>
+    <div class="step">Slope: g′(x) = 2x by FTC 2, so g′(3) = 6.</div>
+    <div class="step">Tangent line: y = 5 + 6(x − 3), i.e. y = 6x − 13.</div>
+    <div class="ans">y = 5 + 6(x − 3) &nbsp; (equivalently y = 6x − 13)</div></div>
+</div>
+
+<div class="q"><span class="qnum">16.</span><span class="qtag">spot the error</span>
+  <div class="qtext">A student wrote: <span class="fml">d/dx ∫₀^(x²) √(1 + t³) dt = √(1 + x⁶)</span>. The plugging-in is actually correct — (x²)³ = x⁶ — but the answer is still wrong. Find the error and fix it.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the single most common FTC 2 mistake on the AP exam: substituting the upper limit into f correctly but FORGETTING the chain-rule factor. Whenever the upper limit is anything other than plain x, its derivative must multiply the answer.</div>
+    <div class="step">The upper limit is u = x², a function of x, so the chain rule demands the factor u′ = 2x.</div>
+    <div class="step">Correct answer: √(1 + (x²)³) · 2x = 2x√(1 + x⁶).</div>
+    <div class="step">Quick self-test forever after: "Is the upper limit plain x? If not, multiply by its derivative."</div>
+    <div class="ans">Missing chain-rule factor: correct answer is 2x·√(1 + x⁶)</div></div>
+</div>
+
+<div class="q"><span class="qnum">17.</span><span class="qtag">both limits moving · challenge</span>
+  <div class="qtext">Find d/dx ∫ₓ^(x²) t dt. (Hint: split the integral at a constant, say 0: ∫ₓ^(x²) = ∫₀^(x²) − ∫₀ˣ. Then check your answer by computing the integral exactly first.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> when BOTH limits contain x, split the integral at any constant c: ∫ₓ^(x²) f = ∫꜀^(x²) f − ∫꜀ˣ f (the pieces from c chain together, Lesson 10). Each piece is now a one-moving-limit problem: the first gets the chain rule, the second is plain FTC 2.</div>
+    <div class="step">Split: ∫ₓ^(x²) t dt = ∫₀^(x²) t dt − ∫₀ˣ t dt.</div>
+    <div class="step">First piece: f(x²) · 2x = x² · 2x = 2x³. Second piece: x. So the derivative is 2x³ − x.</div>
+    <div class="step">Check exactly: ∫ₓ^(x²) t dt = [t²/2] from x to x² = x⁴/2 − x²/2. Its derivative: 2x³ − x. ✓ Perfect match.</div>
+    <div class="ans">2x³ − x</div></div>
+</div>
+
+<div class="q"><span class="qnum">18.</span><span class="qtag">max/min analysis · AP flavor</span>
+  <div class="qtext">Let g(x) = ∫₀ˣ (t − 1)(t − 3) dt. (a) Find g′(x) and all critical points of g. (b) Classify each as a local max or local min of g, with a justification sentence. (c) Show that g(3) = 0 by computing the integral with FTC Part 1.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> critical points of g are where g′ = 0. Since g′ = f (FTC 2), that means: where f = 0. To classify, use the first-derivative test: a local MAX where g′ = f switches + to −, a local MIN where it switches − to +. Graders want the sign-change stated explicitly.</div>
+    <div class="step">(a) g′(x) = (x − 1)(x − 3) by FTC 2. Critical points where this is 0: x = 1 and x = 3.</div>
+    <div class="step">(b) Sign of g′: positive for x &lt; 1 (test x = 0: (−1)(−3) = 3 &gt; 0), negative on (1, 3) (test x = 2: (1)(−1) = −1 &lt; 0), positive for x &gt; 3 (test x = 4: (3)(1) = 3 &gt; 0). So: "g has a local maximum at x = 1 because g′ changes from positive to negative there, and a local minimum at x = 3 because g′ changes from negative to positive there."</div>
+    <div class="step">(c) (t − 1)(t − 3) = t² − 4t + 3, antiderivative t³/3 − 2t² + 3t. At t = 3: 27/3 − 18 + 9 = 9 − 18 + 9 = 0; at t = 0: 0. So g(3) = 0 − 0 = 0. (The positive area from 0 to 1 exactly cancels the negative area from 1 to 3.)</div>
+    <div class="ans">(a) g′ = (x−1)(x−3); critical points x = 1, 3 &nbsp; (b) local max at x = 1 (+ to −), local min at x = 3 (− to +) &nbsp; (c) g(3) = 0</div></div>
+</div>
+
+<div class="q"><span class="qnum">19.</span><span class="qtag">second derivative · challenge</span>
+  <div class="qtext">Let g(x) = ∫₀ˣ √(1 + t³) dt for x ≥ 0. (a) Explain why g is increasing for ALL x ≥ 0. (b) Find g″(x). (c) Is g concave up or concave down for x &gt; 0? Justify.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> g′ = f (FTC 2), so g″ = f′ — the SECOND derivative of the accumulation function is the ordinary derivative of the inside function. Concave up means g″ &gt; 0. To differentiate √(1 + x³) = (1 + x³)^(1/2), use the chain rule: ½(1 + x³)^(−1/2) · 3x².</div>
+    <div class="step">(a) g′(x) = √(1 + x³), which is a square root of a positive number, hence &gt; 0 for every x ≥ 0. A function whose derivative is always positive is always increasing. Sentence: "g is increasing on [0, ∞) because g′(x) = √(1 + x³) &gt; 0 there."</div>
+    <div class="step">(b) g″(x) = d/dx (1 + x³)^(1/2) = ½(1 + x³)^(−1/2) · 3x² = 3x² / (2√(1 + x³)).</div>
+    <div class="step">(c) For x &gt; 0: the top 3x² &gt; 0 and the bottom 2√(1 + x³) &gt; 0, so g″(x) &gt; 0 — g is concave up. (The heights being added keep getting taller, so the total grows faster and faster.)</div>
+    <div class="ans">(a) g′ = √(1+x³) &gt; 0 always &nbsp; (b) g″ = 3x²/(2√(1+x³)) &nbsp; (c) concave up, since g″ &gt; 0 for x &gt; 0</div></div>
+</div>
+
+<div class="q"><span class="qnum">20.</span><span class="qtag">challenge · full AP style</span>
+  <div class="qtext">The graph of f consists of straight line segments: f starts at (0, 2), stays flat at height 2 until t = 2, then descends in a straight line from (2, 2) to (4, −2) (crossing zero at t = 3), then stays flat at height −2 until t = 6.
+  <div class="graph">f(t)
+  2 | <span class="g">●━━━━━━━●</span> (0,2)→(2,2)
+    |          <span class="g">╲</span>
+  0 +────┬────┬──<span class="g">╲</span>─┬────┬────┬──→ t
+    |    1    2   3<span class="g">╲</span>   4    5    6
+ −2 |               <span class="g">●━━━━━━━━━●</span> (4,−2)→(6,−2)</div>
+  Let g(x) = ∫₀ˣ f(t) dt. (a) Find g(2), g(3), g(4), and g(6). (b) Find g′(1). (c) On what interval is g increasing? Justify. (d) Find the absolute maximum value of g on [0, 6], and justify your answer.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> this is THE classic AP problem shape (a full lesson on it is next!). Values of g come from geometry — areas of rectangles and triangles, counted negative below the axis. Shape questions about g come from FTC 2: g′ = f, so read f's sign. For an absolute max on a closed interval, compare g at the critical point and at both endpoints.</div>
+    <div class="step">(a) g(2): rectangle, height 2 × width 2 = <b>4</b>. g(3) = g(2) + triangle from 2 to 3 (base 1, height 2): 4 + ½·1·2 = <b>5</b>. g(4) = g(3) + area from 3 to 4, which is BELOW the axis: triangle ½·1·2 = 1 counted negative → 5 − 1 = <b>4</b>. g(6) = g(4) + rectangle below the axis (height −2, width 2) → 4 − 4 = <b>0</b>.</div>
+    <div class="step">(b) g′(1) = f(1) = 2 (FTC 2 — just read the height of f at t = 1).</div>
+    <div class="step">(c) g is increasing on (0, 3) because g′ = f is positive there (f is at height 2, then descending but still above zero until t = 3).</div>
+    <div class="step">(d) Critical point: g′ = f changes from positive to negative at x = 3, so g has its only local max there, with g(3) = 5. Compare with endpoints: g(0) = 0 and g(6) = 0. The largest candidate is 5. Sentence: "The absolute maximum of g on [0, 6] is 5, at x = 3, because g′ = f changes from positive to negative only at x = 3, and g(3) = 5 exceeds the endpoint values g(0) = 0 and g(6) = 0."</div>
+    <div class="ans">(a) g(2) = 4, g(3) = 5, g(4) = 4, g(6) = 0 &nbsp; (b) 2 &nbsp; (c) increasing on (0, 3) since f &gt; 0 there &nbsp; (d) absolute max 5 at x = 3</div></div>
+</div>
+
+<footer>Lesson 27 of 40 · Intuitive Integration · next: <a href="Lesson28.html">Lesson 28 — Reading Accumulation Graphs</a></footer>
+
+</div>
+<script>
+document.querySelectorAll('.q').forEach(q=>{
+  const btn=q.querySelector('.revealbtn'), sol=q.querySelector('.sol');
+  btn.addEventListener('click',()=>{ sol.classList.add('show'); btn.textContent='Solution shown'; btn.disabled=true; btn.style.opacity=.6; });
+});
+</script>
+</body>
+</html>

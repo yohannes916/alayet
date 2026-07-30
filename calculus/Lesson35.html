@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 35 — Volumes II: Off-Axis &amp; Cross-Sections</title>
+<style>
+  :root{--accent:#186a3b;--accent2:#239b56;--bg:#f2f7f4;--card:#fff;--ok:#1e8449;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:#1c2833;background:var(--bg);margin:0;padding:0 16px 80px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -16px 20px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  nav{display:flex;gap:10px;margin-bottom:18px;font-size:.9rem;flex-wrap:wrap;}
+  nav a{color:var(--accent);text-decoration:none;font-weight:600;background:#fff;border:1px solid #d5e8dc;border-radius:8px;padding:6px 14px;}
+  nav a:hover{background:#eafaf1;}
+  .goal{background:#fef9e7;border-left:5px solid var(--star);padding:12px 18px;border-radius:8px;margin-bottom:18px;font-size:.95rem;}
+  .goal strong{color:#7d6608;}
+  section{background:var(--card);border-radius:10px;padding:18px 22px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  h2{color:var(--accent);font-size:1.15rem;margin:0 0 10px;}
+  h2 .num{background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;border-radius:6px;padding:2px 9px;margin-right:8px;}
+  ul{margin:8px 0;padding-left:24px;}
+  li{margin-bottom:8px;}
+  strong{color:#145a32;}
+  em.hi{font-style:normal;background:#fef9e7;padding:0 4px;border-radius:3px;}
+  .fml{background:#e9f7ef;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.9em;color:#186a3b;white-space:nowrap;}
+  .ex{background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:.95rem;}
+  .ex b{color:#145a32;}
+  .graph{background:#1b2631;color:#eaeded;border-radius:8px;padding:14px 18px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.82rem;line-height:1.45;overflow-x:auto;margin:10px 0;white-space:pre;}
+  .graph .g{color:#82e0aa;} .graph .y{color:#f7dc6f;} .graph .b{color:#85c1e9;}
+  table.t{border-collapse:collapse;margin:10px 0;font-size:.92rem;}
+  table.t th,table.t td{border:1px solid #cfd8cf;padding:6px 12px;text-align:center;}
+  table.t th{background:var(--accent);color:#fff;font-weight:600;}
+  .qhead{margin:26px 0 8px;color:var(--accent);font-size:1.2rem;border-bottom:2px solid #d4efdf;padding-bottom:6px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid var(--accent2);}
+  .qnum{font-weight:800;color:var(--accent);margin-right:6px;}
+  .qtag{float:right;background:#e9f7ef;color:var(--accent);border-radius:8px;padding:1px 9px;font-size:.68rem;font-weight:700;letter-spacing:.3px;margin-left:8px;}
+  .qtext{font-size:.98rem;margin:4px 0 10px;}
+  .revealbtn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .revealbtn:hover{background:#0e4429;}
+  .sol{display:none;margin-top:12px;background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px;font-size:.93rem;}
+  .sol.show{display:block;}
+  .sol h4{margin:0 0 8px;color:var(--ok);font-size:.9rem;}
+  .sol .ctx{background:#eaf2f8;border-left:4px solid #2e86c1;border-radius:6px;padding:8px 12px;margin:0 0 10px;font-size:.88rem;}
+  .sol .ctx b{color:#1a5276;}
+  .sol .step{margin:6px 0;}
+  .sol .ans{background:#eafaf1;border-radius:6px;padding:6px 12px;margin-top:8px;font-weight:700;color:#145a32;display:inline-block;}
+  footer{text-align:center;color:#85929e;font-size:.85rem;margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Lesson 35 — Volumes II: Off-Axis &amp; Cross-Sections</h1>
+  <p>Spinning Around Other Lines · Slices That Aren't Circles · Lesson 35 of 40</p>
+</header>
+
+<nav><a href="index.html">📚 All lessons</a><a href="Lesson34.html">← Lesson 34</a><a href="Lesson36.html">Next: Lesson 36 →</a></nav>
+
+<div class="goal"><strong>🎯 Goal of this lesson:</strong> level up Lesson 34's volume tools in two big ways. First: revolve regions around lines OTHER than the x-axis (like <span class="fml">y = −1</span> or the y-axis) — the only thing that changes is the <em>radius</em>. Second: build solids with NO spinning at all — solids whose slices are squares, triangles, or semicircles standing on a flat base. One master idea runs through everything: <em>volume = ∫ (area of a slice) dx</em>.</div>
+
+<section>
+  <h2><span class="num">1</span> Revolving around other horizontal lines — the radius is a DISTANCE</h2>
+  <ul>
+    <li>In Lesson 34 we spun regions around the x-axis. A point on the curve <span class="fml">y = f(x)</span> swept out a circle of radius <span class="fml">f(x)</span> — because <strong>f(x) is its distance to the x-axis</strong>.</li>
+    <li>That last sentence is the key. The radius was never "f(x) because that's the formula." It was <em class="hi">f(x) because that's how far the point is from the spin line</em>. Change the spin line, and the distance changes.</li>
+    <li>Spin around <span class="fml">y = −1</span> (a line one unit BELOW the x-axis). A point at height <span class="fml">f(x)</span> is now <span class="fml">f(x) + 1</span> away from the spin line — its height above the x-axis, PLUS the extra 1-unit gap down to <span class="fml">y = −1</span>. So <strong>radius = f(x) + 1</strong>.</li>
+    <li>Spin around <span class="fml">y = 5</span> when the curve sits BELOW that line. Now the point at height <span class="fml">f(x)</span> is <span class="fml">5 − f(x)</span> below the spin line, so <strong>radius = 5 − f(x)</strong>.</li>
+    <li>The one rule: <em class="hi">radius = distance from the spin line to the curve = |axis − curve|</em>. Don't memorize sign patterns — <strong>draw a quick sketch</strong>, look at the gap, and write down the distance. The sketch is the method.</li>
+  </ul>
+  <div class="graph">y
+ 2 |              <span class="g">y = √x  ___——</span>
+ 1 |      <span class="g">__——‾‾</span>
+   |   <span class="g">_/</span>      <span class="b">↕ radius = √x + 1</span>
+ 0 +--<span class="g">/</span>------------------------→ x
+   |  <span class="b">↕ the extra gap of 1</span>
+−1 |<span class="y">═════════ spin line y = −1 ═════════</span>
+   0        1        2        3        4</div>
+  <div class="ex"><b>Worked example (expand carefully!):</b> take the region between <span class="fml">y = √x</span> and the line <span class="fml">y = −1</span>, from x = 0 to x = 4, and revolve it around <span class="fml">y = −1</span>. The region touches the spin line, so every slice is a full disk with radius = distance from <span class="fml">y = −1</span> up to the curve: <span class="fml">r(x) = √x + 1</span>.<br><br>
+  <b>Squaring a sum, from scratch:</b> <span class="fml">(a + b)² = (a + b)(a + b) = a² + ab + ba + b² = a² + 2ab + b²</span>. The middle term <span class="fml">2ab</span> is the one people forget — <span class="fml">(a+b)²</span> is NOT <span class="fml">a² + b²</span>. Here:<br>
+  <span class="fml">(√x + 1)² = (√x)² + 2·√x·1 + 1² = x + 2√x + 1</span>.<br><br>
+  V = π∫₀⁴ (√x + 1)² dx = π∫₀⁴ (x + 2√x + 1) dx = π[x²/2 + (4/3)x^(3/2) + x]₀⁴<br>
+  (the middle antiderivative: 2√x = 2x^(1/2) → 2·(2/3)x^(3/2) = (4/3)x^(3/2))<br>
+  = π(16/2 + (4/3)·8 + 4) = π(8 + 32/3 + 4) = π(36/3 + 32/3) = <b>68π/3</b>.</div>
+  <ul>
+    <li>Sanity check: about the x-axis this region-to-the-curve volume would use radius √x and give π∫₀⁴ x dx = 8π = 24π/3. Spinning the fatter radius (√x + 1) should give MORE — and 68π/3 &gt; 24π/3. ✓</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">2</span> Revolving about the y-axis — the same disk idea, sideways</h2>
+  <ul>
+    <li>Nothing in the disk method cares which axis you spin around. Spin around the <strong>y-axis</strong> and the whole story just turns 90°: slice <strong>horizontally</strong>, stack the disks <strong>vertically</strong>, and integrate <strong>dy</strong>.</li>
+    <li>A horizontal slice at height y sweeps a disk whose radius is the horizontal distance from the y-axis out to the curve — that's the <strong>x-value</strong> at that height. So we need the curve written as <em class="hi">x as a function of y</em>: <span class="fml">V = π∫ (x(y))² dy</span>.</li>
+    <li><strong>New skill #1 — flip the formula:</strong> solve <span class="fml">y = f(x)</span> for x. Example: <span class="fml">y = √x</span>. Square both sides: <span class="fml">y² = x</span>, i.e. <span class="fml">x = y²</span>. Same curve, described sideways.</li>
+    <li><strong>New skill #2 — convert the limits:</strong> the integral now runs over <strong>y-values</strong>. If x ran from 0 to 4 on <span class="fml">y = √x</span>, then y runs from √0 = 0 up to √4 = 2. Always push the endpoints through the curve.</li>
+  </ul>
+  <div class="ex"><b>Worked example:</b> the region between the curve <span class="fml">y = √x</span> (written sideways: <span class="fml">x = y²</span>) and the y-axis, for y from 0 to 2, revolved about the y-axis.<br><br>
+  Horizontal slice at height y: a disk of radius <span class="fml">x(y) = y²</span>, area <span class="fml">π(y²)² = πy⁴</span>.<br>
+  V = π∫₀² y⁴ dy = π[y⁵/5]₀² = π · 32/5 = <b>32π/5</b>.<br><br>
+  Every step is Lesson 34's recipe — we only swapped which letter does the slicing.</div>
+</section>
+
+<section>
+  <h2><span class="num">3</span> Washers off-axis — same R² − r², radii measured to the new line</h2>
+  <ul>
+    <li>What if the region does <strong>NOT</strong> touch the spin line? Then revolving leaves a tunnel down the middle — a <strong>washer</strong>, exactly like Lesson 34, and <span class="fml">A = π(R² − r²)</span> still holds. The only update: <em class="hi">both radii are distances to the NEW line</em>.</li>
+    <li>Watch how this connects to Section 1. Take the region between <span class="fml">y = √x</span> and the <strong>x-axis</strong> (not down to −1!) on [0, 4], and spin it around <span class="fml">y = −1</span>. There's a 1-unit gap between the region and the spin line, so:
+      <ul>
+        <li><strong>Outer radius:</strong> from y = −1 up to the curve: <span class="fml">R = √x + 1</span>.</li>
+        <li><strong>Inner radius:</strong> from y = −1 up to the bottom edge (the x-axis, y = 0): <span class="fml">r = 0 − (−1) = 1</span>.</li>
+      </ul>
+    </li>
+  </ul>
+  <div class="ex"><b>Worked example:</b> V = π∫₀⁴ [(√x + 1)² − 1²] dx = π∫₀⁴ (x + 2√x + 1 − 1) dx = π∫₀⁴ (x + 2√x) dx<br>
+  = π[x²/2 + (4/3)x^(3/2)]₀⁴ = π(8 + 32/3) = <b>56π/3</b>.<br><br>
+  <b>Beautiful cross-check:</b> Section 1's solid (region taken all the way down to y = −1) had volume 68π/3. Its core — the cylinder swept by the gap strip, radius 1, length 4 — has volume π·1²·4 = 4π = 12π/3. Drill out the core: 68π/3 − 12π/3 = 56π/3. ✓ The washer answer is exactly "full disk minus the hole."</li></div>
+</section>
+
+<section>
+  <h2><span class="num">4</span> Known cross-sections — no revolution at all!</h2>
+  <ul>
+    <li>Here is the twist that makes this lesson bigger than "spinning things." Remember the real engine of Lesson 34: <em class="hi">V = ∫ A(x) dx — integrate the slice area</em>. Nothing in that formula mentions circles. Circles only appeared because REVOLVING happens to make circular slices.</li>
+    <li>New kind of solid: start with a flat 2-D <strong>base region</strong> lying in the xy-plane. At each x, build a slice standing straight up, <strong>perpendicular to the x-axis</strong>, whose shape is <em>stated in the problem</em>: a square, a semicircle, a triangle... The slice's bottom edge sits on the base region.</li>
+    <li>So the slice's <strong>footprint width</strong> at position x is the width of the base region there: <em class="hi">w(x) = top curve − bottom curve</em>. That width is the side (or diameter) of the shape. Then <span class="fml">V = ∫ A(x) dx</span> with A(x) = the shape's area formula fed with w(x).</li>
+  </ul>
+  <div class="graph">        <span class="y">square slice standing up</span>
+        <span class="y">┌──────┐</span>
+        <span class="y">│      │</span> height = w(x)  (same as the width — it's a square!)
+        <span class="y">│      │</span>
+  ──────<span class="g">┴──────┴────────</span>──→ x
+  <span class="g">base region in the flat plane;</span>
+  <span class="g">slice's bottom edge has length w(x) = top − bottom</span></div>
+  <ul>
+    <li>Area formulas, built from scratch (w = the footprint width):</li>
+  </ul>
+  <table class="t">
+    <tr><th>Slice shape</th><th>How the area comes from w</th><th>A(x)</th></tr>
+    <tr><td>Square (side w)</td><td>side × side</td><td>w²</td></tr>
+    <tr><td>Semicircle (diameter w)</td><td>radius is w/2, so ½·π(w/2)² = ½·πw²/4</td><td>(π/8)w²</td></tr>
+    <tr><td>Isosceles right triangle, hypotenuse on base</td><td>legs ℓ with ℓ√2 = w → ℓ = w/√2; area = ½ℓ² = ½·w²/2</td><td>w²/4</td></tr>
+    <tr><td>Equilateral triangle (side w)</td><td>height = (√3/2)w; area = ½·w·(√3/2)w</td><td>(√3/4)w²</td></tr>
+  </table>
+  <ul>
+    <li>Notice every formula is <span class="fml">(some constant)·w²</span> — so these problems all boil down to integrating <span class="fml">w(x)²</span> and multiplying by the shape's constant. And only the semicircle's constant contains π, because <em>only the semicircle is round</em>.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">5</span> Flagship examples — same base, different shapes</h2>
+  <div class="ex"><b>Worked example (squares):</b> the base is the region between <span class="fml">y = √x</span> and the x-axis on [0, 4]. Cross-sections perpendicular to the x-axis are <b>squares</b>.<br><br>
+  Footprint width: w(x) = top − bottom = √x − 0 = √x.<br>
+  Slice area: A(x) = w² = (√x)² = x.<br>
+  V = ∫₀⁴ x dx = [x²/2]₀⁴ = <b>8</b>.<br><br>
+  No π anywhere! Squares aren't circles — π has no business showing up.</div>
+  <div class="ex"><b>Worked example (semicircles, same base):</b> same region, but now the slices are semicircles with diameter w(x) = √x sitting on the base.<br><br>
+  A(x) = (π/8)w² = (π/8)x.<br>
+  V = (π/8)∫₀⁴ x dx = (π/8)·8 = <b>π</b>.<br><br>
+  Same base, same ∫₀⁴ x dx = 8 — only the shape constant changed (1 for squares, π/8 for semicircles). The base does the integrating; the shape just scales it.</div>
+</section>
+
+<section>
+  <h2><span class="num">6</span> The recipe box (and the #1 error)</h2>
+  <ul>
+    <li><strong>Cross-section recipe:</strong> (1) find the footprint width <span class="fml">w(x) = top − bottom</span> of the base region; (2) feed w into the shape's area formula to get A(x); (3) integrate: <span class="fml">V = ∫ A(x) dx</span>.</li>
+    <li><strong>Off-axis recipe:</strong> sketch the spin line, write each radius as a distance <span class="fml">|axis − curve|</span>, then disks <span class="fml">π∫r²</span> or washers <span class="fml">π∫(R² − r²)</span> as before.</li>
+    <li><em class="hi">Common error #1:</em> writing π out of habit on a squares-or-triangles problem. π belongs to circles only. Before you write π, ask: "is my slice actually round?"</li>
+    <li><em class="hi">Common error #2:</em> using the old radius f(x) after the spin line moved. The radius is a distance to the CURRENT spin line — resketch every time.</li>
+  </ul>
+</section>
+
+<div class="qhead">✏️ Exercises — 20 problems (write your answer on paper, then reveal)</div>
+
+<div class="q"><span class="qnum">1.</span><span class="qtag">radius as distance</span>
+  <div class="qtext">(a) The curve <span class="fml">y = x²</span> is revolved about the line <span class="fml">y = −2</span>. What is the radius of the disk at position x? (b) The same curve, on 0 ≤ x ≤ 2 where it stays below <span class="fml">y = 4</span>, is revolved about <span class="fml">y = 4</span>. Now what is the radius? (No integrating — just the radii.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the radius of a slice is always the DISTANCE from the spin line to the curve. Sketch the spin line, sketch the curve, and measure the gap between them — one is above the other, so subtract the lower height from the upper height.</div>
+    <div class="step">(a) The spin line y = −2 sits below the curve. Distance = (height of curve) − (height of line) = x² − (−2) = x² + 2.</div>
+    <div class="step">(b) The spin line y = 4 sits above the curve (since x² ≤ 4 here). Distance = 4 − x².</div>
+    <div class="ans">(a) r = x² + 2 &nbsp; (b) r = 4 − x²</div></div>
+</div>
+
+<div class="q"><span class="qnum">2.</span><span class="qtag">algebra warm-up</span>
+  <div class="qtext">Expand these squares completely (you'll need both later this lesson): (a) <span class="fml">(√x + 2)²</span> &nbsp; (b) <span class="fml">(x² + 1)²</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> off-axis volumes constantly square sums, so the pattern (a + b)² = a² + 2ab + b² must be automatic. The middle term 2ab is the famous casualty — (a + b)² is NOT a² + b². (Try a = b = 1: (1+1)² = 4, but 1² + 1² = 2.)</div>
+    <div class="step">(a) (√x + 2)² = (√x)² + 2·√x·2 + 2² = x + 4√x + 4.</div>
+    <div class="step">(b) (x² + 1)² = (x²)² + 2·x²·1 + 1² = x⁴ + 2x² + 1.</div>
+    <div class="ans">(a) x + 4√x + 4 &nbsp; (b) x⁴ + 2x² + 1</div></div>
+</div>
+
+<div class="q"><span class="qnum">3.</span><span class="qtag">off-axis disk</span>
+  <div class="qtext">The region between the line <span class="fml">y = x</span> and the line <span class="fml">y = −1</span>, for 0 ≤ x ≤ 2, is revolved about <span class="fml">y = −1</span>. Find the volume.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the region touches the spin line, so slices are full disks (no hole). Radius = distance from y = −1 up to y = x, which is x − (−1) = x + 1. A handy antiderivative shortcut: ∫(x + 1)² dx = (x + 1)³/3, by the linear-inside rule from Lesson 17 (the inside x + 1 has slope 1).</div>
+    <div class="step">V = π∫₀² (x + 1)² dx = π[(x + 1)³/3]₀².</div>
+    <div class="step">At x = 2: 3³/3 = 27/3. At x = 0: 1³/3 = 1/3.</div>
+    <div class="step">V = π(27/3 − 1/3) = 26π/3.</div>
+    <div class="ans">V = 26π/3</div></div>
+</div>
+
+<div class="q"><span class="qnum">4.</span><span class="qtag">square cross-sections</span>
+  <div class="qtext">The base of a solid is the region between <span class="fml">y = x</span> and the x-axis on [0, 2]. Cross-sections perpendicular to the x-axis are squares. Find the volume.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> no spinning here! The base is a flat triangle in the plane, and square slices stand on it. Recipe: footprint width w(x) = top − bottom, slice area A = w², volume = ∫A dx. No π — squares aren't circles.</div>
+    <div class="step">w(x) = x − 0 = x, so A(x) = x².</div>
+    <div class="step">V = ∫₀² x² dx = [x³/3]₀² = 8/3.</div>
+    <div class="step">(This solid is actually a pyramid lying on its side — and 8/3 matches the pyramid formula ⅓·base·height = ⅓·(2·2)·2. ✓)</div>
+    <div class="ans">V = 8/3 (no π!)</div></div>
+</div>
+
+<div class="q"><span class="qnum">5.</span><span class="qtag">y-axis revolution</span>
+  <div class="qtext">The region bounded by the curve <span class="fml">x = y²</span>, the y-axis, and the line <span class="fml">y = 1</span> is revolved about the y-axis. Find the volume.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> spinning around the y-axis means slicing HORIZONTALLY: at each height y, the slice is a disk whose radius is the horizontal distance from the y-axis out to the curve — the x-value there. Everything becomes dy: V = π∫(x(y))² dy, with y-limits.</div>
+    <div class="step">At height y, the region reaches from x = 0 out to x = y², so the disk radius is y².</div>
+    <div class="step">V = π∫₀¹ (y²)² dy = π∫₀¹ y⁴ dy = π[y⁵/5]₀¹ = π/5.</div>
+    <div class="ans">V = π/5</div></div>
+</div>
+
+<div class="q"><span class="qnum">6.</span><span class="qtag">no-π police</span>
+  <div class="qtext">A friend solves a square-cross-section problem, gets ∫₀³ w² dx = 12, and then writes "V = 12π" — "because volume problems always have π." Set them straight: when does π belong in a volume answer, and when doesn't it?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> π enters volume formulas through exactly one door: the area of a CIRCLE, πr². Disks and washers have π because revolving creates circular slices. If the slices aren't circles, π never enters.</div>
+    <div class="step">The master formula is V = ∫A(x) dx. For squares, A = w² — there is no π in the area of a square, so none appears in the volume.</div>
+    <div class="step">π belongs only when the slice is round: disks (πr²), washers (π(R² − r²)), semicircles ((π/8)w²). For squares and triangles, the correct volume here is just 12.</div>
+    <div class="ans">π only comes from circular slices; the volume is 12, not 12π</div></div>
+</div>
+
+<div class="q"><span class="qnum">7.</span><span class="qtag">off-axis disk</span>
+  <div class="qtext">The region between <span class="fml">y = √x</span> and the line <span class="fml">y = −2</span>, for 0 ≤ x ≤ 4, is revolved about <span class="fml">y = −2</span>. Find the volume. (Your expansion from #2a will help.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the spin line dropped to y = −2, so the gap below the x-axis is now 2 units. Radius = distance from y = −2 up to the curve = √x + 2. The region touches the spin line, so these are full disks. Expand the square before integrating — never integrate a squared sum term-by-term without expanding.</div>
+    <div class="step">V = π∫₀⁴ (√x + 2)² dx = π∫₀⁴ (x + 4√x + 4) dx.</div>
+    <div class="step">Antiderivative: x²/2 + 4·(2/3)x^(3/2) + 4x = x²/2 + (8/3)x^(3/2) + 4x.</div>
+    <div class="step">At x = 4: 8 + (8/3)(8) + 16 = 24 + 64/3 = 72/3 + 64/3 = 136/3. At x = 0: 0.</div>
+    <div class="ans">V = 136π/3</div></div>
+</div>
+
+<div class="q"><span class="qnum">8.</span><span class="qtag">spin line above</span>
+  <div class="qtext">The region bounded by <span class="fml">y = x</span>, the line <span class="fml">y = 4</span>, and the y-axis is revolved about the line <span class="fml">y = 4</span>. Find the volume, then check your answer with a geometry formula.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> when the spin line is ABOVE the region, the radius is (line) − (curve). Here the region's lower edge y = x is what sweeps the circle: radius = 4 − x, running from x = 0 (radius 4) down to x = 4 (radius 0). Sketch it — the solid should look like a cone lying on its side, which gives us a free check via V = ⅓πr²h.</div>
+    <div class="step">V = π∫₀⁴ (4 − x)² dx = π[−(4 − x)³/3]₀⁴ (linear-inside rule; the inside slope −1 flips the sign).</div>
+    <div class="step">At x = 4: −0/3 = 0. At x = 0: −64/3. So V = π(0 − (−64/3)) = 64π/3.</div>
+    <div class="step">Geometry check: a cone with radius 4 and height 4 has V = ⅓π(4²)(4) = 64π/3. ✓</div>
+    <div class="ans">V = 64π/3</div></div>
+</div>
+
+<div class="q"><span class="qnum">9.</span><span class="qtag">y-axis revolution</span>
+  <div class="qtext">The region bounded by <span class="fml">x = √y</span>, the y-axis, and the line <span class="fml">y = 4</span> is revolved about the y-axis. Find the volume.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the curve is already written sideways (x as a function of y) — a gift! Horizontal slice at height y: disk of radius x(y) = √y. Squaring a square root undoes it: (√y)² = y, so this integral turns friendly instantly.</div>
+    <div class="step">V = π∫₀⁴ (√y)² dy = π∫₀⁴ y dy.</div>
+    <div class="step">= π[y²/2]₀⁴ = π·16/2 = 8π.</div>
+    <div class="ans">V = 8π</div></div>
+</div>
+
+<div class="q"><span class="qnum">10.</span><span class="qtag">semicircle cross-sections</span>
+  <div class="qtext">The base of a solid is the region between <span class="fml">y = x</span> and the x-axis on [0, 2]. Cross-sections perpendicular to the x-axis are semicircles with diameter sitting on the base. Find the volume.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> for a semicircle whose DIAMETER is the footprint w, the radius is w/2, so the area is ½·π(w/2)² = (π/8)w². This is the one cross-section shape that legitimately carries a π, because it's half a circle.</div>
+    <div class="step">w(x) = x, so A(x) = (π/8)x².</div>
+    <div class="step">V = (π/8)∫₀² x² dx = (π/8)·(8/3) = π/3.</div>
+    <div class="step">(Compare #4: same base with squares gave 8/3. Same ∫w² dx, different shape constant.)</div>
+    <div class="ans">V = π/3</div></div>
+</div>
+
+<div class="q"><span class="qnum">11.</span><span class="qtag">equilateral cross-sections</span>
+  <div class="qtext">The base of a solid is the region between the horizontal line <span class="fml">y = 2</span> and the line <span class="fml">y = x</span>, for 0 ≤ x ≤ 2. Cross-sections perpendicular to the x-axis are equilateral triangles. Find the volume.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the footprint is w(x) = top − bottom — here the top is the flat line y = 2 and the bottom is y = x, so w = 2 − x (it shrinks from 2 to 0 as x goes 0 → 2). An equilateral triangle of side w has height (√3/2)w, so area = ½·w·(√3/2)w = (√3/4)w².</div>
+    <div class="step">V = (√3/4)∫₀² (2 − x)² dx.</div>
+    <div class="step">∫₀² (2 − x)² dx = [−(2 − x)³/3]₀² = 0 − (−8/3) = 8/3.</div>
+    <div class="step">V = (√3/4)(8/3) = 8√3/12 = 2√3/3.</div>
+    <div class="ans">V = 2√3/3</div></div>
+</div>
+
+<div class="q"><span class="qnum">12.</span><span class="qtag">off-axis washer · setup</span>
+  <div class="qtext">The region between <span class="fml">y = x</span> and <span class="fml">y = x²</span> (they cross at x = 0 and x = 1, with the line on top between) is revolved about <span class="fml">y = −1</span>. Write the volume integral — do NOT evaluate.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the region floats above the spin line (nearest edge is y = x², which only touches y = −1 nowhere on (0,1))... so revolving leaves a hole: washers. BOTH radii are distances to y = −1: add 1 to each curve's height. Outer radius uses the curve FARTHER from the spin line — that's the top curve y = x.</div>
+    <div class="step">Outer: R(x) = x − (−1) = x + 1. Inner: r(x) = x² − (−1) = x² + 1.</div>
+    <div class="step">V = π∫₀¹ [(x + 1)² − (x² + 1)²] dx.</div>
+    <div class="ans">V = π∫₀¹ [(x + 1)² − (x² + 1)²] dx</div></div>
+</div>
+
+<div class="q"><span class="qnum">13.</span><span class="qtag">y-axis · convert limits</span>
+  <div class="qtext">The region bounded by <span class="fml">y = x³</span>, the y-axis, and the line <span class="fml">y = 8</span> is revolved about the y-axis. Rewrite the curve as x in terms of y, convert the limits, and find the volume.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> two conversions are needed. (1) Solve for x: y = x³ → x = y^(1/3) (cube root undoes cubing). (2) The y-limits: the region runs from y = 0 (the corner at the origin) up to y = 8. Then a power-of-a-power: (y^(1/3))² = y^(2/3), and the power rule handles fractional exponents fine.</div>
+    <div class="step">V = π∫₀⁸ (y^(1/3))² dy = π∫₀⁸ y^(2/3) dy = π[(3/5)y^(5/3)]₀⁸.</div>
+    <div class="step">8^(5/3) = (8^(1/3))⁵ = 2⁵ = 32.</div>
+    <div class="step">V = π(3/5)(32) = 96π/5.</div>
+    <div class="ans">V = 96π/5</div></div>
+</div>
+
+<div class="q"><span class="qnum">14.</span><span class="qtag">off-axis disk · setup</span>
+  <div class="qtext">The region between <span class="fml">y = x²</span> and the line <span class="fml">y = −1</span>, for 0 ≤ x ≤ 2, is revolved about <span class="fml">y = −1</span>. Write the volume integral with the square fully EXPANDED — but do not evaluate.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> AP problems often award full setup credit and skip the arithmetic — "write but do not evaluate" is a real skill. The setup has all the thinking: radius = distance to the spin line, then a careful (a + b)² expansion (see #2b).</div>
+    <div class="step">Radius = x² − (−1) = x² + 1. The region touches the spin line at x = 0... more importantly its lower edge IS the spin line, so full disks.</div>
+    <div class="step">(x² + 1)² = x⁴ + 2x² + 1.</div>
+    <div class="step">V = π∫₀² (x⁴ + 2x² + 1) dx. Stop here — setup complete.</div>
+    <div class="ans">V = π∫₀² (x⁴ + 2x² + 1) dx</div></div>
+</div>
+
+<div class="q"><span class="qnum">15.</span><span class="qtag">same base, different shapes</span>
+  <div class="qtext">Two solids share the SAME base (the region between <span class="fml">y = x</span> and the x-axis on [0, 2]): one has square cross-sections, the other semicircles. Using your answers to #4 and #10, find the ratio (square volume) : (semicircle volume). Then explain why this ratio would be the same for ANY base.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> both volumes are (shape constant) × ∫w² dx. The base only affects ∫w² dx — which is IDENTICAL for both solids. So the ratio of volumes is just the ratio of shape constants, no matter what the base looks like.</div>
+    <div class="step">Ratio = (8/3) ÷ (π/3) = 8/π.</div>
+    <div class="step">In general: V_square = 1·∫w²dx and V_semi = (π/8)·∫w²dx, so V_square/V_semi = 1/(π/8) = 8/π ≈ 2.55 always — a square slice holds 8/π times the area of the semicircle on the same footprint.</div>
+    <div class="ans">Ratio = 8/π, for every possible base</div></div>
+</div>
+
+<div class="q"><span class="qnum">16.</span><span class="qtag">limits from intersections · setup</span>
+  <div class="qtext">The region is enclosed by <span class="fml">y = √x</span> and <span class="fml">y = x/2</span>. (a) Find where the curves intersect. (b) Write (do not evaluate) the volume integral when this region is revolved about <span class="fml">y = −1</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> when no interval is given, the curves' crossing points ARE the limits. Solve curve = curve. To decide which curve is the outer radius, test a point between the intersections — the curve farther from the spin line is the outer one.</div>
+    <div class="step">(a) √x = x/2 → square both sides: x = x²/4 → x² − 4x = 0 → x(x − 4) = 0 → x = 0 and x = 4.</div>
+    <div class="step">(b) Test x = 1: √1 = 1 vs 1/2 — so y = √x is the top curve. Spin line y = −1 is below: R = √x + 1, r = x/2 + 1. Washers (the region floats above the line).</div>
+    <div class="step">V = π∫₀⁴ [(√x + 1)² − (x/2 + 1)²] dx.</div>
+    <div class="ans">(a) x = 0, 4 &nbsp; (b) V = π∫₀⁴ [(√x + 1)² − (x/2 + 1)²] dx</div></div>
+</div>
+
+<div class="q"><span class="qnum">17.</span><span class="qtag">spot the error</span>
+  <div class="qtext">Asked for the volume when the region between <span class="fml">y = √x</span> and <span class="fml">y = −1</span> on [0, 4] revolves about <span class="fml">y = −1</span>, a student writes V = π∫₀⁴ (√x)² dx = π∫₀⁴ x dx = 8π. Find the error and give the correct volume.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> this is THE classic off-axis mistake: using the curve's height f(x) as the radius even after the spin line moved. The radius is the distance from the spin line to the curve — the student measured from the x-axis instead of from y = −1, losing the 1-unit gap.</div>
+    <div class="step">Correct radius: √x − (−1) = √x + 1, not √x.</div>
+    <div class="step">V = π∫₀⁴ (√x + 1)² dx = π∫₀⁴ (x + 2√x + 1) dx = π[x²/2 + (4/3)x^(3/2) + x]₀⁴ = π(8 + 32/3 + 4) = 68π/3.</div>
+    <div class="step">Sanity: 68π/3 ≈ 22.7π &gt; 8π — the fatter radius must give more volume, and it does.</div>
+    <div class="ans">Radius must be √x + 1 (distance to the spin line); V = 68π/3</div></div>
+</div>
+
+<div class="q"><span class="qnum">18.</span><span class="qtag">spot the error</span>
+  <div class="qtext">The base of a solid is the region between <span class="fml">y = 2</span> and <span class="fml">y = x</span> on [0, 2]; cross-sections perpendicular to the x-axis are SQUARES. A student writes V = π∫₀² (2 − x)² dx = 8π/3. Find the error and give the correct volume.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the setup is 90% right — footprint w = 2 − x is correct, and ∫₀²(2 − x)² dx = 8/3 is the right integral. The single error is the π stuck on out of habit. A square of side w has area w², not πw².</div>
+    <div class="step">Correct: V = ∫₀² (2 − x)² dx = [−(2 − x)³/3]₀² = 0 − (−8/3) = 8/3.</div>
+    <div class="step">The student's answer is exactly π times too big — that's the fingerprint of a wrongly imported circle formula.</div>
+    <div class="ans">Drop the π: V = 8/3</div></div>
+</div>
+
+<div class="q"><span class="qnum">19.</span><span class="qtag">right-triangle slices</span>
+  <div class="qtext">The base of a solid is the region between <span class="fml">y = √x</span> and the x-axis on [0, 4]. Cross-sections perpendicular to the x-axis are isosceles right triangles with their HYPOTENUSE on the base. Find the volume.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> re-derive the area formula rather than trusting memory. If the hypotenuse is w and the legs are ℓ, Pythagoras gives ℓ² + ℓ² = w², so ℓ² = w²/2. The right angle is between the legs, so area = ½·ℓ·ℓ = ½·(w²/2) = w²/4.</div>
+    <div class="step">w(x) = √x, so A(x) = (√x)²/4 = x/4.</div>
+    <div class="step">V = (1/4)∫₀⁴ x dx = (1/4)(8) = 2.</div>
+    <div class="step">No π — triangles aren't circles. (Compare: same base gave 8 with squares and π with semicircles.)</div>
+    <div class="ans">V = 2</div></div>
+</div>
+
+<div class="q"><span class="qnum">20.</span><span class="qtag">challenge · AP style</span>
+  <div class="qtext">Let R be the first-quadrant region bounded by <span class="fml">y = 4 − x²</span>, the x-axis, and the y-axis.
+  (a) Find the area of R.
+  (b) Find the volume when R is revolved about the x-axis.
+  (c) Write — but do not evaluate — the volume integral when R is revolved about <span class="fml">y = −1</span>.
+  (d) R is the base of a solid with square cross-sections perpendicular to the x-axis. Find its volume.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> this is the exact shape of an AP free-response volume question: one region, four different questions. Notice how each part reuses the same boundaries (x from 0 to 2, since 4 − x² = 0 at x = 2) but a different formula: plain area ∫f, disks π∫f², off-axis washers, then ∫A(x) with no π at all.</div>
+    <div class="step">(a) Area = ∫₀² (4 − x²) dx = [4x − x³/3]₀² = 8 − 8/3 = 16/3.</div>
+    <div class="step">(b) Disks, radius 4 − x²: V = π∫₀² (4 − x²)² dx = π∫₀² (16 − 8x² + x⁴) dx = π[16x − (8/3)x³ + x⁵/5]₀² = π(32 − 64/3 + 32/5) = π(480 − 320 + 96)/15 = 256π/15.</div>
+    <div class="step">(c) About y = −1 the region floats 0 units... its bottom edge is the x-axis, 1 unit above the spin line → washers: R = (4 − x²) + 1 = 5 − x², r = 0 + 1 = 1. V = π∫₀² [(5 − x²)² − 1] dx. (Stop — setup only.)</div>
+    <div class="step">(d) Squares: w = 4 − x², A = (4 − x²)². V = ∫₀² (4 − x²)² dx — the SAME integral as (b) without π — = 256/15.</div>
+    <div class="ans">(a) 16/3 &nbsp; (b) 256π/15 &nbsp; (c) π∫₀² [(5 − x²)² − 1] dx &nbsp; (d) 256/15</div></div>
+</div>
+
+<footer>Lesson 35 of 40 · Intuitive Integration · next: <a href="Lesson36.html">Lesson 36 — Arc Length</a></footer>
+
+</div>
+<script>
+document.querySelectorAll('.q').forEach(q=>{
+  const btn=q.querySelector('.revealbtn'), sol=q.querySelector('.sol');
+  btn.addEventListener('click',()=>{ sol.classList.add('show'); btn.textContent='Solution shown'; btn.disabled=true; btn.style.opacity=.6; });
+});
+</script>
+</body>
+</html>

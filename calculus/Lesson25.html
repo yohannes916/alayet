@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 25 — Inverse Trig Antiderivatives: arctan &amp; arcsin</title>
+<style>
+  :root{--accent:#186a3b;--accent2:#239b56;--bg:#f2f7f4;--card:#fff;--ok:#1e8449;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:#1c2833;background:var(--bg);margin:0;padding:0 16px 80px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -16px 20px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  nav{display:flex;gap:10px;margin-bottom:18px;font-size:.9rem;flex-wrap:wrap;}
+  nav a{color:var(--accent);text-decoration:none;font-weight:600;background:#fff;border:1px solid #d5e8dc;border-radius:8px;padding:6px 14px;}
+  nav a:hover{background:#eafaf1;}
+  .goal{background:#fef9e7;border-left:5px solid var(--star);padding:12px 18px;border-radius:8px;margin-bottom:18px;font-size:.95rem;}
+  .goal strong{color:#7d6608;}
+  section{background:var(--card);border-radius:10px;padding:18px 22px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  h2{color:var(--accent);font-size:1.15rem;margin:0 0 10px;}
+  h2 .num{background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;border-radius:6px;padding:2px 9px;margin-right:8px;}
+  ul{margin:8px 0;padding-left:24px;}
+  li{margin-bottom:8px;}
+  strong{color:#145a32;}
+  em.hi{font-style:normal;background:#fef9e7;padding:0 4px;border-radius:3px;}
+  .fml{background:#e9f7ef;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.9em;color:#186a3b;white-space:nowrap;}
+  .ex{background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:.95rem;}
+  .ex b{color:#145a32;}
+  .graph{background:#1b2631;color:#eaeded;border-radius:8px;padding:14px 18px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.82rem;line-height:1.45;overflow-x:auto;margin:10px 0;white-space:pre;}
+  .graph .g{color:#82e0aa;} .graph .y{color:#f7dc6f;} .graph .b{color:#85c1e9;}
+  table.t{border-collapse:collapse;margin:10px 0;font-size:.92rem;}
+  table.t th,table.t td{border:1px solid #cfd8cf;padding:6px 12px;text-align:center;}
+  table.t th{background:var(--accent);color:#fff;font-weight:600;}
+  .qhead{margin:26px 0 8px;color:var(--accent);font-size:1.2rem;border-bottom:2px solid #d4efdf;padding-bottom:6px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid var(--accent2);}
+  .qnum{font-weight:800;color:var(--accent);margin-right:6px;}
+  .qtag{float:right;background:#e9f7ef;color:var(--accent);border-radius:8px;padding:1px 9px;font-size:.68rem;font-weight:700;letter-spacing:.3px;margin-left:8px;}
+  .qtext{font-size:.98rem;margin:4px 0 10px;}
+  .revealbtn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .revealbtn:hover{background:#0e4429;}
+  .sol{display:none;margin-top:12px;background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px;font-size:.93rem;}
+  .sol.show{display:block;}
+  .sol h4{margin:0 0 8px;color:var(--ok);font-size:.9rem;}
+  .sol .ctx{background:#eaf2f8;border-left:4px solid #2e86c1;border-radius:6px;padding:8px 12px;margin:0 0 10px;font-size:.88rem;}
+  .sol .ctx b{color:#1a5276;}
+  .sol .step{margin:6px 0;}
+  .sol .ans{background:#eafaf1;border-radius:6px;padding:6px 12px;margin-top:8px;font-weight:700;color:#145a32;display:inline-block;}
+  footer{text-align:center;color:#85929e;font-size:.85rem;margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Lesson 25 — Inverse Trig Antiderivatives: arctan &amp; arcsin</h1>
+  <p>Two New Antiderivatives with π Inside · Intuitive Calculus for a Curious Student · Lesson 25 of 40</p>
+</header>
+
+<nav><a href="index.html">📚 All lessons</a><a href="Lesson24.html">← Prev: Lesson 24</a><a href="Lesson26.html">Next: Lesson 26 →</a></nav>
+
+<div class="goal"><strong>🎯 Goal of this lesson:</strong> meet the functions <em>arctan</em> and <em>arcsin</em> (they answer "backward" trig questions), trust two astonishing facts about their derivatives, and read those facts backward to unlock two antiderivatives the power rule and u-substitution can NOT reach: <span class="fml">∫ 1/(1+x²) dx = arctan x + C</span> and <span class="fml">∫ 1/√(1−x²) dx = arcsin x + C</span>. By the end you will compute an area under a plain-looking fraction and get π/4.</div>
+
+<section>
+  <h2><span class="num">1</span> Inverse functions from scratch — asking the question backward</h2>
+  <ul>
+    <li>You already know inverse pairs: <strong>squaring and square-rooting</strong>. Squaring asks "what is 5²?" (answer: 25). Square-rooting asks the <em class="hi">backward question</em>: "WHAT number, when squared, gives 25?" (answer: 5). Each undoes the other.</li>
+    <li><strong>arctan</strong> is the backward question for tangent. <span class="fml">arctan x</span> asks: <em class="hi">"the tangent of WHAT angle equals x?"</em> Since tan(π/4) = 1, we get <span class="fml">arctan 1 = π/4</span>. Since tan 0 = 0, <span class="fml">arctan 0 = 0</span>. Since tan(π/3) = √3, <span class="fml">arctan √3 = π/3</span>.</li>
+    <li><strong>arcsin</strong> is the backward question for sine. <span class="fml">arcsin x</span> asks: <em class="hi">"the sine of WHAT angle equals x?"</em> Since sin(π/6) = 1/2, we get <span class="fml">arcsin(1/2) = π/6</span>. Since sin(π/2) = 1, <span class="fml">arcsin 1 = π/2</span>. And <span class="fml">arcsin 0 = 0</span>.</li>
+    <li>Notice: <strong>the input is a plain number, the output is an ANGLE</strong> (in radians, always). arctan and arcsin turn numbers back into angles.</li>
+  </ul>
+  <table class="t">
+    <tr><th>x</th><td>0</td><td>√3/3</td><td>1</td><td>√3</td></tr>
+    <tr><th>arctan x</th><td>0</td><td>π/6</td><td>π/4</td><td>π/3</td></tr>
+  </table>
+  <table class="t">
+    <tr><th>x</th><td>0</td><td>1/2</td><td>√2/2</td><td>√3/2</td><td>1</td></tr>
+    <tr><th>arcsin x</th><td>0</td><td>π/6</td><td>π/4</td><td>π/3</td><td>π/2</td></tr>
+  </table>
+  <ul>
+    <li>One honest fine-print note: many angles share the same tangent, so arctan promises to always answer with the angle <strong>between −π/2 and π/2</strong>. arcsin makes the same promise (its output lives in [−π/2, π/2], and it only accepts inputs from −1 to 1, since sine never leaves that range). That's how the backward question gets exactly one answer.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">2</span> The surprise — angle functions with NO trig in their derivatives</h2>
+  <ul>
+    <li>Here is one of the prettiest surprises in calculus. arctan and arcsin are built from trig, so you'd expect their derivatives to be a mess of sines and cosines. Instead:</li>
+    <li><span class="fml">(arctan x)′ = 1/(1+x²)</span> &nbsp; and &nbsp; <span class="fml">(arcsin x)′ = 1/√(1−x²)</span> — <em class="hi">no trig anywhere!</em> Just fractions made of x's. Take these two as facts to trust (the proofs use the chain rule cleverly; you'll see them in a full calculus course).</li>
+    <li><strong>Plausibility check</strong> (never trust a formula you haven't poked at): the graph of arctan x climbs quickly near 0 but <strong>flattens out</strong> for huge x — once tan of an angle is 1,000,000, nudging x higher barely changes the angle. So the slope of arctan should shrink toward 0 as x grows. And indeed <span class="fml">1/(1+x²) → 0</span> as x gets huge ✓. At x = 0 the formula gives slope 1/(1+0) = 1, a brisk 45° climb — matching the steep middle of the graph ✓.</li>
+  </ul>
+  <div class="graph">y
+ π/2 ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄  <span class="b">(ceiling arctan never touches)</span>
+     |            <span class="g">_____———————</span>
+     |       <span class="g">__——</span>
+     |     <span class="g">/</span>   ← slope 1 at x = 0, flattening as x grows
+─────+<span class="g">——/</span>─────────────────────→ x
+   <span class="g">__—</span>|
+<span class="g">——</span>   |        y = arctan x
+−π/2 ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄</div>
+</section>
+
+<section>
+  <h2><span class="num">3</span> Read it backward — two brand-new antiderivatives</h2>
+  <ul>
+    <li>Every derivative fact, read backward, is an antiderivative fact. Reading the two surprises backward gives us two new entries for the library:</li>
+  </ul>
+  <div class="ex"><b>Box these — new library entries:</b><br>
+  <span class="fml">∫ 1/(1+x²) dx = arctan x + C</span><br>
+  <span class="fml">∫ 1/√(1−x²) dx = arcsin x + C</span></div>
+  <ul>
+    <li>Why do we need them? Try the old tools on <span class="fml">1/(1+x²)</span>. The power rule needs a plain power of x — but this is 1 over a SUM, not 1 over a power of x, so <em class="hi">the power rule doesn't apply</em>. u-substitution with u = 1+x² needs a du = 2x dx somewhere — but there's <em class="hi">no x on top</em>, so u-sub stalls too. These integrals genuinely require the new facts.</li>
+    <li>And they appear <strong>constantly on AP exams</strong> — examiners love them precisely because no old tool works.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">4</span> The showstopper — an area that equals π/4</h2>
+  <div class="ex"><b>Worked example:</b> compute <span class="fml">∫₀¹ 1/(1+x²) dx</span>.<br>
+  Antiderivative: arctan x. By the Fundamental Theorem:<br>
+  <span class="fml">∫₀¹ 1/(1+x²) dx = arctan 1 − arctan 0 = π/4 − 0 = π/4</span>.<br>
+  Read that again: <b>the exact area under a plain fraction, between 0 and 1, is π/4</b> — a slice of a circle's number appearing under a curve with no circles in sight! ≈ 0.785, and the region really does fit inside a 1 × 1 square ✓.</div>
+  <div class="graph">y
+  1 <span class="y">●————__</span>
+    |<span class="b">░░░░░░</span><span class="y">——__</span>          y = 1/(1+x²)
+    |<span class="b">░░░░░░░░░</span><span class="y">\__</span>
+    |<span class="b">░ area ░░░</span><span class="y">—————______</span>
+    |<span class="b">░ = π/4 ░░</span>|           <span class="y">—————</span>
+  0 +——————————+————————————————→ x
+    0          1</div>
+</section>
+
+<section>
+  <h2><span class="num">5</span> The a-forms — when the 1 becomes a 4 or a 9</h2>
+  <ul>
+    <li>The AP exam often swaps the 1 for another perfect square: <span class="fml">1/(4+x²)</span> or <span class="fml">1/√(9−x²)</span>. There are gentle upgrades of our two facts. For any positive constant a:</li>
+  </ul>
+  <div class="ex"><b>The a-forms:</b><br>
+  <span class="fml">∫ 1/(a²+x²) dx = (1/a) arctan(x/a) + C</span><br>
+  <span class="fml">∫ 1/√(a²−x²) dx = arcsin(x/a) + C</span><br>
+  Notice: arcsin's form has NO 1/a out front; arctan's form does. Verifying (below) shows exactly why.</div>
+  <ul>
+    <li><strong>Let's verify the a = 2 arctan case by differentiating</strong> — the ultimate integral-checker. Claim: <span class="fml">(1/2) arctan(x/2)</span> is an antiderivative of <span class="fml">1/(4+x²)</span>.</li>
+    <li>Differentiate with the chain rule (inside function x/2, whose derivative is 1/2):<br>
+      <span class="fml">d/dx[(1/2)arctan(x/2)] = (1/2) · 1/(1+(x/2)²) · (1/2) = (1/4) · 1/(1+x²/4)</span>.</li>
+    <li>Clean up the little fraction: multiply top and bottom by 4: <span class="fml">1/(1+x²/4) = 4/(4+x²)</span>. So the whole thing is <span class="fml">(1/4) · 4/(4+x²) = 1/(4+x²)</span> ✓. The chain rule spits out a 1/2, and the 1/2 out front is there to team up with it — that's the job of the (1/a).</li>
+    <li>For arcsin, the chain rule's 1/a gets absorbed when the a comes out of the square root (√(a²−x²) = a·√(1−(x/a)²)), so no front factor is needed. You'll verify the a = 3 case in exercise 16.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">6</span> Recognition training — the AP's favorite trap trio</h2>
+  <ul>
+    <li>Three integrands that look nearly identical but need three DIFFERENT tools. Telling them apart is a genuine AP skill:</li>
+  </ul>
+  <table class="t">
+    <tr><th>Integrand</th><th>What to notice</th><th>Tool</th><th>Antiderivative</th></tr>
+    <tr><td>1/(1+x²)</td><td>plain 1 on top; 1+x² below</td><td>arctan fact</td><td>arctan x + C</td></tr>
+    <tr><td>x/(1+x²)</td><td>x on top ≈ derivative of bottom</td><td>u-sub → ln</td><td>(1/2)ln(1+x²) + C</td></tr>
+    <tr><td>1/(1+x)²</td><td>(1+x) squared — NOT 1+x²</td><td>power rule, u = 1+x</td><td>−1/(1+x) + C</td></tr>
+  </table>
+  <ul>
+    <li>The scan to run every time: <em class="hi">Is the square on the x alone (1+x²) or on the whole parenthesis (1+x)²? Is there an x upstairs that could be a du?</em> Ten seconds of looking saves ten minutes of the wrong method.</li>
+  </ul>
+</section>
+
+<div class="qhead">✏️ Exercises — 20 problems (write your answer on paper, then reveal)</div>
+
+<div class="q"><span class="qnum">1.</span><span class="qtag">value warmup</span>
+  <div class="qtext">Evaluate exactly: (a) arctan 1 &nbsp; (b) arctan 0 &nbsp; (c) arctan √3.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> arctan x answers the backward question "the tangent of WHAT angle equals x?", and it always answers with the angle between −π/2 and π/2. So each part is really a tangent fact read in reverse.</div>
+    <div class="step">(a) tan(π/4) = 1, so arctan 1 = π/4.</div>
+    <div class="step">(b) tan 0 = 0, so arctan 0 = 0.</div>
+    <div class="step">(c) tan(π/3) = √3, so arctan √3 = π/3.</div>
+    <div class="ans">(a) π/4 &nbsp; (b) 0 &nbsp; (c) π/3</div></div>
+</div>
+
+<div class="q"><span class="qnum">2.</span><span class="qtag">value warmup</span>
+  <div class="qtext">Evaluate exactly: (a) arcsin(1/2) &nbsp; (b) arcsin 1 &nbsp; (c) arcsin 0 &nbsp; (d) arcsin(√3/2).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> arcsin x asks "the sine of WHAT angle equals x?" — answer promised from [−π/2, π/2]. It's the sine column of your exact-values table, read right-to-left.</div>
+    <div class="step">(a) sin(π/6) = 1/2, so arcsin(1/2) = π/6.</div>
+    <div class="step">(b) sin(π/2) = 1, so arcsin 1 = π/2.</div>
+    <div class="step">(c) sin 0 = 0, so arcsin 0 = 0.</div>
+    <div class="step">(d) sin(π/3) = √3/2, so arcsin(√3/2) = π/3.</div>
+    <div class="ans">(a) π/6 &nbsp; (b) π/2 &nbsp; (c) 0 &nbsp; (d) π/3</div></div>
+</div>
+
+<div class="q"><span class="qnum">3.</span><span class="qtag">new library entry</span>
+  <div class="qtext">Find <span class="fml">∫ 1/(1+x²) dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> this is one of today's two boxed facts. The power rule can't help (the bottom is a sum, not a lone power of x), and u = 1+x² has no matching du = 2x dx upstairs. Only the arctan fact fits.</div>
+    <div class="step">∫ 1/(1+x²) dx = arctan x + C, straight from the library.</div>
+    <div class="step">Check by differentiating: (arctan x)′ = 1/(1+x²) ✓.</div>
+    <div class="ans">arctan x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">4.</span><span class="qtag">new library entry</span>
+  <div class="qtext">Find <span class="fml">∫ 1/√(1−x²) dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the second boxed fact. The fingerprint to memorize: a square ROOT downstairs, holding (1 − x²). Compare with arctan's fingerprint: NO root, holding (1 + x²). Root + minus → arcsin; no root + plus → arctan.</div>
+    <div class="step">∫ 1/√(1−x²) dx = arcsin x + C.</div>
+    <div class="step">Check: (arcsin x)′ = 1/√(1−x²) ✓.</div>
+    <div class="ans">arcsin x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">5.</span><span class="qtag">constant multiple</span>
+  <div class="qtext">Find <span class="fml">∫ 5/(1+x²) dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> constants slide freely through integrals (the constant-multiple rule from way back): ∫ c·f(x) dx = c·∫ f(x) dx. The new arctan fact combines with all the old rules.</div>
+    <div class="step">∫ 5/(1+x²) dx = 5 ∫ 1/(1+x²) dx = 5 arctan x + C.</div>
+    <div class="step">Check: (5 arctan x)′ = 5 · 1/(1+x²) ✓.</div>
+    <div class="ans">5 arctan x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">6.</span><span class="qtag">mixed sum</span>
+  <div class="qtext">Find <span class="fml">∫ (1/(1+x²) + eˣ) dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the sum rule says integrate term by term. Each term calls a different library entry: the first is today's arctan fact; the second is the old friend ∫ eˣ dx = eˣ + C. One C at the end covers everything.</div>
+    <div class="step">∫ 1/(1+x²) dx = arctan x, and ∫ eˣ dx = eˣ.</div>
+    <div class="step">Add them: arctan x + eˣ + C.</div>
+    <div class="step">Check: derivative is 1/(1+x²) + eˣ ✓.</div>
+    <div class="ans">arctan x + eˣ + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">7.</span><span class="qtag">definite · showstopper</span>
+  <div class="qtext">Compute <span class="fml">∫₀¹ 1/(1+x²) dx</span> exactly.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the Fundamental Theorem routine: find an antiderivative, plug in the top limit, plug in the bottom limit, subtract. The antiderivative here is arctan x, so the answer will be a difference of ANGLES — even though the problem has no trig in it.</div>
+    <div class="step">∫₀¹ 1/(1+x²) dx = [arctan x]₀¹ = arctan 1 − arctan 0.</div>
+    <div class="step">arctan 1 = π/4 and arctan 0 = 0.</div>
+    <div class="step">Answer: π/4 − 0 = π/4 ≈ 0.785. Sanity check: the region sits inside a 1 × 1 square (height starts at 1, ends at 1/2), so an area a bit above 3/4 is believable ✓.</div>
+    <div class="ans">π/4</div></div>
+</div>
+
+<div class="q"><span class="qnum">8.</span><span class="qtag">definite · arcsin</span>
+  <div class="qtext">Compute <span class="fml">∫₀^(1/2) 1/√(1−x²) dx</span> exactly.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> same Fundamental Theorem routine, arcsin edition. You'll need the exact value arcsin(1/2) — that's the backward sine question: sine of WHAT is 1/2? From the exact-values table: π/6.</div>
+    <div class="step">∫₀^(1/2) 1/√(1−x²) dx = [arcsin x]₀^(1/2) = arcsin(1/2) − arcsin 0.</div>
+    <div class="step">= π/6 − 0 = π/6.</div>
+    <div class="ans">π/6</div></div>
+</div>
+
+<div class="q"><span class="qnum">9.</span><span class="qtag">definite · arctan</span>
+  <div class="qtext">Compute <span class="fml">∫₀^√3 1/(1+x²) dx</span> exactly.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a definite integral's limits can be any numbers — including √3. The payoff for knowing the arctan table: √3 is exactly where arctan gives the beautiful answer π/3.</div>
+    <div class="step">∫₀^√3 1/(1+x²) dx = [arctan x]₀^√3 = arctan √3 − arctan 0.</div>
+    <div class="step">tan(π/3) = √3, so arctan √3 = π/3.</div>
+    <div class="step">Answer: π/3 − 0 = π/3.</div>
+    <div class="ans">π/3</div></div>
+</div>
+
+<div class="q"><span class="qnum">10.</span><span class="qtag">a-form · a = 2</span>
+  <div class="qtext">Find <span class="fml">∫ 1/(4+x²) dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the bottom is a² + x² with a² = 4, so a = 2. The a-form says ∫ 1/(a²+x²) dx = (1/a) arctan(x/a) + C — and the (1/a) out front is NOT decoration: the chain rule produces a 1/a when differentiating arctan(x/a), and the front factor cancels it.</div>
+    <div class="step">With a = 2: ∫ 1/(4+x²) dx = (1/2) arctan(x/2) + C.</div>
+    <div class="step">Check (as in the notes): d/dx[(1/2)arctan(x/2)] = (1/2)·1/(1+x²/4)·(1/2) = (1/4)·4/(4+x²) = 1/(4+x²) ✓.</div>
+    <div class="ans">(1/2) arctan(x/2) + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">11.</span><span class="qtag">a-form · a = 3</span>
+  <div class="qtext">Find <span class="fml">∫ 1/√(9−x²) dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> root downstairs holding (a² − x²) → the arcsin a-form: ∫ 1/√(a²−x²) dx = arcsin(x/a) + C. Here a² = 9, so a = 3. Remember: arcsin's a-form has NO front factor — the root absorbs it.</div>
+    <div class="step">∫ 1/√(9−x²) dx = arcsin(x/3) + C.</div>
+    <div class="step">Quick check: d/dx[arcsin(x/3)] = 1/√(1−x²/9) · (1/3) = (1/3) · 3/√(9−x²) = 1/√(9−x²) ✓ (the 1/3 from the chain rule cancels the 3 that comes out of the root).</div>
+    <div class="ans">arcsin(x/3) + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">12.</span><span class="qtag">definite · a-form</span>
+  <div class="qtext">Compute <span class="fml">∫₀¹ 1/√(4−x²) dx</span> exactly.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> combine the arcsin a-form (a = 2) with the Fundamental Theorem. The antiderivative will be arcsin(x/2), so the limits get divided by 2 on the way into arcsin.</div>
+    <div class="step">Antiderivative: arcsin(x/2). So the integral = [arcsin(x/2)]₀¹.</div>
+    <div class="step">Top: arcsin(1/2) = π/6. Bottom: arcsin(0) = 0.</div>
+    <div class="step">Answer: π/6 − 0 = π/6.</div>
+    <div class="ans">π/6</div></div>
+</div>
+
+<div class="q"><span class="qnum">13.</span><span class="qtag">trap trio · ln pattern</span>
+  <div class="qtext">Find <span class="fml">∫ x/(1+x²) dx</span>. (Careful — this is NOT arctan!)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the x upstairs changes everything. With u = 1+x², du = 2x dx — and an x dx IS present up top (half of a du). That's the u-substitution fingerprint from Lesson 18, with the constant-borrow trick: x dx = du/2.</div>
+    <div class="step">Let u = 1+x², du = 2x dx, so x dx = du/2.</div>
+    <div class="step">∫ x/(1+x²) dx = ∫ (1/u)(du/2) = (1/2)∫ du/u = (1/2) ln|u| + C.</div>
+    <div class="step">Back-substitute: (1/2) ln(1+x²) + C. (No absolute value needed — 1+x² is always positive.)</div>
+    <div class="step">Check: derivative = (1/2)·2x/(1+x²) = x/(1+x²) ✓.</div>
+    <div class="ans">(1/2) ln(1+x²) + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">14.</span><span class="qtag">trap trio · power rule</span>
+  <div class="qtext">Find <span class="fml">∫ 1/(1+x)² dx</span>. (Careful — the square is on the whole parenthesis!)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> (1+x)² is a squared PARENTHESIS, totally different from 1+x². Substituting u = 1+x gives du = dx (derivative of 1+x is just 1), so this is the power rule in disguise: ∫ u⁻² du = u⁻¹/(−1) = −1/u.</div>
+    <div class="step">Let u = 1+x, du = dx.</div>
+    <div class="step">∫ 1/(1+x)² dx = ∫ u⁻² du = u⁻¹/(−1) + C = −1/u + C.</div>
+    <div class="step">Back-substitute: −1/(1+x) + C.</div>
+    <div class="step">Check: d/dx[−(1+x)⁻¹] = (+1)(1+x)⁻² · 1 = 1/(1+x)² ✓.</div>
+    <div class="ans">−1/(1+x) + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">15.</span><span class="qtag">recognition drill</span>
+  <div class="qtext">Without computing anything yet, classify each integral by naming the right tool (arctan fact / u-sub → ln / power rule), then give each antiderivative:
+  (a) <span class="fml">∫ 1/(1+x)² dx</span> &nbsp; (b) <span class="fml">∫ 1/(1+x²) dx</span> &nbsp; (c) <span class="fml">∫ x/(1+x²) dx</span></div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> this trio is the AP's favorite trap. The 10-second scan: WHERE is the square (on x alone, or on the parenthesis)? Is there an x upstairs that could be a du? Answer those two questions and the tool picks itself.</div>
+    <div class="step">(a) Square on the parenthesis → power rule with u = 1+x → <b>−1/(1+x) + C</b>.</div>
+    <div class="step">(b) Square on x alone, plain 1 on top → arctan fact → <b>arctan x + C</b>.</div>
+    <div class="step">(c) Square on x alone, but x on top ≈ derivative of bottom → u-sub → ln → <b>(1/2) ln(1+x²) + C</b>.</div>
+    <div class="ans">(a) power rule: −1/(1+x) + C &nbsp; (b) arctan: arctan x + C &nbsp; (c) u-sub: (1/2)ln(1+x²) + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">16.</span><span class="qtag">check by differentiating</span>
+  <div class="qtext">Verify by differentiation that <span class="fml">arcsin(x/3)</span> really is an antiderivative of <span class="fml">1/√(9−x²)</span>. Show every chain-rule step.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> differentiating your answer is the universal integral-checker. Two facts combine here: (arcsin x)′ = 1/√(1−x²), and the chain rule (multiply by the derivative of the inside, which for x/3 is 1/3). The interesting part is watching the 1/3 vanish.</div>
+    <div class="step">d/dx[arcsin(x/3)] = 1/√(1−(x/3)²) · (1/3) = (1/3) · 1/√(1−x²/9).</div>
+    <div class="step">Clean the root: 1 − x²/9 = (9−x²)/9, so √(1−x²/9) = √(9−x²)/3.</div>
+    <div class="step">So (1/3) · 1/(√(9−x²)/3) = (1/3) · 3/√(9−x²) = 1/√(9−x²) ✓.</div>
+    <div class="step">The 3 that climbs out of the square root exactly cancels the chain rule's 1/3 — that's why arcsin's a-form needs no front factor.</div>
+    <div class="ans">Derivative = 1/√(9−x²) ✓ — verified</div></div>
+</div>
+
+<div class="q"><span class="qnum">17.</span><span class="qtag">spot the error</span>
+  <div class="qtext">A student writes: <span class="fml">∫ 1/(1+x²) dx = ln(1+x²) + C</span>, reasoning "one over something integrates to ln of that thing." Find the error, prove the answer wrong by differentiating it, and give the correct answer.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the ln rule the student half-remembers is ∫ (1/u) du = ln|u| + C — and it only fires when du is genuinely present. For u = 1+x², du = 2x dx, so the ln route needs an x upstairs. There isn't one.</div>
+    <div class="step">Differentiate the student's answer: d/dx[ln(1+x²)] = 2x/(1+x²) (chain rule: 1/(inside) × derivative of inside).</div>
+    <div class="step">2x/(1+x²) ≠ 1/(1+x²) — the answer fails the check, so it's wrong.</div>
+    <div class="step">The error: applying the ln pattern with no du (no x) on top. The integrand 1/(1+x²) is exactly the arctan fingerprint.</div>
+    <div class="step">Correct: ∫ 1/(1+x²) dx = arctan x + C.</div>
+    <div class="ans">Error: ln pattern needs du = 2x dx present. Correct answer: arctan x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">18.</span><span class="qtag">definite · a = 3</span>
+  <div class="qtext">Compute <span class="fml">∫₀³ 1/(9+x²) dx</span> exactly.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a² + x² with a = 3, so the antiderivative is (1/3) arctan(x/3) — don't forget the 1/3 out front, it's the chain rule's partner. Then run the Fundamental Theorem as usual.</div>
+    <div class="step">∫₀³ 1/(9+x²) dx = [(1/3) arctan(x/3)]₀³.</div>
+    <div class="step">Top: (1/3) arctan(3/3) = (1/3) arctan 1 = (1/3)(π/4) = π/12.</div>
+    <div class="step">Bottom: (1/3) arctan 0 = 0.</div>
+    <div class="step">Answer: π/12 − 0 = π/12.</div>
+    <div class="ans">π/12</div></div>
+</div>
+
+<div class="q"><span class="qnum">19.</span><span class="qtag">mixed definite</span>
+  <div class="qtext">Compute <span class="fml">∫₀¹ (1/(1+x²) + eˣ) dx</span> exactly.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a definite integral of a sum splits into two definite integrals. One produces an angle (π/4), the other produces e − 1 — and the final answer simply adds these very different-looking exact numbers. AP answers often look like this: leave π and e in, don't round.</div>
+    <div class="step">∫₀¹ 1/(1+x²) dx = arctan 1 − arctan 0 = π/4.</div>
+    <div class="step">∫₀¹ eˣ dx = e¹ − e⁰ = e − 1.</div>
+    <div class="step">Total: π/4 + e − 1 (≈ 0.785 + 1.718 = 2.503).</div>
+    <div class="ans">π/4 + e − 1</div></div>
+</div>
+
+<div class="q"><span class="qnum">20.</span><span class="qtag">challenge · compute π!</span>
+  <div class="qtext">(a) Show that <span class="fml">∫₀¹ 4/(1+x²) dx = π</span> exactly. (b) Explain why this gives a genuine recipe for computing the digits of π using nothing but areas — no circles required. (Hint for (b): Lesson 23's trapezoidal rule can estimate any area...)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> mathematicians and computers really do use integrals like this one to calculate π. The two ingredients: an integral whose EXACT value involves π (today's arctan fact provides it), and a numerical method that approximates the same area to as many decimals as you like (Lesson 23's trapezoids, or fancier cousins).</div>
+    <div class="step">(a) Pull out the constant: ∫₀¹ 4/(1+x²) dx = 4 ∫₀¹ 1/(1+x²) dx = 4 [arctan x]₀¹ = 4(arctan 1 − arctan 0) = 4(π/4 − 0) = π ✓.</div>
+    <div class="step">(b) The left side is just an area under the concrete curve y = 4/(1+x²) between 0 and 1 — something we can approximate numerically with trapezoids, no π knowledge needed. Chop [0,1] into many slices, add up trapezoid areas, and the total creeps toward π. More slices → more correct digits: 3.14, then 3.1415…</div>
+    <div class="step">So an area under a plain fraction IS π — and adding up enough skinny trapezoids under that fraction manufactures π's digits from scratch.</div>
+    <div class="ans">(a) 4 · π/4 = π ✓ &nbsp; (b) approximate the same area with trapezoids → digits of π</div></div>
+</div>
+
+<footer>Lesson 25 of 40 · Intuitive Integration · next: <a href="Lesson26.html">Lesson 26 — u-Substitution Mastery: Changing Limits &amp; Classic Patterns</a></footer>
+
+</div>
+<script>
+document.querySelectorAll('.q').forEach(q=>{
+  const btn=q.querySelector('.revealbtn'), sol=q.querySelector('.sol');
+  btn.addEventListener('click',()=>{ sol.classList.add('show'); btn.textContent='Solution shown'; btn.disabled=true; btn.style.opacity=.6; });
+});
+</script>
+</body>
+</html>

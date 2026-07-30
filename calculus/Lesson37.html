@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 37 — Differential Equations I: Separation &amp; Slope Fields</title>
+<style>
+  :root{--accent:#186a3b;--accent2:#239b56;--bg:#f2f7f4;--card:#fff;--ok:#1e8449;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:#1c2833;background:var(--bg);margin:0;padding:0 16px 80px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -16px 20px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  nav{display:flex;gap:10px;margin-bottom:18px;font-size:.9rem;flex-wrap:wrap;}
+  nav a{color:var(--accent);text-decoration:none;font-weight:600;background:#fff;border:1px solid #d5e8dc;border-radius:8px;padding:6px 14px;}
+  nav a:hover{background:#eafaf1;}
+  .goal{background:#fef9e7;border-left:5px solid var(--star);padding:12px 18px;border-radius:8px;margin-bottom:18px;font-size:.95rem;}
+  .goal strong{color:#7d6608;}
+  section{background:var(--card);border-radius:10px;padding:18px 22px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  h2{color:var(--accent);font-size:1.15rem;margin:0 0 10px;}
+  h2 .num{background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;border-radius:6px;padding:2px 9px;margin-right:8px;}
+  ul{margin:8px 0;padding-left:24px;}
+  li{margin-bottom:8px;}
+  strong{color:#145a32;}
+  em.hi{font-style:normal;background:#fef9e7;padding:0 4px;border-radius:3px;}
+  .fml{background:#e9f7ef;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.9em;color:#186a3b;white-space:nowrap;}
+  .ex{background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:.95rem;}
+  .ex b{color:#145a32;}
+  .graph{background:#1b2631;color:#eaeded;border-radius:8px;padding:14px 18px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.82rem;line-height:1.45;overflow-x:auto;margin:10px 0;white-space:pre;}
+  .graph .g{color:#82e0aa;} .graph .y{color:#f7dc6f;} .graph .b{color:#85c1e9;}
+  table.t{border-collapse:collapse;margin:10px 0;font-size:.92rem;}
+  table.t th,table.t td{border:1px solid #cfd8cf;padding:6px 12px;text-align:center;}
+  table.t th{background:var(--accent);color:#fff;font-weight:600;}
+  .qhead{margin:26px 0 8px;color:var(--accent);font-size:1.2rem;border-bottom:2px solid #d4efdf;padding-bottom:6px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid var(--accent2);}
+  .qnum{font-weight:800;color:var(--accent);margin-right:6px;}
+  .qtag{float:right;background:#e9f7ef;color:var(--accent);border-radius:8px;padding:1px 9px;font-size:.68rem;font-weight:700;letter-spacing:.3px;margin-left:8px;}
+  .qtext{font-size:.98rem;margin:4px 0 10px;}
+  .revealbtn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .revealbtn:hover{background:#0e4429;}
+  .sol{display:none;margin-top:12px;background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px;font-size:.93rem;}
+  .sol.show{display:block;}
+  .sol h4{margin:0 0 8px;color:var(--ok);font-size:.9rem;}
+  .sol .ctx{background:#eaf2f8;border-left:4px solid #2e86c1;border-radius:6px;padding:8px 12px;margin:0 0 10px;font-size:.88rem;}
+  .sol .ctx b{color:#1a5276;}
+  .sol .step{margin:6px 0;}
+  .sol .ans{background:#eafaf1;border-radius:6px;padding:6px 12px;margin-top:8px;font-weight:700;color:#145a32;display:inline-block;}
+  footer{text-align:center;color:#85929e;font-size:.85rem;margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Lesson 37 — Differential Equations I: Separation &amp; Slope Fields</h1>
+  <p>Equations About Rates, and How to Solve Them · Intuitive Calculus for a Curious Student · Lesson 37 of 40</p>
+</header>
+
+<nav><a href="index.html">📚 All lessons</a><a href="Lesson36.html">← Prev: Lesson 36</a><a href="Lesson38.html">Next: Lesson 38 →</a></nav>
+
+<div class="goal"><strong>🎯 Goal of this lesson:</strong> meet <em>differential equations</em> — equations whose unknown is a whole FUNCTION, described by its rate of change. You'll learn to <em>verify</em> a proposed solution, to <em>solve</em> by the star method (separation of variables), and to <em>see</em> solutions with slope fields. This is the heart of the AP free-response section — and you already own every tool it needs.</div>
+
+<section>
+  <h2><span class="num">1</span> What a differential equation IS (from scratch)</h2>
+  <ul>
+    <li>Every equation you've ever solved asked for a <strong>number</strong>: "x + 3 = 7, find x." A <strong>differential equation</strong> (DE for short) asks for something bigger: it describes a function by its <em class="hi">rate of change</em>, and asks you to find <strong>the function itself</strong>.</li>
+    <li>Example: <span class="fml">dy/dx = x</span>. Read it out loud: <em>"whatever the function y is, its slope at each x equals x."</em> At x = 2 the graph climbs with slope 2; at x = −1 it slides down with slope −1; at x = 0 it's momentarily flat.</li>
+    <li>The <strong>solution</strong> is a FUNCTION, not a number. Here: <span class="fml">y = x²/2 + C</span> — check: its derivative is x. ✓</li>
+    <li>Notice the <strong>+C</strong>: a DE about the slope can't pin down the height, so the answer is a whole <em class="hi">family of solutions</em>, one curve for each C, all parallel copies sliding up and down.</li>
+    <li>Surprise: <strong>you've been solving DEs since Lesson 4.</strong> "Here's f′, find f" IS a differential equation. What's new today is DEs where the rate depends on <strong>y itself</strong> — like <span class="fml">dy/dx = 2y</span> — and those need a new move.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">2</span> Verifying a proposed solution — free points, no solving</h2>
+  <ul>
+    <li>To check whether a function solves a DE, you don't solve anything. Just <em class="hi">plug it into both sides and see if they match</em> — like checking x = 4 in x + 3 = 7.</li>
+    <li>Recipe: (1) take the derivative of the proposed y; (2) substitute y into the right side; (3) compare. Equal for ALL x → it's a solution.</li>
+  </ul>
+  <div class="ex"><b>Worked check 1:</b> is <span class="fml">y = x² + 3</span> a solution of <span class="fml">dy/dx = 2x</span>?<br>
+  Left side: derivative of x² + 3 is 2x. Right side: 2x. Match for every x → <b>yes, it's a solution.</b> (So is x² + 100 — any member of the family works.)</div>
+  <div class="ex"><b>Worked check 2:</b> is <span class="fml">y = e^(2x)</span> a solution of <span class="fml">dy/dx = 2y</span>?<br>
+  Left side: derivative of e^(2x) is 2e^(2x) (chain rule, Lesson 12 vibes). Right side: 2y = 2·e^(2x). Both sides are 2e^(2x) → <b>yes.</b> ✓<br>
+  Notice the right side contains <b>y</b> — you substitute the whole function in for y. That's the only new wrinkle.</div>
+  <ul>
+    <li>AP tip: <em class="hi">verification questions are free points</em> — no cleverness required, just careful differentiating and comparing. Always write "left side = ..., right side = ..., equal → solution."</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">3</span> Separation of variables — "sort the letters"</h2>
+  <ul>
+    <li>The star method. It works whenever you can <em class="hi">sort the letters</em>: all the y's (with dy) on one side, all the x's (with dx) on the other. Then integrate BOTH sides, and add <strong>one</strong> C.</li>
+    <li>Steps: <strong>① separate ② integrate both sides ③ + C (just one!) ④ solve for y if you can.</strong></li>
+  </ul>
+  <div class="ex"><b>Flagship example:</b> solve <span class="fml">dy/dx = x/y</span>.<br>
+  ① Sort: multiply both sides by y and by dx → <span class="fml">y dy = x dx</span>. All y's left, all x's right.<br>
+  ② Integrate both sides: <span class="fml">∫y dy = ∫x dx</span> → <span class="fml">y²/2 = x²/2 + C</span>.<br>
+  ③ Tidy: multiply everything by 2 → y² = x² + 2C. But 2C is just... some constant. <em>Rename it C:</em> <span class="fml">y² = x² + C</span>.<br>
+  <b>C eats constants.</b> Twice a constant, a constant plus 5, e to a constant — all still "some constant," so we keep calling it C. This renaming is legal and standard.</div>
+  <div class="ex"><b>Now add an initial condition:</b> same DE, with <span class="fml">y(0) = 3</span> (the curve passes through (0, 3)).<br>
+  Plug in x = 0, y = 3: 9 = 0 + C → C = 9 → <span class="fml">y² = x² + 9</span>.<br>
+  Solve for y: y = ±√(x² + 9). Which sign? <em class="hi">The initial condition decides:</em> y(0) = 3 is positive, so take the <b>+</b> root: <span class="fml">y = √(x² + 9)</span>.<br>
+  Verify: dy/dx = x/√(x² + 9) = x/y ✓ and y(0) = √9 = 3 ✓. Always do this check — it takes ten seconds.</div>
+  <ul>
+    <li>Why "one C, not two"? Integrating each side does produce a constant on each side — but move one across the equals sign and they merge into a single constant. Two letters would be pretending to know more than we do. (Exercise 16 makes you catch this error.)</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">4</span> The most important DE on Earth: dy/dx = ky</h2>
+  <ul>
+    <li><span class="fml">dy/dx = ky</span> says: <em class="hi">"the thing grows at a rate proportional to its own size."</em> More bacteria → faster growth. More money → more interest. This one equation runs biology, finance, and radioactivity.</li>
+    <li>Solve it by separation — slowly, every step:</li>
+  </ul>
+  <div class="ex"><b>Step by step:</b><br>
+  ① Sort: <span class="fml">dy/y = k dx</span> (divide by y, multiply by dx).<br>
+  ② Integrate: <span class="fml">∫dy/y = ∫k dx</span> → <span class="fml">ln|y| = kx + C</span> (the ∫f′/f = ln|f| move from Lesson 27!).<br>
+  ③ Undo the ln by making both sides an exponent of e: <span class="fml">e^(ln|y|) = e^(kx + C)</span>.<br>
+  ④ Left side: e and ln cancel → |y|. Right side: e^(kx + C) = e^(kx)·e^C (exponent rule: adding exponents = multiplying).<br>
+  ⑤ e^C is just... a positive constant. And dropping the absolute value lets the constant carry the ± sign. <em>C shape-shifts again:</em> call the whole thing C. Result: <span class="fml">y = Ce^(kx)</span>.<br>
+  Verify: derivative of Ce^(kx) is kCe^(kx) = k·y ✓.</div>
+  <ul>
+    <li>Memorize the sentence: <em class="hi">"rate proportional to size" ⟹ exponential, y = Ce^(kx)</em>. Lesson 38 lives entirely on this fact — populations, half-life, cooling coffee.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">5</span> Slope fields — a flow map for solutions</h2>
+  <ul>
+    <li>Most DEs can't be solved with algebra. But EVERY DE can be <strong>drawn</strong>. At each grid point (x, y), compute dy/dx there and draw a <em class="hi">tiny segment with that slope</em>. The result is a <strong>slope field</strong> — a flow map. Solution curves <strong>surf the field</strong>, following the little arrows.</li>
+    <li>Example: <span class="fml">dy/dx = x</span>. The slope depends only on x, so <strong>every column of the field is identical</strong>. At x = 0 all segments are flat; to the right they tilt up, steeper and steeper; to the left they tilt down — a mirror image:</li>
+  </ul>
+  <div class="graph">slope field for dy/dx = x          (\ = downhill, — = flat, / = uphill)
+
+ y  3 |  <span class="b">\</span>    <span class="b">\</span>    <span class="g">—</span>    <span class="y">/</span>    <span class="y">/</span>
+    2 |  <span class="b">\</span>    <span class="b">\</span>    <span class="g">—</span>    <span class="y">/</span>    <span class="y">/</span>
+    1 |  <span class="b">\</span>    <span class="b">\</span>    <span class="g">—</span>    <span class="y">/</span>    <span class="y">/</span>
+    0 |  <span class="b">\</span>    <span class="b">\</span>    <span class="g">—</span>    <span class="y">/</span>    <span class="y">/</span>
+   −1 |  <span class="b">\</span>    <span class="b">\</span>    <span class="g">—</span>    <span class="y">/</span>    <span class="y">/</span>
+      +---------------------------→ x
+        −2   −1    0    1    2
+
+every COLUMN identical → slope depends on x only
+solutions: the parabola family y = x²/2 + C (valley bottom at x = 0)</div>
+  <ul>
+    <li>Compare: the field for <span class="fml">dy/dx = y</span>. Now slope depends only on y, so <strong>every ROW is identical</strong>: nearly flat segments near y = 0, steep uphill high above the axis, steep downhill far below. Solutions are the y = Ce^x family — hugging the x-axis, then blasting away.</li>
+    <li><strong>Matching a field to its DE</strong> — the detective checklist:
+      <ul>
+        <li><em class="hi">Where are the slopes zero?</em> Set dy/dx = 0 and see which points satisfy it.</li>
+        <li><em class="hi">Where positive? negative?</em> Check a test point or two.</li>
+        <li><em class="hi">Columns identical?</em> → dy/dx depends on x only. <em class="hi">Rows identical?</em> → y only. <em>Neither?</em> → both letters appear (like dy/dx = xy).</li>
+      </ul>
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">6</span> Sketching a particular solution onto a field</h2>
+  <ul>
+    <li>AP task: "sketch the solution through the point (0, 1)." Recipe: put your pencil on the point, then <em class="hi">follow the arrows</em> — go rightward always turning to match the local segments, then come back to the point and follow them leftward too. Never cross segments at a different angle; your curve must be <strong>tangent to every segment it touches</strong>.</li>
+    <li>On the dy/dx = x field above, starting at (0, 1): flat at first, curving up to the right, and (going left) curving up to the left — the parabola <span class="fml">y = x²/2 + 1</span>. The field knew the answer before the algebra did.</li>
+    <li>One field, many starting points, many curves — that's the +C family drawn as a picture.</li>
+  </ul>
+</section>
+
+<div class="qhead">✏️ Exercises — 20 problems (write your answer on paper, then reveal)</div>
+
+<div class="q"><span class="qnum">1.</span><span class="qtag">verify</span>
+  <div class="qtext">Is y = x² + 5 a solution of dy/dx = 2x? Verify by checking both sides.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> verifying means substituting, never solving. Compute the derivative of the proposed function (left side), compute the right side, and compare. If they agree for every x, the function is a solution.</div>
+    <div class="step">Left side: derivative of x² + 5 is 2x + 0 = 2x.</div>
+    <div class="step">Right side: 2x.</div>
+    <div class="step">2x = 2x for all x → the sides match everywhere.</div>
+    <div class="ans">Yes — y = x² + 5 is a solution (the +5 vanishes when differentiating)</div></div>
+</div>
+
+<div class="q"><span class="qnum">2.</span><span class="qtag">verify · y on the right</span>
+  <div class="qtext">Is y = e^(4x) a solution of dy/dx = 4y? Verify.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> when the DE's right side contains y, substitute the entire proposed function in for y. Remember e^x is its own derivative, and the chain rule multiplies by the inner derivative: (e^(4x))′ = 4e^(4x).</div>
+    <div class="step">Left side: derivative of e^(4x) = 4e^(4x).</div>
+    <div class="step">Right side: 4y = 4·e^(4x) = 4e^(4x).</div>
+    <div class="step">Both sides equal 4e^(4x) → match for all x.</div>
+    <div class="ans">Yes — y = e^(4x) solves dy/dx = 4y</div></div>
+</div>
+
+<div class="q"><span class="qnum">3.</span><span class="qtag">verify · a FAIL</span>
+  <div class="qtext">A classmate claims y = x³ is a solution of dy/dx = 3y. Check both sides and show the claim is false.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a proposed solution FAILS if the two sides disagree at even one x. Showing one clean counterexample point (after computing both sides) is a complete disproof.</div>
+    <div class="step">Left side: derivative of x³ is 3x².</div>
+    <div class="step">Right side: 3y = 3x³.</div>
+    <div class="step">Is 3x² = 3x³ for all x? Test x = 2: left = 12, right = 24. Not equal.</div>
+    <div class="step">(They happen to agree at x = 0 and x = 1 — but a solution must work at EVERY x.)</div>
+    <div class="ans">No — 3x² ≠ 3x³ in general, so y = x³ is not a solution</div></div>
+</div>
+
+<div class="q"><span class="qnum">4.</span><span class="qtag">separate &amp; solve</span>
+  <div class="qtext">Solve dy/dx = y by separation of variables. (Give the general solution.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> this is dy/dx = ky with k = 1 — "grows at a rate equal to its size." Separation: sort letters, integrate both sides, one C, then undo the ln with e-both-sides.</div>
+    <div class="step">Sort: dy/y = dx.</div>
+    <div class="step">Integrate: ln|y| = x + C.</div>
+    <div class="step">e both sides: |y| = e^(x+C) = e^C·e^x. Let the constant e^C (with the ± from the absolute value folded in) be C.</div>
+    <div class="step">Verify: (Ce^x)′ = Ce^x = y ✓.</div>
+    <div class="ans">y = Ce^x</div></div>
+</div>
+
+<div class="q"><span class="qnum">5.</span><span class="qtag">separate &amp; solve</span>
+  <div class="qtext">Solve dy/dx = x/y. (General solution — leave it in the form y² = ...)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the flagship. Multiply both sides by y and dx so each letter lives with its own d-letter, integrate, then let C absorb any constant multiples.</div>
+    <div class="step">Sort: y dy = x dx.</div>
+    <div class="step">Integrate: y²/2 = x²/2 + C.</div>
+    <div class="step">Multiply by 2: y² = x² + 2C → rename 2C as C.</div>
+    <div class="step">Verify (implicitly): differentiate y² = x² + C → 2y·dy/dx = 2x → dy/dx = x/y ✓.</div>
+    <div class="ans">y² = x² + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">6.</span><span class="qtag">separate &amp; solve</span>
+  <div class="qtext">Solve dy/dx = (x + 1)/y. (General solution in the form y² = ...)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> same sort-the-letters move — the right side's x-part can be any expression in x; you just integrate it term by term (power rule, Lesson 21 style).</div>
+    <div class="step">Sort: y dy = (x + 1) dx.</div>
+    <div class="step">Integrate: y²/2 = x²/2 + x + C.</div>
+    <div class="step">Multiply by 2: y² = x² + 2x + C (the 2C got renamed).</div>
+    <div class="step">Verify: 2y·dy/dx = 2x + 2 → dy/dx = (x + 1)/y ✓.</div>
+    <div class="ans">y² = x² + 2x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">7.</span><span class="qtag">separate &amp; solve</span>
+  <div class="qtext">Solve dy/dx = x²/y. (Give the answer in the form y² = ...)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the x-side integral is ∫x² dx = x³/3. When you clear the fraction on the y-side, the C absorbs the multiplication — fractions inside C are fine because C is "some constant," whatever its shape.</div>
+    <div class="step">Sort: y dy = x² dx.</div>
+    <div class="step">Integrate: y²/2 = x³/3 + C.</div>
+    <div class="step">Multiply by 2: y² = 2x³/3 + C.</div>
+    <div class="step">Verify: 2y·dy/dx = 2x² → dy/dx = x²/y ✓.</div>
+    <div class="ans">y² = 2x³/3 + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">8.</span><span class="qtag">separate &amp; solve · u-sub echo</span>
+  <div class="qtext">Solve dy/dx = 2xy. (General solution, solved for y.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the right side is a PRODUCT of an x-part and a y-part — that's exactly when separation works. After integrating you'll need e-both-sides, and notice the answer echoes the u-sub fact that (e^(x²))′ = 2x·e^(x²).</div>
+    <div class="step">Sort: dy/y = 2x dx.</div>
+    <div class="step">Integrate: ln|y| = x² + C.</div>
+    <div class="step">e both sides: y = e^(x² + C) = e^C·e^(x²) → y = Ce^(x²).</div>
+    <div class="step">Verify: (Ce^(x²))′ = Ce^(x²)·2x = 2x·y ✓.</div>
+    <div class="ans">y = Ce^(x²)</div></div>
+</div>
+
+<div class="q"><span class="qnum">9.</span><span class="qtag">separate &amp; solve · neat</span>
+  <div class="qtext">Solve dy/dx = y/x, and simplify the answer as far as you can. (It comes out surprisingly clean.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> both sides become logarithms. Then use the log rule ln A + ln B = ln(AB): a "+ constant" attached to a ln can be rewritten as multiplying INSIDE the ln — which is how the constant ends up as a plain multiplier.</div>
+    <div class="step">Sort: dy/y = dx/x.</div>
+    <div class="step">Integrate: ln|y| = ln|x| + C.</div>
+    <div class="step">e both sides: |y| = e^C·|x| → y = Cx (constant absorbs the sign).</div>
+    <div class="step">Verify: left side (Cx)′ = C; right side y/x = Cx/x = C ✓. Straight lines through the origin!</div>
+    <div class="ans">y = Cx — the solution family is all lines through the origin</div></div>
+</div>
+
+<div class="q"><span class="qnum">10.</span><span class="qtag">separate &amp; solve · circles</span>
+  <div class="qtext">Solve dy/dx = −x/y. What familiar shapes are the solution curves?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> not every solution family is a stack of function graphs. Here the answer is an implicit equation — and x² + y² = C is the equation of a circle centered at the origin with radius √C.</div>
+    <div class="step">Sort: y dy = −x dx.</div>
+    <div class="step">Integrate: y²/2 = −x²/2 + C.</div>
+    <div class="step">Multiply by 2 and move x over: x² + y² = C.</div>
+    <div class="step">Verify: differentiate x² + y² = C → 2x + 2y·dy/dx = 0 → dy/dx = −x/y ✓.</div>
+    <div class="ans">x² + y² = C — the solutions are circles centered at the origin</div></div>
+</div>
+
+<div class="q"><span class="qnum">11.</span><span class="qtag">initial condition · choose the root</span>
+  <div class="qtext">Solve dy/dx = x/y with the initial condition y(0) = −2. Give y as an explicit function of x, and explain which square root you chose and why.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> after finding y² = (stuff), solving for y forces a ± choice. The initial condition breaks the tie: pick the sign that matches the given point. Here y(0) = −2 is NEGATIVE, so the minus root is the right one.</div>
+    <div class="step">General solution (exercise 5): y² = x² + C.</div>
+    <div class="step">Plug in (0, −2): (−2)² = 0 + C → C = 4 → y² = x² + 4.</div>
+    <div class="step">y = ±√(x² + 4). Since y(0) = −2 &lt; 0, choose the minus root.</div>
+    <div class="step">Verify: y = −√(x² + 4) → dy/dx = −x/√(x² + 4) = x/(−√(x² + 4)) = x/y ✓, and y(0) = −√4 = −2 ✓. Defined for all x (x² + 4 is never negative).</div>
+    <div class="ans">y = −√(x² + 4), the negative root because y(0) = −2 &lt; 0; defined for all x</div></div>
+</div>
+
+<div class="q"><span class="qnum">12.</span><span class="qtag">initial condition</span>
+  <div class="qtext">Solve dy/dx = 2xy with y(0) = 5.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> once you have the general solution with its C out front, an initial condition at x = 0 is especially friendly: e^0 = 1, so C is simply the starting value.</div>
+    <div class="step">General solution (exercise 8): y = Ce^(x²).</div>
+    <div class="step">Plug in (0, 5): 5 = C·e^0 = C·1 → C = 5.</div>
+    <div class="step">Verify: y = 5e^(x²) → dy/dx = 5e^(x²)·2x = 2x·y ✓, and y(0) = 5·1 = 5 ✓.</div>
+    <div class="ans">y = 5e^(x²)</div></div>
+</div>
+
+<div class="q"><span class="qnum">13.</span><span class="qtag">slope field · read the rows</span>
+  <div class="qtext">In a certain slope field, all the segments in any single ROW are identical — slopes never change as you slide left or right. What does that tell you about the differential equation? Give one example DE that would make such a field.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a row of a slope field holds y fixed and lets x vary. If nothing changes along a row, then x has no influence on the slope — the formula for dy/dx cannot contain x.</div>
+    <div class="step">Identical rows → the slope depends only on y (moving in the x-direction changes nothing).</div>
+    <div class="step">So the DE has the form dy/dx = (an expression in y alone).</div>
+    <div class="step">Example: dy/dx = y (flat along y = 0, steeper as |y| grows). Any y-only DE like dy/dx = y − 3 or dy/dx = y² also qualifies.</div>
+    <div class="ans">dy/dx depends on y only — e.g. dy/dx = y</div></div>
+</div>
+
+<div class="q"><span class="qnum">14.</span><span class="qtag">where are slopes zero?</span>
+  <div class="qtext">For the differential equation dy/dx = x(y − 2), describe ALL the points in the plane where the slope field shows flat (zero-slope) segments. What is special about the horizontal line y = 2?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> flat segments live where dy/dx = 0. A product is zero when either factor is zero — so set each factor to 0 separately. A whole line of zero slopes that a solution can LIVE on is called an equilibrium solution.</div>
+    <div class="step">x(y − 2) = 0 when x = 0 (the entire y-axis) or y = 2 (the entire horizontal line).</div>
+    <div class="step">So flat segments appear along the y-axis and along the line y = 2 — a big "+" of flatness.</div>
+    <div class="step">Special: the constant function y = 2 is itself a solution! Check: left side (2)′ = 0; right side x(2 − 2) = 0 ✓. A solution that starts on that line stays on it forever.</div>
+    <div class="ans">Slopes are zero along x = 0 and y = 2; y = 2 is an equilibrium solution of the DE</div></div>
+</div>
+
+<div class="q"><span class="qnum">15.</span><span class="qtag">reproduce the classic</span>
+  <div class="qtext">From scratch, with every step shown, solve dy/dx = ky (k a constant) and explain where the formula y = Ce^(kx) comes from — including what happened to the absolute value and to e^C.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> this derivation is worth owning cold — it is THE bridge between "rate proportional to size" and "exponential function," and Lesson 38 uses it constantly. The key integral is ∫dy/y = ln|y|.</div>
+    <div class="step">Sort the letters: dy/y = k dx.</div>
+    <div class="step">Integrate both sides: ln|y| = kx + C₁ (one constant).</div>
+    <div class="step">Make both sides an exponent of e: |y| = e^(kx + C₁) = e^(C₁)·e^(kx).</div>
+    <div class="step">e^(C₁) is a positive constant; removing the absolute value multiplies by ±1. Bundle "±e^(C₁)" into a single new constant C (this is C shape-shifting — it eats exponentials and signs alike).</div>
+    <div class="step">Result: y = Ce^(kx). Verify: (Ce^(kx))′ = kCe^(kx) = k·y ✓. Bonus: setting x = 0 gives y(0) = C — the constant is the starting value.</div>
+    <div class="ans">y = Ce^(kx), where C = ±e^(C₁) is the (renamed) constant — and C = y(0)</div></div>
+</div>
+
+<div class="q"><span class="qnum">16.</span><span class="qtag">spot the error</span>
+  <div class="qtext">A student solves dy/dx = x/y like this: "y dy = x dx → y²/2 + C₁ = x²/2 + C₂, and since there are two constants I can't simplify further — the answer must keep both C₁ and C₂." Explain the error and fix it.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> each side of an integration honestly does produce its own constant — the student's algebra isn't false. The error is stopping there: two unknown constants sitting on opposite sides of "=" always collapse into ONE.</div>
+    <div class="step">Subtract C₁ from both sides: y²/2 = x²/2 + (C₂ − C₁).</div>
+    <div class="step">C₂ − C₁ is one unknown constant — a single number we don't know. Rename it C.</div>
+    <div class="step">So y²/2 = x²/2 + C, i.e. y² = x² + C — exactly the one-constant answer. Keeping two letters pretends the equation carries two independent unknowns when it only carries one.</div>
+    <div class="ans">The two constants merge: C = C₂ − C₁ — always write just one C</div></div>
+</div>
+
+<div class="q"><span class="qnum">17.</span><span class="qtag">spot the error · non-separable!</span>
+  <div class="qtext">Another student tries to solve dy/dx = x + y by separation: "dy/y = (x/y + 1) dx... hmm, or maybe dy = (x + y) dx..." Explain why NO amount of algebra will separate this DE, and state the test for recognizing a separable equation.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> separation requires writing dy/dx = (x-stuff) × (y-stuff) — a pure PRODUCT. A sum x + y is welded together: dividing by y drags a y into the x-territory (x/y), dividing by x drags an x into the y-territory. Recognizing non-separable equations is itself an AP skill.</div>
+    <div class="step">Try it: dividing both sides by y gives (1/y)dy/dx = x/y + 1 — the right side still mixes x and y. Every other division fails the same way.</div>
+    <div class="step">Test: can you factor the right side as f(x)·g(y)? For x + y: no factoring of a sum into an x-only times a y-only piece exists (if x + y = f(x)g(y), setting x = 0 forces g(y) = y/f(0) and setting y = 0 forces f(x) = x/g(0), and (x/g(0))·(y/f(0)) = xy·constant ≠ x + y).</div>
+    <div class="step">Compare: dy/dx = xy separates (f = x, g = y); dy/dx = x + y does not. (It CAN be solved — just with different tools, beyond this course.)</div>
+    <div class="ans">Not separable: x + y cannot be factored into (x-only)·(y-only); separation needs a product</div></div>
+</div>
+
+<div class="q"><span class="qnum">18.</span><span class="qtag">sketch through a point</span>
+  <div class="qtext">Using the slope field for dy/dx = x (section 5), a solution curve is drawn through the point (0, 1). Describe the curve's shape in words: what does it do at x = 0, to the right, and to the left? Then find its equation and check your description.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> sketching on a field = starting at the point and staying tangent to every little segment you pass. The field for dy/dx = x is flat on the y-axis, uphill to the right, downhill-shaped (mirror image) to the left.</div>
+    <div class="step">In words: at (0, 1) the curve is momentarily FLAT (slope 0 there). Moving right it bends upward, climbing ever more steeply. Moving left it also rises (going leftward means the downhill segments lift the curve up as you look backward). It's a valley — symmetric about the y-axis, bottom at (0, 1).</div>
+    <div class="step">Equation: dy/dx = x → y = x²/2 + C; through (0, 1): 1 = 0 + C → C = 1.</div>
+    <div class="step">Verify: y = x²/2 + 1 has derivative x ✓, passes through (0, 1) ✓, minimum at x = 0, symmetric — matches the description.</div>
+    <div class="ans">An upward parabola with its lowest point at (0, 1): y = x²/2 + 1</div></div>
+</div>
+
+<div class="q"><span class="qnum">19.</span><span class="qtag">match field to DE</span>
+  <div class="qtext">Three slope fields are described. Match each to one of these DEs — dy/dx = x, dy/dx = y, dy/dx = xy — and justify each match.
+  (a) Flat segments along BOTH axes; slopes positive in the top-right and bottom-left regions, negative in the other two.
+  (b) Every column identical; flat segments only along the y-axis (the vertical line x = 0).
+  (c) Every row identical; flat segments only along the x-axis (the horizontal line y = 0).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> run the detective checklist: where are slopes zero, what's the sign in each region, and do columns/rows repeat? xy = 0 on both axes and follows the sign rules of multiplication (+·+ = +, +·− = −).</div>
+    <div class="step">(a) Zero on both axes and sign = sign of the product → dy/dx = xy (top-right: x&gt;0, y&gt;0 → positive; top-left: x&lt;0, y&gt;0 → negative ✓).</div>
+    <div class="step">(b) Columns identical → depends on x only; zero exactly at x = 0 → dy/dx = x.</div>
+    <div class="step">(c) Rows identical → depends on y only; zero exactly at y = 0 → dy/dx = y.</div>
+    <div class="ans">(a) dy/dx = xy &nbsp; (b) dy/dx = x &nbsp; (c) dy/dx = y</div></div>
+</div>
+
+<div class="q"><span class="qnum">20.</span><span class="qtag">challenge · AP-style multi-part</span>
+  <div class="qtext">Consider dy/dx = −x/y.
+  (a) Describe the slope field: where are segments flat? where are slopes undefined? what are the slopes' signs in the four quadrants?
+  (b) Find the particular solution with y(0) = 5, solved explicitly for y.
+  (c) State the x-values for which your solution is defined, and explain the limitation in one sentence.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a full AP-style trio — field analysis, solve with an initial condition (choose the root!), and domain. From exercise 10 the family is the circles x² + y² = C, and a function can only be the TOP or BOTTOM half of a circle, never both.</div>
+    <div class="step">(a) Flat where −x/y = 0 → x = 0 (the y-axis, except the origin region). Undefined where y = 0 (the x-axis — vertical tangents there). Signs: quadrant I (x&gt;0, y&gt;0) → negative; II (x&lt;0, y&gt;0) → positive; III → negative; IV → positive. The segments swirl around the origin.</div>
+    <div class="step">(b) y dy = −x dx → y²/2 = −x²/2 + C → x² + y² = C. Through (0, 5): 0 + 25 = C → x² + y² = 25. Solve: y = ±√(25 − x²); y(0) = 5 &gt; 0 picks the + root: y = √(25 − x²).</div>
+    <div class="step">Verify: dy/dx = −2x/(2√(25 − x²)) = −x/√(25 − x²) = −x/y ✓ and y(0) = √25 = 5 ✓.</div>
+    <div class="step">(c) Need 25 − x² &gt; 0 (strictly, so y ≠ 0 keeps dy/dx defined): −5 &lt; x &lt; 5. The solution is only the TOP half of the circle of radius 5 — at x = ±5 the circle turns vertical and y would hit 0, where the DE breaks down.</div>
+    <div class="ans">(a) flat on x = 0, undefined on y = 0, signs −, +, −, + in quadrants I–IV &nbsp; (b) y = √(25 − x²) &nbsp; (c) −5 &lt; x &lt; 5</div></div>
+</div>
+
+<footer>Lesson 37 of 40 · Intuitive Integration · next: <a href="Lesson38.html">Lesson 38 — Differential Equations II: Growth, Decay &amp; Logistic</a></footer>
+
+</div>
+<script>
+document.querySelectorAll('.q').forEach(q=>{
+  const btn=q.querySelector('.revealbtn'), sol=q.querySelector('.sol');
+  btn.addEventListener('click',()=>{ sol.classList.add('show'); btn.textContent='Solution shown'; btn.disabled=true; btn.style.opacity=.6; });
+});
+</script>
+</body>
+</html>

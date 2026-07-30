@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Lesson 38 Answer Key — Growth, Decay &amp; Logistic</title>
+<style>
+  @page { size: letter; margin: 0.75in; }
+  *{box-sizing:border-box;}
+  body{font-family:Georgia,"Times New Roman",serif;color:#111;margin:0;font-size:11.5pt;line-height:1.5;}
+  .head{border-bottom:3px solid #b03a2e;padding-bottom:8px;margin-bottom:14px;}
+  .head h1{font-family:Helvetica,Arial,sans-serif;font-size:16pt;margin:0 0 2px;color:#b03a2e;}
+  .head p{margin:0;font-size:10.5pt;color:#333;}
+  .q{margin:0 0 12px;page-break-inside:avoid;}
+  .q .txt{margin-bottom:4px;}
+  .q b.n{color:#b03a2e;font-family:Helvetica,Arial,sans-serif;}
+  .a{background:#f7f7f7;border-left:4px solid #1e8449;border-radius:4px;padding:7px 12px;font-size:11pt;}
+  .a b{color:#145a32;}
+  .ans{color:#145a32;font-weight:bold;}
+  .fml{font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.92em;color:#145a32;background:#eef7f1;border-radius:3px;padding:0 3px;white-space:nowrap;}
+</style>
+</head>
+<body>
+
+<div class="head">
+  <h1>ANSWER KEY — Integration Lesson 38 Test: Growth, Decay &amp; Logistic</h1>
+  <p>For the grader · full working shown · give credit for correct method with small arithmetic slips</p>
+</div>
+
+<div class="q"><div class="txt"><b class="n">1.</b> A colony of yeast cells, N, grows at a rate proportional to the number of cells present. Write the differential equation and its solution in terms of N<sub>0</sub>.</div>
+<div class="a"><b>Work:</b> "rate" → dN/dt; "proportional to the number present" → = kN. So <span class="fml">dN/dt = kN</span> with k &gt; 0. Solution (Lesson 37): N = Ce<sup>kt</sup>, and at t = 0, N(0) = C·e<sup>0</sup> = C, so C = N<sub>0</sub>. <span class="ans">Answer: dN/dt = kN (k &gt; 0), with solution N = N<sub>0</sub>e<sup>kt</sup>.</span> <b>Grader note:</b> accept dN/dt = kN without stating k &gt; 0; the constant must be the starting amount, not an unnamed C.</div></div>
+
+<div class="q"><div class="txt"><b class="n">2.</b> A loaf of bread at temperature T sits in a 15° kitchen and cools at a rate proportional to how much hotter it is than the kitchen. Write the DE and explain the minus sign.</div>
+<div class="a"><b>Work:</b> the gap above room temperature is T − 15. Newton's Law of Cooling: <span class="fml">dT/dt = −k(T − 15)</span>, k &gt; 0. Sign check: at T = 180 the right side is −165k &lt; 0, so the bread is cooling ✓; if T were 10 (colder than the kitchen) the right side is +5k &gt; 0, warming toward 15 ✓. <span class="ans">Answer: dT/dt = −k(T − 15), k &gt; 0 — the minus sign makes a positive gap produce a falling temperature.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">3.</b> 250 lily pads, doubling every 5 days. (a) Formula for P(t) in base 2. (b) Pads after 20 days?</div>
+<div class="a"><b>Work:</b> (a) doubling every d = 5 days → <span class="fml">P = 250·2^(t/5)</span> (the exponent t/5 counts doublings). (b) t = 20 → 20/5 = 4 doublings → P = 250·2<sup>4</sup> = 250·16 = 4000. Ladder check: 250 → 500 (5 d) → 1000 (10 d) → 2000 (15 d) → 4000 (20 d) ✓. <span class="ans">Answer: (a) P = 250·2^(t/5) &nbsp; (b) 4000 lily pads.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">4.</b> Medicine with an 8-hour half-life; 640 mg dose. How much remains after 24 hours?</div>
+<div class="a"><b>Work:</b> number of half-lives = 24/8 = 3. Remaining = 640·(1/2)<sup>3</sup> = 640/8 = 80. Ladder check: 640 → 320 (8 h) → 160 (16 h) → 80 (24 h) ✓. <span class="ans">Answer: 80 mg.</span> <b>Grader note:</b> a common slip is dividing by 3 (640/3) instead of halving three times.</div></div>
+
+<div class="q"><div class="txt"><b class="n">5.</b> A culture grows exponentially from 400 to 3200 cells in 12 hours. Find the doubling time and check it.</div>
+<div class="a"><b>Work:</b> growth factor = 3200/400 = 8 = 2<sup>3</sup>, so 3 doublings happened in 12 hours → doubling time = 12/3 = 4 hours. Model: <span class="fml">P = 400·2^(t/4)</span>. Check by substituting t = 12: 400·2<sup>12/4</sup> = 400·2<sup>3</sup> = 400·8 = 3200 ✓. (Base-e version if wanted: k = ln 2/4 ≈ 0.173 per hour.) <span class="ans">Answer: doubling time = 4 hours.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">6.</b> <span class="fml">P = 60·2^(t/4)</span> (t in hours). When does P reach 1920?</div>
+<div class="a"><b>Work:</b> isolate the exponential FIRST: 60·2^(t/4) = 1920 → 2^(t/4) = 32. Recognize 32 = 2<sup>5</sup> → t/4 = 5 → t = 20. (ln route: (t/4)·ln 2 = ln 32 = 5 ln 2 → t/4 = 5 → t = 20, same.) Check: 60·2<sup>20/4</sup> = 60·32 = 1920 ✓. <span class="ans">Answer: t = 20 hours.</span> <b>Grader note:</b> taking ln before dividing by 60 is messy but not wrong; penalize only a wrong final answer.</div></div>
+
+<div class="q"><div class="txt"><b class="n">7.</b> (a) Rewrite N = 250·2^(t/5) as N = 250·e<sup>kt</sup>. (b) For <span class="fml">y = 80·e^(−(ln 2/7)t)</span> (t in days), find the half-life and the amount left after 21 days.</div>
+<div class="a"><b>Work:</b> (a) since 2 = e<sup>ln 2</sup>, 2^(t/5) = (e<sup>ln 2</sup>)^(t/5) = e^((ln 2/5)t), so k = ln 2/5 ≈ 0.693/5 ≈ 0.1386 per day. Check: N(5) = 250e<sup>ln 2</sup> = 250·2 = 500 — doubled in 5 days ✓.<br>
+(b) Decay with k = −ln 2/h means h = half-life, so h = 7 days (rule: half-life = ln 2 ÷ |k| = ln 2 ÷ (ln 2/7) = 7). Then 21 days = 3 half-lives → y = 80·(1/2)<sup>3</sup> = 10. Check with the exponential: 80·e^(−(ln 2/7)·21) = 80·e^(−3 ln 2) = 80·2<sup>−3</sup> = 80/8 = 10 ✓. <span class="ans">Answer: (a) k = ln 2/5 ≈ 0.1386 &nbsp; (b) half-life 7 days; 10 grams remain.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">8.</b> Roast at 180° in a 20° kitchen; 100° after 12 minutes. (a) Half-life of the gap. (b) Temperature after 36 minutes. (c) Will it ever be exactly 20°?</div>
+<div class="a"><b>Work:</b> (a) starting gap = 180 − 20 = 160°. After 12 min the gap is 100 − 20 = 80° — exactly half of 160. So the GAP's half-life is 12 minutes (i.e. e^(−12k) = 1/2).<br>
+(b) 36 min = 36/12 = 3 gap-halvings: 160 → 80 → 40 → 20. Temperature = room + gap = 20 + 20 = 40°. Formula check: T = 20 + 160·(1/2)<sup>36/12</sup> = 20 + 160/8 = 20 + 20 = 40 ✓.<br>
+(c) T = 20 exactly would need 160e^(−kt) = 0, i.e. e^(−kt) = 0 — impossible, since e raised to any power is positive. So T &gt; 20 for every finite t, but lim T = 20 + 160·0 = 20 as t → ∞: the roast approaches 20° as a horizontal asymptote. <span class="ans">Answer: (a) 12 minutes &nbsp; (b) 40° &nbsp; (c) No — it approaches 20° but never reaches it.</span><br>
+<b>Grader note (classic error):</b> students apply the half-life to the TEMPERATURE instead of the gap: 180 → 90 (12 min) → 45 → 22.5. That is wrong, and absurd — continued, it drops below room temperature toward 0°. The half-life belongs to u = T − 20 only; add the 20 back at the very end.</div></div>
+
+<div class="q"><div class="txt"><b class="n">9.</b> <span class="fml">dP/dt = 0.3P(1 − P/900)</span>, P(0) = 150. (a) Carrying capacity? (b) lim P? (c) Fastest-growth population and dP/dt there? (d) dP/dt at P = 300?</div>
+<div class="a"><b>Work:</b> match to kP(1 − P/L): k = 0.3, L = 900.<br>
+(a) Carrying capacity L = 900 rabbits. (At P = 900 the brake is 1 − 1 = 0, so growth stops exactly there.)<br>
+(b) P starts at 150, below the ceiling, so it climbs the S-curve: lim P = 900 rabbits as t → ∞.<br>
+(c) Fastest growth at P = L/2 = 450 (the parabola kP − kP²/L peaks midway between its roots 0 and L). There dP/dt = 0.3·450·(1 − 450/900) = 135·(1/2) = 67.5 rabbits per year.<br>
+(d) dP/dt = 0.3·300·(1 − 300/900) = 90·(2/3) = 60 rabbits per year — less than 67.5, as it must be, since 450 is the peak ✓. <span class="ans">Answer: (a) 900 &nbsp; (b) 900 &nbsp; (c) P = 450, dP/dt = 67.5 rabbits/year &nbsp; (d) 60 rabbits/year.</span><br>
+<b>Grader note (classic error):</b> do not accept 900 for part (c) — the carrying capacity is where growth STOPS; half of it is where growth is fastest. Mixing up L and L/2 is the single most common logistic mistake.</div></div>
+
+<div class="q"><div class="txt"><b class="n">10.</b> Valley supports at most 4000 elk, logistic with k = 0.25/year. (a) DE. (b) Fastest herd size and rate. (c) Find the student's error. (d) 5000 elk released — long run?</div>
+<div class="a"><b>Work:</b> (a) "can support at most 4000" is the carrying capacity: <span class="fml">dP/dt = 0.25P(1 − P/4000)</span>.<br>
+(b) Fastest at P = L/2 = 2000 elk; there dP/dt = 0.25·2000·(1 − 2000/4000) = 500·(1/2) = 250 elk per year. (Symmetry check: at P = 1000, 0.25·1000·(3/4) = 187.5, and at P = 3000, 0.25·3000·(1/4) = 187.5 — equal on both sides of the peak ✓.)<br>
+(c) The error: more elk does NOT mean faster growth, because the brake factor (1 − P/4000) shrinks as P rises. At P = 4000 the brake is exactly 0, so dP/dt = 0.25·4000·0 = 0 — growth is at its SLOWEST (stopped), not fastest. The peak is at P = 2000.<br>
+(d) At P = 5000 the brake is 1 − 5000/4000 = −0.25, so dP/dt = 0.25·5000·(−0.25) = −312.5 elk/year: the herd shrinks. It keeps shrinking while P &gt; 4000 and levels off at the carrying capacity, so P → 4000. <span class="ans">Answer: (a) dP/dt = 0.25P(1 − P/4000) &nbsp; (b) P = 2000, 250 elk/year &nbsp; (c) at P = 4000 the brake is 0, so growth stops; fastest is at L/2 = 2000 &nbsp; (d) the herd declines toward 4000 elk.</span><br>
+<b>Grader note:</b> in (d) full credit requires the limit 4000 (not 0 and not "keeps falling forever"); the population approaches the carrying capacity from above.</div></div>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Lesson 38 Test — Growth, Decay &amp; Logistic</title>
+<style>
+  @page { size: letter; margin: 0.75in; }
+  *{box-sizing:border-box;}
+  body{font-family:Georgia,"Times New Roman",serif;color:#111;margin:0;font-size:12pt;line-height:1.45;}
+  .head{border-bottom:3px solid #186a3b;padding-bottom:8px;margin-bottom:14px;}
+  .head h1{font-family:Helvetica,Arial,sans-serif;font-size:16pt;margin:0 0 2px;color:#186a3b;}
+  .head p{margin:0;font-size:10.5pt;color:#333;}
+  .nameline{margin-top:8px;font-size:11pt;font-family:Helvetica,Arial,sans-serif;}
+  .q{margin:0 0 10px;page-break-inside:avoid;}
+  .q .txt{margin-bottom:6px;}
+  .q b.n{color:#186a3b;font-family:Helvetica,Arial,sans-serif;}
+  .box{border:1px solid #999;border-radius:6px;height:1.55in;background:
+    repeating-linear-gradient(to bottom,#fff,#fff 0.3in,#e8e8e8 0.3in,#e8e8e8 calc(0.3in + 1px));}
+  .pts{float:right;font-size:9.5pt;color:#666;font-family:Helvetica,Arial,sans-serif;}
+  .fml{font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.92em;color:#186a3b;background:#eef7f1;border-radius:3px;padding:0 3px;white-space:nowrap;}
+</style>
+</head>
+<body>
+
+<div class="head">
+  <h1>Integration — Lesson 38 Test: Growth, Decay &amp; Logistic</h1>
+  <p>10 questions · show your work in the box · calculators allowed · exact forms with ln 2 are fine · every answer needs UNITS</p>
+  <div class="nameline">Name: ______________________________ &nbsp;&nbsp; Date: ______________ &nbsp;&nbsp; Score: ______ / 10</div>
+</div>
+
+<div class="q"><span class="pts">1 pt</span><div class="txt"><b class="n">1.</b> A colony of yeast cells, N, grows at a rate proportional to the number of cells present. Write the differential equation, and write its solution in terms of the starting amount N<sub>0</sub>.</div><div class="box"></div></div>
+
+<div class="q"><span class="pts">1 pt</span><div class="txt"><b class="n">2.</b> A loaf of bread at temperature T sits in a 15° kitchen and cools at a rate proportional to how much hotter it is than the kitchen. Write the differential equation, and explain in one sentence why it needs a minus sign.</div><div class="box"></div></div>
+
+<div class="q"><span class="pts">1 pt</span><div class="txt"><b class="n">3.</b> A patch of lily pads starts with 250 pads and doubles every 5 days. (a) Write a formula for P(t) using base 2, with t in days. (b) How many pads are there after 20 days?</div><div class="box"></div></div>
+
+<div class="q"><span class="pts">1 pt</span><div class="txt"><b class="n">4.</b> A medicine leaves the bloodstream with a half-life of 8 hours. A patient is given a 640 mg dose. How much of the dose remains after 24 hours?</div><div class="box"></div></div>
+
+<div class="q"><span class="pts">1 pt</span><div class="txt"><b class="n">5.</b> A bacteria culture grows exponentially from 400 cells to 3200 cells in 12 hours. Find the doubling time, then check your answer by substituting t = 12 back into your model.</div><div class="box"></div></div>
+
+<div class="q"><span class="pts">1 pt</span><div class="txt"><b class="n">6.</b> A colony follows <span class="fml">P = 60·2^(t/4)</span> with t in hours. At what time does the population reach 1920 cells?</div><div class="box"></div></div>
+
+<div class="q"><span class="pts">1 pt</span><div class="txt"><b class="n">7.</b> (a) Rewrite <span class="fml">N = 250·2^(t/5)</span> in the form <span class="fml">N = 250·e^(kt)</span>: give k exactly, then as a decimal using ln 2 ≈ 0.693. (b) A sample decays according to <span class="fml">y = 80·e^(−(ln 2/7)t)</span> with t in days. What is its half-life, and how much remains after 21 days?</div><div class="box"></div></div>
+
+<div class="q"><span class="pts">1 pt</span><div class="txt"><b class="n">8.</b> A roast comes out of the oven at 180° and is left in a 20° kitchen. After 12 minutes it has cooled to 100°. (a) Find the half-life of the GAP between the roast and the kitchen. (b) Predict the roast's temperature after 36 minutes. (c) Will the roast ever be exactly 20°? Explain using the formula <span class="fml">T = 20 + 160e^(−kt)</span>.</div><div class="box"></div></div>
+
+<div class="q"><span class="pts">1 pt</span><div class="txt"><b class="n">9.</b> A rabbit population satisfies <span class="fml">dP/dt = 0.3P(1 − P/900)</span> with P(0) = 150, t in years. (a) What is the carrying capacity? (b) What is the limit of P as t → ∞? (c) At what population is the herd growing fastest, and what is dP/dt there? (d) What is dP/dt when P = 300?</div><div class="box"></div></div>
+
+<div class="q"><span class="pts">1 pt</span><div class="txt"><b class="n">10.</b> A valley can support at most 4000 elk, and the herd grows logistically with k = 0.25 per year. (a) Write the differential equation. (b) At what herd size does the herd grow fastest, and what is that fastest growth rate? (c) A student says: "The herd grows fastest when it reaches 4000, because that is when there are the most elk." Find the error. (d) If 5000 elk were released into the valley, what does the model predict in the long run?</div><div class="box"></div></div>
+
+</body>
+</html>

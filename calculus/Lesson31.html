@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 31 — Integration by Parts II: Repeats, ln x &amp; Definite</title>
+<style>
+  :root{--accent:#186a3b;--accent2:#239b56;--bg:#f2f7f4;--card:#fff;--ok:#1e8449;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:#1c2833;background:var(--bg);margin:0;padding:0 16px 80px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -16px 20px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  nav{display:flex;gap:10px;margin-bottom:18px;font-size:.9rem;flex-wrap:wrap;}
+  nav a{color:var(--accent);text-decoration:none;font-weight:600;background:#fff;border:1px solid #d5e8dc;border-radius:8px;padding:6px 14px;}
+  nav a:hover{background:#eafaf1;}
+  .goal{background:#fef9e7;border-left:5px solid var(--star);padding:12px 18px;border-radius:8px;margin-bottom:18px;font-size:.95rem;}
+  .goal strong{color:#7d6608;}
+  section{background:var(--card);border-radius:10px;padding:18px 22px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  h2{color:var(--accent);font-size:1.15rem;margin:0 0 10px;}
+  h2 .num{background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;border-radius:6px;padding:2px 9px;margin-right:8px;}
+  ul{margin:8px 0;padding-left:24px;}
+  li{margin-bottom:8px;}
+  strong{color:#145a32;}
+  em.hi{font-style:normal;background:#fef9e7;padding:0 4px;border-radius:3px;}
+  .fml{background:#e9f7ef;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.9em;color:#186a3b;white-space:nowrap;}
+  .ex{background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:.95rem;}
+  .ex b{color:#145a32;}
+  .graph{background:#1b2631;color:#eaeded;border-radius:8px;padding:14px 18px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.82rem;line-height:1.45;overflow-x:auto;margin:10px 0;white-space:pre;}
+  .graph .g{color:#82e0aa;} .graph .y{color:#f7dc6f;} .graph .b{color:#85c1e9;}
+  table.t{border-collapse:collapse;margin:10px 0;font-size:.92rem;}
+  table.t th,table.t td{border:1px solid #cfd8cf;padding:6px 12px;text-align:center;}
+  table.t th{background:var(--accent);color:#fff;font-weight:600;}
+  .qhead{margin:26px 0 8px;color:var(--accent);font-size:1.2rem;border-bottom:2px solid #d4efdf;padding-bottom:6px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid var(--accent2);}
+  .qnum{font-weight:800;color:var(--accent);margin-right:6px;}
+  .qtag{float:right;background:#e9f7ef;color:var(--accent);border-radius:8px;padding:1px 9px;font-size:.68rem;font-weight:700;letter-spacing:.3px;margin-left:8px;}
+  .qtext{font-size:.98rem;margin:4px 0 10px;}
+  .revealbtn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .revealbtn:hover{background:#0e4429;}
+  .sol{display:none;margin-top:12px;background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px;font-size:.93rem;}
+  .sol.show{display:block;}
+  .sol h4{margin:0 0 8px;color:var(--ok);font-size:.9rem;}
+  .sol .ctx{background:#eaf2f8;border-left:4px solid #2e86c1;border-radius:6px;padding:8px 12px;margin:0 0 10px;font-size:.88rem;}
+  .sol .ctx b{color:#1a5276;}
+  .sol .step{margin:6px 0;}
+  .sol .ans{background:#eafaf1;border-radius:6px;padding:6px 12px;margin-top:8px;font-weight:700;color:#145a32;display:inline-block;}
+  footer{text-align:center;color:#85929e;font-size:.85rem;margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Lesson 31 — Integration by Parts II: Repeats, ln x &amp; Definite</h1>
+  <p>When Once Isn't Enough · Intuitive Calculus for a Curious Student · Lesson 31 of 40</p>
+</header>
+
+<nav><a href="Lesson30.html">← Lesson 30</a><a href="index.html">📚 All lessons</a><a href="Lesson32.html">Next: Lesson 32 →</a></nav>
+
+<div class="goal"><strong>🎯 Goal of this lesson:</strong> level up integration by parts. You'll learn to use parts <em>twice in a row</em> (for things like x²eˣ), to crack the famous ∫&nbsp;ln&nbsp;x&nbsp;dx with a sneaky trick, to handle <em>definite</em> integrals with parts, and to use a fast "tabular" shortcut. By the end you'll also have a clear decision guide: parts, or u-substitution?</div>
+
+<section>
+  <h2><span class="num">1</span> Quick recap — the formula and LIATE (from Lesson 30)</h2>
+  <ul>
+    <li>Integration by parts is the <strong>product rule run backwards</strong>. The formula:
+      <div class="ex" style="text-align:center;font-size:1.05rem;"><span class="fml">∫ u dv = uv − ∫ v du</span></div>
+    You split the integrand into two pieces — <span class="fml">u</span> (something you'll <strong>differentiate</strong>) and <span class="fml">dv</span> (something you'll <strong>antidifferentiate</strong>) — and trade your integral for a hopefully easier one, <span class="fml">∫ v du</span>.</li>
+    <li><strong>LIATE</strong> tells you what to pick for <span class="fml">u</span>. Scan the list top to bottom; whatever appears first in your integrand becomes <span class="fml">u</span>:
+      <em class="hi">L</em>ogs (ln&nbsp;x) · <em class="hi">I</em>nverse trig (arctan&nbsp;x) · <em class="hi">A</em>lgebraic (x, x², polynomials) · <em class="hi">T</em>rig (sin&nbsp;x, cos&nbsp;x) · <em class="hi">E</em>xponential (eˣ).</li>
+    <li>Why it works: things near the top of LIATE get <strong>simpler when differentiated</strong> (ln&nbsp;x becomes 1/x; x² becomes 2x), while things near the bottom are <strong>easy to antidifferentiate</strong> (eˣ stays eˣ). Parts wants u to shrink and dv to be tame.</li>
+    <li>Lesson 30's flagship: <span class="fml">∫ x eˣ dx</span>. Pick u = x, dv = eˣ dx → du = dx, v = eˣ → answer <span class="fml">x eˣ − eˣ + C</span>. We'll need this exact result again in a minute!</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">2</span> Parts TWICE — the ∫ x²eˣ dx story</h2>
+  <ul>
+    <li>Try <span class="fml">∫ x² eˣ dx</span>. LIATE: x² is Algebraic, eˣ is Exponential, so <strong>u = x²</strong>, dv = eˣ dx → du = 2x&nbsp;dx, v = eˣ.</li>
+    <li>First pass: <span class="fml">∫ x² eˣ dx = x² eˣ − ∫ eˣ · 2x dx = x² eˣ − 2 ∫ x eˣ dx</span>.</li>
+    <li>Hmm — <span class="fml">∫ x eˣ dx</span> is not instant… but it IS easier: the power dropped from x² to x. And we already know it needs parts <strong>again</strong>. That's fine! Parts is allowed to be repeated.</li>
+    <li>Second pass (Lesson 30's result, or redo it: u = x, dv = eˣ dx): <span class="fml">∫ x eˣ dx = x eˣ − eˣ</span>.</li>
+    <li>Plug it back in, distributing the −2 <strong>carefully over both terms</strong>:
+      <div class="ex"><span class="fml">∫ x² eˣ dx = x² eˣ − 2(x eˣ − eˣ) + C = x² eˣ − 2x eˣ + 2eˣ + C</span></div></li>
+    <li><strong>Check by differentiating</strong> (always!): d/dx of <span class="fml">x²eˣ − 2xeˣ + 2eˣ</span> = (2x&nbsp;eˣ + x²eˣ) − (2eˣ + 2x&nbsp;eˣ) + 2eˣ = x²eˣ. The 2xeˣ terms cancel, the 2eˣ terms cancel — only x²eˣ survives ✓.</li>
+    <li><em class="hi">The pattern:</em> each pass of parts knocks the polynomial's power down by one. x² needs 2 passes, x³ would need 3. The polynomial is being "differentiated to death" while the eˣ (or sin, cos) just goes along for the ride.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">3</span> The sneaky classic — ∫ ln x dx</h2>
+  <ul>
+    <li>Parts is for <em>products</em>… but <span class="fml">∫ ln x dx</span> has no visible product. It's just ln&nbsp;x sitting alone. Are we stuck?</li>
+    <li>The trick: there IS a product hiding in plain sight — <span class="fml">ln x · 1</span>. Write <strong>dv = dx</strong> (that's the "times 1" part) and let u be the whole ln&nbsp;x:</li>
+    <li><span class="fml">u = ln x</span>, <span class="fml">dv = dx</span> → <span class="fml">du = (1/x) dx</span>, <span class="fml">v = x</span>.</li>
+    <li>Now the formula:
+      <div class="ex"><span class="fml">∫ ln x dx = x ln x − ∫ x · (1/x) dx = x ln x − ∫ 1 dx = x ln x − x + C</span><br>
+      The magic: inside the new integral, <b>x and 1/x cancel</b> — the hard log disappears and we're left integrating the number 1.</div></li>
+    <li><strong>Check it:</strong> d/dx of <span class="fml">x ln x − x</span> = (1 · ln x + x · 1/x) − 1 = ln x + 1 − 1 = <span class="fml">ln x</span> ✓ (product rule on x&nbsp;ln&nbsp;x, and the +1 and −1 cancel perfectly).</li>
+    <li>This "dv = dx" move works for any <strong>lone awkward function</strong> whose derivative is nicer than itself — ln&nbsp;x and arctan&nbsp;x are the two famous customers.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">4</span> Definite integration by parts</h2>
+  <ul>
+    <li>For a definite integral, everything gets limits — including the uv part:
+      <div class="ex" style="text-align:center;font-size:1.02rem;"><span class="fml">∫<sub>a</sub><sup>b</sup> u dv = [uv]<sub>a</sub><sup>b</sup> − ∫<sub>a</sub><sup>b</sup> v du</span></div>
+      <span class="fml">[uv]<sub>a</sub><sup>b</sup></span> means: plug b into uv, plug a into uv, subtract — exactly like FTC evaluation.</li>
+    <li><strong>Flagship:</strong> the area under y = ln&nbsp;x from 1 to e. Using Section 3's antiderivative:
+      <div class="ex"><span class="fml">∫<sub>1</sub><sup>e</sup> ln x dx = [x ln x − x]<sub>1</sub><sup>e</sup> = (e·ln e − e) − (1·ln 1 − 1) = (e·1 − e) − (0 − 1) = 0 − (−1) = 1</span><br>
+      (Remember: <b>ln e = 1</b> and <b>ln 1 = 0</b>.) The area under ln from 1 to e is <b>exactly 1</b> — a shockingly clean answer.</div></li>
+  </ul>
+  <div class="graph">y
+  1 |                          <span class="y">_____.</span>  y = ln x
+    |                <span class="y">____----</span><span class="g">▒▒▒▒▒▒</span><span class="y">|</span>
+    |          <span class="y">__---</span><span class="g">▒▒▒▒▒▒▒▒▒▒▒▒▒</span><span class="y">|</span>
+    |       <span class="y">_-</span><span class="g">▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒</span><span class="y">|</span>   <span class="b">shaded area = exactly 1</span>
+  0 +------<span class="y">*</span>--------------------+-----→ x
+    0      1                    e ≈ 2.718</div>
+</section>
+
+<section>
+  <h2><span class="num">5</span> The tabular shortcut (optional, but fun)</h2>
+  <ul>
+    <li>When the integrand is <strong>polynomial × eˣ (or sin/cos)</strong>, repeated parts follows a rhythm you can put in a table. Column D: <strong>differentiate</strong> the polynomial down to 0. Column I: <strong>antidifferentiate</strong> the other factor the same number of times. Signs alternate +, −, +, −…</li>
+  </ul>
+  <table class="t">
+    <tr><th>sign</th><th>D (differentiate)</th><th>I (antidifferentiate)</th></tr>
+    <tr><td>+</td><td>x²</td><td>eˣ</td></tr>
+    <tr><td>−</td><td>2x</td><td>eˣ</td></tr>
+    <tr><td>+</td><td>2</td><td>eˣ</td></tr>
+    <tr><td></td><td>0 (stop!)</td><td>eˣ</td></tr>
+  </table>
+  <ul>
+    <li>Now multiply <strong>diagonally</strong> (each D entry times the I entry one row lower), attaching the signs:
+      <div class="ex"><span class="fml">∫ x² eˣ dx = + x²·eˣ − 2x·eˣ + 2·eˣ + C</span> — the same answer as Section 2, in three lines!</div></li>
+    <li>It's not a new method — it's parts-twice with the bookkeeping pre-organized. Use it whenever the polynomial will eventually differentiate to 0.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">6</span> Decision guide — which tool do I grab?</h2>
+  <table class="t">
+    <tr><th>What you see</th><th>Tool</th><th>Example</th></tr>
+    <tr><td>a factor's "fingerprint" du is present</td><td><strong>u-sub</strong> (check this FIRST — it's cheaper)</td><td>∫ x e<sup>x²</sup> dx (that x is du's fingerprint)</td></tr>
+    <tr><td>polynomial × eˣ / sin / cos, no fingerprint</td><td><strong>parts</strong> (LIATE; repeat as needed)</td><td>∫ x² cos x dx</td></tr>
+    <tr><td>lone ln x or arctan x</td><td><strong>parts with dv = dx</strong></td><td>∫ ln x dx</td></tr>
+  </table>
+  <ul>
+    <li><em class="hi">Always check u-sub first.</em> ∫&nbsp;x&nbsp;e<sup>x²</sup>&nbsp;dx <strong>looks</strong> like a parts problem (x times an exponential) but it's really u-sub: with u = x², du = 2x&nbsp;dx is sitting right there. Parts would make it <em>worse</em>. The question to ask: "is one factor (almost) the derivative of something inside the other factor?"</li>
+  </ul>
+</section>
+
+<div class="qhead">✏️ Exercises — 20 problems (write your answer on paper, then reveal)</div>
+
+<div class="q"><span class="qnum">1.</span><span class="qtag">warm-up · the formula</span>
+  <div class="qtext">Write the integration by parts formula from memory, then use it with u = x and dv = eˣ dx to find ∫ x eˣ dx.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the parts formula ∫ u dv = uv − ∫ v du comes from running the product rule backwards: since (uv)′ = u′v + uv′, integrating both sides and rearranging trades one product-integral for another. You pick u to differentiate and dv to antidifferentiate.</div>
+    <div class="step">Formula: <span class="fml">∫ u dv = uv − ∫ v du</span>.</div>
+    <div class="step">With u = x, dv = eˣ dx: differentiate u → du = dx; antidifferentiate dv → v = eˣ.</div>
+    <div class="step">∫ x eˣ dx = x·eˣ − ∫ eˣ dx = x eˣ − eˣ + C.</div>
+    <div class="step">Check by differentiating: (eˣ + x eˣ) − eˣ = x eˣ ✓.</div>
+    <div class="ans">x eˣ − eˣ + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">2.</span><span class="qtag">one pass · trig</span>
+  <div class="qtext">Find ∫ x cos x dx using integration by parts.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> LIATE says the Algebraic factor (x) beats the Trig factor (cos x) for the role of u. Differentiating x turns it into 1 — it vanishes from the new integral, leaving pure trig. Recall: the antiderivative of cos x is sin x, and the antiderivative of sin x is −cos x.</div>
+    <div class="step">u = x, dv = cos x dx → du = dx, v = sin x.</div>
+    <div class="step">∫ x cos x dx = x sin x − ∫ sin x dx = x sin x − (−cos x) + C = x sin x + cos x + C.</div>
+    <div class="step">Check: d/dx[x sin x + cos x] = (sin x + x cos x) − sin x = x cos x ✓.</div>
+    <div class="ans">x sin x + cos x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">3.</span><span class="qtag">u-sub or parts?</span>
+  <div class="qtext">Find ∫ x e<sup>x²</sup> dx. (Careful — is this really a parts problem?)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> this is the classic trap from the decision guide. "x times an exponential" LOOKS like Lesson 30, but check for a fingerprint first: if u = x², then du = 2x dx — and there's an x dx sitting in the integral. When the fingerprint is present, u-sub wins; it's one clean step instead of a parts battle.</div>
+    <div class="step">Let u = x² → du = 2x dx → x dx = du/2.</div>
+    <div class="step">∫ x e<sup>x²</sup> dx = ∫ e<sup>u</sup> · (du/2) = (1/2) e<sup>u</sup> + C = (1/2) e<sup>x²</sup> + C.</div>
+    <div class="step">Check: d/dx[(1/2)e<sup>x²</sup>] = (1/2)e<sup>x²</sup> · 2x = x e<sup>x²</sup> ✓ (chain rule).</div>
+    <div class="ans">(1/2) e<sup>x²</sup> + C &nbsp;(u-sub, NOT parts!)</div></div>
+</div>
+
+<div class="q"><span class="qnum">4.</span><span class="qtag">the sneaky classic</span>
+  <div class="qtext">Find ∫ ln x dx using the dv = dx trick. Show every step.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> ln x has no visible partner, so we invent one: ln x = ln x · 1, and the "1 dx" becomes dv. This works because ln x's DERIVATIVE (1/x) is much friendlier than ln x itself — parts moves the difficulty from ln x onto 1/x, where it cancels.</div>
+    <div class="step">u = ln x, dv = dx → du = (1/x) dx, v = x.</div>
+    <div class="step">∫ ln x dx = x ln x − ∫ x · (1/x) dx = x ln x − ∫ 1 dx.</div>
+    <div class="step">= x ln x − x + C.</div>
+    <div class="step">Check: d/dx[x ln x − x] = ln x + x·(1/x) − 1 = ln x + 1 − 1 = ln x ✓.</div>
+    <div class="ans">x ln x − x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">5.</span><span class="qtag">check task</span>
+  <div class="qtext">A classmate claims ∫ ln x dx = x ln x − x + C. Verify the claim by differentiating x ln x − x, showing the product rule in full.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the product rule says (f·g)′ = f′g + fg′. Checking an antiderivative by differentiating is the single best habit in integration: differentiation is mechanical, so it catches any slip instantly. The check should reproduce EXACTLY the original integrand.</div>
+    <div class="step">d/dx[x ln x]: here f = x, g = ln x, so f′g + fg′ = 1·ln x + x·(1/x) = ln x + 1.</div>
+    <div class="step">d/dx[−x] = −1.</div>
+    <div class="step">Total: ln x + 1 − 1 = ln x — exactly the integrand.</div>
+    <div class="ans">Claim verified: derivative = ln x ✓</div></div>
+</div>
+
+<div class="q"><span class="qnum">6.</span><span class="qtag">one pass · trig</span>
+  <div class="qtext">Find ∫ x sin x dx, and check your answer by differentiating.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> same setup as ∫ x cos x dx but with a sign to watch: the antiderivative of sin x is −cos x (because d/dx[−cos x] = sin x). Minus signs are where most parts mistakes live — write every one down.</div>
+    <div class="step">u = x, dv = sin x dx → du = dx, v = −cos x.</div>
+    <div class="step">∫ x sin x dx = x·(−cos x) − ∫ (−cos x) dx = −x cos x + ∫ cos x dx.</div>
+    <div class="step">= −x cos x + sin x + C.</div>
+    <div class="step">Check: d/dx[−x cos x + sin x] = (−cos x + x sin x) + cos x = x sin x ✓.</div>
+    <div class="ans">−x cos x + sin x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">7.</span><span class="qtag">parts twice</span>
+  <div class="qtext">Find ∫ x² eˣ dx by using integration by parts twice. Show both passes.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> with x², one pass of parts isn't enough — differentiating x² gives 2x, still a polynomial. But that's progress: each pass knocks the power down by one. Two passes takes x² → 2x → 2, and a constant times eˣ integrates instantly.</div>
+    <div class="step">Pass 1: u = x², dv = eˣ dx → du = 2x dx, v = eˣ. So ∫ x²eˣ dx = x²eˣ − 2∫ x eˣ dx.</div>
+    <div class="step">Pass 2 (on ∫ x eˣ dx): u = x, dv = eˣ dx → x eˣ − ∫ eˣ dx = x eˣ − eˣ.</div>
+    <div class="step">Combine, distributing the −2 over BOTH terms: x²eˣ − 2(x eˣ − eˣ) + C = x²eˣ − 2x eˣ + 2eˣ + C.</div>
+    <div class="step">Check: derivative = (2xeˣ + x²eˣ) − (2eˣ + 2xeˣ) + 2eˣ = x²eˣ ✓.</div>
+    <div class="ans">x² eˣ − 2x eˣ + 2eˣ + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">8.</span><span class="qtag">parts twice · trig</span>
+  <div class="qtext">Find ∫ x² cos x dx. (Two passes — keep the signs organized!)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> polynomial × trig works exactly like polynomial × eˣ: differentiate the polynomial down while the trig factor cycles (cos → sin → −cos → −sin → cos…). Two passes are needed for x², and the trig cycle supplies the sign changes.</div>
+    <div class="step">Pass 1: u = x², dv = cos x dx → du = 2x dx, v = sin x. So ∫ x² cos x dx = x² sin x − 2∫ x sin x dx.</div>
+    <div class="step">Pass 2: from exercise 6, ∫ x sin x dx = −x cos x + sin x.</div>
+    <div class="step">Combine: x² sin x − 2(−x cos x + sin x) + C = x² sin x + 2x cos x − 2 sin x + C.</div>
+    <div class="step">Check: derivative = (2x sin x + x² cos x) + (2 cos x − 2x sin x) − 2 cos x = x² cos x ✓ — everything cancels except x² cos x.</div>
+    <div class="ans">x² sin x + 2x cos x − 2 sin x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">9.</span><span class="qtag">ln as u</span>
+  <div class="qtext">Find ∫ x ln x dx. (Hint: LIATE — which factor is u?)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> LIATE puts Logs before Algebraic, so u = ln x even though x "looks simpler." The reason: we don't KNOW an antiderivative of ln x by heart (that took a trick!), but we can differentiate it easily. Parts should differentiate the awkward factor and antidifferentiate the easy one.</div>
+    <div class="step">u = ln x, dv = x dx → du = (1/x) dx, v = x²/2.</div>
+    <div class="step">∫ x ln x dx = (x²/2) ln x − ∫ (x²/2)(1/x) dx = (x²/2) ln x − ∫ (x/2) dx.</div>
+    <div class="step">= (x²/2) ln x − x²/4 + C.</div>
+    <div class="step">Check: derivative = x ln x + (x²/2)(1/x) − x/2 = x ln x + x/2 − x/2 = x ln x ✓.</div>
+    <div class="ans">(x²/2) ln x − x²/4 + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">10.</span><span class="qtag">classify · the decision habit</span>
+  <div class="qtext">For each integral, decide: u-sub or parts? Then solve the two u-sub ones. (a) ∫ x cos(x²) dx &nbsp; (b) ∫ x cos x dx &nbsp; (c) ∫ (ln x)/x dx &nbsp; (d) ∫ x² eˣ dx</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the decision test is: "is one factor the fingerprint (derivative) of something inside the other?" If yes → u-sub, always cheaper. If the factors are unrelated (like x and cos x) → parts. Watch how a tiny change — cos(x²) vs cos x — flips the answer completely.</div>
+    <div class="step">(a) <b>u-sub</b>: inside is x², and its fingerprint 2x dx is nearly present. u = x² → du = 2x dx → ∫ = (1/2)∫cos u du = (1/2) sin(x²) + C.</div>
+    <div class="step">(b) <b>parts</b>: x is not the derivative of anything inside cos x (the inside is just x… but then the "fingerprint" would be 1, not x). Unrelated factors → parts. (Answer from ex. 2: x sin x + cos x + C.)</div>
+    <div class="step">(c) <b>u-sub</b>: u = ln x → du = (1/x) dx, exactly present! ∫ = ∫ u du = u²/2 + C = (ln x)²/2 + C.</div>
+    <div class="step">(d) <b>parts, twice</b>: x² and eˣ are unrelated; the fingerprint of x² would be 2x… but it's multiplying eˣ of plain x, not e of x². (Answer from ex. 7.)</div>
+    <div class="ans">(a) u-sub: (1/2)sin(x²) + C &nbsp; (b) parts &nbsp; (c) u-sub: (ln x)²/2 + C &nbsp; (d) parts twice</div></div>
+</div>
+
+<div class="q"><span class="qnum">11.</span><span class="qtag">definite · the flagship</span>
+  <div class="qtext">Compute ∫<sub>1</sub><sup>e</sup> ln x dx exactly, and say in words what the answer means about the graph of y = ln x.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> for definite parts, either find the full antiderivative first and then apply FTC, or use [uv]ₐᵇ − ∫ₐᵇ v du. Two log facts do the arithmetic: ln e = 1 (e is the base of ln) and ln 1 = 0 (anything to the 0th power is 1).</div>
+    <div class="step">Antiderivative (ex. 4): x ln x − x.</div>
+    <div class="step">At x = e: e·ln e − e = e·1 − e = 0. &nbsp; At x = 1: 1·ln 1 − 1 = 0 − 1 = −1.</div>
+    <div class="step">∫<sub>1</sub><sup>e</sup> ln x dx = 0 − (−1) = 1.</div>
+    <div class="ans">Exactly 1 — the area under y = ln x from x = 1 to x = e is precisely 1 square unit.</div></div>
+</div>
+
+<div class="q"><span class="qnum">12.</span><span class="qtag">definite · trig</span>
+  <div class="qtext">Compute ∫<sub>0</sub><sup>π</sup> x cos x dx. (Why does a negative answer make sense here?)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> evaluation facts needed: sin 0 = 0, sin π = 0, cos 0 = 1, cos π = −1. A definite integral counts area below the x-axis as negative. On [0, π], x cos x is positive only on [0, π/2] where x is still small, but negative on [π/2, π] where x is large — so the negative part dominates.</div>
+    <div class="step">Antiderivative (ex. 2): x sin x + cos x.</div>
+    <div class="step">At π: π·sin π + cos π = π·0 + (−1) = −1. &nbsp; At 0: 0·sin 0 + cos 0 = 0 + 1 = 1.</div>
+    <div class="step">∫<sub>0</sub><sup>π</sup> x cos x dx = (−1) − 1 = −2.</div>
+    <div class="ans">−2 &nbsp;(the below-axis area outweighs the above-axis area)</div></div>
+</div>
+
+<div class="q"><span class="qnum">13.</span><span class="qtag">tabular</span>
+  <div class="qtext">Redo ∫ x² eˣ dx using the tabular method: build the D and I columns, then read off the answer with alternating signs.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the tabular method is repeated parts with the bookkeeping pre-done. D column: differentiate until you hit 0. I column: antidifferentiate the same number of times. Multiply diagonally (each D entry × the I entry one row DOWN), with signs +, −, +, …</div>
+    <div class="step">D column: x² → 2x → 2 → 0. &nbsp; I column: eˣ → eˣ → eˣ → eˣ.</div>
+    <div class="step">Diagonals with signs: +(x²)(eˣ), −(2x)(eˣ), +(2)(eˣ).</div>
+    <div class="step">Answer: x²eˣ − 2xeˣ + 2eˣ + C — matches exercise 7 exactly, with far less writing.</div>
+    <div class="ans">x² eˣ − 2x eˣ + 2eˣ + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">14.</span><span class="qtag">tabular · e<sup>2x</sup></span>
+  <div class="qtext">Find ∫ x² e<sup>2x</sup> dx using the tabular method. (Careful: each antiderivative of e<sup>2x</sup> picks up a factor of 1/2.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the antiderivative of e<sup>2x</sup> is e<sup>2x</sup>/2 (check: differentiating brings the 2 back down by the chain rule). Each trip down the I column divides by 2 again: e<sup>2x</sup> → e<sup>2x</sup>/2 → e<sup>2x</sup>/4 → e<sup>2x</sup>/8.</div>
+    <div class="step">D column: x² → 2x → 2 → 0. &nbsp; I column: e<sup>2x</sup> → e<sup>2x</sup>/2 → e<sup>2x</sup>/4 → e<sup>2x</sup>/8.</div>
+    <div class="step">Diagonals: +x²·(e<sup>2x</sup>/2) − 2x·(e<sup>2x</sup>/4) + 2·(e<sup>2x</sup>/8).</div>
+    <div class="step">= (x²/2)e<sup>2x</sup> − (x/2)e<sup>2x</sup> + (1/4)e<sup>2x</sup> + C.</div>
+    <div class="step">Check: derivative = 2e<sup>2x</sup>(x²/2 − x/2 + 1/4) + e<sup>2x</sup>(x − 1/2) = e<sup>2x</sup>(x² − x + 1/2 + x − 1/2) = x² e<sup>2x</sup> ✓.</div>
+    <div class="ans">e<sup>2x</sup>(x²/2 − x/2 + 1/4) + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">15.</span><span class="qtag">definite · parts twice</span>
+  <div class="qtext">Compute ∫<sub>0</sub><sup>1</sup> x² eˣ dx exactly, then give a decimal estimate. (Use e ≈ 2.718.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> "exact" means leaving e as the letter e — the decimal 2.718… never ends, so e − 2 is the perfect answer and 0.718 is just an estimate. AP graders want the exact form; the decimal is only a sanity check that the answer is plausible (positive, smallish — right for a curve under e¹ ≈ 2.7 on a width-1 interval).</div>
+    <div class="step">Antiderivative (ex. 7): x²eˣ − 2xeˣ + 2eˣ.</div>
+    <div class="step">At 1: e − 2e + 2e = e. &nbsp; At 0: 0 − 0 + 2·e⁰ = 2.</div>
+    <div class="step">∫<sub>0</sub><sup>1</sup> x²eˣ dx = e − 2 ≈ 2.718 − 2 = 0.718.</div>
+    <div class="ans">e − 2 &nbsp;(≈ 0.718)</div></div>
+</div>
+
+<div class="q"><span class="qnum">16.</span><span class="qtag">definite · ln 2 exact form</span>
+  <div class="qtext">Compute ∫<sub>1</sub><sup>2</sup> x ln x dx exactly. (Your answer will contain ln 2 — that's fine! ln 2 ≈ 0.69 is a perfectly good "exact-form" ingredient, just like π.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> numbers like ln 2, e, and π can't be written as finite decimals, so mathematicians leave them as symbols and the answer is still "exact." An answer like 2 ln 2 − 3/4 is complete; converting to ≈ 0.64 is optional. Recall ln 1 = 0.</div>
+    <div class="step">Antiderivative (ex. 9): (x²/2) ln x − x²/4.</div>
+    <div class="step">At 2: (4/2) ln 2 − 4/4 = 2 ln 2 − 1. &nbsp; At 1: (1/2) ln 1 − 1/4 = 0 − 1/4 = −1/4.</div>
+    <div class="step">∫<sub>1</sub><sup>2</sup> x ln x dx = (2 ln 2 − 1) − (−1/4) = 2 ln 2 − 3/4.</div>
+    <div class="step">Estimate: 2(0.693) − 0.75 ≈ 1.386 − 0.75 = 0.636 — positive and about right for this region ✓.</div>
+    <div class="ans">2 ln 2 − 3/4 &nbsp;(≈ 0.636)</div></div>
+</div>
+
+<div class="q"><span class="qnum">17.</span><span class="qtag">spot the error</span>
+  <div class="qtext">A student computes ∫ x² eˣ dx like this: "Pass 1: x²eˣ − 2∫ x eˣ dx. Pass 2: ∫ x eˣ dx = xeˣ − eˣ. Final answer: x²eˣ − 2xeˣ − 2eˣ + C." Find the error, fix it, and show how differentiating the wrong answer would have exposed the mistake.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the #1 error in repeated parts is distribution: the second-pass result gets multiplied by a NEGATIVE constant, and the minus must hit every term. −2(xeˣ − eˣ) = −2xeˣ + 2eˣ, not −2xeˣ − 2eˣ. The differentiation check catches this every single time.</div>
+    <div class="step">The error: distributing −2 over (xeˣ − eˣ), the student wrote −2eˣ instead of +2eˣ. A minus times a minus is a plus.</div>
+    <div class="step">Correct: x²eˣ − 2xeˣ + 2eˣ + C.</div>
+    <div class="step">Exposure by checking: derivative of the WRONG answer = (2xeˣ + x²eˣ) − (2eˣ + 2xeˣ) − 2eˣ = x²eˣ − 4eˣ ≠ x²eˣ. The leftover −4eˣ waves a red flag.</div>
+    <div class="ans">Sign slip in the distribution; correct answer: x²eˣ − 2xeˣ + 2eˣ + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">18.</span><span class="qtag">tabular · cubed</span>
+  <div class="qtext">Find ∫ x³ eˣ dx. (Tabular strongly recommended — that's three passes of parts!)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> x³ needs THREE passes (x³ → 3x² → 6x → 6 → 0), which is where tabular really pays off. Signs alternate +, −, +, − down the diagonals. Expect the coefficients 1, 3, 6, 6 — each is the previous one times the falling power.</div>
+    <div class="step">D column: x³ → 3x² → 6x → 6 → 0. &nbsp; I column: eˣ (four times).</div>
+    <div class="step">Diagonals with signs: +x³eˣ − 3x²eˣ + 6xeˣ − 6eˣ.</div>
+    <div class="step">Answer: eˣ(x³ − 3x² + 6x − 6) + C.</div>
+    <div class="step">Check: derivative = eˣ(x³ − 3x² + 6x − 6) + eˣ(3x² − 6x + 6) = eˣ·x³ ✓ — everything except x³ cancels.</div>
+    <div class="ans">eˣ(x³ − 3x² + 6x − 6) + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">19.</span><span class="qtag">parts twice · signs</span>
+  <div class="qtext">Find ∫ x² sin x dx, and verify your answer by differentiating it.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> polynomial × sin needs the same two passes as polynomial × cos, but starts one step later in the trig cycle: the antiderivative of sin x is −cos x, then of −cos x is −sin x. Tabular works here too — I column: sin x → −cos x → −sin x.</div>
+    <div class="step">Tabular. D column: x² → 2x → 2 → 0. &nbsp; I column (each row is the antiderivative of the row above): sin x → −cos x → −sin x → cos x.</div>
+    <div class="step">Each diagonal pairs a D entry with the I entry one row LOWER, signs +, −, +: &nbsp; +x²·(−cos x), &nbsp; −2x·(−sin x), &nbsp; +2·(cos x).</div>
+    <div class="step">= −x² cos x + 2x sin x + 2 cos x + C.</div>
+    <div class="step">Check: derivative = (−2x cos x + x² sin x) + (2 sin x + 2x cos x) − 2 sin x = x² sin x ✓ — all four extra terms cancel in pairs.</div>
+    <div class="ans">−x² cos x + 2x sin x + 2 cos x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">20.</span><span class="qtag">challenge · definite tabular</span>
+  <div class="qtext">Compute ∫<sub>0</sub><sup>1</sup> x² e<sup>2x</sup> dx exactly. (Use your antiderivative from exercise 14, and simplify to a single clean fraction.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> this combines everything in the lesson: tabular parts for the antiderivative, FTC for evaluation, and exact-form arithmetic with e² (which just means e·e ≈ 7.389). Watch for lucky cancellation at the endpoints — clean problems often hide one.</div>
+    <div class="step">Antiderivative (ex. 14): e<sup>2x</sup>(x²/2 − x/2 + 1/4).</div>
+    <div class="step">At 1: e²(1/2 − 1/2 + 1/4) = e²/4 — the first two terms cancel!</div>
+    <div class="step">At 0: e⁰(0 − 0 + 1/4) = 1/4.</div>
+    <div class="step">∫<sub>0</sub><sup>1</sup> x²e<sup>2x</sup> dx = e²/4 − 1/4 = (e² − 1)/4 ≈ (7.389 − 1)/4 ≈ 1.597.</div>
+    <div class="ans">(e² − 1)/4 &nbsp;(≈ 1.60)</div></div>
+</div>
+
+<footer>Lesson 31 of 40 · Intuitive Integration · next: <a href="Lesson32.html">Lesson 32 — Partial Fractions</a></footer>
+
+</div>
+<script>
+document.querySelectorAll('.q').forEach(q=>{
+  const btn=q.querySelector('.revealbtn'), sol=q.querySelector('.sol');
+  btn.addEventListener('click',()=>{ sol.classList.add('show'); btn.textContent='Solution shown'; btn.disabled=true; btn.style.opacity=.6; });
+});
+</script>
+</body>
+</html>

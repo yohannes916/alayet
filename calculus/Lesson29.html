@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 29 — Integral Properties &amp; Symmetry</title>
+<style>
+  :root{--accent:#186a3b;--accent2:#239b56;--bg:#f2f7f4;--card:#fff;--ok:#1e8449;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:#1c2833;background:var(--bg);margin:0;padding:0 16px 80px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -16px 20px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  nav{display:flex;gap:10px;margin-bottom:18px;font-size:.9rem;flex-wrap:wrap;}
+  nav a{color:var(--accent);text-decoration:none;font-weight:600;background:#fff;border:1px solid #d5e8dc;border-radius:8px;padding:6px 14px;}
+  nav a:hover{background:#eafaf1;}
+  .goal{background:#fef9e7;border-left:5px solid var(--star);padding:12px 18px;border-radius:8px;margin-bottom:18px;font-size:.95rem;}
+  .goal strong{color:#7d6608;}
+  section{background:var(--card);border-radius:10px;padding:18px 22px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  h2{color:var(--accent);font-size:1.15rem;margin:0 0 10px;}
+  h2 .num{background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;border-radius:6px;padding:2px 9px;margin-right:8px;}
+  ul{margin:8px 0;padding-left:24px;}
+  li{margin-bottom:8px;}
+  strong{color:#145a32;}
+  em.hi{font-style:normal;background:#fef9e7;padding:0 4px;border-radius:3px;}
+  .fml{background:#e9f7ef;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.9em;color:#186a3b;white-space:nowrap;}
+  .ex{background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:.95rem;}
+  .ex b{color:#145a32;}
+  .graph{background:#1b2631;color:#eaeded;border-radius:8px;padding:14px 18px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.82rem;line-height:1.45;overflow-x:auto;margin:10px 0;white-space:pre;}
+  .graph .g{color:#82e0aa;} .graph .y{color:#f7dc6f;} .graph .b{color:#85c1e9;}
+  table.t{border-collapse:collapse;margin:10px 0;font-size:.92rem;}
+  table.t th,table.t td{border:1px solid #cfd8cf;padding:6px 12px;text-align:center;}
+  table.t th{background:var(--accent);color:#fff;font-weight:600;}
+  .qhead{margin:26px 0 8px;color:var(--accent);font-size:1.2rem;border-bottom:2px solid #d4efdf;padding-bottom:6px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid var(--accent2);}
+  .qnum{font-weight:800;color:var(--accent);margin-right:6px;}
+  .qtag{float:right;background:#e9f7ef;color:var(--accent);border-radius:8px;padding:1px 9px;font-size:.68rem;font-weight:700;letter-spacing:.3px;margin-left:8px;}
+  .qtext{font-size:.98rem;margin:4px 0 10px;}
+  .revealbtn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .revealbtn:hover{background:#0e4429;}
+  .sol{display:none;margin-top:12px;background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px;font-size:.93rem;}
+  .sol.show{display:block;}
+  .sol h4{margin:0 0 8px;color:var(--ok);font-size:.9rem;}
+  .sol .ctx{background:#eaf2f8;border-left:4px solid #2e86c1;border-radius:6px;padding:8px 12px;margin:0 0 10px;font-size:.88rem;}
+  .sol .ctx b{color:#1a5276;}
+  .sol .step{margin:6px 0;}
+  .sol .ans{background:#eafaf1;border-radius:6px;padding:6px 12px;margin-top:8px;font-weight:700;color:#145a32;display:inline-block;}
+  footer{text-align:center;color:#85929e;font-size:.85rem;margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Lesson 29 — Integral Properties &amp; Symmetry</h1>
+  <p>The Rulebook &amp; the Mirror Trick · Intuitive Calculus for a Curious Student · Lesson 29 of 40</p>
+</header>
+
+<nav><a href="index.html">📚 All lessons</a><a href="Lesson28.html">← Lesson 28</a><a href="Lesson30.html">Next: Lesson 30 →</a></nav>
+
+<div class="goal"><strong>🎯 Goal of this lesson:</strong> collect the official <em>rulebook</em> of definite integrals — add, scale, split, reverse — and learn to combine given integral values like puzzle pieces. Then meet <em>even</em> and <em>odd</em> functions, whose mirror symmetry lets you evaluate whole integrals with almost <strong>no computation at all</strong>. This is one of the AP exam's favorite topics, and it's mostly about seeing pictures.</div>
+
+<section>
+  <h2><span class="num">1</span> The rulebook, collected</h2>
+  <ul>
+    <li>You've quietly used most of these rules since Lesson 1. Today they become <strong>official</strong>, because from now on we'll combine them constantly. Each rule has a one-line picture-reason — if you can see the picture, you never need to memorize the formula.</li>
+  </ul>
+  <table class="t">
+    <tr><th>Rule</th><th>In symbols</th><th>Picture-reason</th></tr>
+    <tr><td>Sums split up</td><td><span class="fml">∫<sub>a</sub><sup>b</sup> (f + g) dx = ∫<sub>a</sub><sup>b</sup> f dx + ∫<sub>a</sub><sup>b</sup> g dx</span></td><td>stack one graph on top of the other: total area = area + area</td></tr>
+    <tr><td>Constants slide out</td><td><span class="fml">∫<sub>a</sub><sup>b</sup> c·f dx = c·∫<sub>a</sub><sup>b</sup> f dx</span></td><td>a shape stretched 3× taller has exactly 3× the area</td></tr>
+    <tr><td>Intervals split</td><td><span class="fml">∫<sub>a</sub><sup>b</sup> f dx = ∫<sub>a</sub><sup>c</sup> f dx + ∫<sub>c</sub><sup>b</sup> f dx</span></td><td>cut the region with one vertical line: piece + piece = whole</td></tr>
+    <tr><td>Walking backwards</td><td><span class="fml">∫<sub>b</sub><sup>a</sup> f dx = −∫<sub>a</sub><sup>b</sup> f dx</span></td><td>sweep the region right-to-left and every little width dx turns negative</td></tr>
+    <tr><td>Zero width</td><td><span class="fml">∫<sub>a</sub><sup>a</sup> f dx = 0</span></td><td>a region with width 0 has area 0</td></tr>
+  </table>
+  <ul>
+    <li>Surprise about the splitting rule: the cut point <span class="fml">c</span> does <strong>not</strong> have to sit between a and b! For example <span class="fml">∫<sub>2</sub><sup>4</sup> f dx = ∫<sub>2</sub><sup>9</sup> f dx + ∫<sub>9</sub><sup>4</sup> f dx</span> — the second integral <em>walks backwards</em> from 9 to 4, un-counting the extra area. The algebra always balances.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">2</span> Using given values — the AP staple</h2>
+  <ul>
+    <li>A hugely common exam setup: you're <strong>told</strong> a few integral values (no formula for f at all!) and asked to compute new ones. It's pure rulebook algebra — like solving a little puzzle.</li>
+  </ul>
+  <div class="ex"><b>Worked example 1:</b> given <span class="fml">∫<sub>0</sub><sup>5</sup> f dx = 12</span> and <span class="fml">∫<sub>0</sub><sup>3</sup> f dx = 7</span>, find <span class="fml">∫<sub>3</sub><sup>5</sup> f dx</span>.<br>
+  Splitting says: <span class="fml">∫<sub>0</sub><sup>5</sup> = ∫<sub>0</sub><sup>3</sup> + ∫<sub>3</sub><sup>5</sup></span>, so <span class="fml">12 = 7 + ∫<sub>3</sub><sup>5</sup> f dx</span> → <b>∫<sub>3</sub><sup>5</sup> f dx = 5</b>. (The whole minus the first chunk leaves the second chunk.)</div>
+  <div class="ex"><b>Worked example 2:</b> given <span class="fml">∫<sub>2</sub><sup>8</sup> f dx = 10</span>, find <span class="fml">∫<sub>8</sub><sup>2</sup> 3f dx</span>.<br>
+  Two rules in a row: constant out, then reverse the direction.<br>
+  <span class="fml">∫<sub>8</sub><sup>2</sup> 3f dx = 3·∫<sub>8</sub><sup>2</sup> f dx = 3·(−∫<sub>2</sub><sup>8</sup> f dx) = 3·(−10)</span> = <b>−30</b>.</div>
+</section>
+
+<section>
+  <h2><span class="num">3</span> Even &amp; odd functions, from scratch</h2>
+  <ul>
+    <li>A function is <strong>even</strong> if <span class="fml">f(−x) = f(x)</span> — plugging in −x gives the <em>same</em> output. The graph is a <em class="hi">mirror image across the y-axis</em>. Examples: <span class="fml">x²</span> (since (−3)² = 9 = 3²), <span class="fml">cos x</span>, <span class="fml">|x|</span>.</li>
+    <li>A function is <strong>odd</strong> if <span class="fml">f(−x) = −f(x)</span> — plugging in −x <em>flips the sign</em> of the output. The graph has <em class="hi">180° rotation symmetry through the origin</em>: spin the page half a turn and the graph lands on itself. Examples: <span class="fml">x</span>, <span class="fml">x³</span> (since (−2)³ = −8 = −(2³)), <span class="fml">sin x</span>.</li>
+    <li>The <strong>algebraic test</strong>: compute <span class="fml">f(−x)</span> carefully and compare. If it simplifies to f(x) → even. If it simplifies to −f(x) → odd. If neither → <strong>neither</strong> (most functions are neither!).</li>
+    <li>Handy shortcut for powers: <span class="fml">x<sup>even power</sup></span> is even, <span class="fml">x<sup>odd power</sup></span> is odd — that's where the names come from. Constants count as even (a horizontal line is mirror-symmetric).</li>
+  </ul>
+  <div class="ex"><b>Worked test:</b> is <span class="fml">f(x) = x³ + x</span> even, odd, or neither?<br>
+  <span class="fml">f(−x) = (−x)³ + (−x) = −x³ − x = −(x³ + x) = −f(x)</span>. Sign flipped exactly → <b>odd</b>.</div>
+</section>
+
+<section>
+  <h2><span class="num">4</span> The symmetry shortcuts</h2>
+  <ul>
+    <li>Symmetry pays off when the interval is symmetric too: from <span class="fml">−a</span> to <span class="fml">a</span>. Then:</li>
+    <li><em class="hi">Odd function on [−a, a]: the integral is 0.</em> The area on the left is a perfect upside-down copy of the area on the right — they cancel completely.</li>
+  </ul>
+  <div class="graph"> ODD (like x³): left piece cancels right piece
+        y
+        |        <span class="g">_╱</span>
+        |      <span class="g">╱</span>   <span class="g">+A</span>  (area above axis)
+ ───────┼──────────→ x
+  <span class="y">−a</span>  <span class="y">╱</span>  |         a
+   <span class="y">╱‾</span>    |
+   <span class="y">−A</span> (area below axis)
+        |
+ total = (−A) + (+A) = <span class="b">0</span>   … no computing needed!</div>
+  <ul>
+    <li><em class="hi">Even function on [−a, a]: the integral is 2 × ∫<sub>0</sub><sup>a</sup>.</em> The left half is an exact mirror of the right half — so compute one half and double it.</li>
+  </ul>
+  <div class="graph"> EVEN (like x²): mirror image across the y-axis
+        y
+   <span class="g">╲</span>    |    <span class="g">╱</span>
+    <span class="g">╲</span>   |   <span class="g">╱</span>
+     <span class="g">╲__</span>|<span class="g">__╱</span>
+    <span class="y">A</span>   |   <span class="y">A</span>    ← two identical areas
+ ───────┼──────────→ x
+   −a   0    a
+ total = A + A = <span class="b">2 × (area from 0 to a)</span></div>
+  <div class="ex"><b>Worked (odd):</b> <span class="fml">∫<sub>−2</sub><sup>2</sup> x³ dx = 0</span> because x³ is odd on a symmetric interval.<br>
+  <b>Verify by FTC:</b> antiderivative is x⁴/4, so we get <span class="fml">(2)⁴/4 − (−2)⁴/4 = 4 − 4 = 0</span> ✓. The shortcut and the honest computation agree.</div>
+  <div class="ex"><b>Worked (even):</b> <span class="fml">∫<sub>−3</sub><sup>3</sup> x² dx = 2·∫<sub>0</sub><sup>3</sup> x² dx = 2·[x³/3]<sub>0</sub><sup>3</sup> = 2·9</span> = <b>18</b>. Half the work, same answer as integrating straight across.</div>
+</section>
+
+<section>
+  <h2><span class="num">5</span> Mixed integrands — split by term, use the right rule on each</h2>
+  <ul>
+    <li>Most integrands are neither purely even nor purely odd — but linearity lets you <strong>split them term by term</strong> and hit each term with the right shortcut.</li>
+  </ul>
+  <div class="ex"><b>Worked:</b> <span class="fml">∫<sub>−1</sub><sup>1</sup> (x³ + x² + 1) dx</span>.<br>
+  · <span class="fml">x³</span> is odd → its integral over [−1, 1] is <b>0</b>.<br>
+  · <span class="fml">x²</span> is even → <span class="fml">2·∫<sub>0</sub><sup>1</sup> x² dx = 2·(1/3) = 2/3</span>.<br>
+  · <span class="fml">1</span> is even (a constant) → <span class="fml">∫<sub>−1</sub><sup>1</sup> 1 dx = 2</span> (a 2-wide, 1-tall rectangle).<br>
+  Total: <span class="fml">0 + 2/3 + 2</span> = <b>8/3</b>. The odd term simply vanished — that's the whole trick.</div>
+</section>
+
+<section>
+  <h2><span class="num">6</span> Comparison sense-checks — catching your own mistakes</h2>
+  <ul>
+    <li>Two common-sense facts make great error detectors:</li>
+    <li><em class="hi">If f ≥ 0 everywhere on [a, b], then ∫<sub>a</sub><sup>b</sup> f dx can't be negative.</em> An accumulation of non-negative amounts can't come out below zero. If your answer for <span class="fml">∫<sub>0</sub><sup>3</sup> (x² + 1) dx</span> is negative, you made a sign slip — no need to re-check anything else first.</li>
+    <li><em class="hi">Bigger function → bigger integral:</em> if <span class="fml">f(x) ≥ g(x)</span> on the whole interval, then <span class="fml">∫<sub>a</sub><sup>b</sup> f dx ≥ ∫<sub>a</sub><sup>b</sup> g dx</span>. A taller graph traps more area. Use it for quick bounds: since x² + 1 &gt; x² on [0, 3], its integral must beat ∫<sub>0</sub><sup>3</sup> x² dx = 9.</li>
+    <li>Get in the habit: after every integral, ask <strong>"does the sign and rough size make sense?"</strong> Thirty seconds of sense-checking saves whole problems on a test.</li>
+  </ul>
+</section>
+
+<div class="qhead">✏️ Exercises — 20 problems (write your answer on paper, then reveal)</div>
+
+<div class="q"><span class="qnum">1.</span><span class="qtag">given values · split</span>
+  <div class="qtext">You are told <span class="fml">∫<sub>0</sub><sup>6</sup> f dx = 9</span> and <span class="fml">∫<sub>0</sub><sup>2</sup> f dx = 4</span>. Find <span class="fml">∫<sub>2</sub><sup>6</sup> f dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the splitting rule says the whole region from 0 to 6 is the chunk from 0 to 2 plus the chunk from 2 to 6. Knowing the whole and one chunk, subtraction gives the other chunk — no formula for f needed.</div>
+    <div class="step">Split: ∫<sub>0</sub><sup>6</sup> f dx = ∫<sub>0</sub><sup>2</sup> f dx + ∫<sub>2</sub><sup>6</sup> f dx.</div>
+    <div class="step">Plug in the givens: 9 = 4 + ∫<sub>2</sub><sup>6</sup> f dx, so ∫<sub>2</sub><sup>6</sup> f dx = 9 − 4 = 5.</div>
+    <div class="ans">∫<sub>2</sub><sup>6</sup> f dx = 5</div></div>
+</div>
+
+<div class="q"><span class="qnum">2.</span><span class="qtag">reversal · zero width</span>
+  <div class="qtext">Given <span class="fml">∫<sub>1</sub><sup>5</sup> f dx = 8</span>, find (a) <span class="fml">∫<sub>5</sub><sup>1</sup> f dx</span> and (b) <span class="fml">∫<sub>4</sub><sup>4</sup> f dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> swapping the limits means sweeping the region right-to-left, which flips the sign of the answer. And an integral whose two limits are equal covers a region of width zero — area 0, always, for any function.</div>
+    <div class="step">(a) ∫<sub>5</sub><sup>1</sup> f dx = −∫<sub>1</sub><sup>5</sup> f dx = −8.</div>
+    <div class="step">(b) ∫<sub>4</sub><sup>4</sup> f dx = 0 — zero width, zero area. We don't even need the given value.</div>
+    <div class="ans">(a) −8 &nbsp; (b) 0</div></div>
+</div>
+
+<div class="q"><span class="qnum">3.</span><span class="qtag">linearity</span>
+  <div class="qtext">Given <span class="fml">∫<sub>0</sub><sup>3</sup> f dx = 10</span> and <span class="fml">∫<sub>0</sub><sup>3</sup> g dx = 3</span>, find (a) <span class="fml">∫<sub>0</sub><sup>3</sup> (f + g) dx</span> and (b) <span class="fml">∫<sub>0</sub><sup>3</sup> 5f dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> linearity is the "stack and stretch" pair of rules. Stacking g's graph on top of f's adds their areas; stretching f five times taller multiplies its area by 5.</div>
+    <div class="step">(a) ∫<sub>0</sub><sup>3</sup> (f + g) dx = ∫<sub>0</sub><sup>3</sup> f dx + ∫<sub>0</sub><sup>3</sup> g dx = 10 + 3 = 13.</div>
+    <div class="step">(b) ∫<sub>0</sub><sup>3</sup> 5f dx = 5·∫<sub>0</sub><sup>3</sup> f dx = 5·10 = 50.</div>
+    <div class="ans">(a) 13 &nbsp; (b) 50</div></div>
+</div>
+
+<div class="q"><span class="qnum">4.</span><span class="qtag">classify</span>
+  <div class="qtext">Use the algebraic test (compute f(−x)) to decide: is <span class="fml">f(x) = x⁴ − 1</span> even, odd, or neither?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the test is mechanical: replace every x by −x, simplify, and compare to the original. Even powers of x destroy the minus sign; odd powers keep it.</div>
+    <div class="step">f(−x) = (−x)⁴ − 1 = x⁴ − 1, because (−x)⁴ = x⁴ (four minus signs multiply to a plus).</div>
+    <div class="step">That's exactly f(x) again, so the function is even. (Graph check: x⁴ − 1 is a mirror-symmetric bowl shifted down 1.)</div>
+    <div class="ans">Even</div></div>
+</div>
+
+<div class="q"><span class="qnum">5.</span><span class="qtag">classify</span>
+  <div class="qtext">Even, odd, or neither: <span class="fml">f(x) = x³ + x</span>? Show the f(−x) test.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a sum of odd terms stays odd — every term flips sign, so the whole expression flips sign. Watch that happen in the algebra.</div>
+    <div class="step">f(−x) = (−x)³ + (−x) = −x³ − x.</div>
+    <div class="step">Factor out the minus: −x³ − x = −(x³ + x) = −f(x). The output flipped sign exactly → odd.</div>
+    <div class="ans">Odd</div></div>
+</div>
+
+<div class="q"><span class="qnum">6.</span><span class="qtag">odd shortcut + FTC check</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>−4</sub><sup>4</sup> x dx</span> using symmetry, then verify your answer with the FTC.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> f(x) = x is the simplest odd function — its graph is a line through the origin, making two identical triangles: one below the axis (left), one above (right). On a symmetric interval they cancel perfectly.</div>
+    <div class="step">Symmetry: x is odd and the interval [−4, 4] is symmetric, so the integral is 0.</div>
+    <div class="step">FTC check: antiderivative x²/2. Evaluate: (4)²/2 − (−4)²/2 = 8 − 8 = 0 ✓.</div>
+    <div class="step">Picture check: triangle below the axis has area 8 (counts −8), triangle above has area 8 (counts +8). Sum: 0 ✓.</div>
+    <div class="ans">0</div></div>
+</div>
+
+<div class="q"><span class="qnum">7.</span><span class="qtag">classify · trig</span>
+  <div class="qtext">Classify <span class="fml">sin x</span> and <span class="fml">cos x</span> as even or odd, using the facts <span class="fml">sin(−x) = −sin x</span> and <span class="fml">cos(−x) = cos x</span>. Explain what each fact says about the graph.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> these two identities come straight from the unit circle: walking backwards (angle −x) flips your height (sine) but keeps your horizontal position (cosine). They are exactly the odd and even tests in disguise.</div>
+    <div class="step">sin(−x) = −sin x is precisely the odd condition f(−x) = −f(x) → <b>sin x is odd</b>. Its graph has 180° rotation symmetry through the origin.</div>
+    <div class="step">cos(−x) = cos x is precisely the even condition f(−x) = f(x) → <b>cos x is even</b>. Its graph is a mirror image across the y-axis (the peak at x = 0 sits right on the mirror).</div>
+    <div class="ans">sin x is odd; cos x is even</div></div>
+</div>
+
+<div class="q"><span class="qnum">8.</span><span class="qtag">classify · neither</span>
+  <div class="qtext">Show that <span class="fml">f(x) = x² + x</span> and <span class="fml">g(x) = eˣ</span> are both <em>neither</em> even nor odd.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> "neither" is the most common verdict! Mixing an even term with an odd term usually wrecks both symmetries. And one single counterexample number is enough to demolish a symmetry claim.</div>
+    <div class="step">f(−x) = (−x)² + (−x) = x² − x. Compare: f(x) = x² + x (not equal → not even) and −f(x) = −x² − x (not equal → not odd). Neither.</div>
+    <div class="step">g(x) = eˣ: test x = 1. g(−1) = e<sup>−1</sup> ≈ 0.37, but g(1) = e ≈ 2.72 (so not even) and −g(1) ≈ −2.72 (so not odd). Neither.</div>
+    <div class="step">Moral: eˣ has no left-right symmetry at all — it hugs the axis on the left and explodes on the right.</div>
+    <div class="ans">Both are neither even nor odd</div></div>
+</div>
+
+<div class="q"><span class="qnum">9.</span><span class="qtag">odd × even</span>
+  <div class="qtext">Classify <span class="fml">f(x) = x·cos x</span>, then evaluate <span class="fml">∫<sub>−5</sub><sup>5</sup> x cos x dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> products follow sign-style rules: <b>odd × even = odd</b>, odd × odd = even, even × even = even. Why: multiply the two f(−x) behaviors — one sign flip survives, two sign flips cancel. This turns scary-looking integrands into instant zeros.</div>
+    <div class="step">Test directly: f(−x) = (−x)·cos(−x) = (−x)·cos x = −x cos x = −f(x). So x cos x is odd. (Matches the rule: x is odd, cos x is even, odd × even = odd.)</div>
+    <div class="step">Odd function, symmetric interval [−5, 5] → integral is 0. No antiderivative needed (lucky, because ∫x cos x dx needs next lesson's tool!).</div>
+    <div class="ans">x cos x is odd; ∫<sub>−5</sub><sup>5</sup> x cos x dx = 0</div></div>
+</div>
+
+<div class="q"><span class="qnum">10.</span><span class="qtag">even shortcut + FTC check</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>−2</sub><sup>2</sup> x² dx</span> with the even-function shortcut, then verify by running the FTC straight across from −2 to 2.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> for an even function the two halves of the region are mirror twins, so you may compute the right half (from 0 to a, usually easier numbers) and double it. Both routes must agree — a free self-check.</div>
+    <div class="step">Shortcut: x² is even, so ∫<sub>−2</sub><sup>2</sup> x² dx = 2·∫<sub>0</sub><sup>2</sup> x² dx = 2·[x³/3]<sub>0</sub><sup>2</sup> = 2·(8/3) = 16/3.</div>
+    <div class="step">FTC straight across: [x³/3]<sub>−2</sub><sup>2</sup> = 8/3 − (−8/3) = 16/3 ✓. Same answer.</div>
+    <div class="ans">16/3</div></div>
+</div>
+
+<div class="q"><span class="qnum">11.</span><span class="qtag">odd shortcut + FTC check</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>−1</sub><sup>1</sup> x⁵ dx</span> by symmetry, and verify with the FTC.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> any odd power of x is an odd function, so over a symmetric interval its integral dies instantly. The FTC confirms it: an even-power antiderivative gives the same value at both endpoints, and same minus same is zero.</div>
+    <div class="step">x⁵ is odd (odd power), interval [−1, 1] is symmetric → integral = 0.</div>
+    <div class="step">FTC check: antiderivative x⁶/6. Evaluate: (1)⁶/6 − (−1)⁶/6 = 1/6 − 1/6 = 0 ✓.</div>
+    <div class="ans">0</div></div>
+</div>
+
+<div class="q"><span class="qnum">12.</span><span class="qtag">given values · combo</span>
+  <div class="qtext">Given <span class="fml">∫<sub>1</sub><sup>7</sup> f dx = 6</span>, find <span class="fml">∫<sub>7</sub><sup>1</sup> 4f dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> two rules chain together here: first slide the constant 4 out front, then fix the backwards limits with a sign flip. Do the rules one at a time and nothing can go wrong.</div>
+    <div class="step">Constant out: ∫<sub>7</sub><sup>1</sup> 4f dx = 4·∫<sub>7</sub><sup>1</sup> f dx.</div>
+    <div class="step">Reversal: ∫<sub>7</sub><sup>1</sup> f dx = −∫<sub>1</sub><sup>7</sup> f dx = −6.</div>
+    <div class="step">Combine: 4·(−6) = −24.</div>
+    <div class="ans">−24</div></div>
+</div>
+
+<div class="q"><span class="qnum">13.</span><span class="qtag">no computation needed</span>
+  <div class="qtext">Explain why <span class="fml">∫<sub>−π</sub><sup>π</sup> sin x dx = 0</span> without computing any antiderivative. Then verify with the FTC anyway.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> "explain why no computation is needed" is a genuine AP question style. The expected answer names the symmetry: odd function + symmetric interval. One good sentence beats a page of algebra.</div>
+    <div class="step">Explanation: sin x is odd and [−π, π] is symmetric about 0, so the area below the axis on [−π, 0] exactly cancels the equal area above the axis on [0, π]. Net: 0.</div>
+    <div class="step">FTC verification: antiderivative −cos x. At π: −cos π = −(−1) = 1. At −π: −cos(−π) = −(−1) = 1. Integral = 1 − 1 = 0 ✓.</div>
+    <div class="ans">0, by odd symmetry (confirmed by FTC)</div></div>
+</div>
+
+<div class="q"><span class="qnum">14.</span><span class="qtag">mixed integrand</span>
+  <div class="qtext">Evaluate by splitting term-by-term and using the right rule on each: (a) <span class="fml">∫<sub>−2</sub><sup>2</sup> (x³ + 3x² + 2) dx</span> &nbsp; (b) <span class="fml">∫<sub>−1</sub><sup>1</sup> (5x⁹ − 2x³ + 7) dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> linearity lets you handle each term separately: odd terms vanish on symmetric intervals, even terms get doubled from 0 to a, constants make simple rectangles. Most of the integrand often just disappears.</div>
+    <div class="step">(a) x³ odd → 0. &nbsp; 3x² even → 2·∫<sub>0</sub><sup>2</sup> 3x² dx = 2·[x³]<sub>0</sub><sup>2</sup> = 2·8 = 16. &nbsp; Constant 2 → 2 × (width 4) = 8. Total: 0 + 16 + 8 = 24.</div>
+    <div class="step">Check (a) by straight FTC: antiderivative x⁴/4 + x³ + 2x. At 2: 4 + 8 + 4 = 16. At −2: 4 − 8 − 4 = −8. 16 − (−8) = 24 ✓.</div>
+    <div class="step">(b) 5x⁹ and −2x³ are both odd → both contribute 0. Constant 7 → 7 × (width 2) = 14. Total: 14.</div>
+    <div class="step">Check (b): antiderivative x¹⁰/2 − x⁴/2 + 7x. At 1: ½ − ½ + 7 = 7. At −1: ½ − ½ − 7 = −7. 7 − (−7) = 14 ✓.</div>
+    <div class="ans">(a) 24 &nbsp; (b) 14</div></div>
+</div>
+
+<div class="q"><span class="qnum">15.</span><span class="qtag">comparison sense-check</span>
+  <div class="qtext">Without computing, explain (a) why <span class="fml">∫<sub>0</sub><sup>3</sup> (x² + 1) dx</span> cannot be negative, and (b) why it must be bigger than <span class="fml">∫<sub>0</sub><sup>3</sup> x² dx = 9</span>. Then (c) compute it and confirm both predictions.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> comparison facts are your error alarms. Non-negative function → non-negative integral (you can't accumulate junk and end up below zero). Taller function → bigger integral (a taller graph traps more area).</div>
+    <div class="step">(a) x² + 1 ≥ 1 &gt; 0 for every x, so the integral — an accumulation of positive contributions — must be positive. (In fact it's at least the 3-wide, 1-tall rectangle: at least 3.)</div>
+    <div class="step">(b) x² + 1 &gt; x² at every x, so its area over [0, 3] beats the area under x², which is 9.</div>
+    <div class="step">(c) Compute: ∫<sub>0</sub><sup>3</sup> (x² + 1) dx = [x³/3 + x]<sub>0</sub><sup>3</sup> = 9 + 3 = 12. Indeed 12 &gt; 0 ✓ and 12 &gt; 9 ✓.</div>
+    <div class="ans">(c) 12 — positive and bigger than 9, as predicted</div></div>
+</div>
+
+<div class="q"><span class="qnum">16.</span><span class="qtag">even + given value</span>
+  <div class="qtext">A function f is <strong>even</strong>, and <span class="fml">∫<sub>0</sub><sup>4</sup> f dx = 6</span>. Find (a) <span class="fml">∫<sub>−4</sub><sup>4</sup> f dx</span> and (b) <span class="fml">∫<sub>−4</sub><sup>0</sup> f dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> for an even function the region left of the y-axis is a mirror copy of the region on the right — so the left half holds exactly the same signed area as the right half. That single picture answers both parts.</div>
+    <div class="step">(a) Even shortcut: ∫<sub>−4</sub><sup>4</sup> f dx = 2·∫<sub>0</sub><sup>4</sup> f dx = 2·6 = 12.</div>
+    <div class="step">(b) The left half equals the right half: ∫<sub>−4</sub><sup>0</sup> f dx = ∫<sub>0</sub><sup>4</sup> f dx = 6. (Check with splitting: 6 + 6 = 12, the answer to (a) ✓.)</div>
+    <div class="ans">(a) 12 &nbsp; (b) 6</div></div>
+</div>
+
+<div class="q"><span class="qnum">17.</span><span class="qtag">given values · multi-step</span>
+  <div class="qtext">Given <span class="fml">∫<sub>0</sub><sup>5</sup> f dx = 12</span>, <span class="fml">∫<sub>3</sub><sup>5</sup> f dx = 5</span>, and <span class="fml">∫<sub>0</sub><sup>3</sup> g dx = 4</span>, find (a) <span class="fml">∫<sub>0</sub><sup>3</sup> f dx</span> and (b) <span class="fml">∫<sub>0</sub><sup>3</sup> (2f − 3g) dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> multi-step given-value problems are little algebra puzzles: use splitting to find the missing piece first, then feed it into linearity. Write each rule on its own line and the puzzle solves itself.</div>
+    <div class="step">(a) Split: ∫<sub>0</sub><sup>5</sup> = ∫<sub>0</sub><sup>3</sup> + ∫<sub>3</sub><sup>5</sup> → 12 = ∫<sub>0</sub><sup>3</sup> f dx + 5 → ∫<sub>0</sub><sup>3</sup> f dx = 7.</div>
+    <div class="step">(b) Linearity: ∫<sub>0</sub><sup>3</sup> (2f − 3g) dx = 2·∫<sub>0</sub><sup>3</sup> f dx − 3·∫<sub>0</sub><sup>3</sup> g dx = 2·7 − 3·4 = 14 − 12 = 2.</div>
+    <div class="ans">(a) 7 &nbsp; (b) 2</div></div>
+</div>
+
+<div class="q"><span class="qnum">18.</span><span class="qtag">average value tie-in</span>
+  <div class="qtext">(a) Find the average value of <span class="fml">f(x) = x³</span> on <span class="fml">[−2, 2]</span>. (b) Explain why the average value of <em>any</em> odd function on <span class="fml">[−a, a]</span> is 0, and what that means about the graph.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> average value = (1/(b − a))·∫<sub>a</sub><sup>b</sup> f dx — the integral spread evenly over the interval's width (Lesson 14). If the integral in the numerator is 0, the average is 0, no matter how wild the function looks.</div>
+    <div class="step">(a) Average = (1/(2 − (−2)))·∫<sub>−2</sub><sup>2</sup> x³ dx = (1/4)·0 = 0, since x³ is odd on a symmetric interval.</div>
+    <div class="step">(b) For any odd f on [−a, a], the integral is 0 by the cancellation picture, so average = (1/(2a))·0 = 0. Meaning: the function spends its time above and below zero in perfectly balanced fashion — every positive height is matched by an equal negative height at the mirror point.</div>
+    <div class="ans">(a) 0 &nbsp; (b) integral is 0 by odd symmetry, so average = 0</div></div>
+</div>
+
+<div class="q"><span class="qnum">19.</span><span class="qtag">spot the error</span>
+  <div class="qtext">A student computes: "<span class="fml">∫<sub>−3</sub><sup>3</sup> x³ dx = 2·∫<sub>0</sub><sup>3</sup> x³ dx = 2·(81/4) = 81/2</span>." Find the error, give the correct answer, and verify it with the FTC.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the doubling shortcut belongs to EVEN functions only. Using it on an odd function is the classic symmetry mistake — it doubles the right half instead of letting the left half cancel it. Always classify the function before picking a shortcut.</div>
+    <div class="step">The error: x³ is <b>odd</b>, not even, so "double the right half" is illegal here. The left half is the <em>negative</em> of the right half.</div>
+    <div class="step">Correct: odd function on symmetric interval [−3, 3] → integral = 0.</div>
+    <div class="step">FTC check: [x⁴/4]<sub>−3</sub><sup>3</sup> = 81/4 − 81/4 = 0 ✓. (The student's ∫<sub>0</sub><sup>3</sup> x³ dx = 81/4 was right — only the doubling step was wrong.)</div>
+    <div class="ans">Correct value: 0 — the doubling rule only applies to even functions</div></div>
+</div>
+
+<div class="q"><span class="qnum">20.</span><span class="qtag">challenge · all rules at once</span>
+  <div class="qtext">Suppose f is <strong>odd</strong> with <span class="fml">∫<sub>0</sub><sup>6</sup> f dx = 5</span>, and g is <strong>even</strong> with <span class="fml">∫<sub>0</sub><sup>6</sup> g dx = 11</span>. Find:
+  (a) <span class="fml">∫<sub>−6</sub><sup>6</sup> f dx</span> &nbsp; (b) <span class="fml">∫<sub>−6</sub><sup>6</sup> g dx</span> &nbsp; (c) <span class="fml">∫<sub>−6</sub><sup>6</sup> (3g − 2f) dx</span> &nbsp; (d) <span class="fml">∫<sub>−6</sub><sup>0</sup> f dx</span> &nbsp; (e) <span class="fml">∫<sub>6</sub><sup>−6</sup> g dx</span></div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> this is the full toolkit in one problem — odd/even shortcuts, linearity, splitting, and reversal. Take the parts one rule at a time; each is a one-liner once you name the rule being used.</div>
+    <div class="step">(a) f odd on [−6, 6] → ∫<sub>−6</sub><sup>6</sup> f dx = 0.</div>
+    <div class="step">(b) g even → ∫<sub>−6</sub><sup>6</sup> g dx = 2·∫<sub>0</sub><sup>6</sup> g dx = 2·11 = 22.</div>
+    <div class="step">(c) Linearity: 3·(22) − 2·(0) = 66.</div>
+    <div class="step">(d) Split (a): 0 = ∫<sub>−6</sub><sup>0</sup> f dx + ∫<sub>0</sub><sup>6</sup> f dx = ∫<sub>−6</sub><sup>0</sup> f dx + 5 → ∫<sub>−6</sub><sup>0</sup> f dx = −5. (Makes sense: an odd function's left half is the negative mirror of its right half.)</div>
+    <div class="step">(e) Reversal: ∫<sub>6</sub><sup>−6</sup> g dx = −∫<sub>−6</sub><sup>6</sup> g dx = −22.</div>
+    <div class="ans">(a) 0 &nbsp; (b) 22 &nbsp; (c) 66 &nbsp; (d) −5 &nbsp; (e) −22</div></div>
+</div>
+
+<footer>Lesson 29 of 40 · Intuitive Integration · next: <a href="Lesson30.html">Lesson 30 — Integration by Parts I</a></footer>
+
+</div>
+<script>
+document.querySelectorAll('.q').forEach(q=>{
+  const btn=q.querySelector('.revealbtn'), sol=q.querySelector('.sol');
+  btn.addEventListener('click',()=>{ sol.classList.add('show'); btn.textContent='Solution shown'; btn.disabled=true; btn.style.opacity=.6; });
+});
+</script>
+</body>
+</html>

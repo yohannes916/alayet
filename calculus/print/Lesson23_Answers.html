@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Lesson 23 Answer Key — The Trapezoidal Rule</title>
+<style>
+  @page { size: letter; margin: 0.75in; }
+  *{box-sizing:border-box;}
+  body{font-family:Georgia,"Times New Roman",serif;color:#111;margin:0;font-size:11.5pt;line-height:1.5;}
+  .head{border-bottom:3px solid #b03a2e;padding-bottom:8px;margin-bottom:14px;}
+  .head h1{font-family:Helvetica,Arial,sans-serif;font-size:16pt;margin:0 0 2px;color:#b03a2e;}
+  .head p{margin:0;font-size:10.5pt;color:#333;}
+  .q{margin:0 0 12px;page-break-inside:avoid;}
+  .q .txt{margin-bottom:4px;}
+  .q b.n{color:#b03a2e;font-family:Helvetica,Arial,sans-serif;}
+  .a{background:#f7f7f7;border-left:4px solid #1e8449;border-radius:4px;padding:7px 12px;font-size:11pt;}
+  .a b{color:#145a32;}
+  .ans{color:#145a32;font-weight:bold;}
+</style>
+</head>
+<body>
+
+<div class="head">
+  <h1>ANSWER KEY — Integration Lesson 23 Test: The Trapezoidal Rule</h1>
+  <p>For the grader · full working shown · give credit for correct method with small arithmetic slips</p>
+</div>
+
+<div class="q"><div class="txt"><b class="n">1.</b> Trapezoid with left side 5, right side 9, width 4. Find its area.</div>
+<div class="a"><b>Work:</b> A = ½(y_left + y_right)·Δx = ½(5 + 9)(4) = ½(14)(4) = 28. (Average height 7 × width 4 = 28 ✓.) <span class="ans">Answer: 28.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">2.</b> f(2) = 6, f(6) = 10. One trapezoid for ∫₂⁶ f(x) dx.</div>
+<div class="a"><b>Work:</b> width = 6 − 2 = 4 (end minus start — using 6 as the width is the classic slip). Estimate = ½(6 + 10)(4) = ½(16)(4) = 32. <span class="ans">Answer: ≈ 32.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">3.</b> Two trapezoids (Δx = 1) for ∫₀² x² dx; bigger or smaller than 8/3?</div>
+<div class="a"><b>Work:</b> ½(0 + 1)(1) + ½(1 + 4)(1) = 0.5 + 2.5 = 3. Since 3 &gt; 8/3 ≈ 2.667, it's an overestimate — x² is concave up, so the trapezoid tops (chords) sit above the curve. <span class="ans">Answer: 3, an overestimate.</span> (Credit the direction only with the estimate 3 correct.)</div></div>
+
+<div class="q"><div class="txt"><b class="n">4.</b> Left sum 12, right sum 20, equal widths. Trapezoid sum?</div>
+<div class="a"><b>Work:</b> trapezoid sum = average of left and right sums: T = (L + R)/2 = (12 + 20)/2 = 16. Condition: all slices must have EQUAL widths. <span class="ans">Answer: 16, using T = (L + R)/2, valid only for equal widths.</span> (Half credit if the 16 appears without the condition when asked.)</div></div>
+
+<div class="q"><div class="txt"><b class="n">5.</b> Three trapezoids (Δx = 1) for ∫₀³ x² dx; true value; error.</div>
+<div class="a"><b>Work:</b> heights 0, 1, 4, 9. Trapezoids: ½(0+1)(1) + ½(1+4)(1) + ½(4+9)(1) = 0.5 + 2.5 + 6.5 = 9.5. True value: x³/3 |₀³ = 27/3 = 9. Error = 9.5 − 9 = 0.5. <span class="ans">Answer: estimate 9.5, true value 9, off by 0.5 (over).</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">6.</b> Velocity table t: 0, 2, 6, 9; v: 5, 11, 15, 9. Trapezoidal estimate of ∫₀⁹ v dt.</div>
+<div class="a"><b>Work:</b> unequal widths (2, 4, 3) — each trapezoid separately: ½(5 + 11)·2 = 8·2 = 16; ½(11 + 15)·4 = 13·4 = 52; ½(15 + 9)·3 = 12·3 = 36. Total = 16 + 52 + 36 = 104. Units: (m/s)·s = meters. <span class="ans">Answer: ≈ 104 meters (approximate distance traveled).</span> (Watch for the averaging-left-and-right shortcut — it is NOT valid here.)</div></div>
+
+<div class="q"><div class="txt"><b class="n">7.</b> Water table t: 0, 5, 8, 12; R: 4, 10, 14, 6. Total water added.</div>
+<div class="a"><b>Work:</b> widths 5, 3, 4: ½(4 + 10)·5 = 7·5 = 35; ½(10 + 14)·3 = 12·3 = 36; ½(14 + 6)·4 = 10·4 = 40. Total = 35 + 36 + 40 = 111. Units: (gal/min)·min = gallons. <span class="ans">Answer: ≈ 111 gallons.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">8.</b> g concave up on [1, 7] — trapezoid sum over- or underestimate? Justify.</div>
+<div class="a"><b>Work:</b> each trapezoid's top is a CHORD of the graph. A concave-up curve sags below its chords (cup shape ∪), so every trapezoid top lies above the curve and each trapezoid holds slightly more area than the region under the curve. <span class="ans">Answer: overestimate, because for a concave-up function the chords (trapezoid tops) lie above the curve.</span> (Full credit requires the concavity–chord connection, not just the word "overestimate".)</div></div>
+
+<div class="q"><div class="txt"><b class="n">9.</b> ∫₀² x³ dx, two slices: trapezoid vs midpoint vs true value.</div>
+<div class="a"><b>Work:</b> Trapezoid: ½(0 + 1)(1) + ½(1 + 8)(1) = 0.5 + 4.5 = 5. Midpoint: (f(0.5) + f(1.5))(1) = (0.125 + 3.375) = 3.5. True: x⁴/4 |₀² = 16/4 = 4. Errors: trapezoid 5 − 4 = 1 (over); midpoint 4 − 3.5 = 0.5 (under). <span class="ans">Answer: T = 5, M = 3.5, true = 4; midpoint is closer.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">10.</b> Cars table t: 0, 3, 7, 10; R: 40, 60, 50, 30. (a) Trapezoidal estimate. (b) Meaning with units.</div>
+<div class="a"><b>Work:</b> (a) widths 3, 4, 3: ½(40 + 60)·3 = 50·3 = 150; ½(60 + 50)·4 = 55·4 = 220; ½(50 + 30)·3 = 40·3 = 120. Total = 150 + 220 + 120 = 490. (b) Units: (cars/hour)·hours = cars. <span class="ans">Answer: (a) ≈ 490 &nbsp; (b) approximately 490 cars passed the checkpoint during the 10 hours from t = 0 to t = 10.</span> (Meaning sentence must mention the quantity, the units, and the time interval for the point.)</div></div>
+
+</body>
+</html>

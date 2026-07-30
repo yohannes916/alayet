@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 21 — Completing the Power Rule: Negative &amp; Fractional Powers</title>
+<style>
+  :root{--accent:#186a3b;--accent2:#239b56;--bg:#f2f7f4;--card:#fff;--ok:#1e8449;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:#1c2833;background:var(--bg);margin:0;padding:0 16px 80px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -16px 20px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  nav{display:flex;gap:10px;margin-bottom:18px;font-size:.9rem;flex-wrap:wrap;}
+  nav a{color:var(--accent);text-decoration:none;font-weight:600;background:#fff;border:1px solid #d5e8dc;border-radius:8px;padding:6px 14px;}
+  nav a:hover{background:#eafaf1;}
+  .goal{background:#fef9e7;border-left:5px solid var(--star);padding:12px 18px;border-radius:8px;margin-bottom:18px;font-size:.95rem;}
+  .goal strong{color:#7d6608;}
+  section{background:var(--card);border-radius:10px;padding:18px 22px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  h2{color:var(--accent);font-size:1.15rem;margin:0 0 10px;}
+  h2 .num{background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;border-radius:6px;padding:2px 9px;margin-right:8px;}
+  ul{margin:8px 0;padding-left:24px;}
+  li{margin-bottom:8px;}
+  strong{color:#145a32;}
+  em.hi{font-style:normal;background:#fef9e7;padding:0 4px;border-radius:3px;}
+  .fml{background:#e9f7ef;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.9em;color:#186a3b;white-space:nowrap;}
+  .ex{background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:.95rem;}
+  .ex b{color:#145a32;}
+  .graph{background:#1b2631;color:#eaeded;border-radius:8px;padding:14px 18px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.82rem;line-height:1.45;overflow-x:auto;margin:10px 0;white-space:pre;}
+  .graph .g{color:#82e0aa;} .graph .y{color:#f7dc6f;} .graph .b{color:#85c1e9;}
+  table.t{border-collapse:collapse;margin:10px 0;font-size:.92rem;}
+  table.t th,table.t td{border:1px solid #cfd8cf;padding:6px 12px;text-align:center;}
+  table.t th{background:var(--accent);color:#fff;font-weight:600;}
+  .qhead{margin:26px 0 8px;color:var(--accent);font-size:1.2rem;border-bottom:2px solid #d4efdf;padding-bottom:6px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid var(--accent2);}
+  .qnum{font-weight:800;color:var(--accent);margin-right:6px;}
+  .qtag{float:right;background:#e9f7ef;color:var(--accent);border-radius:8px;padding:1px 9px;font-size:.68rem;font-weight:700;letter-spacing:.3px;margin-left:8px;}
+  .qtext{font-size:.98rem;margin:4px 0 10px;}
+  .revealbtn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .revealbtn:hover{background:#0e4429;}
+  .sol{display:none;margin-top:12px;background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px;font-size:.93rem;}
+  .sol.show{display:block;}
+  .sol h4{margin:0 0 8px;color:var(--ok);font-size:.9rem;}
+  .sol .ctx{background:#eaf2f8;border-left:4px solid #2e86c1;border-radius:6px;padding:8px 12px;margin:0 0 10px;font-size:.88rem;}
+  .sol .ctx b{color:#1a5276;}
+  .sol .step{margin:6px 0;}
+  .sol .ans{background:#eafaf1;border-radius:6px;padding:6px 12px;margin-top:8px;font-weight:700;color:#145a32;display:inline-block;}
+  footer{text-align:center;color:#85929e;font-size:.85rem;margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Lesson 21 — Completing the Power Rule</h1>
+  <p>Negative &amp; Fractional Powers · Intuitive Calculus for a Curious Student · Lesson 21 of 40</p>
+</header>
+
+<nav><a href="index.html">📚 All lessons</a><a href="Lesson20.html">← Lesson 20</a><a href="Lesson22.html">Next: Lesson 22 →</a></nav>
+
+<div class="goal"><strong>🎯 Goal of this lesson:</strong> unlock the FULL power rule. The same formula you've used since Lesson 4 — <em>raise the power by one, divide by the new power</em> — actually works for negative powers like <span class="fml">1/x²</span> and fractional powers like <span class="fml">√x</span>. One rewrite step, and a huge new family of functions opens up.</div>
+
+<section>
+  <h2><span class="num">1</span> Welcome to Part 2 of the course!</h2>
+  <ul>
+    <li>Congratulations — you've finished the first half. You can slice areas, run the Fundamental Theorem, substitute, and solve initial-value problems. That's a genuinely big deal.</li>
+    <li>Lessons 21–40 take everything you know and polish it up to <strong>AP Calculus BC level</strong> — the class strong high-school seniors take. You're ready for it, because here's the secret: <em class="hi">Part 2 contains very few brand-new ideas.</em> Mostly it's your existing tools, made sharper and more flexible.</li>
+    <li>Today is the perfect example. You will learn <strong>zero new formulas</strong>. The power rule you already own is simply about to handle far more functions than you thought it could — including <span class="fml">1/x²</span>, <span class="fml">√x</span>, and <span class="fml">∛x</span>.</li>
+    <li>The whole trick is learning to <strong>rewrite</strong> functions so they LOOK like <span class="fml">x<sup>n</sup></span>. Rewriting first, integrating second — that habit will carry you through the rest of the course.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">2</span> Rewriting from scratch: what negative and fractional exponents mean</h2>
+  <ul>
+    <li><strong>Negative exponents mean "1 over."</strong> By definition, <span class="fml">x<sup>−n</sup> = 1/x<sup>n</sup></span>. So <span class="fml">x<sup>−2</sup> = 1/x²</span> and <span class="fml">1/x⁵ = x<sup>−5</sup></span>. Why this definition? Watch the pattern: <span class="fml">x³, x², x¹</span> — each step down divides by <span class="fml">x</span>. Keep going: <span class="fml">x⁰ = 1</span>, then <span class="fml">x<sup>−1</sup> = 1/x</span>, then <span class="fml">x<sup>−2</sup> = 1/x²</span>. The pattern forces it.</li>
+    <li><strong>Fractional exponents mean roots.</strong> <span class="fml">x<sup>1/2</sup> = √x</span>, because the exponent rule says <span class="fml">x<sup>1/2</sup> · x<sup>1/2</sup> = x<sup>1/2+1/2</sup> = x¹</span> — so <span class="fml">x<sup>1/2</sup></span> is the thing that multiplies by itself to give <span class="fml">x</span>. That's exactly what a square root is! Same idea: <span class="fml">x<sup>1/3</sup> = ∛x</span> (cube root).</li>
+    <li><strong>Mixed fractions combine both ideas:</strong> <span class="fml">x<sup>3/2</sup> = x¹ · x<sup>1/2</sup> = x·√x</span>. The top of the fraction is a power, the bottom is a root.</li>
+    <li>Here's a two-way translation table — practice reading it in BOTH directions:</li>
+  </ul>
+  <table class="t">
+    <tr><th>Root / fraction form</th><th>Power form</th><th>Power form</th><th>Root / fraction form</th></tr>
+    <tr><td>1/x²</td><td>x<sup>−2</sup></td><td>x<sup>−3</sup></td><td>1/x³</td></tr>
+    <tr><td>√x</td><td>x<sup>1/2</sup></td><td>x<sup>1/3</sup></td><td>∛x</td></tr>
+    <tr><td>1/√x</td><td>x<sup>−1/2</sup></td><td>x<sup>3/2</sup></td><td>x·√x</td></tr>
+    <tr><td>1/x</td><td>x<sup>−1</sup></td><td>x<sup>5/2</sup></td><td>x²·√x</td></tr>
+  </table>
+  <div class="ex"><b>Quick check:</b> what is <span class="fml">4<sup>3/2</sup></span>? Read it as "square root, then cube": <span class="fml">√4 = 2</span>, then <span class="fml">2³ = 8</span>. So <span class="fml">4<sup>3/2</sup> = 8</span>. And <span class="fml">9<sup>1/2</sup> = √9 = 3</span>. You'll evaluate powers like these constantly in definite integrals.</div>
+</section>
+
+<section>
+  <h2><span class="num">3</span> The power rule works for ALL powers (except one)</h2>
+  <ul>
+    <li>The big announcement: <em class="hi">∫ x<sup>n</sup> dx = x<sup>n+1</sup>/(n+1) + C works for every power n except n = −1.</em> Negative, fractional, whatever — raise the power by one, divide by the NEW power.</li>
+  </ul>
+  <div class="ex"><b>Worked example (negative power):</b> <span class="fml">∫ 1/x² dx</span>.<br>
+  Rewrite: <span class="fml">1/x² = x<sup>−2</sup></span>. Raise the power by one: <span class="fml">−2 + 1 = −1</span>. Divide by the new power:<br>
+  <span class="fml">∫ x<sup>−2</sup> dx = x<sup>−1</sup>/(−1) + C = −x<sup>−1</sup> + C = −1/x + C</span>.<br>
+  <b>Check by differentiating</b> (always!): <span class="fml">d/dx[−1/x] = d/dx[−x<sup>−1</sup>] = (−1)(−1)x<sup>−2</sup> = x<sup>−2</sup> = 1/x²</span> ✓. Notice the surprise: the answer to a "1 over x squared" integral is "minus 1 over x" — the minus sign appears because the new power is negative.</div>
+  <div class="ex"><b>Worked example (fractional power):</b> <span class="fml">∫ √x dx</span>.<br>
+  Rewrite: <span class="fml">√x = x<sup>1/2</sup></span>. Raise the power by one: <span class="fml">1/2 + 1 = 3/2</span>. Divide by the new power:<br>
+  <span class="fml">∫ x<sup>1/2</sup> dx = x<sup>3/2</sup>/(3/2) + C</span>.<br>
+  <b>Dividing by a fraction, from scratch:</b> "divide by 3/2" means "how many 3/2's fit?" — and the answer is always the same as <em>multiplying by the flipped fraction</em>: <span class="fml">÷ 3/2 = × 2/3</span>. (Why? Dividing by 3 makes things 3× smaller; dividing by 1/2 makes them 2× bigger; dividing by 3/2 does both: × 2/3.) So:<br>
+  <span class="fml">∫ √x dx = (2/3)x<sup>3/2</sup> + C</span>.<br>
+  <b>Check:</b> <span class="fml">d/dx[(2/3)x<sup>3/2</sup>] = (2/3)·(3/2)·x<sup>1/2</sup> = x<sup>1/2</sup> = √x</span> ✓ — the 2/3 and 3/2 cancel perfectly. That cancellation is WHY the rule says "divide by the new power."</div>
+</section>
+
+<section>
+  <h2><span class="num">4</span> The lone exception: n = −1</h2>
+  <ul>
+    <li>Try the power rule on <span class="fml">∫ 1/x dx = ∫ x<sup>−1</sup> dx</span>: raise the power by one → <span class="fml">−1 + 1 = 0</span>, divide by the new power → <span class="fml">x⁰/0</span>. <strong>Division by zero!</strong> The machine jams on exactly one input.</li>
+    <li>You already know the rescue from Lesson 15: <em class="hi">∫ 1/x dx = ln|x| + C</em>, because the derivative of <span class="fml">ln x</span> is <span class="fml">1/x</span>.</li>
+    <li><strong>New detail — the absolute value.</strong> <span class="fml">ln</span> only accepts positive inputs (it asks "e to what power gives this?", and e-to-anything is positive). But <span class="fml">1/x</span> exists for negative x too, and areas under it there are perfectly real. Writing <span class="fml">|x|</span> feeds ln a positive number no matter the sign of x, so ONE formula covers both sides.</li>
+    <li><strong>Check that it really works for negative x:</strong> there, <span class="fml">|x| = −x</span>, so we need the derivative of <span class="fml">ln(−x)</span>. Chain rule (the inside function is −x, its derivative is −1): <span class="fml">d/dx[ln(−x)] = 1/(−x) · (−1) = 1/x</span> ✓. The two minus signs cancel — the formula genuinely earns its absolute value.</li>
+    <li>So the full story in one line: <em class="hi">∫ x<sup>n</sup> dx = x<sup>n+1</sup>/(n+1) + C for n ≠ −1, and ∫ x<sup>−1</sup> dx = ln|x| + C.</em></li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">5</span> The rewrite-first strategy</h2>
+  <ul>
+    <li>Golden habit: <em class="hi">rewrite as powers of x BEFORE you integrate.</em> Never try to integrate a fraction or a root "as is." Watch four classics:</li>
+  </ul>
+  <table class="t">
+    <tr><th>Original</th><th>Rewritten</th><th>Integrate</th><th>Answer</th></tr>
+    <tr><td>1/x³</td><td>x<sup>−3</sup></td><td>x<sup>−2</sup>/(−2)</td><td>−1/(2x²) + C</td></tr>
+    <tr><td>√x · x</td><td>x<sup>3/2</sup></td><td>x<sup>5/2</sup>/(5/2)</td><td>(2/5)x<sup>5/2</sup> + C</td></tr>
+    <tr><td>(x² + 1)/x</td><td>x + 1/x</td><td>x²/2 + ln|x|</td><td>x²/2 + ln|x| + C</td></tr>
+    <tr><td>5/√x</td><td>5x<sup>−1/2</sup></td><td>5 · x<sup>1/2</sup>/(1/2)</td><td>10√x + C</td></tr>
+  </table>
+  <ul>
+    <li><strong>Split the fraction!</strong> In row three, <span class="fml">(x² + 1)/x</span> is a sum sitting over one denominator, so split it: <span class="fml">x²/x + 1/x = x + 1/x</span> — two easy pieces. (Warning: you can only split when the SUM is on top. <span class="fml">x/(x²+1)</span> does NOT split.)</li>
+    <li>In row four, the constant 5 just rides along (constant-multiple rule from Lesson 5), and <span class="fml">÷ 1/2 = × 2</span>, giving <span class="fml">5 · 2 · x<sup>1/2</sup> = 10√x</span>.</li>
+    <li>Check row one: <span class="fml">d/dx[−½x<sup>−2</sup>] = −½·(−2)·x<sup>−3</sup> = x<sup>−3</sup></span> ✓.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">6</span> A definite integral, start to finish</h2>
+  <div class="ex"><b>Worked example:</b> find <span class="fml">∫<sub>1</sub><sup>4</sup> 1/√x dx</span> — the exact area under <span class="fml">y = 1/√x</span> from x = 1 to x = 4.<br>
+  Rewrite: <span class="fml">1/√x = x<sup>−1/2</sup></span>. Antiderivative: <span class="fml">x<sup>1/2</sup>/(1/2) = 2x<sup>1/2</sup> = 2√x</span>.<br>
+  FTC: <span class="fml">∫<sub>1</sub><sup>4</sup> x<sup>−1/2</sup> dx = [2√x]<sub>1</sub><sup>4</sup> = 2√4 − 2√1 = 4 − 2 = <b>2</b></span>.</div>
+  <div class="graph">y
+ 1.0 |<span class="g">●</span>
+     | <span class="g">`·.</span>          y = 1/√x
+     |    <span class="g">`··.</span>
+ 0.5 |<span class="y">░░░░░░░░</span><span class="g">`····●</span>
+     |<span class="y">░░ area ░░░░</span>
+     |<span class="y">░░ = 2 ░░░░░</span>
+   0 +----+-----------+-----→ x
+     0    1           4</div>
+  <ul>
+    <li>Sanity check: the region is 3 wide with heights between 1 and 1/2, so the area must sit between <span class="fml">3 × ½ = 1.5</span> and <span class="fml">3 × 1 = 3</span>. Our answer 2 fits. <em class="hi">Always sanity-check definite integrals against a rough rectangle.</em></li>
+  </ul>
+</section>
+
+<div class="qhead">✏️ Exercises — 20 problems (write your answer on paper, then reveal)</div>
+
+<div class="q"><span class="qnum">1.</span><span class="qtag">negative power</span>
+  <div class="qtext">Rewrite as a power of x, then integrate: <span class="fml">∫ x<sup>−3</sup> dx</span>. (Already a power — just apply the rule, then check your answer by differentiating.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the power rule ∫ x<sup>n</sup> dx = x<sup>n+1</sup>/(n+1) + C works for negative powers too. "Raise the power by one" on a negative number moves it TOWARD zero: −3 + 1 = −2 (not −4!). A number line helps: −3 → −2 is one step up.</div>
+    <div class="step">New power: −3 + 1 = −2. Divide by it: <span class="fml">x<sup>−2</sup>/(−2) = −½ x<sup>−2</sup></span>.</div>
+    <div class="step">Rewrite for humans: <span class="fml">−1/(2x²) + C</span>.</div>
+    <div class="step">Check: <span class="fml">d/dx[−½x<sup>−2</sup>] = −½ · (−2) · x<sup>−3</sup> = x<sup>−3</sup></span> ✓.</div>
+    <div class="ans">−1/(2x²) + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">2.</span><span class="qtag">fractional power</span>
+  <div class="qtext">Rewrite as a power of x, then integrate: <span class="fml">∫ √x dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> √x = x<sup>1/2</sup> because x<sup>1/2</sup> · x<sup>1/2</sup> = x¹. Once it's a power, the ordinary power rule applies. Dividing by a fraction = multiplying by its flip: ÷ 3/2 = × 2/3.</div>
+    <div class="step">Rewrite: <span class="fml">√x = x<sup>1/2</sup></span>. New power: 1/2 + 1 = 3/2.</div>
+    <div class="step"><span class="fml">x<sup>3/2</sup>/(3/2) = (2/3)x<sup>3/2</sup></span>.</div>
+    <div class="step">Check: <span class="fml">(2/3)·(3/2)·x<sup>1/2</sup> = √x</span> ✓.</div>
+    <div class="ans">(2/3)x<sup>3/2</sup> + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">3.</span><span class="qtag">rewrite first</span>
+  <div class="qtext">Rewrite as a power of x, then integrate: <span class="fml">∫ 1/x⁴ dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> "1 over x to a power" is a negative power: 1/x⁴ = x<sup>−4</sup>. Never integrate a fraction as-is — translate to power form first, THEN raise-and-divide.</div>
+    <div class="step">Rewrite: <span class="fml">1/x⁴ = x<sup>−4</sup></span>. New power: −4 + 1 = −3.</div>
+    <div class="step"><span class="fml">x<sup>−3</sup>/(−3) = −1/(3x³)</span>.</div>
+    <div class="step">Check: <span class="fml">d/dx[−⅓x<sup>−3</sup>] = −⅓·(−3)·x<sup>−4</sup> = x<sup>−4</sup></span> ✓.</div>
+    <div class="ans">−1/(3x³) + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">4.</span><span class="qtag">cube root</span>
+  <div class="qtext">Rewrite as a power of x, then integrate: <span class="fml">∫ ∛x dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the cube root is the 1/3 power: ∛x = x<sup>1/3</sup>, because x<sup>1/3</sup>·x<sup>1/3</sup>·x<sup>1/3</sup> = x¹. Adding 1 to a fraction: 1/3 + 1 = 1/3 + 3/3 = 4/3.</div>
+    <div class="step">Rewrite: <span class="fml">∛x = x<sup>1/3</sup></span>. New power: 4/3.</div>
+    <div class="step"><span class="fml">x<sup>4/3</sup>/(4/3) = (3/4)x<sup>4/3</sup></span> (dividing by 4/3 = multiplying by 3/4).</div>
+    <div class="step">Check: <span class="fml">(3/4)·(4/3)·x<sup>1/3</sup> = x<sup>1/3</sup></span> ✓.</div>
+    <div class="ans">(3/4)x<sup>4/3</sup> + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">5.</span><span class="qtag">big fractional power</span>
+  <div class="qtext">Integrate: <span class="fml">∫ x<sup>5/2</sup> dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> x<sup>5/2</sup> means x²·√x, but you don't need to unpack it — the power rule eats any exponent (except −1). Fraction addition: 5/2 + 1 = 5/2 + 2/2 = 7/2.</div>
+    <div class="step">New power: 7/2. <span class="fml">x<sup>7/2</sup>/(7/2) = (2/7)x<sup>7/2</sup></span>.</div>
+    <div class="step">Check: <span class="fml">(2/7)·(7/2)·x<sup>5/2</sup> = x<sup>5/2</sup></span> ✓.</div>
+    <div class="ans">(2/7)x<sup>7/2</sup> + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">6.</span><span class="qtag">constant multiple</span>
+  <div class="qtext">Integrate: <span class="fml">∫ 6/x² dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the constant-multiple rule (Lesson 5) says a constant factor rides along outside the integral: ∫ 6·f = 6·∫ f. So peel off the 6, integrate the power, multiply back.</div>
+    <div class="step">Rewrite: <span class="fml">6/x² = 6x<sup>−2</sup></span>.</div>
+    <div class="step"><span class="fml">6 · x<sup>−1</sup>/(−1) = −6x<sup>−1</sup> = −6/x</span>.</div>
+    <div class="step">Check: <span class="fml">d/dx[−6x<sup>−1</sup>] = −6·(−1)·x<sup>−2</sup> = 6/x²</span> ✓.</div>
+    <div class="ans">−6/x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">7.</span><span class="qtag">constant multiple</span>
+  <div class="qtext">Integrate: <span class="fml">∫ 10√x dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> combine two rules: the constant 10 rides along, and √x = x<sup>1/2</sup> integrates to (2/3)x<sup>3/2</sup>. Then multiply the constants: 10 · 2/3 = 20/3. Leaving 20/3 as a fraction is cleaner (and more exact) than a decimal.</div>
+    <div class="step"><span class="fml">10 · x<sup>3/2</sup>/(3/2) = 10 · (2/3) x<sup>3/2</sup> = (20/3)x<sup>3/2</sup></span>.</div>
+    <div class="step">Check: <span class="fml">(20/3)·(3/2)·x<sup>1/2</sup> = 10√x</span> ✓.</div>
+    <div class="ans">(20/3)x<sup>3/2</sup> + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">8.</span><span class="qtag">sum of powers</span>
+  <div class="qtext">Integrate: <span class="fml">∫ (x³ + √x) dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the sum rule (Lesson 5) lets you integrate term by term — each piece gets its own power-rule treatment. A whole-number power and a fractional power can live in the same problem happily.</div>
+    <div class="step"><span class="fml">∫ x³ dx = x⁴/4</span>.</div>
+    <div class="step"><span class="fml">∫ x<sup>1/2</sup> dx = (2/3)x<sup>3/2</sup></span>.</div>
+    <div class="step">Check: <span class="fml">d/dx[x⁴/4 + (2/3)x<sup>3/2</sup>] = x³ + x<sup>1/2</sup></span> ✓.</div>
+    <div class="ans">x⁴/4 + (2/3)x<sup>3/2</sup> + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">9.</span><span class="qtag">sum · rewrite both</span>
+  <div class="qtext">Integrate: <span class="fml">∫ (1/x² + 1/√x) dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> two rewrites in one problem: 1/x² = x<sup>−2</sup> and 1/√x = x<sup>−1/2</sup> (a root in the bottom makes a NEGATIVE fractional power). Watch the second one: −1/2 + 1 = +1/2, and dividing by 1/2 doubles: x<sup>1/2</sup>/(1/2) = 2√x.</div>
+    <div class="step"><span class="fml">∫ x<sup>−2</sup> dx = x<sup>−1</sup>/(−1) = −1/x</span>.</div>
+    <div class="step"><span class="fml">∫ x<sup>−1/2</sup> dx = x<sup>1/2</sup>/(1/2) = 2√x</span>.</div>
+    <div class="step">Check: <span class="fml">d/dx[−x<sup>−1</sup> + 2x<sup>1/2</sup>] = x<sup>−2</sup> + x<sup>−1/2</sup></span> ✓.</div>
+    <div class="ans">−1/x + 2√x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">10.</span><span class="qtag">split the fraction</span>
+  <div class="qtext">Integrate: <span class="fml">∫ (x³ + 2)/x² dx</span>. (Hint: split the fraction into two pieces first.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> when a SUM sits on top of one denominator, you may split it: (a+b)/c = a/c + b/c — that's just adding fractions read backwards. Then simplify each piece with exponent subtraction: x³/x² = x<sup>3−2</sup> = x.</div>
+    <div class="step">Split: <span class="fml">(x³+2)/x² = x³/x² + 2/x² = x + 2x<sup>−2</sup></span>.</div>
+    <div class="step"><span class="fml">∫ x dx = x²/2</span>; <span class="fml">∫ 2x<sup>−2</sup> dx = 2·x<sup>−1</sup>/(−1) = −2/x</span>.</div>
+    <div class="step">Check: <span class="fml">d/dx[x²/2 − 2x<sup>−1</sup>] = x + 2x<sup>−2</sup> = (x³+2)/x²</span> ✓.</div>
+    <div class="ans">x²/2 − 2/x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">11.</span><span class="qtag">split the fraction</span>
+  <div class="qtext">Integrate: <span class="fml">∫ (x + 1)/√x dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> splitting works with root denominators too: (x+1)/√x = x/√x + 1/√x. Simplify with exponents: x/√x = x¹/x<sup>1/2</sup> = x<sup>1−1/2</sup> = x<sup>1/2</sup>. So the scary fraction is secretly √x + 1/√x.</div>
+    <div class="step">Split and rewrite: <span class="fml">(x+1)/√x = x<sup>1/2</sup> + x<sup>−1/2</sup></span>.</div>
+    <div class="step"><span class="fml">∫ x<sup>1/2</sup> dx = (2/3)x<sup>3/2</sup></span>; <span class="fml">∫ x<sup>−1/2</sup> dx = 2√x</span>.</div>
+    <div class="step">Check: <span class="fml">d/dx[(2/3)x<sup>3/2</sup> + 2x<sup>1/2</sup>] = x<sup>1/2</sup> + x<sup>−1/2</sup></span> ✓.</div>
+    <div class="ans">(2/3)x<sup>3/2</sup> + 2√x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">12.</span><span class="qtag">definite integral</span>
+  <div class="qtext">Evaluate exactly: <span class="fml">∫<sub>1</sub><sup>2</sup> 1/x² dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the FTC (Lesson 8): find an antiderivative F, then compute F(b) − F(a). No +C needed for definite integrals — it would cancel in the subtraction. Careful with double negatives when the antiderivative is −1/x!</div>
+    <div class="step">Antiderivative of <span class="fml">x<sup>−2</sup></span> is <span class="fml">−1/x</span>.</div>
+    <div class="step"><span class="fml">[−1/x]<sub>1</sub><sup>2</sup> = (−1/2) − (−1/1) = −1/2 + 1 = 1/2</span>.</div>
+    <div class="step">Sanity check: width 1, heights between 1/4 and 1 → answer must be between 1/4 and 1. ✓</div>
+    <div class="ans">1/2</div></div>
+</div>
+
+<div class="q"><span class="qnum">13.</span><span class="qtag">definite integral</span>
+  <div class="qtext">Evaluate exactly: <span class="fml">∫<sub>0</sub><sup>4</sup> √x dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> to evaluate x<sup>3/2</sup> at a number, do "root, then power": 4<sup>3/2</sup> = (√4)³ = 2³ = 8. Choosing the root first keeps the numbers small.</div>
+    <div class="step">Antiderivative: <span class="fml">(2/3)x<sup>3/2</sup></span>.</div>
+    <div class="step"><span class="fml">[(2/3)x<sup>3/2</sup>]<sub>0</sub><sup>4</sup> = (2/3)·8 − 0 = 16/3</span>.</div>
+    <div class="step">Sanity check: 16/3 ≈ 5.33; the region fits inside a 4 × 2 = 8 box and covers more than half of it. ✓</div>
+    <div class="ans">16/3</div></div>
+</div>
+
+<div class="q"><span class="qnum">14.</span><span class="qtag">definite integral</span>
+  <div class="qtext">Evaluate exactly: <span class="fml">∫<sub>1</sub><sup>9</sup> 1/√x dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> 1/√x = x<sup>−1/2</sup>, whose antiderivative is x<sup>1/2</sup>/(1/2) = 2√x. The limits 1 and 9 are perfect squares on purpose — √9 = 3 and √1 = 1 keep everything clean.</div>
+    <div class="step">Antiderivative: <span class="fml">2√x</span>.</div>
+    <div class="step"><span class="fml">[2√x]<sub>1</sub><sup>9</sup> = 2·3 − 2·1 = 6 − 2 = 4</span>.</div>
+    <div class="ans">4</div></div>
+</div>
+
+<div class="q"><span class="qnum">15.</span><span class="qtag">check by differentiating</span>
+  <div class="qtext">A classmate claims <span class="fml">∫ x<sup>3/2</sup> dx = (2/5)x<sup>5/2</sup> + C</span>. Check the claim by differentiating. Is it right?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> every integration claim can be verified with a derivative: if d/dx[answer] gives back the original function, the answer is right. This check is free and catches nearly every slip — professionals use it constantly.</div>
+    <div class="step"><span class="fml">d/dx[(2/5)x<sup>5/2</sup>] = (2/5) · (5/2) · x<sup>3/2</sup></span> (bring the power down, lower the power by one).</div>
+    <div class="step"><span class="fml">(2/5)·(5/2) = 1</span>, so the derivative is exactly <span class="fml">x<sup>3/2</sup></span> — the original function.</div>
+    <div class="ans">Yes — the claim is correct, because the derivative returns x<sup>3/2</sup></div></div>
+</div>
+
+<div class="q"><span class="qnum">16.</span><span class="qtag">spot the error</span>
+  <div class="qtext">Sam computes <span class="fml">∫ x<sup>−5</sup> dx = x<sup>−4</sup>/(−5) + C</span>. Find the error, fix it, and show (by differentiating) that Sam's version fails the check.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the #1 power-rule slip: dividing by the OLD power instead of the NEW one. The rule is x<sup>n+1</sup>/(n+1) — the same "n+1" appears in both places. Here n = −5, so the new power is −4, and you divide by −4.</div>
+    <div class="step">Sam raised the power correctly (−5 → −4) but divided by −5, the old power.</div>
+    <div class="step">Fix: <span class="fml">x<sup>−4</sup>/(−4) = −1/(4x⁴) + C</span>.</div>
+    <div class="step">Check Sam's: <span class="fml">d/dx[x<sup>−4</sup>/(−5)] = (−4/−5)x<sup>−5</sup> = (4/5)x<sup>−5</sup></span> — off by a factor of 4/5. Check the fix: <span class="fml">d/dx[−¼x<sup>−4</sup>] = −¼·(−4)·x<sup>−5</sup> = x<sup>−5</sup></span> ✓.</div>
+    <div class="ans">Correct answer: −1/(4x⁴) + C — divide by the NEW power, −4</div></div>
+</div>
+
+<div class="q"><span class="qnum">17.</span><span class="qtag">spot the error · n = −1</span>
+  <div class="qtext">Priya tries the power rule on <span class="fml">∫ 1/x dx</span>: "rewrite as <span class="fml">x<sup>−1</sup></span>, raise the power to 0, divide by 0…" She gets stuck. Explain exactly what breaks, and give the correct integral.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> division by zero is not "infinity" or "zero" — it's undefined, full stop. The power rule's recipe produces x<sup>0</sup>/0 when n = −1, so the recipe simply cannot run. Nature still gives the area under 1/x a value — it just comes from a different function: the natural logarithm (Lesson 15).</div>
+    <div class="step">What breaks: n + 1 = −1 + 1 = 0, and the rule says divide by n + 1 → divide by 0. Undefined.</div>
+    <div class="step">The correct integral: <span class="fml">∫ 1/x dx = ln|x| + C</span>, since <span class="fml">d/dx[ln x] = 1/x</span>.</div>
+    <div class="step">Memory hook: the power rule handles every power on the number line EXCEPT −1; ln|x| plugs that one hole.</div>
+    <div class="ans">The rule demands division by zero; instead ∫ 1/x dx = ln|x| + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">18.</span><span class="qtag">spot the error · absolute value</span>
+  <div class="qtext">Jaden writes <span class="fml">∫ 1/x dx = ln x + C</span>. What small but important thing is missing? Explain why it matters, and show by differentiating <span class="fml">ln(−x)</span> that the fixed formula works for negative x.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> ln asks "e to what power gives this number?" Since e to any power is positive, ln can't accept negative inputs. But 1/x is a perfectly good function for negative x, so its antiderivative formula must work there too. The absolute value |x| flips negatives positive before ln sees them.</div>
+    <div class="step">Missing: the absolute value. It should be <span class="fml">ln|x| + C</span>. Without it, the formula silently fails for every negative x (ln x doesn't even exist there).</div>
+    <div class="step">For x &lt; 0, |x| = −x, so the formula claims <span class="fml">ln(−x)</span> is an antiderivative of 1/x there. Chain rule check: <span class="fml">d/dx[ln(−x)] = 1/(−x) · (−1) = 1/x</span> ✓.</div>
+    <div class="step">Example use: <span class="fml">∫<sub>−3</sub><sup>−1</sup> 1/x dx = ln|−1| − ln|−3| = 0 − ln 3 = −ln 3</span> — a real (negative) signed area the fixed formula handles smoothly.</div>
+    <div class="ans">Write ln|x| + C; the check d/dx[ln(−x)] = 1/x confirms it</div></div>
+</div>
+
+<div class="q"><span class="qnum">19.</span><span class="qtag">word problem</span>
+  <div class="qtext">Water flows into a rain barrel at the rate <span class="fml">r(t) = 4/√t</span> liters per minute, for t from 1 to 9 minutes. How many liters flow in during that time?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> total accumulated = the definite integral of the rate (the very first idea of the course, now with a fancier rate). A rate like 4/√t is fast at first and slows down — the flow starts at 4 L/min (t = 1) and eases to 4/3 L/min (t = 9).</div>
+    <div class="step">Total = <span class="fml">∫<sub>1</sub><sup>9</sup> 4t<sup>−1/2</sup> dt</span>.</div>
+    <div class="step">Antiderivative: <span class="fml">4 · 2√t = 8√t</span>. (Check: d/dt[8t<sup>1/2</sup>] = 4t<sup>−1/2</sup> ✓.)</div>
+    <div class="step"><span class="fml">[8√t]<sub>1</sub><sup>9</sup> = 8·3 − 8·1 = 24 − 8 = 16</span>. Units: (liters/min)·min = liters.</div>
+    <div class="ans">16 liters</div></div>
+</div>
+
+<div class="q"><span class="qnum">20.</span><span class="qtag">challenge · multi-part</span>
+  <div class="qtext">Let <span class="fml">f(x) = (x² − 3)/x²</span>.
+  (a) Rewrite f(x) as a sum of powers of x.
+  (b) Find the general antiderivative, and check it by differentiating.
+  (c) Evaluate <span class="fml">∫<sub>1</sub><sup>4</sup> f(x) dx</span> exactly.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> this is the full rewrite-first pipeline on one function: split the fraction, translate to powers, integrate term by term, verify, then run the FTC. AP free-response questions are built exactly like this — several small skills chained together.</div>
+    <div class="step">(a) Split: <span class="fml">(x² − 3)/x² = x²/x² − 3/x² = 1 − 3x<sup>−2</sup></span>.</div>
+    <div class="step">(b) <span class="fml">∫ (1 − 3x<sup>−2</sup>) dx = x − 3·x<sup>−1</sup>/(−1) = x + 3/x + C</span>. Check: <span class="fml">d/dx[x + 3x<sup>−1</sup>] = 1 − 3x<sup>−2</sup></span> ✓ — and note the sign flip: integrating −3x<sup>−2</sup> gave PLUS 3/x.</div>
+    <div class="step">(c) <span class="fml">[x + 3/x]<sub>1</sub><sup>4</sup> = (4 + 3/4) − (1 + 3) = 19/4 − 4 = 3/4</span>.</div>
+    <div class="ans">(a) 1 − 3x<sup>−2</sup> &nbsp; (b) x + 3/x + C &nbsp; (c) 3/4</div></div>
+</div>
+
+<footer>Lesson 21 of 40 · Intuitive Integration · next: <a href="Lesson22.html">Lesson 22 — Sigma Notation &amp; Riemann Sums, Formalized</a></footer>
+
+</div>
+<script>
+document.querySelectorAll('.q').forEach(q=>{
+  const btn=q.querySelector('.revealbtn'), sol=q.querySelector('.sol');
+  btn.addEventListener('click',()=>{ sol.classList.add('show'); btn.textContent='Solution shown'; btn.disabled=true; btn.style.opacity=.6; });
+});
+</script>
+</body>
+</html>

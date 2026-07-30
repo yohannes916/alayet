@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Lesson 22 Answer Key — Sigma Notation &amp; Riemann Sums</title>
+<style>
+  @page { size: letter; margin: 0.75in; }
+  *{box-sizing:border-box;}
+  body{font-family:Georgia,"Times New Roman",serif;color:#111;margin:0;font-size:11.5pt;line-height:1.5;}
+  .head{border-bottom:3px solid #b03a2e;padding-bottom:8px;margin-bottom:14px;}
+  .head h1{font-family:Helvetica,Arial,sans-serif;font-size:16pt;margin:0 0 2px;color:#b03a2e;}
+  .head p{margin:0;font-size:10.5pt;color:#333;}
+  .q{margin:0 0 12px;page-break-inside:avoid;}
+  .q .txt{margin-bottom:4px;}
+  .q b.n{color:#b03a2e;font-family:Helvetica,Arial,sans-serif;}
+  .a{background:#f7f7f7;border-left:4px solid #1e8449;border-radius:4px;padding:7px 12px;font-size:11pt;}
+  .a b{color:#145a32;}
+  .ans{color:#145a32;font-weight:bold;}
+</style>
+</head>
+<body>
+
+<div class="head">
+  <h1>ANSWER KEY — Integration Lesson 22 Test: Sigma Notation &amp; Riemann Sums</h1>
+  <p>For the grader · full working shown · method credit for correct setup with small arithmetic slips · justification questions require the reasoning, not just "over" or "under"</p>
+</div>
+
+<div class="q"><div class="txt"><b class="n">1.</b> Evaluate: Σ<sub>k=1</sub><sup>6</sup> k.</div>
+<div class="a"><b>Work:</b> 1 + 2 + 3 + 4 + 5 + 6 = 21 (or Gauss: 6·7/2 = 21). <span class="ans">Answer: 21.</span></div></div>
+
+<div class="q"><div class="txt"><b class="n">2.</b> Evaluate: Σ<sub>k=1</sub><sup>3</sup> (k² + 1).</div>
+<div class="a"><b>Work:</b> k = 1 → 2; k = 2 → 5; k = 3 → 10. Sum: 2 + 5 + 10 = 17. <span class="ans">Answer: 17.</span> (Classic error: adding the "+1" only once, getting 14 + 1 = 15 — the +1 belongs to EVERY term.)</div></div>
+
+<div class="q"><div class="txt"><b class="n">3.</b> Write in sigma notation: 3 + 6 + 9 + 12.</div>
+<div class="a"><b>Work:</b> terms are 3·1, 3·2, 3·3, 3·4 → expression 3k, k from 1 to 4. <span class="ans">Answer: Σ<sub>k=1</sub><sup>4</sup> 3k.</span> (Also accept equivalent forms, e.g. Σ<sub>k=3</sub><sup>6</sup>... only if it truly generates 3,6,9,12 — Σ<sub>k=1</sub><sup>4</sup> 3k is the expected answer; any index letter is fine.)</div></div>
+
+<div class="q"><div class="txt"><b class="n">4.</b> f(x) = x² on [0, 3], n = 3: LEFT and RIGHT sums.</div>
+<div class="a"><b>Work:</b> Δx = (3−0)/3 = 1; edges 0, 1, 2, 3; heights f = 0, 1, 4, 9. Left = 1·(0 + 1 + 4) = 5. Right = 1·(1 + 4 + 9) = 14. <span class="ans">Answer: Left = 5, Right = 14.</span> (True value 9, for reference. Classic error: using all four heights in one sum — each sum uses exactly n = 3 heights.)</div></div>
+
+<div class="q"><div class="txt"><b class="n">5.</b> f(x) = x² on [0, 2], n = 2: MIDPOINT sum.</div>
+<div class="a"><b>Work:</b> Δx = (2−0)/2 = 1; slices [0,1] and [1,2]; midpoints 0.5 and 1.5. Sum = 1·(0.5² + 1.5²) = 0.25 + 2.25 = 2.5. <span class="ans">Answer: 2.5.</span> (True value 8/3 ≈ 2.67 — midpoint gets close with only two rectangles. Classic error: sampling at edges 0 and 1 or 1 and 2 instead of midpoints.)</div></div>
+
+<div class="q"><div class="txt"><b class="n">6.</b> t (min): 0, 4, 8, 12 · R(t) (L/min): 6, 9, 7, 5 — LEFT sum for total liters.</div>
+<div class="a"><b>Work:</b> equal widths of 4 min; left heights 6, 9, 7 (last reading unused). Left = 4·(6 + 9 + 7) = 4·22 = 88. Units: (L/min)·min = L. <span class="ans">Answer: 88 liters.</span> (Classic error: including the final reading 5 → 4·27 = 108; a left sum never uses the last table entry.)</div></div>
+
+<div class="q"><div class="txt"><b class="n">7.</b> t (s): 0, 1, 4, 6, 10 · v(t) (m/s): 8, 6, 5, 7, 4 — (a) left sum, (b) right sum on [0, 10].</div>
+<div class="a"><b>Work:</b> widths: 1−0 = 1, 4−1 = 3, 6−4 = 2, 10−6 = 4. (a) Left heights 8, 6, 5, 7: 8·1 + 6·3 + 5·2 + 7·4 = 8 + 18 + 10 + 28 = 64. (b) Right heights 6, 5, 7, 4: 6·1 + 5·3 + 7·2 + 4·4 = 6 + 15 + 14 + 16 = 51. <span class="ans">Answer: (a) 64 meters (b) 51 meters.</span> (Classic error: assuming a common Δx like 2.5 — the widths are unequal and must be computed from the table.)</div></div>
+
+<div class="q"><div class="txt"><b class="n">8.</b> f(x) = √x increasing on [1, 4]: does a RIGHT sum over- or underestimate ∫<sub>1</sub><sup>4</sup> √x dx? Justify.</div>
+<div class="a"><b>Work:</b> full-credit sentence: "Because f is increasing on [1, 4], each right-endpoint height is the largest value of f on its subinterval, so every rectangle contains area above the curve; therefore the right Riemann sum overestimates the integral." <span class="ans">Answer: overestimates (with the increasing-function justification).</span> (Grader note: the bare word "overestimate" with no reasoning earns half credit at most; the justification must connect increasing → right edge is the max height.)</div></div>
+
+<div class="q"><div class="txt"><b class="n">9.</b> R(t) in liters per minute, t in minutes: what does ∫<sub>0</sub><sup>20</sup> R(t) dt represent?</div>
+<div class="a"><b>Work:</b> integrating a rate gives a total; units: (liters/minute) × minutes = liters. <span class="ans">Answer: the total number of LITERS of juice poured into the vat during the first 20 minutes.</span> (Full credit needs all three: the quantity (liters), the interval (from t = 0 to t = 20), and the idea of total/accumulated amount. "The area under the curve" alone is not an interpretation.)</div></div>
+
+<div class="q"><div class="txt"><b class="n">10.</b> t (hr): 0, 3, 5, 9 · r(t) (gal/hr): 12, 10, 8, 6 — (a) left sum, (b) right sum, (c) which overestimates? Justify.</div>
+<div class="a"><b>Work:</b> widths: 3−0 = 3, 5−3 = 2, 9−5 = 4. (a) Left heights 12, 10, 8: 12·3 + 10·2 + 8·4 = 36 + 20 + 32 = 88. (b) Right heights 10, 8, 6: 10·3 + 8·2 + 6·4 = 30 + 16 + 24 = 70. (c) "Since r is decreasing, each left-endpoint height is the maximum of r on its subinterval, so the left rectangles lie above the curve — the left sum, 88 gallons, is the overestimate." <span class="ans">Answer: (a) 88 gallons (b) 70 gallons (c) the left sum, because r is decreasing.</span> (Score each part separately; (c) needs the decreasing→left-max reasoning, not just "left".)</div></div>
+
+</body>
+</html>

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 30 — Integration by Parts I</title>
+<style>
+  :root{--accent:#186a3b;--accent2:#239b56;--bg:#f2f7f4;--card:#fff;--ok:#1e8449;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:#1c2833;background:var(--bg);margin:0;padding:0 16px 80px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -16px 20px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  nav{display:flex;gap:10px;margin-bottom:18px;font-size:.9rem;flex-wrap:wrap;}
+  nav a{color:var(--accent);text-decoration:none;font-weight:600;background:#fff;border:1px solid #d5e8dc;border-radius:8px;padding:6px 14px;}
+  nav a:hover{background:#eafaf1;}
+  .goal{background:#fef9e7;border-left:5px solid var(--star);padding:12px 18px;border-radius:8px;margin-bottom:18px;font-size:.95rem;}
+  .goal strong{color:#7d6608;}
+  section{background:var(--card);border-radius:10px;padding:18px 22px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  h2{color:var(--accent);font-size:1.15rem;margin:0 0 10px;}
+  h2 .num{background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;border-radius:6px;padding:2px 9px;margin-right:8px;}
+  ul{margin:8px 0;padding-left:24px;}
+  li{margin-bottom:8px;}
+  strong{color:#145a32;}
+  em.hi{font-style:normal;background:#fef9e7;padding:0 4px;border-radius:3px;}
+  .fml{background:#e9f7ef;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.9em;color:#186a3b;white-space:nowrap;}
+  .ex{background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:.95rem;}
+  .ex b{color:#145a32;}
+  .graph{background:#1b2631;color:#eaeded;border-radius:8px;padding:14px 18px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.82rem;line-height:1.45;overflow-x:auto;margin:10px 0;white-space:pre;}
+  .graph .g{color:#82e0aa;} .graph .y{color:#f7dc6f;} .graph .b{color:#85c1e9;}
+  table.t{border-collapse:collapse;margin:10px 0;font-size:.92rem;}
+  table.t th,table.t td{border:1px solid #cfd8cf;padding:6px 12px;text-align:center;}
+  table.t th{background:var(--accent);color:#fff;font-weight:600;}
+  .qhead{margin:26px 0 8px;color:var(--accent);font-size:1.2rem;border-bottom:2px solid #d4efdf;padding-bottom:6px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid var(--accent2);}
+  .qnum{font-weight:800;color:var(--accent);margin-right:6px;}
+  .qtag{float:right;background:#e9f7ef;color:var(--accent);border-radius:8px;padding:1px 9px;font-size:.68rem;font-weight:700;letter-spacing:.3px;margin-left:8px;}
+  .qtext{font-size:.98rem;margin:4px 0 10px;}
+  .revealbtn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .revealbtn:hover{background:#0e4429;}
+  .sol{display:none;margin-top:12px;background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px;font-size:.93rem;}
+  .sol.show{display:block;}
+  .sol h4{margin:0 0 8px;color:var(--ok);font-size:.9rem;}
+  .sol .ctx{background:#eaf2f8;border-left:4px solid #2e86c1;border-radius:6px;padding:8px 12px;margin:0 0 10px;font-size:.88rem;}
+  .sol .ctx b{color:#1a5276;}
+  .sol .step{margin:6px 0;}
+  .sol .ans{background:#eafaf1;border-radius:6px;padding:6px 12px;margin-top:8px;font-weight:700;color:#145a32;display:inline-block;}
+  footer{text-align:center;color:#85929e;font-size:.85rem;margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Lesson 30 — Integration by Parts I</h1>
+  <p>The Product Rule, Run in Reverse · Intuitive Calculus for a Curious Student · Lesson 30 of 40</p>
+</header>
+
+<nav><a href="index.html">📚 All lessons</a><a href="Lesson29.html">← Lesson 29</a><a href="Lesson31.html">Next: Lesson 31 →</a></nav>
+
+<div class="goal"><strong>🎯 Goal of this lesson:</strong> meet the second great integration technique. U-substitution reversed the <em>chain rule</em>; today's tool — <strong>integration by parts</strong> — reverses the <em>product rule</em>. It cracks integrals like <span class="fml">∫x·eˣ dx</span> that u-sub can't touch, by trading your integral for an easier one. You'll learn the formula, where it comes from, and the art of choosing the parts.</div>
+
+<section>
+  <h2><span class="num">1</span> A problem our tools can't solve (yet)</h2>
+  <ul>
+    <li>Try to compute <span class="fml">∫x·eˣ dx</span> with what we know. U-sub needs a <em>fingerprint</em>: the derivative of the inside function sitting nearby as a factor.</li>
+    <li>Attempt u = x: its derivative is 1 — there's no fingerprint to absorb, and the leftover eˣ still has x in it. Stuck.</li>
+    <li>Attempt u = eˣ: its derivative is eˣ again — substituting changes nothing. Stuck again.</li>
+    <li>The real issue: <span class="fml">x</span> and <span class="fml">eˣ</span> are a <strong>product of two unrelated functions</strong> — neither is the derivative of the other's inside. U-sub undoes the chain rule, but nothing here came from a chain rule. <em class="hi">A product needs a product-rule tool.</em></li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">2</span> Deriving the tool from the product rule — slowly</h2>
+  <ul>
+    <li>Start from the product rule for two functions u(x) and v(x): <span class="fml">(uv)′ = u′v + uv′</span>.</li>
+    <li><strong>Integrate both sides.</strong> The left side is easy — integrating a derivative just gives the function back (that's the FTC): <span class="fml">uv = ∫u′v dx + ∫uv′ dx</span>.</li>
+    <li><strong>Rearrange</strong> — move one integral to the other side: <span class="fml">∫uv′ dx = uv − ∫u′v dx</span>.</li>
+    <li>In differential shorthand (dv = v′dx, du = u′dx), this is the famous formula: <em class="hi"><span class="fml">∫u dv = uv − ∫v du</span></em></li>
+    <li>Translate to plain English: <strong>"trade your integral for a hopefully-easier one."</strong> You pay a price of uv up front, and in exchange, ∫u dv becomes ∫v du — a <em>different</em> integral, where u has been differentiated and dv has been integrated. If you choose the parts well, the new integral is easier than the old one.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">3</span> The ritual — and the flagship example</h2>
+  <ul>
+    <li>Every by-parts problem follows the same four-step ritual:</li>
+  </ul>
+  <table class="t">
+    <tr><th>Step</th><th>Do this</th></tr>
+    <tr><td>1</td><td>Pick <b>u</b> = the part that gets <b>simpler</b> when differentiated</td></tr>
+    <tr><td>2</td><td>Let <b>dv</b> = everything else (must be something you can integrate)</td></tr>
+    <tr><td>3</td><td>Compute <b>du</b> (differentiate u) and <b>v</b> (integrate dv — no +C needed yet)</td></tr>
+    <tr><td>4</td><td>Assemble: <span class="fml">uv − ∫v du</span>, then finish the new integral</td></tr>
+  </table>
+  <div class="ex"><b>Flagship: ∫x eˣ dx.</b><br>
+  Pick u = x (differentiating turns it into plain 1 — much simpler) and dv = eˣ dx.<br>
+  Then du = dx and v = ∫eˣ dx = eˣ.<br>
+  Assemble: <span class="fml">∫x eˣ dx = uv − ∫v du = x eˣ − ∫eˣ dx = x eˣ − eˣ + C</span>.<br>
+  <b>Check by differentiating</b> (always!): d/dx[x eˣ − eˣ] = (1·eˣ + x·eˣ) − eˣ = x eˣ ✓. The product rule hands back exactly the integrand — the answer is certified.</div>
+  <ul>
+    <li>Notice what the trade did: the hard <span class="fml">∫x eˣ dx</span> became the easy <span class="fml">∫eˣ dx</span>. The x got differentiated away.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">4</span> Choosing u — the LIATE ladder</h2>
+  <ul>
+    <li>The whole game is choosing u well. A friendly priority list called <strong>LIATE</strong> almost always works: pick u from as <strong>high</strong> on the ladder as possible, and dv from what's left.</li>
+  </ul>
+  <div class="graph"> the LIATE ladder — pick u from as HIGH as you can
+ <span class="y">L</span>  <span class="g">Logarithms</span>      ln x               ← grab for u first
+ <span class="y">I</span>  <span class="g">Inverse trig</span>    arctan x, arcsin x
+ <span class="y">A</span>  <span class="g">Algebraic</span>       x, x², 3x + 1
+ <span class="y">T</span>  <span class="g">Trig</span>            sin x, cos x
+ <span class="y">E</span>  <span class="g">Exponentials</span>    eˣ, e²ˣ            ← last pick for u
+                                        <span class="b">(but a great dv!)</span></div>
+  <ul>
+    <li>The intuition behind the order: things at the top (logs, polynomials) <strong>get simpler when differentiated</strong> — ln x becomes 1/x, x² becomes 2x becomes 2. Things at the bottom (exponentials, trig) <strong>never simplify</strong> — eˣ stays eˣ, sin x just cycles to cos x. So differentiate the top stuff (u), integrate the bottom stuff (dv).</li>
+    <li>In ∫x eˣ dx: x is Algebraic, eˣ is Exponential. A sits above E → u = x. Exactly what worked.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">5</span> Two more worked examples (watch the signs)</h2>
+  <div class="ex"><b>∫x cos x dx.</b> LIATE: u = x (Algebraic beats Trig), dv = cos x dx → du = dx, v = sin x.<br>
+  <span class="fml">∫x cos x dx = x sin x − ∫sin x dx = x sin x − (−cos x) + C = x sin x + cos x + C</span>.<br>
+  Careful: ∫sin x dx = −cos x, and <em>subtracting</em> it gives <b>+cos x</b>. Signs are the #1 by-parts trap.<br>
+  <b>Check:</b> d/dx[x sin x + cos x] = (sin x + x cos x) + (−sin x) = x cos x ✓.</div>
+  <div class="ex"><b>∫x sin x dx.</b> u = x, dv = sin x dx → du = dx, v = −cos x.<br>
+  <span class="fml">∫x sin x dx = x·(−cos x) − ∫(−cos x) dx = −x cos x + ∫cos x dx = −x cos x + sin x + C</span>.<br>
+  <b>Check:</b> d/dx[−x cos x + sin x] = (−cos x + x sin x) + cos x = x sin x ✓.</div>
+</section>
+
+<section>
+  <h2><span class="num">6</span> What if you pick u wrong?</h2>
+  <ul>
+    <li>Let's deliberately make the bad choice on the flagship: <span class="fml">∫x eˣ dx</span> with u = eˣ, dv = x dx.</li>
+    <li>Then du = eˣ dx and v = x²/2, so the formula gives: <span class="fml">∫x eˣ dx = (x²/2)eˣ − ∫(x²/2)eˣ dx</span>.</li>
+    <li>Look at the new integral: <span class="fml">∫(x²/2)eˣ dx</span> — the power of x went <strong>UP</strong> from x to x². We traded our problem for a <em>harder</em> one. Each wrong-way trade raises the power forever.</li>
+    <li>The good news: <em class="hi">a wrong choice isn't broken, just worse</em>. The equation above is still perfectly true! You haven't made an error — you've just walked the wrong direction. Back up, swap the roles of u and dv, and walk the other way.</li>
+    <li>Rule of thumb: if the new integral looks <strong>harder</strong> than the one you started with, swap your choice.</li>
+  </ul>
+</section>
+
+<div class="qhead">✏️ Exercises — 20 problems (write your answer on paper, then reveal)</div>
+
+<div class="q"><span class="qnum">1.</span><span class="qtag">flagship redo</span>
+  <div class="qtext">Compute <span class="fml">∫x eˣ dx</span> yourself, from scratch: state u, dv, du, v, assemble, and check by differentiating.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> redoing the flagship with your own hand builds the ritual into muscle memory: pick u (gets simpler), pick dv (integrable), compute du and v, assemble uv − ∫v du.</div>
+    <div class="step">u = x, dv = eˣ dx → du = dx, v = eˣ.</div>
+    <div class="step">Assemble: x eˣ − ∫eˣ dx = x eˣ − eˣ + C.</div>
+    <div class="step">Check: d/dx[x eˣ − eˣ] = (eˣ + x eˣ) − eˣ = x eˣ ✓.</div>
+    <div class="ans">x eˣ − eˣ + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">2.</span><span class="qtag">choose u and dv only</span>
+  <div class="qtext">For each integral, state u and dv (do NOT compute the integral): (a) <span class="fml">∫x sin x dx</span> &nbsp; (b) <span class="fml">∫x² eˣ dx</span> &nbsp; (c) <span class="fml">∫x ln x dx</span> &nbsp; (d) <span class="fml">∫x e<sup>5x</sup> dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> choosing is a separate skill from computing, so we drill it alone. Climb the LIATE ladder: Logs, Inverse trig, Algebraic, Trig, Exponential — u comes from the highest rung present.</div>
+    <div class="step">(a) x is Algebraic, sin x is Trig; A beats T → u = x, dv = sin x dx.</div>
+    <div class="step">(b) x² is Algebraic, eˣ is Exponential → u = x², dv = eˣ dx. (Differentiating x² twice will eventually kill it — that's Lesson 31's "repeat" trick.)</div>
+    <div class="step">(c) ln x is a Log — the very top of the ladder → u = ln x, dv = x dx. (Even though x looks "simpler," ln x is the one that improves when differentiated: it becomes 1/x.)</div>
+    <div class="step">(d) u = x, dv = e<sup>5x</sup> dx — same shape as (a) and the flagship.</div>
+    <div class="ans">(a) u = x, dv = sin x dx &nbsp; (b) u = x², dv = eˣ dx &nbsp; (c) u = ln x, dv = x dx &nbsp; (d) u = x, dv = e⁵ˣ dx</div></div>
+</div>
+
+<div class="q"><span class="qnum">3.</span><span class="qtag">by parts · trig</span>
+  <div class="qtext">Compute <span class="fml">∫x cos x dx</span> with the full ritual, and check your answer by differentiating.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the trap in trig by-parts is the double negative: you'll subtract an integral that itself produces a minus sign. Write every sign out — no mental shortcuts.</div>
+    <div class="step">u = x, dv = cos x dx → du = dx, v = sin x.</div>
+    <div class="step">Assemble: x sin x − ∫sin x dx = x sin x − (−cos x) + C = x sin x + cos x + C.</div>
+    <div class="step">Check: d/dx[x sin x + cos x] = (sin x + x cos x) − sin x = x cos x ✓.</div>
+    <div class="ans">x sin x + cos x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">4.</span><span class="qtag">by parts · trig</span>
+  <div class="qtext">Compute <span class="fml">∫x sin x dx</span>, and check by differentiating.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> here v = −cos x carries a minus sign from the start, and then you subtract ∫v du. Two separate minus signs, handled one at a time.</div>
+    <div class="step">u = x, dv = sin x dx → du = dx, v = −cos x.</div>
+    <div class="step">Assemble: x·(−cos x) − ∫(−cos x) dx = −x cos x + ∫cos x dx = −x cos x + sin x + C.</div>
+    <div class="step">Check: d/dx[−x cos x + sin x] = (−cos x + x sin x) + cos x = x sin x ✓.</div>
+    <div class="ans">−x cos x + sin x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">5.</span><span class="qtag">check by differentiating</span>
+  <div class="qtext">Without redoing the integral, verify by differentiation that <span class="fml">x eˣ − eˣ + C</span> really is an antiderivative of <span class="fml">x eˣ</span>. Name the differentiation rule you use.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> every by-parts answer contains a product (the uv term), so checking always uses the product rule — fitting, since by parts IS the product rule in reverse. This check is free insurance: use it on every problem today.</div>
+    <div class="step">d/dx[x eˣ] by the product rule: (derivative of x)·eˣ + x·(derivative of eˣ) = eˣ + x eˣ.</div>
+    <div class="step">d/dx[−eˣ] = −eˣ, and d/dx[C] = 0.</div>
+    <div class="step">Total: eˣ + x eˣ − eˣ = x eˣ — exactly the integrand ✓.</div>
+    <div class="ans">Derivative is x eˣ ✓ (product rule) — the antiderivative is certified</div></div>
+</div>
+
+<div class="q"><span class="qnum">6.</span><span class="qtag">conceptual</span>
+  <div class="qtext">In a sentence or two: why does u-substitution fail on <span class="fml">∫x cos x dx</span>?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> u-sub only undoes the chain rule — it needs an inside function whose derivative appears as a factor (the fingerprint). Recognizing WHY a tool fails tells you which tool to reach for instead.</div>
+    <div class="step">Try u = cos x: du = −sin x dx, but there's no sin x factor in the integrand to absorb. Try u = x: du = dx, which changes nothing — the cos x still has x inside it... actually cos x is not a composite at all.</div>
+    <div class="step">The integrand is a product of two unrelated functions — neither one's derivative appears as the other factor, so no fingerprint exists. Nothing here was produced by a chain rule, so no substitution can unwind it. It WAS produced by a product rule — hence integration by parts.</div>
+    <div class="ans">No fingerprint: neither factor's derivative appears in the product, so u-sub has nothing to absorb</div></div>
+</div>
+
+<div class="q"><span class="qnum">7.</span><span class="qtag">by parts + divide-by-a</span>
+  <div class="qtext">Compute <span class="fml">∫x e<sup>2x</sup> dx</span>. (Remember from Lesson 17: ∫e<sup>2x</sup> dx = (1/2)e<sup>2x</sup> + C.) Check by differentiating.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> by parts combines smoothly with the divide-by-a rule for e<sup>ax</sup>: every time you integrate e<sup>2x</sup> you pay a factor of 1/2. It happens twice in this problem — once for v, once in the final integral.</div>
+    <div class="step">u = x, dv = e<sup>2x</sup> dx → du = dx, v = (1/2)e<sup>2x</sup>.</div>
+    <div class="step">Assemble: x·(1/2)e<sup>2x</sup> − ∫(1/2)e<sup>2x</sup> dx = (x/2)e<sup>2x</sup> − (1/2)·(1/2)e<sup>2x</sup> + C = (x/2)e<sup>2x</sup> − (1/4)e<sup>2x</sup> + C.</div>
+    <div class="step">Check: d/dx[(x/2)e<sup>2x</sup>] = (1/2)e<sup>2x</sup> + (x/2)·2e<sup>2x</sup> = (1/2)e<sup>2x</sup> + x e<sup>2x</sup>. And d/dx[−(1/4)e<sup>2x</sup>] = −(1/2)e<sup>2x</sup>. Total: x e<sup>2x</sup> ✓.</div>
+    <div class="ans">(x/2)e<sup>2x</sup> − (1/4)e<sup>2x</sup> + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">8.</span><span class="qtag">by parts + inner constant</span>
+  <div class="qtext">Compute <span class="fml">∫x sin(2x) dx</span>, and check by differentiating.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> same pattern as #7 but with trig: integrating sin(2x) costs a factor of 1/2 and a sign (∫sin(2x) dx = −(1/2)cos(2x)). Track the 1/2s and the minus signs separately.</div>
+    <div class="step">u = x, dv = sin(2x) dx → du = dx, v = −(1/2)cos(2x).</div>
+    <div class="step">Assemble: x·(−(1/2)cos 2x) − ∫(−(1/2)cos 2x) dx = −(x/2)cos 2x + (1/2)∫cos 2x dx.</div>
+    <div class="step">Finish: (1/2)·(1/2)sin 2x = (1/4)sin 2x. Answer: −(x/2)cos 2x + (1/4)sin 2x + C.</div>
+    <div class="step">Check: d/dx[−(x/2)cos 2x] = −(1/2)cos 2x + (x/2)·2 sin 2x = −(1/2)cos 2x + x sin 2x. d/dx[(1/4)sin 2x] = (1/2)cos 2x. Total: x sin 2x ✓.</div>
+    <div class="ans">−(x/2)cos 2x + (1/4)sin 2x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">9.</span><span class="qtag">by parts · tidy surprise</span>
+  <div class="qtext">Compute <span class="fml">∫(x + 1)eˣ dx</span>. Simplify your answer as far as possible — something pleasant happens.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> u can be any polynomial, not just plain x. And sometimes the uv term and the traded integral partially cancel, collapsing into something tiny — always simplify at the end.</div>
+    <div class="step">u = x + 1, dv = eˣ dx → du = dx, v = eˣ.</div>
+    <div class="step">Assemble: (x + 1)eˣ − ∫eˣ dx = (x + 1)eˣ − eˣ + C.</div>
+    <div class="step">Simplify: (x + 1)eˣ − eˣ = x eˣ + eˣ − eˣ = x eˣ. So the answer is just x eˣ + C.</div>
+    <div class="step">Check: d/dx[x eˣ] = eˣ + x eˣ = (x + 1)eˣ ✓ — exactly the integrand.</div>
+    <div class="ans">x eˣ + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">10.</span><span class="qtag">constant in front</span>
+  <div class="qtext">Compute <span class="fml">∫3x cos x dx</span>, and check by differentiating.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> Lesson 29's linearity rule teams up with by parts: slide the 3 out front, use the ∫x cos x result, multiply back through at the end.</div>
+    <div class="step">∫3x cos x dx = 3·∫x cos x dx.</div>
+    <div class="step">From the ritual (u = x, dv = cos x dx): ∫x cos x dx = x sin x + cos x + C.</div>
+    <div class="step">Multiply by 3: 3x sin x + 3 cos x + C.</div>
+    <div class="step">Check: d/dx[3x sin x + 3 cos x] = (3 sin x + 3x cos x) − 3 sin x = 3x cos x ✓.</div>
+    <div class="ans">3x sin x + 3 cos x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">11.</span><span class="qtag">wrong choice demo</span>
+  <div class="qtext">On <span class="fml">∫x sin x dx</span>, deliberately make the wrong choice: u = sin x, dv = x dx. Carry it through one step, explain how you can TELL it was the wrong choice, and say what to do next.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> feeling a wrong choice go bad — on purpose, once — teaches you to recognize it instantly in real problems. The tell: the new integral is messier than the one you started with.</div>
+    <div class="step">Wrong choice: u = sin x, dv = x dx → du = cos x dx, v = x²/2.</div>
+    <div class="step">Assemble: ∫x sin x dx = (x²/2)sin x − ∫(x²/2)cos x dx.</div>
+    <div class="step">The tell: the new integral ∫(x²/2)cos x dx has x² where we used to have x — the power went UP. We traded for a HARDER problem. (Not a mathematical error — the equation is true — just the wrong direction.)</div>
+    <div class="step">What to do: back up and swap: u = x, dv = sin x dx, which gives −x cos x + sin x + C (exercise 4). LIATE would have said so: Algebraic sits above Trig.</div>
+    <div class="ans">New integral gains x² → harder → swap the choice (LIATE: u = x)</div></div>
+</div>
+
+<div class="q"><span class="qnum">12.</span><span class="qtag">by parts · e⁻ˣ</span>
+  <div class="qtext">Compute <span class="fml">∫x e<sup>−x</sup> dx</span>. (Recall ∫e<sup>−x</sup> dx = −e<sup>−x</sup> + C.) Check by differentiating.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> e<sup>−x</sup> is e<sup>ax</sup> with a = −1, so every integration of it costs a factor of 1/(−1) = −1. The minus signs multiply up — write each one down.</div>
+    <div class="step">u = x, dv = e<sup>−x</sup> dx → du = dx, v = −e<sup>−x</sup>.</div>
+    <div class="step">Assemble: x·(−e<sup>−x</sup>) − ∫(−e<sup>−x</sup>) dx = −x e<sup>−x</sup> + ∫e<sup>−x</sup> dx = −x e<sup>−x</sup> − e<sup>−x</sup> + C.</div>
+    <div class="step">Check: d/dx[−x e<sup>−x</sup>] = −e<sup>−x</sup> + x e<sup>−x</sup> (product rule with chain rule on e<sup>−x</sup>). d/dx[−e<sup>−x</sup>] = e<sup>−x</sup>. Total: −e<sup>−x</sup> + x e<sup>−x</sup> + e<sup>−x</sup> = x e<sup>−x</sup> ✓.</div>
+    <div class="ans">−x e<sup>−x</sup> − e<sup>−x</sup> + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">13.</span><span class="qtag">definite · beautiful</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>0</sub><sup>1</sup> x eˣ dx</span> exactly.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> for a definite integral, do by parts to get the antiderivative, then evaluate at the endpoints as usual with the FTC. Keep exact values (e, not 2.718...) until the very end.</div>
+    <div class="step">Antiderivative (from #1): F(x) = x eˣ − eˣ.</div>
+    <div class="step">F(1) = 1·e − e = 0. &nbsp; F(0) = 0·1 − 1 = −1.</div>
+    <div class="step">Integral = F(1) − F(0) = 0 − (−1) = 1.</div>
+    <div class="step">Sense-check (Lesson 29 style): x eˣ ≥ 0 on [0, 1], so a positive answer is right; the function runs from 0 up to e ≈ 2.7, so a total of 1 over a width-1 interval is plausible ✓. All those e's melting into a clean 1 — that's a classic.</div>
+    <div class="ans">1</div></div>
+</div>
+
+<div class="q"><span class="qnum">14.</span><span class="qtag">by parts + inner constant</span>
+  <div class="qtext">Compute <span class="fml">∫x cos(3x) dx</span>, and check by differentiating.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the inner 3 costs a factor of 1/3 each time you integrate: ∫cos(3x) dx = (1/3)sin(3x), and integrating sin(3x) later costs another 1/3 — which is how the 1/9 appears.</div>
+    <div class="step">u = x, dv = cos(3x) dx → du = dx, v = (1/3)sin(3x).</div>
+    <div class="step">Assemble: (x/3)sin 3x − ∫(1/3)sin 3x dx = (x/3)sin 3x − (1/3)·(−(1/3)cos 3x) + C = (x/3)sin 3x + (1/9)cos 3x + C.</div>
+    <div class="step">Check: d/dx[(x/3)sin 3x] = (1/3)sin 3x + (x/3)·3cos 3x = (1/3)sin 3x + x cos 3x. d/dx[(1/9)cos 3x] = −(1/3)sin 3x. Total: x cos 3x ✓.</div>
+    <div class="ans">(x/3)sin 3x + (1/9)cos 3x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">15.</span><span class="qtag">definite · classic</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>0</sub><sup>π</sup> x sin x dx</span> exactly.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a famous AP definite integral. The antiderivative comes from exercise 4; the endpoint arithmetic uses cos π = −1, cos 0 = 1, sin π = sin 0 = 0. Watch the minus-times-minus at x = π.</div>
+    <div class="step">Antiderivative: F(x) = −x cos x + sin x.</div>
+    <div class="step">F(π) = −π·cos π + sin π = −π·(−1) + 0 = π.</div>
+    <div class="step">F(0) = −0·cos 0 + sin 0 = 0.</div>
+    <div class="step">Integral = π − 0 = π. Sense-check: x sin x ≥ 0 on [0, π] (both factors non-negative there), so a positive answer ≈ 3.14 fits ✓.</div>
+    <div class="ans">π</div></div>
+</div>
+
+<div class="q"><span class="qnum">16.</span><span class="qtag">polynomial u</span>
+  <div class="qtext">Compute <span class="fml">∫(2x + 3)cos x dx</span>, and check by differentiating.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> u = 2x + 3 differentiates to plain 2 — the whole polynomial melts to a constant in one step, so one round of by parts finishes the job.</div>
+    <div class="step">u = 2x + 3, dv = cos x dx → du = 2 dx, v = sin x.</div>
+    <div class="step">Assemble: (2x + 3)sin x − ∫sin x · 2 dx = (2x + 3)sin x − 2∫sin x dx = (2x + 3)sin x + 2 cos x + C.</div>
+    <div class="step">Check: d/dx[(2x + 3)sin x] = 2 sin x + (2x + 3)cos x. d/dx[2 cos x] = −2 sin x. Total: (2x + 3)cos x ✓.</div>
+    <div class="ans">(2x + 3)sin x + 2 cos x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">17.</span><span class="qtag">story · work done by a force</span>
+  <div class="qtext">A motorized cart sits at position x = 0 on a track. As it moves, the motor's push is <span class="fml">F(x) = x e<sup>−x</sup></span> newtons at position x meters (the push starts at zero, builds as the cart gets going). In physics, the <strong>work</strong> done moving from x = 0 to x = 1 is <span class="fml">W = ∫<sub>0</sub><sup>1</sup> F(x) dx</span> joules. Find W exactly, then as a decimal (2 places).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background (physics):</b> when a force changes with position, work = force × distance becomes work = the integral of force over the distance — the same "chop, multiply, add" story as ever: each little step dx contributes F(x)·dx of work. The integrand x e<sup>−x</sup> needs by parts, done in exercise 12.</div>
+    <div class="step">Antiderivative (from #12): F(x)'s antiderivative is −x e<sup>−x</sup> − e<sup>−x</sup>.</div>
+    <div class="step">At 1: −1·e<sup>−1</sup> − e<sup>−1</sup> = −2/e. &nbsp; At 0: −0 − e⁰ = −1.</div>
+    <div class="step">W = (−2/e) − (−1) = 1 − 2/e.</div>
+    <div class="step">Decimal: 2/e ≈ 2 ÷ 2.71828 ≈ 0.7358, so W ≈ 1 − 0.7358 ≈ 0.26. Sense-check: the force is non-negative on [0, 1] and never exceeds e<sup>−1</sup> ≈ 0.37, so work between 0 and 0.37 joules is exactly right ✓.</div>
+    <div class="ans">W = 1 − 2/e ≈ 0.26 joules</div></div>
+</div>
+
+<div class="q"><span class="qnum">18.</span><span class="qtag">definite · negative answer</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>0</sub><sup>π</sup> x cos x dx</span> exactly, then explain in one sentence why a negative answer makes sense here.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> definite integrals count area below the axis as negative. On [π/2, π], cos x is negative while x is large — so the late, below-axis area can outweigh the early, above-axis area. Lesson 29's sense-checks work on by-parts answers too.</div>
+    <div class="step">Antiderivative (from #3): F(x) = x sin x + cos x.</div>
+    <div class="step">F(π) = π·sin π + cos π = 0 + (−1) = −1.</div>
+    <div class="step">F(0) = 0·sin 0 + cos 0 = 1.</div>
+    <div class="step">Integral = −1 − 1 = −2.</div>
+    <div class="step">Why negative makes sense: x cos x is positive only on [0, π/2] where x is small, but negative on [π/2, π] where the factor x is big — the larger below-axis area wins.</div>
+    <div class="ans">−2</div></div>
+</div>
+
+<div class="q"><span class="qnum">19.</span><span class="qtag">fix the wrong answer</span>
+  <div class="qtext">A student claims <span class="fml">∫x sin x dx = −x cos x + C</span>. Differentiate the claim to show it's wrong, identify exactly what's missing, and fix it.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> this is the most common by-parts slip: writing the uv term and forgetting to finish the traded integral −∫v du. Differentiating the claim exposes the leftover instantly — which is why the check is worth 20 seconds every single time.</div>
+    <div class="step">Differentiate the claim: d/dx[−x cos x] = −cos x + x sin x = x sin x − cos x.</div>
+    <div class="step">We wanted x sin x, but we got x sin x − cos x: there's an unwanted <b>−cos x</b> left over. The claim is wrong.</div>
+    <div class="step">What's missing: the student stopped after the uv term and never added ∫cos x dx = sin x from the traded integral.</div>
+    <div class="step">Fix: add sin x. Check: d/dx[−x cos x + sin x] = (−cos x + x sin x) + cos x = x sin x ✓.</div>
+    <div class="ans">Correct answer: −x cos x + sin x + C (the traded integral was never finished)</div></div>
+</div>
+
+<div class="q"><span class="qnum">20.</span><span class="qtag">challenge · definite</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>0</sub><sup>π/2</sup> x cos x dx</span> exactly, and sense-check the sign and rough size of your answer.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> everything in one problem — by parts for the antiderivative, exact trig values at π/2, and a Lesson 29 sense-check at the end. Exact values: sin(π/2) = 1, cos(π/2) = 0.</div>
+    <div class="step">Antiderivative (from #3): F(x) = x sin x + cos x.</div>
+    <div class="step">F(π/2) = (π/2)·sin(π/2) + cos(π/2) = (π/2)·1 + 0 = π/2.</div>
+    <div class="step">F(0) = 0·sin 0 + cos 0 = 1.</div>
+    <div class="step">Integral = π/2 − 1.</div>
+    <div class="step">Sense-check: on [0, π/2] both x and cos x are ≥ 0, so the answer must be positive — and π/2 − 1 ≈ 1.571 − 1 = 0.57 &gt; 0 ✓. Rough size: the region fits inside a rectangle of width π/2 ≈ 1.57 and height at most π/2·1... the integrand peaks below 1, so an answer around 0.5 is very reasonable ✓.</div>
+    <div class="ans">π/2 − 1 ≈ 0.57</div></div>
+</div>
+
+<footer>Lesson 30 of 40 · Intuitive Integration · next: <a href="Lesson31.html">Lesson 31 — Integration by Parts II: Repeats, ln x &amp; Definite</a></footer>
+
+</div>
+<script>
+document.querySelectorAll('.q').forEach(q=>{
+  const btn=q.querySelector('.revealbtn'), sol=q.querySelector('.sol');
+  btn.addEventListener('click',()=>{ sol.classList.add('show'); btn.textContent='Solution shown'; btn.disabled=true; btn.style.opacity=.6; });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 40 — BC Capstone: The Whole Toolbox</title>
+<style>
+  :root{--accent:#186a3b;--accent2:#239b56;--bg:#f2f7f4;--card:#fff;--ok:#1e8449;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:#1c2833;background:var(--bg);margin:0;padding:0 16px 80px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -16px 20px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  nav{display:flex;gap:10px;margin-bottom:18px;font-size:.9rem;flex-wrap:wrap;}
+  nav a{color:var(--accent);text-decoration:none;font-weight:600;background:#fff;border:1px solid #d5e8dc;border-radius:8px;padding:6px 14px;}
+  nav a:hover{background:#eafaf1;}
+  .goal{background:#fef9e7;border-left:5px solid var(--star);padding:12px 18px;border-radius:8px;margin-bottom:18px;font-size:.95rem;}
+  .goal strong{color:#7d6608;}
+  section{background:var(--card);border-radius:10px;padding:18px 22px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  h2{color:var(--accent);font-size:1.15rem;margin:0 0 10px;}
+  h2 .num{background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;border-radius:6px;padding:2px 9px;margin-right:8px;}
+  ul{margin:8px 0;padding-left:24px;}
+  li{margin-bottom:8px;}
+  strong{color:#145a32;}
+  em.hi{font-style:normal;background:#fef9e7;padding:0 4px;border-radius:3px;}
+  .fml{background:#e9f7ef;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.9em;color:#186a3b;white-space:nowrap;}
+  .ex{background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:.95rem;}
+  .ex b{color:#145a32;}
+  .graph{background:#1b2631;color:#eaeded;border-radius:8px;padding:14px 18px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.82rem;line-height:1.45;overflow-x:auto;margin:10px 0;white-space:pre;}
+  .graph .g{color:#82e0aa;} .graph .y{color:#f7dc6f;} .graph .b{color:#85c1e9;}
+  table.t{border-collapse:collapse;margin:10px 0;font-size:.9rem;width:100%;}
+  table.t th,table.t td{border:1px solid #cfd8cf;padding:6px 10px;text-align:left;vertical-align:top;}
+  table.t th{background:var(--accent);color:#fff;font-weight:600;}
+  table.t td:first-child{font-weight:700;color:#145a32;white-space:nowrap;}
+  .qhead{margin:26px 0 8px;color:var(--accent);font-size:1.2rem;border-bottom:2px solid #d4efdf;padding-bottom:6px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid var(--accent2);}
+  .qnum{font-weight:800;color:var(--accent);margin-right:6px;}
+  .qtag{float:right;background:#e9f7ef;color:var(--accent);border-radius:8px;padding:1px 9px;font-size:.68rem;font-weight:700;letter-spacing:.3px;margin-left:8px;}
+  .qtext{font-size:.98rem;margin:4px 0 10px;}
+  .revealbtn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .revealbtn:hover{background:#0e4429;}
+  .sol{display:none;margin-top:12px;background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px;font-size:.93rem;}
+  .sol.show{display:block;}
+  .sol h4{margin:0 0 8px;color:var(--ok);font-size:.9rem;}
+  .sol .ctx{background:#eaf2f8;border-left:4px solid #2e86c1;border-radius:6px;padding:8px 12px;margin:0 0 10px;font-size:.88rem;}
+  .sol .ctx b{color:#1a5276;}
+  .sol .step{margin:6px 0;}
+  .sol .ans{background:#eafaf1;border-radius:6px;padding:6px 12px;margin-top:8px;font-weight:700;color:#145a32;display:inline-block;}
+  footer{text-align:center;color:#85929e;font-size:.85rem;margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Lesson 40 — BC Capstone: The Whole Toolbox</h1>
+  <p>Every technique, every application, one page · Intuitive Calculus for a Curious Student · Lesson 40 of 40</p>
+</header>
+
+<nav><a href="index.html">📚 All lessons</a><a href="Lesson39.html">← Prev: Lesson 39</a><a href="index.html">🏁 Course complete — back to index</a></nav>
+
+<div class="goal"><strong>🎯 Goal of this lesson:</strong> nothing new — instead, the <em class="hi">map</em>. You'll get the whole 40-lesson journey on one page, a complete toolbox table, and (most importantly) the skill that separates a BC student from someone who merely knows the rules: <strong>looking at an unfamiliar integral and knowing which tool to reach for</strong>. Then 20 mixed exam-level problems where nobody tells you the method.</div>
+
+<section>
+  <h2><span class="num">1</span> The Journey — 40 Lessons on One Page</h2>
+  <div class="graph"><span class="b">PART ONE — THE CORE STORY (1–20)</span>
+  <span class="g">rate × time</span> → chop &amp; add → <span class="g">AREA under a rate graph</span> → skinny rectangle slices
+        │
+        ▼  <span class="y">antiderivatives (+C)</span> → power rule → the ∫ symbol
+        │
+        ▼  <span class="b">THE FUNDAMENTAL THEOREM:  ∫ₐᵇ f = F(b) − F(a)</span>
+        │
+        └→ applications: signed area · between curves · motion · gravity
+                         accumulation · average value · eˣ, ln, sin, cos
+                         substitution · initial values
+
+<span class="b">PART TWO — THE ROAD TO BC (21–40)</span>
+  all powers (√x, 1/x²) → Σ and formal Riemann sums → trapezoid rule
+        │
+        ▼  tan/sec/csc/cot → arctan &amp; arcsin → u-sub mastery (changing limits)
+        │
+        ▼  <span class="b">FTC PART 2:  d/dx ∫ₐˣ f(t) dt = f(x)</span>  → accumulation graphs
+        │
+        ▼  properties &amp; symmetry → <span class="y">integration by parts</span> → <span class="y">partial fractions</span>
+        │                                    → <span class="y">improper integrals</span>
+        │
+        └→ the famous applications:  volumes (disks · washers · cross-sections)
+                                     arc length · differential equations
+                                     growth/decay/logistic · parametric · polar
+
+        <span class="g">Every single one of these is still just: slice it thin, add it up.</span></div>
+  <ul>
+    <li>Look at that map and notice the punchline: <em class="hi">the idea never changed</em>. Lesson 1 added up rate × time. Lesson 39 added up pizza wedges. Everything in between was learning better ways to do the adding.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">2</span> Toolbox 2.0 — Every Technique You Own</h2>
+  <table class="t">
+    <tr><th>Tool</th><th>When you reach for it (the cue)</th><th>Micro-example</th></tr>
+    <tr><td>Power rule</td><td>Any power of x — including negative and fractional, after rewriting</td><td>∫√x dx = (2/3)x<sup>3/2</sup> + C</td></tr>
+    <tr><td>The n = −1 case</td><td>Exactly 1/x — the power rule would divide by zero</td><td>∫(1/x) dx = ln|x| + C</td></tr>
+    <tr><td>Exponential</td><td>eˣ, alone or with a constant</td><td>∫e<sup>x</sup> dx = e<sup>x</sup> + C</td></tr>
+    <tr><td>The six trig</td><td>sin, cos, sec², sec·tan, csc², csc·cot</td><td>∫sec²x dx = tan x + C</td></tr>
+    <tr><td>Inverse-trig forms</td><td>1/(a²+x²) or 1/√(a²−x²) — no u-sub fingerprint</td><td>∫1/(1+x²) dx = arctan x + C</td></tr>
+    <tr><td>Linear inside</td><td>Inside is ax + b — integrate normally, then divide by a</td><td>∫cos 2x dx = (sin 2x)/2 + C</td></tr>
+    <tr><td>u-substitution</td><td>An inside function <em>and</em> its derivative both present</td><td>∫2x(x²+1)³ dx = (x²+1)⁴/4 + C</td></tr>
+    <tr><td>f′/f → ln</td><td>The top is the derivative of the bottom</td><td>∫(2x)/(x²+9) dx = ln(x²+9) + C</td></tr>
+    <tr><td>Integration by parts</td><td>A product of two unrelated things; or a lone ln / arctan</td><td>∫x e<sup>x</sup> dx = x e<sup>x</sup> − e<sup>x</sup> + C</td></tr>
+    <tr><td>Partial fractions</td><td>A fraction whose bottom factors, and the top isn't its derivative</td><td>1/((x−1)(x+1)) splits into halves</td></tr>
+    <tr><td>Improper (limits)</td><td>An ∞ endpoint, or the function blows up inside</td><td>∫₁<sup>∞</sup> 1/x² dx = 1</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2><span class="num">3</span> The Real BC Skill — Choosing the Tool</h2>
+  <ul>
+    <li>On an exam nobody writes "use parts here." You get a bare integral and 3 minutes. This flowchart is the habit to build — <em class="hi">run it top to bottom and stop at the first "yes."</em></li>
+  </ul>
+  <div class="graph"><span class="b">AN UNFAMILIAR INTEGRAL LANDS ON YOUR DESK</span>
+│
+├─ 1. Is it already a <span class="g">basic form</span> from the toolbox table?          → just write it down
+│        <span class="y">∫sec²x dx</span>                                            → tan x + C
+│
+├─ 2. Can I <span class="g">rewrite</span> it into one? (split fractions, expand, powers)
+│        <span class="y">∫(x²+1)/x dx</span> = ∫(x + 1/x) dx                        → x²/2 + ln|x| + C
+│
+├─ 3. Is there an <span class="g">inside function whose derivative is also present</span>? → u-SUB
+│        <span class="y">∫x e^(x²) dx</span>   (inside x², derivative 2x — x is there) → e^(x²)/2 + C
+│        special case: top = derivative of bottom                → ln|bottom|
+│
+├─ 4. Is it a <span class="g">product of two unrelated pieces</span>?                    → PARTS (LIATE)
+│        <span class="y">∫x cos x dx</span>   (x won't help u-sub; it simplifies when differentiated)
+│        also: a lone <span class="y">ln x</span> or <span class="y">arctan x</span>  → parts with dv = dx
+│
+├─ 5. Is it a <span class="g">fraction whose bottom factors</span> (and step 3 failed)?   → PARTIAL FRACTIONS
+│        <span class="y">∫1/((x−1)(x+3)) dx</span>
+│
+└─ 6. Does an <span class="g">∞ or a blow-up</span> appear?  → replace it with a letter, integrate, take the LIMIT
+         <span class="y">∫₁^∞ 1/x⁴ dx</span> = lim(b→∞) [−1/(3x³)]₁ᵇ = 1/3
+
+<span class="g">Golden rule: always try the CHEAP tools first. Nobody uses parts on something u-sub can do.</span></div>
+  <ul>
+    <li><strong>The trap trio</strong> — three look-alikes that need three different tools. Train your eye on these:
+      <span class="fml">∫1/(1+x²) dx</span> → arctan · <span class="fml">∫x/(1+x²) dx</span> → u-sub, gives ln · <span class="fml">∫1/(1+x)² dx</span> → power rule, gives −1/(1+x).</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">4</span> Applications Index Card</h2>
+  <table class="t">
+    <tr><th>Question being asked</th><th>The formula</th></tr>
+    <tr><td>Total accumulated from a rate</td><td>∫ₐᵇ r(t) dt &nbsp;(and later amount = start + ∫)</td></tr>
+    <tr><td>Net change vs total distance</td><td>∫ v dt &nbsp;vs&nbsp; split at the zeros, add absolute values</td></tr>
+    <tr><td>Area between two curves</td><td>∫ (top − bottom) dx</td></tr>
+    <tr><td>Average value of f</td><td>(1/(b − a)) ∫ₐᵇ f dx</td></tr>
+    <tr><td>Volume, revolved (solid)</td><td>π ∫ [radius]² dx</td></tr>
+    <tr><td>Volume, revolved (with a hole)</td><td>π ∫ (R² − r²) dx</td></tr>
+    <tr><td>Volume, known cross-sections</td><td>∫ A(x) dx &nbsp;(square w², semicircle (π/8)w², …)</td></tr>
+    <tr><td>Length of a curve</td><td>∫ √(1 + (f′)²) dx</td></tr>
+    <tr><td>Analyzing g(x) = ∫₀ˣ f</td><td>values by geometry; shape from g′ = f</td></tr>
+    <tr><td>Rate proportional to size</td><td>dy/dt = ky → y = y₀e<sup>kt</sup></td></tr>
+    <tr><td>Population with a ceiling</td><td>dP/dt = kP(1 − P/L) → P → L; fastest at P = L/2</td></tr>
+    <tr><td>Parametric distance travelled</td><td>∫ √((dx/dt)² + (dy/dt)²) dt</td></tr>
+    <tr><td>Polar area</td><td>½ ∫ r² dθ</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2><span class="num">5</span> The Boss Problem — a Real BC Free-Response</h2>
+  <div class="ex"><b>Problem.</b> Let <b>R</b> be the region enclosed by the parabola <span class="fml">y = 4 − x²</span> and the x-axis.
+  (a) Find the area of R. (b) Find the volume of the solid formed when R is revolved about the x-axis.
+  (c) Find the volume of the solid whose base is R and whose cross-sections perpendicular to the x-axis are squares.
+  (d) The horizontal line y = k cuts R into two pieces of equal area. Write (but do not solve) an equation for k.</div>
+  <ul>
+    <li><strong>Where are the edges?</strong> Set 4 − x² = 0 → x = −2 and x = 2. That's our interval, every time.</li>
+    <li><strong>(a) Area.</strong> A = ∫<sub>−2</sub><sup>2</sup> (4 − x²) dx. The integrand is <em>even</em> (Lesson 29!), so double the half: 2∫<sub>0</sub><sup>2</sup>(4 − x²) dx = 2[4x − x³/3]<sub>0</sub><sup>2</sup> = 2(8 − 8/3) = 2 · 16/3 = <strong>32/3</strong>.</li>
+    <li><strong>(b) Revolved — disks.</strong> Each slice is a circle of radius 4 − x², so V = π∫<sub>−2</sub><sup>2</sup> (4 − x²)² dx. <em class="hi">Square first:</em> (4 − x²)² = 16 − 8x² + x⁴. Using evenness again: V = 2π[16x − 8x³/3 + x⁵/5]<sub>0</sub><sup>2</sup> = 2π(32 − 64/3 + 32/5). Common denominator 15: (480 − 320 + 96)/15 = 256/15 → V = <strong>512π/15</strong>.</li>
+    <li><strong>(c) Square cross-sections.</strong> The slice's width is w = 4 − x², and a square of side w has area w² — the <em>same integral as part (b) but with no π</em>, because squares aren't circles: V = ∫<sub>−2</sub><sup>2</sup>(4 − x²)² dx = <strong>512/15</strong>.</li>
+    <li><strong>(d) Setup only.</strong> Above the line y = k the parabola runs between x = ±√(4 − k), and the strip height there is (4 − x²) − k. Half the area is 16/3, so the equation is
+      <span class="fml">∫<sub>−√(4−k)</sub><sup>√(4−k)</sup> (4 − x² − k) dx = 16/3</span>. (AP often asks only for the setup — write it and move on.)</li>
+    <li><em>Notice how many lessons showed up in one problem:</em> intersections (L10), even symmetry (L29), disks (L34), cross-sections (L35), and area setups (L10 again).</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">6</span> What Comes Next — and a Word to You</h2>
+  <ul>
+    <li><strong>Series</strong> (the other half of BC): adding up <em>infinitely many numbers</em> — 1 + ½ + ¼ + … = 2 — and the astonishing discovery that eˣ and sin x can be written as infinite polynomials.</li>
+    <li><strong>Multivariable calculus:</strong> the same slicing, but volumes and surfaces in 3-D — double and triple integrals.</li>
+    <li><strong>Differential equations:</strong> a whole field grown from Lesson 37 — how populations, circuits, epidemics, and planets evolve.</li>
+    <li><strong>And honestly?</strong> You started this course knowing that a derivative measures steepness. You now understand the Fundamental Theorem of Calculus, can integrate by parts and by substitution, split rational functions, find volumes and arc lengths, solve differential equations, and read polar area. That is a full year of college-level mathematics, learned in 40 lessons, in 8th grade. <em class="hi">Be proud of that.</em> Go take the AP exam and enjoy how familiar it looks.</li>
+  </ul>
+</section>
+
+<div class="qhead">✏️ Capstone Exercises — 20 mixed problems (nobody tells you the method!)</div>
+
+<div class="q"><span class="qnum">1.</span><span class="qtag">L1 callback</span>
+  <div class="qtext">Water flows into a tank at a steady 15 liters per minute for 8 minutes. How much water enters? Then say which single formula from the whole course this is the simplest possible case of.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Tool — Lesson 1 (adding up rate × time):</b> when a rate never changes, the total is one multiplication. Everything else in these 40 lessons exists to handle the case where the rate <em>does</em> change.</div>
+    <div class="step">Total = rate × time = 15 × 8 = 120 liters.</div>
+    <div class="step">This is the simplest case of <span class="fml">total = ∫<sub>a</sub><sup>b</sup> r(t) dt</span>: with r constant, the integral is just a rectangle of width 8 and height 15.</div>
+    <div class="ans">120 liters — the constant-rate case of ∫ r(t) dt</div></div>
+</div>
+
+<div class="q"><span class="qnum">2.</span><span class="qtag">choose the tool</span>
+  <div class="qtext">For each integral, name the technique you'd use — do NOT compute anything: (a) ∫x sin x dx (b) ∫2x(x²+5)⁴ dx (c) ∫1/(4+x²) dx (d) ∫1/((x−2)(x+1)) dx (e) ∫√x dx</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Tool — Lesson 40's flowchart:</b> the highest-value BC skill is routing a problem before touching it. Run the checklist: basic form? rewritable? u-sub fingerprint? product? factorable fraction?</div>
+    <div class="step"><b>(a)</b> A product of unrelated pieces (a polynomial and a trig function) → <b>integration by parts</b>, u = x.</div>
+    <div class="step"><b>(b)</b> Inside is x²+5, whose derivative 2x is sitting right there → <b>u-substitution</b>.</div>
+    <div class="step"><b>(c)</b> Shape 1/(a²+x²) with a = 2, and no derivative-of-inside present → <b>inverse trig (arctan) form</b>.</div>
+    <div class="step"><b>(d)</b> A fraction with a factored bottom, and the top (1) is not the bottom's derivative → <b>partial fractions</b>.</div>
+    <div class="step"><b>(e)</b> Rewrite as x<sup>1/2</sup> → <b>power rule</b>, the cheapest tool of all.</div>
+    <div class="ans">(a) parts (b) u-sub (c) arctan form (d) partial fractions (e) power rule</div></div>
+</div>
+
+<div class="q"><span class="qnum">3.</span><span class="qtag">power rule · rewrite</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>1</sub><sup>4</sup> (1/√x) dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Tool — Lesson 21 (all powers):</b> roots and reciprocals are powers in disguise. Rewrite first, then the ordinary power rule (raise the exponent by one, divide by the new exponent) applies.</div>
+    <div class="step">Rewrite: 1/√x = x<sup>−1/2</sup>.</div>
+    <div class="step">Antiderivative: x<sup>1/2</sup>/(1/2) = 2√x. (Dividing by ½ means multiplying by 2.) Check: d/dx[2x<sup>1/2</sup>] = x<sup>−1/2</sup> ✓</div>
+    <div class="step">Evaluate: [2√x]<sub>1</sub><sup>4</sup> = 2·2 − 2·1 = 4 − 2 = 2.</div>
+    <div class="ans">2</div></div>
+</div>
+
+<div class="q"><span class="qnum">4.</span><span class="qtag">basic trig</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>0</sub><sup>π/4</sup> sec²x dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Tool — Lesson 24 (the trig library):</b> because (tan x)′ = sec²x, reading that backwards gives ∫sec²x dx = tan x + C. Recall tan means sin/cos, and tan(π/4) = 1 because sine and cosine are equal at 45°.</div>
+    <div class="step">∫sec²x dx = tan x, so the definite integral is [tan x]<sub>0</sub><sup>π/4</sup>.</div>
+    <div class="step">= tan(π/4) − tan(0) = 1 − 0.</div>
+    <div class="ans">1</div></div>
+</div>
+
+<div class="q"><span class="qnum">5.</span><span class="qtag">FTC fluency</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>1</sub><sup>3</sup> (3x² − 4x + 1) dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Tool — Lessons 7–8 (the Fundamental Theorem):</b> antidifferentiate term by term, plug in the top limit, plug in the bottom limit, subtract. The most-used move in all of calculus.</div>
+    <div class="step">F(x) = x³ − 2x² + x. (Check: F′ = 3x² − 4x + 1 ✓)</div>
+    <div class="step">F(3) = 27 − 18 + 3 = 12. &nbsp; F(1) = 1 − 2 + 1 = 0.</div>
+    <div class="step">Answer = 12 − 0 = 12.</div>
+    <div class="ans">12</div></div>
+</div>
+
+<div class="q"><span class="qnum">6.</span><span class="qtag">arctan form</span>
+  <div class="qtext">Find <span class="fml">∫ 1/(x² + 9) dx</span>, and check your answer by differentiating it.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Tool — Lesson 25 (inverse trig):</b> arctan x answers "the tangent of what angle is x?", and remarkably its derivative is the plain fraction 1/(1+x²). The general shape is ∫1/(a²+x²) dx = (1/a)arctan(x/a) + C.</div>
+    <div class="step">Here a² = 9, so a = 3: the answer should be (1/3)arctan(x/3) + C.</div>
+    <div class="step"><b>Check:</b> d/dx[(1/3)arctan(x/3)] = (1/3) · 1/(1 + x²/9) · (1/3) — the last factor is the chain rule from the inside x/3.</div>
+    <div class="step">= (1/9) · 1/((9 + x²)/9) = (1/9) · 9/(9 + x²) = 1/(9 + x²) ✓</div>
+    <div class="ans">(1/3)arctan(x/3) + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">7.</span><span class="qtag">f′/f pattern</span>
+  <div class="qtext">Find <span class="fml">∫ 2x/(x² + 9) dx</span>. Compare it with problem 6 — same bottom, wildly different answer. Why?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Tool — Lesson 26 (the f′/f pattern):</b> whenever the numerator is exactly the derivative of the denominator, the integral is ln of the denominator. It comes from u-substitution: with u = bottom, du = top·dx, so the integral becomes ∫du/u = ln|u|.</div>
+    <div class="step">Bottom: x² + 9. Its derivative: 2x — which is exactly the top.</div>
+    <div class="step">So ∫2x/(x²+9) dx = ln(x² + 9) + C. (No absolute value needed: x² + 9 is always positive.)</div>
+    <div class="step"><b>Check:</b> d/dx[ln(x²+9)] = 2x/(x²+9) ✓</div>
+    <div class="step"><b>Why so different from #6?</b> The presence of that 2x on top is the whole story. With it, the integral is a u-substitution and gives a logarithm; without it, no substitution is possible and the answer is an <em>angle</em> (arctan). Same denominator, different numerator, different universe.</div>
+    <div class="ans">ln(x² + 9) + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">8.</span><span class="qtag">u-substitution</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>0</sub><sup>π/4</sup> tan x · sec²x dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Tool — Lesson 26 (u-sub with changed limits):</b> spot an inside function whose derivative is also present; then convert the limits to u-values so you never have to substitute back.</div>
+    <div class="step">Let u = tan x. Then du = sec²x dx — and sec²x dx is precisely the rest of the integrand.</div>
+    <div class="step">Change the limits: when x = 0, u = tan 0 = 0; when x = π/4, u = tan(π/4) = 1.</div>
+    <div class="step">The integral becomes ∫<sub>0</sub><sup>1</sup> u du = [u²/2]<sub>0</sub><sup>1</sup> = 1/2 − 0.</div>
+    <div class="ans">1/2</div></div>
+</div>
+
+<div class="q"><span class="qnum">9.</span><span class="qtag">integration by parts</span>
+  <div class="qtext">Find <span class="fml">∫ x e<sup>3x</sup> dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Tool — Lessons 30–31 (integration by parts):</b> ∫u dv = uv − ∫v du trades a hard integral for an easier one. Pick u = the piece that gets simpler when differentiated (LIATE puts the polynomial above the exponential), and dv = the piece you can integrate.</div>
+    <div class="step">u = x, dv = e<sup>3x</sup>dx → du = dx, and v = e<sup>3x</sup>/3 (the ÷3 is Lesson 17's linear-inside rule).</div>
+    <div class="step">Assemble: uv − ∫v du = x·e<sup>3x</sup>/3 − ∫ e<sup>3x</sup>/3 dx = x e<sup>3x</sup>/3 − e<sup>3x</sup>/9 + C.</div>
+    <div class="step"><b>Check</b> (product rule): d/dx[x e<sup>3x</sup>/3] = e<sup>3x</sup>/3 + x e<sup>3x</sup>, and d/dx[−e<sup>3x</sup>/9] = −e<sup>3x</sup>/3. Adding: e<sup>3x</sup>/3 + x e<sup>3x</sup> − e<sup>3x</sup>/3 = x e<sup>3x</sup> ✓</div>
+    <div class="ans">x e<sup>3x</sup>/3 − e<sup>3x</sup>/9 + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">10.</span><span class="qtag">partial fractions</span>
+  <div class="qtext">Find <span class="fml">∫ 1/((x − 1)(x + 3)) dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Tool — Lesson 32 (partial fractions):</b> adding fractions combines them; this runs the process backwards, splitting one awkward fraction into simple ones that each integrate to a logarithm.</div>
+    <div class="step">Set up: 1/((x−1)(x+3)) = A/(x−1) + B/(x+3). Multiply through by the bottom: 1 = A(x+3) + B(x−1).</div>
+    <div class="step">Plug in the magic values. x = 1: 1 = A(4) → A = 1/4. &nbsp; x = −3: 1 = B(−4) → B = −1/4.</div>
+    <div class="step"><b>Verify the split:</b> (1/4)/(x−1) − (1/4)/(x+3) = [(x+3) − (x−1)]/(4(x−1)(x+3)) = 4/(4(x−1)(x+3)) = 1/((x−1)(x+3)) ✓</div>
+    <div class="step">Integrate each piece: (1/4)ln|x−1| − (1/4)ln|x+3| + C, which can be combined as (1/4)ln|(x−1)/(x+3)| + C.</div>
+    <div class="ans">(1/4)ln|x − 1| − (1/4)ln|x + 3| + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">11.</span><span class="qtag">improper integral</span>
+  <div class="qtext">Evaluate <span class="fml">∫<sub>1</sub><sup>∞</sup> 1/x<sup>4</sup> dx</span>, or show it diverges.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Tool — Lesson 33 (improper integrals):</b> ∞ isn't a number you can plug in. Replace it with a letter b, integrate normally, then ask where the answer heads as b grows without bound. The p-rule: ∫₁<sup>∞</sup>1/x<sup>p</sup> converges exactly when p > 1 — and here p = 4.</div>
+    <div class="step">Rewrite 1/x⁴ = x<sup>−4</sup>; antiderivative x<sup>−3</sup>/(−3) = −1/(3x³).</div>
+    <div class="step">∫<sub>1</sub><sup>b</sup> = [−1/(3x³)]<sub>1</sub><sup>b</sup> = −1/(3b³) + 1/3.</div>
+    <div class="step">As b → ∞, the term 1/(3b³) shrinks to 0, leaving 1/3. The region is infinitely long but has finite area.</div>
+    <div class="ans">1/3 (convergent)</div></div>
+</div>
+
+<div class="q"><span class="qnum">12.</span><span class="qtag">FTC Part 2</span>
+  <div class="qtext">Let <span class="fml">g(x) = ∫<sub>0</sub><sup>x²</sup> cos t dt</span>. Find g′(x).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Tool — Lesson 27 (FTC Part 2):</b> d/dx ∫<sub>a</sub><sup>x</sup> f(t) dt = f(x) — the rate at which a total grows is the height currently being added. When the upper limit is a <em>function</em> of x, the chain rule tacks on that function's derivative.</div>
+    <div class="step">The upper limit is x², not x. So: evaluate the integrand at x², then multiply by the derivative of x².</div>
+    <div class="step">g′(x) = cos(x²) · 2x.</div>
+    <div class="step"><em>Common error:</em> writing just cos(x²) and forgetting the ·2x.</div>
+    <div class="ans">g′(x) = 2x cos(x²)</div></div>
+</div>
+
+<div class="q"><span class="qnum">13.</span><span class="qtag">net vs total</span>
+  <div class="qtext">A particle moves along a line with velocity <span class="fml">v(t) = 3t² − 12t + 9</span> m/s for 0 ≤ t ≤ 4. Find (a) the net displacement and (b) the total distance travelled.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Tool — Lessons 9 & 11 (signed area, net vs total):</b> a plain integral of velocity gives NET displacement, letting backward motion cancel forward motion. For TOTAL distance you must find where the velocity changes sign, integrate each stretch separately, and add the sizes.</div>
+    <div class="step"><b>Find the sign changes:</b> 3t² − 12t + 9 = 3(t² − 4t + 3) = 3(t−1)(t−3), so v = 0 at t = 1 and t = 3. Testing: v is positive on [0,1), negative on (1,3), positive on (3,4].</div>
+    <div class="step">Antiderivative: F(t) = t³ − 6t² + 9t. Values: F(0) = 0, F(1) = 1 − 6 + 9 = 4, F(3) = 27 − 54 + 27 = 0, F(4) = 64 − 96 + 36 = 4.</div>
+    <div class="step"><b>(a) Net</b> = F(4) − F(0) = 4 − 0 = 4 metres.</div>
+    <div class="step"><b>(b) Pieces:</b> [0,1] → 4 − 0 = +4; [1,3] → 0 − 4 = −4; [3,4] → 4 − 0 = +4. Total distance = |+4| + |−4| + |+4| = 12 metres.</div>
+    <div class="ans">(a) net displacement 4 m &nbsp; (b) total distance 12 m</div></div>
+</div>
+
+<div class="q"><span class="qnum">14.</span><span class="qtag">area between curves</span>
+  <div class="qtext">Find the area of the region enclosed between <span class="fml">y = x</span> and <span class="fml">y = x²</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Tool — Lesson 10 (area between curves):</b> the strip height at each x is (top − bottom). When the limits aren't given, find them by setting the curves equal — those crossings are the natural edges of the enclosed region.</div>
+    <div class="step"><b>Intersections:</b> x = x² → x² − x = 0 → x(x−1) = 0 → x = 0 and x = 1.</div>
+    <div class="step"><b>Who's on top?</b> Test x = ½: the line gives 0.5, the parabola gives 0.25. The line y = x is above.</div>
+    <div class="step">A = ∫<sub>0</sub><sup>1</sup> (x − x²) dx = [x²/2 − x³/3]<sub>0</sub><sup>1</sup> = 1/2 − 1/3 = 3/6 − 2/6 = 1/6.</div>
+    <div class="ans">1/6</div></div>
+</div>
+
+<div class="q"><span class="qnum">15.</span><span class="qtag">volume · disks</span>
+  <div class="qtext">The region under <span class="fml">y = 1/x</span> from x = 1 to x = 2 is revolved about the x-axis. Find the volume of the resulting solid.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Tool — Lesson 34 (disks):</b> revolving a region about the x-axis makes every cross-section a circle whose radius is the function's height, so V = π∫[f(x)]² dx. Square the radius <em>first</em>, then integrate.</div>
+    <div class="step">Radius = 1/x, so [f(x)]² = 1/x².</div>
+    <div class="step">V = π∫<sub>1</sub><sup>2</sup> x<sup>−2</sup> dx = π[−1/x]<sub>1</sub><sup>2</sup>.</div>
+    <div class="step">= π(−1/2 − (−1)) = π(1/2).</div>
+    <div class="step"><em>Note how squaring helped:</em> 1/x is the one function the power rule can't integrate (it needs ln), but 1/x² is perfectly ordinary.</div>
+    <div class="ans">π/2</div></div>
+</div>
+
+<div class="q"><span class="qnum">16.</span><span class="qtag">average value</span>
+  <div class="qtext">Find the average value of <span class="fml">f(x) = 4 − x²</span> on the interval [0, 2], and explain what that number means as a picture.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Tool — Lesson 14 (average value):</b> the average of a changing function is (total accumulated) ÷ (length of interval) — exactly like average speed being distance ÷ time. Formula: (1/(b−a))∫<sub>a</sub><sup>b</sup> f.</div>
+    <div class="step">Total: ∫<sub>0</sub><sup>2</sup>(4 − x²) dx = [4x − x³/3]<sub>0</sub><sup>2</sup> = 8 − 8/3 = 24/3 − 8/3 = 16/3.</div>
+    <div class="step">Length of interval: 2 − 0 = 2. Average = (16/3) ÷ 2 = 8/3 ≈ 2.67.</div>
+    <div class="step"><b>The picture:</b> a rectangle of width 2 and height 8/3 has the exact same area (16/3) as the region under the curve — the average is the level the "water" would settle to if the curvy top were flattened.</div>
+    <div class="step"><em>Sanity check:</em> f runs from 4 down to 0, so an average of 2.67 sits sensibly in between (a bit above the midpoint 2, since the curve stays high for a while before dropping).</div>
+    <div class="ans">8/3 ≈ 2.67</div></div>
+</div>
+
+<div class="q"><span class="qnum">17.</span><span class="qtag">arc length</span>
+  <div class="qtext">Find the exact length of the curve <span class="fml">y = (2/3)x<sup>3/2</sup></span> from x = 0 to x = 3.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Tool — Lesson 36 (arc length):</b> zoom into a tiny piece of curve and it's nearly a straight hypotenuse with legs dx and dy; Pythagoras then adds up to L = ∫√(1 + (f′)²) dx. Most such integrals are impossible by hand, so problems are designed so the inside of the root collapses — this is the famous clean family.</div>
+    <div class="step">f′(x) = (2/3)·(3/2)x<sup>1/2</sup> = x<sup>1/2</sup> = √x.</div>
+    <div class="step">Then (f′)² = x, so 1 + (f′)² = 1 + x — no radical mess at all.</div>
+    <div class="step">L = ∫<sub>0</sub><sup>3</sup> √(1 + x) dx. The inside is linear, so integrate as a power and divide by the slope 1: [(2/3)(1+x)<sup>3/2</sup>]<sub>0</sub><sup>3</sup>.</div>
+    <div class="step">= (2/3)(4<sup>3/2</sup>) − (2/3)(1<sup>3/2</sup>) = (2/3)(8) − (2/3)(1) = (2/3)(7) = 14/3.</div>
+    <div class="ans">14/3 ≈ 4.67</div></div>
+</div>
+
+<div class="q"><span class="qnum">18.</span><span class="qtag">differential equation</span>
+  <div class="qtext">Solve <span class="fml">dy/dx = 2xy</span> with the initial condition y(0) = 3, then verify your solution satisfies the equation.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Tool — Lesson 37 (separation of variables):</b> a differential equation describes a function by its rate. "Separate" means sorting all the y's (with dy) to one side and all the x's (with dx) to the other, then integrating both sides. One initial condition pins down the constant.</div>
+    <div class="step"><b>Separate:</b> dy/y = 2x dx.</div>
+    <div class="step"><b>Integrate both sides:</b> ln|y| = x² + C.</div>
+    <div class="step"><b>Undo the log:</b> |y| = e<sup>x²+C</sup> = e<sup>C</sup>·e<sup>x²</sup>, so y = Ae<sup>x²</sup> where A = ±e<sup>C</sup> is just a new constant.</div>
+    <div class="step"><b>Use y(0) = 3:</b> 3 = A·e<sup>0</sup> = A, so A = 3 → y = 3e<sup>x²</sup>.</div>
+    <div class="step"><b>Verify:</b> y′ = 3e<sup>x²</sup>·2x (chain rule) = 2x·(3e<sup>x²</sup>) = 2x·y ✓ and y(0) = 3 ✓</div>
+    <div class="ans">y = 3e<sup>x²</sup></div></div>
+</div>
+
+<div class="q"><span class="qnum">19.</span><span class="qtag">logistic · reading</span>
+  <div class="qtext">A fish population satisfies <span class="fml">dP/dt = 0.5P(1 − P/800)</span>, with P(0) = 100. Without solving the equation, answer: (a) the carrying capacity, (b) what P approaches as t → ∞, (c) the population when the growth rate is fastest, and (d) whether the population is growing at P = 100.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Tool — Lesson 38 (logistic growth):</b> real populations can't grow forever, so dP/dt = kP(1 − P/L) throttles itself: when P is small the bracket is nearly 1 (almost pure exponential growth); when P nears L the bracket nears 0 and growth stalls. L is the carrying capacity. The whole point is that these questions need no solving at all.</div>
+    <div class="step"><b>(a)</b> Comparing to the standard form, L = <b>800</b> fish (and k = 0.5).</div>
+    <div class="step"><b>(b)</b> Logistic solutions rise toward the ceiling: P → <b>800</b> as t → ∞.</div>
+    <div class="step"><b>(c)</b> The growth rate 0.5P(1 − P/800) is a downward parabola in P with zeros at P = 0 and P = 800, so it peaks halfway between: P = <b>400</b> = L/2.</div>
+    <div class="step"><b>(d)</b> At P = 100: dP/dt = 0.5(100)(1 − 100/800) = 50 · (7/8) = 43.75 fish per unit time — positive, so <b>yes, it is growing</b> (and fairly briskly, since 100 is far below the ceiling).</div>
+    <div class="ans">(a) 800 (b) → 800 (c) P = 400 (d) yes, dP/dt = 43.75 > 0</div></div>
+</div>
+
+<div class="q"><span class="qnum">20.</span><span class="qtag">challenge · grand finale</span>
+  <div class="qtext"><b>A drone's flight.</b> A drone rises from a launch pad with upward velocity <span class="fml">v(t) = 6t − t²</span> metres per second for 0 ≤ t ≤ 6, starting at height 2 m.
+  (a) When is the drone rising fastest, and how fast is it going then?
+  (b) How high does it climb in total over the 6 seconds?
+  (c) What is its height at t = 6?
+  (d) What is its average velocity over the 6 seconds?
+  (e) A second drone travels a curved path given parametrically by <span class="fml">x = t²</span>, <span class="fml">y = (2/3)t³</span>. How far does it travel from t = 0 to t = √3?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Tools — Lessons 11, 12, 14, 19 and 39 together:</b> this is what a BC free-response feels like — several lessons stacked into one story. "Fastest" is a derivative question (a maximum of v happens where v′ = 0); "how much climb" is an integral of the rate; "height" needs the starting value added; "average" divides the total by the time; and part (e) switches to parametric motion, where distance is the integral of speed.</div>
+    <div class="step"><b>(a)</b> The drone's speed is v(t) itself; it's largest where v′(t) = 0. v′ = 6 − 2t = 0 → t = 3 s. Then v(3) = 18 − 9 = 9 m/s. (It's a maximum because v′ goes from positive to negative there.)</div>
+    <div class="step"><b>(b)</b> Note v = t(6 − t) ≥ 0 on all of [0,6], so the drone never descends and the climb equals the integral: ∫<sub>0</sub><sup>6</sup>(6t − t²) dt = [3t² − t³/3]<sub>0</sub><sup>6</sup> = (108 − 72) − 0 = 36 metres.</div>
+    <div class="step"><b>(c)</b> Height = starting height + change = 2 + 36 = 38 metres.</div>
+    <div class="step"><b>(d)</b> Average velocity = total displacement ÷ elapsed time = 36/6 = 6 m/s. (Sanity check: that's comfortably below the peak 9 m/s ✓)</div>
+    <div class="step"><b>(e)</b> Parametric speed: dx/dt = 2t and dy/dt = 2t², so speed = √(4t² + 4t⁴) = √(4t²(1 + t²)) = 2t√(1 + t²) for t ≥ 0.</div>
+    <div class="step">Distance = ∫<sub>0</sub><sup>√3</sup> 2t√(1+t²) dt. Substitute u = 1 + t², du = 2t dt; limits become u = 1 (at t = 0) and u = 4 (at t = √3).</div>
+    <div class="step">= ∫<sub>1</sub><sup>4</sup> √u du = [(2/3)u<sup>3/2</sup>]<sub>1</sub><sup>4</sup> = (2/3)(8) − (2/3)(1) = 14/3 metres ≈ 4.67 m.</div>
+    <div class="ans">(a) t = 3 s at 9 m/s &nbsp; (b) 36 m &nbsp; (c) 38 m &nbsp; (d) 6 m/s &nbsp; (e) 14/3 m</div></div>
+</div>
+
+<footer>🏁 <strong>Lesson 40 of 40 — you finished the course.</strong> From "rate × time" to polar area, forty lessons and eight hundred exercises. <a href="index.html">Back to the index</a> · take the printed tests · then go show the AP exam what you know.</footer>
+
+</div>
+<script>
+document.querySelectorAll('.q').forEach(q=>{
+  const btn=q.querySelector('.revealbtn'), sol=q.querySelector('.sol');
+  btn.addEventListener('click',()=>{ sol.classList.add('show'); btn.textContent='Solution shown'; btn.disabled=true; btn.style.opacity=.6; });
+});
+</script>
+</body>
+</html>

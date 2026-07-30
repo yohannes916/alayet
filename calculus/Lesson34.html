@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 34 — Volumes I: Disks &amp; Washers</title>
+<style>
+  :root{--accent:#186a3b;--accent2:#239b56;--bg:#f2f7f4;--card:#fff;--ok:#1e8449;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:#1c2833;background:var(--bg);margin:0;padding:0 16px 80px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -16px 20px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  nav{display:flex;gap:10px;margin-bottom:18px;font-size:.9rem;flex-wrap:wrap;}
+  nav a{color:var(--accent);text-decoration:none;font-weight:600;background:#fff;border:1px solid #d5e8dc;border-radius:8px;padding:6px 14px;}
+  nav a:hover{background:#eafaf1;}
+  .goal{background:#fef9e7;border-left:5px solid var(--star);padding:12px 18px;border-radius:8px;margin-bottom:18px;font-size:.95rem;}
+  .goal strong{color:#7d6608;}
+  section{background:var(--card);border-radius:10px;padding:18px 22px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  h2{color:var(--accent);font-size:1.15rem;margin:0 0 10px;}
+  h2 .num{background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;border-radius:6px;padding:2px 9px;margin-right:8px;}
+  ul{margin:8px 0;padding-left:24px;}
+  li{margin-bottom:8px;}
+  strong{color:#145a32;}
+  em.hi{font-style:normal;background:#fef9e7;padding:0 4px;border-radius:3px;}
+  .fml{background:#e9f7ef;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.9em;color:#186a3b;white-space:nowrap;}
+  .ex{background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:.95rem;}
+  .ex b{color:#145a32;}
+  .graph{background:#1b2631;color:#eaeded;border-radius:8px;padding:14px 18px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.82rem;line-height:1.45;overflow-x:auto;margin:10px 0;white-space:pre;}
+  .graph .g{color:#82e0aa;} .graph .y{color:#f7dc6f;} .graph .b{color:#85c1e9;}
+  table.t{border-collapse:collapse;margin:10px 0;font-size:.92rem;}
+  table.t th,table.t td{border:1px solid #cfd8cf;padding:6px 12px;text-align:center;}
+  table.t th{background:var(--accent);color:#fff;font-weight:600;}
+  .qhead{margin:26px 0 8px;color:var(--accent);font-size:1.2rem;border-bottom:2px solid #d4efdf;padding-bottom:6px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid var(--accent2);}
+  .qnum{font-weight:800;color:var(--accent);margin-right:6px;}
+  .qtag{float:right;background:#e9f7ef;color:var(--accent);border-radius:8px;padding:1px 9px;font-size:.68rem;font-weight:700;letter-spacing:.3px;margin-left:8px;}
+  .qtext{font-size:.98rem;margin:4px 0 10px;}
+  .revealbtn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .revealbtn:hover{background:#0e4429;}
+  .sol{display:none;margin-top:12px;background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px;font-size:.93rem;}
+  .sol.show{display:block;}
+  .sol h4{margin:0 0 8px;color:var(--ok);font-size:.9rem;}
+  .sol .ctx{background:#eaf2f8;border-left:4px solid #2e86c1;border-radius:6px;padding:8px 12px;margin:0 0 10px;font-size:.88rem;}
+  .sol .ctx b{color:#1a5276;}
+  .sol .step{margin:6px 0;}
+  .sol .ans{background:#eafaf1;border-radius:6px;padding:6px 12px;margin-top:8px;font-weight:700;color:#145a32;display:inline-block;}
+  footer{text-align:center;color:#85929e;font-size:.85rem;margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Lesson 34 — Volumes I: Disks &amp; Washers</h1>
+  <p>Slicing Solids &amp; Solids of Revolution · Intuitive Calculus for a Curious Student · Lesson 34 of 40</p>
+</header>
+
+<nav><a href="index.html">📚 All lessons</a><a href="Lesson33.html">← Lesson 33</a><a href="Lesson35.html">Next: Lesson 35 →</a></nav>
+
+<div class="goal"><strong>🎯 Goal of this lesson:</strong> take the slicing idea into the third dimension. You'll compute the <em>volume</em> of 3-D solids by slicing them into thin disks and rings — and along the way, calculus will hand you the cone and sphere formulas you once had to memorize, <em>derived from scratch</em>.</div>
+
+<section>
+  <h2><span class="num">1</span> From area to volume — the same story, one dimension up</h2>
+  <ul>
+    <li>Every big idea in this course has been <em class="hi">chop into thin pieces, measure each piece, add them up</em>. Area under a curve: skinny rectangles, height × tiny width. Today: <strong>volume</strong> — and the pieces become skinny <strong>slabs</strong>, like slices of a loaf of bread.</li>
+    <li>Slice a solid perpendicular to the x-axis at position x. That slice has some <strong>cross-section area</strong> <span class="fml">A(x)</span>, and a tiny thickness <span class="fml">dx</span>. Its tiny volume is <span class="fml">A(x) dx</span> — area of the slice × skinny thickness.</li>
+    <li>Add up all the slices: <span class="fml">V = ∫ₐᵇ A(x) dx</span>. That's the master formula for ALL of volume-by-slicing.</li>
+    <li>Recognize the shape of this idea? It's Lesson 1's <em class="hi">rate × time, added up</em> wearing 3-D clothes: here A(x) plays the "rate" (cubic units gained per unit of thickness) and dx plays the "little chunk of time."</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">2</span> Solids of revolution — spin a flat region</h2>
+  <ul>
+    <li>Where do nice solids come from? Take a flat region under a curve <span class="fml">y = f(x)</span> and <strong>spin it around the x-axis</strong>, like clay on a pottery wheel or wood on a lathe. The flat shape sweeps out a solid — vases, cones, spheres, trumpets all arise this way.</li>
+    <li>The magic of spinning: every cross-section (slice perpendicular to the axis) is a perfect <strong>circle</strong>. At position x, the slice is a <strong>DISK</strong> whose radius is the height of the curve: <span class="fml">r(x) = f(x)</span>.</li>
+    <li>Area of a disk: <span class="fml">A(x) = π r² = π [f(x)]²</span>. Feed that into the master formula:</li>
+  </ul>
+  <div class="ex"><b>The disk formula:</b> spin the region under y = f(x), a ≤ x ≤ b, around the x-axis → <span class="fml">V = π ∫ₐᵇ [f(x)]² dx</span>. Golden rule: <b>square FIRST, then integrate.</b></div>
+  <div class="graph">flat region:                     after spinning around the x-axis:
+  y                                        <span class="b">____----¯¯¯|</span>
+  | <span class="g">y = f(x)</span>          spin ⟳        <span class="b">__--¯</span>          <span class="b">|</span>
+  |      <span class="g">__--¯¯</span>       ======&gt;      <span class="b">(</span>      solid    <span class="y">(|)</span> ← one slice:
+  |  <span class="g">_--¯</span>                           <span class="b">¯¯--__</span>         <span class="b">|</span>   a DISK of
+  |<span class="g">-¯</span>                                     <span class="b">¯¯¯¯----___|</span>   radius f(x)
+  +----------------→ x                                     area π[f(x)]²
+  a              b</div>
+</section>
+
+<section>
+  <h2><span class="num">3</span> Flagship example: y = √x spun around the x-axis</h2>
+  <div class="ex"><b>Problem:</b> the region under <span class="fml">y = √x</span> from x = 0 to 4 is revolved about the x-axis (it sweeps out a shape like a trumpet bell). Find the volume.
+  <br><b>Step 1 — radius:</b> at position x, the disk's radius is r(x) = √x.
+  <br><b>Step 2 — square first:</b> [f(x)]² = (√x)² = x. (The square un-does the root — lovely.)
+  <br><b>Step 3 — integrate:</b> <span class="fml">V = π ∫₀⁴ x dx = π [x²/2]₀⁴ = π · 16/2 = 8π</span>.
+  <br><b>Answer:</b> exactly <b>8π ≈ 25.13 cubic units</b>. The most common error in this whole topic is integrating √x and THEN squaring — always square the function before you integrate.</div>
+</section>
+
+<section>
+  <h2><span class="num">4</span> Sanity checks — calculus meets geometry class</h2>
+  <ul>
+    <li><strong>Cylinder check:</strong> revolve the constant y = 3 on [0, 5]. Every disk has radius 3: <span class="fml">V = π ∫₀⁵ 3² dx = π ∫₀⁵ 9 dx = 45π</span>. Geometry says a cylinder is πr²h = π · 9 · 5 = 45π ✓. The formulas agree.</li>
+    <li><strong>Cone check:</strong> revolve y = x on [0, 3]. The radius grows from 0 to 3 — that's a cone lying on its side, tip at the origin, with r = 3 and h = 3: <span class="fml">V = π ∫₀³ x² dx = π [x³/3]₀³ = 9π</span>. Geometry's memorized formula: (1/3)πr²h = (1/3)π · 9 · 3 = 9π ✓.</li>
+    <li>Pause on that: <em class="hi">calculus just DERIVED the cone formula</em> — the mysterious 1/3 you memorized in geometry is really the ∫x² dx = x³/<strong>3</strong> showing through. (Exercise 10 does the same for the sphere!)</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">5</span> Washers — when the region has a gap</h2>
+  <ul>
+    <li>Spin the region <strong>between two curves</strong> (Lesson 10's area setup) and each slice isn't a solid disk — it's a <strong>ring</strong>: a big disk with a round hole, like a hardware-store washer or a donut slice.</li>
+    <li>Ring area = big circle minus hole: <span class="fml">A = πR² − πr² = π(R² − r²)</span>, where <strong>R = outer radius</strong> (the upper curve) and <strong>r = inner radius</strong> (the lower curve).</li>
+  </ul>
+  <div class="ex"><b>The washer formula:</b> <span class="fml">V = π ∫ₐᵇ (R² − r²) dx</span>.
+  <br><b>Flagship:</b> the region between y = x and y = x² on [0, 1] (they cross at 0 and 1; between, x is on top), revolved about the x-axis. Outer R = x, inner r = x²:
+  <br><span class="fml">V = π ∫₀¹ (x² − x⁴) dx = π [x³/3 − x⁵/5]₀¹ = π(1/3 − 1/5) = 2π/15</span>.</div>
+  <ul>
+    <li>⚠️ <strong>THE classic error:</strong> <em class="hi">π(R² − r²) is NOT π(R − r)²</em>. Squares don't distribute over subtraction: with R = 5, r = 3: R² − r² = 25 − 9 = 16, but (R − r)² = 4. Subtract the squared radii — never square the difference.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">6</span> Setup discipline — the 4-step ritual</h2>
+  <ul>
+    <li><strong>1. Sketch</strong> the region (even roughly). You cannot set up what you cannot see.</li>
+    <li><strong>2. Identify the radii:</strong> disk → r(x) = the function's height. Washer → R(x) = far curve from the axis, r(x) = near curve.</li>
+    <li><strong>3. Limits from intersections</strong> (Lesson 10 skill): if the problem doesn't hand you a and b, solve f(x) = g(x) to find where the region begins and ends.</li>
+    <li><strong>4. Square, then integrate,</strong> and keep the π outside the whole way. On the AP exam, a correctly written setup earns most of the points — even before you integrate anything.</li>
+  </ul>
+</section>
+
+<div class="qhead">✏️ Exercises — 20 problems (write your answer on paper, then reveal)</div>
+
+<div class="q"><span class="qnum">1.</span><span class="qtag">disk</span>
+  <div class="qtext">The region under y = x from x = 0 to x = 2 is revolved about the x-axis. Find the volume of the resulting cone.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> disk method: each slice at position x is a circle of radius f(x) = x, so its area is πx². The volume is V = π∫[f(x)]² dx — square first, then integrate.</div>
+    <div class="step">V = π ∫₀² x² dx = π [x³/3]₀² = π · 8/3.</div>
+    <div class="step">Cone check: this is a cone with r = 2, h = 2: (1/3)πr²h = (1/3)π · 4 · 2 = 8π/3 ✓.</div>
+    <div class="ans">8π/3 cubic units</div></div>
+</div>
+
+<div class="q"><span class="qnum">2.</span><span class="qtag">disk · cylinder check</span>
+  <div class="qtext">Revolve y = 2 (a constant) on [0, 6] about the x-axis. Find the volume with the disk formula, then confirm it against geometry's cylinder formula πr²h.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a constant height spins into a cylinder — every disk is identical, radius 2. Checking calculus against a shape you already know is the best way to trust a new formula.</div>
+    <div class="step">V = π ∫₀⁶ 2² dx = π ∫₀⁶ 4 dx = π · 4 · 6 = 24π.</div>
+    <div class="step">Geometry: cylinder with radius 2, height (length) 6: πr²h = π · 4 · 6 = 24π ✓. Perfect agreement.</div>
+    <div class="ans">24π cubic units (≈ 75.40)</div></div>
+</div>
+
+<div class="q"><span class="qnum">3.</span><span class="qtag">disk</span>
+  <div class="qtext">The region under y = x² from x = 0 to x = 1 is revolved about the x-axis. Find the volume.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> square first! The radius is x², so the disk area is π(x²)² = πx⁴ — the exponents multiply: (x²)² = x⁴, not x². This solid is a slim trumpet hugging the axis.</div>
+    <div class="step">V = π ∫₀¹ (x²)² dx = π ∫₀¹ x⁴ dx = π [x⁵/5]₀¹ = π/5.</div>
+    <div class="ans">π/5 cubic units</div></div>
+</div>
+
+<div class="q"><span class="qnum">4.</span><span class="qtag">disk</span>
+  <div class="qtext">The region under y = √x from x = 0 to x = 9 is revolved about the x-axis. Find the volume.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> same trumpet-bell family as the flagship (√x on [0,4] gave 8π), but with a wider window. Squaring √x hands you the easiest possible integrand: (√x)² = x.</div>
+    <div class="step">V = π ∫₀⁹ (√x)² dx = π ∫₀⁹ x dx = π [x²/2]₀⁹ = π · 81/2.</div>
+    <div class="ans">81π/2 cubic units (= 40.5π)</div></div>
+</div>
+
+<div class="q"><span class="qnum">5.</span><span class="qtag">disk · shifted window</span>
+  <div class="qtext">Revolve y = 3 on [1, 4] about the x-axis. Find the volume, and say what solid you built.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the limits don't have to start at 0 — the slab count just runs from x = 1 to x = 4, a length of 3. Constant radius → cylinder, wherever it sits on the axis.</div>
+    <div class="step">V = π ∫₁⁴ 9 dx = 9π (4 − 1) = 27π.</div>
+    <div class="step">The solid: a cylinder of radius 3 and height 3. Check: πr²h = π · 9 · 3 = 27π ✓.</div>
+    <div class="ans">27π cubic units — a cylinder</div></div>
+</div>
+
+<div class="q"><span class="qnum">6.</span><span class="qtag">disk</span>
+  <div class="qtext">The region under y = √(x+1) from x = 0 to x = 3 is revolved about the x-axis. Find the volume.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> squaring dissolves the square root even when there's more inside: (√(x+1))² = x + 1. What's left is a polynomial integral you could do in your sleep.</div>
+    <div class="step">V = π ∫₀³ (x + 1) dx = π [x²/2 + x]₀³ = π (9/2 + 3) = π · 15/2.</div>
+    <div class="ans">15π/2 cubic units</div></div>
+</div>
+
+<div class="q"><span class="qnum">7.</span><span class="qtag">disk</span>
+  <div class="qtext">The region under y = x³ from x = 0 to x = 1 is revolved about the x-axis. Find the volume.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> power rule for the square: (x³)² = x⁶. Compare with problem 3: x² gave π/5, and x³ hugs the axis even tighter on [0,1], so expect something smaller than π/5.</div>
+    <div class="step">V = π ∫₀¹ (x³)² dx = π ∫₀¹ x⁶ dx = π [x⁷/7]₀¹ = π/7.</div>
+    <div class="step">Sense check: π/7 &lt; π/5 ✓ — skinnier region, smaller solid.</div>
+    <div class="ans">π/7 cubic units</div></div>
+</div>
+
+<div class="q"><span class="qnum">8.</span><span class="qtag">disk · cone derived</span>
+  <div class="qtext">Revolve y = 2x on [0, 3] about the x-axis. Find the volume with calculus, then verify against geometry's cone formula (1/3)πr²h.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a line through the origin spins into a cone lying on its side: tip at the origin, height h = 3 along the axis, and base radius = the height of the line at x = 3, which is 2·3 = 6.</div>
+    <div class="step">V = π ∫₀³ (2x)² dx = π ∫₀³ 4x² dx = 4π [x³/3]₀³ = 4π · 9 = 36π.</div>
+    <div class="step">Geometry check: (1/3)πr²h = (1/3)π · 36 · 3 = 36π ✓. The 1/3 in the cone formula IS the 3 in x³/3.</div>
+    <div class="ans">36π cubic units</div></div>
+</div>
+
+<div class="q"><span class="qnum">9.</span><span class="qtag">disk · exponential</span>
+  <div class="qtext">The region under y = e<sup>x</sup> from x = 0 to x = 1 is revolved about the x-axis. Find the exact volume.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> squaring an exponential doubles the exponent: (e<sup>x</sup>)² = e<sup>2x</sup>. From Lesson 17, ∫e<sup>2x</sup> dx = e<sup>2x</sup>/2. "Exact" means leave e in the answer — no decimals needed.</div>
+    <div class="step">V = π ∫₀¹ e<sup>2x</sup> dx = π [e<sup>2x</sup>/2]₀¹ = π (e²/2 − 1/2).</div>
+    <div class="step">= π(e² − 1)/2. (≈ π · 3.194 ≈ 10.04 if you're curious.)</div>
+    <div class="ans">π(e² − 1)/2 cubic units</div></div>
+</div>
+
+<div class="q"><span class="qnum">10.</span><span class="qtag">disk · the sphere!</span>
+  <div class="qtext">The curve y = √(9 − x²) on [−3, 3] is the top half of a circle of radius 3. Revolve it about the x-axis and find the volume. (Hint: square first, and use the symmetry shortcut from Lesson 29.) Compare with geometry's sphere formula (4/3)πr³.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> spinning a semicircle sweeps out a full SPHERE. Squaring kills the root: (√(9 − x²))² = 9 − x², a plain polynomial! And 9 − x² is an even function (Lesson 29), so ∫ from −3 to 3 equals 2 × ∫ from 0 to 3.</div>
+    <div class="step">V = π ∫₋₃³ (9 − x²) dx = 2π ∫₀³ (9 − x²) dx (symmetry shortcut).</div>
+    <div class="step">∫₀³ (9 − x²) dx = [9x − x³/3]₀³ = 27 − 9 = 18.</div>
+    <div class="step">V = 2π · 18 = 36π.</div>
+    <div class="step">Geometry check: (4/3)πr³ = (4/3)π · 27 = 36π ✓. Calculus just DERIVED the sphere formula — nothing memorized, everything earned.</div>
+    <div class="ans">36π cubic units — the sphere formula, derived</div></div>
+</div>
+
+<div class="q"><span class="qnum">11.</span><span class="qtag">washer</span>
+  <div class="qtext">The region between y = 2x and y = x² (they cross at x = 0 and x = 2, with 2x on top between) is revolved about the x-axis. Find the volume.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a region with a gap below it spins into slices that are RINGS: area π(R² − r²), outer minus inner, each radius squared separately. Here the outer radius is the top curve R = 2x and the inner is r = x². (Check the crossing: 2x = x² → x² − 2x = 0 → x = 0, 2; at x = 1, 2x = 2 is above x² = 1 ✓.)</div>
+    <div class="step">V = π ∫₀² [(2x)² − (x²)²] dx = π ∫₀² (4x² − x⁴) dx.</div>
+    <div class="step">= π [4x³/3 − x⁵/5]₀² = π (32/3 − 32/5).</div>
+    <div class="step">= 32π (1/3 − 1/5) = 32π · 2/15 = 64π/15.</div>
+    <div class="ans">64π/15 cubic units</div></div>
+</div>
+
+<div class="q"><span class="qnum">12.</span><span class="qtag">washer</span>
+  <div class="qtext">The region between y = √x and y = x on [0, 1] (√x is on top) is revolved about the x-axis. Find the volume.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> outer radius R = √x (the top curve), inner radius r = x. Squaring first turns both into easy powers: (√x)² = x and x² = x². The curves cross at x = 0 and 1 (√x = x → x = x² → x = 0, 1), matching the given limits.</div>
+    <div class="step">V = π ∫₀¹ [(√x)² − x²] dx = π ∫₀¹ (x − x²) dx.</div>
+    <div class="step">= π [x²/2 − x³/3]₀¹ = π (1/2 − 1/3) = π/6.</div>
+    <div class="ans">π/6 cubic units</div></div>
+</div>
+
+<div class="q"><span class="qnum">13.</span><span class="qtag">washer · pipe</span>
+  <div class="qtext">The region between y = 3 and y = 1 on [0, 4] is revolved about the x-axis, making a solid pipe (a cylinder with a cylindrical hole). Find its volume two ways: with the washer formula, and with geometry.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> both radii are constant, so every washer is identical — outer R = 3, inner r = 1. This is the cleanest possible test that the washer formula measures "big cylinder minus the hole."</div>
+    <div class="step">Washer: V = π ∫₀⁴ (3² − 1²) dx = π ∫₀⁴ 8 dx = 32π.</div>
+    <div class="step">Geometry: outer cylinder π · 9 · 4 = 36π, minus hole π · 1 · 4 = 4π → 32π ✓.</div>
+    <div class="ans">32π cubic units</div></div>
+</div>
+
+<div class="q"><span class="qnum">14.</span><span class="qtag">setup only · AP style</span>
+  <div class="qtext">Write — but do NOT evaluate — an integral for the volume when the region under y = ln x from x = 1 to x = e is revolved about the x-axis. (On the AP exam, a correct setup like this earns points all by itself.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> "setup only" questions test whether you can build the integral: identify the method (region touches the axis → disks), the radius (r = ln x), square it, and read off the limits. Evaluating π∫(ln x)² dx needs integration by parts twice — the setup is the skill being graded here.</div>
+    <div class="step">Method: region under one curve down to the axis → disk method.</div>
+    <div class="step">Radius at position x: r(x) = ln x. Square it: (ln x)².</div>
+    <div class="step">Limits: given directly, x = 1 to x = e.</div>
+    <div class="ans">V = π ∫₁^e (ln x)² dx</div></div>
+</div>
+
+<div class="q"><span class="qnum">15.</span><span class="qtag">washer · find the limits</span>
+  <div class="qtext">The region enclosed by y = √x and y = x/2 is revolved about the x-axis. First find where the curves intersect (Lesson 10 skill!), then find the volume.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> no limits given — they're hiding in the intersections. Solve √x = x/2 by squaring both sides: x = x²/4 → x² − 4x = 0 → x(x − 4) = 0 → x = 0 and x = 4. Between them, test x = 1: √1 = 1 vs 1/2 — so √x is the outer curve.</div>
+    <div class="step">R = √x, r = x/2. Squares: x and x²/4.</div>
+    <div class="step">V = π ∫₀⁴ (x − x²/4) dx = π [x²/2 − x³/12]₀⁴.</div>
+    <div class="step">= π (16/2 − 64/12) = π (8 − 16/3) = π · 8/3.</div>
+    <div class="ans">8π/3 cubic units</div></div>
+</div>
+
+<div class="q"><span class="qnum">16.</span><span class="qtag">spot the error</span>
+  <div class="qtext">To find the volume when the region between y = x and y = x² on [0, 1] spins about the x-axis, a student writes V = π ∫₀¹ (x − x²)² dx and gets π/30. The correct answer (from this lesson's flagship) is 2π/15. Show the two answers really disagree, and explain exactly what the student did wrong.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> THE classic washer error: writing π(R − r)² instead of π(R² − r²). A ring's area is the big circle MINUS the hole — π(R − r)² is instead the area of a small circle whose radius is the gap width, a completely different (and smaller) thing. Algebra agrees: (R − r)² = R² − 2Rr + r² ≠ R² − r².</div>
+    <div class="step">The student's integral: ∫₀¹ (x − x²)² dx = ∫₀¹ (x² − 2x³ + x⁴) dx = 1/3 − 1/2 + 1/5 = 10/30 − 15/30 + 6/30 = 1/30 → π/30.</div>
+    <div class="step">Correct: π ∫₀¹ (x² − x⁴) dx = π(1/3 − 1/5) = 2π/15 = 4π/30.</div>
+    <div class="step">π/30 vs 4π/30 — the wrong method loses three-quarters of the volume! Numbers confirm the formulas differ: at x = 1/2, R² − r² = 1/4 − 1/16 = 3/16, but (R − r)² = (1/4)² = 1/16.</div>
+    <div class="ans">Student squared the difference; must subtract the squares: π∫(R² − r²) dx = 2π/15</div></div>
+</div>
+
+<div class="q"><span class="qnum">17.</span><span class="qtag">units</span>
+  <div class="qtext">A solid's cross-section area at position x is A(x) square meters, and x is measured in meters. In V = ∫ A(x) dx, explain why the answer comes out in cubic meters — and compute the volume if A(x) = 6 m² constantly from x = 0 to x = 2 m.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the units-cancellation habit from Lesson 1 still runs the show in 3-D. Each slab contributes (area) × (thickness) = m² × m = m³, and adding slabs doesn't change the units. If the units don't come out cubic, the setup is wrong.</div>
+    <div class="step">Units: A(x) dx carries m² · m = m³ ✓ — every slice is a genuine little volume.</div>
+    <div class="step">Constant cross-section: V = ∫₀² 6 dx = 6 · 2 = 12.</div>
+    <div class="step">(That's a prism: base area 6 m², length 2 m — geometry agrees: 6 × 2 = 12.)</div>
+    <div class="ans">12 cubic meters — m² × m = m³</div></div>
+</div>
+
+<div class="q"><span class="qnum">18.</span><span class="qtag">setup only · washer</span>
+  <div class="qtext">Write — but do NOT evaluate — an integral for the volume when the region between y = e<sup>x</sup> and y = 1 from x = 0 to x = 1 is revolved about the x-axis. State your R and r clearly.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> on [0, 1], e<sup>x</sup> runs from 1 up to e, so it sits on top; y = 1 is the floor of the region (and since the floor isn't the x-axis, there's a hole — washers, not disks). Outer radius = distance from axis to far curve, inner = to near curve.</div>
+    <div class="step">R(x) = e<sup>x</sup> (outer), r(x) = 1 (inner).</div>
+    <div class="step">Squares: (e<sup>x</sup>)² = e<sup>2x</sup> and 1² = 1.</div>
+    <div class="ans">V = π ∫₀¹ (e<sup>2x</sup> − 1) dx &nbsp; with R = e<sup>x</sup>, r = 1</div></div>
+</div>
+
+<div class="q"><span class="qnum">19.</span><span class="qtag">disk · hemisphere</span>
+  <div class="qtext">Revolve y = √(4 − x²) on [0, 2] (a quarter-circle of radius 2) about the x-axis. Find the volume, and explain what fraction of a full sphere you built.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the full semicircle on [−2, 2] would spin into a whole sphere; using only [0, 2] spins the right quarter-circle into the right HALF of that sphere — a hemisphere (dome). Square first: (√(4 − x²))² = 4 − x².</div>
+    <div class="step">V = π ∫₀² (4 − x²) dx = π [4x − x³/3]₀² = π (8 − 8/3) = 16π/3.</div>
+    <div class="step">Full sphere of radius 2: (4/3)π · 2³ = 32π/3. Our answer is exactly half of that ✓.</div>
+    <div class="ans">16π/3 cubic units — exactly half a sphere</div></div>
+</div>
+
+<div class="q"><span class="qnum">20.</span><span class="qtag">challenge · two solids</span>
+  <div class="qtext">Two solids are made by revolving regions on [0, 1] about the x-axis: solid 1 from the region under y = √x, solid 2 from the region under y = x. (a) Find both volumes. (b) Which is bigger, and why does that make sense from a sketch? (c) Subtract them and compare with exercise 12 — explain the connection.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> on [0, 1], √x ≥ x (at x = 1/4: √x = 1/2 vs x = 1/4), so the √x solid completely contains the y = x cone. A washer volume is literally "outer solid minus inner solid" — this problem lets you SEE that by computing all three numbers.</div>
+    <div class="step">(a) Solid 1: V₁ = π ∫₀¹ (√x)² dx = π ∫₀¹ x dx = π/2. Solid 2: V₂ = π ∫₀¹ x² dx = π/3.</div>
+    <div class="step">(b) V₁ = π/2 &gt; π/3 = V₂. Makes sense: √x is the higher curve on [0, 1], so every disk of solid 1 has the bigger radius, and it encloses solid 2 entirely.</div>
+    <div class="step">(c) V₁ − V₂ = π/2 − π/3 = π/6 — exactly exercise 12's washer answer for the region BETWEEN √x and x. The washer formula π∫(R² − r²) dx is nothing but "volume of the outer solid minus volume of the inner one," computed in a single integral.</div>
+    <div class="ans">(a) π/2 and π/3 &nbsp; (b) the √x solid — bigger radius at every slice &nbsp; (c) π/2 − π/3 = π/6 = the washer volume ✓</div></div>
+</div>
+
+<footer>Lesson 34 of 40 · Intuitive Integration · next: <a href="Lesson35.html">Lesson 35 — Volumes II: Off-Axis &amp; Cross-Sections</a></footer>
+
+</div>
+<script>
+document.querySelectorAll('.q').forEach(q=>{
+  const btn=q.querySelector('.revealbtn'), sol=q.querySelector('.sol');
+  btn.addEventListener('click',()=>{ sol.classList.add('show'); btn.textContent='Solution shown'; btn.disabled=true; btn.style.opacity=.6; });
+});
+</script>
+</body>
+</html>

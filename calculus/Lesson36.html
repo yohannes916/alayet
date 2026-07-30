@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 36 — Arc Length</title>
+<style>
+  :root{--accent:#186a3b;--accent2:#239b56;--bg:#f2f7f4;--card:#fff;--ok:#1e8449;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:#1c2833;background:var(--bg);margin:0;padding:0 16px 80px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -16px 20px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  nav{display:flex;gap:10px;margin-bottom:18px;font-size:.9rem;flex-wrap:wrap;}
+  nav a{color:var(--accent);text-decoration:none;font-weight:600;background:#fff;border:1px solid #d5e8dc;border-radius:8px;padding:6px 14px;}
+  nav a:hover{background:#eafaf1;}
+  .goal{background:#fef9e7;border-left:5px solid var(--star);padding:12px 18px;border-radius:8px;margin-bottom:18px;font-size:.95rem;}
+  .goal strong{color:#7d6608;}
+  section{background:var(--card);border-radius:10px;padding:18px 22px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  h2{color:var(--accent);font-size:1.15rem;margin:0 0 10px;}
+  h2 .num{background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;border-radius:6px;padding:2px 9px;margin-right:8px;}
+  ul{margin:8px 0;padding-left:24px;}
+  li{margin-bottom:8px;}
+  strong{color:#145a32;}
+  em.hi{font-style:normal;background:#fef9e7;padding:0 4px;border-radius:3px;}
+  .fml{background:#e9f7ef;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.9em;color:#186a3b;white-space:nowrap;}
+  .ex{background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:.95rem;}
+  .ex b{color:#145a32;}
+  .graph{background:#1b2631;color:#eaeded;border-radius:8px;padding:14px 18px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.82rem;line-height:1.45;overflow-x:auto;margin:10px 0;white-space:pre;}
+  .graph .g{color:#82e0aa;} .graph .y{color:#f7dc6f;} .graph .b{color:#85c1e9;}
+  table.t{border-collapse:collapse;margin:10px 0;font-size:.92rem;}
+  table.t th,table.t td{border:1px solid #cfd8cf;padding:6px 12px;text-align:center;}
+  table.t th{background:var(--accent);color:#fff;font-weight:600;}
+  .qhead{margin:26px 0 8px;color:var(--accent);font-size:1.2rem;border-bottom:2px solid #d4efdf;padding-bottom:6px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid var(--accent2);}
+  .qnum{font-weight:800;color:var(--accent);margin-right:6px;}
+  .qtag{float:right;background:#e9f7ef;color:var(--accent);border-radius:8px;padding:1px 9px;font-size:.68rem;font-weight:700;letter-spacing:.3px;margin-left:8px;}
+  .qtext{font-size:.98rem;margin:4px 0 10px;}
+  .revealbtn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .revealbtn:hover{background:#0e4429;}
+  .sol{display:none;margin-top:12px;background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px;font-size:.93rem;}
+  .sol.show{display:block;}
+  .sol h4{margin:0 0 8px;color:var(--ok);font-size:.9rem;}
+  .sol .ctx{background:#eaf2f8;border-left:4px solid #2e86c1;border-radius:6px;padding:8px 12px;margin:0 0 10px;font-size:.88rem;}
+  .sol .ctx b{color:#1a5276;}
+  .sol .step{margin:6px 0;}
+  .sol .ans{background:#eafaf1;border-radius:6px;padding:6px 12px;margin-top:8px;font-weight:700;color:#145a32;display:inline-block;}
+  footer{text-align:center;color:#85929e;font-size:.85rem;margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Lesson 36 — Arc Length</h1>
+  <p>How Long Is a Curvy Path? · Infinitely Many Tiny Hypotenuses · Lesson 36 of 40</p>
+</header>
+
+<nav><a href="index.html">📚 All lessons</a><a href="Lesson35.html">← Lesson 35</a><a href="Lesson37.html">Next: Lesson 37 →</a></nav>
+
+<div class="goal"><strong>🎯 Goal of this lesson:</strong> measure the LENGTH of a curve — not the area under it, but how far you'd walk if you traveled along it. We'll build the formula <span class="fml">L = ∫ₐᵇ √(1 + (f′(x))²) dx</span> from nothing but Pythagoras and slicing, check it against a triangle you already trust, and learn the honest truth: most arc-length integrals can't be finished by hand, so setting them up perfectly is the real skill.</div>
+
+<section>
+  <h2><span class="num">1</span> The question: how long is a curvy path?</h2>
+  <ul>
+    <li>A hiking trail wiggles across a map. A cable sags between two poles. A roller-coaster track dives and climbs. Question: <em class="hi">how many meters of trail / cable / track is that?</em></li>
+    <li>This is NOT area. Area asks "how much region is trapped under the curve?" Arc length asks <strong>"if an ant walked along the curve itself, how far would it walk?"</strong> — the length of the wire, not the space below it.</li>
+    <li>Straight paths are easy — a ruler (or the distance formula) handles them. Curves are the problem: no ruler bends. But we own a machine for exactly this situation: <strong>chop the hard thing into tiny pieces that ARE easy, then integrate</strong>.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">2</span> Building the formula — tiny hypotenuses</h2>
+  <ul>
+    <li><strong>Pythagoras refresher (our only tool):</strong> in a right triangle with legs a and b, the diagonal (hypotenuse) c satisfies <span class="fml">a² + b² = c²</span>, so <span class="fml">c = √(a² + b²)</span>. Legs 3 and 4 → diagonal √(9 + 16) = 5.</li>
+    <li>Now zoom WAY in on a tiny piece of the curve. Zoomed in far enough, any smooth curve looks straight — a tiny slanted segment. It runs a tiny distance <span class="fml">dx</span> across and a tiny distance <span class="fml">dy</span> up. It's the hypotenuse of a tiny right triangle!</li>
+  </ul>
+  <div class="graph">        zoomed in on one tiny piece:
+
+               <span class="g">___——●</span>
+        <span class="g">●——‾‾</span>      <span class="y">|</span>
+        tiny piece   <span class="y">| dy  (tiny rise)</span>
+        of curve     <span class="y">|</span>
+        <span class="b">●——————————————●</span>
+            <span class="b">dx  (tiny run)</span>
+
+  tiny length = <span class="g">√(dx² + dy²)</span>   ← Pythagoras on a tiny triangle</div>
+  <ul>
+    <li>Tiny length: <span class="fml">√(dx² + dy²)</span>. Now the key algebra move — <strong>factor dx² out from under the root, slowly</strong>:
+      <br><span class="fml">√(dx² + dy²) = √(dx²·(1 + dy²/dx²)) = √(dx²) · √(1 + dy²/dx²) = √(1 + (dy/dx)²) · dx</span>.
+      <br>Why do this? Because <span class="fml">dy/dx</span> is something we KNOW — it's the derivative, <span class="fml">f′(x)</span>!</li>
+    <li>So each tiny piece has length <span class="fml">√(1 + (f′(x))²) dx</span>, and the whole curve is the sum of all the pieces:</li>
+    <li><em class="hi">Arc length formula:</em> <span class="fml">L = ∫ₐᵇ √(1 + (f′(x))²) dx</span> — <strong>"add up infinitely many tiny hypotenuses."</strong></li>
+    <li>Recipe: (1) find f′, (2) square it, (3) add 1, (4) put it all under a square root, (5) integrate from a to b. Steps 1–4 are just algebra; step 5 is where the drama lives.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">3</span> Sanity check on a straight line — calculus agrees with Pythagoras</h2>
+  <div class="ex"><b>Worked example:</b> f(x) = (3/4)x on [0, 4] — a straight ramp from (0, 0) to (4, 3).<br><br>
+  f′(x) = 3/4 &nbsp;→&nbsp; (f′)² = 9/16 &nbsp;→&nbsp; 1 + 9/16 = 25/16.<br>
+  L = ∫₀⁴ √(25/16) dx = ∫₀⁴ (5/4) dx = (5/4)·4 = <b>5</b>.<br><br>
+  Now check with pure geometry: the path runs 4 across and 3 up — a 3-4-5 right triangle. Hypotenuse = 5. ✓ The formula reproduces Pythagoras exactly. Always run this kind of check when you meet a new formula: <em>make it re-prove something you already trust.</em></div>
+  <ul>
+    <li>Notice why it worked so smoothly: for a straight line, f′ is a constant, so the square root is a constant, and the integral is just (constant) × (width). Curves are harder only because f′ keeps changing.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">4</span> The honest truth — and the famous clean family</h2>
+  <ul>
+    <li>Here's a secret teachers eventually admit: <em class="hi">most arc-length integrals are impossible by hand.</em> "1 + (f′)²" under a square root is usually a mess with no elementary antiderivative — even for innocent curves like <span class="fml">y = x²</span> or <span class="fml">y = sin x</span>.</li>
+    <li>So textbook (and AP) problems come in two flavors: (1) curves specially <strong>designed</strong> so the mess under the root simplifies, and (2) <strong>setup-only</strong> problems — write the integral, then hand it to a calculator. Both are honorable. AP loves both.</li>
+    <li>The most famous designed curve: <span class="fml">f(x) = (2/3)x^(3/2)</span>. Watch the magic:</li>
+  </ul>
+  <div class="ex"><b>Worked example:</b> f(x) = (2/3)x^(3/2) on [0, 3].<br><br>
+  f′(x) = (2/3)·(3/2)x^(1/2) = x^(1/2) = √x &nbsp;→&nbsp; (f′)² = x &nbsp;→&nbsp; 1 + (f′)² = 1 + x.<br>
+  The square of a square root un-did itself — the root becomes √(1 + x), which we CAN integrate (Lesson 17's linear-inside rule: inside has slope 1, so just use the power rule on the whole package):<br><br>
+  L = ∫₀³ √(1 + x) dx = [(2/3)(1 + x)^(3/2)]₀³ = (2/3)(4^(3/2) − 1^(3/2)) = (2/3)(8 − 1) = <b>14/3</b>.</div>
+</section>
+
+<section>
+  <h2><span class="num">5</span> A messier cousin — and exact-form courage</h2>
+  <div class="ex"><b>Worked example:</b> f(x) = x^(3/2) on [0, 4].<br><br>
+  f′ = (3/2)x^(1/2) &nbsp;→&nbsp; (f′)² = (9/4)x &nbsp;→&nbsp; 1 + (f′)² = 1 + 9x/4.<br>
+  L = ∫₀⁴ √(1 + 9x/4) dx. Linear inside with slope 9/4, so divide by it:<br>
+  L = [(4/9)·(2/3)(1 + 9x/4)^(3/2)]₀⁴ = (8/27)[(1 + 9x/4)^(3/2)]₀⁴.<br>
+  At x = 4: 1 + 9 = 10. At x = 0: 1. So L = <b>(8/27)(10^(3/2) − 1)</b>.</div>
+  <ul>
+    <li>And now... we stop. <span class="fml">10^(3/2) = 10√10</span> is not a nice number, and that is <strong>fine</strong>. <em class="hi">Exact-form courage:</em> an exact answer like (8/27)(10√10 − 1) is BETTER than a rounded decimal — it's the true value, not an approximation. Leave it. (If someone needs decimals, that's what calculators are for: ≈ 9.07.)</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">6</span> The setup-only norm — write it and STOP</h2>
+  <ul>
+    <li>Standard exam request: <em>"Write an integral for the length of y = sin x on [0, π]. Do not evaluate."</em></li>
+    <li>Run the recipe: f′ = cos x → (f′)² = cos²x → answer: <span class="fml">L = ∫₀^π √(1 + cos²x) dx</span>. Then <strong>STOP</strong>. That square root has no elementary antiderivative — no technique in this course (or any course!) will produce one, because none exists. This is normal, not failure.</li>
+    <li>On the AP exam, a calculator evaluates such integrals numerically (this one ≈ 3.82). Your job is the part calculators can't do: producing the correct integral.</li>
+    <li>Self-check habit for any arc-length answer: the length must be <strong>at least</strong> the straight-line distance between the endpoints (shortest path is a straight line), and the integrand <span class="fml">√(1 + (f′)²)</span> is always ≥ 1, so L is always ≥ the width of the interval. If your answer is smaller than either — something broke.</li>
+  </ul>
+</section>
+
+<div class="qhead">✏️ Exercises — 20 problems (write your answer on paper, then reveal)</div>
+
+<div class="q"><span class="qnum">1.</span><span class="qtag">straight-line check</span>
+  <div class="qtext">Use the arc length formula on <span class="fml">f(x) = (3/4)x</span> over [0, 8]. Then verify your answer with the distance formula between the endpoints.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the smartest first move with any new formula is to test it where you already know the answer. A straight segment's length comes from the distance formula √((Δx)² + (Δy)²) — the arc length integral must match it exactly.</div>
+    <div class="step">f′ = 3/4, so 1 + (f′)² = 1 + 9/16 = 25/16, and √(25/16) = 5/4.</div>
+    <div class="step">L = ∫₀⁸ (5/4) dx = (5/4)(8) = 10.</div>
+    <div class="step">Check: endpoints (0, 0) and (8, 6). Distance = √(8² + 6²) = √100 = 10. ✓ (A scaled-up 3-4-5 triangle.)</div>
+    <div class="ans">L = 10</div></div>
+</div>
+
+<div class="q"><span class="qnum">2.</span><span class="qtag">straight-line check</span>
+  <div class="qtext">Find the length of <span class="fml">f(x) = (12/5)x</span> over [0, 5] with the arc length formula, and name the famous right triangle hiding in the answer.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> 3-4-5 isn't the only "Pythagorean triple" (whole-number right triangle). The next famous one is 5-12-13: 5² + 12² = 25 + 144 = 169 = 13². A line of slope 12/5 walked 5 units across rises 12 — that exact triangle.</div>
+    <div class="step">f′ = 12/5 → (f′)² = 144/25 → 1 + 144/25 = 169/25 → √ = 13/5.</div>
+    <div class="step">L = ∫₀⁵ (13/5) dx = (13/5)(5) = 13.</div>
+    <div class="step">Endpoints (0,0) and (5,12): legs 5 and 12, hypotenuse 13. ✓</div>
+    <div class="ans">L = 13 — the 5-12-13 triangle</div></div>
+</div>
+
+<div class="q"><span class="qnum">3.</span><span class="qtag">constant slope</span>
+  <div class="qtext">Find the exact length of <span class="fml">f(x) = 3x + 1</span> over [0, 2]. (The answer won't be a whole number — leave it exact.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> two lessons in one small problem. First: the +1 shifts the line up but can't change its length (watch f′ eat the constant). Second: not every exact answer is pretty — √10 is a perfectly finished answer. Exact-form courage starts here.</div>
+    <div class="step">f′ = 3 (the +1 vanished — constants have derivative 0). 1 + (f′)² = 10.</div>
+    <div class="step">L = ∫₀² √10 dx = 2√10.</div>
+    <div class="step">Check: endpoints (0, 1) and (2, 7): √(4 + 36) = √40 = 2√10. ✓</div>
+    <div class="ans">L = 2√10</div></div>
+</div>
+
+<div class="q"><span class="qnum">4.</span><span class="qtag">the clean family</span>
+  <div class="qtext">Find the length of <span class="fml">f(x) = (2/3)x^(3/2)</span> over [0, 8].</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the (2/3)x^(3/2) curve is designed so the mess disappears: its derivative is √x, and squaring a square root gives back plain x. Then 1 + x under the root is the linear-inside pattern from Lesson 17 — power rule on the package, no dividing needed since the inside slope is 1.</div>
+    <div class="step">f′ = √x → 1 + (f′)² = 1 + x.</div>
+    <div class="step">L = ∫₀⁸ √(1 + x) dx = [(2/3)(1 + x)^(3/2)]₀⁸.</div>
+    <div class="step">At x = 8: (2/3)(9^(3/2)) = (2/3)(27). At x = 0: (2/3)(1). L = (2/3)(27 − 1) = 52/3.</div>
+    <div class="ans">L = 52/3</div></div>
+</div>
+
+<div class="q"><span class="qnum">5.</span><span class="qtag">setup only</span>
+  <div class="qtext">Write — but do not evaluate — an integral for the length of <span class="fml">y = x²</span> over [0, 2].</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the parabola is the poster child for "innocent curve, impossible arc length." The setup takes ten seconds; the evaluation takes techniques beyond this course (the exact answer involves logarithms of square roots). Setup-only is the intended skill.</div>
+    <div class="step">f′ = 2x → (f′)² = 4x².</div>
+    <div class="step">L = ∫₀² √(1 + 4x²) dx. Stop here.</div>
+    <div class="ans">L = ∫₀² √(1 + 4x²) dx</div></div>
+</div>
+
+<div class="q"><span class="qnum">6.</span><span class="qtag">constants don't count</span>
+  <div class="qtext">Without computing anything new, find the length of <span class="fml">f(x) = (2/3)x^(3/2) + 7</span> over [0, 8], and explain how you know.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> adding a constant slides the whole curve straight up — like lifting a piece of rope 7 cm higher off the table. The rope doesn't stretch! The formula agrees: the +7 dies when we take f′, and f′ is the only thing the integrand sees.</div>
+    <div class="step">f′ = √x — identical to #4's derivative, so the integrand √(1 + x) is identical, so the length is identical.</div>
+    <div class="step">L = 52/3, same as #4.</div>
+    <div class="ans">L = 52/3 — vertical shifts never change arc length</div></div>
+</div>
+
+<div class="q"><span class="qnum">7.</span><span class="qtag">clean family · new interval</span>
+  <div class="qtext">Find the length of <span class="fml">f(x) = (2/3)x^(3/2)</span> over [3, 8].</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> same curve as #4, different window — only the limits change. Careful with the lower limit: it's no longer 0, so BOTH endpoint evaluations matter. (Quick sense check from #4: [0,8] gave 52/3 ≈ 17.3, so [3,8] must give less.)</div>
+    <div class="step">L = ∫₃⁸ √(1 + x) dx = [(2/3)(1 + x)^(3/2)]₃⁸.</div>
+    <div class="step">At x = 8: (2/3)(9^(3/2)) = (2/3)(27). At x = 3: (2/3)(4^(3/2)) = (2/3)(8).</div>
+    <div class="step">L = (2/3)(27 − 8) = (2/3)(19) = 38/3 ≈ 12.7 &lt; 52/3. ✓</div>
+    <div class="ans">L = 38/3</div></div>
+</div>
+
+<div class="q"><span class="qnum">8.</span><span class="qtag">setup only</span>
+  <div class="qtext">Write — but do not evaluate — an integral for the length of <span class="fml">y = eˣ</span> over [0, 1].</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> eˣ is its own derivative (Lesson 12's star fact) — the one function whose slope equals its height. Squaring it: (eˣ)² = e²ˣ, by the exponent rule (add exponents when multiplying: x + x = 2x).</div>
+    <div class="step">f′ = eˣ → (f′)² = e²ˣ.</div>
+    <div class="step">L = ∫₀¹ √(1 + e²ˣ) dx. Stop — no elementary antiderivative in our toolkit.</div>
+    <div class="ans">L = ∫₀¹ √(1 + e²ˣ) dx</div></div>
+</div>
+
+<div class="q"><span class="qnum">9.</span><span class="qtag">setup only</span>
+  <div class="qtext">Write — but do not evaluate — an integral for the length of <span class="fml">y = ln x</span> over [1, e].</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the derivative of ln x is 1/x (Lesson 13). Its square is 1/x². Keep the algebra tidy under the root — 1 + 1/x² could also be written (x² + 1)/x², but either form earns full credit on a setup.</div>
+    <div class="step">f′ = 1/x → (f′)² = 1/x².</div>
+    <div class="step">L = ∫₁ᵉ √(1 + 1/x²) dx. Stop.</div>
+    <div class="ans">L = ∫₁ᵉ √(1 + 1/x²) dx</div></div>
+</div>
+
+<div class="q"><span class="qnum">10.</span><span class="qtag">simplify the root</span>
+  <div class="qtext">A curve has derivative <span class="fml">f′(x) = √(x² + 2x)</span>. Simplify <span class="fml">1 + (f′)²</span> until the square root disappears, then find the curve's length over [0, 3].</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> designed problems hide a PERFECT SQUARE under the root: 1 + (f′)² collapses to (something)², and √(something)² = something (when it's positive). Spotting perfect squares like x² + 2x + 1 = (x + 1)² is the whole game.</div>
+    <div class="step">(f′)² = x² + 2x, so 1 + (f′)² = x² + 2x + 1 = (x + 1)².</div>
+    <div class="step">√((x + 1)²) = x + 1 (positive on [0, 3], so no absolute-value worry).</div>
+    <div class="step">L = ∫₀³ (x + 1) dx = [x²/2 + x]₀³ = 9/2 + 3 = 15/2.</div>
+    <div class="ans">L = 15/2</div></div>
+</div>
+
+<div class="q"><span class="qnum">11.</span><span class="qtag">exact-form courage</span>
+  <div class="qtext">Find the exact length of <span class="fml">f(x) = x^(3/2)</span> over [0, 1]. Leave your answer in exact form — no decimals.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> same family as the notes' [0, 4] example, smaller window. The linear-inside rule (Lesson 17) handles √(1 + 9x/4): power rule on the package, then divide by the inside's slope 9/4 — dividing by 9/4 is multiplying by 4/9.</div>
+    <div class="step">f′ = (3/2)√x → (f′)² = (9/4)x → integrand √(1 + 9x/4).</div>
+    <div class="step">L = [(4/9)(2/3)(1 + 9x/4)^(3/2)]₀¹ = (8/27)[(1 + 9x/4)^(3/2)]₀¹.</div>
+    <div class="step">At x = 1: (13/4)^(3/2) = 13^(3/2)/4^(3/2) = 13√13/8. At x = 0: 1.</div>
+    <div class="step">L = (8/27)(13√13/8 − 1) = 13√13/27 − 8/27 = (13√13 − 8)/27. Done — that IS the answer.</div>
+    <div class="ans">L = (13√13 − 8)/27</div></div>
+</div>
+
+<div class="q"><span class="qnum">12.</span><span class="qtag">arc vs. chord</span>
+  <div class="qtext">The parabola <span class="fml">y = x²</span> runs from (0, 0) to (2, 4). (a) Find the straight-line distance between those endpoints. (b) Is the arc length of the parabola between them bigger or smaller than that? Explain without computing the integral.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the straight segment between two points (the "chord") is the shortest possible path between them — that's practically the definition of a straight line. Any curve connecting the same two points must be at least as long, and strictly longer if it bends at all.</div>
+    <div class="step">(a) Distance = √((2−0)² + (4−0)²) = √(4 + 16) = √20 = 2√5 ≈ 4.47.</div>
+    <div class="step">(b) Bigger. The parabola bows away from the chord (it starts flat and steepens), so the ant walking the curve takes a detour — arc length &gt; 2√5. (Calculator: ≈ 4.65, indeed bigger.)</div>
+    <div class="ans">(a) 2√5 &nbsp; (b) the arc is longer — a straight line is the shortest path</div></div>
+</div>
+
+<div class="q"><span class="qnum">13.</span><span class="qtag">setup only · trig</span>
+  <div class="qtext">Write — but do not evaluate — an integral for the length of <span class="fml">y = cos x</span> over [0, π/2], and say in one sentence why we stop at the setup.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> derivative of cos x is −sin x (Lesson 19). Squaring kills the minus sign: (−sin x)² = sin²x. The resulting integrand √(1 + sin²x) is famous for having NO elementary antiderivative — mathematicians proved none exists (it's called an elliptic integral).</div>
+    <div class="step">f′ = −sin x → (f′)² = sin²x.</div>
+    <div class="step">L = ∫₀^(π/2) √(1 + sin²x) dx.</div>
+    <div class="step">We stop because no function built from powers, trig, exponentials, and logs has this as its derivative — a calculator evaluates it numerically (≈ 1.91).</div>
+    <div class="ans">L = ∫₀^(π/2) √(1 + sin²x) dx — no elementary antiderivative exists</div></div>
+</div>
+
+<div class="q"><span class="qnum">14.</span><span class="qtag">perimeter</span>
+  <div class="qtext">A triangular garden plot is bounded by the ramp <span class="fml">y = (3/4)x</span>, the x-axis, and the vertical line x = 4. Find the total length of fence needed to surround it (all three sides).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> perimeter = the whole boundary. Arc length handles the slanted/curvy edges; ordinary rulers handle flat and vertical edges. Real problems mix both — add all the pieces at the end.</div>
+    <div class="step">Slanted edge: f′ = 3/4 → integrand √(25/16) = 5/4 → L = ∫₀⁴ (5/4) dx = 5.</div>
+    <div class="step">Bottom edge along the x-axis from x = 0 to 4: length 4.</div>
+    <div class="step">Right edge from (4, 0) up to (4, 3): length 3.</div>
+    <div class="step">Total fence = 5 + 4 + 3 = 12.</div>
+    <div class="ans">Perimeter = 12</div></div>
+</div>
+
+<div class="q"><span class="qnum">15.</span><span class="qtag">spot the error</span>
+  <div class="qtext">Asked for the length of <span class="fml">f(x) = (3/4)x</span> on [0, 4], a student writes L = ∫₀⁴ √((f′)²) dx = ∫₀⁴ (3/4) dx = 3. Find the error, explain what the student actually computed, and give the correct answer.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the "1" in √(1 + (f′)²) is not decoration — it's the dx² leg of the tiny triangle, the HORIZONTAL travel. Drop it and √((f′)²) = |f′| just integrates the slope, which accumulates only the vertical climb (that's Lesson 28's total-change idea, not length).</div>
+    <div class="step">The student computed ∫₀⁴ |f′| dx = total RISE of the curve: the path climbs 3 units. True — but that ignores the 4 units of sideways walking.</div>
+    <div class="step">Correct: L = ∫₀⁴ √(1 + 9/16) dx = ∫₀⁴ (5/4) dx = 5.</div>
+    <div class="step">Sanity: an answer of 3 is even shorter than the 4-unit-wide interval — impossible, since the integrand √(1 + (f′)²) ≥ 1 forces L ≥ 4.</div>
+    <div class="ans">The 1 was dropped; 3 is only the vertical rise. Correct: L = 5</div></div>
+</div>
+
+<div class="q"><span class="qnum">16.</span><span class="qtag">given f′</span>
+  <div class="qtext">A curve has derivative <span class="fml">f′(x) = √(4x + 8)</span>. Find its length over [0, 4].</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> arc length only ever asks for f′, never f itself — so a problem may hand you the derivative directly. Then 1 + (f′)² = 1 + (4x + 8) = 4x + 9, and √(4x + 9) is a linear-inside integral: power rule on the package, divide by the inside slope 4.</div>
+    <div class="step">L = ∫₀⁴ √(4x + 9) dx = [(1/4)(2/3)(4x + 9)^(3/2)]₀⁴ = (1/6)[(4x + 9)^(3/2)]₀⁴.</div>
+    <div class="step">At x = 4: 25^(3/2) = (√25)³ = 125. At x = 0: 9^(3/2) = 27.</div>
+    <div class="step">L = (1/6)(125 − 27) = 98/6 = 49/3.</div>
+    <div class="ans">L = 49/3</div></div>
+</div>
+
+<div class="q"><span class="qnum">17.</span><span class="qtag">trap the answer</span>
+  <div class="qtext">Without evaluating <span class="fml">L = ∫₀^π √(1 + cos²x) dx</span> (the length of y = sin x on [0, π]), prove that L is between π and π√2.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> Lesson 28's comparison property: if m ≤ (integrand) ≤ M on [a, b], then m·(b − a) ≤ integral ≤ M·(b − a). Even unsolvable integrals can be TRAPPED between bounds — an extremely AP-flavored move that turns "impossible" into "known to one decimal place."</div>
+    <div class="step">cos²x ranges between 0 and 1, so the integrand ranges between √(1 + 0) = 1 and √(1 + 1) = √2.</div>
+    <div class="step">Lower bound: L ≥ 1·(π − 0) = π. Upper bound: L ≤ √2·π.</div>
+    <div class="step">So π ≤ L ≤ π√2, i.e. roughly 3.14 ≤ L ≤ 4.44. (True value ≈ 3.82 — safely inside.)</div>
+    <div class="ans">1 ≤ √(1 + cos²x) ≤ √2 forces π ≤ L ≤ π√2</div></div>
+</div>
+
+<div class="q"><span class="qnum">18.</span><span class="qtag">why shifts do nothing</span>
+  <div class="qtext">(a) Using the formula, explain precisely why <span class="fml">f(x) + C</span> has the same arc length as <span class="fml">f(x)</span> on any interval. (b) The curve <span class="fml">g(x) = f(x − 2)</span> is f slid 2 units right. Explain why g on [2, 7] has the same length as f on [0, 5].</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> arc length should behave like real rope: sliding a rope around a table — up, down, sideways — without bending it can't change its length. A good formula must respect that physical fact, and checking that it does is how mathematicians stress-test definitions.</div>
+    <div class="step">(a) The integrand only contains f′, and (f + C)′ = f′ (the constant's derivative is 0). Identical integrand, identical limits → identical length. Geometrically: every tiny hypotenuse gets lifted by C but keeps its exact size and tilt.</div>
+    <div class="step">(b) g′(x) = f′(x − 2) (the slope at x on g is the slope at the matching point x − 2 on f). As x runs over [2, 7], the value x − 2 runs over [0, 5] — so the integral ∫₂⁷ √(1 + f′(x − 2)²) dx visits exactly the same slope values as ∫₀⁵ √(1 + f′(u)²) du, tiny piece for tiny piece. Same hypotenuses, same total.</div>
+    <div class="ans">Shifts (vertical or horizontal) preserve every tiny hypotenuse — length unchanged</div></div>
+</div>
+
+<div class="q"><span class="qnum">19.</span><span class="qtag">perfect-square family</span>
+  <div class="qtext">Find the length of <span class="fml">f(x) = x³/6 + 1/(2x)</span> over [1, 2]. (Hint: compute (f′)² very carefully — the cross term is the hero.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a famous family of curves is engineered so that (a − b)² = a² − 2ab + b² has cross term 2ab = 1/2; then adding 1 flips the middle sign and produces (a + b)² — a perfect square, and the root melts away. Watch it happen.</div>
+    <div class="step">f′ = 3x²/6 − 1/(2x²) = x²/2 − 1/(2x²).</div>
+    <div class="step">(f′)² = (x²/2)² − 2·(x²/2)(1/(2x²)) + (1/(2x²))² = x⁴/4 − 1/2 + 1/(4x⁴).</div>
+    <div class="step">1 + (f′)² = x⁴/4 + 1/2 + 1/(4x⁴) = (x²/2 + 1/(2x²))² — same pieces, plus sign in the middle!</div>
+    <div class="step">L = ∫₁² (x²/2 + 1/(2x²)) dx = [x³/6 − 1/(2x)]₁² = (8/6 − 1/4) − (1/6 − 1/2) = (4/3 − 1/4) + 1/3 = 5/3 − 1/4 = 17/12.</div>
+    <div class="ans">L = 17/12</div></div>
+</div>
+
+<div class="q"><span class="qnum">20.</span><span class="qtag">challenge · the classic</span>
+  <div class="qtext">Find the length of <span class="fml">f(x) = x²/4 − (ln x)/2</span> over [1, 2]. Show every algebra step — this is the most famous "designed" arc length problem in calculus.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the full perfect-square machine, now with a logarithm on board. Needed tools: derivative of ln x is 1/x (Lesson 13), the expansion (a − b)² = a² − 2ab + b², and the antiderivative of 1/x being ln x. Every step is one you own — the beauty is how they interlock.</div>
+    <div class="step"><b>Step 1 — derivative:</b> f′ = 2x/4 − (1/2)(1/x) = x/2 − 1/(2x).</div>
+    <div class="step"><b>Step 2 — square it:</b> (f′)² = (x/2)² − 2·(x/2)·(1/(2x)) + (1/(2x))². The cross term: 2·(x/2)·(1/(2x)) = x/(2x) = 1/2. So (f′)² = x²/4 − 1/2 + 1/(4x²).</div>
+    <div class="step"><b>Step 3 — add 1:</b> 1 + (f′)² = x²/4 + 1/2 + 1/(4x²). And since (x/2 + 1/(2x))² = x²/4 + 1/2 + 1/(4x²) (the same cross term, now added), the pile under the root is exactly (x/2 + 1/(2x))².</div>
+    <div class="step"><b>Step 4 — the root melts:</b> √(1 + (f′)²) = x/2 + 1/(2x) (positive on [1, 2] — both terms are positive).</div>
+    <div class="step"><b>Step 5 — integrate:</b> L = ∫₁² (x/2 + 1/(2x)) dx = [x²/4 + (ln x)/2]₁² = (4/4 + (ln 2)/2) − (1/4 + (ln 1)/2) = (1 + (ln 2)/2) − 1/4.</div>
+    <div class="step">ln 1 = 0, so L = 3/4 + (ln 2)/2 ≈ 0.75 + 0.35 = 1.10. Sanity: endpoints (1, 1/4) and (2, 1 − (ln 2)/2 ≈ 0.65); chord ≈ √(1 + 0.16) ≈ 1.08 ≤ 1.10. ✓</div>
+    <div class="ans">L = 3/4 + (ln 2)/2</div></div>
+</div>
+
+<footer>Lesson 36 of 40 · Intuitive Integration · next: <a href="Lesson37.html">Lesson 37 — Differential Equations I: Separation &amp; Slope Fields</a></footer>
+
+</div>
+<script>
+document.querySelectorAll('.q').forEach(q=>{
+  const btn=q.querySelector('.revealbtn'), sol=q.querySelector('.sol');
+  btn.addEventListener('click',()=>{ sol.classList.add('show'); btn.textContent='Solution shown'; btn.disabled=true; btn.style.opacity=.6; });
+});
+</script>
+</body>
+</html>

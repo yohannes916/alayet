@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 24 — Growing the Library: Tangent, Secant &amp; Friends</title>
+<style>
+  :root{--accent:#186a3b;--accent2:#239b56;--bg:#f2f7f4;--card:#fff;--ok:#1e8449;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:#1c2833;background:var(--bg);margin:0;padding:0 16px 80px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -16px 20px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  nav{display:flex;gap:10px;margin-bottom:18px;font-size:.9rem;flex-wrap:wrap;}
+  nav a{color:var(--accent);text-decoration:none;font-weight:600;background:#fff;border:1px solid #d5e8dc;border-radius:8px;padding:6px 14px;}
+  nav a:hover{background:#eafaf1;}
+  .goal{background:#fef9e7;border-left:5px solid var(--star);padding:12px 18px;border-radius:8px;margin-bottom:18px;font-size:.95rem;}
+  .goal strong{color:#7d6608;}
+  section{background:var(--card);border-radius:10px;padding:18px 22px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  h2{color:var(--accent);font-size:1.15rem;margin:0 0 10px;}
+  h2 .num{background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;border-radius:6px;padding:2px 9px;margin-right:8px;}
+  ul{margin:8px 0;padding-left:24px;}
+  li{margin-bottom:8px;}
+  strong{color:#145a32;}
+  em.hi{font-style:normal;background:#fef9e7;padding:0 4px;border-radius:3px;}
+  .fml{background:#e9f7ef;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.9em;color:#186a3b;white-space:nowrap;}
+  .ex{background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:.95rem;}
+  .ex b{color:#145a32;}
+  .graph{background:#1b2631;color:#eaeded;border-radius:8px;padding:14px 18px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.82rem;line-height:1.45;overflow-x:auto;margin:10px 0;white-space:pre;}
+  .graph .g{color:#82e0aa;} .graph .y{color:#f7dc6f;} .graph .b{color:#85c1e9;}
+  table.t{border-collapse:collapse;margin:10px 0;font-size:.92rem;}
+  table.t th,table.t td{border:1px solid #cfd8cf;padding:6px 12px;text-align:center;}
+  table.t th{background:var(--accent);color:#fff;font-weight:600;}
+  .qhead{margin:26px 0 8px;color:var(--accent);font-size:1.2rem;border-bottom:2px solid #d4efdf;padding-bottom:6px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid var(--accent2);}
+  .qnum{font-weight:800;color:var(--accent);margin-right:6px;}
+  .qtag{float:right;background:#e9f7ef;color:var(--accent);border-radius:8px;padding:1px 9px;font-size:.68rem;font-weight:700;letter-spacing:.3px;margin-left:8px;}
+  .qtext{font-size:.98rem;margin:4px 0 10px;}
+  .revealbtn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .revealbtn:hover{background:#0e4429;}
+  .sol{display:none;margin-top:12px;background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px;font-size:.93rem;}
+  .sol.show{display:block;}
+  .sol h4{margin:0 0 8px;color:var(--ok);font-size:.9rem;}
+  .sol .ctx{background:#eaf2f8;border-left:4px solid #2e86c1;border-radius:6px;padding:8px 12px;margin:0 0 10px;font-size:.88rem;}
+  .sol .ctx b{color:#1a5276;}
+  .sol .step{margin:6px 0;}
+  .sol .ans{background:#eafaf1;border-radius:6px;padding:6px 12px;margin-top:8px;font-weight:700;color:#145a32;display:inline-block;}
+  footer{text-align:center;color:#85929e;font-size:.85rem;margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Lesson 24 — Growing the Library: Tangent, Secant &amp; Friends</h1>
+  <p>Four New Trig Functions, Four New Antiderivatives · Intuitive Calculus for a Curious Student · Lesson 24 of 40</p>
+</header>
+
+<nav><a href="index.html">📚 All lessons</a><a href="Lesson23.html">← Prev: Lesson 23</a><a href="Lesson25.html">Next: Lesson 25 →</a></nav>
+
+<div class="goal"><strong>🎯 Goal of this lesson:</strong> meet the other four trig functions — tangent, secant, cosecant, cotangent — all built from sin and cos. Learn their derivative facts, then read those facts <em>backward</em> to add four new antiderivatives to your library. Plus one famous integral, <span class="fml">∫ tan x dx</span>, cracked with u-substitution.</div>
+
+<section>
+  <h2><span class="num">1</span> Meet the other four trig functions (from scratch)</h2>
+  <ul>
+    <li>So far you know <strong>sin x</strong> and <strong>cos x</strong>. The other four trig functions aren't new mysteries — every one of them is just a <em class="hi">fraction built from sin and cos</em>:</li>
+  </ul>
+  <table class="t">
+    <tr><th>Name</th><th>Symbol</th><th>Definition</th><th>Flavor</th></tr>
+    <tr><td>tangent</td><td><span class="fml">tan x</span></td><td><span class="fml">sin x / cos x</span></td><td>slope-flavored: "how steep"</td></tr>
+    <tr><td>secant</td><td><span class="fml">sec x</span></td><td><span class="fml">1 / cos x</span></td><td>cosine flipped</td></tr>
+    <tr><td>cosecant</td><td><span class="fml">csc x</span></td><td><span class="fml">1 / sin x</span></td><td>sine flipped</td></tr>
+    <tr><td>cotangent</td><td><span class="fml">cot x</span></td><td><span class="fml">cos x / sin x</span></td><td>tangent flipped</td></tr>
+  </table>
+  <ul>
+    <li>Why "slope-flavored"? On the unit circle, a ray at angle x rises sin x for every cos x it runs — so <span class="fml">sin x / cos x</span> is literally the ray's <strong>slope</strong>. At x = π/4 the ray points diagonally (45°), slope 1 — and sure enough, tan(π/4) = 1.</li>
+    <li>You can compute values instantly from the sin/cos table you already know (Lesson 18). For example: <span class="fml">tan(π/3) = sin(π/3)/cos(π/3) = (√3/2)/(1/2) = √3</span>, and <span class="fml">sec(π/3) = 1/cos(π/3) = 1/(1/2) = 2</span>. Also <span class="fml">sec(π/4) = 1/(√2/2) = 2/√2 = √2</span>.</li>
+  </ul>
+  <table class="t">
+    <tr><th>x</th><th>0</th><th>π/4</th><th>π/3</th></tr>
+    <tr><th>tan x</th><td>0</td><td>1</td><td>√3</td></tr>
+    <tr><th>sec x</th><td>1</td><td>√2</td><td>2</td></tr>
+  </table>
+  <ul>
+    <li>⚠️ <strong>Danger zones:</strong> you can't divide by zero. Since <span class="fml">cos(π/2) = 0</span>, both <strong>tan x and sec x are undefined at x = π/2</strong> (and at every odd multiple of π/2). Likewise sin 0 = 0, so <strong>csc x and cot x are undefined at x = 0, π, 2π, …</strong> Near those points the graphs shoot off to infinity.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">2</span> Their derivative facts</h2>
+  <ul>
+    <li>Here are the four derivative facts — memorize them as a matched set:</li>
+  </ul>
+  <table class="t">
+    <tr><th>Function</th><th>Derivative</th></tr>
+    <tr><td><span class="fml">tan x</span></td><td><span class="fml">sec²x</span></td></tr>
+    <tr><td><span class="fml">sec x</span></td><td><span class="fml">sec x · tan x</span></td></tr>
+    <tr><td><span class="fml">cot x</span></td><td><span class="fml">−csc²x</span></td></tr>
+    <tr><td><span class="fml">csc x</span></td><td><span class="fml">−csc x · cot x</span></td></tr>
+  </table>
+  <ul>
+    <li><strong>Let's verify the first one</strong>, so it's not magic. Since tan x = sin x/cos x, we need the rule for differentiating a fraction (the <em>quotient rule</em>, stated informally): <em class="hi">(top/bottom)′ = (top′·bottom − top·bottom′) / bottom²</em>.</li>
+  </ul>
+  <div class="ex"><b>Verifying (tan x)′ = sec²x:</b> top = sin x (derivative cos x), bottom = cos x (derivative −sin x).<br>
+  (tan x)′ = [cos x · cos x − sin x · (−sin x)] / cos²x = (cos²x + sin²x) / cos²x.<br>
+  Now the most famous identity in trig — <b>cos²x + sin²x = 1</b> (the point (cos x, sin x) sits on the unit circle, so its coordinates satisfy x² + y² = 1). So:<br>
+  (tan x)′ = 1/cos²x = (1/cos x)² = <b>sec²x</b> ✓</div>
+  <ul>
+    <li>The other three come from the same kind of computation. Notice the pattern: <em class="hi">the two "co" functions (cot, csc) get minus signs</em> — just like cos's derivative −sin x carries the minus.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">3</span> Read them backward: four new antiderivatives</h2>
+  <ul>
+    <li>Every derivative fact, read right-to-left, is an antiderivative fact (Lesson 6's big move). Reading the table backward gives us <strong>four new library entries</strong>:</li>
+  </ul>
+  <div class="ex"><b>📚 New library entries (box these!):</b><br>
+  <span class="fml">∫ sec²x dx = tan x + C</span><br>
+  <span class="fml">∫ sec x tan x dx = sec x + C</span><br>
+  <span class="fml">∫ csc²x dx = −cot x + C</span><br>
+  <span class="fml">∫ csc x cot x dx = −csc x + C</span></div>
+  <ul>
+    <li><strong>Pattern to remember:</strong> the <em class="hi">"co" versions carry minus signs</em>. You've seen this before: ∫ cos x dx = sin x + C is clean, but ∫ sin x dx = −cos x + C needs a minus. Same story here — csc² and csc·cot answers come out negative.</li>
+    <li>Careful reading: <span class="fml">∫ csc²x dx = −cot x + C</span> works because (−cot x)′ = −(−csc²x) = csc²x — the two minus signs cancel.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">4</span> The check habit: differentiate every answer</h2>
+  <ul>
+    <li>These four are easy to garble (sign slips, swapped pairs), so <em class="hi">always differentiate your answer</em> — it takes five seconds and catches everything.</li>
+  </ul>
+  <div class="ex"><b>Example check:</b> claim: ∫ csc x cot x dx = −csc x + C. Check: (−csc x)′ = −(−csc x · cot x) = csc x · cot x ✓ — matches what's inside the integral. Claim verified.</div>
+</section>
+
+<section>
+  <h2><span class="num">5</span> A worked definite integral</h2>
+  <div class="ex"><b>Compute <span class="fml">∫₀^π/4 sec²x dx</span>.</b><br>
+  Antiderivative: tan x. Evaluate (FTC, Lesson 8):<br>
+  ∫₀^π/4 sec²x dx = tan(π/4) − tan(0) = 1 − 0 = <b>1</b>.<br>
+  Beautifully clean — the area under the sec²x curve from 0 to π/4 is exactly 1.</div>
+</section>
+
+<section>
+  <h2><span class="num">6</span> A famous one: ∫ tan x dx (u-substitution to the rescue)</h2>
+  <ul>
+    <li>Tangent is NOT in the backward-reading table — nothing in our derivative list produces plain tan x. But writing <span class="fml">tan x = sin x / cos x</span> reveals a u-substitution setup (Lesson 16): the bottom's derivative is sitting on top!</li>
+  </ul>
+  <div class="ex"><b>Every step:</b><br>
+  ∫ tan x dx = ∫ (sin x / cos x) dx<br>
+  Let <b>u = cos x</b>. Then du = −sin x dx, so sin x dx = −du.<br>
+  ∫ (sin x dx) / cos x = ∫ (−du)/u = −∫ (1/u) du<br>
+  From Lesson 21: ∫ (1/u) du = ln|u| + C. So we get −ln|u| + C.<br>
+  Substitute back: <b>∫ tan x dx = −ln|cos x| + C</b><br>
+  <b>Check:</b> derivative of −ln|cos x| is −(1/cos x)·(−sin x) = sin x/cos x = tan x ✓<br><br>
+  The |…| bars matter (Lesson 21): cos x is negative on part of its domain, and ln only eats positive numbers — the absolute value keeps the formula legal everywhere cos x ≠ 0.</div>
+  <ul>
+    <li><strong>Same answer, different outfit:</strong> using log rules, −ln|cos x| = ln(1/|cos x|) = <span class="fml">ln|sec x| + C</span>. Books write it both ways — they're identical.</li>
+    <li>What about <span class="fml">∫ sec x dx</span>? Honest answer: it exists, but no pattern we own yet produces it — it needs a sneaky trick (coming in a later lesson). For now, sec x stays on the "wanted" poster.</li>
+  </ul>
+</section>
+
+<div class="qhead">✏️ Exercises — 20 problems (write your answer on paper, then reveal)</div>
+
+<div class="q"><span class="qnum">1.</span><span class="qtag">values</span>
+  <div class="qtext">Using the definitions, find: (a) tan 0 &nbsp; (b) tan(π/4) &nbsp; (c) sec 0.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> tan x = sin x/cos x and sec x = 1/cos x. Table values you know: sin 0 = 0, cos 0 = 1, sin(π/4) = cos(π/4) = √2/2.</div>
+    <div class="step">(a) tan 0 = sin 0 / cos 0 = 0/1 = 0.</div>
+    <div class="step">(b) tan(π/4) = (√2/2)/(√2/2) = 1 — sin and cos are equal there, so the ratio is 1.</div>
+    <div class="step">(c) sec 0 = 1/cos 0 = 1/1 = 1.</div>
+    <div class="ans">(a) 0 &nbsp; (b) 1 &nbsp; (c) 1</div></div>
+</div>
+
+<div class="q"><span class="qnum">2.</span><span class="qtag">values</span>
+  <div class="qtext">Using the definitions, find: (a) tan(π/3) &nbsp; (b) sec(π/3) &nbsp; (c) sec(π/4).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> table values: sin(π/3) = √3/2, cos(π/3) = 1/2, cos(π/4) = √2/2. Dividing by a fraction = multiplying by its flip.</div>
+    <div class="step">(a) tan(π/3) = (√3/2)/(1/2) = (√3/2)·(2/1) = √3.</div>
+    <div class="step">(b) sec(π/3) = 1/(1/2) = 2.</div>
+    <div class="step">(c) sec(π/4) = 1/(√2/2) = 2/√2 = √2 (multiply top and bottom by √2: 2√2/2 = √2).</div>
+    <div class="ans">(a) √3 &nbsp; (b) 2 &nbsp; (c) √2</div></div>
+</div>
+
+<div class="q"><span class="qnum">3.</span><span class="qtag">danger zones</span>
+  <div class="qtext">Explain why tan x and sec x are both undefined at x = π/2, and name one value of x where csc x is undefined.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> every one of the four new functions is a fraction, and a fraction breaks exactly where its bottom is zero. tan and sec have cos on the bottom; csc and cot have sin on the bottom.</div>
+    <div class="step">cos(π/2) = 0, so tan(π/2) = sin(π/2)/cos(π/2) = 1/0 and sec(π/2) = 1/0 — division by zero, undefined.</div>
+    <div class="step">csc x = 1/sin x breaks where sin x = 0: at x = 0 (also π, 2π, −π, …).</div>
+    <div class="ans">Both have cos x on the bottom and cos(π/2) = 0; csc is undefined at x = 0 (or any multiple of π)</div></div>
+</div>
+
+<div class="q"><span class="qnum">4.</span><span class="qtag">library</span>
+  <div class="qtext">Find <span class="fml">∫ sec²x dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> reading (tan x)′ = sec²x backward: the antiderivative of sec²x is tan x. Never forget the + C — every vertical shift of tan x has the same derivative.</div>
+    <div class="step">∫ sec²x dx = tan x + C.</div>
+    <div class="step">Check: (tan x)′ = sec²x ✓.</div>
+    <div class="ans">tan x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">5.</span><span class="qtag">library</span>
+  <div class="qtext">Find <span class="fml">∫ sec x tan x dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> (sec x)′ = sec x · tan x, so the product sec x tan x is exactly a derivative we recognize — read it backward.</div>
+    <div class="step">∫ sec x tan x dx = sec x + C.</div>
+    <div class="step">Check: (sec x)′ = sec x tan x ✓.</div>
+    <div class="ans">sec x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">6.</span><span class="qtag">library · minus!</span>
+  <div class="qtext">Find <span class="fml">∫ csc²x dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the "co" pattern: (cot x)′ = −csc²x has a minus, so to land on +csc²x you must start from −cot x. Same idea as ∫ sin x dx = −cos x + C.</div>
+    <div class="step">∫ csc²x dx = −cot x + C.</div>
+    <div class="step">Check: (−cot x)′ = −(−csc²x) = csc²x ✓ — the two minuses cancel.</div>
+    <div class="ans">−cot x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">7.</span><span class="qtag">library · minus!</span>
+  <div class="qtext">Find <span class="fml">∫ csc x cot x dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> (csc x)′ = −csc x · cot x. To get rid of the unwanted minus, start from −csc x — its derivative flips the sign back to positive.</div>
+    <div class="step">∫ csc x cot x dx = −csc x + C.</div>
+    <div class="step">Check: (−csc x)′ = −(−csc x cot x) = csc x cot x ✓.</div>
+    <div class="ans">−csc x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">8.</span><span class="qtag">mix</span>
+  <div class="qtext">Find <span class="fml">∫ (3sec²x + sin x) dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> integrals split over + and constants slide out front (Lesson 7). Handle each piece with its own library entry: ∫ sec²x dx = tan x + C and ∫ sin x dx = −cos x + C (Lesson 18).</div>
+    <div class="step">∫ 3sec²x dx = 3 tan x. &nbsp; ∫ sin x dx = −cos x.</div>
+    <div class="step">Total: 3 tan x − cos x + C.</div>
+    <div class="step">Check: (3 tan x − cos x)′ = 3 sec²x − (−sin x) = 3 sec²x + sin x ✓.</div>
+    <div class="ans">3 tan x − cos x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">9.</span><span class="qtag">mix</span>
+  <div class="qtext">Find <span class="fml">∫ (sec²x − 2) dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the constant −2 integrates to −2x (a constant rate accumulates linearly, Lesson 6). The sec²x piece comes from the library.</div>
+    <div class="step">∫ sec²x dx = tan x, and ∫ (−2) dx = −2x.</div>
+    <div class="step">Total: tan x − 2x + C.</div>
+    <div class="step">Check: (tan x − 2x)′ = sec²x − 2 ✓.</div>
+    <div class="ans">tan x − 2x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">10.</span><span class="qtag">check by differentiating</span>
+  <div class="qtext">A student claims <span class="fml">∫ csc²x dx = cot x + C</span>. Check the claim by differentiating, and fix it if it's wrong.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the differentiate-to-check habit in action. An antiderivative claim is right exactly when its derivative equals the function inside the integral — no exceptions, no debate.</div>
+    <div class="step">Check: (cot x)′ = −csc²x. But the integrand is +csc²x. Off by a sign — the claim is wrong.</div>
+    <div class="step">Fix: start from −cot x instead: (−cot x)′ = csc²x ✓.</div>
+    <div class="ans">Wrong — (cot x)′ = −csc²x. Correct answer: −cot x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">11.</span><span class="qtag">definite</span>
+  <div class="qtext">Compute <span class="fml">∫₀^π/4 sec²x dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> FTC recipe (Lesson 8): find an antiderivative, plug in the top limit, plug in the bottom limit, subtract. Antiderivative of sec²x: tan x. Values needed: tan(π/4) = 1, tan 0 = 0.</div>
+    <div class="step">∫₀^π/4 sec²x dx = tan x |₀^π/4 = tan(π/4) − tan(0) = 1 − 0.</div>
+    <div class="ans">1</div></div>
+</div>
+
+<div class="q"><span class="qnum">12.</span><span class="qtag">definite</span>
+  <div class="qtext">Compute <span class="fml">∫₀^π/3 sec x tan x dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> antiderivative of sec x tan x is sec x (library entry). Values needed: sec(π/3) = 1/cos(π/3) = 1/(1/2) = 2, and sec 0 = 1/cos 0 = 1.</div>
+    <div class="step">∫₀^π/3 sec x tan x dx = sec x |₀^π/3 = sec(π/3) − sec(0) = 2 − 1.</div>
+    <div class="ans">1</div></div>
+</div>
+
+<div class="q"><span class="qnum">13.</span><span class="qtag">definite</span>
+  <div class="qtext">Compute <span class="fml">∫_π/4^π/3 sec²x dx</span>, exact value first, then as a decimal.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> same recipe, both limits are "nice" angles: tan(π/3) = √3 and tan(π/4) = 1. Use √3 ≈ 1.732.</div>
+    <div class="step">∫_π/4^π/3 sec²x dx = tan x |_π/4^π/3 = tan(π/3) − tan(π/4) = √3 − 1.</div>
+    <div class="step">Decimal: 1.732 − 1 = 0.732.</div>
+    <div class="ans">√3 − 1 ≈ 0.732</div></div>
+</div>
+
+<div class="q"><span class="qnum">14.</span><span class="qtag">famous integral</span>
+  <div class="qtext">Reproduce the derivation of <span class="fml">∫ tan x dx</span> using u-substitution, showing every step. Then differentiate your answer to check it.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the u-substitution signal (Lesson 16): when a fraction's bottom has its own derivative sitting on top, substitute u = the bottom. Here tan x = sin x/cos x, and the top (sin x) is one minus sign away from the bottom's derivative (−sin x).</div>
+    <div class="step">∫ tan x dx = ∫ (sin x / cos x) dx.</div>
+    <div class="step">Let u = cos x → du = −sin x dx → sin x dx = −du.</div>
+    <div class="step">Substitute: ∫ (−du)/u = −∫ (1/u) du = −ln|u| + C (Lesson 21).</div>
+    <div class="step">Back-substitute: −ln|cos x| + C. (Equivalent form: ln|sec x| + C, since −ln a = ln(1/a).)</div>
+    <div class="step">Check: derivative of −ln|cos x| = −(1/cos x)·(−sin x) = sin x/cos x = tan x ✓.</div>
+    <div class="ans">∫ tan x dx = −ln|cos x| + C &nbsp;(= ln|sec x| + C)</div></div>
+</div>
+
+<div class="q"><span class="qnum">15.</span><span class="qtag">linear inside</span>
+  <div class="qtext">Find <span class="fml">∫ sec²(2x) dx</span>.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the "linear inside" rule (Lesson 17): if ∫ f(x) dx = F(x) + C, then ∫ f(ax) dx = F(ax)/a + C — the chain rule would multiply by a when differentiating, so we pre-divide by a to cancel it.</div>
+    <div class="step">Base fact: ∫ sec²x dx = tan x + C. Inside is 2x, so divide by 2:</div>
+    <div class="step">∫ sec²(2x) dx = tan(2x)/2 + C.</div>
+    <div class="step">Check: derivative of tan(2x)/2 = (1/2)·sec²(2x)·2 = sec²(2x) ✓.</div>
+    <div class="ans">tan(2x)/2 + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">16.</span><span class="qtag">linear inside</span>
+  <div class="qtext">Find <span class="fml">∫ sec(4x) tan(4x) dx</span>, and check your answer by differentiating.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> same linear-inside move on a different library entry: ∫ sec x tan x dx = sec x + C, so with 4x inside, divide by 4.</div>
+    <div class="step">∫ sec(4x) tan(4x) dx = sec(4x)/4 + C.</div>
+    <div class="step">Check: derivative of sec(4x)/4 = (1/4)·sec(4x)tan(4x)·4 = sec(4x)tan(4x) ✓ — the chain rule's 4 cancels our 1/4 exactly.</div>
+    <div class="ans">sec(4x)/4 + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">17.</span><span class="qtag">spot the error</span>
+  <div class="qtext">A student writes <span class="fml">∫ sec²x dx = sec³x/3 + C</span>, reasoning "power rule: raise the exponent, divide by it." Find the error, prove the answer wrong by differentiating it, and give the correct answer.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the power rule ∫ xⁿ dx = xⁿ⁺¹/(n+1) + C is for powers of <b>x itself</b>. sec²x is a power of sec x, a whole function of x — differentiating sec³x triggers the chain rule and spits out an extra factor the student never planned for.</div>
+    <div class="step">Test the claim: derivative of sec³x/3 = (1/3)·3sec²x·(sec x)′ = sec²x · sec x tan x = sec³x tan x.</div>
+    <div class="step">That's sec³x tan x, nowhere near sec²x — the claim fails the check badly.</div>
+    <div class="step">Correct answer, from the library: ∫ sec²x dx = tan x + C (check: (tan x)′ = sec²x ✓).</div>
+    <div class="ans">The power rule doesn't apply to powers of functions; correct answer: tan x + C</div></div>
+</div>
+
+<div class="q"><span class="qnum">18.</span><span class="qtag">definite · exact</span>
+  <div class="qtext">Compute <span class="fml">∫₀^π/4 2 sec x tan x dx</span>, exact value first, then as a decimal.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> constant 2 slides out front. Antiderivative of sec x tan x is sec x. Values: sec(π/4) = 1/cos(π/4) = 1/(√2/2) = √2 ≈ 1.414, and sec 0 = 1.</div>
+    <div class="step">2 ∫₀^π/4 sec x tan x dx = 2 [sec x]₀^π/4 = 2(sec(π/4) − sec 0) = 2(√2 − 1).</div>
+    <div class="step">Decimal: 2(1.414 − 1) = 2(0.414) ≈ 0.828.</div>
+    <div class="ans">2√2 − 2 ≈ 0.828</div></div>
+</div>
+
+<div class="q"><span class="qnum">19.</span><span class="qtag">conceptual · honesty</span>
+  <div class="qtext">Your friend asks: "We have ∫ sec²x dx and ∫ sec x tan x dx — so what's plain <span class="fml">∫ sec x dx</span>?" Explain why our current backward-reading method can't produce it, and what an honest mathematician says about it.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> our whole library is built by reading known derivatives backward. That method only finds antiderivatives for functions that happen to BE somebody's derivative in our table. Plain sec x isn't on the right-hand side of any derivative fact we own — and no obvious u-substitution works either (there's no du partner in sight).</div>
+    <div class="step">Scan the table: derivatives give sec²x (from tan) and sec x·tan x (from sec) — but never plain sec x. And sec x = 1/cos x offers no inner function whose derivative is also present, so u-substitution stalls.</div>
+    <div class="step">The honest answer: ∫ sec x dx DOES exist — it turns out to be ln|sec x + tan x| + C — but finding it requires a genuinely sneaky trick (multiplying by a cleverly chosen "disguised 1"). We'll earn that trick in a later lesson. For now: "not with today's tools" ≠ "impossible."</div>
+    <div class="ans">No derivative fact we own outputs plain sec x, and no u-sub fits; the antiderivative exists (ln|sec x + tan x| + C) but needs a trick we haven't learned yet</div></div>
+</div>
+
+<div class="q"><span class="qnum">20.</span><span class="qtag">challenge</span>
+  <div class="qtext">Compute <span class="fml">∫₀^π/4 (sec²x + cos x) dx</span> — exact value first, then a decimal approximation (use √2 ≈ 1.414).</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a two-library problem — one new entry (sec² → tan) plus one old friend (cos → sin, Lesson 18). Split the integral, antidifferentiate each piece, then FTC with the table values tan(π/4) = 1 and sin(π/4) = √2/2.</div>
+    <div class="step">Antiderivative: tan x + sin x. (Check: (tan x + sin x)′ = sec²x + cos x ✓.)</div>
+    <div class="step">Top limit: tan(π/4) + sin(π/4) = 1 + √2/2.</div>
+    <div class="step">Bottom limit: tan 0 + sin 0 = 0 + 0 = 0.</div>
+    <div class="step">Value = (1 + √2/2) − 0 = 1 + √2/2.</div>
+    <div class="step">Decimal: √2/2 ≈ 1.414/2 = 0.707, so the value ≈ 1 + 0.707 = 1.707 ≈ 1.71.</div>
+    <div class="ans">1 + √2/2 ≈ 1.71</div></div>
+</div>
+
+<footer>Lesson 24 of 40 · Intuitive Integration · next: <a href="Lesson25.html">Lesson 25 — Inverse Trig Antiderivatives: arctan &amp; arcsin</a></footer>
+
+</div>
+<script>
+document.querySelectorAll('.q').forEach(q=>{
+  const btn=q.querySelector('.revealbtn'), sol=q.querySelector('.sol');
+  btn.addEventListener('click',()=>{ sol.classList.add('show'); btn.textContent='Solution shown'; btn.disabled=true; btn.style.opacity=.6; });
+});
+</script>
+</body>
+</html>

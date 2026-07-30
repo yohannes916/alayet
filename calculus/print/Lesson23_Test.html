@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Lesson 23 Test — The Trapezoidal Rule</title>
+<style>
+  @page { size: letter; margin: 0.75in; }
+  *{box-sizing:border-box;}
+  body{font-family:Georgia,"Times New Roman",serif;color:#111;margin:0;font-size:12pt;line-height:1.45;}
+  .head{border-bottom:3px solid #186a3b;padding-bottom:8px;margin-bottom:14px;}
+  .head h1{font-family:Helvetica,Arial,sans-serif;font-size:16pt;margin:0 0 2px;color:#186a3b;}
+  .head p{margin:0;font-size:10.5pt;color:#333;}
+  .nameline{margin-top:8px;font-size:11pt;font-family:Helvetica,Arial,sans-serif;}
+  .q{margin:0 0 10px;page-break-inside:avoid;}
+  .q .txt{margin-bottom:6px;}
+  .q b.n{color:#186a3b;font-family:Helvetica,Arial,sans-serif;}
+  .box{border:1px solid #999;border-radius:6px;height:1.55in;background:
+    repeating-linear-gradient(to bottom,#fff,#fff 0.3in,#e8e8e8 0.3in,#e8e8e8 calc(0.3in + 1px));}
+  .pts{float:right;font-size:9.5pt;color:#666;font-family:Helvetica,Arial,sans-serif;}
+  table.tt{border-collapse:collapse;margin:4px 0 6px;font-size:11pt;}
+  table.tt th,table.tt td{border:1px solid #555;padding:3px 10px;text-align:center;}
+  table.tt th{background:#eee;font-family:Helvetica,Arial,sans-serif;font-size:10pt;}
+</style>
+</head>
+<body>
+
+<div class="head">
+  <h1>Integration — Lesson 23 Test: The Trapezoidal Rule</h1>
+  <p>10 questions · show your work in the box · calculators allowed · include UNITS where they apply</p>
+  <div class="nameline">Name: ______________________________ &nbsp;&nbsp; Date: ______________ &nbsp;&nbsp; Score: ______ / 10</div>
+</div>
+
+<div class="q"><span class="pts">1 pt</span><div class="txt"><b class="n">1.</b> A trapezoid standing on the x-axis has a left side of height 5, a right side of height 9, and width 4. Find its area.</div><div class="box"></div></div>
+
+<div class="q"><span class="pts">1 pt</span><div class="txt"><b class="n">2.</b> A function has f(2) = 6 and f(6) = 10. Use ONE trapezoid to estimate ∫₂⁶ f(x) dx.</div><div class="box"></div></div>
+
+<div class="q"><span class="pts">1 pt</span><div class="txt"><b class="n">3.</b> Use TWO trapezoids (Δx = 1) to estimate ∫₀² x² dx. (Heights: f(0) = 0, f(1) = 1, f(2) = 4.) Then say whether your estimate is bigger or smaller than the true value 8/3 ≈ 2.667.</div><div class="box"></div></div>
+
+<div class="q"><span class="pts">1 pt</span><div class="txt"><b class="n">4.</b> For a function on [0, 4] with equal-width slices, the left Riemann sum is 12 and the right Riemann sum is 20. What is the trapezoid sum? Name the rule you used, and state the condition it requires.</div><div class="box"></div></div>
+
+<div class="q"><span class="pts">1 pt</span><div class="txt"><b class="n">5.</b> Use THREE trapezoids (Δx = 1) to estimate ∫₀³ x² dx, then compute the true value with the FTC. By how much is the estimate off?</div><div class="box"></div></div>
+
+<div class="q"><span class="pts">1 pt</span><div class="txt"><b class="n">6.</b> A runner's velocity (m/s) is recorded at uneven times:
+<table class="tt"><tr><th>t (s)</th><td>0</td><td>2</td><td>6</td><td>9</td></tr><tr><th>v(t) (m/s)</th><td>5</td><td>11</td><td>15</td><td>9</td></tr></table>
+Use a trapezoidal sum with the three subintervals shown to estimate ∫₀⁹ v(t) dt, with units.</div><div class="box"></div></div>
+
+<div class="q"><span class="pts">1 pt</span><div class="txt"><b class="n">7.</b> Water flows into a barrel at rate R(t) gallons per minute:
+<table class="tt"><tr><th>t (min)</th><td>0</td><td>5</td><td>8</td><td>12</td></tr><tr><th>R(t) (gal/min)</th><td>4</td><td>10</td><td>14</td><td>6</td></tr></table>
+Use a trapezoidal sum with the three subintervals shown to estimate the total water added from t = 0 to t = 12, with units.</div><div class="box"></div></div>
+
+<div class="q"><span class="pts">1 pt</span><div class="txt"><b class="n">8.</b> A function g is concave UP on [1, 7]. Will a trapezoidal sum for ∫₁⁷ g(x) dx overestimate or underestimate the true value? Justify your answer using chords.</div><div class="box"></div></div>
+
+<div class="q"><span class="pts">1 pt</span><div class="txt"><b class="n">9.</b> For ∫₀² x³ dx with two slices (Δx = 1): compute the trapezoid sum and the midpoint sum, then compute the TRUE value with the FTC. Which estimate is closer? (Heights: f(0) = 0, f(0.5) = 0.125, f(1) = 1, f(1.5) = 3.375, f(2) = 8.)</div><div class="box"></div></div>
+
+<div class="q"><span class="pts">1 pt</span><div class="txt"><b class="n">10.</b> Cars pass a checkpoint at rate R(t) cars per hour:
+<table class="tt"><tr><th>t (hours)</th><td>0</td><td>3</td><td>7</td><td>10</td></tr><tr><th>R(t) (cars/hour)</th><td>40</td><td>60</td><td>50</td><td>30</td></tr></table>
+(a) Use a trapezoidal sum with the three subintervals shown to estimate ∫₀¹⁰ R(t) dt. &nbsp; (b) Using correct units, explain what your answer means.</div><div class="box"></div></div>
+
+</body>
+</html>

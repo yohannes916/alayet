@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 33 — Improper Integrals: Infinite Endpoints</title>
+<style>
+  :root{--accent:#186a3b;--accent2:#239b56;--bg:#f2f7f4;--card:#fff;--ok:#1e8449;--star:#b7950b;}
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:#1c2833;background:var(--bg);margin:0;padding:0 16px 80px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:28px 26px;border-radius:0 0 14px 14px;margin:0 -16px 20px;box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  header h1{margin:0 0 6px;font-size:1.5rem;}
+  header p{margin:0;opacity:.93;font-size:.95rem;}
+  nav{display:flex;gap:10px;margin-bottom:18px;font-size:.9rem;flex-wrap:wrap;}
+  nav a{color:var(--accent);text-decoration:none;font-weight:600;background:#fff;border:1px solid #d5e8dc;border-radius:8px;padding:6px 14px;}
+  nav a:hover{background:#eafaf1;}
+  .goal{background:#fef9e7;border-left:5px solid var(--star);padding:12px 18px;border-radius:8px;margin-bottom:18px;font-size:.95rem;}
+  .goal strong{color:#7d6608;}
+  section{background:var(--card);border-radius:10px;padding:18px 22px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  h2{color:var(--accent);font-size:1.15rem;margin:0 0 10px;}
+  h2 .num{background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;border-radius:6px;padding:2px 9px;margin-right:8px;}
+  ul{margin:8px 0;padding-left:24px;}
+  li{margin-bottom:8px;}
+  strong{color:#145a32;}
+  em.hi{font-style:normal;background:#fef9e7;padding:0 4px;border-radius:3px;}
+  .fml{background:#e9f7ef;border-radius:4px;padding:1px 6px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.9em;color:#186a3b;white-space:nowrap;}
+  .ex{background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:.95rem;}
+  .ex b{color:#145a32;}
+  .graph{background:#1b2631;color:#eaeded;border-radius:8px;padding:14px 18px;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.82rem;line-height:1.45;overflow-x:auto;margin:10px 0;white-space:pre;}
+  .graph .g{color:#82e0aa;} .graph .y{color:#f7dc6f;} .graph .b{color:#85c1e9;}
+  table.t{border-collapse:collapse;margin:10px 0;font-size:.92rem;}
+  table.t th,table.t td{border:1px solid #cfd8cf;padding:6px 12px;text-align:center;}
+  table.t th{background:var(--accent);color:#fff;font-weight:600;}
+  .qhead{margin:26px 0 8px;color:var(--accent);font-size:1.2rem;border-bottom:2px solid #d4efdf;padding-bottom:6px;}
+  .q{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid var(--accent2);}
+  .qnum{font-weight:800;color:var(--accent);margin-right:6px;}
+  .qtag{float:right;background:#e9f7ef;color:var(--accent);border-radius:8px;padding:1px 9px;font-size:.68rem;font-weight:700;letter-spacing:.3px;margin-left:8px;}
+  .qtext{font-size:.98rem;margin:4px 0 10px;}
+  .revealbtn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+  .revealbtn:hover{background:#0e4429;}
+  .sol{display:none;margin-top:12px;background:#f8fcf9;border:1px solid #d4efdf;border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px;font-size:.93rem;}
+  .sol.show{display:block;}
+  .sol h4{margin:0 0 8px;color:var(--ok);font-size:.9rem;}
+  .sol .ctx{background:#eaf2f8;border-left:4px solid #2e86c1;border-radius:6px;padding:8px 12px;margin:0 0 10px;font-size:.88rem;}
+  .sol .ctx b{color:#1a5276;}
+  .sol .step{margin:6px 0;}
+  .sol .ans{background:#eafaf1;border-radius:6px;padding:6px 12px;margin-top:8px;font-weight:700;color:#145a32;display:inline-block;}
+  footer{text-align:center;color:#85929e;font-size:.85rem;margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Lesson 33 — Improper Integrals: Infinite Endpoints</h1>
+  <p>Limits, Infinity &amp; Finite Areas from Endless Regions · Intuitive Calculus for a Curious Student · Lesson 33 of 40</p>
+</header>
+
+<nav><a href="index.html">📚 All lessons</a><a href="Lesson32.html">← Lesson 32</a><a href="Lesson34.html">Next: Lesson 34 →</a></nav>
+
+<div class="goal"><strong>🎯 Goal of this lesson:</strong> meet the idea of a <em>limit</em> — "what value is this heading toward?" — and use it to answer one of the most surprising questions in all of math: <em>can a region that is INFINITELY LONG have a FINITE area?</em> Astonishingly, sometimes yes — and you'll learn to tell exactly when.</div>
+
+<section>
+  <h2><span class="num">1</span> Limits — the friendliest new idea in this course</h2>
+  <ul>
+    <li>You've never needed limits before, so let's start from zero. A <strong>limit</strong> asks one plain question: <em class="hi">"as this number keeps growing (or shrinking), where is the expression heading?"</em> Not "what is it AT infinity" — infinity isn't a place you can stand — but <strong>where is it heading</strong> as you keep zooming out.</li>
+    <li>Try it with <span class="fml">1/b</span>. Let b grow: 1/10 = 0.1, then 1/100 = 0.01, then 1/1000 = 0.001... The values march steadily toward <strong>0</strong> and get as close as you like. We write: <em class="hi">as b → ∞, 1/b → 0</em>, or in symbols, <span class="fml">lim<sub>b→∞</sub> 1/b = 0</span>. Read "→" as "heads toward."</li>
+    <li><span class="fml">1/b²</span> rushes to 0 even faster (1/100, 1/10000, ...). But <span class="fml">b</span> itself just grows without bound — it heads to ∞. And <span class="fml">ln b</span>? It grows very slowly (ln 1000 ≈ 6.9), but it never stops climbing — it also → ∞. Slow growth is still growth!</li>
+    <li>Limits also work near ordinary numbers. As <span class="fml">x → 0⁺</span> (x slides down toward 0 from the positive side): <span class="fml">√x → 0</span> quietly, but <span class="fml">1/√x</span> blows up: 1/√0.01 = 10, 1/√0.0001 = 100, ... → ∞.</li>
+  </ul>
+  <table class="t">
+    <tr><th>Expression</th><th>As what happens?</th><th>Heads toward</th><th>Everyday framing</th></tr>
+    <tr><td>1/b</td><td>b → ∞</td><td>0</td><td>a pizza split among more &amp; more people: slices shrink to nothing</td></tr>
+    <tr><td>1/b²</td><td>b → ∞</td><td>0</td><td>same, but the slices vanish even faster</td></tr>
+    <tr><td>e<sup>−b</sup></td><td>b → ∞</td><td>0</td><td>halving-then-halving decay: dies out extremely fast</td></tr>
+    <tr><td>b</td><td>b → ∞</td><td>∞</td><td>keeps climbing forever</td></tr>
+    <tr><td>ln b</td><td>b → ∞</td><td>∞</td><td>climbs painfully slowly — but never stops</td></tr>
+    <tr><td>√b</td><td>b → ∞</td><td>∞</td><td>slower than b, still unbounded</td></tr>
+    <tr><td>√x</td><td>x → 0⁺</td><td>0</td><td>shrinks gently to zero</td></tr>
+    <tr><td>1/√x</td><td>x → 0⁺</td><td>∞</td><td>blows up — a spike!</td></tr>
+  </table>
+  <div class="ex"><b>The habit to build:</b> when you see <span class="fml">lim<sub>b→∞</sub></span>, don't panic. Just ask: <b>"if b were a million, roughly what would this be? A billion?"</b> Keep zooming out — where is it heading? That heading IS the limit.</div>
+</section>
+
+<section>
+  <h2><span class="num">2</span> The wild question: infinite length, finite area?</h2>
+  <ul>
+    <li>Every area problem so far had two walls: <span class="fml">∫ₐᵇ f(x) dx</span> from a wall at a to a wall at b. Today we knock down the right-hand wall and let the region run <strong>forever</strong>: what is the area under <span class="fml">y = 1/x²</span> from x = 1 all the way to infinity?</li>
+    <li>Gut reaction: "it never ends, so the area must be infinite." Reasonable — but <em class="hi">wrong, sometimes!</em> If the curve's tail shrinks toward 0 <strong>fast enough</strong>, the skinny slivers you keep adding get so tiny that the total <strong>settles down to an ordinary finite number</strong>.</li>
+    <li>You've met this flavor before: <span class="fml">1/2 + 1/4 + 1/8 + 1/16 + ...</span> has infinitely many terms, yet the total is exactly 1 (each step covers half the remaining gap). Infinitely many pieces do NOT have to add to infinity.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">3</span> The method: replace ∞ with b, integrate, then let b → ∞</h2>
+  <ul>
+    <li>We can't plug ∞ into a formula — it's not a number. So we sneak up on it in three steps:
+      <br><strong>Step 1:</strong> put a temporary wall at <span class="fml">x = b</span> instead of ∞.
+      <br><strong>Step 2:</strong> integrate normally from 1 to b (all your old skills apply).
+      <br><strong>Step 3:</strong> slide the wall out: let <span class="fml">b → ∞</span> and read off the limit.</li>
+  </ul>
+  <div class="ex"><b>The flagship example:</b> <span class="fml">∫₁^∞ 1/x² dx = lim<sub>b→∞</sub> [−1/x]₁^b = lim<sub>b→∞</sub> (−1/b + 1) = 0 + 1 = 1</span>.
+  <br>Read it slowly: the area from 1 to b is <span class="fml">1 − 1/b</span>. Wall at b = 10? Area 0.9. Wall at 100? 0.99. At 1000? 0.999. The areas are heading somewhere unmistakable: <b>exactly 1</b>. An infinitely long region with area exactly 1 square unit!</div>
+  <ul>
+    <li>When the limit is a finite number, we say the improper integral <strong>CONVERGES</strong> (it "settles"). The number is the area, full stop.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">4</span> The shocking contrast: 1/x fails</h2>
+  <ul>
+    <li>Now try the near-identical curve <span class="fml">y = 1/x</span>: <span class="fml">∫₁^∞ 1/x dx = lim<sub>b→∞</sub> [ln x]₁^b = lim<sub>b→∞</sub> (ln b − 0) = ∞</span>.</li>
+    <li>ln b grows slowly — but it grows <strong>forever</strong>. The area never settles. We say this integral <strong>DIVERGES</strong>: the infinitely long region under 1/x really does have infinite area.</li>
+    <li>Stare at that: 1/x and 1/x² look almost the same, both sink to 0 — yet one tail encloses area 1 and the other encloses infinite area. <em class="hi">1/x's tail is just barely too fat.</em></li>
+  </ul>
+  <div class="graph">height
+  1 |<span class="y">*</span><span class="g">o</span>                          <span class="y">* = 1/x</span>   fat tail  → area = ∞ (diverges)
+    | <span class="y">*</span><span class="g">o</span>                         <span class="g">o = 1/x²</span>  thin tail → area = 1 (converges!)
+    |  <span class="y">*</span><span class="g">o</span>
+    |   <span class="y">**</span><span class="g">o</span>
+    |     <span class="y">**</span><span class="g">oo</span>
+    |       <span class="y">****</span><span class="g">ooo</span>
+    |           <span class="y">*******</span><span class="g">oooooooo</span>
+  0 +--------------------------------------→ x
+    1     both curves → 0 ... but HOW FAST they shrink decides everything</div>
+</section>
+
+<section>
+  <h2><span class="num">5</span> The p-pattern — a rule you can discover yourself</h2>
+  <ul>
+    <li>Two more quick experiments. <strong>p = 3:</strong> <span class="fml">∫₁^∞ 1/x³ dx = lim<sub>b→∞</sub> [−1/(2x²)]₁^b = 0 + 1/2 = 1/2</span>. Converges, even faster than 1/x².</li>
+    <li><strong>p = 1/2:</strong> <span class="fml">∫₁^∞ 1/√x dx = lim<sub>b→∞</sub> [2√x]₁^b = lim (2√b − 2) = ∞</span>. Diverges — 1/√x is even fatter than 1/x.</li>
+    <li>Line up the evidence: p = 2 ✓ (area 1), p = 3 ✓ (area 1/2), p = 1 ✗, p = 1/2 ✗. The pattern:</li>
+  </ul>
+  <div class="ex"><b>The p-rule:</b> <span class="fml">∫₁^∞ 1/x^p dx</span> <b>converges exactly when p &gt; 1</b>, and its value is <span class="fml">1/(p−1)</span>. It <b>diverges when p ≤ 1</b>. (Check: p = 2 gives 1/(2−1) = 1 ✓; p = 3 gives 1/2 ✓.) The borderline curve is 1/x itself — and the borderline loses.</div>
+</section>
+
+<section>
+  <h2><span class="num">6</span> Two more improper flavors</h2>
+  <ul>
+    <li><strong>Exponential tails:</strong> <span class="fml">∫₀^∞ e<sup>−x</sup> dx = lim<sub>b→∞</sub> [−e<sup>−x</sup>]₀^b = lim (−e<sup>−b</sup> + 1) = 1</span>. Beautiful: an infinite tail with area exactly 1. This exact integral is the backbone of probability — waiting times, radioactive decay, battery lifetimes all use it. e<sup>−x</sup> dies out so fast that it beats every 1/x^p.</li>
+    <li><strong>Unbounded integrand</strong> (the spike): sometimes the interval is finite but the FUNCTION blows up at an endpoint. Same trick, aimed at the other end — put a temporary wall at a small number a and let <span class="fml">a → 0⁺</span>: <span class="fml">∫₀¹ 1/√x dx = lim<sub>a→0⁺</sub> [2√x]ₐ¹ = lim (2 − 2√a) = 2</span>. An infinitely tall spike enclosing just 2 square units of area!</li>
+    <li>But not every spike behaves: <span class="fml">∫₀¹ 1/x dx = lim<sub>a→0⁺</sub> (ln 1 − ln a) = lim (−ln a) = ∞</span> — diverges. Once again 1/x sits exactly on the losing side of the border.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">7</span> Making sense of it all</h2>
+  <ul>
+    <li>One sentence to keep: <em class="hi">an improper integral converges when the tail (or spike) shrinks FAST ENOUGH for the leftover slivers of area to fizzle out.</em></li>
+    <li>The universal borderline is <strong>1/x</strong>. Shrink faster than 1/x at infinity (like 1/x², 1/x³, e<sup>−x</sup>) → converge. Shrink at 1/x's pace or slower (1/x, 1/√x) → diverge. Near a spike at 0 the roles flip: 1/√x is <em>thinner than 1/x near zero</em>, so it converges there, while 1/x² is fatter near zero and diverges.</li>
+    <li>Vocabulary check: <strong>improper integral</strong> = an integral with ∞ as an endpoint OR an integrand that blows up. <strong>Convergent</strong> = the limit is a finite number. <strong>Divergent</strong> = it isn't.</li>
+  </ul>
+</section>
+
+<div class="qhead">✏️ Exercises — 20 problems (write your answer on paper, then reveal)</div>
+
+<div class="q"><span class="qnum">1.</span><span class="qtag">limit warmup</span>
+  <div class="qtext">Find each limit by asking "where is this heading?": (a) lim<sub>b→∞</sub> 1/b &nbsp; (b) lim<sub>b→∞</sub> 1/b² &nbsp; (c) lim<sub>b→∞</sub> (5 + 3/b)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> a limit is not a plug-in — it's a heading. Test each expression with a huge b (say a million) and watch where the values are drifting. If they crowd closer and closer to one number, that number is the limit.</div>
+    <div class="step">(a) 1/1000000 = 0.000001 — squeezing down to <b>0</b>.</div>
+    <div class="step">(b) 1/b² shrinks even faster (one over a trillion) — also <b>0</b>.</div>
+    <div class="step">(c) 5 + 3/b: the 5 just sits there; the 3/b piece fades to 0. Heading: <b>5</b>.</div>
+    <div class="ans">(a) 0 &nbsp; (b) 0 &nbsp; (c) 5</div></div>
+</div>
+
+<div class="q"><span class="qnum">2.</span><span class="qtag">limit warmup</span>
+  <div class="qtext">Find each limit as b → ∞: (a) lim<sub>b→∞</sub> ln b &nbsp; (b) lim<sub>b→∞</sub> e<sup>−b</sup> &nbsp; (c) lim<sub>b→∞</sub> (7 − 1/b²)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> not everything settles! Some expressions grow without bound — we say they head to ∞ (the limit "does not exist as a number"). ln b is the classic trickster: it grows absurdly slowly (ln of a million is only about 13.8) but it NEVER stops climbing.</div>
+    <div class="step">(a) ln b climbs forever, just slowly: <b>∞</b> (diverges — no finite limit).</div>
+    <div class="step">(b) e<sup>−b</sup> = 1/e<sup>b</sup>, and e<sup>b</sup> explodes, so 1 over it dies: <b>0</b>.</div>
+    <div class="step">(c) the 1/b² piece fades away, leaving <b>7</b>.</div>
+    <div class="ans">(a) ∞ (no finite limit) &nbsp; (b) 0 &nbsp; (c) 7</div></div>
+</div>
+
+<div class="q"><span class="qnum">3.</span><span class="qtag">limit warmup · x → 0⁺</span>
+  <div class="qtext">Now slide x down toward 0 from the positive side. Find: (a) lim<sub>x→0⁺</sub> √x &nbsp; (b) lim<sub>x→0⁺</sub> 1/x &nbsp; (c) lim<sub>x→0⁺</sub> 1/√x</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> limits work near ordinary numbers too. "x → 0⁺" means x takes values like 0.1, 0.01, 0.0001, ... always positive, sneaking toward 0. Watch each expression on that journey.</div>
+    <div class="step">(a) √0.01 = 0.1, √0.0001 = 0.01 — gently down to <b>0</b>.</div>
+    <div class="step">(b) 1/0.01 = 100, 1/0.0001 = 10000 — blows up: <b>∞</b>.</div>
+    <div class="step">(c) 1/√0.0001 = 1/0.01 = 100 — also blows up (a bit more slowly): <b>∞</b>.</div>
+    <div class="ans">(a) 0 &nbsp; (b) ∞ &nbsp; (c) ∞</div></div>
+</div>
+
+<div class="q"><span class="qnum">4.</span><span class="qtag">the method</span>
+  <div class="qtext">Using the three-step method (wall at b → integrate → let b → ∞), show carefully that ∫₁^∞ 1/x² dx = 1.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> this is the flagship of the whole lesson. ∞ is not a number you can plug in, so we integrate to a movable wall b and then ask where the answer heads as the wall slides out forever.</div>
+    <div class="step">Step 1 — temporary wall: compute ∫₁^b x<sup>−2</sup> dx.</div>
+    <div class="step">Step 2 — integrate: the antiderivative of x<sup>−2</sup> is −x<sup>−1</sup> = −1/x. So ∫₁^b 1/x² dx = [−1/x]₁^b = −1/b − (−1/1) = 1 − 1/b.</div>
+    <div class="step">Step 3 — slide the wall: as b → ∞, 1/b → 0, so 1 − 1/b → 1. (Check the heading: b = 10 gives 0.9, b = 100 gives 0.99, b = 1000 gives 0.999 — unmistakably heading to 1.)</div>
+    <div class="ans">∫₁^∞ 1/x² dx = 1 — convergent: infinite region, area exactly 1</div></div>
+</div>
+
+<div class="q"><span class="qnum">5.</span><span class="qtag">infinite endpoint</span>
+  <div class="qtext">Evaluate ∫₁^∞ 1/x³ dx.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> same three steps, new power. Power rule refresher (Lesson 21): ∫x<sup>−3</sup> dx = x<sup>−2</sup>/(−2) = −1/(2x²). Since 1/x³ shrinks even faster than 1/x², expect convergence to something smaller than 1.</div>
+    <div class="step">∫₁^b x<sup>−3</sup> dx = [−1/(2x²)]₁^b = −1/(2b²) + 1/2.</div>
+    <div class="step">As b → ∞, 1/(2b²) → 0, so the area heads to 0 + 1/2 = 1/2.</div>
+    <div class="step">Sanity check with the p-rule: p = 3 &gt; 1, value 1/(p−1) = 1/(3−1) = 1/2 ✓.</div>
+    <div class="ans">1/2 — convergent</div></div>
+</div>
+
+<div class="q"><span class="qnum">6.</span><span class="qtag">infinite endpoint</span>
+  <div class="qtext">Evaluate ∫₁^∞ 1/x⁴ dx.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the pattern is forming — each higher power of x makes the tail thinner and the area smaller. Antiderivative: ∫x<sup>−4</sup> dx = x<sup>−3</sup>/(−3) = −1/(3x³).</div>
+    <div class="step">∫₁^b 1/x⁴ dx = [−1/(3x³)]₁^b = −1/(3b³) + 1/3.</div>
+    <div class="step">As b → ∞, the first term → 0, leaving 1/3.</div>
+    <div class="step">p-rule check: p = 4, value 1/(4−1) = 1/3 ✓. Notice the sequence: p = 2 → 1, p = 3 → 1/2, p = 4 → 1/3, ...</div>
+    <div class="ans">1/3 — convergent</div></div>
+</div>
+
+<div class="q"><span class="qnum">7.</span><span class="qtag">different start</span>
+  <div class="qtext">Evaluate ∫₂^∞ 1/x² dx. (Careful — the region now starts at x = 2, so don't expect the answer 1.)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the p-rule value 1/(p−1) is only for integrals starting at x = 1. Starting farther out means you skip the fattest part of the tail, so the area is smaller. Always run the actual computation with your actual lower limit.</div>
+    <div class="step">∫₂^b 1/x² dx = [−1/x]₂^b = −1/b + 1/2.</div>
+    <div class="step">As b → ∞, −1/b → 0, so the limit is 1/2.</div>
+    <div class="step">Sense check: from 1 to ∞ the area was 1; the strip from 1 to 2 holds area [−1/x]₁² = 1/2, and 1 − 1/2 = 1/2 ✓ — the two pieces add up perfectly.</div>
+    <div class="ans">1/2 — convergent</div></div>
+</div>
+
+<div class="q"><span class="qnum">8.</span><span class="qtag">divergent</span>
+  <div class="qtext">Show that ∫₁^∞ 1/√x dx diverges, and explain in one sentence WHY it diverges even though 1/√x → 0.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> shrinking to zero is NOT enough for convergence. What matters is shrinking fast enough. 1/√x = x<sup>−1/2</sup> shrinks even more slowly than the borderline 1/x, so its tail is fatter than fat. Antiderivative: ∫x<sup>−1/2</sup> dx = 2x<sup>1/2</sup> = 2√x.</div>
+    <div class="step">∫₁^b 1/√x dx = [2√x]₁^b = 2√b − 2.</div>
+    <div class="step">As b → ∞, √b → ∞, so 2√b − 2 → ∞. The area never settles.</div>
+    <div class="step">Why: the curve heads to 0 too slowly — each new stretch of tail still adds a chunky sliver of area, and those slivers never fizzle out. (p-rule: p = 1/2 ≤ 1 → diverge.)</div>
+    <div class="ans">Diverges — the tail shrinks too slowly (p = 1/2 ≤ 1)</div></div>
+</div>
+
+<div class="q"><span class="qnum">9.</span><span class="qtag">fractional p</span>
+  <div class="qtext">Evaluate ∫₁^∞ 1/x<sup>3/2</sup> dx by the three-step method, then verify your answer against the p-rule.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> p doesn't have to be a whole number. x<sup>−3/2</sup> sits between the divergent 1/x and the convergent 1/x² — which side of the border is it on? Since 3/2 &gt; 1, the rule predicts convergence. Power rule: ∫x<sup>−3/2</sup> dx = x<sup>−1/2</sup>/(−1/2) = −2/√x.</div>
+    <div class="step">∫₁^b x<sup>−3/2</sup> dx = [−2/√x]₁^b = −2/√b + 2.</div>
+    <div class="step">As b → ∞, 2/√b → 0, so the limit is 2.</div>
+    <div class="step">p-rule check: p = 3/2, value 1/(p−1) = 1/(1/2) = 2 ✓. Even a power just barely above 1 converges — but to a bigger area (the closer to the border, the fatter the tail).</div>
+    <div class="ans">2 — convergent</div></div>
+</div>
+
+<div class="q"><span class="qnum">10.</span><span class="qtag">exponential tail</span>
+  <div class="qtext">Evaluate ∫₀^∞ e<sup>−x</sup> dx.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> from Lesson 17, the antiderivative of e<sup>−x</sup> is −e<sup>−x</sup> (check: derivative of −e<sup>−x</sup> is −e<sup>−x</sup>·(−1) = e<sup>−x</sup> ✓). Exponential decay is the fastest shrinker in our library — it crushes every power of x — so expect a clean convergence. This integral is the foundation of the "exponential distribution" used everywhere in probability.</div>
+    <div class="step">∫₀^b e<sup>−x</sup> dx = [−e<sup>−x</sup>]₀^b = −e<sup>−b</sup> + e⁰ = 1 − e<sup>−b</sup>.</div>
+    <div class="step">As b → ∞, e<sup>−b</sup> → 0 (table fact), so the area heads to 1 − 0 = 1.</div>
+    <div class="step">Marvel at it: the curve starts at height 1, trails off forever, and the entire infinite tail encloses exactly 1 square unit.</div>
+    <div class="ans">1 — convergent</div></div>
+</div>
+
+<div class="q"><span class="qnum">11.</span><span class="qtag">exponential · u-sub skill</span>
+  <div class="qtext">Evaluate ∫₀^∞ e<sup>−2x</sup> dx.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> Lesson 17 skill: ∫e<sup>kx</sup> dx = e<sup>kx</sup>/k. With k = −2, the antiderivative of e<sup>−2x</sup> is e<sup>−2x</sup>/(−2) = −½e<sup>−2x</sup>. Faster decay (the 2 in the exponent) should mean a smaller area than problem 10's answer of 1.</div>
+    <div class="step">∫₀^b e<sup>−2x</sup> dx = [−½e<sup>−2x</sup>]₀^b = −½e<sup>−2b</sup> + ½.</div>
+    <div class="step">As b → ∞, e<sup>−2b</sup> → 0, so the limit is ½.</div>
+    <div class="step">Sense check: e<sup>−2x</sup> hugs zero sooner than e<sup>−x</sup>, so half the area is exactly right.</div>
+    <div class="ans">1/2 — convergent</div></div>
+</div>
+
+<div class="q"><span class="qnum">12.</span><span class="qtag">constant multiple</span>
+  <div class="qtext">Using your answer to problem 10 (no new integration needed!), evaluate ∫₀^∞ 2e<sup>−x</sup> dx.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the constant-multiple property (Lesson 29) survives the trip to infinity: constants slide out of improper integrals just like ordinary ones, because they slide out of every ∫₀^b and out of the limit too.</div>
+    <div class="step">∫₀^∞ 2e<sup>−x</sup> dx = 2 ∫₀^∞ e<sup>−x</sup> dx = 2 × 1.</div>
+    <div class="step">Picture: the curve is twice as tall everywhere, so the (finite!) area doubles.</div>
+    <div class="ans">2 — convergent</div></div>
+</div>
+
+<div class="q"><span class="qnum">13.</span><span class="qtag">p-rule drill</span>
+  <div class="qtext">For each integral, say whether it converges or diverges — and if it converges, give its value using the p-rule: (a) ∫₁^∞ 1/x⁵ dx &nbsp; (b) ∫₁^∞ 1/x<sup>0.9</sup> dx &nbsp; (c) ∫₁^∞ 1/x dx &nbsp; (d) ∫₁^∞ 1/x<sup>11</sup> dx</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the p-rule turns a whole limit computation into a one-glance decision: ∫₁^∞ 1/x^p dx converges exactly when p &gt; 1, with value 1/(p−1). The border p = 1 belongs to the divergent side.</div>
+    <div class="step">(a) p = 5 &gt; 1: converges to 1/(5−1) = 1/4.</div>
+    <div class="step">(b) p = 0.9 ≤ 1: diverges (just barely fatter than the border — barely still counts).</div>
+    <div class="step">(c) p = 1: the borderline itself — diverges (this is ln b → ∞).</div>
+    <div class="step">(d) p = 11 &gt; 1: converges to 1/(11−1) = 1/10.</div>
+    <div class="ans">(a) converges, 1/4 &nbsp; (b) diverges &nbsp; (c) diverges &nbsp; (d) converges, 1/10</div></div>
+</div>
+
+<div class="q"><span class="qnum">14.</span><span class="qtag">divergent · different start</span>
+  <div class="qtext">Does ∫₃^∞ 1/x dx converge? Compute the limit to justify your answer. (Does starting at 3 instead of 1 rescue it?)</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> divergence lives in the TAIL, not at the start. Chopping off the beginning of the region removes only a finite chunk of area — if what remains is infinite, it stays infinite. Convergence or divergence never depends on where you start (only the value does).</div>
+    <div class="step">∫₃^b 1/x dx = [ln x]₃^b = ln b − ln 3.</div>
+    <div class="step">As b → ∞, ln b → ∞, and subtracting the fixed number ln 3 doesn't slow it down: ln b − ln 3 → ∞.</div>
+    <div class="ans">Diverges — moving the starting wall can't fix a fat tail</div></div>
+</div>
+
+<div class="q"><span class="qnum">15.</span><span class="qtag">unbounded integrand</span>
+  <div class="qtext">The function 1/√x blows up at x = 0, yet ∫₀¹ 1/√x dx is a finite number. Use a wall at x = a with a → 0⁺ to find it.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> the second improper flavor — finite interval, infinite SPIKE. Same strategy, aimed at the bad endpoint: integrate from a small a up to 1, then slide a down to 0 and watch the heading. Antiderivative: ∫x<sup>−1/2</sup> dx = 2√x.</div>
+    <div class="step">∫ₐ¹ 1/√x dx = [2√x]ₐ¹ = 2√1 − 2√a = 2 − 2√a.</div>
+    <div class="step">As a → 0⁺, √a → 0 (table fact), so the area heads to 2 − 0 = 2.</div>
+    <div class="step">Try it numerically: a = 0.01 gives 2 − 0.2 = 1.8; a = 0.0001 gives 2 − 0.02 = 1.98. Heading: 2.</div>
+    <div class="ans">2 — an infinitely tall spike enclosing area exactly 2</div></div>
+</div>
+
+<div class="q"><span class="qnum">16.</span><span class="qtag">unbounded integrand</span>
+  <div class="qtext">Evaluate ∫₀⁴ 1/√x dx.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> same spike at 0 as the last problem, wider window. The improper part is still only at the left end — from a to 4 everything is ordinary.</div>
+    <div class="step">∫ₐ⁴ 1/√x dx = [2√x]ₐ⁴ = 2√4 − 2√a = 4 − 2√a.</div>
+    <div class="step">As a → 0⁺, 2√a → 0, so the limit is 4.</div>
+    <div class="step">Consistency check: area from 0 to 1 is 2 (problem 15); area from 1 to 4 is [2√x]₁⁴ = 4 − 2 = 2; total 2 + 2 = 4 ✓.</div>
+    <div class="ans">4 — convergent</div></div>
+</div>
+
+<div class="q"><span class="qnum">17.</span><span class="qtag">divergent spike</span>
+  <div class="qtext">Show that ∫₀¹ 1/x² dx diverges. Then explain the strange flip: 1/x² beat 1/√x out at infinity, but near zero 1/√x wins. Why?</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> convergence is a local contest: out at infinity you need a THIN TAIL; near a spike you need a THIN SPIKE. A function can win one contest and lose the other. Compare heights near x = 0.01: 1/√x = 10, but 1/x² = 10000 — the 1/x² spike is enormously fatter.</div>
+    <div class="step">∫ₐ¹ 1/x² dx = [−1/x]ₐ¹ = −1 + 1/a.</div>
+    <div class="step">As a → 0⁺, 1/a → ∞, so the area blows up. Divergent.</div>
+    <div class="step">The flip: at infinity, bigger powers of x in the denominator mean FASTER shrinking (good). Near zero, bigger powers mean FASTER blowing up (bad). 1/x is the borderline in both contests — and loses both.</div>
+    <div class="ans">Diverges — the spike at 0 is too fat (1/a → ∞)</div></div>
+</div>
+
+<div class="q"><span class="qnum">18.</span><span class="qtag">proper or improper?</span>
+  <div class="qtext">For each integral, decide: ordinary (proper) definite integral, or improper? If improper, say exactly why. (a) ∫₁¹⁰ 1/x² dx &nbsp; (b) ∫₀¹ 1/x dx &nbsp; (c) ∫₁^∞ e<sup>−x</sup> dx &nbsp; (d) ∫₋₁¹ 1/x² dx</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> an integral is improper if (i) an endpoint is ∞, or (ii) the integrand blows up somewhere on the interval — INCLUDING in the middle, which is the sneaky case. Always scan the whole interval for places the function explodes before you integrate.</div>
+    <div class="step">(a) Limits 1 to 10 are finite and 1/x² is perfectly tame there (it only misbehaves at 0). <b>Proper</b> — integrate normally.</div>
+    <div class="step">(b) Finite interval, but 1/x → ∞ as x → 0⁺, and 0 is an endpoint. <b>Improper</b> (spike at the left endpoint) — and in fact divergent.</div>
+    <div class="step">(c) Upper endpoint is ∞. <b>Improper</b> (infinite endpoint) — convergent, by the way, since e<sup>−x</sup> dies fast.</div>
+    <div class="step">(d) Looks innocent... but 1/x² blows up at x = 0, which sits INSIDE [−1, 1]. <b>Improper</b> (hidden interior spike) — you must split it at 0, and each half diverges.</div>
+    <div class="ans">(a) proper &nbsp; (b) improper: spike at 0 &nbsp; (c) improper: ∞ endpoint &nbsp; (d) improper: spike hiding inside</div></div>
+</div>
+
+<div class="q"><span class="qnum">19.</span><span class="qtag">spot the error</span>
+  <div class="qtext">A student writes: "∫₀^∞ cos x dx = [sin x]₀^∞ = sin(∞) − sin(0) = 0 − 0 = 0." The final answer is wrong — but the deeper problem is HOW the student treated ∞. Find both problems.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> ∞ is not a number, so "sin(∞)" is meaningless — you can't take the sine of infinity. The ONLY legal move is the limit: compute [sin x]₀^b = sin b and ask where sin b heads as b → ∞. A limit exists only if the values settle toward one number.</div>
+    <div class="step">Error 1 (the method): plugging ∞ in like a number. The correct setup is lim<sub>b→∞</sub> ∫₀^b cos x dx = lim<sub>b→∞</sub> sin b.</div>
+    <div class="step">Error 2 (the conclusion): sin b never settles — it swings between −1 and 1 forever (sin of 10 is ≈ −0.54, of 100 ≈ −0.51, of 1000 ≈ 0.83, ...). There is no heading, so the limit does not exist.</div>
+    <div class="step">Geometric picture: the areas above and below the axis keep alternating; the running total sloshes back and forth forever and never converges.</div>
+    <div class="ans">The integral diverges (the limit of sin b does not exist); "sin(∞)" was never a legal move</div></div>
+</div>
+
+<div class="q"><span class="qnum">20.</span><span class="qtag">challenge · partial fractions</span>
+  <div class="qtext">Evaluate ∫₁^∞ 1/(x(x+1)) dx. Hint: Lesson 32! Split with partial fractions first — and notice something remarkable: each piece alone would diverge, yet together they converge.</div>
+  <button class="revealbtn">Reveal Full Solution</button>
+  <div class="sol"><h4>Worked solution</h4>
+    <div class="ctx"><b>Background:</b> partial fractions (Lesson 32): 1/(x(x+1)) = A/x + B/(x+1). Multiply out: 1 = A(x+1) + Bx. At x = 0: A = 1. At x = −1: 1 = −B, so B = −1. So the integrand is 1/x − 1/(x+1). Each piece integrates to a divergent ln... but subtraction tames them: for big x the two curves nearly cancel, leaving a thin convergent tail (roughly 1/x², since 1/x − 1/(x+1) = 1/(x(x+1))).</div>
+    <div class="step">∫₁^b [1/x − 1/(x+1)] dx = [ln x − ln(x+1)]₁^b = [ln(x/(x+1))]₁^b (log rule: ln u − ln v = ln(u/v)).</div>
+    <div class="step">= ln(b/(b+1)) − ln(1/2).</div>
+    <div class="step">As b → ∞, b/(b+1) → 1 (try b = 1000: 1000/1001 ≈ 0.999), so ln(b/(b+1)) → ln 1 = 0.</div>
+    <div class="step">Total: 0 − ln(1/2) = −(−ln 2) = ln 2. (≈ 0.693 — a perfectly finite area from two "infinite" ingredients!)</div>
+    <div class="ans">ln 2 — convergent</div></div>
+</div>
+
+<footer>Lesson 33 of 40 · Intuitive Integration · next: <a href="Lesson34.html">Lesson 34 — Volumes I: Disks &amp; Washers</a></footer>
+
+</div>
+<script>
+document.querySelectorAll('.q').forEach(q=>{
+  const btn=q.querySelector('.revealbtn'), sol=q.querySelector('.sol');
+  btn.addEventListener('click',()=>{ sol.classList.add('show'); btn.textContent='Solution shown'; btn.disabled=true; btn.style.opacity=.6; });
+});
+</script>
+</body>
+</html>
