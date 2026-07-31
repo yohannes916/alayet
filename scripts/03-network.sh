@@ -106,6 +106,21 @@ server=/api.telegram.org/8.8.8.8
 # youtube.com), so blocking it outright closes that hole in ALL browsing modes.
 address=/youtube-nocookie.com/0.0.0.0
 EOF
+# Raise dnsmasq's systemd start-rate ceiling. regenerate.sh restarts dnsmasq on
+# every allowlist change, so adding a batch of channels (each `allow-youtube`
+# call regenerates) can restart it a dozen-plus times within seconds. systemd's
+# default limit of 5 starts per 10s then trips, and it refuses to start the
+# service at all — leaving the box with NO resolver, which presents as "this
+# site can't be reached" on every site. Keep a limit so a genuine crash-loop is
+# still caught; just make it roomy enough for a batch of edits.
+install -d -m 755 /etc/systemd/system/dnsmasq.service.d
+cat > /etc/systemd/system/dnsmasq.service.d/parental-startlimit.conf <<'EOF'
+[Unit]
+StartLimitIntervalSec=30
+StartLimitBurst=25
+EOF
+systemctl daemon-reload
+
 # Point the system at dnsmasq.
 rm -f /etc/resolv.conf
 printf 'nameserver 127.0.0.1\noptions edns0\n' > /etc/resolv.conf
