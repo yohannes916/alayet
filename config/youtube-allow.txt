@@ -106,3 +106,7 @@ channel: UCAK3X_yAuxrQo_6q_mzPK8w   # pairs @PracticalEngineering
 handle: @practicalengineering   # pairs @PracticalEngineering
 channel: UCXAS_Ekkq0iFJ9dSUIkcAkw   # pairs @TheEfficientEngineer
 channel: UCdp4_l1vPmpN-gDbUwhaRUQ   # pairs @BranchEducation
+
+# ============================ History & humanities ==========================
+handle: @HISTORY
+channel: UC9MAhZQQd9egwWCxrwSIsJQ   # pairs @HISTORY
