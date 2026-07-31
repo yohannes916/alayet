@@ -107,6 +107,34 @@ handle: @practicalengineering   # pairs @PracticalEngineering
 channel: UCXAS_Ekkq0iFJ9dSUIkcAkw   # pairs @TheEfficientEngineer
 channel: UCdp4_l1vPmpN-gDbUwhaRUQ   # pairs @BranchEducation
 
+# --- Chemistry (added 2026-07-31: HS + college coverage) ---
+handle: @ProfessorDaveExplains
+channel: UC0cd_-e49hZpWLH3UIwoWRA   # pairs @ProfessorDaveExplains
+handle: @wbreslyn                          # Wayne Breslyn (Dr. B.) — Lewis structures, balancing, naming
+channel: UCaUF73YX-uQTGwDB20I3n3g   # pairs @wbreslyn
+handle: @ChadsPrep
+channel: UCWp_47O1Sjxlf9MXSD-BqRQ   # pairs @ChadsPrep
+handle: @AKLECTURES
+channel: UCFJyaHVyWKb2y-HkIAEPIdA   # pairs @AKLECTURES
+handle: @melissamaribel
+channel: UC88Pezsxv3IUMAoQGP2w07w   # pairs @melissamaribel
+handle: @chemistNATE
+channel: UCK4ojE1uJYPabSP0ABkM6EA   # pairs @chemistNATE
+handle: @Leah4sci
+channel: UCvNn3nXnH9YEtHEymb7MX6A   # pairs @Leah4sci
+handle: @ACSReactions                      # Reactions — American Chemical Society
+channel: UCdJ9oJ2GUF8Vmb-G63ldGWg   # pairs @ACSReactions
+handle: @AlleryChemistry
+channel: UCPtWS4fCi25YHw5SPGdPz0g   # pairs @AlleryChemistry
+handle: @ChemSurvival
+channel: UCunr-10Cibvv4CKUBeI_Hkw   # pairs @ChemSurvival
+
+# --- General science revision (all three sciences) ---
+handle: @Cognitoedu
+channel: UCaGEe4KXZrjou9kQx6ezG2w   # pairs @Cognitoedu
+handle: @Freesciencelessons
+channel: UCqbOeHaAUXw9Il7sBVG3_bw   # pairs @Freesciencelessons
+
 # ============================ History & humanities ==========================
 handle: @HISTORY
 channel: UC9MAhZQQd9egwWCxrwSIsJQ   # pairs @HISTORY
