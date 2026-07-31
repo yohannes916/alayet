@@ -135,6 +135,10 @@ channel: UCaGEe4KXZrjou9kQx6ezG2w   # pairs @Cognitoedu
 handle: @Freesciencelessons
 channel: UCqbOeHaAUXw9Il7sBVG3_bw   # pairs @Freesciencelessons
 
+# --- Engineering / how things work ---
+handle: @JaredOwen                         # 3D animations explaining how things work
+channel: UCbsfyGlrjrKQC0gbzK0-EiA   # pairs @JaredOwen
+
 # ============================ History & humanities ==========================
 handle: @HISTORY
 channel: UC9MAhZQQd9egwWCxrwSIsJQ   # pairs @HISTORY
