@@ -1,0 +1,158 @@
+ 
+                                       Exercise, 6  
+                             	Which of the following equations          correctly      balance the chemical equation given below? There may be          more than one      correct balanced equation. If a balanced equation is incorrect, explain what is incorrect about it.  
+            CaO          + C                     CaC         2          + CO         2       
+        	I. 	 CaO     2      + 3C              CaC     2      + CO     2   
+        	II.	 2CaO + 5C              2CaC     2      + CO     2   
+        	III.	      CaO      + (2.5)C              CaC     2      + (0.5)CO     2  
+        	IV.	 4CaO + 10C              4CaC     2      + 2CO     2  
+          
+                                                      
+                                                      
+                                                      
+                                                  style.visibility                            style.visibility                            style.visibility                                             
+                                       Concept Check  
+                             	In the context of balancing a chemical equation, which of the following statements is          false     ?	  
+        a)	Subscripts in the reactants must be conserved in the products  
+        b)	Coefficients are used to balance the atoms on both sides  
+        c)	When one coefficient is doubled, the rest of the coefficients in the balanced equation must also be doubled  
+        d)	Phases are often shown for each compound but are not critical to balancing an equation  
+                                                      
+                                                  style.visibility                                           
+                                       Notice  
+                          The number of atoms of each type of element must be the same on both sides of a balanced equation  
+     Subscripts must not be changed to balance an equation  
+     A balanced equation tells us the ratio of the number of molecules that react and are produced in a chemical reaction  
+     Coefficients can be fractions, although they are usually the lowest integer multiples  
+      
+              
+                                       Exercise, 7  
+                             	Of the three that are correct, which one is          preferred      most (the most accepted convention)? Why?  
+            CaO          + C                     CaC         2          + CO         2  
+      
+        I. 	CaO     2      + 3C              CaC     2      + CO     2   
+        II.	2CaO + 5C              2CaC     2      + CO     2   
+        III.	     CaO      + (2.5)C              CaC     2      + (0.5)CO     2  
+        IV.	4CaO + 10C              4CaC     2      + 2CO     2  
+          
+                                                      
+                                                  style.visibility                                           
+                                       Exercise, 5  
+                             	Balance the following equation in standard form or lowest multiple integers, and determine the          sum of the coefficients   
+        			         FeO         (         s         ) + O         2         (         g         )                     Fe         2         O         3         (         s         )  
+      
+        a)	3   
+        b)	4  
+        c)	7   
+        d)	14  
+                                                      
+                                                  style.visibility                                           
+                                       Balancing a Chemical Equation  
+                          Unbalanced equation  
+          
+          
+          
+     
+     Balancing the equation  
+          
+          
+          
+          
+     
+     The balanced equation        CH     4      + 2O     2                   CO     2      + 2H     2     O  
+                                                                          
+                                  Physical States  
+                    Physical states of compounds are often given in a chemical equation  
+                                                       
+                                  Example  
+                                                                                     
+                                  	Exercise, 4  
+                            	  
+       When blue light shines on a mixture of hydrogen gas and chlorine gas, the elements react explosively to form gaseous hydrochloric acid. What is the unbalanced equation for this process?  
+       a)	H     2     (g) + CH     4     (g)                   HCl     (g)   
+       b)	     HCl     (g)              H(g) + Cl(g)  
+       c)	H(g) + Cl(g)                   HCl     (g)   
+       d)	H     2     (g) + Cl     2     (g)                   HCl     (g)  
+                                                      
+                                                  style.visibility                                           
+                                  Writing a Balanced Equation for a Chemical Reaction  
+                         The principle that lies at the heart of the balancing process is that atoms are conserved in a chemical reaction  
+    Atoms are neither created nor destroyed  
+    The same number of each type of atom is found among the reactants and among the products  
+              
+                                  Chemical Reactions  
+                           Chemical reactions involve changing the ways in which the atoms in compounds are grouped  
+      A chemical equation represents a chemical reaction    
+           Reactants are shown to the left of the arrow           
+           Products are shown to the right of the arrow         
+                                            
+                                       Exercise, 3  
+                               	     Identify a          clue      that indicates a reaction has occurred in the statement and in the given image  
+        “     A solid forms when a solution of sodium dichromate is added to a solution of lead nitrate     ”   
+        a)	A gas forms  
+        b)	A solid forms  
+        c)	Bubbles are present  
+        d)	A flame is produced  
+                                                      
+                                            
+                                       Exercise, 2  
+                             Identify a          clue      that indicates a reaction has occurred in the statement and in the given image  
+        “     Colorless hydrochloric acid is added to a red solution of cobalt(II) nitrate, turning the solution blue     ”       
+          
+        a)	The color changes  
+        b)	A solid forms  
+        c)	Bubbles are present  
+        d)	A flame is produced       
+                                                      
+                                            
+                                       Chapter 6     
+                         Chemical Reactions: An Introduction       
+                                                         Copyright ©2019 Cengage Learning. All Rights Reserved. May not be scanned, copied or duplicated, or posted to a publicly accessible website, in whole or in part.                
+              
+                                  What are the clues that a chemical change has taken place?  
+                         Chemical reactions often give visual signals  
+    However, reactions are not always visible  
+              
+                                  Some Clues That a Chemical Reaction Has Occurred  
+                                            
+                                       Exercise, 1  
+                             Identify a          clue      that indicates a reaction has occurred in the given image       
+        a)	The color changes  
+        b)	A solid forms  
+        c)	Bubbles are present  
+        d)	A flame is produced  
+          
+                                                      
+                                            
+                                  Writing a Balanced Equation for a Chemical Reaction      (continued)  
+                         Chemists determine the identity of the reactants and products of a reaction by experimental observation  
+    The identities or formulas of the compounds must never be changed when balancing a chemical equation  
+              
+                                  Chemical Reactions      (continued)  
+                         In a chemical reaction, atoms are neither created nor destroyed   
+    All atoms present in the reactants must be accounted for among the products   
+           There must be same number of each type of atom on both sides of the arrow   
+              
+                                       How to Write and Balance Equations      (continued 1)  
+                                Balance the equation by inspection, starting with the most complicated molecule  
+               We can see that the equation is unbalanced by counting the atoms on both sides of the arrow  
+                                            
+                                       How to Write and Balance Equations      (continued 2)  
+                                Balance the equation by inspection, starting with the most complicated molecule  
+               We must balance the equation by adding more molecules of reactants and/or products  
+                                                                          
+                                  How to Write and Balance Equations      (continued 3)  
+                                Check to see that the coefficients used give the same number of each type of atom on both sides of the arrow. Also, check to see that the coefficients used are the smallest integers that give the balanced equation.  
+            		         The balanced equation is:  
+            		 2H         2         (g)          + O         2         (g)                              2H         2         O         (l)           
+        		         or could be:  
+        		          4H         2         (g)          + 2O         2         (g)                              4H         2         O         (l)        
+                                                      
+                                 preferred  
+              
+                                       How to Write and Balance Equations  
+                                Read the description of the chemical reaction. Identify the reactants, the products, and their states. Write the appropriate formulas.  
+               Hydrogen gas or H         2          and oxygen gas or O         2          combine to form liquid water or H         2         O  
+           Write the      unbalanced      equation that summarizes the information from the previous step  
+            		          H         2         (g)          + O         2         (g)                              H         2         O         (l)      	  
+             

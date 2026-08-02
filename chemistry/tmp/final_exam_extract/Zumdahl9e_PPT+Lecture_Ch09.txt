@@ -1,0 +1,385 @@
+ 
+                                       Chapter 9     
+                    Chemical Quantities       
+                                                         Copyright ©2019 Cengage Learning. All Rights Reserved. May not be scanned, copied or duplicated, or posted to a publicly accessible website, in whole or in part.                
+              
+                                  Understanding the Molecular and Mass Information in a Balanced Equation  
+                         Balanced chemical equation gives the amount of reactant and product molecules that participate in a chemical reaction  
+    Coefficients in a balanced equation give the relative numbers of molecules  
+              
+                                  Understanding the Molecular and Mass Information in a Balanced Equation      (continued)  
+                               
+            C         2         H         5         OH                    +                    3O         2                                  2CO         2           +  3H         2         O   
+     
+     Equation is balanced  
+     All atoms present in the reactants are accounted for in the products  
+     1      molecule      of ethanol reacts with 3      molecules      of oxygen to produce 2      molecules      of carbon dioxide and 3      molecules      of water  
+     1      mole      of ethanol reacts with 3      moles      of oxygen to produce 2      moles      of carbon dioxide and 3      moles      of water  
+              
+                                  	Concept Check, 1       
+                              
+         
+           The following reaction represents one of the key steps in the production of pure copper from copper ores:  
+           	Cu     2     S(     s     ) + Cu     2     O(     s     )        →      Cu(     s     ) + SO     2     (     g     ) (unbalanced)  
+              
+                                  Concept Check, 1      (continued)  
+                                After balancing the reaction, determine how many          dozens of copper atoms      can be produced from a dozen molecules of the sulfide and two dozen molecules of the oxide of copper(I). Also, how many          moles               of copper      can be produced from one mole of the sulfide and two moles of the oxide?  
+           a) 1 dozen and 1 mole  
+           b) 2 dozens and 2 moles  
+           c) 3 dozens and 3 moles  
+           d) 6 dozens and 6 moles  
+                                                      
+                                                  style.visibility                                           
+                                  Relationship between Moles of Reactants and Moles of Products  
+                            Balanced equations can predict the moles of products that a given number of moles of reactants will yield   
+       2 moles of      H     2     O yields 2 moles of H     2      and 1 mole of O     2   
+       4        mol             H     2     O yields 4      mol      H     2      and 2      mol      O     2   
+                                            
+                                  Mole Ratio  
+                         Allows us to convert from moles of one substance in a balanced equation to moles of a second substance in the equation   
+              
+                                  Example, 1  
+                                  Consider the following balanced equation:  
+             		Na         2         SiF         6         (         s         ) + 4Na(         s         )           → Si         (         s         ) + 6NaF(         s         )  
+            How many moles of          NaF          will be produced if 3.50 moles of Na is reacted with excess           Na         2         SiF         6         ?   
+     
+       Where Are We Going?  
+    We want to determine the number of moles of      NaF      produced when 3.50 moles of Na reacts with excess Na     2     SiF     6  
+       What Do We Know?  
+    Balanced equation  
+    We start with 3.50      mol      Na  
+              
+                                  Example, 1      (continued)  
+                                  Consider the following balanced equation:  
+             		Na         2         SiF         6         (         s         ) + 4Na(         s         )           → Si         (         s         ) + 6NaF(         s         )  
+            How many moles of          NaF          will be produced if 3.50 moles of Na is reacted with excess           Na         2         SiF         6         ?   
+      
+        How Do We Get There?  
+                                                                                                                                                                                                                                                                                                                                      
+                                       Exercise, 1       
+                             Propane, C     3     H     8     , is a common fuel used for heating in rural areas. Predict the number of          moles of CO         2      formed when 3.74 moles of propane is burned in excess oxygen.  
+        			C     3     H     8      + 5O     2             →      3CO     2      + 4H     2     O  
+      
+        a)	     11.2 moles  
+        b)	7.48 moles  
+        c)	3.74 moles  
+        d)	1.25 moles       
+                                                      
+                                                                                                                       style.visibility                                           
+                                  Steps for Calculating the Masses of Reactants and Products in Chemical Reactions  
+                               
+      Balance the equation for the reaction   
+      Convert the masses of reactants or products to moles  
+      Use the balanced equation to set up the appropriate mole ratio(s)  
+      Use the mole ratio(s) to calculate the number of moles of the desired reactant or product  
+      Convert from moles back to masses  
+              
+                                  Stoichiometry  
+                         Process of using a balanced chemical equation to calculate the relative masses of reactants and products involved in a reaction  
+              
+                                  Example, 2  
+                                  	For the following unbalanced equation:  
+             			Cr         (         s         ) + O         2         (         g         )           → Cr          2          O          3         (         s         )   
+            	         How many grams of chromium(III) oxide can be produced from 15.0 g of solid chromium and excess oxygen?   
+      
+        Where Are We Going?  
+     We want to determine the mass of        Cr       2       O       3      produced by the reaction of 15.0 g Cr with excess O     2   
+              
+                                  Example, 2      (continued 1)  
+                                  	For the following unbalanced equation:  
+             			Cr         (         s         ) + O         2         (         g         )           → Cr          2          O          3         (         s         )   
+            	         How many grams of chromium(III) oxide can be produced from 15.0 g of solid chromium and excess oxygen?   
+      
+        What Do We Know?  
+     Unbalanced equation  
+     We start with 15.0 g Cr  
+     We know from the periodic table that the atomic masses of chromium and oxygen are 52.00 g/     mol      and 16.00 g/     mol     , respectively  
+              
+                                  Example, 2      (continued 2)   
+                                  	For the following unbalanced equation:  
+             			Cr         (         s         ) + O         2         (         g         )           → Cr          2          O          3         (         s         )   
+            	         How many grams of chromium(III) oxide can be produced from 15.0 g of solid chromium and excess oxygen?   
+      
+        What Do We Need To Know?  
+     We need to know the balanced equation  
+        		      4       Cr     (     s     ) + 3O     2     (     g     )        → 2Cr       2       O       3     (     s     )   
+     We need the molar mass of        Cr       2       O       3   
+        		     152.00 g/     mol   
+              
+                                  Example, 2      (continued 3)   
+                            How Do We Get There?  
+        4Cr(     s     ) + 3O     2     (     g     ) → 2Cr     2     O     3     (     s     )   
+     
+    Convert the mass of Cr to moles of Cr  
+  
+  
+     
+    Using the mole ratio from the balanced equation, determine the moles of Cr     2     O     3      produced  
+                                                                                                                                                                                                            
+                                  Example, 2      (continued 4)   
+                            How Do We Get There?     	 	  
+       4Cr(     s     ) + 3O     2     (     g     ) → 2Cr     2     O     3     (     s     )   
+     
+    Convert moles of Cr     2     O     3      to grams of Cr     2     O     3  
+     
+  
+     
+    Conversion string  
+                                                                                                                                                                                                                                                    
+              
+                                       Exercise, 2       
+                             Tin(II) fluoride is added to some dental products to help prevent cavities. Tin(II) fluoride is prepared according to the following equation:  
+        			Sn     (     s     ) + 2HF(     aq     )              SnF     2     (     aq     ) + H     2     (     g     )   
+        How many          grams of tin(II) fluoride      can be produced from 55.0 g of hydrogen fluoride if there is plenty of tin available to react?   
+        	a)	431 g  
+        b)	215 g  
+        c)	72.6 g  
+        d)	1.37 g  
+                                                      
+                                                  style.visibility                                           
+                                       Exercise, 3       
+                             Consider the following reaction:  
+        			PCl     3      + 3H     2     O              H     3     PO     3      + 3HCl   
+        What          mass of H         2         O      is needed to completely react with 20.0 g of PCl     3     ?  
+         7.87 g  
+         0.875 g  
+         5.24 g  
+         2.62 g  
+                                                      
+                                                  style.visibility                                           
+                                       Exercise, 4       
+                             Consider the following reaction where X represents an unknown element:  
+        		6X(     s     )  +  2B     2     O     3     (     s     )                B     4     X     3     (     s     )  +  3XO     2     (     g     )  
+        If 175 g of X reacts with      diboron      trioxide to produce 2.43 moles of B     4     X     3     , what element does X represent?  
+        a)	Ge	  
+        b)	Mg	  
+        c)	Si	  
+        d)	C   
+                                                      
+                                                  style.visibility                                           
+                                  Stoichiometric Mixture  
+                            Contains the relative amounts of reactants that match the numbers in a balanced equation  
+          	       N       2       (       g       )  +  3H       2       (       g       )                    2NH       3       (       g       )        
+                                            
+                                  Limiting Reactant Mixture  
+                               	       N       2       (       g       )  +  3H       2       (       g       )                    2NH       3       (       g       )        
+                                            
+                                  Limiting Reactant Mixture      (continued)  
+                               	       N       2       (       g       )  +  3H       2       (       g       )                    2NH       3       (       g       )  
+        
+     Limiting reactant or reagent is the reactant that runs out first and thus limits the amounts of products that can form  
+        H     2      is the limiting reactant for the reaction shown above   
+              
+                                  Limiting Reactants   
+                         Determine which reactant is limiting to calculate the amounts of products that will be formed  
+    Methane and water will react to form products according to the following equation:  
+      
+        			         CH         4          + H         2         O                     3H         2          + CO  
+              
+                                  Limiting Reactants      (continued 1)   
+                                                       H     2     O molecules are used up first, leaving two unreacted CH     4      molecules  
+              
+                                  Limiting Reactants      (continued 2)   
+                          Amount of products that can form is limited by the water  
+     Water is the limiting reactant  
+     Methane is in excess  
+              
+                                  Steps for Solving Stoichiometry Problems Involving Limiting Reactants by Solving for Limiting Reactant First (Approach A)  
+                             Write and balance the equation for the reaction  
+        Convert known masses of reactants to moles  
+        Using the numbers of moles of reactants and the appropriate mole ratios, determine which reactant is limiting  
+        Using the amount of the limiting reactant and the appropriate mole ratio, compute the number of moles of the desired product  
+        Convert from moles of product to grams of product, using the molar mass, if this is required by the problem  
+              
+                                  Example, 3, Approach A  
+                              You know that chemical A reacts with chemical B   
+         You react 10.0 g of A with 10.0 g of B  
+        What information do you need to know in order to determine the amount of product that will be produced?  
+              
+                                  Let       ’     s Think About It (Approach A)   
+                          Where Are We Going?  
+        To determine the mass of product that will be produced when you react 10.0 g of A with 10.0 g of B   
+     What Do We Need To Know?  
+        Mole ratio between the reactants and the products  
+     In other words, we need to know the balanced equation  
+        Molar masses of A, B, and the product they form  
+              
+                                  Example, 3, Approach A      (continued 1)  
+                              You react 10.0 g of A with 10.0 g of B. Given that the molar mass of A is 10.0 g/         mol         , B is 20.0 g/         mol         , and C is 25.0 g/         mol         , what will be the mass of the product produced?  
+             They                    react according to the equation:        
+            				A + 3B            2C  
+          
+              
+                                  Example, 3, Approach A      (continued 2)  
+                              You react 10.0 g of A with 10.0 g of B. Given that the molar mass of A is 10.0 g/         mol         , B is 20.0 g/         mol         , and C is 25.0 g/         mol         , what will be the mass of the product produced?  
+            They                   react according to the equation:       
+            				A + 3B            2C  
+       How Do We Get There?   
+          Convert known masses of reactants to moles  
+          
+                                                                                                                                                                                  
+                                  Example, 3, Approach A      (continued 3)  
+                              You react 10.0 g of A with 10.0 g of B. Given that the molar mass of A is 10.0 g/         mol         , B is 20.0 g/         mol         , and C is 25.0 g/         mol         , what will be the mass of the product produced?  
+            They                   react according to the equation:       
+            				A + 3B            2C  
+       How Do We Get There?   
+          Determine which reactant is limiting  
+          
+        					  
+        				   
+        Only 0.500      mol      B is available, so B is the limiting reactant  
+                                                                                                             
+                                  Example, 3, Approach A      (continued 4)  
+                              You react 10.0 g of A with 10.0 g of B. Given that the molar mass of A is 10.0 g/         mol         , B is 20.0 g/         mol         , and C is 25.0 g/         mol         , what will be the mass of the product produced?  
+             They                    react according to the equation:        
+            				A + 3B            2C  
+       How Do We Get There?   
+          Compute the number of moles of C produced   
+                                                                                   
+                                  Example, 3, Approach A      (continued 5)  
+                              You react 10.0 g of A with 10.0 g of B. Given that the molar mass of A is 10.0 g/         mol         , B is 20.0 g/         mol         , and C is 25.0 g/         mol         , what mass of product will be produced?  
+            They                   react according to the equation:       
+            				A + 3B            2C  
+       How Do We Get There?   
+          Convert from moles of C to grams of C using the molar mass   
+                                                                                   
+                                  Notice  
+                          We cannot simply add the total moles of all the reactants to decide which reactant mixture makes the most product  
+     We must always think about how much product can be formed by using what we are given and the ratio in the balanced equation   
+              
+                                       Steps for Solving Stoichiometry Problems Involving Limiting Reactants by Determining the Number of Moles of Product First, Approach B  
+                              
+    Write and balance the equation for the reaction  
+    Convert known masses of reactants to moles  
+    Using the appropriate mole ratios, compute the numbers of moles of product formed if each reactant were consumed  
+     Choose the least number of moles of product formed   
+    Convert from moles of product to grams of product, using the molar mass, if this is required by the problem  
+              
+                                  Example, 3, Approach B  
+                              You know that chemical A reacts with chemical B  
+         You react 10.0 g of A with 10.0 g of B  
+        What information do you need to know in order to determine the amount of product that will be produced?  
+              
+                                  Let       ’     s Think About It (Approach B)  
+                          Where Are We Going?  
+        To determine the mass of product that will be produced when you react 10.0 g of A with 10.0 g of B   
+     What Do We Need To Know?  
+        Mole ratio between the reactants and the products  
+        In other words, we need to know the reaction’s balanced equation  
+        Molar masses of A, B, and the product they form  
+              
+                                  Example, 3, Approach B      (continued 1)  
+                              You react 10.0 g of A with 10.0 g of B. Given that the molar mass of A is 10.0 g/         mol         , B is 20.0 g/         mol         , and C is 25.0 g/         mol         , what will be the mass of the product produced?  
+            They                   react according to the equation:       
+            				A + 3B            2C  
+          
+              
+                                  Example, 3, Approach B      (continued 2)  
+                              You react 10.0 g of A with 10.0 g of B. Given that the molar mass of A is 10.0 g/         mol         , B is 20.0 g/         mol         , and C is 25.0 g/         mol         , what will be the mass of the product produced?  
+            They                   react according to the equation:       
+            				A + 3B            2C  
+       How Do We Get There?   
+          Convert known masses of reactants to moles  
+          
+                                                                                                                                                                                        
+                                  Example, 3, Approach B      (continued 3)  
+                              You react 10.0 g of A with 10.0 g of B. Given that the molar mass of A is 10.0 g/         mol         , B is 20.0 g/         mol         , and C is 25.0 g/         mol         , what will be the mass of the product produced?  
+            They                   react according to the equation:       
+            				A + 3B            2C  
+       How Do We Get There?   
+          Compute the number of moles of product formed from each reactant  
+          
+       				  
+        					  
+                                                                                                                                                        
+                                  Example, 3, Approach B      (continued 4)  
+                              You react 10.0 g of A with 10.0 g of B. Given that the molar mass of A is 10.0 g/         mol         , B is 20.0 g/         mol         , and C is 25.0 g/         mol         , what will be the mass of the product produced?  
+            They                   react according to the equation:       
+            				A + 3B            2C  
+       How Do We Get There?   
+          Choose the least number of moles of product formed   
+                                                                                   
+                                  Example, 3, Approach B      (continued 5)  
+                              You react 10.0 g of A with 10.0 g of B. Given that the molar mass of A is 10.0 g/         mol         , B is 20.0 g/         mol         , and C is 25.0 g/         mol         , what will be the mass of the product produced?  
+            They                   react according to the equation:       
+            				A + 3B            2C  
+       How DO We Get There?   
+          Convert from moles of C to grams of C using the molar mass   
+                                                                                   
+                                       Concept Check, 2  
+                             Which of the following reaction mixtures would produce the          greatest      amount of product, assuming all went to completion? Each involves the reaction symbolized by the equation:  
+        		     2H     2      + O     2                   2H     2     O   
+        a)     	2 moles of H     2      and 2 moles of O     2   
+        2 moles of H     2      and 3 moles of O     2   
+        2 moles of H     2      and 1 mole of O     2   
+        d)	3 moles of H     2      and 1 mole of O     2   
+        e)	Each produce the same amount of product  
+                                                      
+                                                  style.visibility                                           
+                                       Concept Check, 3  
+                             Consider the equation: A + 3B              4C. If 3.0 moles of A is reacted with 6.0 moles of B, which of the following is          true      after the reaction is complete?   
+        a) A is the leftover reactant because you only need 2 moles of A and have 3 moles  
+        b) A is the leftover reactant because for every 1 mole of A, 4 moles of C are produced  
+        c) B is the leftover reactant because you have more moles of B than A  
+        d) B is the leftover reactant because 3 moles of B react with every 1 mole of A  
+                                                      
+                                                  style.visibility                                           
+                                       Exercise, 5       
+                             How many          grams of NH         3      can be produced from the mixture of 3.00 g each of nitrogen and hydrogen by the Haber process?  
+        				N     2      + 3H     2             →      2NH     3  
+     
+        a)	2.00 g  
+        b)	3.00 g  
+        c)	3.65 g  
+        d)	1.82 g  
+                                                      
+                                                  style.visibility                                           
+                                  Percent Yield  
+                          Important indicator of the efficiency of a particular laboratory or industrial reaction  
+     Comparison of the actual yield of a product to its theoretical yield  
+              
+                                  Percent Yield      (continued 1)   
+                             Theoretical Yield   
+        The maximum amount of a given product that can be formed when the limiting reactant is completely consumed  
+        The amount of product actually obtained   
+    Actual yield, or the amount actually produced, of a reaction is usually less than the maximum expected, or theoretical yield  
+              
+                                  Percent Yield      (continued 2)  
+                         Actual amount of a given product as a percentage of the theoretical yield is given by  
+                                                                                   
+                                  Example, 3, Recall  
+                              You react 10.0 g of A with 10.0 g of B. Given that the molar mass of A is 10.0 g/         mol         , B is 20.0 g/         mol         , and C is 25.0 g/         mol         , what will be the mass of the product produced?  
+            They                   react according to the equation:       
+            				A + 3B            2C  
+         We determined that 8.33 g C should be produced. 7.23 g of C is what was actually made in the lab. What is the percent yield of the reaction?  
+       What Do We Know?   
+          We know the actual and theoretical yields   
+              
+                                  Example, 3, Recall      (continued)  
+                              You react 10.0 g of A with 10.0 g of B. Given that the molar mass of A is 10.0 g/         mol         , B is 20.0 g/         mol         , and C is 25.0 g/         mol         , what will be the mass of the product produced?  
+            They                   react according to the equation:       
+            				A + 3B            2C  
+         We determined that 8.33 g C should be produced. 7.23 g of C is what was actually made in the lab. What is the percent yield of the reaction?  
+       How Do We Get There?    
+                                                                                   
+                                       Exercise, 6  
+                             Consider the reaction 2S + 3O     2        →      2SO     3   
+        Find the          percent yield      of product if 1.50 g of SO     3      is produced from 1.00 g of O     2      and excess sulfur  
+        	  
+        a)	40.0%  
+        b)	80.0%  
+        c)	89.8%  
+        d)	92.4%  
+                                                      
+                                                                                           style.visibility                                           
+                                       Exercise, 7  
+                             	Consider the following reaction:  
+        			P     4     (     s     ) + 6F     2     (     g     )         4PF       3       (       g       )  
+      
+        What          mass of P         4      is needed to produce 85.0 g of PF     3      if the reaction has a 64.9% yield?  
+        a) 29.9 g  
+        b) 46.1 g  
+        c) 184 g  
+        d) 738 g  
+                                                      
+                                                                                           style.visibility                                          

@@ -1,0 +1,234 @@
+Chapter 2: Unit
+ Conversions
+                                                                    2
+Math is a Requirement
+ All science requires mathematics. The knowledge of
+mathematical things is almost innate in us. . . [Mathematics] is
+the easiest of sciences, a fact which is obvious in that no one's
+brain rejects it…
+                 Roger Bacon (c. 1214-c. 1294)
+
+
+ Stand   firm in your refusal to remain conscious during
+algebra. In real life, I assure you, there is no such thing as
+algebra.
+                         Fran Lebowitz (b. 1951)
+                                         3
+    Significant Figures
+ Meaningful Digits in reported values
+  that express the precision of the
+  value.
+ Nonzero integers - Always count as
+  significant figures
+  3456 has four significant figures
+Rules for Counting Significant                 4
+
+           Figures
+   Zeros - There are three classes of zeros
+    Leading zeros - Zeros that precede
+      all of the nonzero digits and are
+      never counted as significant figures
+      0.048 has two significant figures
+    Captive zeros - Zeros that fall
+      between nonzero digits and always
+      count as significant figures
+      16.07 has four significant figures
+Rules for Counting Significant                              5
+
+           Figures
+   Trailing zeros - Zeros at the right end of the number
+     Significant only if the number contains a decimal
+      point
+         9.300 has four significant figures
+         150 has two significant figures
+   Exact numbers - Possess an unlimited number of
+   significant figures
+     1 inch = 2.54 cm
+     9 pencils
+         Obtained by counting
+  Exponential Notation or                   6
+
+    Scientific Notation
+ Example
+  300 written as 3.00 × 102
+  Contains three significant figures
+ Advantages
+  Number of significant figures can be
+   easily indicated
+  Fewer zeros are needed to write a very
+   large or very small number
+                                                            7
+       Rules for Rounding
+• Rule 1 - If the digit to be removed is less than 5, the
+  preceding digit stays the same
+  – 5.64 rounds to 5.6
+     • If the final result has two significant figures
+• If the digit to be removed is equal to or greater than
+  5, the preceding digit is increased by 1
+  – 5.68 rounds to 5.7
+     • If the final result has two significant figures
+  – 3.861 rounds to 3.9
+     • If the final result has two significant figures
+                                                         8
+           Rules for Rounding
+ Rule 2 - In a series of calculations, carry the extra digits
+ through to the final result and then round off
+  This means that you should carry all of the
+   digits that show on your calculator until you
+   arrive at the final number
+  Then, round off using the procedures in Rule 1
+                                       9
+     Significant Figures in
+   Mathematical Operations
+For multiplication or division, the
+ number of significant figures in the
+ result is the same as that in the
+ measurement with the smallest number
+ of significant figures
+   1.342 × 5.5 = 7.381 → 7.4
+       Significant Figures in                    10
+
+     Mathematical Operations
+ For addition or subtraction, the limiting term is
+ the one with the smallest number of decimal
+ places
+             23.445
+           +    7.83
+               31.275   ¾¾¾¾® 31.28
+                           Corrected
+                                                            11
+Dimensional Analysis
+ Mathematical Process that allows for the ability to convert
+  a value containing one type of unit to a value having a
+  different type of unit.
+   Ex.
+      3.5 tsp = ? mL
+
+ Equivalency Statement – provides a relationship between
+  two different units.
+ Conversion Factor – A ratio formed from an equivalency
+  statement to describe the relationship between two units
+  as a fraction.
+   1tsp = 5 mL
+                                 12
+   Metric – Metric Conversions
+ The
+ relationship
+ between
+ metric units
+ can be
+ derived from
+ the metric
+ prefixes.
+                              13
+
+Metric – Metric Conversions
+
+ One-step Conversions
+  453.94 L = ? GL
+ Two-step Conversions
+  12.7 nm = ? Km
+                               14
+English – Metric Conversions
+                                       15
+English – Metric Conversions
+
+ Conversions with fractional units
+  45.8 mi/hr = ? Km/s
+ Conversions with exponential units
+  23.4 in3 = ? mL
+                                   16
+            Density
+
+Defined:
+             𝑚𝑎𝑠𝑠              𝑚
+ 𝑑𝑒𝑛𝑠𝑖𝑡𝑦 =           OR    𝑑=
+            𝑉𝑜𝑙𝑢𝑚𝑒             𝑉
+   Density of lead: 11.34 g/cm3
+   Density of water: 1.00 g/mL
+                                               17
+                Density
+
+ Densities for liquids and solids generally
+ decrease when temperature is lowered.
+  Many densities are recorded with the
+   temperature at which they are measured
+    Density of Ethanol:
+      0.806 g/mL at 0°C
+      0.789 g/mL at 20°C
+                                                        18
+       Density Calculations
+ What is the density of sample of platinum that has a mass
+ of 4.30 g and a volume of 2.00 cm3?
+
+ A sample of copper has a mass of 44.291 g. A graduated
+ cylinder was used to determine the volume of the copper
+ sample. The initial volume of water in the graduated
+ cylinder was 22.3 mL. After the copper sample was
+ placed in the graduated cylinder the volume of water
+ rose to 27.2 mL. What is the density of this copper sample?
+                                                    19
+     Density Calculations
+
+ The density of lead is 11.34 g/cm3. What is the
+  volume of a sample of lead that has a mass of
+  18.236 g in kL?
+                                                       20
+      Percentage By Mass
+ The number of mass units for the part for each 100
+ mass units of the whole.
+
+                      𝑋 𝑎𝑛𝑦 𝑚𝑎𝑠𝑠 𝑢𝑛𝑖𝑡 𝑝𝑎𝑟𝑡
+       𝑋% 𝑏𝑦 𝑚𝑎𝑠𝑠 =
+                    100 𝑠𝑎𝑚𝑒 𝑚𝑎𝑠𝑠 𝑢𝑛𝑖𝑡 𝑤ℎ𝑜𝑙𝑒
+
+                      𝑋 𝑎𝑛𝑦 𝑣𝑜𝑙𝑢𝑚𝑒 𝑢𝑛𝑖𝑡 𝑝𝑎𝑟𝑡
+     𝑋% 𝑏𝑦 𝑣𝑜𝑙𝑢𝑚𝑒 =
+                    100 𝑠𝑎𝑚𝑒 𝑣𝑜𝑙𝑢𝑚𝑒 𝑢𝑛𝑖𝑡 𝑤ℎ𝑜𝑙𝑒
+                                                                 21
+       Percentage By Mass
+ The mass of the ocean is about 1.8 × 1021 kg. If the ocean
+  contains 0.014% by mass hydrogen carbonate ions, HCO3-, how
+  many pounds of HCO3- are in the ocean?
+
+
+ When you are doing heavy work, your muscles get about 75 to
+  80% by volume of your blood. If your body contains 5.2 liters of
+  blood, how many liters of blood are in your muscles when you
+  are working hard enough to send them 78% by volume of your
+  blood?
+                                                                             22
+      Steps to Unit Conversions
+ Step 1: State your question in an expression that sets the unknown
+  unit(s) equal to one or more of the values given.
+   To the left of the equals sign, show the unit(s) you want in your answer.
+
+   To the right of the equals sign, start with an expression composed of the given
+    unit(s) that parallels in kind and placement the units you want in your answer.
+      If you want a single unit in your answer, start with a value that has a single
+       unit.
+      If you want a ratio of two units in your answer, start with a value that has a
+       ratio of two units, or start with a ratio of two values, each of which has one
+       unit. Put each type of unit in the position you want it to have in the answer.
+                                                                 23
+ Steps to Unit Conversions
+
+ Step 2: Multiply the expression to the right of the
+  equals sign by conversion factors that cancel
+  unwanted units and generate the desired units.
+   If you are not certain which conversion factor to use, ask
+    yourself, “What is the fundamental conversion the problem
+    requires, and what conversion factor do I need to make that
+    type of conversion?”
+                                                               24
+ Steps to Unit Conversions
+ Step 3: Do a quick check to be sure you used the correct
+  conversion factors and that your units cancel to yield the
+  desired unit(s).
+
+
+ Step 4:
+        Do the calculation, rounding your answer to the correct
+  number of significant figures and combining it with the correct
+  unit.
+

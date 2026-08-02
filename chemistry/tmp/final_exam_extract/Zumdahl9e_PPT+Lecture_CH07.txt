@@ -1,0 +1,285 @@
+ 
+                                  Chapter 7  
+                         Reactions in Aqueous Solutions       
+                                                                                                                                                                                                  Copyright ©2019 Cengage Learning. All Rights Reserved. May not be scanned, copied or duplicated, or posted to a publicly accessible website, in whole or in part.  
+              
+                                    Four Driving Forces Favor Chemical Change  
+                            Formation of a solid        
+       Formation of water   
+       Transfer of electrons   
+       Formation of a gas   
+              
+                                  Precipitation  
+                             Precipitation:      The process of formation of a solid during a chemical reaction  
+     The solid formed during this reaction is called a          precipitate  
+     The reaction is known as a          precipitation reaction       
+                                            
+                                  What Happens When an Ionic Compound Dissolves in Water?  
+                            The ions separate and move around independently   
+         Strong electrolyte     :      Substance whose each unit produces separated ions when dissolved in water    
+                                            
+                                  What Happens When an Ionic Compound Dissolves in Water?      (continued)  
+                            K       2       CrO       4       (       aq       )        + Ba(NO       3       )       2       (       aq       )                         Products       
+                                            
+                                  How to Decide What Products Form  
+                            K       2       CrO       4       (aq)        + Ba(NO       3       )       2       (       aq       )                        Products  
+       The mixed solution contains four types of ions: K       +       , CrO       4       2–       , Ba       2+       , and NO       3       –  
+     Determine the possible products from the ions in the reactants  
+     The possible ion combinations are:  
+          
+                                            
+                                  How to Decide What Products Form      (continued)   
+                         Which is most likely to be the yellow solid formed in the reaction?  
+    K     2     CrO     4     (     aq     )      	reactant  
+    Ba(NO     3     )     2     (     aq     )   	reactant  
+    The possible combinations are KNO     3      and BaCrO     4   
+     KNO     3     	aqueous   
+     BaCrO     4     	yellow solid  
+                                            
+                                  Using Solubility Rules  
+                                            
+                                  Using Solubility Rules         (continued)   
+                         Predicting precipitates  
+         Soluble solid   
+         Insoluble solid   
+         Slightly soluble solid  
+                                            
+                                  How to Predict Precipitates When Solutions of Two Ionic Compounds Are Mixed  
+                         Write the reactants as they actually exist before any reaction occurs  
+     Remember that when a salt dissolves, its ions separate  
+    Consider the various solids that could form from this collection of ions in the solution  
+     To do this, simply exchange the anions of the added salts (ion interchange)  
+    Use the solubility rules (Table 7.1) to decide whether a solid forms and, if so, to predict the identity of the solid  
+              
+                                       Concept Check, 1  
+                            Which of the following ions reacts with Pb     2+      to           form compounds that are generally soluble in water?  
+        S     2–  
+        Cl     –  
+        NO     3–  
+        SO     4     2–  
+        Na     +  
+                                                      
+                                                  style.visibility                                           
+                                       Concept Check, 2  
+                             A solution of sodium phosphate reacts with a solution of lead(II) nitrate. What          precipitate     , if any, will form?   
+      
+        Pb     3     (PO     4     )     2  
+        NaNO     3         
+        Pb     (NO     3     )     2         
+        No precipitate will form  
+                                                      
+                                                  style.visibility                                           
+                                       Concept Check, 3  
+                             Consider a solution that has the following ions:  
+           
+      
+        When all are allowed to react (and there are plenty available of each), how many          different solids      will form? List them.  
+                                                                                                                                                                                                                                                                                                           Five          different solids will form: PbCl         2         , PbSO         4         , Pb         3         (PO         4         )         2         ,          AgCl         , and Ag         3         PO         4  
+                                                      style.visibility                                        
+                                  Types of Equations for Reactions in Aqueous Solutions  
+                             Molecular Equation  
+     Shows the complete formulas of all reactants and products  
+     Does not give a very clear picture of what actually occurs in solution  
+   
+                                                                       
+                                  Types of Equations for Reactions in Aqueous Solutions      (continued 1)   
+                             Complete Ionic Equation  
+       All substances that are           strong electrolytes are represented as ions   
+   
+   
+   
+   
+     Note: K     +      and NO     3     –      ions are present in solution both before and after the reaction  
+         Spectator ions:          Ions that do not participate directly in a reaction in solution  
+                                                                       
+                                  Types of Equations for Reactions in Aqueous Solutions      (continued 2)   
+                             Net Ionic Equation  
+     An equation that includes only those components      that are directly involved in the reaction   
+   
+   
+   
+     Note: Spectator ions are not included in the net ionic equation  
+                                                                       
+                                       Concept Check, 4  
+                             Write the correct molecular equation, the complete ionic equation, and the net ionic equation for the reaction between cobalt(II) chloride and sodium hydroxide  
+      
+        Molecular Equation     :  
+            CoCl         2         (aq)          + 2NaOH         (aq)                              Co(OH)         2         (s)          + 2NaCl         (aq)  
+          
+      
+                                                      style.visibility                                                  style.visibility                                        
+                                       Concept Check, 4      (continued)  
+                             Complete Ionic Equation     :  
+               Co         2+         (         aq         ) + 2Cl                   (         aq         ) + 2Na         +         (         aq         ) + 2OH                   (         aq         )                       
+               				Co(OH)         2         (         s         ) + 2Na         +         (         aq         ) + 2Cl                   (         aq         )  
+         
+           Net Ionic Equation     :  
+            Co         2+         (         aq         ) + 2OH                   (         aq         )                     Co(OH)         2         (         s         )   
+  
+              
+                                  Arrhenius Acids and Bases  
+                               Strong acid:               A strong electrolyte that produces H       +        ions (protons) when it is dissolved in water       
+                                                                       
+                                  Strong Acids Behave as Strong Electrolytes  
+                                            
+                                  Arrhenius Acids and Bases      (continued 1)   
+                             Strong base:      A substance that produces hydroxide ions (OH        −     ) in water        
+         Most common examples-          NaOH          and KOH  
+  
+                                                                                                                                
+                                  Arrhenius Acids and Bases      (continued 2)   
+                         The products of the reaction of a strong acid and a strong base are water and a salt  
+     Salt               Ionic compound  
+    Net ionic equation  
+     H     +     (     aq     )      + OH     −     (     aq     )                   H     2     O     (l)  
+    Reaction of H     +      and OH     −      is called an acid–base reaction  
+     H     +                   acidic ion   
+     OH     −                   basic ion   
+              
+                                  Summary of Strong Acids and Strong Bases  
+                         Common strong acids include aqueous solutions of HCl, HNO     3     , and H     2     SO     4   
+    A strong acid is a substance that completely dissociates (ionizes) in water (into an H     +      ion and an anion)  
+    A strong base is a metal hydroxide compound that is very soluble in water  
+     The most common strong bases are      NaOH      and KOH, which completely dissociate into separated ions (Na     +      and OH     –      or K     +      and OH     –     ) when they are dissolved in water   
+              
+                                  Summary of Strong Acids and Strong Bases      (continued 1)   
+                         The net ionic equation for the reaction of a strong acid and a strong base is always the same: it shows the production of water  
+    In the reaction of a strong acid and a strong base, one product is always water and the other is always an ionic compound called a salt, which remains dissolved in the water  
+     This salt can be obtained as a solid by evaporating the water  
+      
+              
+                                  Summary of Strong Acids and Strong Bases      (continued 2)   
+                         The reaction of H     +      and OH     –      is often called an acid–base reaction, where H     +      is the acidic ion and OH     –      is the basic ion  
+              
+                                       Concept Check, 5  
+                             The          net ionic equation      for the reaction of HNO     3      and LiOH is  
+      
+        H     +      + NO     3     –      + LiOH        →      H     2     O + LiNO     3  
+        HNO     3      + LiOH        →      H     2     O + LiNO     3         
+        H     +      + OH     –             →      H     2     O    
+        Li     +      + NO     3     –             →      LiNO     3  
+                                                      
+                                                  style.visibility                                           
+                                  Oxidation–Reduction Reaction  
+                         A reaction that involves a transfer of electrons  
+         2Mg         (s)          + O         2         (g)                              2MgO         (s)  
+    Reactions between metals and nonmetals involve a transfer of electrons from the metal to the nonmetal  
+                                            
+                                       Concept Check, 6  
+                                Which of the following          best      describes what is happening in the following representation of an oxidation–reduction reaction?  
+             
+             
+         
+           a)	Metal Al gains 3 e     –      and O     2 –      in Fe     2     O     3      loses these 3 e     –   
+           b)	Metal Al gains 3 e     –      and Fe     3+      in Fe     2     O     3      loses these 3 e     –  
+           c)	Metal Al loses 3 e     –      and O     2 –      in Fe     2     O     3      gains these 3 e     –   
+           d)	Metal Al loses 3 e     –      and Fe     3+      in Fe     2     O     3      gains these 3 e     –   
+                                                                                    
+                                                  style.visibility                                           
+                                  Characteristics of Oxidation–Reduction Reactions  
+                         A metal–nonmetal reaction can always be assumed to be an oxidation–reduction reaction, which involves electron transfer  
+    Two nonmetals can also undergo an oxidation–reduction reaction  
+     At this point, we can recognize these cases only by looking for O     2      as a reactant or product  
+     When two nonmetals react, the compound formed is not ionic  
+              
+                                  Driving Forces for a Reaction  
+                            Formation of a solid   
+       Formation of water  
+       Transfer of electrons  
+       Formation of a gas  
+              
+                                  Precipitation Reaction   
+                         Formation of a solid when two solutions are mixed  
+     
+     
+     
+        Double-displacement reaction   
+     AB + CD              AD + CB   
+                                                                       
+                                  Acid–Base Reaction  
+                         Involves an H     +      ion that ends up in the product as water  
+         H         +         (         aq         )          + OH         −         (         aq         )                              H         2         O         (l)  
+         HCl         (         aq         )          + KOH         (         aq         )                              H         2         O         (l)          +          KCl         (         aq         )            
+              
+                                  Oxidation–Reduction Reaction      (continued)   
+                         Transfer of electrons  
+         2Li         (s)          + F         2         (g)                              2LiF         (s)  
+              
+                                  Formation of a Gas  
+                             Oxidation–reduction reaction  
+    Single-replacement reaction  
+     A + BC              B + AC  
+                                                                                                     
+                                  Combustion Reactions  
+                         Involve oxygen and produce energy (heat) so rapidly that a flame results  
+         CH         4         (g) + 2O         2         (g)                     CO         2         (g) + 2H         2         O(g)  
+     Special class of oxidation–reduction reactions  
+                                            
+                                  Synthesis (Combination) Reactions  
+                         Involve the formation of a compound from simpler materials  
+         C(s) + O         2         (g)                     CO         2         (g)  
+     Special class of oxidation–reduction reactions  
+              
+                                  Decomposition Reactions  
+                         Occur when a compound is broken down into simpler substances  
+         2H         2         O(l)                     2H         2         (g) + O         2         (g)  
+     Special class of oxidation–reduction reactions  
+              
+                                  Summary  
+                                            
+                                       Concept Check, 7  
+                            The reaction between hydrogen and oxygen to form water seen below can be classified as a(n) ___________  
+      
+        		 2H     2      + O     2             →      2H     2     O  
+      
+        oxidation–reduction reaction  
+        synthesis reaction  
+        combustion reaction  
+        All of the above   
+                                                      
+                                                  style.visibility                                           
+                                      
+                        
+              
+                                      
+                        
+              
+                                      
+                        
+              
+                                      
+                        
+              
+                                      
+                        
+              
+                                      
+                        
+              
+                                      
+                        
+              
+                                      
+                        
+              
+                                      
+                        
+              
+                                      
+                        
+              
+                                      
+                        
+              
+                                      
+                        
+              
+                                      
+                        
+              
+                                      
+                        
+              
+                                      
+                        
+             

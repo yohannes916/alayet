@@ -1,0 +1,216 @@
+CHAPTER 10: THE SHAPES
+    OF MOLECULES
+Lewis Symbols (Chapter 9.1)
+• For a main group element, the group
+ number (1A – 8A; 1 - 8) is the valence
+ number of electrons in the atom.         Oxygen – 6 valence electrons
+
+• This is how many dots are needed in
+ the electron dot symbol.
+• Add dots 1 at a time on each side of
+ the element symbol.
+                                                O
+• Pair the dots up once all four sides
+ have 1 dot until no valence electrons
+ are left.
+                                                                  2
+Octet Rule
+• Atoms gain, lose or share electrons when bonding
+ to fill the outer valence shell with 8 electrons.
+• Hydrogen and Lithium only hold 2 electrons in their
+ outer valence shell.
+• Applies to nearly all period 2 elements and many
+ others.
+
+
+                                                        3
+Lewis Structures
+• A structural formula which consists of electron-dot
+ symbols.
+• Bonding pairs are indicated with a line
+• Lone pairs are indicated as dots
+
+
+
+
+                                                        4
+Writing Lewis Structures
+• Place atoms relative to each other
+ • Atom with the lower group number is placed in the
+  center. (CCl4)
+  • Needs more electrons to attain an octet, usually has
+    lower electronegativity.
+  • If atoms are in the same group number, the atom with
+    the higher period number goes in the center. (SO3)
+  • Hydrogen is never a central atom since it only forms 1
+    bond.
+                                                             5
+Writing Lewis Structures
+• Determine the total number of electrons the
+molecule needs (N):
+• N = 8 x (# of non-hydrogen atoms) + 2 x (# of
+  hydrogen atoms)
+  • Ex.
+   • CCl4
+
+
+
+
+                                                6
+Writing Lewis Structures
+• Determine the total number of valence electrons
+ available (A)
+ • CCl4
+  • C – 4 valence electrons
+  • Cl – 7 valence electrons
+  • 1 × C 4e −   + 4 × Cl 7e −   =32 valence e −
+ • For a polyatomic ion you add one electron for each
+  negative charge or subtract one electron for each
+  positive charge
+  • BF4-
+  • NH4+
+
+                                                        7
+Writing Lewis Structures
+• Determine the number of Shared electrons in the
+ molecule (S):
+ •S = N – A
+  • Ex:
+    • CCl4
+
+• Determine the number of bonding pairs:
+         S
+  • bp =
+         2
+• Determine the number of lone pairs of electrons to
+  complete octets of non-hydrogen atoms:
+         A S A
+  • lp =   − =    − bp
+         2  2 2
+                                                       8
+Writing Lewis Structures
+• Draw a single line for each bonding pair from the
+  central atom to an atom surrounding the central atom.
+• Distribute the lone pairs of electrons so each atom
+  ends up with 8 electrons.
+  • Place lone pairs on surrounding atoms (more
+    electronegative atoms first).
+  • If electrons remain after the surrounding octets are
+    full place the remaining electrons on the central
+    atom.
+  • Ex.
+   • BF4-
+   • NH4+
+                                                           9
+Writing Lewis Structures
+• Write the Lewis Structure for:
+ a) OF2
+ b) CH2Br2
+ c) AlCl4-
+
+• Write the Lewis Structure for:
+ a) NH3O (hydroxylamine)
+ b) C2H6O (dimethyl ether)
+
+
+                                   10
+Writing Lewis Structures
+• If a central atom does not form an octet then
+  one or more multiple bonds needs to be
+  formed.
+• Ex.
+  • O2
+  • CO
+  • N2H2
+                                                  11
+Resonance Structures
+• Resonance is the delocalized sharing of electrons.
+  • The electron pair is spread out over a few atoms, not just
+  shared between 2.
+• Resonance structure – one of two or more Lewis
+ Structures for a species that cannot be depicted by a single
+ structure.
+ • These structures differ in the position of bonding and lone
+   electron pairs only!!
+   • Ex.
+      • O3
+      • NO2
+ • The molecule is a resonance hybrid (average) of the
+  resonance structures.                                          12
+Bond Orders
+• A bond order is the number of electron pairs a
+ specific number of atoms shares.
+• In resonance structures partial bonding is
+ observed.
+• You can calculate the bond order with the
+ calculation:
+               Number of electron pairs
+ • Bond order=
+               Number of bonded atoms
+ • Ex.
+                                                   13
+  • CO 2-
+Formal Charge
+• The hypothetical charge an atom would have if
+ bonding electrons were equally shared.
+ • Formal charge = # of valence e – (# unshared valence e-
+   1
+  + # of shared valence e-)
+   2
+                             BP electrons
+  • FC = V – (LP electrons +              )
+                                  2
+• Ex.
+  • CO32-
+                                                             14
+Which Resonance Structure is Most
+Important?
+• The Major resonance structure will have:
+  • Smaller formal Charge
+ • The same non-zero formal charges are not on adjacent
+   atoms
+ • The more negative formal charge is on the more
+   electronegative atom.
+   • Ex.
+     • NCO-
+
+
+
+                                                          15
+Exceptions to the Octet Rule
+• Central Atom is an Electron-Deficient Atom
+  • Molecules in which beryllium or boron is the
+  central atom.
+  • Fewer then 8 valence electrons
+    • Ex.
+      • BeCl2
+      • BF3
+
+ • React with other compounds to obtain an octet.
+  • Ex.
+    • BF3(g) + NH3(g)
+                                                    16
+Exceptions to the Octet Rule
+ •Central atom has an Odd Number of
+ Electrons
+ • Molecules contain one unpaired electron
+  • Is paramagnetic and considered a free radical
+  • Extremely reactive with hydrogen in biomolecules
+   causing gene disruption
+   • Ex.
+     • NO2(g) +NO2(g)
+                                                    17
+Exceptions to the Octet Rule
+• Central Atom can have an Expanded Valence Shell
+ • Central Atom must be large and have empty orbitals
+ • Occur in non-metals of Period 3 or higher!
+ • Central Atom Bonds to more than 4 atoms.
+   • Ex.
+    • PCl5
+    • SO42-
+
+• Central Atom Bonds to fewer than 4 atoms
+  • Ex.
+    • SF4
+                                                        18
+

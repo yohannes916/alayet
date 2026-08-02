@@ -1,0 +1,399 @@
+4/24/2023 and 4/25/2023
+                        VSEPR
+• Valence-Shell Electron-Repulsion Theory
+ • Molecules minimize electron repulsions.
+ • Each group of valence electrons around the central atom
+   is located as far away as it can be from the others.
+ • An electron group can be a lone pair, a lone electron, a
+   single bond, a double bond, or triple bond.
+ • The electron groups around the central atom affect the
+   shape of the molecule.
+ • Molecular shape is a three-dimensional arrangement of
+   nuclei joined by bonding groups.
+                                                              2
+                    Molecular Shapes
+• VSEPR Theory is applied to a Lewis Structure to determine the
+ molecular shape.
+• Maximum electron repulsion occurs in five different electron group
+ arrangements.
+
+
+
+
+                                                                       3
+     Molecular Shape Classifications
+• There is a difference in the electron-group arrangement of a
+ molecule and the molecular shape.
+• Electron-group Arrangement – The bonding electron groups (shared
+ pairs of electrons) and the non-bonding electron groups (lone pairs
+ of electrons) around the central atoms.
+• Molecular Shape – The relative nuclei that are connected only by the
+ bonding groups of electrons.
+• The image on the previous slide is an example of molecular shapes
+ that are observed when all the electron groups around the central
+ atom are bonding groups of electrons.
+                                                                         4
+    Molecular Shape Classifications
+• If there are non-bonding groups around a central atom
+ different molecular shapes are observed.
+• When classifying molecular shapes an AXmEn designation
+ can be used.
+ • A = Central Atom
+ • X = Surrounding Atom
+ • E = Non-bonding Valence Electron Group
+ • m and n are integers
+
+
+                                                           5
+                        Bond Angle
+• Formed when bonds of joining nuclei of two surrounding atoms to
+ the central atom’s nucleus.
+• Ideal bond angles (the bond angles on slide 3) are determined using
+ geometry.
+ • Observed when all bonding groups are the same and are connected
+   the same type of atom.
+
+
+
+
+                                                                        6
+                        Bond Angle
+• Real bond angles deviate from ideal bond angles when the bonding
+ groups are not the same or connected to the central atom differently.
+
+
+
+
+                                                                     7
+Linear Electron
+    Group
+ Arrangement
+• Two electron groups
+  are connected to a
+  central atom in
+  opposite directions.
+• Molecular shape is
+  linear and the bond
+  angle of 180°.
+
+                         8
+       Trigonal Planar
+       Electron Group
+        Arrangement
+• Three electron groups are
+  connected to a central atom
+  pointing to corners of an
+  equilateral triangle.
+• Bond Angles 120°.
+• Molecular shapes:
+  1.    All bonding groups are
+        present.
+  2.    One bonding group contains
+        a double bond.
+  3.    A lone pair is present.
+                                     9
+        How a Double Bond Effects Bond
+                   Angles
+• The double bond has more electron density than the single bonds.
+
+• Repels the electrons in a single bond more than a single bond repels a
+ single bond.
+• Ex.
+  • Formaldehyde
+
+
+
+
+                                                                           10
+  Tetrahedral
+Electron Group
+ Arrangement
+• Four electron groups
+  are connected to a
+  central atom pointing
+  to corners of an
+  tetrahedron.
+• Polyhedron in which
+  four faces are made of
+  equilateral triangles.
+• Bond angle is 109.5°.
+
+
+                           11
+             Tetrahedral Electron Group
+                    Arrangement
+• All molecules and ions with four electron groups will have the
+     tetrahedral arrangement.
+1.     All Bonding Groups (AX4)– Common electron geometry for organic
+       molecules; Tetrahedral Molecular Shape.
+     • Ex.
+       • Methane
+
+
+
+
+                                                                        12
+              Tetrahedral Electron Group
+                     Arrangement
+2.    One Lone Pair (AX3E) – Has a single lone pair of electrons with
+      stronger repulsions to other electron groups.
+       • Bond angle of bonding groups if 107.3°; Trigonal Pyramidal Molecular
+        Shape.
+     • Ex.
+        • Ammonia
+
+
+
+
+                                                                                13
+                  Tetrahedral Electron Group
+                         Arrangement
+3.     Two Lone Pairs (AX2E2) - Has two lone pair of electrons with
+       stronger repulsions than a single lone pair of electrons.
+       • Bond angle of bonding groups if 104.5°; Bent Molecular Shape (V-
+         Shaped Molecule).
+     • Ex.
+        • Water
+
+
+
+
+                                                                            14
+      Trigonal
+    Bipyramidal
+   Electron Group
+    Arrangement
+• Five electron groups all
+  repelling each other.
+• Two trigonal Pyramids
+  sharing a common base.
+   • Equatorial Groups (3)–
+     Reside on trigonal plane;
+     120°.
+   • Axial Groups (2) – Reside
+     above and below the
+     trigonal plane; separated
+     from the equatorial groups
+     by a 90° angle.
+
+                                  15
+ Trigonal Bipyramidal Electron Group
+             Arrangement
+• Electron repulsion strength affects where lone pairs reside.
+
+• Equatorial – equatorial (120°) electron repulsions are weaker than
+ axial-equatorial (90°) electron repulsions.
+• Due to lone pairs having stronger repulsions lone pairs occupy
+ equatorial positions when possible.
+
+
+
+
+                                                                       16
+ Trigonal Bipyramidal Electron Group
+             Arrangement
+• All Bonding Groups (AX5) – Trigonal Bipyramidal Shape.
+  • Five identical surrounding atoms has ideal bond angles.
+
+• Ex.
+  • Phosphorous Pentachloride
+
+
+
+
+                                                              17
+     Trigonal Bipyramidal Electron Group
+                 Arrangement
+2.     One Lone Pair (AX4E) – Seesaw molecular shape.
+     • The lone pair is in an equatorial position minimizing electron
+       repulsions.
+     • Bond angles are 101.5° and 86.8°.
+
+• Ex.
+  • Sulfur tetrafluoride
+
+
+
+
+                                                                        18
+     Trigonal Bipyramidal Electron Group
+                 Arrangement
+3.    Two Lone Pairs (AX3E2) – T-shaped molecule.
+     • Both lone pairs are in equatorial position.
+     • Axial-equatorial bond angle reduced to 86.2°.
+
+• Ex.
+     • Bromine trifluoride
+
+
+
+
+                                                       19
+     Trigonal Bipyramidal Electron Group
+                 Arrangement
+4.     Three Lone Pairs (AX2E3) – Linear molecular shape.
+     • Three equatorial lone pairs give the two axial boning pairs a 180°
+       bond angle.
+• Ex.
+  • Triiodide ion
+
+
+
+
+                                                                            20
+   Octahedral
+ Electron Group
+  Arrangement
+• Six electron groups
+ all repelling each
+ other.
+  • Polyhedron made of
+    eight equilateral
+    triangles and six
+    identical vertices.
+  • Ideal bond angles are
+    90°.
+
+                            21
+             Octahedral Electron Group
+                   Arrangement
+1.     All Bonding Groups (AX6) – Octahedral Shape
+     • Bond Angles 90°.
+
+• Ex.
+  • Sulfur hexafluoride
+
+
+
+
+                                                     22
+             Octahedral Electron Group
+                   Arrangement
+2.     One Lone Pair (AX5E) – Square pyramidal molecular shape.
+     • Lone Pair causes bond angles to reduce to 81.9°.
+
+• Ex.
+  • Iodine pentafluoride
+
+
+
+
+                                                                  23
+               Octahedral Electron Group
+                     Arrangement
+3.    Two Lone Pairs (AX4E2) – Square planar molecular shape.
+     • Lone pairs are opposite each other to reduce lone pair – lone par
+       repulsions.
+     • Bond angles remain 90° since each lone pair reduces the bond angle by
+       the same magnitude.
+• Ex.
+     • Xenon tetrafluoride
+
+
+
+
+                                                                               24
+     Using VSEPR to Determine Molecular Shape
+1.     Write the Lewis Structure of the molecular formula.
+     • Can see the number of electron groups around central atom and
+       relative atom placement.
+2.     Assign one of the five electron-group arrangements.
+     • Count all electron groups around the central atom.
+
+3.    Predict the ideal bond angle and how any lone pairs or double
+      bonds may cause a deviation in bond angles.
+4.    Draw the name and molecular shape by counting bonding and non-
+      bonding electron groups.
+
+
+
+                                                                       25
+Using VSEPR to Determine Molecular Shape
+
+• Ex.
+ • Draw the molecular shape and predict the bond angle
+   (relative to the ideal bond angle) of SOF4.
+
+
+
+
+                                                         26
+   Molecular Shapes Containing more
+        than one Central Atom
+• A molecule containing more than one central atom is a composite of
+ the shapes around each central atom.
+• Ex.
+  • Ethane – has two central carbon atoms with no lone pairs.
+ • Shaped as two tetrahedra that overlap.
+
+
+
+
+                                                                       27
+         Polarity and Molecular Shape
+• The polarity of a molecule influences a molecules melting point, boiling
+ point, solubility, reactivity, and biological function.
+• Covalent bonds containing atoms that unequally share electrons are polar.
+
+• In a large molecule the shape of the molecule and bond polarity determine
+ the molecules polarity.
+• A molecule is polar when there is an uneven distribution of charge over the
+ whole molecule or most of the molecule.
+• Polar molecules can be oriented in an electric field in which the partially
+ charged ends are attracted to the oppositely charged magnetic plates.
+• Molecular polarity is measured by a dipole moment.
+  • Unit: debye (D)    1 D = 3.34 x 10-30 C ∙ m
+                                                                                28
+Polarity and Molecular Shape
+
+
+
+
+                               29
+          Bond Polarity, Angle, and Dipole
+                     Moment
+• A molecule is not always polar though it may contain polar bonds.
+
+• The shape of the molecule and atoms around the central atom must be considered.
+
+• Three examples:
+
+1.     CO2
+     • C EN = 2.5; O EN = 3.5
+
+2.     H2O
+     • H EN = 2.1; O EN = 3.5
+
+3.     Molecules with the same shape and different polarities.
+     • CCl4 and CHCl3
+       • Cl EN = 3.0
+
+
+                                                                                30
+            Predicting Molecular Polarity
+• Ex.
+  • Predict the bond direction of the dipole and molecular polarity of:
+  1.    Ammonia
+  2.    Boron trifluoride
+  3.    Carbonyl sulfide
+
+
+
+
+                                                                          31
+How Molecular Polarity Effects
+    Molecular Behavior
+
+
+
+
+                                 32
+       How Molecular Polarity Effects
+           Molecular Behavior
+• Atomic property influences on a substance's behavior.
+
+
+
+
+                                                          33
+

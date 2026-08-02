@@ -1,0 +1,317 @@
+ 
+                                  Chapter 8  
+                    Chemical Composition       
+                                                                                                                                                                                                  Copyright ©2019 Cengage Learning. All Rights Reserved. May not be scanned, copied or duplicated, or posted to a publicly accessible website, in whole or in part.  
+              
+                                  Average Mass  
+                         Objects do not need to have identical masses to be counted by weighing  
+     All one needs to know is the average mass of the objects  
+    To count the atoms in a sample of a given element by weighing, one must know the mass of the sample and the average mass for that element  
+                     2   
+              
+                                  Averaging the Mass of Similar Objects  
+                          Example- What is the mass of 1000 jelly beans?  
+     Not all jelly beans have the same mass  
+     Suppose we weigh 10 jelly beans and find the following:  
+     
+      
+      
+      
+      
+      
+      
+                                                                                                                                           Bean  
+                                                                                 1  
+                                                                                 2  
+                                                                                 3  
+                                                                                 4  
+                                                                                 5  
+                                                                                 6  
+                                                                                 7  
+                                                                                 8  
+                                                                                 9  
+                                                                                 10  
+                                                                                        Mass  
+                                                                                 5.1 g  
+                                                                                 5.2 g  
+                                                                                 5.0 g  
+                                                                                 4.8 g  
+                                                                                 4.9 g  
+                                                                                 5.0 g  
+                                                                                 5.0 g  
+                                                                                 5.1 g  
+                                                                                 4.9 g  
+                                                                                 5.0 g  
+                                                                            3   
+              
+                                  Averaging the Mass of Similar Objects      (continued)   
+                         Now, we can find the average mass of a bean  
+  
+  
+  
+  
+  
+    Finally, we can multiply the average mass of a single bean with the total number of beans to find the average mass  
+  
+                                                                                   4        
+              
+                                  Averaging the Mass of Different Objects  
+                         Consider two samples containing different types of components, A and B  
+     Both samples are likely to contain the same number of components if the ratio of the sample masses is the same as the ratio of the masses of the individual components of A and B  
+                     5   
+              
+                                       Exercise  
+                             	A pile of marbles weigh 394.80 g. 10 marbles weigh 37.60 g. How many marbles are in the pile?  
+                                                      
+                                                                              6   
+              
+                                  Determining the Atomic Mass  
+                         Atoms have tiny masses, so scientists created a unit to avoid using very small numbers  
+       		1      atomic mass unit (     amu     )      = 1.66             10     –24      g   
+    The average atomic mass for an element is the weighted average of the masses of all the isotopes of the element  
+                     7   
+              
+                                  Average Atomic Mass for Carbon  
+                         Even though natural carbon does not contain a single atom with a mass of 12.01, carbon is treated as though it is composed of only one type of atom with the same  mass  
+    This enables counting atoms of natural carbon by weighing a sample of carbon  
+                     8   
+              
+                                  Example Using Atomic Mass Units  
+                                Calculate the mass (in          amu         ) of 431 atoms of carbon  
+    The mass of 1 carbon atom = 12.01      amu   
+    Use the relationship as a conversion factor  
+                                                                              9   
+              
+                                       Exercise, 1       
+                            	         Calculate the mass, in          amu         , of a sample of aluminum that contains 75 atoms  
+      
+        			              	       
+          
+          
+            				               2024           amu        
+                                                                              10   
+              
+                                  Definition of Mole  
+                         The number equal to the number of carbon atoms in 12.01 grams of carbon  
+    1 mole of anything = 6.022 x 10     23      units of that thing,      Avogadro     ’     s number  
+    1 mole of C = 6.022 x 10     23      C atoms = 12.01 g C  
+                     11   
+              
+                                  Understanding the Mole Concept  
+                         A sample of an element with a mass equal to that element     ’     s average atomic mass (expressed in g) contains one mole of atoms (6.022 × 10     23      atoms)  
+    Comparison of 1-Mol samples of various elements  
+                                             12   
+              
+                                       Concept Check, 1  
+                             Determine the number of copper          atoms      in a 63.55-g sample of copper  
+      
+        			           6.022×10          23           Cu atoms   
+                     13   
+              
+                                       Concept Check, 2  
+                             	     Which of the following is closest to the average mass of          one atom      of copper?  
+      
+        a)  63.55 g	 	 	  
+        b)  52.00 g  
+        c)  58.93 g  
+        d)  65.38 g         
+        e)  1.055 x 10     -22      g  
+      
+                                                      
+                                                                              14   
+                                                  style.visibility                                           
+                                       Concept Check, 3  
+                             Calculate the number of iron          atoms      in a 4.48-mole sample of iron  
+      
+        			   
+      
+        			  
+        			        
+                     15   
+              
+                                       Concept Check, 4  
+                             A sample of 26.98 grams of Al has the same number of atoms as _______ grams of Au  
+      
+        a)		26.98 g  
+        b)		13.49 g  
+        c)		197.0 g  
+        d)		256.5 g  
+                     16   
+              
+                                       Concept Check, 5  
+                             	Which of the following 100.0-g samples contains the          greatest      number of atoms?  
+      
+          Magnesium  
+          Zinc  
+          Silver  
+      
+                                                      
+                     17   
+                                                  style.visibility                                           
+                                       Exercise, 2  
+                             	       Rank the following according to number of atoms (         greatest to least       ):  
+        
+           107.9 g of silver  
+           70.0 g of zinc  
+           21.0 g of magnesium        
+      
+        			         b)          a)          c)  
+                     18   
+              
+                                  Conceptual Problem Solving  
+                         Principles to be followed  
+     Where are we going?  
+     Read the problem and decide on the final goal  
+     How do we get there?  
+     Work backward from the final goal to decide where to start  
+     Reality check  
+     Does my answer make sense? Is it reasonable?  
+                     19   
+              
+                                  Calculating Molar Mass  
+                         Mass in grams of one mole of the substance  
+       		Molar mass of N = 14.01 g/mol  
+     
+       		Molar mass of H     2     O = 18.02 g/mol  
+       			  
+       		Molar mass of      Ba     (NO     3     )     2      = 261.35 g/mol  
+       			       
+                     20   
+              
+                                  Calculations Using Molar Mass  
+                              
+           Moles of a compound =  
+         
+         
+       
+       
+         Mass of a sample (g) = (moles of the sample)(molar mass of the compound)  
+                                                                                                                                                                                                                                                                                  21   
+              
+                                       Exercise, 3       
+                                	What is the          molar mass      of nickel(II) carbonate?  
+         
+           	a)	118.7 g/mol  
+           	b)	134.7 g/mol   
+           	c)	178.71 g/mol  
+           	d)	296.09 g/mol   
+                                  	        
+                     22   
+              
+                                       Exercise, 4       
+                                	     Consider equal mole samples of N     2     O, Al(NO     3     )     3     , and KCN. Rank these from          least to most      number of nitrogen atoms in each sample.  
+           	a)	KCN, Al(NO     3     )     3     , N     2     O  
+           	b)	Al(NO     3     )     3     , N     2     O, KCN  
+           	c)	KCN, N     2     O, Al(NO     3     )     3   
+           	d)	Al(NO     3     )     3     ,      KCN     ,      N     2     O  
+                     23   
+              
+                                  	Exercise, 5  
+                       
+       Consider separate 100.0-g samples of each of the following:   
+     H     2     O, N     2     O, C     3     H     6     O     2     , CO     2   
+     Rank them from greatest to least number of oxygen  
+                     24   
+              
+                                       Exercise, 6       
+                                	How many          grams      of fluorine are present in one molecule of boron      trifluoride     ?  
+         
+           	a)	3.155 × 10     –23      g   
+           	b)	9.465 × 10     –23      g  
+           	c)	6.022 × 10     23      g  
+           	d)	3.433 × 10     25      g  
+                     25   
+              
+                                  Mass Percent of an Element in a Compound  
+                                                                                   
+  
+    Each molecule of ethanol, for instance, contains two carbon atoms, six hydrogen atoms, and one oxygen atom  
+     For carbon content in C     2     H     5     OH  
+  
+                                                                                                                                                                                 26   
+              
+                                       Exercise, 7  
+                             	Morphine, derived from opium plants, has the potential for use and abuse. Its formula is C     17     H     19     NO     3     . Determine the          percent by mass      for          carbon      in this compound.  
+        a)	12.0%  
+        b)	54.8%	  
+        c)	67.9%  
+        d)	71.6%       
+                     27   
+              
+                                  	Exercise, 8  
+                            Consider separate 100.0-gram samples of each of the following:   
+     H     2     O, N     2     O, C     3     H     6     O     2     , CO     2   
+     Rank them from highest to lowest percent oxygen by mass  
+   
+     H     2     O, CO     2     , C     3     H     6     O     2     , N     2     O  
+                     28   
+              
+                                  Empirical Formula  
+                         Formula of a compound that expresses the smallest whole-number ratio of the atoms present   
+    The empirical formula can be found from the percent composition of the compound  
+                     29   
+              
+                                  Formulas  
+                         Empirical formula = CH  
+     Simplest whole-number ratio  
+    Molecular formula = (empirical formula)n 					        [n = integer]  
+    Molecular formula = C     6     H     6      = (CH)     6  
+     Actual formula of the compound  
+                     30   
+              
+                                  Steps for Determining the Empirical Formula of a Compound  
+                                A gaseous compound containing carbon and hydrogen was analyzed and found to consist of 83.65% carbon by mass. Determine the empirical formula of the compound.  
+    Obtain the mass of each element present (in grams)  
+    Assume you have 100 g of the compound  
+       83.65% C = 83.65 g C   
+       (100.00 – 83.65)  
+       16.35% H = 16.35 g H   
+                     31   
+              
+                                       Steps for Determining the Empirical Formula of a Compound      (continued 1)  
+                          Determine the number of moles of each type of atom present  
+             	   
+                                                                              32   
+              
+                                       Steps for Determining the Empirical Formula of a Compound      (continued 2)  
+                          Divide the number of moles of each element by the smallest number of moles to convert the smallest number to 1  
+     If all the numbers obtained are integers (whole numbers), then these integers will be the subscripts in the empirical formula  
+     If one or more of these numbers are not integers, proceed to the next step     
+                                                                              33   
+              
+                                       Steps for Determining the Empirical Formula of a Compound      (continued 3)  
+                          Multiply the numbers derived in the previous step by the smallest integer that will convert all of them to whole numbers  
+     This set of whole numbers represents the subscripts in the empirical formula  
+       
+         	C: 1 × 3 = 3  
+         	H: 2.33 × 3 = 7  
+         	The empirical formula is C       3       H       7  
+                     34   
+              
+                                       Exercise, 9  
+                             	The composition of      adipic      acid is 49.3% C, 6.9% H, and 43.8% O (by mass). What is the          empirical formula     ?  
+           
+        			                C         3         H         5         O         2  
+                     35   
+              
+                                  Molecular Formula of a Compound   
+                         The molecular formula is the exact formula of the molecules present in a substance  
+    The molecular formula is always an integer multiple of the empirical formula           Molecular formula = (empirical formula)n      
+              where n is a whole number  
+                     36   
+              
+                                       Steps for Determining the Empirical Formula of a Compound      (continued 4)  
+                             	         A gaseous compound containing carbon and hydrogen was analyzed and found to consist of 83.65% carbon by mass. The molar mass of the compound is 86.2 g/mol. The empirical formula was determined to be C         3         H         7         . What is the molecular formula of the compound?       
+            		     Molar mass of C     3     H     7      = 43.086 g/mol  
+      
+      
+        		  
+        		C     3     H     7             × 2      = C     6     H     14        
+                                                                              37   
+              
+                                       Exercise, 10  
+                             	     The composition of      adipic      acid is 49.3% C, 6.9% H, and 43.8% O (by mass). The molar mass of the compound is about 146 g/mol. The empirical formula is C     3     H     5     O     2     . What is the          molecular formula     ?  
+      
+        			                C         6         H         10         O         4        
+                     38   
+             

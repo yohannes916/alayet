@@ -1,0 +1,322 @@
+ 
+                                       Chapter 12        
+                      Chemical Bonding  
+                                                                                                                                                                             Copyright ©2019 Cengage Learning. All Rights Reserved. May not be scanned, copied or duplicated, or posted to a publicly accessible website, in whole or in part.  
+              
+                                  Chemical Bonds  
+                         Forces that hold groups of two or more atoms together and make them function as a unit  
+              Bond energy      
+           Energy required to break a chemical bond        
+                                           
+                                  Ionic Bonding  
+                                   Ionic compo          und                  results when a metal reacts with a nonmetal  
+           Electrons are transferred from an atom that can lose electrons relatively easily to an atom that has a high affinity for electrons        
+                                           
+                                  Covalent Bonding  
+                                Covalent bonds result when electrons are shared by nuclei        
+                                           
+                                  Polar Covalent Bond  
+                         Unequal sharing of electrons between two atoms  
+    One atom attracts the electrons more than the other atom  
+    Results in the development of bond polarity (partial positive and negative charges)       
+                                           
+                                  	Concept Check, 1  
+                         What is meant by the term chemical bond?  
+    Why do atoms bond with each other to form molecules?  
+    How do atoms bond with each other to form molecules?  
+              
+                                  Nature of Bonds and Their Relationship to        Electronegativity   
+                             Electronegativity  
+     Relative ability of an atom in a molecule to attract shared electrons to itself  
+    On the periodic table, electronegativity generally increases across a period and decreases down a group for the representative elements  
+    Range of electronegativity values is from 4.0 for fluorine (the most electronegative element) to 0.7 for cesium and francium (the least electronegative element)  
+              
+                                  Figure 12.3: Electronegativity Values for Selected Elements  
+                                           
+                                  	Concept Check, 2  
+                         If lithium and fluorine react, which has          more attraction      for an electron? Why?  
+    In a bond between fluorine and iodine, which has          more attraction      for an electron? Why?  
+                                                      
+                                                      
+              
+                                  	Concept Check, 3  
+                         What are the          general trends      across and down the periodic table for electronegativity?   
+    Explain the trend  
+              
+                                       Concept Check, 4  
+                               Rank the following from smallest to largest atomic radius:  
+           		     Ar     , S     2−     , Ca     2+     , K     +     , Cl     −   
+         
+           a)	     Ar      < K     +      < Ca     2+      < S     2−      < Cl     −        
+           b)	Ca     2+      < K     +      <      Ar      < Cl     −      < S     2−   
+           c)	     Ar      < Cl     −      < S     2−      < Ca     2+      < K     +   
+           d)	S     2−      < Cl     −      <      Ar      < K     +      < Ca     2+        
+                                                      
+                                                  style.visibility                                           
+                                       Concept Check, 5  
+                               Which atom or ion has the smallest radius?  
+       
+           a)	O     2+     	  
+           b)	O     +     	  
+           c)	O	  
+           d)	O     2−   
+                                                      
+                                                  style.visibility                                           
+                                  Electronegativity  
+                         Polarity of a bond depends on the difference between the electronegativity values of the atoms forming the bond  
+                                           
+                                  Table 12.1: The Relationship between Electronegativity and Bond Type  
+                                            
+                                       Exercise, 1  
+                             	Arrange the following bonds from          most polar to least polar     :   
+      
+        	     a) 	N–F		O–F		C–F  
+        	b)	C     –     F		N     –     O		Si     –     F   
+        	c)	Cl–Cl		B–Cl		S–Cl  
+        	         a)	 C–F, 		N–F, 		O–F  
+            	b)	 Si–F, 		C–F, 		N–O  
+            	c)	 B–Cl, 		S–Cl, 		Cl–Cl  
+              
+                                  Concept Check, 6  
+                            Which of the following bonds would be the          least polar               yet still be      considered polar covalent?  
+     
+       Mg     –     O   C     –     O        O     –     O   Si     –     O   N     –     O   
+        
+  
+                                                      
+              
+                                  	Concept Check, 7  
+                          
+       Which of the following bonds would be the          most polar without      being considered ionic?      
+       Mg     –     O   C     –     O        O     –     O   Si     –     O   N     –     O   
+                                                      
+              
+                                  Dipole Moment   
+                         Property of a molecule whose charge distribution can be represented by a center of positive charge and a center of negative charge  
+    Dipolar character of a molecule      is represented by an arrow  
+       Arrow points to the negative charge center, and its tail indicates the positive center of charge  
+                                           
+                                       Figure 12.6: Dipole Moment in a Water Molecule  
+                                            
+                                  Dipole Moment in a Water Molecule      (continued)  
+                         Polarity of water affects its properties  
+     Permits ionic compounds to dissolve in it  
+     Causes water to remain a liquid at t     he temperatures on the earth’s surface   
+                                            
+                                  Review  
+                         Group 1 metals always form 1+ cations  
+    Group 2 metals always form 2+ cations  
+    Aluminum in Group 3 always forms a 3+ cation  
+    Group 7 nonmetals form 1− anions  
+    Group 6 elements always form 2− anions  
+              
+                                  Stable Compounds  
+                         Atoms in stable compounds of the representative elements have a noble gas electron configuration  
+     Metals lose electrons to reach a noble gas configuration  
+     Nonmetals gain electrons to reach a noble gas configuration  
+  
+              
+                                  Table 12.2: The Formation of Ions by Metals and Nonmetals  
+                                            
+                                  Electron Configurations of Ions  
+                    Representative (main-group) metals form ions by losing enough electrons to achieve the configuration of the previous noble gas  
+    Nonmetals form ions by gaining enough electrons to achieve the configuration of the next noble gas  
+              
+                                  Electron Configurations and Bonding  
+                                 When a      nonmetal and a Group 1, 2, or 3 metal      react to form a binary ionic compound, the ions form in such a way that   
+            the valence-electron configuration of the nonmetal is completed to achieve the configuration of the next noble gas and  
+            the valence orbitals of the metal are emptied to achieve the configuration of the previous noble gas  
+           
+            When      two nonmetals      react to form a covalent bond, they share electrons in a way that completes the valence-electron configurations of both atoms  
+              
+                                  Predicting Formulas of Ionic Compounds  
+                                Chemical compounds are always electrically neutral       
+                                            
+                                  	Concept Check, 8  
+                       
+       What is the expected ground-state electron configuration for Te     2−     ?  
+     
+        [Kr]5     s     2     4     d     10     5     p     4  
+        [Kr]5     s     2     4     d     10     4     f     14     5     p     6   
+        [Kr]5     s     2     4     d     10     5     p     6  
+        [     Ar     ]5     s     2     4     d     10     5     p     2  
+                                                      
+                                                  style.visibility                                           
+                                  Concept Check, 8  
+                            What is the correct electron configuration for the most stable form of the          sulfur ion      in an ionic compound?  
+     
+        1     s     2     2     s     2     2     p     6     3     s     2  
+        1     s     2     2s     2     2p     6     3s     2     3p     2  
+        1     s     2     2     s     2     2p     6     3s     2     3p     4  
+        1     s     2     2     s     2     2p     6     3s     2     3p     6	  
+     
+     
+                                                      
+                                                  style.visibility                                           
+                                  Structures of Ionic Compounds  
+                         Large amounts of energy are required to separate ionic compounds that result from the reaction of metals and nonmetals  
+     Strong bonding in these ionic compounds results from the attractions among the oppositely charged cations and anions  
+              
+                                  Structures of Ionic Compounds      (continued 1)  
+                         Actual solid in lithium fluoride contains huge and equal numbers of Li     +      and F     −      ions packed together in a way that maximizes the attraction of the oppositely charged ions   
+                                            
+                                  Structures of Ionic Compounds      (continued 2)   
+                           Cations are always smaller than their parent atoms  
+    Anions are always larger than their parent atoms  
+                                           
+                                  Ionic Compounds Containing Polyatomic Ions  
+                         Polyatomic ions work in the same way as simple ions  
+     Covalent bonds hold the individual polyatomic ions together, with all of the atoms behaving as a unit  
+              
+                                  Lewis Structure   
+                         Shows how valence electrons are arranged among atoms in a molecule  
+    Most important requirement      for the formation of a stable compound   
+     Atoms achieve noble gas electron configurations (          octet rule     ,           duet rule     , and so on)  
+                                           
+                                  Writing Lewis Structures  
+                                  Bonding pairs        are shared between two atoms  
+             Unshared pairs      (         lone pairs     ) are not shared and not involved in bonding        
+                                           
+                                  Steps for Writing Lewis Structures  
+                         Sum the valence electrons from all the atoms  
+    Use one pair of electrons to form a bond between each pair of bound atoms  
+    Arrange the remaining electrons to satisfy the octet rule for each second-row element and the duet rule for hydrogen  
+              
+                                  Steps for Writing Lewis Structures      (continued 1)   
+                         Sum the valence electrons from all the atoms  
+     Use the periodic table  
+            		         Example: 	H         2         O  
+            				2 (1 e         −         ) + 6 e         −          = 8 e         −          in total  
+              
+                                  Steps for Writing Lewis Structures      (continued 2)  
+                         Use a pair of electrons to form a bond between each pair of bound atoms  
+         	Example: 	H         2         O  
+                                                                                                                   
+                                  Steps for Writing Lewis Structures      (continued 3)   
+                         Arrange the remaining electrons to satisfy the octet rule for each second-row element and the duet rule for hydrogen  
+            		          Examples: H         2         O and PBr         3  
+                                                                                                                                                 
+                                  Resonance  
+                           A molecule shows          resonance        when more than one Lewis structure can be drawn for the molecule       
+     Lewis structures are then known as          resonance structures       
+            			          CO         2          = 16 e         −  
+      
+                                            
+                                  Some Exceptions to the Octet Rule  
+                         Boron tends to form compounds in which the boron atom has fewer than eight electrons around it (it does not have a complete octet)  
+        				           BF         3          = 24 e         −  
+          
+          
+          
+          
+          
+          
+    Molecules containing an odd numbers of electron  
+     Examples: NO and NO     2  
+                                            
+                                  Concept Check, 10  
+                            Draw a Lewis structure for each of the following molecules:   
+        	BF     3  
+        	CO     2  
+        	     CCl     4  
+        	     CN     −  
+                                                                                                                                                                                                                                                                                                                                                                                                                                    
+                                       Concept Check, 11  
+                                Consider the following compounds:  
+           		CO     2     	 N     2	     CCl     4     	  
+           Which of these compounds exhibits          resonance     ?  
+         
+           a)	CO     2   
+           b)	N     2   
+           c)	CCl     4   
+           d)	At least two of the above compounds exhibit 	resonance  
+                                                      
+                                                  style.visibility                                           
+                                       Concept Check, 12  
+                               Which of the following supports why Lewis structures are          not      a completely accurate way to draw molecules?  
+       
+           We cannot say for certain where an electron is located, yet when drawing Lewis structures we assume the electrons are in the right locations where we place them  
+           When adding up the number of valence electrons for a molecule, it is possible to get an odd number, which would make it impossible to satisfy the octet rule for all atoms   
+              
+                                  Concept Check, 12      (continued)  
+                                Both statements a) and b) above support why Lewis structures are not a completely accurate way to draw molecules  
+           Lewis structures are the most accurate way to draw molecules  
+      
+                                                      
+              
+                                  Understanding Molecular Structure and Bond Angles   
+                         Three-dimensional arrangement of atoms in molecules  
+                                            
+                                  Understanding Molecular Structure and Bond Angles      (continued 1)   
+                             Linear structure:      Atoms arranged in a line  
+     Example: Carbon dioxide  
+                                                                          
+                                  Understanding Molecular Structure and Bond Angles      (     continued 2)   
+                             Trigonal planar structure:      Atoms arranged in a triangle  
+     Example: Boron trifluoride  
+                                                                         
+                                  Understanding Molecular Structure and Bond Angles      (continued 3)   
+                             Tetrahedral structure  
+     Example: Methane  
+                                                                         
+                                  The VSEPR Model  
+                                  VSEPR:      Valence shell electron pair repulsion  
+    Useful for predicting the molecular structures of molecules formed from nonmetals  
+    The structure around a given atom is determined principally by minimizing repulsions between electron pairs  
+              
+                                  Two Pairs of Electrons  
+                                 Whenever two pairs of electrons are present around an atom, they should be placed at an angle of 180° to each other to give a linear arrangement  
+              Example:          BeCl         2        has a linear structure with a      180       °bond angle  
+                                             
+                                  Three Pairs of Electrons  
+                                 Whenever three pairs of electrons are present around an atom, they should be placed at the corners of a triangle  
+            Example: BF     3        has a trigonal planar structure  
+            Boron atom is surrounded by three pairs of electrons  
+         Greatest distance between electron pairs is achieved by angles of 120       °  
+                                             
+                                  Four Pairs of Electrons  
+                                 Whenever four pairs of electrons are present around an atom, they should be placed at the corners of a tetrahedron  
+              Example:          CH         4        has a           tetrahedral        arrangement with a bond angle of 1     09.5       °  
+                                                                     
+                                  Steps for Predicting Molecular Structure Using the VSEPR Model  
+                         Draw the Lewis structure for the molecule  
+    Count the electron pairs and arrange them in the way that minimizes repulsion  
+     Put the pairs as far apart as possible  
+    Determine the positions of the atoms from the way the electron pairs are shared  
+    Determine the name of the molecular structure from the positions of the atoms  
+              
+                                  Rules for Predicting Molecular Structure Using the VSEPR Model   
+                         Two pairs of electrons on a central atom in a molecule are always placed 180° apart  
+       This is a linear arrangement of pairs     
+    Three pairs of electrons on a central atom in a molecule are always placed 120° apart in the same plane as the central atom  
+       This is a trigonal planar (triangular) arrangement of pairs     
+    Four pairs of electrons on a central atom in a molecule are always placed 109.5° apart  
+       This is a tetrahedral arrangement of electron pairs     
+              
+                                  Rules for Predicting Molecular Structure Using the VSEPR Model      (continued)  
+                         When every pair of electrons on the central atom is shared with another atom, the molecular structure has the same name as the arrangement of electron pairs  
+    When one or more of the electron pairs around a central atom are unshared (lone pairs), the name for the molecular structure is different from that for the arrangement of electron pairs  
+              
+                                  Table 12.4: Arrangements of Electron Pairs and the Resulting Molecular Structures for Two, Three, and Four Electron Pairs  
+                                      
+                                  Molecules with Double Bonds   
+                         When using the VSEPR model to predict the molecular geometry of a molecule, a double bond is counted the same as a single electron pair  
+         CO         2  
+    The Lewis structure of a          carbon               dioxide      molecule  
+      
+      
+      
+     Each double bond in this molecule acts effectively as one repulsive unit  
+     Each double bond in CO     2      involves the sharing of four electrons between the carbon atom and an oxygen atom  
+                                       
+                                  Concept Check     , 13   
+                            Determine the          molecular structure      for each of the following molecules and include          bond angles     :  
+        HCN         
+        PH     3              
+        SeO     2             
+        O     3      	  
+            		     HCN - linear, 180°  
+        		PH     3      - trigonal pyramid, 109.5° (107°)  
+        		SeO     2      - bent, 120°  
+        		O     3      - bent, 120°  
+             

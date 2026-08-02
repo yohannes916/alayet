@@ -1,0 +1,253 @@
+ 
+                                       Chapter 15     
+                    Solutions       
+                                   Copyright ©2019 Cengage Learning. All Rights Reserved. May not be scanned, copied or duplicated, or posted to a publicly accessible website, in whole or in part.        
+              
+                                  What is a Solution?  
+                                   Solution        is a homogeneous mixture   
+                Solvent        is a substance present in the largest amount in a solution  
+                Solute        is a substance that dissolves in a solvent to form a solution     
+                Aqueous solution        is a solution with water as the solvent    
+              
+                                  Various Types of Solutions   
+                                            
+                                  Solubility of Ionic Substances   
+                         Ionic substances break up into individual cations and anions when dissolved in water  
+                                            
+                                  Solubility of Ionic Substances      (continued 1)  
+                         Polar water molecules interact with the positive and negative ions of a salt   
+                                            
+                                  Solubility of Ionic Substances      (continued 2)   
+                         Ethanol is soluble in water because of its polar O—H bond   
+                                            
+                                  Solubility of Polar Substances  
+                    Why is solid sugar soluble in water?   
+                                            
+                                  Substances Insoluble in Water   
+                         Nonpolar oil does not interact with polar water  
+    Water–water hydrogen bonds keep the water from mixing with the nonpolar molecules   
+                                            
+                                  How Substances Dissolve  
+                         A      “     hole     ”      must be made in the water structure for each solute particle   
+    The lost water–water interactions must be replaced by water–solute interactions   
+    “     L     ike dissolves like     ”   
+              
+                                       Concept Check, 1  
+                                Which of the following solutes will generally          not dissolve      in the specified solvent? Choose the      best      answer. Assume all of the compounds are in the liquid state.  
+           a)	CCl     4      mixed with water or H     2     O  
+           b)	NH     3      mixed with water or H     2     O  
+           c)	CH     3     OH mixed with water or H     2     O  
+           d)	N     2      mixed with methane or CH     4   
+                                                      
+              
+                                  Terms Associated with the Concentration of a        Solution  
+                         The solubility of a solute is limited   
+             Saturated solution      contains as much solute as will dissolve at that temperature   
+             Unsaturated solution      is a solution that has not reached the limit of solute that will dissolve in it  
+              
+                                  Terms Associated with the Concentration of a        Solution      (continued)   
+                         Solutions are mixtures   
+    Amounts of substances can vary in different solutions   
+     Specify the amounts of solvent and solute   
+     Use qualitative measures of concentration  
+         Relatively large amount of solute is dissolved in a          concentrated      solution   
+         Relatively small amount of solute is dissolved in a          dilute      solution  
+              
+                                  Calculating Mass Percent   
+                                                                                                                   
+                                            Exercise, 1  
+                             What is the          percent-by-mass      concentration of glucose in a solution made by dissolving 4.9 g of glucose in 95.7 g of water?   
+      
+            	         	  
+              
+                                  Calculating Molarity  
+                         Molarity, M, equals the number of moles of solute per volume of solution in liters  
+                                                                                                                                                                      
+                                            Exercise, 2  
+                             You have 1.00      mol      of sugar in 125.0 mL of solution. Calculate the concentration in units of          molarity     .   
+      
+            			   
+              
+                                       Exercise, 3  
+                             	     A 500.0-g      sample of potassium phosphate is dissolved in enough water to make 1.50 L of solution. What is the          molarity      of the solution     ?        
+        				  
+                      
+                                            Exercise, 4  
+                             	You have a 10.0-     M      sugar solution. What          volume      of this solution do you need to have 2.00 mol of sugar?   
+              
+                                            Exercise, 5  
+                             Consider separate solutions of      NaOH      and      KCl      made by dissolving 100.0 g of each solute in 250.0 mL of solution. Calculate the concentration of each solution in units of          molarity     .   
+      
+              
+                                       Concept Check, 2  
+                                   You have two      HCl      solutions, labeled Solution A and Solution B. Solution A has a greater concentration than Solution B. Which of the following statements is          true     ?   
+              a)	If you have equal volumes of both solutions, 	Solution B must contain more moles of      HCl   
+              b)	If you have equal moles of      HCl      in both solutions, 	Solution B must have a greater volume  
+              c)	To obtain equal concentrations of both solutions, 	you must add a certain amount of water to 	Solution B  
+              d)	To make both solutions less concentrated, you must 	add more moles of      HCl   
+                                                      
+              
+                                  Concentration of Ions  
+                          For a 0.25      M      CaCl     2      solution:  
+        		CaCl     2             → Ca       2+        + 2Cl       –  
+     
+        Ca     2+     :  1        × 0.25        M        = 0.25        M        Ca       2+   
+          Cl       –     :  2        × 0.25        M        = 0.50        M        Cl       –   
+              
+                                       Concept Check, 3  
+                             Which of the following solutions contains        the          highest      number of ions?  
+         400.0 mL of 0.10 M      NaCl   
+         300.0 mL of 0.10 M CaCl     2   
+         200.0 mL of 0.10 M FeCl     3   
+         800.0 mL of 0.10 M sucrose   
+      
+                                                      
+              
+                                  Let       ’     s Think About It (Concept Check, 3)  
+                          Where are we going?  
+        To find the solution that contains the greatest number of moles of ions   
+     How do we get there?  
+        Draw molecular-level pictures showing each solution  
+        Think about relative numbers of ions  
+        Determine the number of moles of each ion in each solution  
+   
+              
+                                  Notice  
+                          The solution with the greatest number of ions is not necessarily the one in which  
+        The volume of the solution is the largest  
+        The formula unit has the greatest number of ions  
+   
+              
+                                  Standard Solution  
+                         A solution whose concentration is accurately known  
+              
+                                  Steps to Make a Standard Solution  
+                             Weigh out a sample of solute  
+        Transfer it to a volumetric flask  
+        Add enough solvent to bring the volume up to the mark on the neck of the flask  
+                                            
+                                  Dilution  
+                         The process of adding water to a concentrated or stock solution to achieve a solution of desired concentration  
+    Dilution with water does not alter the numbers of moles of solute present  
+    Moles of solute before dilution equals moles of solute after dilution  
+        				         M         1         V         1          =          M         2         V         2  
+              
+                                  Steps to Dilute a Solution  
+                               Transfer a measured amount of original solution to a flask containing some water   
+          Add water to the flask by swirling to bring the volume up to the calibration mark  
+          Mix by inverting the flask        
+                                            
+                                       Concept Check, 4  
+                             A 0.50-     M      solution of sodium chloride in an open beaker sits on a lab bench. Which of the following would          decrease      the concentration of the salt solution?   
+        Adding water to the solution	  
+        Pouring some of the solution down the sink drain  
+        c)	Adding more sodium chloride to the solution  
+        d)	Letting the solution sit out in the open air for a couple of days  
+        e)	At least two of the above would decrease the concentration of the salt solution  
+                                                      
+              
+                                       Exercise, 6  
+                             	What is the minimum          volume      of a 4.50-     M      NaOH solution needed to make 200.0 mL of a 0.75  
+        0-     M      NaOH solution?  
+        				   
+              
+                                  Steps for Solving Stoichiometric Problems Involving Solutions  
+                              
+        Write the balanced equation for the reaction   
+     For reactions involving ions, it is best to write the net ionic equation  
+        Calculate the moles of reactants  
+        Determine which reactant is limiting  
+        Calculate the moles of other reactants or products, as required  
+        Convert to grams or other units, if required  
+              
+                                       Concept Check, 5      (Part I)  
+                             10.0 mL of a 0.30-     M      sodium phosphate solution reacts with 20.0 mL of a 0.20-     M      lead(II) nitrate solution (assume no volume change)  
+        What          precipitate      will form?  
+        			         lead(II) phosphate, Pb         3         (PO         4         )         2  
+              What          mass      of precipitate will form?  
+        				         1.1 g Pb         3         (PO         4         )         2  
+              
+                                  Let       ’     s Think About It (Part I)  
+                          Where are we going?  
+        To find the mass of solid        Pb       3       (PO       4       )       2      formed   
+     How do we get there?  
+        Determine the ions present in the combined solution  
+        Determine the      balanced net ionic equation for the reaction  
+        Determine the      moles of reactants present in the solution  
+        Determine which      reactant is limiting  
+        Determine the      moles of        Pb       3       (PO       4       )       2      that will be formed  
+        Determine the      mass of        Pb       3       (PO       4       )       2      that will be obtained  
+   
+              
+                                       Concept Check, 5      (Part II)  
+                             10.0 mL of a 0.30-     M      sodium phosphate solution reacts with 20.0 mL of a 0.20-     M      lead(II) nitrate solution (assume no volume change)   
+        What is the          concentration of nitrate ions      left in the solution after the reaction is complete?   
+        					         0.27          M  
+              
+                                  Let       ’     s Think About It (Part II)  
+                          Where are we going?  
+        To find the concentration of nitrate ions left in solution after the reaction is complete   
+     How do we get there?  
+        Determine the moles of nitrate ions present in the combined solution  
+        Determine the total volume of the combined solution  
+              
+                                       Concept Check, 5      (Part III)  
+                             10.0 mL of a 0.30-     M      sodium phosphate solution reacts with 20.0 mL of a 0.20-     M      lead(II) nitrate solution (assume no volume change)   
+        What is the          concentration of phosphate ions      left in the solution after the reaction is complete?  
+        				         0.011          M  
+      
+              
+                                       Let       ’     s Think About It (Part III)  
+                          Where are we going?  
+        To find the concentration of phosphate ions left in solution after the reaction is complete.   
+     How do we get there?  
+        Determine the number of moles of phosphate ions present in the solution at the start of the reaction  
+        Determine the number of moles of phosphate ions that were used up in the reaction to make the solid Pb     3     (PO     4     )     2   
+        Determine the number of moles of phosphate ions that are left over after the reaction is complete  
+        Determine the total volume of the combined solution  
+              
+                                  Neutralization Reaction  
+                         An acid–base reaction is called a neutralization reaction   
+    Steps to solve these problems are the same as before   
+    For a strong acid and base reaction, the net ionic reaction is  
+        	         H         +         (         aq         ) + OH         –         (         aq         )                     H         2         O(         l         )  
+              
+                                       Concept Check, 6  
+                             For the titration of sulfuric acid (H     2     SO     4     ) with sodium hydroxide (     NaOH     ), how many          moles of sodium hydroxide      would be required to react with 1.00 L of 0.500-     M      sulfuric acid?   
+      
+        				            1.00          mol                   NaOH       
+              
+                                  Let       ’     s Think About It (Concept Check, 6)  
+                          Where are we going?  
+        To find the moles of      NaOH      required for the reaction   
+     How do we get there?  
+        Determine the ions present in the combined solution and the reaction  
+        Determine the balanced net ionic equation for the reaction  
+        Determine the number of moles of H     +      present in the solution  
+        Determine the amount of OH     –      required to react with all of the H     +      present  
+              
+                                  Unit of Concentration  
+                                   One equivalent of an acid        is the amount of that acid that furnishes 1        mol        of H       +        ions   
+              One equivalent of a base        is the amount of that base that furnishes 1        mol        of OH                 ions  
+              Equivalent weight                  of an acid or base        is the mass in grams of 1 equivalent of acid or base  
+              
+                                  Furnishing of two Moles of H     +      Ions by H     2     SO     4   
+                                            
+                                  Molar Masses and Equivalent Weights of the Common Strong Acids and Bases  
+                                            
+                                  Calculating Normality  
+                             Normality,          N,               is defined as the number of equivalents of solute per      liter      of solution   
+  
+  
+     
+    To find number of equivalents:  
+                                                                                                                                                                                                                  
+                                       Concept Check, 7  
+                                If Ba(OH)     2      is used as a base, how many          equivalents      of Ba(OH)     2      will be there in 4      mol      Ba(OH)     2     ?  
+       
+           a)	2  
+           b)	4  
+           c)	8  
+           d)	16  
+                                                      
+             

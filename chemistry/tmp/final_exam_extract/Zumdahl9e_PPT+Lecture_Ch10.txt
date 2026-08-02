@@ -1,0 +1,368 @@
+ 
+                                  Chapter 10      
+                    Energy       
+                                                                                                                                                                            Copyright ©2019 Cengage Learning. All Rights Reserved. May not be scanned, copied or duplicated, or posted to a publicly accessible website, in whole or in part.  
+              
+                                  Energy  
+                         Ability to do work or produce heat  
+    Needed to oppose natural attractive forces  
+        Law of conservation of energy     : Energy can be converted from one form to another but can be neither created nor destroyed  
+     The total energy content of the universe is constant  
+              
+                                  Energy      (continued 1)  
+                              Potential energy     : Energy due to position or composition  
+         Kinetic energy     : Energy due to motion of the object that depends on the mass of the object and its velocity  
+              
+                                  Initial Position  
+                          In the initial positions, ball A has a higher potential energy than ball B       
+                                            
+                                  Final Position  
+                          After A has rolled down the hill, the potential energy lost by A has been converted to random motions of the components of the hill (frictional heating) and to an increase in the potential energy of B       
+                                            
+                                  Energy      (continued 2)  
+                         Heat involves the transfer of energy between two objects due to a temperature difference  
+        Work     : Force acting over a distance  
+    Energy is a          state function  
+     Property that does not depend in any way on a system     ’     s past or future    
+     Depends on the system’s present state  
+     Changes independently of its pathway  
+    Work and heat are not state functions  
+   
+              
+                                  State Functions  
+                         Distance traveled from one location to another  
+         Not a state function:      Depends on the route taken  
+    Change in elevation  
+         State function:      Change in elevation is always the same   
+     Does not depend on the route taken  
+              
+                                  Temperature  
+                                Measure of the random motions of the components of a substance        
+                                            
+                                  Heat  
+                         Flow of energy between two objects due to a temperature difference between the objects  
+     Heat is the way in which thermal energy is transferred from a hot object to a colder object   
+                                            
+                                  Energy Changes in Chemical Reactions   
+                             System     : Part of the universe on which we wish to focus attention  
+        Surroundings     : Include everything else in the universe  
+              
+                                  Energy Changes Accompanying the Burning of a Match  
+                                            
+                                  Exothermic and Endothermic Reactions   
+                             Endothermic process:  
+     Heat flow is into a system  
+     Absorbs energy from the surroundings  
+        Exothermic process:  
+     Energy flows out of the system  
+    Energy gained by the surroundings must be equal to the energy lost by the system  
+              
+                                       Concept Check, 1  
+                                 Is freezing of water an          endothermic      or          exothermic      process? Explain  
+                                                      
+                                                  style.visibility                                           
+                                       Concept Check, 2  
+                                 Classify each process as          exothermic      or          endothermic     . Justify your answer. The system is underlined in each example.  
+          
+            Your hand      gets cold when you touch ice  
+            The ice      gets warmer when you touch it  
+            Water      boils in a kettle being heated on a stove  
+            Water vapor      condenses on a cold pipe.  
+            Ice cream      melts  
+                                 Exo  
+            Endo  
+            Endo  
+      
+            Exo  
+            Endo  
+                                                      style.visibility                                                  style.visibility                                                  style.visibility                                                  style.visibility                                                  style.visibility                                           
+                                       Concept Check, 3  
+                                 For each of the following, define a          system      and its          surroundings      and give the          direction      of energy transfer  
+          
+            Methane is burning in a Bunsen burner in a laboratory  
+            After swimming, water drops on your skin evaporate  
+              
+                                       Concept Check, 4  
+                            Hydrogen and oxygen react violently to form water. Which is lower in energy, a mixture of hydrogen and oxygen, or water? Explain.  
+                           Water   
+                                                  style.visibility                                           
+                                  Thermodynamics   
+                         Study of energy  
+    Law of conservation of energy is often called          the first law of thermodynamics  
+     The energy of the universe is constant  
+              
+                                  Internal Energy  
+                          Internal energy      E      of a system is the sum of the kinetic and potential energies of all the        “     particles       ”      in the system  
+       Change in the internal energy of a system:	       	          Δ          E           =           q           +           w        
+     q      represents heat  
+     w      represents work  
+              
+                                  Internal Energy      (continued 1)  
+                         Sign reflects the system’s point of view  
+    Endothermic process  
+     q is positive  
+    Exothermic process  
+     q is negative  
+              
+                                  Systems and Surroundings   
+                                           
+                                  Internal Energy      (continued 2)  
+                         Sign reflects the system’s point of view  
+    System does work on the surroundings  
+     w is negative  
+    Surroundings do work on the system  
+     w is positive  
+              
+                                       Concept Check, 5  
+                                 Consider the listed conditions below and determine the sign of             E      for each of the following:  
+            a)	An endothermic process that performs work  
+                     |work| > |heat|  
+                     |work| < |heat|  
+            b)	Work is done on a gas and the process is 	exothermic  
+               |work| > |heat|  
+                     |work| < |heat|  
+                                  Δ                     E           = negative  
+             Δ                     E           = positive  
+           
+           
+             Δ                     E           = positive  
+             Δ                     E           = negative        
+                                                      style.visibility                                                  style.visibility                                                  style.visibility                                                  style.visibility                                           
+                                  Energy units   
+                         Most common energy units for heat are the calorie and the joule  
+         Calorie:      The amount of energy, or heat required to raise the temperature of one gram of water by 1 °C  
+         Joule     : 1 calorie = 4.184 joules    
+              
+                                  Example, 1  
+                                  	          Convert 60.1          cal          to joules  
+      
+                                                                                                             
+                                  Energy (Heat) Required to Change the Temperature of a Substance Depends On:  
+                         Amount of substance being heated  
+      Number of grams  
+    Temperature change   
+     Number of degrees  
+    Identity of the substance  
+     Specific heat capacity is the energy required to change the temperature of one gram of a substance by 1 °C  
+              
+                                         Specific Heat Capacities of Some Common Substances  
+                                            
+                                    To Calculate the Energy Required for a Reaction:  
+                              Energy (heat) required, Q =          s                    ×           m           ×           Δ          T        
+           
+          		       Q = energy (heat) required (J)     
+          		s        = specific heat capacity (J/g °C)  
+          		       m        = mass (g)  
+          		       Δ       T        = change in temperature (°C)     
+              
+                                  Example, 2  
+                                  	         Calculate the amount of heat energy (in joules) needed to raise the temperature of 6.25 g of water from 21.0 °C to 39.0 °C  
+      
+        Where are we going?  
+     We want to determine the amount of energy needed to increase the temperature of 6.25 g of water from 21.0 °C to 39.0 °C  
+        What do we know?  
+     Mass of water and the temperature increase  
+              
+                                  Example, 2      (continued)  
+                                  	         Calculate the amount of heat energy (in joules) needed to raise the temperature of 6.25 g of water from 21.0 °C to 39.0 °C.   
+      
+        What information do we need?  
+     We need the specific heat capacity of water  
+     4.184 J/g        °C  
+        How do we get there?   
+                                                                                                             
+                                       Exercise, 1       
+                             142      cal      of energy is required to raise the temperature of a sample of pure iron from 23        º     C to 92        º     C. What is the          mass      of the sample? (The specific heat capacity of iron is 0.45 J/g        º     C)  
+   
+        a)	0.052 g  
+        b)	4.6 g  
+        c)	19 g  
+        d)	590 g  
+                                                      
+                                                                                                              
+                                       Concept Check, 6  
+                                 A 100.0 g sample of water at 90 °C is added to a 100.0 g sample of water at 10 °C  
+          
+            The          final temperature      of the water is:  
+            a) Between 50 °C and 90 °C  
+            b) 50 °C  
+            c) Between 10 °C and 50 °C  
+                                                      
+              
+                                       Concept Check, 7  
+                                 A 100.0 g sample of water at 90.0 °C is added to a 500.0 g sample of water at 10.0 °C  
+          
+            The          final temperature      of the water is likely to be:  
+            a) Between 50 °C and 90 °C  
+            b) 50 °C  
+            c) Between 10 °C and 50 °C  
+          
+            Calculate the final temperature of the water  
+            			        
+                                                      
+                           				           23 °C  
+  
+                                                  style.visibility                                           
+                                       Concept Check, 8  
+                                 You have a Styrofoam cup with 50.0 g of water at 10.0             C.  You add a 50.0 g iron ball at 90.0             C to the water. (     s     H2O      = 4.18 J/g        °C and        s       Fe        = 0.45      J/g        °C)  
+            The          final temperature      of the water is likely to be:  
+            a) Between 50 °C and 90 °C  
+            b) 50 °C  
+            c) Between 10 °C and 50 °C  
+          
+            Calculate the final temperature of the water  
+            				         18           °C  
+                                                      
+                                                                                           style.visibility                                           
+                                  Change in Enthalpy  
+                          State function  
+       Δ       H        =        q        at constant pressure (       Δ       H       p        = heat)  
+              
+                                  Example, 3  
+                                  	         Consider the reaction:          S(         s         ) + O         2         (         g         )           → SO          2          (          g          )  
+             	          Δ          H = –296 kJ per mole of SO          2           formed       
+            	Calculate the quantity of heat released when 2.10 g of sulfur is burned in oxygen at constant pressure  
+        Where are we going?  
+     We want to determine        Δ       H        for the reaction of 2.10 g of S with oxygen at constant pressure   
+        What do we know?  
+     When 1 mole        SO       2      is formed,        –296 kJ             of energy is released  
+     We have 2.10 g S  
+              
+                                  Example, 3      (continued)  
+                                  	         Consider the reaction:          S(         s         ) + O         2         (         g         )           → SO          2          (          g          )  
+             	          Δ          H = –296 kJ per mole of SO          2           formed  
+             	         Calculate the quantity of heat released when 2.10 g of sulfur is burned in oxygen at constant pressure  
+      
+        How do we get there?  
+                                                                                                                   
+                                       Exercise, 2  
+                             	Consider the combustion of propane:  
+      
+        		C     3     H     8     (     g     ) + 5O     2     (     g     )        → 3CO       2       (       g       ) + 4H       2       O(       l       )  
+          						       Δ       H        = –2221 kJ  
+          Assume that all of the heat comes from the combustion of propane. Calculate           Δ          H        when 5.00 g of propane is burned in excess oxygen at constant pressure        
+                                                                                                       					         –252 kJ  
+                                                  style.visibility                            style.visibility                                           
+                                  Calorimetry  
+                                Enthalpy,        H        is measured using a calorimeter  
+                                            
+                                  Hess’s Law   
+                         In going from a particular set of reactants to a particular set of products, the change in enthalpy is the same whether the reaction takes place in one step or in a series of steps  
+              
+                                  N     2     (     g     ) + 2O     2     (     g     )        → 2NO       2       (       g       )	                     Δ       H       1        = 68 kJ     
+                          This reaction can also be carried out in two distinct steps, with enthalpy changes designated by        Δ       H       2             and        Δ       H       3   
+        
+                                                                 
+                                  Characteristics of Enthalpy Changes  
+                          If a reaction is reversed, the sign of        Δ       H        is also reversed  
+       The magnitude of        Δ       H        is directly proportional to the quantities of reactants and products in a reaction  
+       If the coefficients in a balanced reaction are multiplied by an integer, the value of        Δ       H        is multiplied by the same integer     
+              
+                                  Hess’s Law: Example, 1  
+                          Consider the following data:  
+                                                                                                                                                                                                                                                                                                                  
+                                  Calculate                   Δ                  H for the reaction                
+                                                                             
+                                  Problem-Solving Strategy  
+                            Work backward from the required reaction, using the reactants and products to decide how to manipulate the other given reactions at your disposal  
+       Reverse any reactions as needed to give the required reactants and products  
+       Multiply reactions to give the correct numbers of reactants and products     
+              
+                                  Hess’s Law: Example, 2  
+                          Reverse the two reactions:  
+                                                                                                                                                                                                                                                                                                                    Desired reaction:                
+                                                                             
+                                  Hess’s Law: Example, 3  
+                            Multiply reactions to give the correct numbers of reactants and products     :  
+                                                                                                                                                                                                                                                                                                                    Desired reaction:                
+                                                                             
+                                  Example, 4  
+                          Final reactions:  
+                                                                                                                                                                                                                                                                                                                    Desired reaction:	                
+                                                                                                                                                                                                                                                                                                                    Δ                  H = + 1268 kJ                   		                
+                                                  style.visibility                                           
+                                       Hess’s Law: Concept Check, 1  
+                             Calculate          Δ         H      for the reaction:   
+        		SO     2      + ½O     2             →      SO     3             Δ     H = ?                 
+      
+        Given:	       (1)       S + O     2             →      SO     2                 	     Δ     H = –297 kJ                 		(2)  2S + 3O     2             →      2SO     3                  Δ     H = –792 kJ  
+   
+        a)	–693 kJ  
+        b)	101 kJ  
+        c)	693 kJ  
+        d)	–99  kJ  
+                                                                                    
+                                                  style.visibility                                           
+                                  Energy Resources   
+                         When we use energy to do work, we degrade its usefulness  
+    While the total amount or quantity of energy in the universe is constant, the quality of energy is degraded as it is used  
+    Burning of petroleum  
+                                            
+                                  Fossil Fuels     
+                                Carbon-based molecules from decomposing plants and animals   
+           Energy sources used in the United States        
+                                            
+                                  Petroleum     
+                                Thick liquid composed of mainly hydrocarbons  
+             Hydrocarbons     : Compounds composed of C and H        
+                                            
+                                  Natural Gas     
+                                Gas composed of hydrocarbons  
+         Consists mostly of          methane, but also contains significant amounts of ethane, propane, and butane        
+                                            
+                                       Coal     
+                                Formed from the remains of plants      that are buried and subjected        under high pressure and heat over time        
+                                            
+                                  Effects of Carbon Dioxide on Climate     
+                                Greenhouse effect  
+         The atmosphere acts like the glass of a greenhouse, which is transparent to visible light but absorbs infrared radiation        
+                                            
+                                  Effects of Carbon Dioxide on Climate      (continued)     
+                              Atmospheric CO     2        
+         Controlled by water cycle   
+         Could increase temperature by 10      o     C        
+                                            
+                                  New Energy Sources     
+                             Solar   
+        Nuclear   
+        Biomass   
+        Wind   
+        Synthetic fuels   
+              
+                                  Energy as a Driving Force in Natural Processes   
+                         Natural processes occur in the direction that leads to an increase in the disorder of the universe  
+    Example  
+     Consider a gas trapped as shown below  
+                                            
+                                       Energy as a Driving Force in Natural Processes      (continued)   
+                                When the valve is opened, the gas spreads throughout the container        
+                                            
+                                  Two Driving Forces  
+                          Energy spread  
+     Matter spread  
+              
+                                  Energy Spread  
+                          In a given process, the concentrated energy is dispersed widely  
+                                                                                                                                                                                                                                                                                   This happens in every exothermic process  
+              
+                                  Matter Spread  
+                              Molecules of a substance spread out to occupy a larger volume  
+                                                                                                                                                                                                                                                                                 
+                                  Processes are favored if they involve energy and spread of matter  
+              
+                                  Entropy,      S  
+                                Function which keeps track of the tendency for the components of the universe to become disordered   
+         Measure of disorder or randomness  
+          
+                                            
+                                  Entropy,      S      (continued)   
+                                What happens to the disorder in the universe as energy and matter spread during a process?   
+          
+                                            
+                                  Second Law of Thermodynamics   
+                              Entropy of the universe is always increasing  
+          Spontaneous process:      Occurs in nature without outside intervention  
+     The second law of thermodynamics helps to explain why certain processes are spontaneous and others are not  
+     It also explains the conditions necessary for a process to be spontaneous  
+     A process is spontaneous, only if the entropy of the universe increases as a result of the process       
+             
